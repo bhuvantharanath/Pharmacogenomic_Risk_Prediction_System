@@ -67,3 +67,11 @@ key.properties
 app/build/
 # Wrangler / Cloudflare local state.
 .wrangler/
+
+# --- Phase 5A ---------------------------------------------------------------
+# Guard event log: append-only generation/runtime telemetry, rewritten by every
+# run. The distilled numbers live in reports/, which IS committed.
+logs/
+# Raw experiment output — deliberately contains fabricated clinical text.
+# The readable write-up (reports/guard_experiment.md) is committed instead.
+reports/guard_experiment_raw.json

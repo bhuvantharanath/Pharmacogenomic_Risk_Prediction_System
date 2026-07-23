@@ -1,0 +1,263 @@
+{
+ "generated_at": "2026-07-23T14:14:15.583085+00:00",
+ "note": "Which (drug, gene, phenotype) cases this pipeline can actually produce. Explanations are generated ONLY for reachable cases; unreachable ones are documented, never authored.",
+ "totals": {
+  "enumerated": 28,
+  "reachable": 20,
+  "unreachable": 8
+ },
+ "cases": [
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "IM",
+   "pharmcat_phenotype": "Intermediate Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (TPMT.json); CPIC text present, e.g. 'Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/da'"
+  },
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "NM",
+   "pharmcat_phenotype": "Normal Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (TPMT.json); CPIC text present, e.g. 'Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses o'"
+  },
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "PM",
+   "pharmcat_phenotype": "Poor Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (TPMT.json); CPIC text present, e.g. 'Consider alternative nonthiopurine immunosuppressant therapy.'"
+  },
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "Unknown",
+   "pharmcat_phenotype": "No Result",
+   "reachable": true,
+   "reason": "",
+   "evidence": "any gene can fail to call; also the no-CPIC-guidance path"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "IM",
+   "pharmcat_phenotype": "Intermediate Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (CYP2C19.json); CPIC text present, e.g. 'Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication'"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "NM",
+   "pharmcat_phenotype": "Normal Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (CYP2C19.json); CPIC text present, e.g. 'If considering clopidogrel, use at standard dose (75 mg/day)'"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "PM",
+   "pharmcat_phenotype": "Likely Poor Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (CYP2C19.json); CPIC text present, e.g. 'Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.'"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "RM",
+   "pharmcat_phenotype": "Rapid Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (CYP2C19.json); CPIC text present, e.g. 'If considering clopidogrel, use at standard dose (75 mg/day)'"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "URM",
+   "pharmcat_phenotype": "Ultrarapid Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (CYP2C19.json); CPIC text present, e.g. 'If considering clopidogrel, use at standard dose (75 mg/day)'"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "Unknown",
+   "pharmcat_phenotype": "No Result",
+   "reachable": true,
+   "reason": "",
+   "evidence": "any gene can fail to call; also the no-CPIC-guidance path"
+  },
+  {
+   "drug": "codeine",
+   "gene": "CYP2D6",
+   "phenotype": "IM",
+   "pharmcat_phenotype": "Intermediate Metabolizer",
+   "reachable": false,
+   "reason": "gene not callable from unphased VCF — star alleles depend on structural/copy-number variation a VCF cannot express; PharmCAT reports callSource=NONE even with all definition positions present",
+   "evidence": "verified empirically in Phase 2 (see infra/PHARMCAT_NOTES.md §4)"
+  },
+  {
+   "drug": "codeine",
+   "gene": "CYP2D6",
+   "phenotype": "NM",
+   "pharmcat_phenotype": "Normal Metabolizer",
+   "reachable": false,
+   "reason": "gene not callable from unphased VCF — star alleles depend on structural/copy-number variation a VCF cannot express; PharmCAT reports callSource=NONE even with all definition positions present",
+   "evidence": "verified empirically in Phase 2 (see infra/PHARMCAT_NOTES.md §4)"
+  },
+  {
+   "drug": "codeine",
+   "gene": "CYP2D6",
+   "phenotype": "PM",
+   "pharmcat_phenotype": "Poor Metabolizer",
+   "reachable": false,
+   "reason": "gene not callable from unphased VCF — star alleles depend on structural/copy-number variation a VCF cannot express; PharmCAT reports callSource=NONE even with all definition positions present",
+   "evidence": "verified empirically in Phase 2 (see infra/PHARMCAT_NOTES.md §4)"
+  },
+  {
+   "drug": "codeine",
+   "gene": "CYP2D6",
+   "phenotype": "URM",
+   "pharmcat_phenotype": "Ultrarapid Metabolizer",
+   "reachable": false,
+   "reason": "gene not callable from unphased VCF — star alleles depend on structural/copy-number variation a VCF cannot express; PharmCAT reports callSource=NONE even with all definition positions present",
+   "evidence": "verified empirically in Phase 2 (see infra/PHARMCAT_NOTES.md §4)"
+  },
+  {
+   "drug": "codeine",
+   "gene": "CYP2D6",
+   "phenotype": "Unknown",
+   "pharmcat_phenotype": "No Result",
+   "reachable": true,
+   "reason": "",
+   "evidence": "any gene can fail to call; also the no-CPIC-guidance path"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "IM",
+   "pharmcat_phenotype": "Intermediate Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (DPYD.json); CPIC text present, e.g. 'Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available'"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "NM",
+   "pharmcat_phenotype": "Normal Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (DPYD.json); CPIC text present, e.g. 'Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.'"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "PM",
+   "pharmcat_phenotype": "Poor Metabolizer",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (DPYD.json); CPIC text present, e.g. 'Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens.'"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "Unknown",
+   "pharmcat_phenotype": "No Result",
+   "reachable": true,
+   "reason": "",
+   "evidence": "any gene can fail to call; also the no-CPIC-guidance path"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "IM",
+   "pharmcat_phenotype": "Decreased Function",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (SLCO1B1.json); CPIC text present, e.g. 'Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for'"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "NM",
+   "pharmcat_phenotype": "Normal Function",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (SLCO1B1.json); CPIC text present, e.g. 'Prescribe desired starting dose and adjust doses based on disease-specific guidelines.'"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "PM",
+   "pharmcat_phenotype": "Poor Function",
+   "reachable": true,
+   "reason": "",
+   "evidence": "PharmCAT phenotype table (SLCO1B1.json); CPIC text present, e.g. 'Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for'"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "RM",
+   "pharmcat_phenotype": "Increased Function",
+   "reachable": false,
+   "reason": "no CPIC recommendation text for this gene-phenotype-drug triple in the available PharmCAT output — the pipeline returns Unknown, so there is no recommendation to explain",
+   "evidence": "PharmCAT phenotype table (SLCO1B1.json)"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "Unknown",
+   "pharmcat_phenotype": "No Result",
+   "reachable": true,
+   "reason": "",
+   "evidence": "any gene can fail to call; also the no-CPIC-guidance path"
+  },
+  {
+   "drug": "warfarin",
+   "gene": "CYP2C9",
+   "phenotype": "IM",
+   "pharmcat_phenotype": "Intermediate Metabolizer",
+   "reachable": false,
+   "reason": "no CPIC recommendation text for this gene-phenotype-drug triple in the available PharmCAT output — the pipeline returns Unknown, so there is no recommendation to explain",
+   "evidence": "PharmCAT phenotype table (CYP2C9.json)"
+  },
+  {
+   "drug": "warfarin",
+   "gene": "CYP2C9",
+   "phenotype": "NM",
+   "pharmcat_phenotype": "Normal Metabolizer",
+   "reachable": false,
+   "reason": "no CPIC recommendation text for this gene-phenotype-drug triple in the available PharmCAT output — the pipeline returns Unknown, so there is no recommendation to explain",
+   "evidence": "PharmCAT phenotype table (CYP2C9.json)"
+  },
+  {
+   "drug": "warfarin",
+   "gene": "CYP2C9",
+   "phenotype": "PM",
+   "pharmcat_phenotype": "Poor Metabolizer",
+   "reachable": false,
+   "reason": "no CPIC recommendation text for this gene-phenotype-drug triple in the available PharmCAT output — the pipeline returns Unknown, so there is no recommendation to explain",
+   "evidence": "PharmCAT phenotype table (CYP2C9.json)"
+  },
+  {
+   "drug": "warfarin",
+   "gene": "CYP2C9",
+   "phenotype": "Unknown",
+   "pharmcat_phenotype": "No Result",
+   "reachable": true,
+   "reason": "",
+   "evidence": "any gene can fail to call; also the no-CPIC-guidance path"
+  }
+ ]
+}

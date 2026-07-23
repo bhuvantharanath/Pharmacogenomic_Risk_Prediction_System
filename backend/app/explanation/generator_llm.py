@@ -173,6 +173,7 @@ def generate(
     model: str | None = None,
     temperature: float = DEFAULT_TEMPERATURE,
     api_key: str | None = None,
+    system_instruction: str | None = None,
 ) -> LlmResult:
     """
     Call Gemini and parse a structured explanation.
@@ -181,6 +182,11 @@ def generate(
     missing SDK, transport failure, unparseable response. Callers treat that as
     "fall back", never as a 500.
     """
+    # `system_instruction` lets the pre-generation CLI retry a guard failure
+    # with a stricter prompt naming the offending entities. Defaults to the
+    # module constant so the runtime path is unchanged.
+    instruction = system_instruction or SYSTEM_INSTRUCTION
+
     key = api_key or os.environ.get("GEMINI_API_KEY")
     if not key:
         raise LlmUnavailableError(
@@ -205,7 +211,7 @@ def generate(
             model=model_id,
             contents=_build_prompt(context),
             config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_INSTRUCTION,
+                system_instruction=instruction,
                 response_mime_type="application/json",
                 response_schema=_ExplanationSchema,
                 temperature=temperature,
