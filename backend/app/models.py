@@ -5,8 +5,16 @@ This module is the single source of truth for the API schema. The Dart models in
 `/app/lib/models/` mirror these one-for-one; if you change anything here, change
 them there too (and bump the docs in the root README).
 
-Phase 1 note: the *shape* of this contract is final, but every clinical *value*
-served today comes from `stub_analyzer.py`. See the TODO markers there.
+PROVENANCE OF CLINICAL VALUES
+    Diplotypes and phenotypes come from PharmCAT (`pharmcat_runner.py`).
+    All recommendation text is CPIC's, copied verbatim out of PharmCAT's report
+    by `cpic_engine.py` — this codebase never composes clinical prose. The one
+    derived value is `risk_label`, produced by the ordered, commented rules in
+    `data/label_mapping.yaml`, and every result records which rule fired.
+
+    (Historical note: an earlier phase served hardcoded demo values from a
+    `stub_analyzer.py`. That file has been deleted — it contained fabricated
+    diplotypes and dosing text and was a standing hazard even unreferenced.)
 """
 
 from __future__ import annotations

@@ -78,6 +78,12 @@ async def lifespan(_: FastAPI):
     )
     for warning in warnings:
         print(f"[startup] WARNING: {warning}", flush=True)
+
+    # Raises CorsMisconfiguredError if this looks like a hosted instance with an
+    # empty allowlist. Deliberately fatal: that misconfiguration passes every
+    # health check while blocking every real browser request, so it would
+    # otherwise be discovered by a visitor rather than by the deployer.
+    security.assert_cors_configured()
     print(
         f"[startup] explanation_mode={ExplanationMode.from_env().value} "
         f"cors_origins={security.allowed_origins() or '(localhost only)'} "
@@ -379,16 +385,22 @@ def build_result(
     assessment, recommendation, call, warnings = cpic_engine.evaluate(drug, report)
     phenotype = cpic_engine.map_phenotype(call.phenotype_raw if call else None)
 
+    # Build the profile FIRST so it can be handed to the explanation layer.
+    # This is the object the client renders in the card, and it is what every
+    # value injected into the explanation gets cross-checked against — so the
+    # sentence and the card above it cannot disagree.
+    profile = _profile(call, phenotype)
+
     context = _build_context(drug, call, phenotype, assessment, recommendation)
     # Never raises: every mode degrades to the deterministic template.
-    explained = generate_explanation(context)
+    explained = generate_explanation(context, profile=profile)
     warnings.extend(explained.notes)
 
     return (
         PerDrugResult(
             drug=drug.strip().lower(),
             risk_assessment=assessment,
-            pharmacogenomic_profile=_profile(call, phenotype),
+            pharmacogenomic_profile=profile,
             clinical_recommendation=recommendation,
             # to_contract() supplies the disclaimer, so it is populated on every
             # response regardless of which generator ran.

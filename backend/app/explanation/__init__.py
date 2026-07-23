@@ -19,8 +19,10 @@ import os
 from dataclasses import dataclass
 from enum import Enum
 
+from ..models import PharmacogenomicProfile
 from .context import Explanation, ExplanationContext
 from .guard import GuardReport, check, log_violation
+from .slot_verifier import SlotVerification, verify as verify_slots
 from . import generator_template, static_store
 
 
@@ -54,6 +56,9 @@ class ExplanationResult:
     generator: str
     guard: GuardReport | None = None
     reviewed: bool = False
+    #: Runtime cross-check of the values injected into the reviewed prose.
+    #: None when no profile was supplied to verify against.
+    slots: SlotVerification | None = None
     notes: list[str] = None  # type: ignore[assignment]
 
     def __post_init__(self) -> None:
@@ -70,28 +75,59 @@ class ExplanationResult:
             # The template path is faithful by construction; say so rather than
             # implying a check ran that did not.
             bits.append("guard=n/a (deterministic)")
+        if self.slots is not None:
+            bits.append(
+                "slots=verified" if self.slots.passed else "slots=MISMATCH"
+            )
         if self.generator == "static":
             bits.append("reviewed=yes" if self.reviewed else "reviewed=NO")
         return ", ".join(bits)
 
 
 def _template_result(
-    context: ExplanationContext, mode: ExplanationMode, notes: list[str]
+    context: ExplanationContext,
+    mode: ExplanationMode,
+    notes: list[str],
+    profile: PharmacogenomicProfile | None = None,
 ) -> ExplanationResult:
-    """The floor. Faithful by construction, so the guard is informational."""
-    explanation = generator_template.generate(context)
+    """
+    The floor. Faithful by construction, so the guard is informational.
+
+    Slot verification still runs when a profile is supplied — a mismatch here
+    means the context and the profile disagree, which is a real bug worth
+    surfacing. But we serve the result anyway: this generator IS the fallback,
+    so there is nothing safer to fall back to.
+    """
+    unfilled = generator_template.generate(context)
+    filled = unfilled.fill_slots(context)
+
+    verification: SlotVerification | None = None
+    if profile is not None:
+        verification = verify_slots(filled, unfilled, context, profile)
+        if not verification.passed:
+            notes.append(
+                "Template explanation failed runtime slot verification "
+                f"({verification.summary}). Serving it regardless — it is the "
+                "safest text available — but this indicates the analysis "
+                "context and the reported profile disagree."
+            )
+
     return ExplanationResult(
-        explanation=explanation.fill_slots(context),
+        explanation=filled,
         mode=mode,
         generator=generator_template.GENERATOR_NAME,
         guard=None,
         reviewed=False,
+        slots=verification,
         notes=notes,
     )
 
 
 def _static_result(
-    context: ExplanationContext, mode: ExplanationMode, notes: list[str]
+    context: ExplanationContext,
+    mode: ExplanationMode,
+    notes: list[str],
+    profile: PharmacogenomicProfile | None = None,
 ) -> ExplanationResult | None:
     """Look up a pre-generated entry. None means 'fall back'."""
     stored = static_store.lookup(context.drug, context.phenotype.value)
@@ -107,24 +143,43 @@ def _static_result(
             )
         return None
 
+    filled = stored.explanation.fill_slots(context)
+
+    # The stored guard verdict covers the PROSE, which has not changed since it
+    # was checked. It does not cover the values injected just now, so those get
+    # cross-checked against the profile the client will render.
+    verification: SlotVerification | None = None
+    if profile is not None:
+        verification = verify_slots(filled, stored.explanation, context, profile)
+        if not verification.passed:
+            notes.append(
+                "Pre-generated explanation failed runtime slot verification "
+                f"({verification.summary}); falling back to the deterministic "
+                "template. A reviewed sentence carrying the wrong genotype is "
+                "more dangerous than plainer text, because it is more credible."
+            )
+            return None
+
     return ExplanationResult(
-        explanation=stored.explanation.fill_slots(context),
+        explanation=filled,
         mode=mode,
         generator="static",
-        # The stored guard verdict, recorded at generation time. Re-running the
-        # guard here would be theatre: the text has not changed since it passed.
         guard=GuardReport(
             passed=stored.guard_passed,
             action_taken="accepted (pre-generated)",
             generator="static",
         ),
         reviewed=stored.is_reviewed,
+        slots=verification,
         notes=notes,
     )
 
 
 def _live_result(
-    context: ExplanationContext, mode: ExplanationMode, notes: list[str]
+    context: ExplanationContext,
+    mode: ExplanationMode,
+    notes: list[str],
+    profile: PharmacogenomicProfile | None = None,
 ) -> ExplanationResult | None:
     """
     Generate now, guard it, retry once, then give up.
@@ -147,12 +202,26 @@ def _live_result(
         report.attempts = attempt
 
         if report.passed:
+            filled = result.explanation.fill_slots(context)
+            verification: SlotVerification | None = None
+            if profile is not None:
+                verification = verify_slots(
+                    filled, result.explanation, context, profile
+                )
+                if not verification.passed:
+                    notes.append(
+                        "Live explanation passed the faithfulness guard but "
+                        f"failed slot verification ({verification.summary}); "
+                        "falling back to the template."
+                    )
+                    break
             return ExplanationResult(
-                explanation=result.explanation.fill_slots(context),
+                explanation=filled,
                 mode=mode,
                 generator=f"llm:{result.model}",
                 guard=report,
                 reviewed=False,
+                slots=verification,
                 notes=notes,
             )
 
@@ -164,13 +233,15 @@ def _live_result(
             f"{report.summary}"
         )
 
-    fallback = _template_result(context, mode, notes)
+    fallback = _template_result(context, mode, notes, profile)
     fallback.guard = last_report
     return fallback
 
 
 def generate_explanation(
-    context: ExplanationContext, mode: ExplanationMode | None = None
+    context: ExplanationContext,
+    mode: ExplanationMode | None = None,
+    profile: PharmacogenomicProfile | None = None,
 ) -> ExplanationResult:
     """
     Produce an explanation for one drug result. Never raises.
@@ -178,23 +249,37 @@ def generate_explanation(
     static -> pre-generated, else template.
     live   -> LLM + guard (one retry), else static, else template.
     template -> deterministic.
+
+    `profile` is the `pharmacogenomic_profile` this response will carry. When
+    supplied, every value injected into the prose is cross-checked against it
+    (see `slot_verifier`), and a mismatch demotes the result to the template.
+    It is optional so the explanation layer stays testable in isolation, but
+    the request path always passes it.
     """
     resolved = mode or ExplanationMode.from_env()
     notes: list[str] = []
 
     if resolved is ExplanationMode.TEMPLATE:
-        return _template_result(context, resolved, notes)
+        return _template_result(context, resolved, notes, profile)
 
     if resolved is ExplanationMode.LIVE:
-        live = _live_result(context, resolved, notes)
+        live = _live_result(context, resolved, notes, profile)
         if live is not None:
             return live
         # Live was unavailable — prefer reviewed static text over the template.
-        static = _static_result(context, resolved, notes)
-        return static if static is not None else _template_result(context, resolved, notes)
+        static = _static_result(context, resolved, notes, profile)
+        return (
+            static
+            if static is not None
+            else _template_result(context, resolved, notes, profile)
+        )
 
-    static = _static_result(context, resolved, notes)
-    return static if static is not None else _template_result(context, resolved, notes)
+    static = _static_result(context, resolved, notes, profile)
+    return (
+        static
+        if static is not None
+        else _template_result(context, resolved, notes, profile)
+    )
 
 
 __all__ = [

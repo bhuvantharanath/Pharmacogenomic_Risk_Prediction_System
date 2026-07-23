@@ -24,14 +24,28 @@ services:
       # static (default) serves pre-generated explanations with no API call.
       # "live" additionally needs GEMINI_API_KEY and requirements-llm.txt.
       EXPLANATION_MODE: static
+      # Marks this as a local container so the hosted-deployment CORS assertion
+      # does not fire. Without it, `PORT` alone would look like Cloud Run.
+      PHARMAGUARD_ENV: development
+      # The Flutter dev server's origins. `flutter run -d chrome` picks a random
+      # port, which the localhost regex in app/security.py already covers; these
+      # are the fixed ports used by `flutter run -d web-server --web-port=5000`.
+      CORS_ALLOWED_ORIGINS: "http://localhost:5000,http://127.0.0.1:5000"
     volumes:
+      # NOTE: these targets MUST match the Dockerfile's WORKDIR (/home/user/app).
+      # They used to point at /opt/pharmaguard, which stopped being the WORKDIR
+      # when the image moved to /home/user to satisfy Hugging Face's uid-1000
+      # requirement. The mounts then landed on empty paths nothing read, so
+      # `docker compose up` silently ran the baked-in code and --reload did
+      # nothing. tests/test_infra_config.py now asserts they agree.
+      #
       # Live-reload the application code without rebuilding the 2 GB image.
       # Read-only: the container has no business writing to your working tree.
-      - ../backend/app:/opt/pharmaguard/app:ro
+      - ../backend/app:/home/user/app/app:ro
       # Sample VCFs, handy for curl-ing from inside the container.
-      - ../test-data:/opt/pharmaguard/test-data:ro
+      - ../test-data:/home/user/app/test-data:ro
       # Mechanism corpus, read by app/retrieval.py at request time.
-      - ../rag-corpus:/opt/pharmaguard/rag-corpus:ro
+      - ../rag-corpus:/home/user/app/rag-corpus:ro
     command:
       - uvicorn
       - app.main:app

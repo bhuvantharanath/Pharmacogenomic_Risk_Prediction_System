@@ -68,6 +68,73 @@ def allowed_origin_regex() -> str | None:
     return "|".join(patterns)
 
 
+#: Env vars that only exist on a real host. Their presence is how we tell
+#: "someone deployed this" from "someone is running uvicorn on their laptop",
+#: without needing an explicit ENVIRONMENT flag that a deployer could forget to
+#: set — forgetting to set things is the exact failure we are guarding against.
+#:   PORT           injected by Cloud Run and Render
+#:   SPACE_ID       injected by Hugging Face Spaces
+#:   K_SERVICE      injected by Cloud Run (Knative)
+#:   RENDER         injected by Render
+_HOSTED_ENV_MARKERS = ("SPACE_ID", "K_SERVICE", "RENDER", "PORT")
+
+
+def looks_hosted() -> bool:
+    """
+    True when we appear to be running on a deployment platform.
+
+    `PHARMAGUARD_ENV` overrides the sniffing in both directions, for anyone
+    running a container locally (`=development`) or on a host we do not
+    recognise (`=production`).
+    """
+    declared = os.environ.get("PHARMAGUARD_ENV", "").strip().lower()
+    if declared in ("production", "prod", "hosted"):
+        return True
+    if declared in ("development", "dev", "local", "test"):
+        return False
+    return any(os.environ.get(marker) for marker in _HOSTED_ENV_MARKERS)
+
+
+class CorsMisconfiguredError(RuntimeError):
+    """Deployed with no allowed origins. Fails startup rather than 'working'."""
+
+
+def assert_cors_configured() -> None:
+    """
+    Refuse to start a hosted instance with an empty origin allowlist.
+
+    Why fatal rather than a warning: with no origins configured the service
+    passes every health check, serves `/docs`, and answers `curl` perfectly —
+    while every browser request from the real frontend is blocked. The failure
+    surfaces only when a person opens the site, which in practice means during
+    the demo. A container that refuses to start is discovered in the deploy log,
+    minutes after the mistake, by the person who made it.
+
+    Localhost is always permitted, so this never fires in development.
+    """
+    if not looks_hosted() or allowed_origins():
+        return
+
+    raise CorsMisconfiguredError(
+        "CORS_ALLOWED_ORIGINS is empty but this instance looks hosted "
+        f"(markers: {[m for m in _HOSTED_ENV_MARKERS if os.environ.get(m)]}).\n"
+        "\n"
+        "Only localhost would be allowed, so the deployed web app could not "
+        "call this API from a browser — every analysis would fail CORS while "
+        "health checks kept passing.\n"
+        "\n"
+        "Set it to your frontend's exact origin, for example:\n"
+        "    CORS_ALLOWED_ORIGINS=https://pharmaguard.pages.dev\n"
+        "\n"
+        "  Hugging Face Spaces : Settings -> Variables and secrets -> New variable\n"
+        "  Cloud Run           : --set-env-vars CORS_ALLOWED_ORIGINS=...\n"
+        "  Render              : Environment -> Add Environment Variable\n"
+        "  docker compose      : already set in infra/docker-compose.yml\n"
+        "\n"
+        "If this really is a local container, set PHARMAGUARD_ENV=development."
+    )
+
+
 def cors_summary() -> dict[str, object]:
     """What the CORS policy actually is, for `/` and for DEPLOY_NOTES."""
     return {

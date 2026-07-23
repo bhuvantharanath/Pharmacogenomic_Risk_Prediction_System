@@ -14,15 +14,19 @@ Synthetic GRCh38 VCFs for exercising the real PharmCAT pipeline.
 | `cyp2c19_poor_metabolizer.vcf` | `CYP2C19_POOR_METABOLIZER` | `CYP2C19 *2/*2` → Poor Metaboliser | clopidogrel → **Ineffective** |
 | `dpyd_variant_carrier.vcf` | `DPYD_VARIANT_CARRIER` | `DPYD c.1905+1G>A (*2A)` het → Intermediate Metaboliser | fluorouracil → **Adjust Dosage** |
 | `normal_metabolizer_control.vcf` | `NORMAL_CONTROL` | all reference | everything → **Safe** |
-| `sample1.vcf`, `sample2.vcf` | — | *(Phase 1 leftovers)* | see note below |
 
-Each of the three Phase 2 files carries all 306 definition positions for
-CYP2C19, CYP2C9, SLCO1B1, TPMT, NUDT15 and DPYD.
+Each file carries all 306 definition positions for CYP2C19, CYP2C9, SLCO1B1,
+TPMT, NUDT15 and DPYD. **Every shipped sample is expected to produce a
+non-`Unknown` result for its intended drug**, and
+`backend/tests/test_sample_vcfs.py` enforces that — a sample with no declared
+expectation, or too few positions to be callable, fails the build.
 
-> **`sample1.vcf` / `sample2.vcf` are Phase 1 relics.** They contain a handful of
-> hand-picked rsIDs and now correctly produce **no calls** — PharmCAT needs a
-> gene's full position set. They are kept as a "what a partial VCF does" demo.
-> Use the three generated files for anything real.
+> **Removed:** `sample1.vcf` and `sample2.vcf` were Phase 1 relics carrying 5
+> and 4 hand-picked rsIDs. Once PharmCAT became real they were not merely
+> uninformative — a gene's *full* position set is required to call a diplotype,
+> so PharmCAT exited without writing a report at all and `/analyze` returned
+> **503 PHARMCAT_UNAVAILABLE**. Anyone who picked the first file in the list
+> during a demo got a server error. They have been deleted.
 
 ## Generating your own
 

@@ -1,7 +1,9 @@
 /// PharmaGuard — Flutter client (web + Android/iOS from this one codebase).
 ///
-/// Phase 1: proves the seam to the FastAPI backend. Every clinical value it
-/// renders is a stub served by `backend/app/stub_analyzer.py`.
+/// A thin rendering layer over the backend's JSON contract: it computes no
+/// clinical value of its own. Diplotypes and phenotypes come from PharmCAT and
+/// all recommendation text is CPIC's, copied verbatim; the client's job is to
+/// display them, colour-code the risk, and keep the disclaimer visible.
 library;
 
 import 'package:flutter/material.dart';

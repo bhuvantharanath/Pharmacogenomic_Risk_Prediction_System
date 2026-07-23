@@ -1,8 +1,10 @@
 # PharmaGuard — Project Status Audit
 
 **Audit date:** 2026-07-23
-**Mode:** read-only. No source file was created, modified, or deleted. This
-document is the only file written.
+**Fix pass:** 2026-07-23 (same day, after `git init` — baseline commit `6d758cc`)
+**Mode:** the audit itself was read-only. A subsequent fix pass has since
+resolved the six defects listed under "Fixed" below; everything else in this
+document still describes the current state.
 **Method:** every claim below is backed by a command run against the working
 tree or a cited file path. Anything not directly verified is marked
 **UNVERIFIED**.
@@ -11,19 +13,51 @@ tree or a cited file path. Anything not directly verified is marked
 
 ## Executive summary
 
-The backend is in genuinely good shape: 249 tests pass, the clinical pipeline is
-real and traceable, and the deployed path needs no secrets. **Three defects were
-found that would each break a demo**, all in the Phase 4 deployment layer, and
-none of them are covered by the existing tests:
+The backend is in genuinely good shape: the clinical pipeline is real and
+traceable, and the deployed path needs no secrets. The audit found **three
+defects that would each break a demo**, all in the Phase 4 deployment layer,
+none covered by the then-existing 249 tests. All three have since been fixed
+(305 tests now pass):
 
-| # | Defect | Impact |
-| --- | --- | --- |
-| 🔴 **P0** | Android `MainActivity` package mismatch — the built APK's launcher target does not exist in its own dex | **The release APK installs and crashes instantly.** Phase 4 acceptance #5 was never verified on a device |
-| 🟠 **P1** | `docker-compose.yml` mounts `/opt/pharmaguard/*` but the Dockerfile's WORKDIR is `/home/user/app` | `docker compose up` silently runs baked-in code; live-reload does nothing |
-| 🟠 **P1** | `CORS_ALLOWED_ORIGINS` is documented but set nowhere in deploy config; default is empty | Deployed site loads, then **every analysis fails CORS** unless the operator remembers to set it |
+| # | Defect | Impact | Status |
+| --- | --- | --- | --- |
+| 🔴 **P0** | Android `MainActivity` package mismatch — the built APK's launcher target does not exist in its own dex | **The release APK installs and crashes instantly** | ✅ **FIXED** |
+| 🟠 **P1** | `docker-compose.yml` mounts `/opt/pharmaguard/*` but the Dockerfile's WORKDIR is `/home/user/app` | `docker compose up` silently runs baked-in code | ✅ **FIXED** |
+| 🟠 **P1** | `CORS_ALLOWED_ORIGINS` documented but set nowhere; default empty | Deployed site loads, then **every analysis fails CORS** | ✅ **FIXED** |
 
-Nothing is deployed. The repo **is not a git repository**, so no workflow has
-ever run and there is no history to audit.
+The repo **is now a git repository** (baseline `6d758cc`). Nothing is deployed
+yet, so no workflow has run.
+
+---
+
+## ✅ Fixed in the 2026-07-23 fix pass
+
+Six defects resolved, each with a regression test that was **verified to fail
+against the original bug** before being accepted. Backend suite: **249 → 305
+passing**.
+
+| ID | Defect | Fix | Regression test |
+| --- | --- | --- | --- |
+| **P0-1** | APK launcher target absent from its own dex | Canonical id `com.pharmaguard.pharmaguard` across `namespace`, `applicationId`, Kotlin package. Chosen over `com.pharmaguard.app` because it needed 2 line edits instead of a cross-directory file move, **and** it aligns Android with iOS's existing `PRODUCT_BUNDLE_IDENTIFIER` for free | `test_android_identity.py` (5) — sabotage-verified: reverting the namespace fails 2 tests |
+| **P0-2** | Dead `stub_analyzer.py` with fabricated clinical values | Deleted (417 lines). Stale docstrings in `models.py` and `main.dart` rewritten to state real provenance | Repo-wide sweep clean; every dose string in tests traced to a PharmCAT fixture |
+| **P1-3** | CORS unset in every deploy path | Set in compose, documented in Dockerfile, plus `assert_cors_configured()` which **refuses to start** a hosted instance with an empty allowlist | `test_deployment.py::TestCorsFailsLoudWhenMisconfigured` (11), `test_infra_config.py` (9) |
+| **P1-4** | compose mounts missed the WORKDIR | Realigned to `/home/user/app/*` | `test_infra_config.py::TestComposeMountsMatchWorkdir` |
+| **P1-5** | `sample1/2.vcf` broke the demo | Deleted; three demo-worthy samples retained | `test_sample_vcfs.py` (22) — sabotage-verified |
+| **P1-6** | Runtime slot values unguarded | `slot_verifier.py` cross-checks injected values against the response's own profile; mismatch demotes to template | `test_slot_verifier.py` (12) |
+
+### What the fix pass found that the audit missed
+
+1. **`sample1/2.vcf` were worse than reported.** The audit said "all-Unknown".
+   In fact PharmCAT writes *no report at all* for a file that sparse, so
+   `/analyze` returns **503 PHARMCAT_UNAVAILABLE** — a server error, not a
+   degraded result. A demo user picking the first file in the list got a 500-class
+   failure.
+2. **iOS already used `com.pharmaguard.pharmaguard`** in 6 places in
+   `project.pbxproj`. The audit only examined the Android side, so it did not
+   see that choosing `com.pharmaguard.app` would have left the two platforms
+   permanently disagreeing.
+3. **`test-data/README.md` had dangling references** to the deleted samples,
+   caught by the new doc-reference test rather than by eye.
 
 ---
 
@@ -33,40 +67,50 @@ ever run and there is no history to audit.
 
 | Phase | Status | Evidence |
 | --- | --- | --- |
-| **1 — monorepo seam** | ✅ Complete, but leaves dead code | `backend/app/main.py`, `app/lib/` present and working. `backend/app/stub_analyzer.py` (417 lines, 34 `STUB` markers of fabricated clinical text) survives and is **imported by nothing** — verified by `grep -rn stub_analyzer backend/app backend/tests scripts`, which matches only a stale docstring at `backend/app/models.py:9` |
+| **1 — monorepo seam** | ✅ Complete | `backend/app/main.py`, `app/lib/` present and working. ✅ *Fixed:* the dead `stub_analyzer.py` (417 lines of fabricated clinical text) has been deleted and the stale docstrings that referenced it rewritten |
 | **2 — PharmCAT + CPIC mapping** | ✅ Complete | `backend/app/pharmcat_runner.py`, `backend/app/cpic_engine.py`, `backend/app/data/label_mapping.yaml` (314 lines, 9 rules). 24 parser tests + 51 mapping tests pass |
 | **3 — grounded explanations** | ✅ Complete, ⚠️ content unreviewed and template-generated | `backend/app/explanation/` (6 modules), `rag-corpus/mechanisms/` (6 files), `backend/app/data/explanations.json` (20 entries). **All 20 entries have `reviewed_by: null`; `generator: "template"`, `model: ""` — no LLM has ever been run against this project** |
-| **4 — deployment** | ⚠️ **Partial — written, largely unverified, 3 defects** | Workflows, Dockerfile, HF Space README and DEPLOY_NOTES all exist. Nothing deployed; APK broken; compose broken; CORS unset |
+| **4 — deployment** | ⚠️ **Partial — written, still largely unverified** | Workflows, Dockerfile, HF Space README and DEPLOY_NOTES all exist. ✅ *Fixed:* APK, compose mounts and CORS. ⛔ *Still open:* nothing is deployed, and the Docker image has never been built |
 
 ### A2. Test suite
 
 **Backend — `cd backend && .venv/bin/python -m pytest`**
 
 ```
-249 passed, 1 skipped in 0.79s
+305 passed, 4 skipped in 0.86s      (was 249 passed, 1 skipped at audit time)
 ```
 
-| File | Tests |
-| --- | --- |
-| `test_label_mapping.py` | 51 |
-| `test_explanation.py` | 51 |
-| `test_deployment.py` | 33 |
-| `test_guard.py` | 30 |
-| `test_analyze_api.py` | 29 |
-| `test_vcf_validation.py` | 27 |
-| `test_pharmcat_parser.py` | 24 |
-| `test_corpus.py` | 5 |
+| File | Tests | |
+| --- | --- | --- |
+| `test_label_mapping.py` | 51 | |
+| `test_explanation.py` | 51 | |
+| `test_deployment.py` | 44 | +11 (CORS fail-loud) |
+| `test_guard.py` | 30 | |
+| `test_analyze_api.py` | 29 | |
+| `test_vcf_validation.py` | 27 | |
+| `test_pharmcat_parser.py` | 24 | |
+| `test_sample_vcfs.py` | 22 | **new** |
+| `test_slot_verifier.py` | 12 | **new** |
+| `test_infra_config.py` | 9 | **new** |
+| `test_corpus.py` | 5 | |
+| `test_android_identity.py` | 5 | **new** |
 
 - **Failures: 0**
-- **Skipped: 1** — `test_explanation.py::TestLiveMode::test_live_generation_passes_the_guard`, reason recorded by pytest as *"GEMINI_API_KEY not set; live mode is optional by design"* (`backend/tests/test_explanation.py:440`). This is a deliberate skip, but it means **the live-LLM path has never executed against the real Gemini API.**
+- **Skipped: 4** — 1 live-LLM test (`GEMINI_API_KEY not set; live mode is
+  optional by design`) plus 3 in `test_sample_vcfs.py::TestAgainstRealPharmcat`,
+  which run the real pipeline when one is on `PATH`. **These 3 were executed
+  manually against real PharmCAT during the fix pass and passed**, confirming
+  each shipped sample produces its intended non-`Unknown` label.
+- The live-LLM path still **has never executed against the real Gemini API.**
 
 **Flutter — `cd app && flutter test`** → `+21: All tests passed!`
 (`app/test/contract_test.dart` 7, `app/test/backend_status_test.dart` 14)
 
 **`flutter analyze`** → `No issues found!`
 
-**Coverage gaps (no test exists):** Android manifest/package consistency, Docker
-image build, compose mount correctness, `generator_llm.py` against the real SDK,
+**Coverage gaps.** ✅ *Closed:* Android manifest/package consistency, compose
+mount correctness, sample-VCF usability, runtime slot values.
+⛔ *Still open:* Docker image build, `generator_llm.py` against the real SDK,
 `retrieval.py` container-path fallback, `scripts/pregenerate_explanations.py`.
 
 ### A3. Build outcomes
@@ -77,10 +121,18 @@ image build, compose mount correctness, `generator_llm.py` against the real SDK,
 | Backend serves | ✅ | Verified in this session in prior runs; `/health`, `/ready`, `/analyze` all return correct payloads |
 | **Docker image** | ⛔ **UNVERIFIED — cannot build** | `which docker` → not found. **The image has never been built, in this session or any prior one.** |
 | `flutter build web` | ✅ | Built previously for both `--base-href "/"` and `"/pharmaguard/"`; output ~30 MB incl. source maps |
-| `flutter build apk --release` | ⚠️ Builds, **artifact is broken** | 51.4 MB APK at `app/build/app/outputs/flutter-apk/app-release.apk`. See P0 below. Requires `JAVA_HOME=/opt/homebrew/opt/openjdk@17` — Gradle 8.14 rejects the default JDK 25 with a bare `25.0.1` as the whole error |
+| `flutter build apk --release` | ✅ **Fixed and re-verified** | Rebuilt 51.4 MB APK; `aapt dump badging` now reports `launchable-activity: com.pharmaguard.pharmaguard.MainActivity`, and that class **is present** in `classes.dex`. Still requires `JAVA_HOME=/opt/homebrew/opt/openjdk@17` — Gradle 8.14 rejects JDK 25 with a bare `25.0.1` as the whole error. ⛔ **Still not installed on a physical device** |
 | `flutter build ios` | ⛔ Fails — environment | `xcrun simctl list runtimes` returns an **empty list**. Error: *"iOS 26.5 is not installed. Please download and install the platform from Xcode > Settings > Components."* Not a code fault |
 
-#### 🔴 P0 — the release APK crashes on launch
+#### 🔴 P0 — the release APK crashes on launch — ✅ **FIXED**
+
+> **Resolved 2026-07-23.** Canonical id is now `com.pharmaguard.pharmaguard`
+> across `namespace`, `applicationId` and the Kotlin package. A rebuilt APK
+> reports `launchable-activity: com.pharmaguard.pharmaguard.MainActivity`, and
+> that class is present in `classes.dex`. Guarded by
+> `backend/tests/test_android_identity.py`.
+>
+> The original defect, for the record:
 
 ```
 APK manifest launchable-activity : com.pharmaguard.app.MainActivity
@@ -159,9 +211,11 @@ getter) so the raw ISO string round-trips byte-for-byte — this is not drift, a
   `backend/tests/test_corpus.py` enforces it as a build gate (5 tests pass).
 - The only `mg`/`mcg` literals in backend source are the **unit-matching regex**
   in `backend/app/explanation/guard.py:57-58` — a detector, not a claim.
-- ⚠️ **Exception:** `backend/app/stub_analyzer.py` contains hand-written
-  clinical strings and invented diplotypes (`*1/*2xN`, `*3A/*3A`, activity scores).
-  It is dead code and unreachable, but it is a loaded gun in the tree.
+- ✅ **Resolved:** `backend/app/stub_analyzer.py` — which contained hand-written
+  clinical strings and invented diplotypes (`*1/*2xN`, `*3A/*3A`, activity
+  scores) — has been deleted. A follow-up repo-wide sweep found no other
+  hardcoded clinical content, and every dose-bearing string asserted in the test
+  suite was traced back to a real PharmCAT fixture.
 
 ### B3. Label mapping — ✅ **data-driven, fully documented**
 
@@ -216,8 +270,18 @@ deliberately **not** enabled.
 
 This is a defensible design (the served prose is fixed and was checked before
 shipping), but the accurate statement is: **the guard is a build-time gate in
-production, not a runtime one.** README/DEPLOY_NOTES do not make this
-distinction explicitly.
+production, not a runtime one.**
+
+✅ **Addressed 2026-07-23.** Two changes:
+1. `backend/app/explanation/slot_verifier.py` now cross-checks every value
+   injected at request time against the response's own `pharmacogenomic_profile`
+   — the object the client renders in the card above the explanation. A mismatch
+   demotes the result to the deterministic template and records a warning; a
+   mismatched explanation is never served. Every response now reports
+   `slots=verified` (or `slots=MISMATCH`) alongside `guard=passed`.
+2. The README now states the split explicitly: **build-time guarded plus runtime
+   slot-verified**, with an explicit note that neither check speaks to clinical
+   correctness.
 
 Tests proving rejection (all passing): invented `50 mg`, `300 mg`, `2.5 mg/kg`,
 `30%`, `75 mcg`; invented `rs9999999`; plus a regression class
@@ -285,13 +349,18 @@ The policy is genuinely non-wildcard, and a prior session verified at raw-header
 level that `attacker-site.pages.dev` and `evil.example.com` are rejected while a
 configured origin is allowed.
 
-**The problem:** `CORS_ALLOWED_ORIGINS` appears only in `infra/DEPLOY_NOTES.md`
-and `infra/hf-space/README.md` as prose. It is **not** set in `infra/Dockerfile`
-or `infra/docker-compose.yml`. Deployed as-is, the Cloudflare Pages origin is not
-allowed → the site loads, the health ping works (no CORS preflight issue for a
-simple GET is *not* the case here — the browser will still block the cross-origin
-read), and **every analysis fails**. Fails closed, which is the right direction,
-but it is a silent-until-demo landmine.
+**The problem (now fixed):** `CORS_ALLOWED_ORIGINS` appeared only as prose in
+`infra/DEPLOY_NOTES.md` and `infra/hf-space/README.md`, and was set in neither
+`infra/Dockerfile` nor `infra/docker-compose.yml`. Deployed as-is the site would
+load while **every analysis failed**.
+
+✅ **Fixed 2026-07-23.** `docker-compose.yml` now sets it (plus
+`PHARMAGUARD_ENV=development`), the Dockerfile documents it, and
+`security.assert_cors_configured()` makes a hosted instance with an empty
+allowlist **refuse to start**, with a message naming the exact dashboard field
+per platform. Detection uses the env markers each host injects (`SPACE_ID`,
+`K_SERVICE`, `RENDER`, `PORT`), overridable via `PHARMAGUARD_ENV`. Local
+development is unaffected — localhost is always allowed.
 
 Rate limiter caveats already documented in `backend/app/security.py`: in-memory
 (resets on scale-to-zero restart), keyed on the spoofable `X-Forwarded-For`.
@@ -317,25 +386,28 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 
 ### 🤖 Bucket 1 — Machine-doable (a future Claude Code session)
 
-- [ ] **🔴 P0 · Fix the Android package mismatch.** Either move
+> ✅ Six items below were completed in the 2026-07-23 fix pass and are struck
+> through. The remainder are still open.
+
+- [x] ~~**🔴 P0 · Fix the Android package mismatch.**~~ ✅ **DONE** Either move
       `MainActivity.kt` to `.../kotlin/com/pharmaguard/app/` and change its
       `package` declaration, or revert `namespace`/`applicationId` to
       `com.pharmaguard.pharmaguard`. *Why:* the APK crashes on launch today.
       *If skipped:* the mobile half of the project does not exist in practice, and
       the demo's "installable Android app" claim is false.
-- [ ] **🔴 P0 · Add a test that would have caught it** — assert the manifest's
+- [x] ~~**🔴 P0 · Add a test that would have caught it**~~ ✅ **DONE** — `test_android_identity.py`, sabotage-verified. — assert the manifest's
       resolved launch activity exists as a class in the built dex, or at minimum
       that the Kotlin package path matches `namespace`. *If skipped:* the same
       class of bug recurs on the next refactor.
-- [ ] **🟠 P1 · Fix `docker-compose.yml` mount targets** from
+- [x] ~~**🟠 P1 · Fix `docker-compose.yml` mount targets**~~ ✅ **DONE** from
       `/opt/pharmaguard/*` to `/home/user/app/*` to match the Dockerfile's
       WORKDIR. *If skipped:* `docker compose up` runs stale baked-in code and
       developers debug phantom behaviour.
-- [ ] **🟠 P1 · Set a safe `CORS_ALLOWED_ORIGINS` default or fail loudly at
+- [x] ~~**🟠 P1 · Set a safe `CORS_ALLOWED_ORIGINS` default or fail loudly at
       startup** when the app is clearly deployed (non-localhost) with an empty
       allowlist. *If skipped:* a correct deployment still yields a site where
       every analysis fails.
-- [ ] **🟡 Delete `backend/app/stub_analyzer.py`** (417 lines, dead, contains
+- [x] ~~**🟡 Delete `backend/app/stub_analyzer.py`**~~ ✅ **DONE** (417 lines, dead, contains
       fabricated clinical values) and fix the stale docstring at
       `backend/app/models.py:9`. *If skipped:* a reader or a future session may
       believe clinical values still come from a hardcoded table; worse, someone
@@ -357,7 +429,12 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
       a mocked SDK boundary, `retrieval.py` container-path fallback,
       `scripts/pregenerate_explanations.py`.
 - [ ] **🟢 Add third-party attribution** for Flutter dependencies to `LICENSE`.
-- [ ] **🟢 Decide the fate of `test-data/sample1.vcf` / `sample2.vcf`** (Phase 1
+- [ ] **🟢 Add a CI workflow that runs the test suite.** All 305 tests exist but
+      no workflow invokes them — `deploy-web.yml` runs `flutter test` only, and
+      the backend suite runs nowhere. *If skipped:* the new regression guards
+      only fire when someone remembers to run pytest locally, which is precisely
+      how the original defects survived.
+- [x] ~~**🟢 Decide the fate of `test-data/sample1.vcf` / `sample2.vcf`**~~ ✅ **DONE** — deleted; they returned 503, not Unknown. (Phase 1
       relics, 5 and 4 rows, produce no calls). Documented as such, but they
       confuse a first-time user who picks them.
 
@@ -566,29 +643,30 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 | 7 | **No persistence / auth / history** | ✅ Intentional (privacy) | Results vanish on reload; no accounts | ⚠️ **Partial** — privacy framing is in README, but "you cannot save or revisit a result" is never stated |
 | 8 | **Explanations unreviewed** (`reviewed_by: null` ×20) | ⚠️ Accidental-by-omission | Clinical prose has had no expert eyes | ⚠️ **Weak** — in API `warnings` and buried behind an expandable "pipeline warnings" tile in the UI |
 | 9 | **16 of 36 explanation cases fall back to template** | ✅ Intentional | Plainer prose in edge cases | ❌ **NOT disclosed** anywhere user-facing |
-| 10 | **Guard is build-time, not request-time, in static mode** | ✅ Intentional | None directly | ❌ **NOT disclosed** — README implies per-request checking |
+| 10 | **Guard is build-time, not request-time, in static mode** | ✅ Intentional | None directly | ✅ **Now disclosed** — README §"How explanations are checked" states the build-time/request-time split, and runtime slot verification now covers the injected values |
 | 11 | **Rate limit 10 / 5 min, in-memory, spoofable key** | ✅ Intentional | A busy demo could self-throttle | ✅ README |
 | 12 | **5 MB upload cap** | ✅ Intentional | Whole-genome VCFs rejected | ✅ README + error |
 | 13 | **iOS simulator only** | ✅ Intentional (cost) | No installable iOS app | ✅ README + DEPLOY_NOTES |
 | 14 | **Not clinically validated** — synthetic VCFs only | ✅ Intentional | Accuracy is unmeasured | ✅ README, LICENSE, UI banner |
-| 15 | **🔴 Release APK crashes on launch** | ❌ **Accidental — defect** | Android app is unusable | ❌ **NOT disclosed — nobody knows yet** |
-| 16 | **🟠 `docker compose up` runs stale baked-in code** | ❌ Accidental — defect | Confusing local dev | ❌ **NOT disclosed** |
-| 17 | **🟠 CORS unset in deploy config** | ❌ Accidental — omission | Deployed site cannot call its API | ⚠️ Only as prose in DEPLOY_NOTES |
+| ~~15~~ | ~~**🔴 Release APK crashes on launch**~~ | ✅ **FIXED** | — | Resolved 2026-07-23; guarded by `test_android_identity.py`. **Still unverified on a physical device** |
+| ~~16~~ | ~~**🟠 `docker compose up` runs stale baked-in code**~~ | ✅ **FIXED** | — | Resolved 2026-07-23; guarded by `test_infra_config.py`. **Unverified — Docker still unavailable here** |
+| ~~17~~ | ~~**🟠 CORS unset in deploy config**~~ | ✅ **FIXED** | — | Set in compose; a hosted instance with an empty allowlist now refuses to start |
 | 18 | **Free-tier caps** (HF 16 GB/2 vCPU; Render 512 MB & 750 h; Cloud Run 180k vCPU-s) | ✅ Intentional | Throttling/OOM under load | ✅ DEPLOY_NOTES table |
-| 19 | **Dead `stub_analyzer.py` with fabricated clinical values** | ❌ Accidental | None at runtime; misleads readers | ❌ Not disclosed |
+| ~~19~~ | ~~**Dead `stub_analyzer.py` with fabricated clinical values**~~ | ✅ **FIXED** | — | Deleted 2026-07-23 |
 | 20 | **Live LLM path never executed** against the real API | ⚠️ Accidental | `live` mode is unproven | ❌ **NOT disclosed** — README presents it as a working mode |
 
 ### 🔊 Loudest disclosure gaps
 
-1. **#15 — the APK is broken and nothing says so.** Anyone handed the APK gets a
-   crash with no explanation.
-2. **#8 — "unreviewed clinical prose" is buried.** It is in the API response but
+1. **#8 — "unreviewed clinical prose" is buried.** It is in the API response but
    the UI hides it behind a collapsed tile. For a clinical-adjacent tool this
-   deserves to be as prominent as the not-a-medical-device banner.
-3. **#20 — `live` mode has never run.** README documents it as a supported mode
+   deserves to be as prominent as the not-a-medical-device banner. **Now the
+   single loudest gap**, since the APK and guard-timing items are resolved.
+2. **#20 — `live` mode has never run.** README documents it as a supported mode
    alongside `static`, without noting it is untested end-to-end.
-4. **#10 — guard timing.** Saying "every explanation is guard-checked" is true
-   but is naturally read as "checked on every request."
+3. **#9 — template fallback is silent.** 16 of 36 cases serve plainer prose and
+   nothing tells the reader which they are looking at, though `source=template`
+   does appear in `quality_metrics`.
+4. ~~#15 APK broken~~ / ~~#10 guard timing~~ — both resolved 2026-07-23.
 
 ---
 
@@ -598,14 +676,14 @@ Ranked by likelihood × damage.
 
 | # | Risk | Likelihood | Mitigation |
 | --- | --- | --- | --- |
-| 1 | **You demo the Android APK and it crashes instantly.** Confirmed defect, not a maybe. | **Certain** if you try it | Fix the package mismatch (Bucket 1 P0) and **launch it on a real device** before the demo. Until then, demo web only and do not hand out the APK |
+| 1 | **The APK has still never been launched on a device.** The crash is fixed and verified at the artifact level (manifest target now exists in the dex), but nobody has installed it. | Medium | Install the rebuilt APK on a real phone once and open it. The fix is verified statically; only a device proves it |
 | 2 | **Nothing is deployed.** No HF Space, no Pages project, no git remote. The README's live links are placeholders. | **Certain** today | Complete Bucket 2 well before demo day. Budget a full evening — the first Docker build of a ~2 GB image is slow |
-| 3 | **Deployed site loads but every analysis fails on CORS**, because `CORS_ALLOWED_ORIGINS` was never set on the backend. | **High** — it is set nowhere in config | After deploying, open the Pages URL and run one real analysis **from the deployed site**, not from localhost. Watch the browser console |
+| 3 | **Deployed site loads but every analysis fails on CORS.** | **Low** — the backend now refuses to start with an empty allowlist, so this surfaces in the deploy log instead of at demo time | Still run one real analysis **from the deployed URL**, not localhost, before presenting |
 | 4 | **Cold start makes the first analysis look like a hang.** ~1 min on free tiers. | High if the demo starts cold | Enable the keepalive workflow for the demo window, and **hit the site yourself 2 minutes before presenting**. The waking UI already explains the wait — let it show |
 | 5 | **A panel member asks "who checked this clinical text?"** and the honest answer is "nobody yet." | Medium–High | Get the faculty sign-off (Bucket 3) *before* the demo, or open by stating plainly that clinical content is pending review |
 | 6 | **Docker build fails on first attempt** and has never been tested anywhere. | Medium | Build the image locally or in CI at least once, days ahead. Do not let the first-ever build be on demo day |
 | 7 | **Rate limit trips mid-demo** — 10 analyses per 5 minutes, and a rehearsal plus the real run share one IP. | Medium | Raise `RATE_LIMIT_REQUESTS` for the demo window, or rehearse on a different network |
-| 8 | **Someone picks `sample1.vcf`** (a Phase 1 relic) and every drug returns `Unknown`, which looks like a broken system. | Medium | Use `cyp2c19_poor_metabolizer.vcf`. Consider removing the relics, or renaming them `legacy_` |
+| ~~8~~ | ~~Someone picks `sample1.vcf` and gets a broken-looking result~~ | ✅ **Resolved** | The relics are deleted (they returned **503**, not Unknown). All three remaining samples are guarded by `test_sample_vcfs.py` |
 | 9 | **You demo `live` LLM mode** to show off the AI angle, and it fails — it has never run against the real API. | Medium if attempted | Do not demo `live` mode unless you have tested it end-to-end with a real key first |
 | 10 | **iOS is requested** and no simulator runtime is installed on the machine. | Low–Medium | Install an iOS runtime via Xcode → Settings → Components ahead of time (multi-GB), or state up front that iOS is simulator-only and out of scope |
 
@@ -614,7 +692,8 @@ Ranked by likelihood × damage.
 ## PASTE-BACK SUMMARY
 
 ```
-PHARMAGUARD — PROJECT STATUS (audited 2026-07-23, read-only)
+PHARMAGUARD — PROJECT STATUS
+Audited 2026-07-23 (read-only) · Fix pass 2026-07-23 · git baseline 6d758cc
 
 WHAT IT IS
 Pharmacogenomic risk prediction: VCF -> PharmCAT -> deterministic CPIC risk
@@ -622,53 +701,64 @@ label -> grounded explanation -> Flutter web/mobile client. Final-year project.
 Research/educational only; explicitly not a medical device.
 
 PHASE STATUS
-- Phase 1 (seam/stub)          COMPLETE, but leaves 417-line dead stub file
-                               containing fabricated clinical values
+- Phase 1 (seam/stub)          COMPLETE (dead stub file since deleted)
 - Phase 2 (PharmCAT + CPIC)    COMPLETE and solid
-- Phase 3 (explanations+guard)  COMPLETE, but all 20 entries are
+- Phase 3 (explanations+guard) COMPLETE, but all 20 explanation entries are
                                template-generated and 0 are human-reviewed
-- Phase 4 (deployment)         PARTIAL — written but unverified, 3 defects
+- Phase 4 (deployment)         PARTIAL — code fixed, nothing deployed,
+                               Docker image never built
 
 TESTS
-- Backend: 249 passed, 1 skipped, 0 failed (skip = live-LLM test, needs API key)
+- Backend: 305 passed, 4 skipped, 0 failed  (was 249/1 before the fix pass)
 - Flutter: 21 passed; analyzer clean
-- No test covers: Android manifest/package consistency, Docker build,
-  compose mounts, real LLM SDK, pregeneration script
+- Skips: 1 live-LLM test (no API key) + 3 real-PharmCAT sample tests, which WERE
+  run manually against real PharmCAT and passed
+- NOTE: no CI workflow runs the backend suite — tests only run when invoked
+  locally. This is how the original defects survived.
 
-THREE CONFIRMED DEFECTS (all Phase 4, none caught by tests)
-1. P0 Android: manifest launch target is com.pharmaguard.app.MainActivity but
-   the only class in the dex is com.pharmaguard.pharmaguard.MainActivity ->
-   the release APK installs and CRASHES ON LAUNCH. Never tested on a device.
-2. P1 docker-compose mounts /opt/pharmaguard/* while the Dockerfile WORKDIR is
-   /home/user/app -> compose runs stale baked-in code; live-reload does nothing.
-3. P1 CORS_ALLOWED_ORIGINS is documented but set in no deploy config; default is
-   empty -> deployed site loads but every analysis fails CORS.
+SIX DEFECTS FIXED (each with a sabotage-verified regression test)
+1. P0 Android: manifest launch target didn't exist in the APK's own dex ->
+   installed and crashed instantly. Canonical id is now
+   com.pharmaguard.pharmaguard across namespace/applicationId/Kotlin package
+   (chosen because it needed 2 line edits AND matched iOS's existing bundle id).
+   Rebuilt APK verified: launch target now present in classes.dex.
+2. P0 Deleted a 417-line dead stub file containing fabricated doses and
+   diplotypes. Repo-wide sweep found no other hardcoded clinical content; every
+   dose string in tests traced back to a real PharmCAT fixture.
+3. P1 CORS was set in no deploy config (default empty) -> deployed site would
+   fail every analysis. Now set in compose, documented in the Dockerfile, and a
+   hosted instance with an empty allowlist REFUSES TO START with a message
+   naming the exact dashboard field per platform.
+4. P1 docker-compose mounted /opt/pharmaguard/* while WORKDIR was
+   /home/user/app -> compose silently ran stale baked-in code. Realigned.
+5. P1 Legacy sample VCFs deleted. They were WORSE than the audit found: too
+   sparse for PharmCAT to write any report, so /analyze returned 503, not
+   "Unknown". A demo user picking the first file got a server error.
+6. P1 Runtime slot values (diplotype, detected variants) were injected into
+   guard-approved prose AFTER the guard ran, so nothing checked them. Now
+   cross-checked against the response's own profile; mismatch demotes to the
+   template and warns. Responses report guard=passed, slots=verified.
 
-INTEGRITY CHECKS
-- Schema drift:        NONE. All 8 contract classes + 4 enums match exactly.
-- Clinical provenance: CLEAN. Zero invented doses in served text; all dose
-                       strings are verbatim CPIC captured via PharmCAT.
-- Label mapping:       DATA-DRIVEN (YAML, 9 ordered rules), every rule has a
-                       rationale comment, no hardcoded if/else.
-- CYP2D6 honesty:      VERIFIED. callSource=="NONE" -> NOT_ATTEMPTED -> Unknown
-                       plus an explicit warning. Never fabricated.
-- Faithfulness guard:  EXISTS + TESTED (rejects invented mg doses and rsIDs).
-                       CAVEAT: in static (deployed) mode it is a BUILD-TIME gate
-                       replaying a stored verdict, not a per-request check.
-- Static mode:         VERIFIED working with no API key at all.
-- Data retention:      VERIFIED. finally-block rmtree; 4 tests incl. crash path.
-- Secrets:             CLEAN tree, .gitignore covers .env/*.jks/key.properties.
-                       NOTE: repo is NOT a git repo — no history, no CI has run.
+INTEGRITY CHECKS (unchanged unless noted)
+- Schema drift:        NONE. 8 contract classes + 4 enums match exactly.
+- Clinical provenance: CLEAN. Zero invented doses in served text.
+- Label mapping:       DATA-DRIVEN YAML, 9 ordered rules, all with rationale.
+- CYP2D6 honesty:      VERIFIED. Never fabricated; explicit warning.
+- Guard:               Build-time gate in static mode PLUS runtime slot
+                       verification. README now states this split accurately.
+- Static mode:         Works with no API key at all.
+- Data retention:      finally-block rmtree; tests cover the crash path too.
+- Secrets:             Clean tree; .gitignore covers .env/*.jks/key.properties.
 - Licensing:           PharmCAT + CPIC attributed. Gaps: MPL-2.0 claim
                        unverified; Flutter deps unattributed.
 
-BUCKET 4 — DECISIONS BLOCKING PROGRESS
+BUCKET 4 — DECISIONS STILL BLOCKING PROGRESS (unchanged)
 D1 Backend host: HF Spaces (Docker Spaces now need PRO ~$9/mo) vs Cloud Run
-   (free but requires a card on file, needs 2GiB) vs Render (free, no card, but
-   512MB may OOM the JVM). All work with the existing image ($PORT-aware).
+   (free but needs a card on file, 2GiB) vs Render (free, no card, 512MB may
+   OOM the JVM). All work with the existing $PORT-aware image.
 D2 Regenerate explanations with Gemini (richer prose, needs key, resets all
-   review) vs keep template output (free, already guard-passed, plainer).
-D3 Author the 16 missing drug x phenotype explanations vs keep template
+   review) vs keep template output (free, guard-passed, plainer).
+D3 Author the 16 missing drug x phenotype explanations vs keep the template
    fallback (the gaps are legitimate: CYP2D6 uncallable, warfarin algorithmic).
 D4 iOS: simulator-only (free) vs Apple Developer Program ($99/yr) vs free
    personal team (7-day expiry).
@@ -676,31 +766,30 @@ D5 Keepalive cron on (instant demo, burns quota) vs off (saves quota).
 D6 Repo public (unlimited CI minutes) vs private (2000 min/mo).
 
 UNRESOLVED LIMITATIONS NOT DISCLOSED TO USERS
-- The APK is broken (nobody knows yet).
-- Explanations are unreviewed — mentioned only in a collapsed UI tile.
+- Explanations are unreviewed — surfaced only in a collapsed UI tile. Now the
+  loudest gap.
 - 16 of 36 explanation cases silently fall back to plainer template text.
-- The guard is build-time, not request-time, in the deployed path.
 - `live` LLM mode is documented as supported but has NEVER run against the real
   API.
-- No persistence/history: results vanish on reload (privacy is explained, this
-  consequence is not).
+- No persistence/history: results vanish on reload.
 
 TOP DEMO RISKS
-1. APK crashes on launch — certain if demoed. Fix + test on a device first.
-2. Nothing is deployed; README links are placeholders. Needs a full setup pass.
-3. CORS unset -> deployed site fails every analysis. Test from the deployed URL.
+1. Nothing is deployed; README links are placeholders. Needs a full setup pass.
+2. The APK crash is fixed and verified at artifact level, but the APK has still
+   never been launched on a physical device. Install it once.
+3. Docker image has never been built anywhere. Build it days ahead.
 4. Cold start (~1 min) reads as a hang. Warm it 2 min before presenting.
 5. "Who reviewed the clinical text?" — currently nobody. Get sign-off first.
-6. Docker image has never been built anywhere. Build it days ahead.
-7. Rate limit (10/5min) can trip between rehearsal and the real run.
-8. Legacy sample1/sample2.vcf return all-Unknown and look broken.
+6. Rate limit (10/5min) can trip between rehearsal and the real run.
+7. No CI runs the backend tests, so a future regression won't be caught
+   automatically.
 
 HUMAN-ONLY WORK (no tool can do these)
-Accounts/credentials: git init + GitHub repo; backend host account (see D1);
-Cloudflare account + Pages project + API token; GitHub Actions secrets
-(CLOUDFLARE_API_TOKEN, CLOUDFLARE_ACCOUNT_ID, API_BASE_URL) and variables
-(API_BASE_URL, BACKEND_URL); Android keystore (keep local, gitignored);
-optional Gemini key for pregeneration only.
+Accounts/credentials: backend host account (see D1); Cloudflare account + Pages
+project + API token; GitHub Actions secrets (CLOUDFLARE_API_TOKEN,
+CLOUDFLARE_ACCOUNT_ID, API_BASE_URL) and variables (API_BASE_URL, BACKEND_URL);
+Android keystore (keep local, gitignored); optional Gemini key for
+pregeneration only.
 Judgement: read all 20 explanations personally; faculty sign-off on
 label_mapping.yaml and explanations.json (reviewed_by); download GeT-RM/1000
 Genomes for real validation; record + publish the demo video; verify report

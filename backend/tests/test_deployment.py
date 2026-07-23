@@ -23,9 +23,12 @@ from app import main, security
 from app.pharmcat_models import PharmcatReport
 from app.security import (
     BakedSecretError,
+    CorsMisconfiguredError,
     InMemoryRateLimiter,
+    assert_cors_configured,
     assert_no_baked_secrets,
     client_key,
+    looks_hosted,
 )
 
 
@@ -411,3 +414,122 @@ class TestPortConfiguration:
         assert readme.startswith("---"), "HF Space README needs YAML front matter"
         assert "sdk: docker" in readme
         assert "app_port: 7860" in readme
+
+
+class TestCorsFailsLoudWhenMisconfigured:
+    """
+    P1-3 regression.
+
+    The original defect was not that CORS was *wrong* — the policy code was
+    correct and well tested. It was that nothing set the value, and an unset
+    value produced a service that passed every health check while blocking
+    every real browser request. So the fix under test here is the *loudness*:
+    a hosted instance with no origins must refuse to start.
+    """
+
+    @pytest.fixture(autouse=True)
+    def _clean_env(self, monkeypatch: pytest.MonkeyPatch):
+        for name in (
+            "CORS_ALLOWED_ORIGINS",
+            "PHARMAGUARD_ENV",
+            "SPACE_ID",
+            "K_SERVICE",
+            "RENDER",
+            "PORT",
+        ):
+            monkeypatch.delenv(name, raising=False)
+
+    # -- environment sniffing ------------------------------------------------
+
+    def test_bare_local_run_is_not_hosted(self) -> None:
+        assert looks_hosted() is False
+
+    @pytest.mark.parametrize(
+        "marker,value",
+        [
+            ("SPACE_ID", "user/pharmaguard"),  # Hugging Face Spaces
+            ("K_SERVICE", "pharmaguard-api"),  # Cloud Run
+            ("RENDER", "true"),                # Render
+            ("PORT", "8080"),                  # Cloud Run / Render
+        ],
+    )
+    def test_platform_markers_are_detected(
+        self, monkeypatch: pytest.MonkeyPatch, marker: str, value: str
+    ) -> None:
+        monkeypatch.setenv(marker, value)
+        assert looks_hosted() is True
+
+    def test_explicit_env_overrides_sniffing_both_ways(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setenv("PORT", "8080")
+        monkeypatch.setenv("PHARMAGUARD_ENV", "development")
+        assert looks_hosted() is False
+
+        monkeypatch.delenv("PORT")
+        monkeypatch.setenv("PHARMAGUARD_ENV", "production")
+        assert looks_hosted() is True
+
+    # -- the assertion itself ------------------------------------------------
+
+    def test_hosted_with_empty_origins_refuses_to_start(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """This is the exact misconfiguration the audit found."""
+        monkeypatch.setenv("K_SERVICE", "pharmaguard-api")
+        with pytest.raises(CorsMisconfiguredError) as excinfo:
+            assert_cors_configured()
+
+        message = str(excinfo.value)
+        # The message has to be actionable, not just a refusal.
+        assert "CORS_ALLOWED_ORIGINS" in message
+        assert "pages.dev" in message
+        assert "Hugging Face" in message and "Cloud Run" in message
+        assert "PHARMAGUARD_ENV=development" in message
+
+    def test_hosted_with_origins_starts_fine(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setenv("K_SERVICE", "pharmaguard-api")
+        monkeypatch.setenv("CORS_ALLOWED_ORIGINS", "https://pharmaguard.pages.dev")
+        assert_cors_configured()  # must not raise
+
+    def test_local_dev_with_empty_origins_starts_fine(self) -> None:
+        """Localhost is always allowed, so this must never fire in dev."""
+        assert_cors_configured()  # must not raise
+
+    def test_local_container_opt_out_starts_fine(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setenv("PORT", "7860")
+        monkeypatch.setenv("PHARMAGUARD_ENV", "development")
+        assert_cors_configured()  # must not raise
+
+    # -- end-to-end through the app ------------------------------------------
+
+    def test_configured_origin_is_allowed_and_unlisted_is_rejected(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """
+        The behavioural half: an allowed origin gets the CORS header back, an
+        unlisted one does not. Asserted against the real middleware stack.
+        """
+        from importlib import reload
+
+        monkeypatch.setenv("CORS_ALLOWED_ORIGINS", "https://pharmaguard.pages.dev")
+        reload(main)
+        client = TestClient(main.app)
+
+        allowed = client.get(
+            "/health", headers={"Origin": "https://pharmaguard.pages.dev"}
+        )
+        assert allowed.headers.get("access-control-allow-origin") == (
+            "https://pharmaguard.pages.dev"
+        )
+
+        for bad in (
+            "https://evil.example.com",
+            "https://attacker-site.pages.dev",  # the old wildcard hole
+        ):
+            rejected = client.get("/health", headers={"Origin": bad})
+            assert rejected.headers.get("access-control-allow-origin") is None, bad

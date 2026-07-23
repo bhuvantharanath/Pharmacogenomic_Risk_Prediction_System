@@ -62,7 +62,7 @@ flowchart TB
         val["1 · VCF validation<br/><i>GRCh38, ≤5 MB, sample column</i>"]
         pc["2 · PharmCAT 3.4.0<br/><i>diplotype + phenotype</i>"]
         eng["3 · CPIC label engine<br/><i>ordered rules, as data</i>"]
-        exp["4 · Explanation layer<br/><i>pre-generated + guard-checked</i>"]
+        exp["4 · Explanation layer<br/><i>pre-generated, guard-checked,<br/>slot-verified at runtime</i>"]
         val --> pc --> eng --> exp
     end
 
@@ -101,6 +101,7 @@ sequenceDiagram
     P-->>API: report.json — diplotypes + CPIC text
     API->>API: Map to risk label (rules as data)
     API->>API: Look up explanation, fill slots
+    API->>API: Verify slots match the called profile
     API->>API: 🗑 delete temp dir (finally)
     API-->>A: JSON — one result per drug
     A-->>U: Colour-coded cards
@@ -111,6 +112,10 @@ checked by a deterministic faithfulness guard, and served from a static file.
 The explanation space is enumerable (6 drugs × ~6 phenotypes), so every string a
 user can see is reviewable by a human *before* it ships — and the deployed path
 needs **no API key and makes no outbound calls**.
+
+Because that guard runs at build time, the patient-specific values filled in at
+request time are cross-checked separately against the response's own profile —
+see [How explanations are checked](#how-explanations-are-checked--precisely).
 
 ---
 
@@ -388,7 +393,7 @@ PharmCAT crash, and that no uploaded content is echoed back in the response.
 ## ✅ Tests
 
 ```bash
-cd backend && pip install -r requirements-dev.txt && pytest   # 249 passed, 1 skipped
+cd backend && pip install -r requirements-dev.txt && pytest   # 305 passed, 4 skipped
 cd app     && flutter test && flutter analyze                 # 21 tests
 ```
 
@@ -396,6 +401,40 @@ Backend tests need **no PharmCAT, Java, Docker or API key** — they run against
 checked-in PharmCAT fixtures. The static-mode test actively poisons the LLM
 generator, so a regression that reintroduced a network call in the default path
 fails the build rather than surfacing at deploy time.
+
+### How explanations are checked — precisely
+
+Two different checks run at two different times. Stating this accurately
+matters, because "guard-checked" is easy to read as more than it is.
+
+**1. Faithfulness guard — build time.**
+`backend/app/explanation/guard.py` rejects any number, dose, rsID, star allele,
+gene or drug name that is not present in the supplied context. In `static` mode
+it runs during `scripts/pregenerate_explanations.py`, over prose that still
+contains `{diplotype}`-style placeholders; the verdict is stored and replayed at
+request time. In `live` mode it runs per request, with one retry.
+
+It does **not** check semantics — it cannot tell that "reduced CYP2C19 function
+causes the drug to accumulate" is backwards, because every token in that
+sentence is in the context. It catches fabricated entities; wrong reasoning is
+what corpus review is for.
+
+**2. Slot verification — request time.**
+The build-time verdict says nothing about the patient-specific values injected
+into those placeholders, because they are filled per request, long after. So
+`backend/app/explanation/slot_verifier.py` re-derives what each slot should have
+become from the response's own `pharmacogenomic_profile` — the object rendered
+in the card directly above the explanation — and confirms the filled text
+contains it. On a mismatch the result is demoted to the deterministic template
+and a warning appears in `quality_metrics`; a mismatched explanation is never
+served.
+
+Every response reports both, e.g.
+`explanation mode=static, source=static, guard=passed, slots=verified, reviewed=NO`.
+
+So: **static mode is build-time guarded *plus* runtime slot-verified.** Neither
+check makes any claim about clinical correctness — that still requires the
+faculty review that `reviewed=NO` is telling you has not happened.
 
 ---
 

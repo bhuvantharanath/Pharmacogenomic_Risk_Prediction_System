@@ -32,7 +32,14 @@ if (hasReleaseKeystore) {
 }
 
 android {
-    namespace = "com.pharmaguard.app"
+    // MUST match the package of MainActivity.kt, because AndroidManifest.xml
+    // declares the launcher as the relative `.MainActivity` — which resolves
+    // against this namespace. They disagreed once (namespace was
+    // `com.pharmaguard.app`, the class was `com.pharmaguard.pharmaguard`),
+    // producing an APK whose launcher target did not exist in its own dex: it
+    // installed and then died with ClassNotFoundException on launch.
+    // `tests/test_android_identity.py` now fails the build if they drift again.
+    namespace = "com.pharmaguard.pharmaguard"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -48,7 +55,11 @@ android {
     defaultConfig {
         // Reverse-DNS, stable for the life of the app: changing it after
         // release makes an update look like a different app.
-        applicationId = "com.pharmaguard.app"
+        //
+        // Deliberately equal to iOS's PRODUCT_BUNDLE_IDENTIFIER
+        // (app/ios/Runner.xcodeproj/project.pbxproj), so the two platforms
+        // present the same identity.
+        applicationId = "com.pharmaguard.pharmaguard"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

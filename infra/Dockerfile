@@ -44,6 +44,18 @@ ENV PYTHONUNBUFFERED=1 \
 ENV EXPLANATION_MODE=static \
     PHARMAGUARD_CORPUS_DIR=/home/user/app/rag-corpus/mechanisms
 
+# CORS. Deliberately left EMPTY here rather than given a placeholder default:
+# a baked-in wrong origin would be silently useless, whereas an empty value now
+# makes the app REFUSE TO START on a hosted platform (see
+# app/security.py::assert_cors_configured). Set it per-deployment:
+#
+#   Hugging Face Spaces : Settings -> Variables and secrets
+#   Cloud Run           : --set-env-vars CORS_ALLOWED_ORIGINS=https://<you>.pages.dev
+#   Render              : Environment -> Add Environment Variable
+#
+# Local containers should set PHARMAGUARD_ENV=development instead (compose does).
+ENV CORS_ALLOWED_ORIGINS=""
+
 # --------------------------------------------------------------------------- #
 # Non-root user.
 #
