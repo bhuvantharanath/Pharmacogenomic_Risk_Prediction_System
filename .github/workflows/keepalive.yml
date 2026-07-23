@@ -1,0 +1,90 @@
+# Keeps the backend warm during demo periods.
+#
+# WHY
+#   Free-tier hosts sleep when idle. The first request after a nap pays the
+#   whole container start — for a ~2 GB PharmCAT image that is tens of seconds.
+#   A visitor who lands on the site cold sees the "waking up" banner and may
+#   leave before it finishes. Pinging /health every 10 minutes keeps the
+#   container resident so the demo is instant.
+#
+# TURN THIS OFF WHEN YOU ARE NOT DEMOING.
+#   It exists for the submission window and the video recording. Outside those,
+#   disable it (Actions tab -> Keepalive -> "..." -> Disable workflow), or
+#   delete the `schedule` trigger. Keeping a free container awake around the
+#   clock burns quota that nobody is watching, and on hosts that meter runtime
+#   (Render bills 750 instance-hours/month) it will exhaust the month.
+#
+# COST
+#   ~144 runs/day at well under a minute each. GitHub's free tier for public
+#   repositories is unlimited Actions minutes, and even on a private repo
+#   (2,000 min/month) this fits comfortably. The job does one curl.
+#
+# NOTE ON SCHEDULING
+#   GitHub does not guarantee cron punctuality — scheduled runs are queued and
+#   can be delayed by several minutes under load, and are disabled entirely
+#   after 60 days without repository activity. Treat this as best-effort
+#   warming, not a uptime guarantee. The client's cold-start UI is the real
+#   mitigation; this just makes the happy path more likely.
+
+name: Keepalive
+
+on:
+  schedule:
+    # Every 10 minutes. Cron is UTC.
+    - cron: "*/10 * * * *"
+  # So you can warm the Space by hand right before recording.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # Never queue up pings behind each other if a run is slow.
+  group: keepalive
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    name: Ping /health
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Wake the backend
+        env:
+          # Repository variable (not a secret — it is a public URL).
+          # Settings -> Secrets and variables -> Actions -> Variables:
+          #   BACKEND_URL = https://YOURNAME-pharmaguard.hf.space
+          BACKEND_URL: ${{ vars.BACKEND_URL }}
+        run: |
+          set -uo pipefail
+
+          if [ -z "${BACKEND_URL:-}" ]; then
+            echo "::warning::BACKEND_URL repository variable is not set; nothing to ping."
+            echo "Set it under Settings -> Secrets and variables -> Actions -> Variables."
+            exit 0
+          fi
+
+          echo "Pinging ${BACKEND_URL}/health"
+
+          # A sleeping container can take most of a minute to answer, so allow
+          # generous timeouts and retry rather than reporting a false failure.
+          for attempt in 1 2 3; do
+            code=$(curl --silent --show-error --location \
+                        --max-time 90 --connect-timeout 20 \
+                        --write-out '%{http_code}' --output /tmp/health.json \
+                        "${BACKEND_URL}/health" || echo "000")
+
+            if [ "$code" = "200" ]; then
+              echo "Attempt ${attempt}: HTTP 200 — backend is awake."
+              cat /tmp/health.json
+              exit 0
+            fi
+
+            echo "Attempt ${attempt}: HTTP ${code} — retrying."
+            sleep 15
+          done
+
+          # A warning, not a failure: a red X on a keepalive cron every time the
+          # host has a hiccup trains you to ignore the Actions tab, which is
+          # exactly when you would miss a real breakage.
+          echo "::warning::Backend did not return 200 after 3 attempts (last: ${code})."

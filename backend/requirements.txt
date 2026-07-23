@@ -1,0 +1,20 @@
+# PharmaGuard backend — Phase 2.
+# Everything here is free and open source; no paid service is required.
+
+fastapi==0.121.2
+uvicorn[standard]==0.40.0
+pydantic==2.13.1
+python-multipart==0.0.20      # multipart/form-data uploads
+PyYAML==6.0.3                 # reads app/data/label_mapping.yaml
+
+# --- Phase 2 note on PharmCAT ------------------------------------------------
+# PharmCAT is NOT a pip package. It is a Java application plus a Python
+# preprocessor, provided by the `pgkb/pharmcat:3.4.0` base image (see
+# infra/Dockerfile). The backend shells out to `pharmcat_pipeline`; override the
+# path with PHARMCAT_PIPELINE if it is not on PATH.
+# Running outside Docker also needs: a JRE, bcftools, bgzip, and the
+# preprocessor's own deps (colorama, pandas, packaging).
+# See infra/PHARMCAT_NOTES.md section 6.
+# -----------------------------------------------------------------------------
+
+# TODO(phase3): LLM client + vector store for /rag-corpus.

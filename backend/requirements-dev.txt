@@ -1,0 +1,5 @@
+# Test-only dependencies. Not installed in the production image.
+-r requirements.txt
+
+pytest==8.4.2
+httpx==0.28.1                 # required by fastapi.testclient.TestClient

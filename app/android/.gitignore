@@ -1,0 +1,22 @@
+gradle-wrapper.jar
+/.gradle
+/captures/
+/gradlew
+/gradlew.bat
+/local.properties
+GeneratedPluginRegistrant.java
+.cxx/
+
+# Remember to never publicly share your keystore.
+# See https://flutter.dev/to/reference-keystore
+key.properties
+**/*.keystore
+**/*.jks
+
+# Release signing — NEVER commit these.
+# key.properties holds keystore passwords in plaintext; the .jks IS the signing
+# identity. Losing the keystore means you can never update an installed app;
+# leaking it means someone else can publish as you.
+key.properties
+*.jks
+*.keystore

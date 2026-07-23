@@ -1,0 +1,8 @@
+# Optional: only needed for EXPLANATION_MODE=live and for running
+# scripts/pregenerate_explanations.py with --generator llm.
+#
+# The DEPLOYED path (EXPLANATION_MODE=static) does not import this package and
+# makes no network call, so the production image does not install it.
+-r requirements.txt
+
+google-genai==2.13.0

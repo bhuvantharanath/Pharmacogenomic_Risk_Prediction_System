@@ -1,0 +1,69 @@
+# --- Secrets ---------------------------------------------------------------
+# .env.example is committed; .env never is.
+.env
+*.env
+!.env.example
+
+# --- Python ----------------------------------------------------------------
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Flutter / Dart --------------------------------------------------------
+app/.dart_tool/
+app/build/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+# pubspec.lock IS committed for applications — it pins the exact dependency set.
+
+# --- Android / iOS ---------------------------------------------------------
+app/android/.gradle/
+app/android/local.properties
+app/android/app/debug/
+app/android/app/release/
+app/ios/Pods/
+app/ios/Flutter/Flutter.framework
+app/ios/Flutter/ephemeral/
+app/ios/.symlinks/
+*.iml
+
+# --- Editors / OS ----------------------------------------------------------
+.idea/
+.vscode/
+.DS_Store
+
+# --- Phase 2/3 -------------------------------------------------------------
+# The PharmCAT JAR is large and is fetched at image-build time, not committed.
+*.jar
+# Vector store artefacts built from /rag-corpus.
+rag-corpus/.index/
+
+# --- Phase 2: PharmCAT local install (not committed; see infra/PHARMCAT_NOTES.md) ---
+backend/pharmcat/
+backend/definitions/
+pharmcat-*.tar.gz
+pharmcat_positions*.vcf*
+
+# PharmCAT writes this into the working directory when it runs.
+pharmcat.log
+
+# --- Phase 3 ---------------------------------------------------------------
+# Guard violation log: generated at runtime, useful locally, not source.
+backend/logs/
+# Extracted PharmCAT allele definitions used by the synthetic VCF generator.
+definitions/
+
+# --- Phase 4: deployment ----------------------------------------------------
+# Android release signing. The keystore IS the signing identity and
+# key.properties holds its passwords in plaintext. Never commit either.
+key.properties
+*.jks
+*.keystore
+# Flutter build output.
+app/build/
+# Wrangler / Cloudflare local state.
+.wrangler/

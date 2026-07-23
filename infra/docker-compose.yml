@@ -1,0 +1,54 @@
+# PharmaGuard — local development stack.
+#
+#   docker compose -f infra/docker-compose.yml up --build
+#
+# Serves the backend on http://localhost:8000 (mapped from the container's 7860,
+# so the Flutter client's default base URL works unchanged).
+#
+# First build pulls the ~2 GB PharmCAT base image — expect it to take a while.
+
+services:
+  backend:
+    build:
+      # Repo root: the Dockerfile copies from backend/.
+      context: ..
+      dockerfile: infra/Dockerfile
+    image: pharmaguard-api:dev
+    ports:
+      # host:container — 8000 locally to match the Flutter default; 7860 inside
+      # to match Hugging Face Spaces.
+      - "8000:7860"
+    environment:
+      PHARMCAT_PIPELINE: pharmcat_pipeline
+      PHARMCAT_TIMEOUT_SECONDS: "120"
+      # static (default) serves pre-generated explanations with no API call.
+      # "live" additionally needs GEMINI_API_KEY and requirements-llm.txt.
+      EXPLANATION_MODE: static
+    volumes:
+      # Live-reload the application code without rebuilding the 2 GB image.
+      # Read-only: the container has no business writing to your working tree.
+      - ../backend/app:/opt/pharmaguard/app:ro
+      # Sample VCFs, handy for curl-ing from inside the container.
+      - ../test-data:/opt/pharmaguard/test-data:ro
+      # Mechanism corpus, read by app/retrieval.py at request time.
+      - ../rag-corpus:/opt/pharmaguard/rag-corpus:ro
+    command:
+      - uvicorn
+      - app.main:app
+      - --host
+      - "0.0.0.0"
+      - --port
+      - "7860"
+      - --reload
+    healthcheck:
+      # Uses python rather than curl so it does not depend on curl being present.
+      test:
+        - CMD
+        - python3
+        - -c
+        - "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://localhost:7860/health', timeout=5).status==200 else 1)"
+      interval: 30s
+      timeout: 10s
+      # PharmCAT's base image is slow to start; do not mark unhealthy too early.
+      start_period: 40s
+      retries: 3

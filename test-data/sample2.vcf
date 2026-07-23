@@ -1,0 +1,15 @@
+##fileformat=VCFv4.2
+##fileDate=20260101
+##source=PharmaGuardSyntheticGenerator
+##reference=GRCh38
+##contig=<ID=chr1,length=248956422>
+##contig=<ID=chr6,length=170805979>
+##INFO=<ID=GENE,Number=1,Type=String,Description="Pharmacogene symbol (synthetic annotation)">
+##FILTER=<ID=PASS,Description="All filters passed">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read depth">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	PATIENT_002
+chr6	18130918	rs1800460	C	T	99	PASS	GENE=TPMT	GT:DP	1/1:55
+chr6	18130687	rs1142345	T	C	99	PASS	GENE=TPMT	GT:DP	1/1:49
+chr1	97450058	rs3918290	C	T	99	PASS	GENE=DPYD	GT:DP	0/1:63
+chr10	94942290	rs1799853	C	T	99	PASS	GENE=CYP2C9	GT:DP	0/0:57

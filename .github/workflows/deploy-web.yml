@@ -1,0 +1,123 @@
+# Build the Flutter web app and deploy it to Cloudflare Pages.
+#
+# ACTION CHOICE
+#   Uses `cloudflare/wrangler-action@v3` with a `pages deploy` command.
+#   Cloudflare's older `cloudflare/pages-action` is DEPRECATED (final release
+#   v1.5.0) and they direct users to wrangler-action instead. Verified against
+#   https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/
+#   on 2026-07-23 — do not "fix" this back to pages-action.
+#
+# REQUIRED REPOSITORY SECRETS
+#   CLOUDFLARE_API_TOKEN   Account -> Cloudflare Pages -> Edit
+#   CLOUDFLARE_ACCOUNT_ID  Cloudflare dashboard -> Workers & Pages -> Account ID
+#   API_BASE_URL           https://YOURNAME-pharmaguard.hf.space
+#
+#   API_BASE_URL is a secret only so it is easy to rotate — it is a public URL
+#   and appears in the shipped JavaScript regardless. Nothing sensitive is or
+#   can be embedded in a client build.
+#
+# If this workflow proves fiddly, the manual path is documented in
+# infra/DEPLOY_NOTES.md (wrangler CLI, or drag-and-drop of build/web).
+
+name: Deploy web
+
+on:
+  push:
+    branches: [main]
+    # Skip the build when only backend or docs changed.
+    paths:
+      - "app/**"
+      - ".github/workflows/deploy-web.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: deploy-web
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Build and deploy to Cloudflare Pages
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          # Pinned so a Flutter release cannot silently change the output.
+          # Matches the version this project was developed against.
+          flutter-version: "3.38.9"
+          cache: true
+
+      - name: Install dependencies
+        working-directory: app
+        run: flutter pub get
+
+      # Fail before deploying rather than shipping a broken build.
+      - name: Analyze
+        working-directory: app
+        run: flutter analyze
+
+      - name: Test
+        working-directory: app
+        run: flutter test
+
+      - name: Fail if the backend URL is not configured
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        run: |
+          if [ -z "${API_BASE_URL:-}" ]; then
+            echo "::error::API_BASE_URL secret is not set. The build would ship"
+            echo "pointing at localhost, which is broken for every visitor."
+            exit 1
+          fi
+          case "$API_BASE_URL" in
+            https://*) ;;
+            *) echo "::error::API_BASE_URL must be https:// — a Pages site is"
+               echo "served over HTTPS and browsers block mixed content."
+               exit 1 ;;
+          esac
+
+      - name: Build web
+        working-directory: app
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        run: |
+          # --base-href "/" because Cloudflare Pages serves the project at the
+          # domain root (pharmaguard.pages.dev/), not a subpath. If you ever
+          # serve this under a path, change it here AND redeploy — Flutter bakes
+          # the value into index.html at build time.
+          flutter build web \
+            --release \
+            --base-href "/" \
+            --dart-define=API_BASE_URL="${API_BASE_URL}"
+
+      - name: Verify the built bundle points at the backend
+        working-directory: app
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        run: |
+          # A --dart-define that silently failed to apply is the single most
+          # likely deploy bug, and it looks identical to a healthy build until a
+          # user clicks Analyze. Check the compiled output really contains it.
+          if ! grep -rqF "${API_BASE_URL}" build/web/; then
+            echo "::error::The built bundle does not contain ${API_BASE_URL}."
+            echo "The --dart-define did not reach the compiled output."
+            exit 1
+          fi
+          echo "Bundle references ${API_BASE_URL}"
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy app/build/web --project-name=pharmaguard

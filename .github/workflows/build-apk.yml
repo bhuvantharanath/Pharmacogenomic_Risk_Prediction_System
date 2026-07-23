@@ -1,0 +1,194 @@
+# Build a release APK on a version tag and attach it to a GitHub Release.
+#
+# SIGNING: conditional, and deliberately so.
+#
+#   The brief allowed either "sign via repo secrets" or "build unsigned and
+#   document local signing". This does both, because the two paths fail in
+#   opposite directions:
+#
+#     * Secrets-only would break the workflow for anyone who clones the repo
+#       and tags a build without a keystore — a hard failure for a missing
+#       optional feature.
+#     * Unsigned-only would mean the maintainer, who *does* have a keystore,
+#       has to build releases by hand forever.
+#
+#   So: if the four ANDROID_* secrets are present the APK is properly signed;
+#   otherwise it is built with Flutter's debug key, still installs, and the
+#   release notes say so plainly. The APK is distributed by sideload from a
+#   GitHub Release, not through Play Store (which needs the paid Google Play
+#   Developer account), so a debug-signed build is a usable fallback rather
+#   than a dead end.
+#
+# REQUIRED SECRETS (all four, or none):
+#   ANDROID_KEYSTORE_BASE64   base64 of your .jks   (base64 -i key.jks | pbcopy)
+#   ANDROID_KEYSTORE_PASSWORD
+#   ANDROID_KEY_ALIAS
+#   ANDROID_KEY_PASSWORD
+#
+# REQUIRED VARIABLE:
+#   API_BASE_URL              https://YOURNAME-pharmaguard.hf.space
+#
+# See infra/DEPLOY_NOTES.md for keystore generation and local signing.
+
+name: Build APK
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      api_base_url:
+        description: "Backend URL to bake into the build"
+        required: false
+        default: ""
+
+permissions:
+  contents: write # needed to create the Release and upload the APK
+
+jobs:
+  build:
+    name: Release APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Gradle 8.14 does not understand JDK 25 — it fails with a bare version
+      # string as the error, which is baffling if you have not hit it before.
+      # Pin 17, which is what the Android Gradle Plugin targets here.
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: "3.38.9"
+          cache: true
+
+      - name: Install dependencies
+        working-directory: app
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: app
+        run: flutter analyze
+
+      - name: Test
+        working-directory: app
+        run: flutter test
+
+      - name: Resolve backend URL
+        id: config
+        env:
+          INPUT_URL: ${{ github.event.inputs.api_base_url }}
+          VAR_URL: ${{ vars.API_BASE_URL }}
+        run: |
+          URL="${INPUT_URL:-$VAR_URL}"
+          if [ -z "$URL" ]; then
+            echo "::error::No backend URL. Set the API_BASE_URL repository"
+            echo "variable, or pass one when dispatching this workflow."
+            exit 1
+          fi
+          case "$URL" in
+            https://*) ;;
+            *) echo "::error::API_BASE_URL must be https:// — the app sets"
+               echo "usesCleartextTraffic=false, so plain HTTP is refused at"
+               echo "runtime and every request would fail on device."
+               exit 1 ;;
+          esac
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Configure signing
+        id: signing
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -n "${KEYSTORE_B64:-}" ] && [ -n "${KEYSTORE_PASSWORD:-}" ] \
+             && [ -n "${KEY_ALIAS:-}" ] && [ -n "${KEY_PASSWORD:-}" ]; then
+            echo "$KEYSTORE_B64" | base64 --decode > app/android/app/release.jks
+            # Written into the runner's workspace, which is discarded when the
+            # job ends. android/key.properties is gitignored in any case.
+            cat > app/android/key.properties <<EOF
+          storeFile=release.jks
+          storePassword=${KEYSTORE_PASSWORD}
+          keyAlias=${KEY_ALIAS}
+          keyPassword=${KEY_PASSWORD}
+          EOF
+            echo "signed=true" >> "$GITHUB_OUTPUT"
+            echo "Release keystore configured."
+          else
+            echo "signed=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Android signing secrets are not set. Building with"
+            echo "the debug key — the APK installs but is not a distributable"
+            echo "release. See infra/DEPLOY_NOTES.md."
+          fi
+
+      - name: Build APK
+        working-directory: app
+        run: |
+          flutter build apk --release \
+            --dart-define=API_BASE_URL="${{ steps.config.outputs.url }}"
+
+      - name: Verify the backend URL is baked in
+        working-directory: app
+        run: |
+          # A --dart-define that silently failed to apply produces an APK that
+          # looks fine and points at localhost. Release builds are AOT-compiled,
+          # so the string lives in libapp.so rather than a kernel blob.
+          APK=build/app/outputs/flutter-apk/app-release.apk
+          unzip -oq "$APK" -d /tmp/apk_check
+          if ! grep -rqa "${{ steps.config.outputs.url }}" /tmp/apk_check/lib/; then
+            echo "::error::The APK does not contain ${{ steps.config.outputs.url }}."
+            exit 1
+          fi
+          echo "Verified: APK targets ${{ steps.config.outputs.url }}"
+
+      - name: Clean up signing material
+        if: always()
+        run: rm -f app/android/app/release.jks app/android/key.properties
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pharmaguard-apk
+          path: app/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
+
+      - name: Attach to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: app/build/app/outputs/flutter-apk/app-release.apk
+          generate_release_notes: true
+          body: |
+            ## PharmaGuard ${{ github.ref_name }}
+
+            **Research/educational decision support only. Not a medical device.
+            Not for clinical use.**
+
+            Backend: `${{ steps.config.outputs.url }}`
+
+            ### Install
+            Download the APK, then allow "install from unknown sources" for your
+            browser or file manager. This app is not on the Play Store —
+            publishing there requires a paid Google Play Developer account,
+            which is out of scope for an academic project.
+
+            ${{ steps.signing.outputs.signed == 'true'
+                && '✅ Signed with the project release key.'
+                || '⚠️ **Debug-signed build.** It installs and runs, but is not a distributable release. Android may warn during install.' }}
+
+            ### Requires
+            - Android 6.0+ (per the Flutter default `minSdk`)
+            - An internet connection — analysis runs on the server, not on device
+            - The backend sleeps when idle; the first analysis after a nap can
+              take up to a minute while it wakes.

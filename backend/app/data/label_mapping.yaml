@@ -1,0 +1,314 @@
+# ===========================================================================
+# PharmaGuard — CPIC recommendation -> risk label mapping
+#
+# ###########################################################################
+# #  THIS MAPPING REQUIRES REVIEW AND SIGN-OFF BY THE FACULTY GUIDE BEFORE   #
+# #  ANY CLINICAL CLAIM IS MADE ON THE BASIS OF ITS OUTPUT.                  #
+# #                                                                          #
+# #  It is an interpretation layer written by student software, not by CPIC. #
+# #  CPIC publishes recommendations, not risk labels. Collapsing a paragraph #
+# #  of guidance into one of five words is a lossy editorial act, and the    #
+# #  rules below are where that act happens. Everything else in the backend  #
+# #  passes PharmCAT's text through untouched.                               #
+# ###########################################################################
+#
+# HOW THIS FILE IS USED
+#   `cpic_engine.py` walks `risk_label_rules` in order and takes the FIRST
+#   rule whose conditions all match. Order is therefore significant: the most
+#   serious interpretations are checked first, so that a recommendation which
+#   both "avoids" a drug and "considers an alternative" lands on Toxic rather
+#   than Adjust Dosage.
+#
+# WHAT IT MATCHES ON
+#   PharmCAT's CPIC annotation gives us, per (gene, phenotype, drug):
+#     drug_recommendation      free text, e.g. "Avoid clopidogrel if possible..."
+#     implications             free text, e.g. "...increased risk for adverse..."
+#     classification           Strong | Moderate | Optional | Unspecified
+#     alternate_drug_available bool
+#     dosing_information       bool
+#     other_prescribing_guidance bool
+#   Matching is case-insensitive substring matching over the joined text of
+#   `drug_recommendation` + `implications`, plus optional boolean flag checks.
+#
+# KNOWN LIMITATION — read before trusting `Ineffective` vs `Toxic`
+#   Both labels can be implied by the same phrase ("avoid X"). We disambiguate
+#   on the *reason* words in the implications (efficacy vs toxicity). Where the
+#   text supports both, Toxic wins, because under-treating is usually more
+#   recoverable than poisoning. That is a judgement call, not a CPIC position.
+# ===========================================================================
+
+version: 2
+requires_faculty_review: true
+source_of_clinical_text: "PharmCAT CPIC Guideline Annotation (verbatim)"
+
+# ---------------------------------------------------------------------------
+# Phenotype normalisation: PharmCAT's wording -> our contract enum.
+#
+# Metabolising enzymes use "... Metabolizer"; transporters (SLCO1B1) use
+# "... Function". Both map onto the same PM/IM/NM/RM/URM scale. "Likely X" is
+# PharmCAT hedging on an inferred call; we keep the phenotype but the call
+# status separately lowers confidence, so we do not also downgrade here.
+# ---------------------------------------------------------------------------
+phenotype_map:
+  "poor metabolizer": PM
+  "likely poor metabolizer": PM
+  "poor function": PM
+  "intermediate metabolizer": IM
+  "likely intermediate metabolizer": IM
+  "decreased function": IM
+  "possible intermediate metabolizer": IM
+  "normal metabolizer": NM
+  "normal function": NM
+  "rapid metabolizer": RM
+  "increased function": RM
+  "ultrarapid metabolizer": URM
+  "possible ultrarapid metabolizer": URM
+  # Explicit sentinels: PharmCAT says it does not know.
+  "no result": Unknown
+  "indeterminate": Unknown
+  "unknown": Unknown
+
+# ---------------------------------------------------------------------------
+# Risk label rules — evaluated top to bottom, first match wins.
+#
+# `any_text` matches if ANY listed phrase appears in the combined
+# recommendation + implications text. `all_flags` requires each named boolean
+# to equal the given value. A rule with neither is a catch-all.
+# ---------------------------------------------------------------------------
+risk_label_rules:
+
+  # Ordering note: every rule below was checked against real PharmCAT 3.4.0
+  # output for the genotypes in test-data/. The order is not cosmetic — see
+  # tests/test_label_mapping.py, which pins the outcome of each real text.
+
+  - id: contraindicated
+    label: Toxic
+    # Rationale: the strongest wording CPIC uses — an outright prohibition.
+    # Note "contraindicated" does NOT substring-match "contraindication", which
+    # appears in permissive text like "...if no contraindication".
+    any_text:
+      - "contraindicated"
+      - "should not be used"
+      - "not recommended in"
+    severity_hint: critical
+
+  - id: avoid_for_lack_of_efficacy
+    label: Ineffective
+    # Rationale: avoidance justified by the drug not working, rather than by
+    # harm — the prodrug-not-activated case (clopidogrel in a CYP2C19 PM).
+    #
+    # Checked BEFORE the toxicity rule on purpose. CPIC's clopidogrel PM text
+    # cites "increased risk for adverse cardiac events", which is the downstream
+    # consequence of therapeutic failure, not drug toxicity. Toxicity-first
+    # ordering mislabels that flagship case as Toxic.
+    #
+    # The phrases are deliberately specific to *mechanism of failure*. Generic
+    # wording like "significantly reduced" was removed: it also appears in DPYD
+    # toxicity text ("significantly reduced DPD activity"), where it would be
+    # exactly wrong.
+    any_text:
+      - "active metabolite formation"
+      - "on-treatment platelet reactivity"
+      - "reduced efficacy"
+      - "lack of efficacy"
+      - "loss of efficacy"
+      - "therapeutic failure"
+      - "decreased response"
+      - "reduced response"
+    # The efficacy phrases alone are not enough: CPIC uses the same vocabulary
+    # to say a patient is NORMAL ("Increased clopidogrel active metabolite
+    # formation ... use at standard dose"). An avoid/alternative instruction
+    # must also be present for this to be a negative finding.
+    require_any_text:
+      - "avoid"
+      - "alternative"
+      - "select another"
+    severity_hint: high
+
+  - id: avoid_for_toxicity
+    label: Toxic
+    # Rationale: an avoidance instruction justified by harm. Verified against
+    # DPYD PM ("Avoid use of 5-fluorouracil..." / "fatal drug toxicity") and
+    # TPMT PM ("Consider alternative nonthiopurine..." / "myelosuppression").
+    any_text:
+      - "toxicity"
+      - "myelosuppression"
+      - "leukopenia"
+      - "neutropenia"
+      - "life-threatening"
+      - "respiratory depression"
+      - "overdose"
+      - "fatal"
+    # "alternative" is required here because CPIC also names toxicity in purely
+    # reassuring text ("normal risk for fluoropyrimidine toxicity").
+    require_any_text:
+      - "avoid"
+      - "alternative"
+      - "discontinue"
+      - "select another"
+    severity_hint: high
+
+  - id: avoid_unqualified
+    label: Toxic
+    # Rationale: an avoidance instruction with no reason our phrase lists
+    # recognise. Defaulting to Toxic keeps the failure conservative; the card
+    # still shows CPIC's own words, so the label is not the reader's only cue.
+    any_text:
+      - "avoid"
+    severity_hint: high
+
+  - id: standard_dosing
+    label: Safe
+    # Rationale: CPIC explicitly says to prescribe normally.
+    #
+    # Checked BEFORE the dose-change rule because CPIC's "normal" text routinely
+    # contains generic prescribing advice — "Initiate therapy with standard
+    # starting dose ... During therapy, adjust doses based on disease-specific
+    # guidelines" (azathioprine NM) would otherwise match "adjust" and be
+    # mislabelled Adjust Dosage.
+    #
+    # Safe only because all avoid/toxicity/efficacy rules above have already
+    # failed. Order is load-bearing: CPIC's clopidogrel PM text also contains
+    # "at standard dose" (referring to the *alternative* drug), and reaching
+    # this rule with that text would be a serious mislabel.
+    any_text:
+      - "standard dose"
+      - "standard dosing"
+      - "standard starting dose"
+      - "normal starting dose"
+      - "label-recommended dosage"
+      - "label recommended dosage"
+      - "prescribe desired starting dose"
+      - "no indication to change dose"
+      - "no reason to selectively adjust"
+      - "usual dose"
+    severity_hint: none
+
+  - id: dose_change_or_monitoring
+    label: Adjust Dosage
+    # Rationale: the drug stays, the plan changes — dose reduction, increase,
+    # titration, or extra monitoring. Verified against DPYD IM ("Reduce starting
+    # dose by 50% followed by titration...").
+    any_text:
+      - "reduce"
+      - "dose reduction"
+      - "reduced starting dose"
+      - "increase the dose"
+      - "titrate"
+      - "titration"
+      - "lower dose"
+      - "higher dose"
+      - "lower starting dose"
+      - "monitor"
+      - "alternate dosing"
+      - "adjust"
+    severity_hint: moderate
+
+  - id: dosing_information_flag
+    label: Adjust Dosage
+    # Rationale: PharmCAT's own structured flag says this row carries dosing
+    # information, even where our phrase list missed the wording. Catching it
+    # here beats falling through to Unknown.
+    all_flags:
+      dosing_information: true
+    severity_hint: moderate
+
+  - id: alternate_drug_flag
+    label: Adjust Dosage
+    # Rationale: an alternative exists but no avoid-instruction and no stated
+    # harm matched. Treat as a prescribing change, not a prohibition.
+    all_flags:
+      alternate_drug_available: true
+    severity_hint: moderate
+
+  - id: fallback_unmatched
+    label: Unknown
+    # Rationale: PharmCAT gave an annotation whose wording none of the above
+    # recognises. Returning Unknown rather than guessing Safe means a gap in
+    # this table surfaces as a visible "we do not know" instead of a silent
+    # false reassurance. Grep logs for this id when extending the table.
+    severity_hint: none
+
+# ---------------------------------------------------------------------------
+# Severity — deterministic function of (risk_label, phenotype).
+#
+# Base severity comes from the label. It is escalated one step when the
+# phenotype is at an extreme (PM/URM), because the same recommendation carries
+# more consequence for a patient at the end of the activity range than for one
+# just outside normal.
+#
+# `severity_hint` on a matched rule overrides the base, but escalation still
+# applies on top.
+# ---------------------------------------------------------------------------
+severity:
+  base_by_label:
+    Safe: none
+    "Adjust Dosage": moderate
+    Toxic: high
+    Ineffective: high
+    Unknown: none
+  # Ordered scale used for escalation.
+  scale: [none, low, moderate, high, critical]
+  escalate_one_step_for_phenotypes: [PM, URM]
+  # Never escalate these labels: "Safe" plus a PM phenotype is still safe, and
+  # escalating Unknown would imply knowledge we do not have.
+  never_escalate_labels: [Safe, Unknown]
+
+# ---------------------------------------------------------------------------
+# Confidence score.
+#
+# !! THIS IS NOT AN ML CONFIDENCE AND NOT A PROBABILITY. !!
+# It is a fixed lookup on how good the underlying *call* was. It says nothing
+# about whether the clinical recommendation is correct — only about how sure
+# PharmCAT was that it read the genotype properly. The numbers are arbitrary
+# but ordered, chosen so the UI can render a meaningful bar.
+# ---------------------------------------------------------------------------
+confidence:
+  by_call_status:
+    # Exactly one diplotype matched, all required positions present.
+    definite: 0.95
+    # Several diplotypes fit equally well; we report the first.
+    ambiguous: 0.60
+    # Matcher ran but could not call — usually missing positions.
+    no_call: 0.20
+    # PharmCAT did not attempt the gene (CYP2D6 from a plain VCF).
+    not_attempted: 0.10
+  # Applied when the gene was called but no CPIC annotation matched the
+  # phenotype, so the label is Unknown regardless of call quality.
+  no_guidance: 0.10
+  # Drug is not in any CPIC guideline PharmCAT knows about.
+  unknown_drug: 0.0
+
+# ---------------------------------------------------------------------------
+# Phenotype abnormality rank.
+#
+# Used only to decide WHICH GENE to report when a CPIC guideline keys off more
+# than one (azathioprine keys off both TPMT and NUDT15). We report the most
+# abnormal called gene, because that is the one driving the recommendation.
+# Picking arbitrarily would report "NUDT15 Normal Metabolizer" for a TPMT poor
+# metaboliser — hiding the actual finding and under-stating severity.
+# ---------------------------------------------------------------------------
+phenotype_abnormality_rank:
+  PM: 3
+  URM: 3
+  IM: 2
+  RM: 2
+  NM: 1
+  Unknown: 0
+
+# ---------------------------------------------------------------------------
+# Drug -> primary gene, used to pick which gene call to attach to a drug when
+# the CPIC annotation's lookup key does not name one (rare). PharmCAT's
+# annotation lookup_key is authoritative; this is only a fallback.
+# ---------------------------------------------------------------------------
+drug_primary_gene:
+  clopidogrel: CYP2C19
+  warfarin: CYP2C9
+  simvastatin: SLCO1B1
+  azathioprine: TPMT
+  mercaptopurine: TPMT
+  thioguanine: TPMT
+  fluorouracil: DPYD
+  capecitabine: DPYD
+  codeine: CYP2D6
+  tramadol: CYP2D6
