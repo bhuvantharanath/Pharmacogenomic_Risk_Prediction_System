@@ -66,7 +66,7 @@ passing**.
 
 ## Phase 5B — provider abstraction + NVIDIA (2026-07-24)
 
-### Status: abstraction complete and tested; **live NVIDIA run pending a key**
+### Status: abstraction complete; benchmark run; **template ships (LLM prose fails the provenance gate)**
 
 The Gemini key hit its daily free-tier wall (`RESOURCE_EXHAUSTED`) during the
 5A run. Rather than wait for a reset, the LLM layer was made **provider-agnostic**
@@ -82,11 +82,52 @@ so a quota wall on one vendor no longer strands the project.
 | **Privacy property** | pinned by `test_privacy.py`: no patient genome reaches any provider at build or run time (see below) |
 | **Tests** | +30: `test_providers.py` (24 — selection, error mapping, JSON recovery, quota→template) and `test_privacy.py` (6). Deployed path verified to import cleanly with **no SDK installed** |
 
-**What is NOT done:** no NVIDIA key is present, so `list_models`, the benchmark,
-and the real generation run have not executed. `explanations.json` is still the
-5A template store. The two "not measured" cells from 5A stay not-measured until a
-provider with quota runs. Everything up to that point — the abstraction, the
-tooling, the tests — is complete and green (398 passed, 10 skipped).
+### Benchmark result (2026-07-24) — the decisive finding
+
+The NVIDIA key was added and discovery + benchmark **did run**. The result
+settled the generation question on evidence, and it is the most important
+outcome of the whole LLM effort.
+
+| Model | JSON | Guard | **Provenance** | Latency | Served |
+| --- | ---: | ---: | ---: | ---: | :---: |
+| `meta/llama-3.1-8b-instruct` | 100% | 100% | **0%** | 2.4s | yes |
+| `meta/llama-4-maverick-17b-128e` | 100% | 67% | **0%** | 2.5s | yes |
+| `microsoft/phi-3.5-moe-instruct` | — | — | — | — | no (404) |
+| `ibm/granite-3.0-8b-instruct` | — | — | — | — | no (404) |
+| `mistralai/mixtral-8x7b-instruct` | — | — | — | — | no (500) |
+
+**Every served model passes the entity guard and fails sentence-level
+provenance.** The models write fluent, plausible clinical prose that elaborates
+beyond the CPIC source — timeframes ("may take a few weeks"), generic advice
+("your doctor will adjust the dose"), reworded mechanism. The guard misses this
+(no fabricated dose/gene/allele *entity*); provenance catches it (the *claim*
+does not trace). A second run with an aggressive "reuse the source's words, add
+nothing" instruction still scored **guard 3/3, provenance 0/3** — the untraced
+words were unavoidable plain-language terms (`doctor`, `body`, `lower`, `blood`,
+`count`) that patient communication needs but clinical guidelines do not
+contain.
+
+**Conclusion — the template store ships; no LLM generation was run.** This is
+not a fallback, it is the evidence-backed answer:
+
+- A "every clinical word must trace" gate is fundamentally incompatible with
+  free-form generative paraphrasing. No prompt or model tuning closes it.
+- The template passes provenance 100% precisely because it is assembled from the
+  declared CPIC→label paraphrases (`label_paraphrases.yaml`) — pre-approved
+  plain-language mappings, which is exactly what provenance verification
+  requires.
+- So the LLM experiment **validates the pre-generation / template / declared-
+  paraphrase architecture**: real models were tested against the integrity gate
+  under two prompt regimes and it rejected fluent-but-ungrounded prose every
+  time.
+
+Raw outputs and per-sentence failures: `reports/model_benchmark.md`.
+
+**Still not run:** the full 20-case generation and the guard-experiment rerun on
+NVIDIA — deliberately, because the benchmark showed LLM prose cannot clear the
+release gate, so generating it would only produce a red `verify_provenance`.
+`explanations.json` remains the 5A template store (provenance-verified, 34/34).
+Suite: 398 passed, 10 skipped.
 
 ### No patient genome reaches any LLM provider
 

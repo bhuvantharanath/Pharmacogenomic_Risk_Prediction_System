@@ -22,15 +22,23 @@ from .errors import (
 )
 from .redact import scrub
 
-#: Appended to the system instruction when we cannot rely on a native JSON mode.
-#: Names the exact keys so a model that ignores `response_format` still has an
-#: unambiguous target.
+#: Appended to the system instruction on EVERY OpenAI-compatible call.
+#:
+#: `response_format={"type":"json_object"}` guarantees *valid JSON*, not the
+#: right JSON — the model is free to return any object. A real NVIDIA run
+#: exposed this: given our JSON-shaped context, llama-3.1-8b returned
+#: `{"drug": "azathioprine"}`, echoing an input field in 13 tokens instead of
+#: writing the four explanation fields. Naming the required keys in the prompt
+#: is therefore not a fallback for models that ignore `response_format` — it is
+#: needed in both modes, because json_object mode does not constrain the schema.
 _JSON_DIRECTIVE = """
 
 OUTPUT FORMAT — MANDATORY
 Return ONLY a single JSON object, no prose before or after it, no markdown
-fences, no explanation of your reasoning. The object must have exactly these
-string keys: {keys}. Every value must be a non-empty string."""
+fences, no explanation of your reasoning. The object must have EXACTLY these
+four string keys, and no others: {keys}. Each value is the explanation text for
+that field — never an input value echoed back. Every value must be a non-empty
+string of prose."""
 
 
 #: Per-request wall-clock ceiling, seconds.
@@ -39,8 +47,9 @@ string keys: {keys}. Every value must be a non-empty string."""
 #: therefore block for half an hour. A benchmark run wedged on exactly this: the
 #: first call never returned and nothing else could proceed. 90s comfortably
 #: covers a NIM cold start (tens of seconds) while turning a hang into a prompt,
-#: catchable timeout.
-REQUEST_TIMEOUT_SECONDS = 90.0
+#: catchable timeout. 120s is fair to a large model's one-time cold start while
+#: still failing fast enough to fall back or move on.
+REQUEST_TIMEOUT_SECONDS = 120.0
 
 #: Output ceiling for the four short prose fields.
 #:
@@ -78,13 +87,15 @@ class OpenAICompatibleProvider(Provider):
                 "the 'openai' package is not installed — "
                 "pip install -r requirements-llm.txt"
             ) from exc
-        # timeout + one retry, not the SDK's 600s x 2, so a cold/hung model
-        # fails fast enough to fall back or move on.
+        # timeout, and NO SDK-level retry (the default is 2). A timeout otherwise
+        # costs 2x120s before failing, and pregeneration already has its own
+        # backoff loop for genuine rate limits — a second retry layer here just
+        # doubles the wait on a slow model.
         return OpenAI(
             base_url=self.base_url,
             api_key=self.api_key() or "unused",
             timeout=REQUEST_TIMEOUT_SECONDS,
-            max_retries=1,
+            max_retries=0,
         )
 
     def generate(
@@ -112,13 +123,13 @@ class OpenAICompatibleProvider(Provider):
         # Least-invasive first: ask for a JSON object natively. If the endpoint
         # rejects response_format (many NIM models do), retry with the format
         # baked into the prompt. Record which rung worked.
+        # The key-naming directive goes on BOTH modes: json_object guarantees
+        # valid JSON, not the right keys, so the model needs the target schema
+        # spelled out even when response_format is honoured.
+        directive = _JSON_DIRECTIVE.format(keys=keys)
         for json_mode in ("response_format", "prompt_enforced"):
             messages = [
-                {
-                    "role": "system",
-                    "content": system
-                    + (_JSON_DIRECTIVE.format(keys=keys) if json_mode == "prompt_enforced" else ""),
-                },
+                {"role": "system", "content": system + directive},
                 {"role": "user", "content": prompt},
             ]
             kwargs = {
