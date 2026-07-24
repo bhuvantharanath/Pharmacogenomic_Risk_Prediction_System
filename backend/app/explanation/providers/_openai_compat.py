@@ -33,6 +33,26 @@ fences, no explanation of your reasoning. The object must have exactly these
 string keys: {keys}. Every value must be a non-empty string."""
 
 
+#: Per-request wall-clock ceiling, seconds.
+#:
+#: The openai SDK defaults to 600s with 2 retries — one hung or cold model can
+#: therefore block for half an hour. A benchmark run wedged on exactly this: the
+#: first call never returned and nothing else could proceed. 90s comfortably
+#: covers a NIM cold start (tens of seconds) while turning a hang into a prompt,
+#: catchable timeout.
+REQUEST_TIMEOUT_SECONDS = 90.0
+
+#: Output ceiling for the four short prose fields.
+#:
+#: Independent of Gemini's 8192 (which existed only to leave room for a thinking
+#: budget we now disable). A completion model with no thinking needs perhaps
+#: 700 tokens here; a much higher ceiling does not help and lets a model that
+#: fails to stop generate for minutes — which is what turned the wedged
+#: benchmark call into a multi-minute stall on top of the missing timeout. The
+#: guard would reject a rambling answer anyway, so bound it.
+COMPLETION_MAX_TOKENS = 1536
+
+
 class OpenAICompatibleProvider(Provider):
     """Base for any endpoint that speaks OpenAI chat-completions."""
 
@@ -58,7 +78,14 @@ class OpenAICompatibleProvider(Provider):
                 "the 'openai' package is not installed — "
                 "pip install -r requirements-llm.txt"
             ) from exc
-        return OpenAI(base_url=self.base_url, api_key=self.api_key() or "unused")
+        # timeout + one retry, not the SDK's 600s x 2, so a cold/hung model
+        # fails fast enough to fall back or move on.
+        return OpenAI(
+            base_url=self.base_url,
+            api_key=self.api_key() or "unused",
+            timeout=REQUEST_TIMEOUT_SECONDS,
+            max_retries=1,
+        )
 
     def generate(
         self,
@@ -78,6 +105,9 @@ class OpenAICompatibleProvider(Provider):
 
         client = self._client()
         keys = ", ".join(schema.model_fields)
+        # Bound output: four short fields, no thinking. Prevents a model that
+        # fails to stop from running to a huge ceiling.
+        max_tokens = min(max_tokens, COMPLETION_MAX_TOKENS)
 
         # Least-invasive first: ask for a JSON object natively. If the endpoint
         # rejects response_format (many NIM models do), retry with the format
@@ -161,6 +191,13 @@ class OpenAICompatibleProvider(Provider):
         def carry(err: ProviderError) -> ProviderError:
             err.provider = self.name
             return err
+
+        # A timeout is transient and worth one retry elsewhere — treat it as a
+        # rate-limit-class signal, not an opaque failure, so a cold model that
+        # times out on one case does not read as "the model is broken".
+        if type(exc).__name__ in ("APITimeoutError", "Timeout") or "timed out" in low:
+            err = RateLimited(f"{self.name}: request timed out after {REQUEST_TIMEOUT_SECONDS:.0f}s.")
+            return carry(err)
 
         # Credits depleted. NVIDIA uses 402; some report it as 429 with a
         # payment/credit message. Either way, retrying and backing off are both
