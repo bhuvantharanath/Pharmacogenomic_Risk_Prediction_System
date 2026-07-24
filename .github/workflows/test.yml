@@ -1,0 +1,157 @@
+# Test + verify on every push and pull request.
+#
+# WHY THIS EXISTS
+#   Three defects — one of which shipped an APK that installed and crashed
+#   instantly — survived into a release because nothing ran the test suite
+#   automatically. The suite existed and passed; no workflow invoked it.
+#   `deploy-web.yml` ran `flutter test` only, and the backend ran nowhere.
+#
+# WHAT IT MUST NEVER NEED
+#   No secrets, no API key, no PharmCAT, no network beyond installing
+#   dependencies, and no deployment. The deployed path itself needs no key, so a
+#   CI job that needed one would prove the opposite of what it is checking. The
+#   `permissions: contents: read` block below is the enforcement, not the
+#   intention: this workflow cannot write to the repository.
+
+name: test
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: backend — pytest + provenance gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            backend/requirements.txt
+            backend/requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt -r backend/requirements-dev.txt
+
+      # Deliberately unset. If any of the steps below start needing a key, that
+      # is a defect in the deployed path, and it should fail here.
+      - name: Assert no API key is present
+        run: |
+          if [ -n "${GEMINI_API_KEY:-}" ] || [ -n "${GOOGLE_API_KEY:-}" ]; then
+            echo "::error::An API key is set in CI. The deployed path needs none."
+            exit 1
+          fi
+          echo "No API key present — as required."
+
+      - name: pytest
+        working-directory: backend
+        env:
+          EXPLANATION_MODE: static
+        run: python -m pytest -q
+
+      # The release gate. Exits non-zero if any sentence making a clinical claim
+      # cannot be traced to a CPIC recommendation or a cited mechanism document.
+      - name: Verify explanation provenance
+        run: python scripts/verify_provenance.py
+
+      - name: Review status
+        run: python scripts/review_status.py
+
+      - name: Upload provenance report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance-report
+          path: reports/provenance_report.md
+          if-no-files-found: warn
+
+  flutter:
+    name: flutter — analyze + test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          # Pinned to match build-apk.yml and deploy-web.yml. An unpinned
+          # toolchain would let CI drift from what actually ships.
+          flutter-version: "3.38.9"
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        working-directory: app
+        run: flutter pub get
+
+      - name: flutter analyze
+        working-directory: app
+        run: flutter analyze --no-fatal-infos
+
+      - name: flutter test
+        working-directory: app
+        run: flutter test
+
+  honesty:
+    name: no artifact claims clinical approval
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    # This project has no qualified clinical reviewer. Every user-facing
+    # artifact must say so rather than implying a review that is merely pending.
+    # Checked in CI because it is exactly the kind of claim that creeps back in
+    # through a well-meaning doc edit.
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: No entry may claim a clinical expert review
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          store = json.loads(pathlib.Path("backend/app/data/explanations.json").read_text())
+          bad = []
+          for entry in store.get("explanations", []):
+              review = entry.get("review") or {}
+              if review.get("clinical_expert_review"):
+                  bad.append(f"{entry['drug']}:{entry['phenotype']}")
+              if review.get("clinical_expert_review_status") != "NOT_OBTAINED":
+                  bad.append(f"{entry['drug']}:{entry['phenotype']} (status)")
+              if "reviewed_by" in entry or "reviewed_at" in entry:
+                  bad.append(f"{entry['drug']}:{entry['phenotype']} (legacy field)")
+          if bad:
+              print("::error::entries claim a clinical review that does not exist:", bad)
+              sys.exit(1)
+          print(f"{len(store.get('explanations', []))} entries — none claims clinical approval.")
+          PY
+
+      - name: No doc promises faculty sign-off
+        run: |
+          if grep -rniE "faculty (review|sign-?off|guide)|awaiting (clinical )?review|pending (clinical )?sign-?off" \
+               --include="*.md" --include="*.dart" --include="*.json" \
+               README.md app/lib backend/app/data scripts/ 2>/dev/null; then
+            echo "::error::An artifact implies a clinical reviewer that this project does not have."
+            exit 1
+          fi
+          echo "No artifact implies clinical expert approval."

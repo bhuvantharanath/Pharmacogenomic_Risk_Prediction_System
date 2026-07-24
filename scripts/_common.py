@@ -92,6 +92,26 @@ def redact(secret: str | None) -> str:
     return f"{secret[:6]}…{secret[-4:]} ({len(secret)} chars)"
 
 
+def scrub(text: object) -> str:
+    """
+    Remove the API key from any string before it is printed or logged.
+
+    Applied at every site that renders an exception, because those strings come
+    from a third-party SDK whose behaviour we do not control. Verified on
+    2026-07-23 that google-genai does NOT echo the key in error messages or
+    tracebacks — but "verified once" is not the same as "guaranteed", and a
+    leaked key in a captured terminal log is unrecoverable.
+
+    Cheap insurance: one string replace on a path that only runs on failure.
+    """
+    rendered = str(text)
+    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
+        secret = os.environ.get(name)
+        if secret and len(secret) > 8 and secret in rendered:
+            rendered = rendered.replace(secret, "<<REDACTED_API_KEY>>")
+    return rendered
+
+
 class RateLimiter:
     """
     Minimum-interval throttle with exponential backoff on 429.
@@ -116,7 +136,10 @@ class RateLimiter:
 
     @staticmethod
     def is_rate_limit_error(exc: Exception) -> bool:
-        text = f"{type(exc).__name__} {exc}".lower()
+        # Not scrubbed: this string is only matched against, never printed or
+        # stored. Scrubbing here would be harmless but misleading — it would
+        # imply this value reaches output.
+        text = f"{type(exc).__name__} {exc}".lower()  # noqa: not-rendered
         return any(
             marker in text
             for marker in ("429", "resource_exhausted", "rate limit", "quota")

@@ -312,7 +312,16 @@ class TestConfidence:
 class TestMappingFileIntegrity:
     def test_declares_faculty_review_requirement(self) -> None:
         """The sign-off flag is part of the contract with the faculty guide."""
-        assert load_mapping()["requires_faculty_review"] is True
+        mapping = load_mapping()
+        # The flag used to be `requires_faculty_review: true`, which described a
+        # review as outstanding when no reviewer existed or was coming. It now
+        # records the real status, and this test pins it so the stronger claim
+        # cannot quietly return.
+        assert mapping["clinical_review_status"] == "NOT_OBTAINED"
+        assert "requires_faculty_review" not in mapping
+        assert mapping["clinical_review_note"].strip()
+        # It must still say what IS guaranteed, or the note is a bare disclaimer.
+        assert "verbatim" in mapping["clinical_review_note"]
 
     def test_every_rule_has_an_id_and_a_valid_label(self) -> None:
         seen: set[str] = set()

@@ -25,7 +25,17 @@ import argparse
 import json
 import sys
 
-from _common import DEFAULT_MODEL, api_key, bold, dim, green, red, rule, yellow
+from _common import (
+    DEFAULT_MODEL,
+    api_key,
+    bold,
+    dim,
+    green,
+    red,
+    rule,
+    scrub,
+    yellow,
+)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -52,7 +62,7 @@ def main(argv: list[str] | None = None) -> int:
         client = genai.Client(api_key=key)
         models = list(client.models.list())
     except Exception as exc:  # noqa: BLE001 — SDK raises a wide range
-        print(red(f"Could not list models: {type(exc).__name__}: {exc}"), file=sys.stderr)
+        print(red(f"Could not list models: {type(exc).__name__}: {scrub(exc)}"), file=sys.stderr)
         return 1
 
     rows = []

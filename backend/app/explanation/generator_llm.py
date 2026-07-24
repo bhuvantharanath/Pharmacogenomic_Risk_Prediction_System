@@ -50,6 +50,69 @@ DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
 # temperature 0 sometimes produces on short structured outputs.
 DEFAULT_TEMPERATURE = 0.2
 
+#: Output ceiling.
+#:
+#: Four prose fields need perhaps 600 tokens. The earlier value of 2048 looked
+#: generous and was not: on a **thinking** model, reasoning tokens are drawn
+#: from this same budget, so the model spent it deliberating and the JSON was
+#: cut off mid-string. Every failure surfaced as a pydantic error —
+#: "Invalid JSON: EOF while parsing a string at line 4 column 84" — which points
+#: at parsing and not at the token ceiling that actually caused it. That
+#: misdirection cost a whole run: 5 of 12 calls in the 2026-07-23 guard
+#: experiment failed this way (4 more hit the free-tier quota, leaving 3
+#: usable), and the generation run produced zero LLM output at all.
+MAX_OUTPUT_TOKENS = 8192
+
+#: Thinking budget, in tokens. Zero disables it.
+#:
+#: This task is not reasoning. The model composes prose from a closed context it
+#: is forbidden to add to, and the faithfulness guard — not the model's own
+#: deliberation — is what decides whether output is acceptable. Paying for
+#: thinking tokens here buys nothing and, at a finite ceiling, actively
+#: competes with the answer.
+THINKING_BUDGET = 0
+
+
+def _reject_if_truncated(response: object) -> None:
+    """
+    Fail with the real cause when the model ran out of output budget.
+
+    Without this, a truncated response falls through to JSON parsing and reports
+    `Invalid JSON: EOF while parsing a string at line 4 column 84`. That message
+    is true and useless: it describes the symptom at the parser and says nothing
+    about the token ceiling that produced it. Diagnosing it cost a full run.
+
+    `thoughts_token_count` is included because it is the number that makes the
+    cause obvious — if the model spent most of its budget thinking, the fix is
+    the thinking budget, not the prose.
+    """
+    candidates = getattr(response, "candidates", None) or []
+    if not candidates:
+        return
+    reason = getattr(candidates[0], "finish_reason", None)
+    if reason is None or getattr(reason, "name", str(reason)) != "MAX_TOKENS":
+        return
+
+    usage = getattr(response, "usage_metadata", None)
+    thoughts = getattr(usage, "thoughts_token_count", None) or 0
+    emitted = getattr(usage, "candidates_token_count", None) or 0
+    raise LlmUnavailableError(
+        f"Gemini hit the {MAX_OUTPUT_TOKENS}-token output ceiling and the "
+        f"response was cut off mid-JSON "
+        f"({thoughts} thinking tokens, {emitted} output tokens). "
+        "Raise MAX_OUTPUT_TOKENS or lower THINKING_BUDGET in generator_llm.py."
+    )
+
+
+def _scrub(text: object) -> str:
+    """Strip the API key out of any third-party error before it propagates."""
+    rendered = str(text)
+    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
+        secret = os.environ.get(name)
+        if secret and len(secret) > 8 and secret in rendered:
+            rendered = rendered.replace(secret, "<<REDACTED_API_KEY>>")
+    return rendered
+
 
 class LlmUnavailableError(RuntimeError):
     """No API key, SDK missing, or the call failed. Callers fall back."""
@@ -215,12 +278,18 @@ def generate(
                 response_mime_type="application/json",
                 response_schema=_ExplanationSchema,
                 temperature=temperature,
-                # Generous ceiling; the schema keeps output short anyway.
-                max_output_tokens=2048,
+                max_output_tokens=MAX_OUTPUT_TOKENS,
+                thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET),
             ),
         )
     except Exception as exc:  # noqa: BLE001 - SDK raises a wide range
-        raise LlmUnavailableError(f"Gemini call failed: {exc}") from exc
+        # Scrub before the message escapes: this string is surfaced in CLI
+        # output and written to logs/guard_events.jsonl. Verified that
+        # google-genai does not echo the key, but a third-party error string is
+        # not something to take on trust.
+        raise LlmUnavailableError(f"Gemini call failed: {_scrub(exc)}") from exc
+
+    _reject_if_truncated(response)
 
     parsed = getattr(response, "parsed", None)
     if isinstance(parsed, _ExplanationSchema):
@@ -234,7 +303,7 @@ def generate(
             payload = _ExplanationSchema.model_validate_json(text)
         except Exception as exc:  # noqa: BLE001
             raise LlmUnavailableError(
-                f"Gemini returned output that did not match the schema: {exc}"
+                f"Gemini returned output that did not match the schema: {_scrub(exc)}"
             ) from exc
 
     return LlmResult(

@@ -65,7 +65,7 @@ def collect() -> dict:
 
     llm_entries = [e for e in entries if str(e.get("generator", "")).startswith("llm")]
     models = sorted({e.get("model", "") for e in entries if e.get("model")})
-    reviewed = [e for e in entries if e.get("reviewed_by")]
+    reviewed = [e for e in entries if (e.get("review") or {}).get("read_by_author")]
 
     per_drug: dict[str, dict] = defaultdict(lambda: {"reachable": 0, "generated": 0, "fallback": 0, "unreachable": 0})
     for case in cases:
@@ -242,7 +242,10 @@ def render(data: dict) -> str:
         "",
         "## Review status",
         "",
-        f"**{len(data['reviewed'])} of {len(entries)}** entries carry a `reviewed_by`.",
+        f"**{len(data['reviewed'])} of {len(entries)}** entries have been read by the "
+        "project author. No qualified clinical expert has reviewed any of them, and "
+        "none is expected to — see `reports/provenance_report.md` for what is "
+        "machine-verified in place of that.",
         "",
     ]
     if len(data["reviewed"]) < len(entries):

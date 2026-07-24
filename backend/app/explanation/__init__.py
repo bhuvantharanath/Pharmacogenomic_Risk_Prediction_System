@@ -55,7 +55,10 @@ class ExplanationResult:
     mode: ExplanationMode
     generator: str
     guard: GuardReport | None = None
-    reviewed: bool = False
+    #: Renamed from `reviewed`. Nothing here records clinical review, because
+    #: this project has no clinical reviewer; what it records is that every
+    #: clinical claim traces to a cited source.
+    provenance_verified: bool = False
     #: Runtime cross-check of the values injected into the reviewed prose.
     #: None when no profile was supplied to verify against.
     slots: SlotVerification | None = None
@@ -80,7 +83,9 @@ class ExplanationResult:
                 "slots=verified" if self.slots.passed else "slots=MISMATCH"
             )
         if self.generator == "static":
-            bits.append("reviewed=yes" if self.reviewed else "reviewed=NO")
+            bits.append(
+                "provenance=verified" if self.provenance_verified else "provenance=UNVERIFIED"
+            )
         return ", ".join(bits)
 
 
@@ -117,7 +122,7 @@ def _template_result(
         mode=mode,
         generator=generator_template.GENERATOR_NAME,
         guard=None,
-        reviewed=False,
+        provenance_verified=False,
         slots=verification,
         notes=notes,
     )
@@ -169,7 +174,7 @@ def _static_result(
             action_taken="accepted (pre-generated)",
             generator="static",
         ),
-        reviewed=stored.is_reviewed,
+        provenance_verified=stored.is_provenance_verified,
         slots=verification,
         notes=notes,
     )
@@ -220,7 +225,7 @@ def _live_result(
                 mode=mode,
                 generator=f"llm:{result.model}",
                 guard=report,
-                reviewed=False,
+                provenance_verified=False,
                 slots=verification,
                 notes=notes,
             )

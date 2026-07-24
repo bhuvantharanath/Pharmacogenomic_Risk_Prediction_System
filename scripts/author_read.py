@@ -1,26 +1,38 @@
 #!/usr/bin/env python3
 """
-Interactive review CLI — approve, reject, edit or skip each explanation.
+Author read-through — record that a human has read each explanation.
 
-    python scripts/review.py --reviewer "Dr A. Guide"
-    python scripts/review.py --reviewer "..." --filter fallback
-    python scripts/review.py --reviewer "..." --only clopidogrel
+    python scripts/author_read.py --author "B. Thangavel"
+    python scripts/author_read.py --author "..." --filter fallback
+    python scripts/author_read.py --author "..." --only clopidogrel
+
+THIS IS NOT CLINICAL REVIEW, AND CANNOT BECOME IT
+
+    This project has **no qualified clinical reviewer**. This script therefore
+    records exactly one thing: that the project author read an entry. It has no
+    "approve" action, because the author is not qualified to approve clinical
+    text and a CLI that offered the verb would manufacture an authority nobody
+    holds. `clinical_expert_review` stays None and is never writable from here.
+
+    Renamed from `review.py`, whose approve/reject vocabulary implied a sign-off
+    that was never going to happen.
+
+WHAT READING STILL ACHIEVES
+
+    "Nobody has looked at this" and "a non-clinician read it and nothing jumped
+    out" are different states, and the second is worth recording. A read-through
+    catches what no machine here can: prose that is fluent, fully traced to its
+    source, and still describes the direction of effect backwards. Flagging such
+    an entry is genuinely useful; certifying it is not the author's to do.
 
 WHY THE GROUNDING CONTEXT IS SHOWN ALONGSIDE
-    A reviewer cannot judge faithfulness from the prose alone — that is the
-    whole difficulty. Each entry is therefore printed next to the CPIC
-    recommendation it was generated from and the mechanism source it cites, so
-    the question "does this text follow from that source?" can actually be
-    answered on screen.
 
-WHAT THE MACHINE CANNOT DECIDE
-    The faithfulness guard verifies that every clinical entity in the text
-    appears in the context. It cannot tell that a mechanism has been described
-    backwards — "reduced CYP2C19 activity makes the drug accumulate" is fully
-    grounded and completely wrong. Direction of effect is exactly what a human
-    reviewer is here for.
+    Faithfulness cannot be judged from prose alone — that is the whole
+    difficulty. Each entry prints next to the CPIC recommendation it came from
+    and the mechanism source it cites, so "does this text follow from that
+    source?" can actually be answered on screen.
 
-Decisions are written back immediately, so quitting mid-review never loses work.
+Decisions are written back immediately, so quitting mid-pass never loses work.
 """
 
 from __future__ import annotations
@@ -62,10 +74,14 @@ def wrap(text: str, indent: str = "    ", width: int = 76) -> str:
 
 
 def render_entry(entry: dict, index: int, total: int) -> None:
+    review = entry.get("review") or {}
     status = (
-        green("reviewed by " + entry["reviewed_by"])
-        if entry.get("reviewed_by")
-        else yellow("UNREVIEWED")
+        green("read by " + review["read_by_author"])
+        if review.get("read_by_author")
+        else yellow("NOT YET READ")
+    )
+    provenance = (
+        green("verified") if review.get("provenance_verified") else red("UNVERIFIED")
     )
     kind = yellow("TEMPLATE FALLBACK") if entry.get("fallback") else green("LLM-generated")
 
@@ -74,6 +90,8 @@ def render_entry(entry: dict, index: int, total: int) -> None:
     print(f"  {bold('risk label')}   {entry.get('derived_risk_label', '?')}")
     print(f"  {bold('source')}       {kind}   {dim(entry.get('model', ''))}")
     print(f"  {bold('status')}       {status}")
+    print(f"  {bold('provenance')}   {provenance}   {dim(review.get('verified_by', ''))}")
+    print(f"  {bold('clinical')}     {red('NOT REVIEWED BY ANY CLINICAL EXPERT')}")
     if entry.get("fallback_reason"):
         print(f"  {bold('fallback')}     {dim(entry['fallback_reason'][:70])}")
 
@@ -167,10 +185,29 @@ def re_guard(entry: dict) -> tuple[bool, list[str]]:
     return report.passed, [f"{v.kind}:{v.token}" for v in report.violations]
 
 
+def _mark_read(entry: dict, author: str) -> None:
+    """
+    Record the read in the entry's review block.
+
+    Touches `read_by_author` and nothing else. `clinical_expert_review` is
+    deliberately not writable from this script — there is no clinician to write
+    it, and a CLI that could set the field would eventually be used to.
+    """
+    review = entry.setdefault("review", {})
+    review["read_by_author"] = author
+    review["read_at"] = datetime.now(timezone.utc).isoformat()
+    review.setdefault("provenance_verified", False)
+    review.setdefault("clinical_expert_review", None)
+    review["clinical_expert_review_status"] = "NOT_OBTAINED"
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--reviewer", required=True, help="Your name — recorded in reviewed_by.")
-    parser.add_argument("--filter", choices=("all", "unreviewed", "fallback", "reviewed"), default="unreviewed")
+    parser.add_argument(
+        "--author", required=True,
+        help="Your name — recorded in review.read_by_author. Not an approval.",
+    )
+    parser.add_argument("--filter", choices=("all", "unread", "fallback", "read"), default="unread")
     parser.add_argument("--only", action="append", default=[], metavar="DRUG")
     parser.add_argument("-i", "--input", type=Path, default=EXPLANATIONS_PATH)
     args = parser.parse_args(argv)
@@ -183,9 +220,9 @@ def main(argv: list[str] | None = None) -> int:
 
     selected = entries
     if args.filter == "unreviewed":
-        selected = [e for e in entries if not e.get("reviewed_by")]
+        selected = [e for e in entries if not (e.get("review") or {}).get("read_by_author")]
     elif args.filter == "reviewed":
-        selected = [e for e in entries if e.get("reviewed_by")]
+        selected = [e for e in entries if (e.get("review") or {}).get("read_by_author")]
     elif args.filter == "fallback":
         selected = [e for e in entries if e.get("fallback")]
     if args.only:
@@ -196,11 +233,12 @@ def main(argv: list[str] | None = None) -> int:
         print(green(f"Nothing matches --filter {args.filter}. Nothing to do."))
         return 0
 
-    print(bold("\nPharmaGuard explanation review"))
-    print(dim(f"  reviewer={args.reviewer}  filter={args.filter}  entries={len(selected)}"))
-    print(dim("  a=approve  r=reject  e=edit  s=skip  q=quit (saves as you go)"))
+    print(bold("\nPharmaGuard author read-through"))
+    print(dim(f"  author={args.author}  filter={args.filter}  entries={len(selected)}"))
+    print(dim("  d=mark read  f=flag concern  e=edit  s=skip  q=quit (saves as you go)"))
+    print(yellow("  This records that you READ an entry. It is not clinical approval."))
 
-    approved = rejected = skipped = 0
+    read = flagged = skipped = 0
 
     for index, entry in enumerate(selected, start=1):
         while True:
@@ -211,21 +249,17 @@ def main(argv: list[str] | None = None) -> int:
                 print(yellow("\n\nInterrupted — decisions so far are saved."))
                 choice = "q"
 
-            if choice in ("a", "approve"):
-                entry["reviewed_by"] = args.reviewer
-                entry["reviewed_at"] = datetime.now(timezone.utc).isoformat()
-                entry["review_decision"] = "approved"
-                approved += 1
-                print(green("  approved"))
+            if choice in ("d", "read", "done"):
+                _mark_read(entry, args.author)
+                read += 1
+                print(green("  marked read (not approved — no clinical sign-off exists)"))
                 break
-            if choice in ("r", "reject"):
-                reason = input("  reason (recorded): ").strip()
-                entry["reviewed_by"] = args.reviewer
-                entry["reviewed_at"] = datetime.now(timezone.utc).isoformat()
-                entry["review_decision"] = "rejected"
-                entry["review_note"] = reason
-                rejected += 1
-                print(red("  rejected — regenerate or edit this case before shipping"))
+            if choice in ("f", "flag"):
+                concern = input("  what looks wrong (recorded): ").strip()
+                _mark_read(entry, args.author)
+                entry["author_concern"] = concern
+                flagged += 1
+                print(yellow("  concern recorded — investigate before this ships"))
                 break
             if choice in ("e", "edit"):
                 if edit_entry(entry):
@@ -245,16 +279,18 @@ def main(argv: list[str] | None = None) -> int:
                 break
             if choice in ("q", "quit"):
                 write_json_atomic(args.input, {**store, "explanations": entries})
-                print(f"\n  approved {approved}  rejected {rejected}  skipped {skipped}")
+                print(f"\n  read {read}  flagged {flagged}  skipped {skipped}")
                 print(dim(f"  saved {args.input.relative_to(REPO_ROOT)}"))
                 return 0
-            print(yellow("  unrecognised — use a, r, e, s or q"))
+            print(yellow("  unrecognised — use d, f, e, s or q"))
 
         write_json_atomic(args.input, {**store, "explanations": entries})
 
     print(rule())
-    print(f"\n  approved {green(str(approved))}  rejected {red(str(rejected))}  skipped {dim(str(skipped))}")
+    print(f"\n  read {green(str(read))}  flagged {yellow(str(flagged))}  skipped {dim(str(skipped))}")
     print(dim(f"  saved {args.input.relative_to(REPO_ROOT)}"))
+    print(yellow("\n  Reading is not clinical approval. No clinical expert has reviewed"))
+    print(yellow("  this content, and `clinical_expert_review` remains NOT_OBTAINED."))
     print(dim("\nNext:  python scripts/review_status.py"))
     return 0
 

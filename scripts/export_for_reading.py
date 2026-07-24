@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 """
-Export every explanation to a printable Markdown document for offline sign-off.
+Export every explanation to one readable document, for the author's own pass.
 
-    python scripts/export_for_review.py
-    python scripts/export_for_review.py --only clopidogrel
+    python scripts/export_for_reading.py
+    python scripts/export_for_reading.py --only clopidogrel
 
-WHY THIS EXISTS ALONGSIDE review.py
-    A faculty guide will not sit at a terminal working through an interactive
-    prompt. This produces one document they can read on a screen or on paper,
-    with each explanation printed next to the CPIC text it must follow from and
-    a signature block per entry.
+RETARGETED, NOT DELETED
+    This was `export_for_review.py`, built to hand a faculty guide a document
+    with a signature block per entry. **That reviewer does not exist**, so the
+    signature blocks are gone — an unsigned approval box in a checked-in
+    artifact is an invitation to treat it as merely unsigned rather than
+    unobtainable.
 
-    `review.py` remains the path for recording decisions in the file; this is
-    the path for getting a human to actually make them.
+    What survives is genuinely useful: twenty explanations printed next to the
+    CPIC text each must follow from, in one document that can be read straight
+    through. Reading them in sequence surfaces what per-entry review does not —
+    an inconsistency between two phenotypes of the same drug, or a hedge that
+    is present in five cases and missing in the sixth.
+
+    `author_read.py` records that a read happened. This is the artifact to read.
 """
 
 from __future__ import annotations
@@ -33,7 +39,7 @@ from _common import (
     red,
 )
 
-OUTPUT_PATH = REPORTS_DIR / "explanations_for_review.md"
+OUTPUT_PATH = REPORTS_DIR / "explanations_for_reading.md"
 FIELD_LABELS = {
     "summary": "Summary",
     "mechanism": "Mechanism",
@@ -55,33 +61,46 @@ def quote(text: str, width: int = 88) -> str:
 
 
 def render(entries: list[dict], store: dict) -> str:
-    reviewed = sum(1 for e in entries if e.get("reviewed_by"))
+    reviewed = sum(1 for e in entries if (e.get("review") or {}).get("read_by_author"))
     fallback = sum(1 for e in entries if e.get("fallback"))
 
     lines: list[str] = [
-        "# PharmaGuard — explanations for review",
+        "# PharmaGuard — every explanation, for reading straight through",
         "",
         f"**Exported:** {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}  ",
         f"**Model:** `{store.get('model', 'unknown')}`  ",
-        f"**Entries:** {len(entries)} ({fallback} template fallback, {reviewed} already reviewed)",
+        f"**Entries:** {len(entries)} ({fallback} template fallback, {reviewed} read by the author)",
         "",
         "---",
         "",
-        "## What you are being asked to check",
+        "## ⚠️ There is no clinical reviewer for this document",
         "",
-        "Each explanation below is printed **next to the CPIC text it was",
-        "generated from**. For each one, please judge:",
+        "This project has **no qualified clinical expert**, and is not going to",
+        "get one. Nothing in this document is an approval form, and nobody here",
+        "is in a position to sign one.",
         "",
-        "1. **Faithfulness** — does the explanation follow from the CPIC text",
-        "   above it, without adding anything?",
-        "2. **Direction of effect** — this is the one a machine cannot check.",
-        "   The automated guard verifies that every drug, gene, dose and allele",
-        "   mentioned appears in the source. It **cannot** tell that a mechanism",
-        "   has been described backwards. \"Reduced enzyme activity causes the",
-        "   drug to accumulate\" is fully grounded and completely wrong for a",
-        "   prodrug like clopidogrel, where reduced activity means *less* active",
-        "   drug. Please check each mechanism points the right way.",
-        "3. **Plain language** — is `Patient-friendly` genuinely readable by a",
+        "What has been done instead is narrower and machine-checked: every",
+        "sentence making a clinical claim is verified to trace, word by word, to",
+        "a CPIC recommendation issued by PharmCAT or to a cited mechanism",
+        "document. See `reports/provenance_report.md`. That establishes the",
+        "system invented nothing. It does **not** establish that the text is",
+        "clinically correct.",
+        "",
+        "## Why read it anyway",
+        "",
+        "Reading twenty explanations in sequence catches things per-entry checks",
+        "and automated ones both miss:",
+        "",
+        "1. **Direction of effect.** The one no check here can make. The guard",
+        "   verifies every drug, gene, dose and allele appears in the source; the",
+        "   provenance verifier additionally requires the whole claim to appear.",
+        "   Neither can tell that a mechanism has been described **backwards**.",
+        "   \"Reduced enzyme activity causes the drug to accumulate\" is fully",
+        "   traced and completely wrong for a prodrug like clopidogrel, where",
+        "   reduced activity means *less* active drug.",
+        "2. **Inconsistency between phenotypes of one drug** — a hedge present in",
+        "   five cases and missing in the sixth.",
+        "3. **Plain language** — is `Patient-friendly` readable by a",
         "   non-specialist, without being alarming or falsely reassuring?",
         "4. **Honest gaps** — where no result was obtained (CYP2D6, warfarin),",
         "   does the text say so plainly rather than implying a normal result?",
@@ -91,17 +110,17 @@ def render(entries: list[dict], store: dict) -> str:
         "`{diplotype}` and `{detected_variants}` are **intentional**. Each",
         "explanation is reused for every patient with that phenotype, and those",
         "values are substituted per patient at request time (then cross-checked",
-        "against the actual genotype call). Please do not replace them with",
-        "specific values.",
+        "against the actual genotype call). Do not replace them with specific",
+        "values.",
         "",
-        "### Recording your decision",
-        "",
-        "Sign the block under each entry, or return the document with comments.",
-        "Decisions are transcribed with:",
+        "### Recording what you noticed",
         "",
         "```bash",
-        "python scripts/review.py --reviewer \"<your name>\"",
+        "python scripts/author_read.py --author \"<your name>\"",
         "```",
+        "",
+        "`d` records that you read an entry; `f` records a concern. Neither is",
+        "clinical approval, and the CLI has no action that is.",
         "",
         "---",
         "",
@@ -154,31 +173,35 @@ def render(entries: list[dict], store: dict) -> str:
         for field, label in FIELD_LABELS.items():
             lines += [f"**{label}**", "", quote(entry.get("explanation", {}).get(field, "")), ""]
 
+        review = entry.get("review") or {}
         already = ""
-        if entry.get("reviewed_by"):
+        if review.get("read_by_author"):
             already = (
-                f"  \n_Previously reviewed by {entry['reviewed_by']} "
-                f"on {entry.get('reviewed_at', '?')[:10]} "
-                f"({entry.get('review_decision', 'approved')})._"
+                f"  \n_Read by {review['read_by_author']} "
+                f"on {str(review.get('read_at', '?'))[:10]}. Not clinical approval._"
             )
+        if entry.get("author_concern"):
+            already += f"  \n⚠️ _Author concern: {entry['author_concern']}_"
 
+        # No approval checkboxes and no signature line. Nobody on this project
+        # is qualified to tick "faithful, correct direction" for clinical text,
+        # and a blank approval box in a checked-in document reads as awaiting a
+        # signature rather than as awaiting a reviewer who is never coming.
         lines += [
-            "### Reviewer decision",
+            "### While reading, ask",
             "",
-            "| | |",
-            "| --- | --- |",
-            "| ☐ Approve — faithful, correct direction, readable | |",
-            "| ☐ Approve with edits *(note them below)* | |",
-            "| ☐ Reject *(state why)* | |",
+            "- Is the **direction of effect** right? Reduced enzyme activity means",
+            "  more drug or less, depending on whether it is a prodrug — this is the",
+            "  error no automated check here can catch, because such a sentence is",
+            "  fully traced to its source and still wrong.",
+            "- Does any sentence say more than the CPIC text above it?",
+            "- Is `patient_friendly` genuinely plain language, and does it avoid",
+            "  telling the reader what to do?",
+            "- Does the *Unknown* case avoid implying a normal result?",
             "",
-            "**Comments:**",
-            "",
-            "```",
-            "",
-            "",
-            "```",
-            "",
-            f"**Reviewer:** ______________________  **Date:** ____________{already}",
+            "Anything that looks wrong: record it with",
+            "`python scripts/author_read.py --author '<name>'` and press `f`.",
+            f"{already}",
             "",
             "---",
             "",
@@ -228,8 +251,9 @@ def main(argv: list[str] | None = None) -> int:
         len(v.split()) for e in entries for v in e.get("explanation", {}).values()
     )
     print(green(f"Wrote {args.output.relative_to(REPO_ROOT)}"))
-    print(dim(f"  {len(entries)} entries · ~{words:,} words of explanation to review"))
-    print(dim("  Share this with the project guide, then transcribe decisions with review.py"))
+    print(dim(f"  {len(entries)} entries · ~{words:,} words to read"))
+    print(dim("  Read it through, then record what you noticed:"))
+    print(dim("    python scripts/author_read.py --author '<name>'"))
     return 0
 
 

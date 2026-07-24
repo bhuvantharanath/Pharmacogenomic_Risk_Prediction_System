@@ -38,8 +38,26 @@
 # ===========================================================================
 
 version: 2
-requires_faculty_review: true
 source_of_clinical_text: "PharmCAT CPIC Guideline Annotation (verbatim)"
+
+# Collapsing a CPIC paragraph into one of five risk words is an editorial act,
+# and not one a tool should own unsupervised. The rules below are written as
+# reviewable data, each with a rationale, precisely so a qualified reader could
+# check them.
+#
+# No such reader exists on this project. The old flag here said
+# `requires_faculty_review: true`, which described a review as outstanding when
+# it was never obtainable -- the same overstatement corrected everywhere else in
+# this repo. The status is recorded plainly instead:
+clinical_review_status: NOT_OBTAINED
+clinical_review_note: >-
+  No qualified clinical expert has reviewed these rules, and none is expected
+  to. What IS checked: every rule matches on CPIC's own wording, the clinical
+  text served to users is PharmCAT's verbatim output rather than anything
+  derived here, and scripts/verify_provenance.py verifies that no explanation
+  asserts a clinical claim absent from that source. That bounds what this
+  mapping can get wrong -- it cannot invent a recommendation -- but it does not
+  establish that collapsing a given paragraph to a given label is correct.
 
 # ---------------------------------------------------------------------------
 # Phenotype normalisation: PharmCAT's wording -> our contract enum.

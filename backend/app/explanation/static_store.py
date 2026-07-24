@@ -2,9 +2,14 @@
 PharmaGuard — the pre-generated explanation store.
 
 Loads `app/data/explanations.json`: explanations generated offline, checked by
-the guard, and (eventually) reviewed by the faculty guide. At runtime we do a
-dictionary lookup and deterministic slot filling. No API call, no network, no
-key.
+the faithfulness guard, and machine-verified sentence by sentence against their
+cited sources. At runtime we do a dictionary lookup and deterministic slot
+filling. No API call, no network, no key.
+
+THERE IS NO CLINICAL REVIEWER
+    An earlier design assumed a faculty guide would sign off on this prose. No
+    such reviewer exists on this project, so the store records what is actually
+    true — see `ReviewRecord` — and the API says so on every response.
 
 WHY PRE-GENERATION IS THE DEPLOYED PATH
     The explanation space is enumerable — six drugs times a handful of
@@ -32,7 +37,7 @@ from __future__ import annotations
 
 import functools
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from .context import Explanation
@@ -41,8 +46,40 @@ DEFAULT_STORE_PATH = Path(__file__).resolve().parents[1] / "data" / "explanation
 
 
 @dataclass(frozen=True)
+class ReviewRecord:
+    """
+    What is actually known about this entry's scrutiny.
+
+    Replaces a single `reviewed_by` string, which conflated three different
+    things and implied the strongest of them. This project has **no qualified
+    clinical reviewer**, so the fields are separate and the absent one is named
+    explicitly rather than left to be inferred from a null.
+    """
+
+    #: Every clinical-claim sentence traces to a cited source. Machine-checked
+    #: by scripts/verify_provenance.py.
+    provenance_verified: bool = False
+    verified_by: str = ""
+    verified_at: str = ""
+
+    #: The project author read this entry. Not clinical approval; the author is
+    #: not qualified to give it. Recorded because "nobody has read this at all"
+    #: and "a non-clinician read it" are different states.
+    read_by_author: str | None = None
+
+    #: Reserved. Stays None until a qualified clinician reviews the entry —
+    #: which, for this project, is not expected to happen.
+    clinical_expert_review: str | None = None
+    clinical_expert_review_status: str = "NOT_OBTAINED"
+
+    @property
+    def has_clinical_expert_review(self) -> bool:
+        return bool(self.clinical_expert_review)
+
+
+@dataclass(frozen=True)
 class StoredExplanation:
-    """One reviewed entry, with the provenance needed to audit it."""
+    """One entry, with the provenance needed to audit it."""
 
     explanation: Explanation
     drug: str
@@ -52,11 +89,11 @@ class StoredExplanation:
     generated_at: str = ""
     generator: str = ""
     guard_passed: bool = False
-    reviewed_by: str | None = None
+    review: ReviewRecord = field(default_factory=ReviewRecord)
 
     @property
-    def is_reviewed(self) -> bool:
-        return bool(self.reviewed_by)
+    def is_provenance_verified(self) -> bool:
+        return self.review.provenance_verified
 
 
 @dataclass
@@ -73,11 +110,40 @@ class ExplanationStore:
         return self.entries.get((drug.strip().lower(), phenotype.strip()))
 
     @property
-    def unreviewed_count(self) -> int:
-        return sum(1 for e in self.entries.values() if not e.is_reviewed)
+    def unverified_count(self) -> int:
+        """Entries whose clinical claims are not traced to a source."""
+        return sum(1 for e in self.entries.values() if not e.is_provenance_verified)
+
+    @property
+    def unread_count(self) -> int:
+        """Entries no human has read at all."""
+        return sum(1 for e in self.entries.values() if not e.review.read_by_author)
 
     def __len__(self) -> int:
         return len(self.entries)
+
+
+def _parse_review(raw: dict) -> ReviewRecord:
+    """
+    Read the review block.
+
+    Tolerates the legacy `reviewed_by` field so an old store still loads, but
+    deliberately does **not** map it onto anything implying clinical approval:
+    a legacy name recorded who read the entry, nothing more.
+    """
+    block = raw.get("review")
+    if isinstance(block, dict):
+        return ReviewRecord(
+            provenance_verified=bool(block.get("provenance_verified")),
+            verified_by=str(block.get("verified_by") or ""),
+            verified_at=str(block.get("verified_at") or ""),
+            read_by_author=block.get("read_by_author"),
+            clinical_expert_review=block.get("clinical_expert_review"),
+            clinical_expert_review_status=str(
+                block.get("clinical_expert_review_status") or "NOT_OBTAINED"
+            ),
+        )
+    return ReviewRecord(read_by_author=raw.get("reviewed_by"))
 
 
 def _key(drug: str, phenotype: str) -> tuple[str, str]:
@@ -111,7 +177,7 @@ def _parse(payload: dict) -> ExplanationStore:
             generated_at=str(raw.get("generated_at") or ""),
             generator=str(raw.get("generator") or ""),
             guard_passed=bool(guard.get("passed")) if isinstance(guard, dict) else False,
-            reviewed_by=raw.get("reviewed_by"),
+            review=_parse_review(raw),
         )
 
     return ExplanationStore(

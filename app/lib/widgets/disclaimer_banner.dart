@@ -37,7 +37,7 @@ class DisclaimerBanner extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  kDisclaimer,
+                  kDisclaimerShort,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: fg,
                     fontWeight: FontWeight.w600,

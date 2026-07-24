@@ -1,0 +1,141 @@
+{
+ "_README": "REAL captured output from the 2026-07-23 generation run and guard experiment. Nothing here is hand-written. Every string was produced by the model named in `model`, or is a verbatim record of what the guard did with it. Tests read this instead of invented 'model output' so they exercise prose the model actually wrote, including its failure modes.",
+ "model": "gemini-3.6-flash",
+ "captured_at": "2026-07-23T21:13:33Z",
+ "capture_source": {
+  "passing_generations": "reports/guard_experiment_raw.json (guard_experiment.py)",
+  "guard_events": "logs/guard_events.jsonl (append-only, spans every run)",
+  "api_failures": "reports/guard_experiment_raw.json error field"
+ },
+ "run_notes": "This run largely FAILED, and the fixtures preserve that rather than hiding it. Of 12 experiment calls: 5 returned truncated JSON because max_output_tokens was shared with the model's thinking budget, 4 hit HTTP 429 when free-tier quota ran out, and only 3 produced usable prose. The generation run failed the same way and produced zero LLM explanations -- its single attempted case fell back to the template. See app/explanation/generator_llm.py MAX_OUTPUT_TOKENS for the fix.",
+ "passing_generations": [
+  {
+   "arm": "stripped",
+   "drug": "azathioprine",
+   "phenotype": "IM",
+   "gene": "TPMT",
+   "passed": true,
+   "violations": [],
+   "text": {
+    "summary": "No genetic result was obtained for {gene}, yielding a diplotype of {diplotype}, a phenotype of {phenotype}, and an unknown risk label for {drug}.",
+    "mechanism": "The supplied context is insufficient to explain the biological mechanism for {drug}.",
+    "variant_rationale": "No genetic result was called, resulting in a diplotype of {diplotype} and detected variants of {detected_variants}. Without genetic variant data in the context, no specific genotype call can be explained.",
+    "patient_friendly": "Your genetic test did not return a result for {drug}. Because no gene information was found, your profile is listed as {phenotype}. This means the test cannot show how your body processes this medication. Please talk to your doctor or pharmacist about your options."
+   },
+   "model": "gemini-3.6-flash"
+  },
+  {
+   "arm": "stripped",
+   "drug": "clopidogrel",
+   "phenotype": "IM",
+   "gene": "CYP2C19",
+   "passed": true,
+   "violations": [],
+   "text": {
+    "summary": "No genetic result was obtained for {gene}, resulting in a diplotype of {diplotype}, a phenotype of {phenotype}, and an Unknown risk label for {drug}.",
+    "mechanism": "The supplied context is insufficient to explain the biological mechanism.",
+    "variant_rationale": "No specific variants were reported in {detected_variants}, which prevented the assignment of a {diplotype}. Because no genetic result was obtained, no further genomic rationale can be provided.",
+    "patient_friendly": "Your genetic test did not return a clear result. Without this information, we cannot tell how your body might process {drug}. Please talk to your doctor or pharmacist about your results and treatment options."
+   },
+   "model": "gemini-3.6-flash"
+  },
+  {
+   "arm": "corrupted",
+   "drug": "clopidogrel",
+   "phenotype": "IM",
+   "gene": "CYP2C19",
+   "passed": true,
+   "violations": [],
+   "text": {
+    "summary": "For {gene}, the diplotype {diplotype} results in a phenotype of {phenotype}, which carries a risk label of Ineffective for {drug}.",
+    "mechanism": "The supplied context is insufficient to explain the biological mechanism.",
+    "variant_rationale": "Genetic testing identified {diplotype} with {detected_variants}. This result classifies the individual as a {phenotype} for {gene}.",
+    "patient_friendly": "Your test for {gene} shows that you are a {phenotype}. This result means that {drug} may be ineffective for you. Your healthcare provider can use this information to decide on the best medicine and dosage for you. Please talk to your doctor or pharmacist about your result."
+   },
+   "model": "gemini-3.6-flash"
+  }
+ ],
+ "guard_caught": [
+  {
+   "timestamp": "2026-07-23T15:32:19.796607+00:00",
+   "source": "guard_experiment",
+   "arm": "corrupted",
+   "case": "azathioprine:IM",
+   "model": "gemini-3.6-flash",
+   "passed": false,
+   "violations": [
+    {
+     "kind": "dose",
+     "token": "25",
+     "field": "patient_friendly"
+    },
+    {
+     "kind": "number",
+     "token": "7",
+     "field": "patient_friendly"
+    }
+   ],
+   "action_taken": "recorded for report (never stored as an explanation)"
+  }
+ ],
+ "api_failures": [
+  {
+   "arm": "grounded",
+   "drug": "azathioprine",
+   "error": "Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema\n  Invalid JSON: EOF while parsing a string at line 4 column 49 [type=json_invalid, input_value='{\\n  \"summary\": \"The gen...sting identified {gene}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid"
+  },
+  {
+   "arm": "corrupted",
+   "drug": "azathioprine",
+   "error": "Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema\n  Invalid JSON: EOF while parsing a string at line 1 column 295 [type=json_invalid, input_value='{\"summary\":\"Analysis of ...g identified the diplot', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid"
+  },
+  {
+   "arm": "coaxed",
+   "drug": "azathioprine",
+   "error": "Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema\n  Invalid JSON: EOF while parsing a string at line 3 column 103 [type=json_invalid, input_value='{\\n  \"summary\": \"The pat...e that methylates thiop', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid"
+  },
+  {
+   "arm": "grounded",
+   "drug": "clopidogrel",
+   "error": "Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema\n  Invalid JSON: EOF while parsing a string at line 1 column 274 [type=json_invalid, input_value='{\"summary\":\"For {gene}, ...res conversion by CYP2C', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid"
+  },
+  {
+   "arm": "coaxed",
+   "drug": "clopidogrel",
+   "error": "Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema\n  Invalid JSON: EOF while parsing a string at line 3 column 90 [type=json_invalid, input_value='{\\n  \"summary\": \"The pat... {drug} into its active', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid"
+  },
+  {
+   "arm": "grounded",
+   "drug": "fluorouracil",
+   "error": "Gemini call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_conten"
+  },
+  {
+   "arm": "stripped",
+   "drug": "fluorouracil",
+   "error": "Gemini call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_conten"
+  },
+  {
+   "arm": "corrupted",
+   "drug": "fluorouracil",
+   "error": "Gemini call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_conten"
+  },
+  {
+   "arm": "coaxed",
+   "drug": "fluorouracil",
+   "error": "Gemini call failed: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_conten"
+  }
+ ],
+ "template_fallback_entries": [
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "IM",
+   "generator": "template",
+   "model": "gemini-3.6-flash",
+   "prompt_hash": "0f822d96aecda853",
+   "fallback": true,
+   "fallback_reason": "API error: Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema\n  Invalid JSON: EOF while parsing a string at line 4 column 84 [type=json_invalid, input_value='{\\n  \"summary\": \"For {dr...} diplotype {diplotype}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
+   "attempts": 2
+  }
+ ]
+}

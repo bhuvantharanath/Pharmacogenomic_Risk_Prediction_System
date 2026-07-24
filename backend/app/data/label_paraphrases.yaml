@@ -1,0 +1,146 @@
+# Declared patient-facing paraphrases of each derived risk label.
+#
+# WHY THIS FILE EXISTS
+#
+# The `patient_friendly` field cannot quote CPIC verbatim and still be plain
+# language — "Avoid standard dose (75 mg) clopidogrel if possible" is precisely
+# what a worried patient cannot read. So one sentence per result restates the
+# derived risk label in ordinary words.
+#
+# That sentence is a clinical claim, and its words appear in no source document.
+# Left implicit, it would be exactly what this project promises not to do:
+# assert clinical content on its own authority. Declaring it here makes the
+# provenance chain explicit and checkable end to end:
+#
+#     CPIC recommendation text (PharmCAT output, verbatim)
+#       -> a named rule in label_mapping.yaml            [reviewable]
+#       -> a risk label                                  [derived]
+#       -> the declared paraphrase below                 [this file]
+#       -> the sentence a patient reads
+#
+# scripts/verify_provenance.py enforces this. A patient-facing sentence that
+# makes a clinical claim and is NOT declared here fails the release gate. That
+# is the point: adding new patient-facing clinical prose must be a deliberate,
+# visible edit to a data file, not an incidental change to a template string.
+#
+# CONSTRAINTS ON ANY PARAPHRASE ADDED HERE
+#
+#   1. It must restate the label and nothing more. No dose, no drug name, no
+#      gene, no number, no mechanism. Those belong in fields that trace to a
+#      source document.
+#   2. It must not be more specific than the label. "Ineffective" means CPIC's
+#      text implied reduced efficacy; it does not license "this drug will not
+#      work", which is a stronger claim than the label carries.
+#   3. It must not counsel an action. Telling a patient what to do is
+#      prescribing. Every paraphrase defers to the clinician instead.
+#
+# NO CLINICAL REVIEWER HAS APPROVED THESE STRINGS. This project has none. They
+# are constrained restatements of a derived label, which is a narrower claim
+# than clinical correctness — see reports/provenance_report.md.
+
+version: 1
+
+paraphrases:
+
+  - label: Safe
+    # Rationale: the label means CPIC's text described no change from standard
+    # therapy. Phrased as an absence of a signal, not as reassurance -- "safe"
+    # is a stronger word than the evidence supports, and is deliberately not
+    # used in the patient-facing sentence.
+    sentence: >-
+      Your genetic results do not suggest a change to how this medicine is
+      usually prescribed.
+
+  - label: Adjust Dosage
+    # Rationale: CPIC's text recommended a dose change or extra monitoring. The
+    # direction and size of the change are deliberately omitted -- those live in
+    # the recommendation field, which quotes CPIC verbatim.
+    sentence: >-
+      Your genetic results suggest this medicine may need to be prescribed
+      differently from the usual approach.
+
+  - label: Ineffective
+    # Rationale: CPIC's text indicated reduced or absent efficacy. "May not work
+    # as well ... as intended" is hedged on purpose: the label is derived from
+    # guideline wording about a population, not a prediction about this patient.
+    sentence: >-
+      Your genetic results suggest this medicine may not work as well for you
+      as intended.
+
+  - label: Toxic
+    # Rationale: CPIC's text warned of toxicity or contraindication. "Higher
+    # chance of harmful effects" states elevated risk without quantifying it;
+    # no number is available that would apply to an individual.
+    sentence: >-
+      Your genetic results suggest a higher chance of harmful effects from
+      this medicine.
+
+  - label: Unknown
+    # Rationale: no CPIC recommendation was available, or the gene could not be
+    # called. Says the tool reached no conclusion -- NOT that the result was
+    # normal, which is the failure mode that matters most here.
+    sentence: >-
+      This tool could not reach a conclusion about this medicine for you.
+
+
+# Declared patient-facing paraphrases of each PharmCAT phenotype.
+#
+# Same problem, same solution as the risk labels above. "Poor Metabolizer" is a
+# term of art; a patient reads it as a judgement about themselves rather than a
+# statement about enzyme activity. One sentence per phenotype restates it in
+# plain words.
+#
+# These are biological claims about the patient, so they gate the release
+# exactly as the label paraphrases do. The chain is shorter, because the
+# phenotype is not derived by this project at all:
+#
+#     PharmCAT phenotype call (verbatim, from the CPIC allele definitions)
+#       -> the declared paraphrase below      [this file]
+#       -> the sentence a patient reads
+#
+# verify_provenance.py requires that a paraphrase match THIS entry's phenotype,
+# so the "much higher activity" wording attached to a Poor Metabolizer result
+# fails rather than passing merely because it is declared somewhere.
+#
+# CONSTRAINTS
+#
+#   1. Describe enzyme activity relative to the population. Do not describe a
+#      consequence for treatment -- that is the risk label's job, and pairing a
+#      phenotype directly to an outcome skips the CPIC text that connects them.
+#   2. Do not name the gene, the drug, or any number.
+#   3. Comparative, not absolute. "Lower activity than most people" is what a
+#      phenotype call supports; "your enzyme does not work" is not.
+
+phenotype_paraphrases:
+
+  - phenotype: PM
+    # Rationale: Poor Metabolizer -- little to no enzyme activity. "Much lower
+    # ... than most people" is comparative and avoids implying zero.
+    sentence: >-
+      Your {gene} gene result shows much lower activity than most people, which
+      is what this medicine's handling depends on.
+
+  - phenotype: IM
+    # Rationale: Intermediate Metabolizer -- reduced but present activity.
+    sentence: >-
+      Your {gene} gene result shows somewhat lower activity than most people,
+      which is what this medicine's handling depends on.
+
+  - phenotype: NM
+    # Rationale: Normal Metabolizer. "In the usual range" rather than "normal",
+    # which patients hear as a verdict on the whole result.
+    sentence: >-
+      Your {gene} gene result shows activity in the usual range, which is what
+      this medicine's handling depends on.
+
+  - phenotype: RM
+    # Rationale: Rapid Metabolizer -- increased activity.
+    sentence: >-
+      Your {gene} gene result shows somewhat higher activity than most people,
+      which is what this medicine's handling depends on.
+
+  - phenotype: URM
+    # Rationale: Ultrarapid Metabolizer -- substantially increased activity.
+    sentence: >-
+      Your {gene} gene result shows much higher activity than most people, which
+      is what this medicine's handling depends on.

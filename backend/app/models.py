@@ -27,9 +27,18 @@ from pydantic import BaseModel, ConfigDict, Field
 # The disclaimer is a constant, not free text: it must appear verbatim on every
 # result so the UI can render it prominently and so nobody can mistake this
 # project for a regulated clinical tool.
+#: Shown on every result, in the API response and persistently in the client.
+#:
+#: The second sentence is load-bearing. "Not a medical device" is a legal
+#: disclaimer that every such tool carries and every reader skims. Naming the
+#: specific gap -- that no clinician has read this text, and what was done
+#: instead -- is the part that actually informs.
 DISCLAIMER = (
     "Research/educational decision support only. "
-    "Not a medical device. Not for clinical use."
+    "Not a medical device. Not for clinical use. "
+    "No qualified clinical expert has reviewed this text: every clinical "
+    "statement is machine-verified to come from a published CPIC recommendation, "
+    "which checks that nothing was invented, not that it is correct for you."
 )
 
 

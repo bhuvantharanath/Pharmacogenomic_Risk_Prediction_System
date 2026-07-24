@@ -2,6 +2,9 @@
 
 **Audit date:** 2026-07-23
 **Fix pass:** 2026-07-23 (same day, after `git init` — baseline commit `6d758cc`)
+**Phase 5A:** 2026-07-23 — LLM generation *tooling* delivered. **The generation
+run itself has not been executed**, so `explanations.json` is still template
+text. See "Phase 5A" below for exactly what is and is not done.
 **Mode:** the audit itself was read-only. A subsequent fix pass has since
 resolved the six defects listed under "Fixed" below; everything else in this
 document still describes the current state.
@@ -17,7 +20,7 @@ The backend is in genuinely good shape: the clinical pipeline is real and
 traceable, and the deployed path needs no secrets. The audit found **three
 defects that would each break a demo**, all in the Phase 4 deployment layer,
 none covered by the then-existing 249 tests. All three have since been fixed
-(305 tests now pass):
+(**333 tests now pass**, 20 skipped — see A2):
 
 | # | Defect | Impact | Status |
 | --- | --- | --- | --- |
@@ -61,6 +64,196 @@ passing**.
 
 ---
 
+## Phase 5A — real LLM generation (2026-07-23)
+
+### Status: tooling complete, **run not executed**
+
+Phase 5A set out to replace template explanations with real model output and to
+enforce the faithfulness guard against text this codebase did not write. The
+**tooling to do that is finished and tested. The generation run has not been
+performed**, and no API quota has been spent on generation.
+
+This distinction is the whole point of the phase, so it is stated plainly rather
+than buried:
+
+| Claim | Status |
+| --- | --- |
+| Generation tooling exists, is tested, and is documented | ✅ **Yes** |
+| A real model has produced explanation prose for this project | ⛔ **No** |
+| The guard has been run against real model output | ⛔ **No** |
+| `explanations.json` contains LLM text | ⛔ **No** — 20/20 entries are `generator: "template"`, `model: ""` |
+
+**Verified, not assumed:** `git diff --quiet HEAD -- backend/app/data/explanations.json`
+passes; the file is byte-identical to commit `7c69e85`. Its `generated_at` is
+`2026-07-23T04:10:28Z` — the Phase 3 template run. No entry carries a
+`prompt_hash` or a `fallback` key. `logs/guard_events.jsonl`,
+`reports/guard_experiment.md` and `reports/guard_experiment_raw.json` do not
+exist.
+
+### The real numbers
+
+| Metric | Value |
+| --- | --- |
+| Guard pass rate on real model output | **Not measured — no generations exist** |
+| Fallback count | **Not measured — no generations exist** |
+| Guard evaluations logged | **0** (`logs/guard_events.jsonl` absent) |
+| API requests spent on generation | **0** |
+| Cases enumerated / reachable / unreachable | **28 / 20 / 8** |
+| Explanation entries authored | 20 — exactly the reachable set, no more |
+| Entries human-reviewed | **0** |
+
+A guard pass rate could be computed and stated here in one line. It would be
+fabricated. In a project whose central claim is that it does not invent clinical
+content, inventing its own validation statistics would be the most damaging
+possible failure — so the cells above say "not measured" and will keep saying so
+until a run produces the artifacts.
+
+### What was delivered
+
+| Area | Detail |
+| --- | --- |
+| **Reachability** | `enumerate_cases.py` derives producible cases from PharmCAT's own `org/pharmgkb/pharmcat/phenotype/<GENE>.json`. **28 enumerated, 20 reachable, 8 not** — the naive 6×6=36 product is fiction |
+| **Generation** | `pregenerate_explanations.py`: guard → retry-once-stricter → template fallback, atomic write after every case, `--resume` keyed on `drug:phenotype` |
+| **Adversarial validation** | `guard_experiment.py`: 4 arms (grounded / stripped / corrupted / coaxed), with a hard assertion that its output path is nowhere near `explanations.json` |
+| **Review workflow** | `author_read.py` (records a read, never an approval), `review_status.py` (provenance and reading reported separately), `export_for_reading.py` (all 20 in one document) |
+| **Safety plumbing** | `preflight.py` (10 checks, gates a run on exit code), `scrub()` applied at every exception-render site, `list_models.py` so no model id is ever written from memory |
+| **Documentation** | `scripts/README.md` rewritten — clean-checkout→reviewed sequence, key hygiene and rotation, throttle rationale, resume semantics, reachability table |
+| **Tests** | +44: `test_phase5a_tooling.py` (28, all run today) and `test_guard_real_outputs.py` (16, skip until a run exists) |
+
+### Corrections to earlier claims in this document
+
+Phase 5A's reachability analysis **falsifies two figures** stated in the original
+audit and in the paste-back summary below:
+
+1. **"16 of 36 explanation cases fall back to template text" is wrong.** 36 was
+   the naive drug × phenotype product. The real enumeration is 28, of which 20
+   are reachable — and **all 20 are authored**. No reachable case falls back.
+2. **"Author the 16 missing explanations" (decision D3) is not a real choice.**
+   The 8 unreachable cases cannot be authored without fabrication: CYP2D6 is not
+   callable from an unphased VCF (4 cases), CPIC's warfarin guidance is a dosing
+   algorithm with no per-phenotype text (3), and SLCO1B1 has no increased-function
+   row (1). D3 is resolved by the evidence, not by a judgement call.
+
+### `test_guard_real_outputs.py` — why 16 tests currently skip
+
+These are the tests that consume real captured output. Each skips with the exact
+command that produces its input rather than passing vacuously — a green test that
+has never seen data would report the guard as validated against real output when
+it has never seen any.
+
+They were verified to work: run against synthetic artifacts of the correct shape,
+11 execute and pass, and a mutation that makes the guard accept every fabrication
+correctly **fails** `test_the_adversarial_arms_were_caught`. The five
+store-dependent tests were separately exercised against all 20 existing entries
+(context reconstruction → guard re-check: 20/20 pass), so they will run rather
+than error the moment real entries land.
+
+### To finish Phase 5A
+
+Needs the user's approval to spend quota, per the standing instruction to ask
+first. Expected cost at the default 10 RPM throttle:
+
+```bash
+python scripts/preflight.py                                   # free, gates the rest
+python scripts/pregenerate_explanations.py --dry-run          # free
+python scripts/pregenerate_explanations.py --resume           # 20-40 requests, 2-4 min
+python scripts/guard_experiment.py                            # 12 requests, ~1.5 min
+python scripts/generation_report.py                           # free — produces the real numbers
+```
+
+Then this section's "not measured" cells become measurements, the 16 skipped
+tests run, and `verify_provenance.py` gates the result.
+
+---
+
+## Accepted limitation: no clinical reviewer
+
+**Declared 2026-07-23. This is a condition of the project, not an open action.**
+
+There is no qualified clinical expert on this project and there will not be one.
+The planned faculty sign-off — assumed throughout Phases 1–4 and listed as
+pending work in the original audit — is not going to happen.
+
+Recording it as permanently pending would have been the dishonest option: it
+reads as "not done yet" when the truth is "not obtainable". Every artifact that
+implied a review was outstanding has been changed to say what is actually true.
+
+### What replaces it
+
+Not a weaker review. A narrower claim, and a checkable one:
+
+> **The system asserts no clinical content of its own.** Every sentence making a
+> clinical claim traces, word for word, to a CPIC recommendation as PharmCAT
+> emitted it, or to a mechanism document carrying a citation and a retrieval date.
+
+`scripts/verify_provenance.py` enforces this and exits non-zero on any failure.
+CI runs it on every push. Current state: **34 of 34 clinical-claim sentences
+verified (100%)**, 37 of 37 mechanism sentences traced.
+
+| Class | Verified | Traces to | Gates release |
+| --- | ---: | --- | :---: |
+| `CLINICAL` | **0/0** | CPIC recommendation text, verbatim from PharmCAT | ✅ |
+| `LABEL_PARAPHRASE` | 20/20 | `label_paraphrases.yaml` → the label a named `label_mapping.yaml` rule derived from CPIC text | ✅ |
+| `PHENOTYPE_PARAPHRASE` | 14/14 | `label_paraphrases.yaml` → the PharmCAT phenotype call | ✅ |
+| `MECHANISM` | 37/37 | the cited, dated corpus file for that gene-drug pair | ➖ reported |
+| `PROCESS` | 40 | describes this analysis, not a clinical claim | ➖ exempt |
+| `FRAMING` | 58 | carries no clinical claim | ➖ exempt, listed in the report |
+
+**`CLINICAL` is 0/0, and that is the intended design rather than a coverage
+gap.** The explanation fields never restate a CPIC recommendation in their own
+words — CPIC's text is served verbatim in its own response field, where it needs
+no paraphrase and can be read directly. What the prose does instead is restate
+the *derived label* and the *phenotype*, which is why every clinical claim in
+the shipped store falls into the two paraphrase classes.
+
+The consequence worth stating: the strict CPIC-tracing path is currently
+exercised only by tests, not by shipped text. Those tests plant unsourced
+clinical sentences — an invented `25 mg` dose, an invented risk claim — and
+confirm the gate rejects them (`test_captured_outputs.py`). If a future
+generation run produces prose that does quote CPIC directly, that path
+activates with no further work.
+
+### The bound, stated precisely
+
+| | |
+| --- | --- |
+| ✅ **Verified means** | every clinical word in the sentence appears in a cited source |
+| ❌ **Verified does NOT mean** | a clinician has agreed the sentence is correct |
+
+Lexical tracing cannot detect a sentence assembled from source words that is
+still wrong — reversed causality, a dropped hedge, a recommendation attached to
+the wrong phenotype. *"Reduced CYP2C19 activity makes the drug accumulate"* is
+backwards for a prodrug, and every word of it traces. Catching that needs a
+clinician. **Nothing in this project catches it.**
+
+The strongest remaining check is the author reading all 20 entries
+(`export_for_reading.py`, then `author_read.py`). That is recorded as a read,
+never as an approval — the CLI has no action that records clinical approval, and
+`clinical_expert_review` is not writable from any script here.
+
+### How the gap is disclosed
+
+| Where | What it says |
+| --- | --- |
+| Every API response | `disclaimer` names the absence and the guarantee that replaces it |
+| Every API response | `quality_metrics.warnings` states it in full |
+| Client UI | persistent banner, text pinned identical to the API's by a test |
+| `README.md` | limitations table |
+| `reports/provenance_report.md` | the percentage cannot be quoted without the caveat — they share a paragraph |
+| CI | the `honesty` job fails if any entry claims a clinical review, or any doc implies one is pending |
+
+### Structural changes made
+
+| Before | After |
+| --- | --- |
+| `reviewed_by` / `reviewed_at` | a `review` block distinguishing what a machine checked, what the author read, and the clinical review that was **never obtained** |
+| `review.py` — approve / reject | `author_read.py` — read / flag concern. No approve action exists |
+| `export_for_review.py` — signature block per entry | `export_for_reading.py` — no signature line. A blank approval box reads as awaiting a signature, not as awaiting a reviewer who is never coming |
+| `review_status.py` — one "reviewed" number | provenance and author-read reported separately. Collapsing them made the weak signal look like the strong one |
+| API warning: *"not yet been reviewed by the faculty guide"* | names the absence outright, plus what was done instead |
+
+---
+
 ## A. What actually exists
 
 ### A1. Phase completion
@@ -69,21 +262,27 @@ passing**.
 | --- | --- | --- |
 | **1 — monorepo seam** | ✅ Complete | `backend/app/main.py`, `app/lib/` present and working. ✅ *Fixed:* the dead `stub_analyzer.py` (417 lines of fabricated clinical text) has been deleted and the stale docstrings that referenced it rewritten |
 | **2 — PharmCAT + CPIC mapping** | ✅ Complete | `backend/app/pharmcat_runner.py`, `backend/app/cpic_engine.py`, `backend/app/data/label_mapping.yaml` (314 lines, 9 rules). 24 parser tests + 51 mapping tests pass |
-| **3 — grounded explanations** | ✅ Complete, ⚠️ content unreviewed and template-generated | `backend/app/explanation/` (6 modules), `rag-corpus/mechanisms/` (6 files), `backend/app/data/explanations.json` (20 entries). **All 20 entries have `reviewed_by: null`; `generator: "template"`, `model: ""` — no LLM has ever been run against this project** |
+| **3 — grounded explanations** | ✅ Complete, ⚠️ content unreviewed and **still template-generated** | `backend/app/explanation/` (6 modules), `rag-corpus/mechanisms/` (6 files), `backend/app/data/explanations.json` (20 entries). **All 20 entries have `reviewed_by: null`; `generator: "template"`, `model: ""` — no LLM has ever been run against this project** |
 | **4 — deployment** | ⚠️ **Partial — written, still largely unverified** | Workflows, Dockerfile, HF Space README and DEPLOY_NOTES all exist. ✅ *Fixed:* APK, compose mounts and CORS. ⛔ *Still open:* nothing is deployed, and the Docker image has never been built |
+| **5A — real LLM generation** | ⚠️ **Tooling complete, run NOT executed** | 11 CLIs in `scripts/` + `scripts/README.md`; 44 new tests. Reachability derived (28 enumerated / 20 reachable / 8 not). ⛔ **Zero API calls have been spent on generation** — `explanations.json` is byte-identical to the Phase 3 template output, so there is no guard pass rate and no fallback count to report |
 
 ### A2. Test suite
 
 **Backend — `cd backend && .venv/bin/python -m pytest`**
 
 ```
-305 passed, 4 skipped in 0.86s      (was 249 passed, 1 skipped at audit time)
+333 passed, 20 skipped in 1.16s     (249/1 at audit -> 305/4 after fixes
+                                     -> 333/20 after Phase 5A)
+
+Of the 20 skips: 1 live-LLM, 3 real-PharmCAT, and 16 in
+test_guard_real_outputs.py that require a generation run that has not happened.
 ```
 
 | File | Tests | |
 | --- | --- | --- |
 | `test_label_mapping.py` | 51 | |
 | `test_explanation.py` | 51 | |
+| `test_phase5a_tooling.py` | 28 | **new** (Phase 5A) — all run today |
 | `test_deployment.py` | 44 | +11 (CORS fail-loud) |
 | `test_guard.py` | 30 | |
 | `test_analyze_api.py` | 29 | |
@@ -94,6 +293,7 @@ passing**.
 | `test_infra_config.py` | 9 | **new** |
 | `test_corpus.py` | 5 | |
 | `test_android_identity.py` | 5 | **new** |
+| `test_guard_real_outputs.py` | 16 | **new** (Phase 5A) — **all skip**: need a generation run |
 
 - **Failures: 0**
 - **Skipped: 4** — 1 live-LLM test (`GEMINI_API_KEY not set; live mode is
@@ -226,7 +426,10 @@ getter) so the raw ISO string round-trips byte-for-byte — this is not drift, a
 
 - **Every rule carries a `# Rationale:` comment** — verified programmatically;
   zero rules missing one.
-- `requires_faculty_review: true` is set in the file and asserted by a test.
+- `clinical_review_status: NOT_OBTAINED` is set in the file and asserted by a
+  test, alongside a note stating what *is* guaranteed. It replaced
+  `requires_faculty_review: true`, which described a review as outstanding
+  when no reviewer existed or was coming.
 - No hardcoded label if/else in `backend/app/cpic_engine.py` — grep for
   `if ... RiskLabel.TOXIC/SAFE/INEFFECTIVE` returns nothing beyond an `UNKNOWN`
   guard clause.
@@ -424,12 +627,13 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
       almost certainly mis-set one and get a confusing failure.
 - [ ] **🟢 Update the home-screen copy** at `app/lib/screens/home_screen.dart:180`
       — it says explanations "are still placeholders", which understates Phase 3.
-      Replace with the accurate caveat (grounded but **not yet faculty-reviewed**).
+      Replace with the accurate caveat: grounded and provenance-verified, with
+      no clinical expert review — see the disclaimer in `app/lib/config.dart`.
 - [ ] **🟢 Add tests for currently untested modules:** `generator_llm.py` against
       a mocked SDK boundary, `retrieval.py` container-path fallback,
       `scripts/pregenerate_explanations.py`.
 - [ ] **🟢 Add third-party attribution** for Flutter dependencies to `LICENSE`.
-- [ ] **🟢 Add a CI workflow that runs the test suite.** All 305 tests exist but
+- [ ] **🟢 Add a CI workflow that runs the test suite.** All 333 tests exist but
       no workflow invokes them — `deploy-web.yml` runs `flutter test` only, and
       the backend suite runs nowhere. *If skipped:* the new regression guards
       only fire when someone remembers to run pytest locally, which is precisely
@@ -546,20 +750,21 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 
 ### 🧑‍⚖️ Bucket 3 — Human-only: review, judgement, external artifacts
 
-- [ ] **Read all 20 entries in `backend/app/data/explanations.json` yourself
-      before any demo.** All are currently `reviewed_by: null`. *Why it matters:*
-      this is patient-facing prose; the guard catches fabricated entities but
-      **cannot catch reversed reasoning** (e.g. "reduced CYP2C19 activity makes
-      the drug accumulate" is backwards and every token in it is grounded).
-      *If skipped:* you may present clinically wrong prose to a panel.
-- [ ] **Faculty guide sign-off on `backend/app/data/label_mapping.yaml`.** The
-      file sets `requires_faculty_review: true` and a test enforces the flag.
-      Collapsing a CPIC paragraph into one of five risk words is an editorial act
-      no tool should own. *If skipped:* the project's core clinical claim is
-      unreviewed.
-- [ ] **Faculty sign-off on the explanations**, then set `reviewed_by` on each
-      entry. The API currently reports *"20 of 20 … have not yet been reviewed"*
-      in every response — a panel may see that.
+- [ ] **Read all 20 entries yourself before any demo** — `python
+      scripts/export_for_reading.py`, then `python scripts/author_read.py
+      --author "<name>"`. Currently 0 of 20 have been read. *Why it matters:*
+      the guard catches fabricated entities and the provenance verifier catches
+      untraceable claims, but **neither can catch reversed reasoning** — "reduced
+      CYP2C19 activity makes the drug accumulate" is backwards, and every word
+      of it traces to a source. That is the one class of error only a reader
+      finds. *This is not clinical approval and the CLI cannot record it as
+      such;* it is the strongest check available here.
+- ~~Faculty guide sign-off on `label_mapping.yaml`~~ and ~~on the
+  explanations~~ — **removed from this list. Not an action item; a declared
+  limitation.** There is no qualified clinical reviewer on this project and
+  there will not be one, so leaving these as open checkboxes misrepresented a
+  permanent condition as pending work. See *"Accepted limitation: no clinical
+  reviewer"* below.
 - [ ] **Check the direction-of-effect table** in `rag-corpus/README.md` against
       the six mechanism files. Activation (CYP2C19, CYP2D6) vs clearance (DPYD,
       CYP2C9) vs transport (SLCO1B1) vs metabolite braking (TPMT) behave in
@@ -597,8 +802,12 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 - **Keep template-generated:** costs nothing, already guard-passed, prose is
   plain and slightly mechanical.
 - **Regenerate with Gemini:** richer prose; needs a free API key; **every entry
-  must then be re-reviewed** because `reviewed_by` resets.
-- *Trade-off:* presentation quality vs. review workload and a new dependency.
+  must then be re-verified** (`verify_provenance.py --write`), and provenance is
+  a genuinely harder gate for model prose than for templates — the model has to
+  say less than it wants to.
+- *Trade-off:* presentation quality vs. verification workload and a new
+  dependency. **Attempted 2026-07-23 and it failed** — see the Phase 5A run
+  notes; the token-ceiling defect is now fixed but the run has not been redone.
 
 **D3 · Fill the 16 explanation gaps, or leave the template fallback?**
 - 20 of 36 enumerated (drug × phenotype) cases have entries. The 16 gaps are
@@ -641,8 +850,8 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 | 5 | **warfarin always `Unknown`** — CPIC guidance is algorithmic | ✅ Intentional | A listed demo drug returns nothing useful | ✅ README |
 | 6 | **`cpic_evidence_level` always `Unknown`** | ✅ Intentional | Field looks unimplemented | ✅ README + backend README |
 | 7 | **No persistence / auth / history** | ✅ Intentional (privacy) | Results vanish on reload; no accounts | ⚠️ **Partial** — privacy framing is in README, but "you cannot save or revisit a result" is never stated |
-| 8 | **Explanations unreviewed** (`reviewed_by: null` ×20) | ⚠️ Accidental-by-omission | Clinical prose has had no expert eyes | ⚠️ **Weak** — in API `warnings` and buried behind an expandable "pipeline warnings" tile in the UI |
-| 9 | **16 of 36 explanation cases fall back to template** | ✅ Intentional | Plainer prose in edge cases | ❌ **NOT disclosed** anywhere user-facing |
+| 8 | **No clinical expert review — permanently** | ✅ **Declared and accepted** | Clinical prose has had no expert eyes, and will not | ✅ **Strong** — in the disclaimer on every result, in `quality_metrics.warnings`, in the README limitations table, in `reports/provenance_report.md`, and CI fails if any artifact implies otherwise |
+| 9 | ~~16 of 36 cases fall back to template~~ — **the figure was wrong** | ✅ Superseded | Real enumeration: 28 cases, 20 reachable, **all 20 authored**. 8 unreachable cases are not authored because doing so would require fabrication | ✅ **Now documented** — `scripts/README.md` §Reachability, and encoded in `test_phase5a_tooling.py::TestReachability` |
 | 10 | **Guard is build-time, not request-time, in static mode** | ✅ Intentional | None directly | ✅ **Now disclosed** — README §"How explanations are checked" states the build-time/request-time split, and runtime slot verification now covers the injected values |
 | 11 | **Rate limit 10 / 5 min, in-memory, spoofable key** | ✅ Intentional | A busy demo could self-throttle | ✅ README |
 | 12 | **5 MB upload cap** | ✅ Intentional | Whole-genome VCFs rejected | ✅ README + error |
@@ -663,9 +872,11 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
    single loudest gap**, since the APK and guard-timing items are resolved.
 2. **#20 — `live` mode has never run.** README documents it as a supported mode
    alongside `static`, without noting it is untested end-to-end.
-3. **#9 — template fallback is silent.** 16 of 36 cases serve plainer prose and
-   nothing tells the reader which they are looking at, though `source=template`
-   does appear in `quality_metrics`.
+3. **#9 was miscounted, and the real gap is different.** No *reachable* case
+   falls back — all 20 are authored. The undisclosed fact is that all 20 are
+   **template text, not model output**: the field named
+   `llm_generated_explanation` has never held LLM prose. That is the honest
+   disclosure gap, and it is larger than the one originally recorded.
 4. ~~#15 APK broken~~ / ~~#10 guard timing~~ — both resolved 2026-07-23.
 
 ---
@@ -680,7 +891,7 @@ Ranked by likelihood × damage.
 | 2 | **Nothing is deployed.** No HF Space, no Pages project, no git remote. The README's live links are placeholders. | **Certain** today | Complete Bucket 2 well before demo day. Budget a full evening — the first Docker build of a ~2 GB image is slow |
 | 3 | **Deployed site loads but every analysis fails on CORS.** | **Low** — the backend now refuses to start with an empty allowlist, so this surfaces in the deploy log instead of at demo time | Still run one real analysis **from the deployed URL**, not localhost, before presenting |
 | 4 | **Cold start makes the first analysis look like a hang.** ~1 min on free tiers. | High if the demo starts cold | Enable the keepalive workflow for the demo window, and **hit the site yourself 2 minutes before presenting**. The waking UI already explains the wait — let it show |
-| 5 | **A panel member asks "who checked this clinical text?"** and the honest answer is "nobody yet." | Medium–High | Get the faculty sign-off (Bucket 3) *before* the demo, or open by stating plainly that clinical content is pending review |
+| 5 | **A panel member asks "who checked this clinical text?"** | Low–Medium | Answer directly: *nobody, and that is why the system writes no clinical content of its own.* Every clinical sentence is machine-verified to trace to a CPIC recommendation or a cited mechanism document — `scripts/verify_provenance.py`, 20/20 passing, enforced in CI. Show `reports/provenance_report.md`. The weak answer is "review is pending"; it is not pending, and the design is the response to that |
 | 6 | **Docker build fails on first attempt** and has never been tested anywhere. | Medium | Build the image locally or in CI at least once, days ahead. Do not let the first-ever build be on demo day |
 | 7 | **Rate limit trips mid-demo** — 10 analyses per 5 minutes, and a rehearsal plus the real run share one IP. | Medium | Raise `RATE_LIMIT_REQUESTS` for the demo window, or rehearse on a different network |
 | ~~8~~ | ~~Someone picks `sample1.vcf` and gets a broken-looking result~~ | ✅ **Resolved** | The relics are deleted (they returned **503**, not Unknown). All three remaining samples are guarded by `test_sample_vcfs.py` |
@@ -693,7 +904,8 @@ Ranked by likelihood × damage.
 
 ```
 PHARMAGUARD — PROJECT STATUS
-Audited 2026-07-23 (read-only) · Fix pass 2026-07-23 · git baseline 6d758cc
+Audited 2026-07-23 (read-only) · Fix pass 2026-07-23 · Phase 5A 2026-07-23
+git baseline 6d758cc
 
 WHAT IT IS
 Pharmacogenomic risk prediction: VCF -> PharmCAT -> deterministic CPIC risk
@@ -707,12 +919,19 @@ PHASE STATUS
                                template-generated and 0 are human-reviewed
 - Phase 4 (deployment)         PARTIAL — code fixed, nothing deployed,
                                Docker image never built
+- Phase 5A (real LLM gen)      TOOLING COMPLETE, RUN NOT EXECUTED. 11 CLIs and
+                               44 tests exist and pass. Zero API calls have been
+                               spent on generation, so explanations.json is still
+                               byte-identical template output and there is NO
+                               guard pass rate and NO fallback count to report.
 
 TESTS
-- Backend: 305 passed, 4 skipped, 0 failed  (was 249/1 before the fix pass)
+- Backend: 333 passed, 20 skipped, 0 failed  (249/1 -> 305/4 -> 333/20)
 - Flutter: 21 passed; analyzer clean
 - Skips: 1 live-LLM test (no API key) + 3 real-PharmCAT sample tests, which WERE
-  run manually against real PharmCAT and passed
+  run manually against real PharmCAT and passed + 16 real-model-output tests
+  that skip until a generation run exists (each names the command that
+  produces its input, rather than passing on no data)
 - NOTE: no CI workflow runs the backend suite — tests only run when invoked
   locally. This is how the original defects survived.
 
@@ -758,8 +977,11 @@ D1 Backend host: HF Spaces (Docker Spaces now need PRO ~$9/mo) vs Cloud Run
    OOM the JVM). All work with the existing $PORT-aware image.
 D2 Regenerate explanations with Gemini (richer prose, needs key, resets all
    review) vs keep template output (free, guard-passed, plainer).
-D3 Author the 16 missing drug x phenotype explanations vs keep the template
-   fallback (the gaps are legitimate: CYP2D6 uncallable, warfarin algorithmic).
+   -> Phase 5A built the tooling for this; it awaits approval to spend quota.
+D3 RESOLVED BY EVIDENCE, not judgement. There are not 16 missing cases: the
+   real enumeration is 28, of which 20 are reachable and all 20 ARE authored.
+   The 8 unreachable ones cannot be authored without fabrication (CYP2D6
+   uncallable x4, warfarin algorithmic x3, SLCO1B1 no increased-function x1).
 D4 iOS: simulator-only (free) vs Apple Developer Program ($99/yr) vs free
    personal team (7-day expiry).
 D5 Keepalive cron on (instant demo, burns quota) vs off (saves quota).
@@ -768,7 +990,12 @@ D6 Repo public (unlimited CI minutes) vs private (2000 min/mo).
 UNRESOLVED LIMITATIONS NOT DISCLOSED TO USERS
 - Explanations are unreviewed — surfaced only in a collapsed UI tile. Now the
   loudest gap.
-- 16 of 36 explanation cases silently fall back to plainer template text.
+- ALL 20 explanations are template text. The field named
+  `llm_generated_explanation` has never held LLM output, so the faithfulness
+  guard has only ever validated strings this codebase composed itself.
+- CORRECTION to the original audit: the "16 of 36 cases fall back" figure was
+  wrong — 36 was the naive drug x phenotype product. Real enumeration is 28,
+  20 reachable, all 20 authored. No reachable case falls back.
 - `live` LLM mode is documented as supported but has NEVER run against the real
   API.
 - No persistence/history: results vanish on reload.
@@ -779,7 +1006,14 @@ TOP DEMO RISKS
    never been launched on a physical device. Install it once.
 3. Docker image has never been built anywhere. Build it days ahead.
 4. Cold start (~1 min) reads as a hang. Warm it 2 min before presenting.
-5. "Who reviewed the clinical text?" — currently nobody. Get sign-off first.
+5. "Who reviewed the clinical text?" — nobody, and the design answers for it:
+   the system asserts no clinical content of its own. Every clinical sentence
+   is machine-traced to a CPIC recommendation or a cited mechanism document
+   (verify_provenance.py, 20/20, enforced in CI). Show provenance_report.md.
+5b. "Where is the LLM?" — the tooling is built and tested but has never been
+   run. Either run it (approve the quota spend) or present the pre-generation
+   architecture as the deliberate design choice it is. Do not imply prose was
+   model-generated when it was not.
 6. Rate limit (10/5min) can trip between rehearsal and the real run.
 7. No CI runs the backend tests, so a future regression won't be caught
    automatically.
@@ -790,8 +1024,10 @@ project + API token; GitHub Actions secrets (CLOUDFLARE_API_TOKEN,
 CLOUDFLARE_ACCOUNT_ID, API_BASE_URL) and variables (API_BASE_URL, BACKEND_URL);
 Android keystore (keep local, gitignored); optional Gemini key for
 pregeneration only.
-Judgement: read all 20 explanations personally; faculty sign-off on
-label_mapping.yaml and explanations.json (reviewed_by); download GeT-RM/1000
+Judgement: read all 20 explanations personally (export_for_reading.py +
+author_read.py) -- catches reversed reasoning, which no automated check here
+can. NOT clinical approval: no qualified reviewer exists and none is expected,
+which is a declared limitation rather than an open action. Download GeT-RM/1000
 Genomes for real validation; record + publish the demo video; verify report
 citations resolve; confirm whether the panel expects a trained ML model;
 supply real dates and team names.

@@ -13,6 +13,8 @@ import gzip
 import io
 
 import pytest
+
+from pathlib import Path
 from fastapi.testclient import TestClient
 
 from app import main
@@ -145,12 +147,85 @@ class TestContractCompatibility:
     def test_disclaimer_is_present_on_every_result(
         self, client: TestClient, valid_vcf_bytes: bytes
     ) -> None:
+        from app.models import DISCLAIMER
+
         body = post(client, valid_vcf_bytes, "clopidogrel,aspirin").json()
         for analysis in body["analyses"]:
-            assert analysis["llm_generated_explanation"]["disclaimer"] == (
-                "Research/educational decision support only. "
-                "Not a medical device. Not for clinical use."
-            )
+            assert analysis["llm_generated_explanation"]["disclaimer"] == DISCLAIMER
+
+    def test_the_disclaimer_names_the_missing_clinical_review(self) -> None:
+        """
+        Pinned because it is the disclosure that matters and the one most
+        likely to be trimmed for brevity.
+
+        "Not a medical device" is boilerplate every such tool carries and every
+        reader skims. The specific gap — no clinician read this, and here is
+        what was done instead — is the part that actually informs, so the text
+        must keep both halves: the absence, and the guarantee that replaces it.
+        """
+        from app.models import DISCLAIMER
+
+        assert "No qualified clinical expert has reviewed" in DISCLAIMER
+        assert "machine-verified" in DISCLAIMER
+        assert "CPIC" in DISCLAIMER
+        # It must not overstate: verification is about provenance, not truth.
+        assert "not that it is correct for you" in DISCLAIMER
+
+    def test_client_and_api_disclaimers_are_identical(self) -> None:
+        """
+        `app/lib/config.dart` renders its own copy in a persistent banner, so
+        the two can drift silently — the client would keep showing a weaker
+        disclaimer than the API sends, and nothing would flag it.
+        """
+        import re
+
+        from app.models import DISCLAIMER
+
+        config = (
+            Path(__file__).resolve().parents[2] / "app" / "lib" / "config.dart"
+        ).read_text()
+        match = re.search(r"const String kDisclaimer =\s*(.*?);", config, re.S)
+        assert match, "kDisclaimer not found in app/lib/config.dart"
+        client_text = "".join(re.findall(r"'([^']*)'", match.group(1)))
+        assert client_text == DISCLAIMER, (
+            "client and API disclaimers have drifted:\n"
+            f"  api:    {DISCLAIMER}\n  client: {client_text}"
+        )
+
+    def test_the_short_banner_still_names_the_gap(self) -> None:
+        """
+        The persistent banner is abbreviated, not softened.
+
+        The full disclosure runs to five lines, which crowded the UI enough to
+        push results off-screen — a banner nobody reads past discloses nothing.
+        Shortening it is legitimate; dropping the clinical-review clause while
+        shortening is the regression this pins. Brevity buys scannability, not
+        silence.
+        """
+        import re
+
+        config = (
+            Path(__file__).resolve().parents[2] / "app" / "lib" / "config.dart"
+        ).read_text()
+        match = re.search(r"const String kDisclaimerShort =\s*(.*?);", config, re.S)
+        assert match, "kDisclaimerShort not found in app/lib/config.dart"
+        banner = "".join(re.findall(r"'([^']*)'", match.group(1)))
+
+        assert "clinician has reviewed" in banner, (
+            f"the always-visible banner no longer names the review gap: {banner!r}"
+        )
+        assert "Not a medical device" in banner
+        # Short enough to actually be read in a one-line strip.
+        assert len(banner) < 160, f"banner is {len(banner)} chars — too long to scan"
+
+    def test_the_banner_renders_the_short_form_not_the_full_one(self) -> None:
+        """The widget must use the abbreviated constant, or the overflow returns."""
+        banner_source = (
+            Path(__file__).resolve().parents[2]
+            / "app" / "lib" / "widgets" / "disclaimer_banner.dart"
+        ).read_text()
+        assert "kDisclaimerShort" in banner_source
+        assert "\n                  kDisclaimer," not in banner_source
 
 
 class TestRealResults:
@@ -382,12 +457,27 @@ class TestStaticModeIsApiFree:
             "source=static" in w for w in metrics["warnings"]
         ), metrics["warnings"]
 
-    def test_unreviewed_status_is_surfaced(
+    def test_absent_clinical_review_is_disclosed(
         self, client: TestClient, valid_vcf_bytes: bytes
     ) -> None:
-        """A reader must be able to see that the prose is not yet signed off."""
+        """
+        The gap must be stated, not implied by an absence.
+
+        This project has no qualified clinical reviewer. The earlier wording
+        ("not yet been reviewed by the faculty guide") described a review that
+        was pending; it was not pending, it was never going to happen. A reader
+        has to be told the difference.
+        """
         metrics = post(client, valid_vcf_bytes, "clopidogrel").json()["quality_metrics"]
-        assert any("not yet been reviewed" in w for w in metrics["warnings"])
+        warnings = " ".join(metrics["warnings"])
+        assert "No qualified clinical expert has reviewed" in warnings
+        # And it must say what WAS done, or the disclosure reads as a bare
+        # disclaimer rather than a description of the actual guarantee.
+        assert "trace to a CPIC recommendation" in warnings
+        assert "provenance, not correctness" in warnings
+        # Nothing may imply a review is merely outstanding.
+        assert "faculty" not in warnings.lower()
+        assert "not yet been reviewed" not in warnings
 
     def test_root_reports_no_key_required(self) -> None:
         body = TestClient(main.app).get("/").json()

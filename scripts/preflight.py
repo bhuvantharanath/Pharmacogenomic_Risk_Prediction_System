@@ -42,6 +42,7 @@ from _common import (
     dim,
     print_check_table,
     redact,
+    scrub,
 )
 
 
@@ -67,7 +68,7 @@ def check_dotenv_gitignored() -> CheckResult:
         )
         ignored = result.returncode == 0
     except (OSError, subprocess.SubprocessError) as exc:
-        return CheckResult(".env gitignored", False, f"could not ask git: {exc}")
+        return CheckResult(".env gitignored", False, f"could not ask git: {scrub(exc)}")
 
     if not ignored:
         return CheckResult(
@@ -137,7 +138,7 @@ def check_auth(model: str) -> CheckResult:
         client = genai.Client(api_key=key)
         available = [m.name.replace("models/", "") for m in client.models.list()]
     except Exception as exc:  # noqa: BLE001
-        return CheckResult("API authenticates", False, f"{type(exc).__name__}: {str(exc)[:120]}")
+        return CheckResult("API authenticates", False, f"{type(exc).__name__}: {scrub(exc)[:120]}")
 
     if model not in available:
         return CheckResult(
@@ -175,7 +176,7 @@ def check_corpus() -> CheckResult:
 
         documents = all_documents()
     except Exception as exc:  # noqa: BLE001
-        return CheckResult("Mechanism corpus", False, f"{type(exc).__name__}: {exc}")
+        return CheckResult("Mechanism corpus", False, f"{type(exc).__name__}: {scrub(exc)}")
 
     if not documents:
         return CheckResult("Mechanism corpus", False, "no documents parsed from rag-corpus/mechanisms")
@@ -193,7 +194,7 @@ def check_label_mapping() -> CheckResult:
 
         mapping = load_mapping()
     except Exception as exc:  # noqa: BLE001
-        return CheckResult("label_mapping.yaml", False, f"{type(exc).__name__}: {exc}")
+        return CheckResult("label_mapping.yaml", False, f"{type(exc).__name__}: {scrub(exc)}")
     rules = mapping.get("risk_label_rules") or []
     if not rules:
         return CheckResult("label_mapping.yaml", False, "parsed but declares no rules")
@@ -211,6 +212,41 @@ def check_fixtures() -> CheckResult:
     )
 
 
+def check_provenance() -> CheckResult:
+    """
+    The release gate, surfaced at preflight.
+
+    Warning rather than fatal: generation is exactly when the store is expected
+    to be mid-verification, and failing here would block the run that fixes it.
+    `verify_provenance.py` itself is the gate, and CI runs it on every push.
+    """
+    try:
+        import verify_provenance
+
+        store = json.loads(EXPLANATIONS_PATH.read_text()) if EXPLANATIONS_PATH.is_file() else {}
+        entries = store.get("explanations", [])
+        if not entries:
+            return CheckResult(
+                "provenance", False, "no explanations to verify yet", fatal=False
+            )
+        results = verify_provenance.verify_all(entries)
+        ok, total = verify_provenance._tally_gated(results)
+    except Exception as exc:  # noqa: BLE001
+        return CheckResult("provenance", False, f"could not verify: {scrub(exc)}", fatal=False)
+
+    if ok < total:
+        return CheckResult(
+            "provenance",
+            False,
+            f"{total - ok} of {total} clinical sentences UNVERIFIED — "
+            "run scripts/verify_provenance.py -v",
+            fatal=False,
+        )
+    return CheckResult(
+        "provenance", True, f"{ok}/{total} clinical sentences trace to a cited source"
+    )
+
+
 def check_git_clean() -> CheckResult:
     """Warning only — you may legitimately be mid-edit."""
     try:
@@ -221,7 +257,7 @@ def check_git_clean() -> CheckResult:
             ["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=REPO_ROOT, capture_output=True, text=True
         ).stdout.strip()
     except (OSError, subprocess.SubprocessError) as exc:
-        return CheckResult("git tree clean", False, f"could not run git: {exc}", fatal=False)
+        return CheckResult("git tree clean", False, f"could not run git: {scrub(exc)}", fatal=False)
 
     dirty = [ln for ln in status.stdout.splitlines() if ln.strip()]
     if dirty:
@@ -249,7 +285,7 @@ def check_case_matrix() -> CheckResult:
         cases = payload.get("cases") or []
         reachable = [c for c in cases if c.get("reachable")]
     except (json.JSONDecodeError, OSError) as exc:
-        return CheckResult("case_matrix.json", False, f"unreadable: {exc}", fatal=False)
+        return CheckResult("case_matrix.json", False, f"unreadable: {scrub(exc)}", fatal=False)
     return CheckResult(
         "case_matrix.json", True, f"{len(reachable)} reachable of {len(cases)} enumerated"
     )
@@ -277,6 +313,7 @@ def main(argv: list[str] | None = None) -> int:
         check_label_mapping(),
         check_fixtures(),
         check_case_matrix(),
+        check_provenance(),
         check_git_clean(),
     ]
 

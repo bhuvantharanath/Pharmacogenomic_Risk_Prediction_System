@@ -39,11 +39,31 @@ final bool kIsLocalBackend =
     kApiBaseUrl.contains('127.0.0.1') ||
     kApiBaseUrl.contains('10.0.2.2');
 
-/// Shown persistently in the UI. Must stay in sync with `DISCLAIMER` in
-/// backend/app/models.py.
+/// The always-visible banner line.
+///
+/// Deliberately short. This strip sits above every screen, and the full
+/// disclosure — five lines of it — crowded the UI badly enough to push the
+/// results off-screen. A banner nobody can read past is not a disclosure.
+///
+/// It still names the gap. Brevity here buys scannability, not silence: the
+/// clause about no clinician having reviewed the content is the part that
+/// actually informs, and it stays.
+const String kDisclaimerShort =
+    'Research/educational decision support only. Not a medical device. '
+    'No clinician has reviewed this content.';
+
+/// The full disclosure, carried on every result.
+///
+/// Must stay byte-identical to `DISCLAIMER` in `backend/app/models.py` — the
+/// API sends its own copy with each analysis, and a client rendering weaker
+/// wording than the server sent would be the drift worth catching. Pinned by
+/// `test_client_and_api_disclaimers_are_identical`.
 const String kDisclaimer =
     'Research/educational decision support only. '
-    'Not a medical device. Not for clinical use.';
+    'Not a medical device. Not for clinical use. '
+    'No qualified clinical expert has reviewed this text: every clinical '
+    'statement is machine-verified to come from a published CPIC recommendation, '
+    'which checks that nothing was invented, not that it is correct for you.';
 
 /// How long to keep trying to wake the backend before calling it unreachable.
 ///

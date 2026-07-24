@@ -270,11 +270,32 @@ class TestStaticStore:
             blob = " ".join(entry.explanation.fields().values())
             assert "{diplotype}" in blob, f"{drug}/{phenotype} has no diplotype slot"
 
-    def test_review_status_is_tracked(self) -> None:
+    def test_provenance_and_reading_are_tracked_separately(self) -> None:
+        """
+        Two different states, never one number.
+
+        Collapsing them is what the old `reviewed_by` field did, and it made the
+        weak signal (a human glanced at it) look like the strong one.
+        """
         store = static_store.load_store()
-        # Not yet reviewed — the runtime surfaces this, and so does this test if
-        # someone ever claims otherwise.
-        assert store.unreviewed_count == len(store)
+        # Provenance is machine-checked and currently complete.
+        assert store.unverified_count == 0, "verify_provenance.py --write not run?"
+        # Nobody has read them. That is a real and separate gap.
+        assert store.unread_count == len(store)
+
+    def test_no_entry_claims_a_clinical_expert_review(self) -> None:
+        """
+        The invariant that must hold forever on this project.
+
+        There is no qualified clinical reviewer. A populated
+        `clinical_expert_review` could only be a mistake or a fabrication, and
+        either would be the most consequential untruth in the codebase.
+        """
+        store = static_store.load_store()
+        for entry in store.entries.values():
+            assert entry.review.clinical_expert_review is None, entry.drug
+            assert entry.review.clinical_expert_review_status == "NOT_OBTAINED"
+            assert not entry.review.has_clinical_expert_review
 
     def test_missing_file_degrades(self, tmp_path) -> None:
         store = static_store.load_store(tmp_path / "nope.json")

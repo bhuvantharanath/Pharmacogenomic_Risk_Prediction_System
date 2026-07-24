@@ -61,6 +61,7 @@ from _common import (
     prompt_hash,
     red,
     rule,
+    scrub,
     write_json_atomic,
     yellow,
 )
@@ -249,8 +250,10 @@ def generate_one(
             )
         except generator_llm.LlmUnavailableError as exc:
             if verbose:
-                print(red(f"      API error: {exc}"))
-            return _fallback_entry(case, context, model, phash, f"API error: {exc}", None)
+                print(red(f"      API error: {scrub(exc)}"))
+            return _fallback_entry(
+                case, context, model, phash, f"API error: {scrub(exc)}", None
+            )
 
         report = guard_check(result.explanation, context, generator=f"llm:{model}")
         report.attempts = attempt
@@ -273,8 +276,7 @@ def generate_one(
                 "attempts": attempt,
                 "cpic_recommendation_used": context.cpic_recommendation,
                 "mechanism_source": context.mechanism.citation_line if context.mechanism else "",
-                "reviewed_by": None,
-                "reviewed_at": None,
+                "review": _fresh_review(),
             }
 
         last_violations = [f"{v.kind}:{v.token}" for v in report.violations]
@@ -316,6 +318,25 @@ def _call_with_backoff(context, model: str, instruction: str, limiter: RateLimit
     raise last_error  # type: ignore[misc]
 
 
+def _fresh_review() -> dict:
+    """
+    The review block for a newly generated entry.
+
+    `provenance_verified` starts False on purpose: generation and verification
+    are separate steps, and an entry that asserted its own verification would
+    make the release gate self-certifying. `verify_provenance.py --write` is
+    what sets it, after actually checking.
+    """
+    return {
+        "provenance_verified": False,
+        "verified_by": "",
+        "verified_at": "",
+        "read_by_author": None,
+        "clinical_expert_review": None,
+        "clinical_expert_review_status": "NOT_OBTAINED",
+    }
+
+
 def _fallback_entry(
     case: Case,
     context: ExplanationContext,
@@ -344,8 +365,7 @@ def _fallback_entry(
         "attempts": 2,
         "cpic_recommendation_used": context.cpic_recommendation,
         "mechanism_source": context.mechanism.citation_line if context.mechanism else "",
-        "reviewed_by": None,
-        "reviewed_at": None,
+        "review": _fresh_review(),
     }
 
 
@@ -481,8 +501,9 @@ def main(argv: list[str] | None = None) -> int:
                 "pharmaguard_note": (
                     "LLM-generated, guard-checked explanations. Slots are filled at "
                     "request time and cross-checked by the runtime slot verifier. "
-                    "REQUIRES FACULTY REVIEW: set reviewed_by/reviewed_at on every "
-                    "entry before any demo or submission."
+                    "NOT YET PROVENANCE-VERIFIED: run scripts/verify_provenance.py "
+                    "--write before shipping. No clinical expert has reviewed this "
+                    "content and none is expected to; see reports/provenance_report.md."
                 ),
                 "explanations": sorted(
                     by_key.values(), key=lambda e: (e["drug"], e["phenotype"])

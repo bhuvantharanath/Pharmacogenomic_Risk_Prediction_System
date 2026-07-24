@@ -1,35 +1,10 @@
 {
- "version": 1,
- "generated_at": "2026-07-23T04:10:28.115122+00:00",
- "generator": "template",
- "model": "",
- "pharmaguard_note": "Pre-generated explanations. Each entry passed the faithfulness guard at generation time. REQUIRES FACULTY REVIEW: set reviewed_by on every entry before any demo or submission.",
+ "version": 2,
+ "generated_at": "2026-07-23T15:41:55.774856+00:00",
+ "generator": "llm",
+ "model": "gemini-3.6-flash",
+ "pharmaguard_note": "Pre-generated explanations. Slots are filled at request time and cross-checked by the runtime slot verifier. Every clinical-claim sentence is machine-verified to trace to a CPIC recommendation or a cited mechanism document (scripts/verify_provenance.py). NO QUALIFIED CLINICAL EXPERT HAS REVIEWED THIS CONTENT and none is expected to: provenance verification checks that the system invented nothing, not that a clinician agrees it is correct. See reports/provenance_report.md.",
  "explanations": [
-  {
-   "drug": "azathioprine",
-   "gene": "TPMT",
-   "phenotype": "PM",
-   "derived_risk_label": "Toxic",
-   "explanation": {
-    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
-    "mechanism": "TPMT encodes thiopurine S-methyltransferase, a cytosolic enzyme that methylates thiopurine compounds and so diverts them away from the pathway that produces active metabolites.\n\nSource: Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
-    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
-    "patient_friendly": "Your genetic results suggest a higher chance of harmful effects from this medicine. Your {gene} gene result shows much lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
-   },
-   "generator": "template",
-   "model": "",
-   "generated_at": "2026-07-23T04:10:28.115122+00:00",
-   "guard_report": {
-    "passed": true,
-    "generator": "template",
-    "attempts": 1,
-    "action_taken": "accepted",
-    "violations": []
-   },
-   "cpic_recommendation_used": "Consider alternative nonthiopurine immunosuppressant therapy.",
-   "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
-   "reviewed_by": null
-  },
   {
    "drug": "azathioprine",
    "gene": "TPMT",
@@ -53,7 +28,14 @@
    },
    "cpic_recommendation_used": "Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
    "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "azathioprine",
@@ -78,7 +60,46 @@
    },
    "cpic_recommendation_used": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
    "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
+  },
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "PM",
+   "derived_risk_label": "Toxic",
+   "explanation": {
+    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
+    "mechanism": "TPMT encodes thiopurine S-methyltransferase, a cytosolic enzyme that methylates thiopurine compounds and so diverts them away from the pathway that produces active metabolites.\n\nSource: Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
+    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
+    "patient_friendly": "Your genetic results suggest a higher chance of harmful effects from this medicine. Your {gene} gene result shows much lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
+   },
+   "generator": "template",
+   "model": "",
+   "generated_at": "2026-07-23T04:10:28.115122+00:00",
+   "guard_report": {
+    "passed": true,
+    "generator": "template",
+    "attempts": 1,
+    "action_taken": "accepted",
+    "violations": []
+   },
+   "cpic_recommendation_used": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "azathioprine",
@@ -103,7 +124,83 @@
    },
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "IM",
+   "derived_risk_label": "Ineffective",
+   "explanation": {
+    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
+    "mechanism": "CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 gene carries common variants that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
+    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
+    "patient_friendly": "Your genetic results suggest this medicine may not work as well for you as intended. Your {gene} gene result shows somewhat lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
+   },
+   "generator": "template",
+   "model": "gemini-3.6-flash",
+   "prompt_hash": "0f822d96aecda853",
+   "generated_at": "2026-07-23T15:41:55.774735+00:00",
+   "guard_report": {
+    "passed": true,
+    "generator": "template",
+    "attempts": 1,
+    "action_taken": "accepted",
+    "violations": []
+   },
+   "fallback": true,
+   "fallback_reason": "API error: Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema\n  Invalid JSON: EOF while parsing a string at line 4 column 84 [type=json_invalid, input_value='{\\n  \"summary\": \"For {dr...} diplotype {diplotype}', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid",
+   "rejected_violations": [],
+   "attempts": 2,
+   "cpic_recommendation_used": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+   "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "NM",
+   "derived_risk_label": "Safe",
+   "explanation": {
+    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
+    "mechanism": "CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 gene carries common variants that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
+    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
+    "patient_friendly": "Your genetic results do not suggest a change to how this medicine is usually prescribed. Your {gene} gene result shows activity in the usual range, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
+   },
+   "generator": "template",
+   "model": "",
+   "generated_at": "2026-07-23T04:10:28.115122+00:00",
+   "guard_report": {
+    "passed": true,
+    "generator": "template",
+    "attempts": 1,
+    "action_taken": "accepted",
+    "violations": []
+   },
+   "cpic_recommendation_used": "If considering clopidogrel, use at standard dose (75 mg/day)",
+   "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "clopidogrel",
@@ -128,57 +225,14 @@
    },
    "cpic_recommendation_used": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-   "reviewed_by": null
-  },
-  {
-   "drug": "clopidogrel",
-   "gene": "CYP2C19",
-   "phenotype": "IM",
-   "derived_risk_label": "Ineffective",
-   "explanation": {
-    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
-    "mechanism": "CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 gene carries common variants that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
-    "patient_friendly": "Your genetic results suggest this medicine may not work as well for you as intended. Your {gene} gene result shows somewhat lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
-   },
-   "generator": "template",
-   "model": "",
-   "generated_at": "2026-07-23T04:10:28.115122+00:00",
-   "guard_report": {
-    "passed": true,
-    "generator": "template",
-    "attempts": 1,
-    "action_taken": "accepted",
-    "violations": []
-   },
-   "cpic_recommendation_used": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
-   "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-   "reviewed_by": null
-  },
-  {
-   "drug": "clopidogrel",
-   "gene": "CYP2C19",
-   "phenotype": "NM",
-   "derived_risk_label": "Safe",
-   "explanation": {
-    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
-    "mechanism": "CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 gene carries common variants that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
-    "patient_friendly": "Your genetic results do not suggest a change to how this medicine is usually prescribed. Your {gene} gene result shows activity in the usual range, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
-   },
-   "generator": "template",
-   "model": "",
-   "generated_at": "2026-07-23T04:10:28.115122+00:00",
-   "guard_report": {
-    "passed": true,
-    "generator": "template",
-    "attempts": 1,
-    "action_taken": "accepted",
-    "violations": []
-   },
-   "cpic_recommendation_used": "If considering clopidogrel, use at standard dose (75 mg/day)",
-   "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "clopidogrel",
@@ -203,7 +257,14 @@
    },
    "cpic_recommendation_used": "If considering clopidogrel, use at standard dose (75 mg/day)",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "clopidogrel",
@@ -228,7 +289,14 @@
    },
    "cpic_recommendation_used": "If considering clopidogrel, use at standard dose (75 mg/day)",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "clopidogrel",
@@ -253,7 +321,14 @@
    },
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "codeine",
@@ -278,32 +353,14 @@
    },
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for codeine and CYP2D6 — Crews KR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy. Clin Pharmacol Ther (2021). PMID: 33387367",
-   "reviewed_by": null
-  },
-  {
-   "drug": "fluorouracil",
-   "gene": "DPYD",
-   "phenotype": "PM",
-   "derived_risk_label": "Toxic",
-   "explanation": {
-    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
-    "mechanism": "DPYD encodes dihydropyrimidine dehydrogenase (DPD), the rate-limiting enzyme of pyrimidine catabolism. DPD is expressed widely, with high activity in the liver, and is responsible for breaking down the great majority of an administered fluoropyrimidine dose into inactive metabolites.\n\nSource: Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
-    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
-    "patient_friendly": "Your genetic results suggest a higher chance of harmful effects from this medicine. Your {gene} gene result shows much lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
-   },
-   "generator": "template",
-   "model": "",
-   "generated_at": "2026-07-23T04:10:28.115122+00:00",
-   "guard_report": {
-    "passed": true,
-    "generator": "template",
-    "attempts": 1,
-    "action_taken": "accepted",
-    "violations": []
-   },
-   "cpic_recommendation_used": "Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens.",
-   "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "fluorouracil",
@@ -328,7 +385,14 @@
    },
    "cpic_recommendation_used": "Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available). Patients with the c.2846A&gt;T/c.2846A&gt;T genotype may require &gt;50% reduction in starting dose.",
    "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "fluorouracil",
@@ -353,7 +417,46 @@
    },
    "cpic_recommendation_used": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
    "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "PM",
+   "derived_risk_label": "Toxic",
+   "explanation": {
+    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
+    "mechanism": "DPYD encodes dihydropyrimidine dehydrogenase (DPD), the rate-limiting enzyme of pyrimidine catabolism. DPD is expressed widely, with high activity in the liver, and is responsible for breaking down the great majority of an administered fluoropyrimidine dose into inactive metabolites.\n\nSource: Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
+    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
+    "patient_friendly": "Your genetic results suggest a higher chance of harmful effects from this medicine. Your {gene} gene result shows much lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
+   },
+   "generator": "template",
+   "model": "",
+   "generated_at": "2026-07-23T04:10:28.115122+00:00",
+   "guard_report": {
+    "passed": true,
+    "generator": "template",
+    "attempts": 1,
+    "action_taken": "accepted",
+    "violations": []
+   },
+   "cpic_recommendation_used": "Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens.",
+   "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "fluorouracil",
@@ -378,32 +481,14 @@
    },
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
-   "reviewed_by": null
-  },
-  {
-   "drug": "simvastatin",
-   "gene": "SLCO1B1",
-   "phenotype": "PM",
-   "derived_risk_label": "Adjust Dosage",
-   "explanation": {
-    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
-    "mechanism": "SLCO1B1 encodes OATP1B1, an uptake transporter on the sinusoidal (blood-facing) membrane of liver cells. Its job is to move drugs out of portal blood and into hepatocytes. It is a **transporter, not a metabolising enzyme**, which is why its phenotypes are described as function categories (normal, decreased, poor function) rather than metaboliser categories.\n\nSource: Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
-    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
-    "patient_friendly": "Your genetic results suggest this medicine may need to be prescribed differently from the usual approach. Your {gene} gene result shows much lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
-   },
-   "generator": "template",
-   "model": "",
-   "generated_at": "2026-07-23T04:10:28.115122+00:00",
-   "guard_report": {
-    "passed": true,
-    "generator": "template",
-    "attempts": 1,
-    "action_taken": "accepted",
-    "violations": []
-   },
-   "cpic_recommendation_used": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins).",
-   "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "simvastatin",
@@ -428,7 +513,14 @@
    },
    "cpic_recommendation_used": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins). If simvastatin therapy is warranted, limit dose to &lt;20mg/day.",
    "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "simvastatin",
@@ -453,7 +545,46 @@
    },
    "cpic_recommendation_used": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
    "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "PM",
+   "derived_risk_label": "Adjust Dosage",
+   "explanation": {
+    "summary": "{drug}: {gene} {diplotype} ({phenotype}) — {risk_label}.",
+    "mechanism": "SLCO1B1 encodes OATP1B1, an uptake transporter on the sinusoidal (blood-facing) membrane of liver cells. Its job is to move drugs out of portal blood and into hepatocytes. It is a **transporter, not a metabolising enzyme**, which is why its phenotypes are described as function categories (normal, decreased, poor function) rather than metaboliser categories.\n\nSource: Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
+    "variant_rationale": "PharmCAT called {gene} as {diplotype}, which corresponds to a {phenotype} result. The non-reference positions supporting this call were {detected_variants}.",
+    "patient_friendly": "Your genetic results suggest this medicine may need to be prescribed differently from the usual approach. Your {gene} gene result shows much lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines."
+   },
+   "generator": "template",
+   "model": "",
+   "generated_at": "2026-07-23T04:10:28.115122+00:00",
+   "guard_report": {
+    "passed": true,
+    "generator": "template",
+    "attempts": 1,
+    "action_taken": "accepted",
+    "violations": []
+   },
+   "cpic_recommendation_used": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins).",
+   "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "simvastatin",
@@ -478,7 +609,14 @@
    },
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   },
   {
    "drug": "warfarin",
@@ -503,7 +641,14 @@
    },
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1 — Johnson JA et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update. Clin Pharmacol Ther (2017). PMID: 28198005",
-   "reviewed_by": null
+   "review": {
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-23T15:58:09.044531+00:00",
+    "read_by_author": null,
+    "clinical_expert_review": null,
+    "clinical_expert_review_status": "NOT_OBTAINED"
+   }
   }
  ]
 }

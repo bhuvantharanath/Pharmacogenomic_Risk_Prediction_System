@@ -56,6 +56,7 @@ from _common import (
     green,
     red,
     rule,
+    scrub,
     yellow,
 )
 
@@ -189,8 +190,11 @@ def run_arm(context: ExplanationContext, arm: str, model: str, limiter: RateLimi
     try:
         result = generator_llm.generate(sent, model=model, system_instruction=instruction)
     except generator_llm.LlmUnavailableError as exc:
+        # scrub(): this string is written verbatim into
+        # reports/guard_experiment_raw.json, which is committed. An SDK error
+        # that echoed the key would publish it.
         return {"arm": arm, "drug": context.drug, "phenotype": context.phenotype.value,
-                "error": str(exc), "passed": None, "violations": []}
+                "error": scrub(exc), "passed": None, "violations": []}
 
     report = guard_check(result.explanation, context, generator=f"experiment:{arm}")
 

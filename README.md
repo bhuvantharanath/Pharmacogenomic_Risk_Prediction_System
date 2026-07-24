@@ -372,7 +372,7 @@ PharmCAT crash, and that no uploaded content is echoed back in the response.
 | **`cpic_evidence_level` is always `Unknown`** | PharmCAT's report carries CPIC's *strength of recommendation*, not the A/B/C/D *level of evidence*. Inventing one would fabricate a clinical claim |
 | **6 drugs** | clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine. Warfarin returns `Unknown` — CPIC's guidance there is a dosing algorithm, not per-phenotype text |
 | **Not clinically validated** | Synthetic VCFs prove the plumbing, not correctness. Validation against GeT-RM consensus genotypes is future work |
-| **Explanations await review** | All 20 pre-generated explanations carry `reviewed_by: null`, surfaced in every API response |
+| **No clinical reviewer — declared, not pending** | This project has **no qualified clinical expert**, and will not get one. Rather than shipping unchecked prose, the system asserts no clinical content of its own: every sentence making a clinical claim is machine-verified to trace, word for word, to a CPIC recommendation issued by PharmCAT or to a cited mechanism document. `scripts/verify_provenance.py` enforces this as a release gate and CI runs it on every push. **20/20 entries pass.** What that establishes is that nothing was invented — *not* that a clinician agrees the text is correct. See [`reports/provenance_report.md`](reports/provenance_report.md) |
 | **Rate limit is in-memory** | Resets on restart; keyed on a spoofable header. Abuse dampening, not a security boundary |
 
 ---
@@ -430,11 +430,17 @@ and a warning appears in `quality_metrics`; a mismatched explanation is never
 served.
 
 Every response reports both, e.g.
-`explanation mode=static, source=static, guard=passed, slots=verified, reviewed=NO`.
+`explanation mode=static, source=static, guard=passed, slots=verified,
+provenance=verified`.
 
-So: **static mode is build-time guarded *plus* runtime slot-verified.** Neither
-check makes any claim about clinical correctness — that still requires the
-faculty review that `reviewed=NO` is telling you has not happened.
+So: **static mode is build-time guarded, runtime slot-verified, and
+provenance-verified sentence by sentence.**
+
+None of the three makes any claim about clinical *correctness*. A sentence
+assembled entirely from source words can still describe a mechanism backwards,
+and no check here would notice. Catching that needs a clinician, and this
+project has none — so the guarantee is stated in the narrower terms that are
+actually true rather than in terms of a review that was never going to happen.
 
 ---
 

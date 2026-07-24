@@ -198,8 +198,8 @@ async def ready() -> JSONResponse:
     checks["explanations"] = {
         "ok": True,
         "detail": (
-            f"{len(store)} pre-generated ({len(store) - store.unreviewed_count} "
-            f"reviewed)"
+            f"{len(store)} pre-generated "
+            f"({len(store) - store.unverified_count} provenance-verified)"
             if store.entries
             else f"none loaded — falling back to templates ({store.load_error})"
         ),
@@ -234,7 +234,8 @@ async def root() -> dict[str, object]:
         "pharmcat_available": available,
         "explanation_mode": mode.value,
         "explanations_available": len(store),
-        "explanations_reviewed": len(store) - store.unreviewed_count,
+        "explanations_provenance_verified": len(store) - store.unverified_count,
+        "clinical_expert_review": "NOT_OBTAINED",
         "cors": security.cors_summary(),
         "rate_limit": {
             "requests": security.RATE_LIMIT_REQUESTS,
@@ -441,11 +442,21 @@ def build_response(
         warnings.append(provenance)
 
     store = explanation_store.load_store()
-    if store.entries and store.unreviewed_count:
+    # The honest disclosure. This project has no qualified clinical reviewer,
+    # so the warning states what was actually done -- provenance verification --
+    # and names the gap directly rather than implying a review is pending.
+    if store.entries:
+        if store.unverified_count:
+            warnings.append(
+                f"{store.unverified_count} of {len(store)} pre-generated explanations "
+                "have unverified clinical content. Treat their wording with caution."
+            )
         warnings.append(
-            f"{store.unreviewed_count} of {len(store)} pre-generated explanations "
-            "have not yet been reviewed by the faculty guide. Clinical "
-            "recommendations come from CPIC via PharmCAT and are unaffected."
+            "No qualified clinical expert has reviewed these explanations. This "
+            "system writes no clinical content of its own: every clinical "
+            "statement is machine-verified to trace to a CPIC recommendation "
+            "issued by PharmCAT, or to a cited mechanism document. That checks "
+            "provenance, not correctness."
         )
 
     unknown = [

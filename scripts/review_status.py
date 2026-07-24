@@ -1,6 +1,26 @@
 #!/usr/bin/env python3
 """
-Review coverage table. Exits non-zero if anything is unreviewed.
+Review coverage — provenance and author-read, reported separately.
+
+    python scripts/review_status.py
+    python scripts/review_status.py --json
+    python scripts/review_status.py --quiet        # exit code only
+
+THE TWO COLUMNS MEAN DIFFERENT THINGS, AND NEITHER IS CLINICAL APPROVAL
+
+    provenance   machine-checked: every clinical-claim sentence traces to a
+                 CPIC recommendation or a cited mechanism document. This is the
+                 release gate, and scripts/verify_provenance.py sets it.
+
+    author read  a human read the entry. Not qualified clinical review -- this
+                 project has none -- but "nobody looked" and "a non-clinician
+                 looked" are different states.
+
+    clinical     NOT_OBTAINED, on every entry, permanently. Printed on every run
+                 so it cannot quietly drop out of the picture.
+
+Reporting these as one "reviewed" number, as this script used to, made the weak
+signal look like the strong one.
 
     python scripts/review_status.py          # human table
     python scripts/review_status.py --json
@@ -40,29 +60,43 @@ def main(argv: list[str] | None = None) -> int:
     store = load_json(args.input)
     entries = store.get("explanations", [])
 
-    reviewed = [e for e in entries if e.get("reviewed_by")]
-    approved = [e for e in reviewed if e.get("review_decision") != "rejected"]
-    rejected = [e for e in reviewed if e.get("review_decision") == "rejected"]
-    unreviewed = [e for e in entries if not e.get("reviewed_by")]
+    def review(entry: dict) -> dict:
+        return entry.get("review") or {}
+
+    verified = [e for e in entries if review(e).get("provenance_verified")]
+    unverified = [e for e in entries if not review(e).get("provenance_verified")]
+    read = [e for e in entries if review(e).get("read_by_author")]
+    unread = [e for e in entries if not review(e).get("read_by_author")]
+    flagged = [e for e in entries if e.get("author_concern")]
     fallback = [e for e in entries if e.get("fallback")]
     guard_failed = [e for e in entries if not (e.get("guard_report") or {}).get("passed", True)]
+    # Should be every entry, forever. Checked rather than assumed: a stray
+    # value here would be the project claiming an authority it does not have.
+    claims_expert = [e for e in entries if review(e).get("clinical_expert_review")]
 
-    per_drug = defaultdict(lambda: {"total": 0, "reviewed": 0, "fallback": 0})
+    per_drug = defaultdict(lambda: {"total": 0, "verified": 0, "read": 0, "fallback": 0})
     for entry in entries:
         row = per_drug[entry["drug"]]
         row["total"] += 1
-        if entry.get("reviewed_by"):
-            row["reviewed"] += 1
-        if entry.get("fallback"):
-            row["fallback"] += 1
+        row["verified"] += bool(review(entry).get("provenance_verified"))
+        row["read"] += bool(review(entry).get("read_by_author"))
+        row["fallback"] += bool(entry.get("fallback"))
 
-    ok = bool(entries) and not unreviewed and not rejected
+    # The gate is provenance. Author reading is reported, never required --
+    # gating on it would imply the read carries an authority it does not.
+    ok = bool(entries) and not unverified and not claims_expert
 
     if args.json:
         print(json.dumps({
-            "total": len(entries), "reviewed": len(reviewed), "approved": len(approved),
-            "rejected": len(rejected), "unreviewed": len(unreviewed),
-            "fallback": len(fallback), "guard_failed": len(guard_failed),
+            "total": len(entries),
+            "provenance_verified": len(verified),
+            "provenance_unverified": len(unverified),
+            "read_by_author": len(read),
+            "unread": len(unread),
+            "author_concerns": len(flagged),
+            "clinical_expert_review": "NOT_OBTAINED",
+            "fallback": len(fallback),
+            "guard_failed": len(guard_failed),
             "release_ready": ok,
         }, indent=1))
         return 0 if ok else 1
@@ -71,37 +105,52 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if ok else 1
 
     print(rule("review status"))
-    print(f"  {'drug':<16}{'total':>6}{'reviewed':>10}{'fallback':>10}")
-    print("  " + "-" * 44)
+    print(f"  {'drug':<16}{'total':>6}{'provenance':>12}{'read':>7}{'fallback':>10}")
+    print("  " + "-" * 53)
     for drug in sorted(per_drug):
         row = per_drug[drug]
-        mark = green if row["reviewed"] == row["total"] else yellow
-        print(f"  {drug:<16}{row['total']:>6}{mark(str(row['reviewed']).rjust(10))}{row['fallback']:>10}")
+        vmark = green if row["verified"] == row["total"] else red
+        rmark = green if row["read"] == row["total"] else yellow
+        print(f"  {drug:<16}{row['total']:>6}"
+              f"{vmark(str(row['verified']).rjust(12))}"
+              f"{rmark(str(row['read']).rjust(7))}{row['fallback']:>10}")
     print(rule())
 
-    print(f"\n  total       {bold(str(len(entries)))}")
-    print(f"  reviewed    {green(str(len(reviewed)))}"
-          + (f"  ({len(approved)} approved, {len(rejected)} rejected)" if reviewed else ""))
-    print(f"  unreviewed  {yellow(str(len(unreviewed))) if unreviewed else green('0')}")
-    print(f"  fallback    {len(fallback)}")
+    print(f"\n  total                {bold(str(len(entries)))}")
+    print(f"  provenance verified  {green(str(len(verified))) if not unverified else red(str(len(verified)))}"
+          f"  {dim('(machine-checked against CPIC + corpus)')}")
+    print(f"  read by author       {green(str(len(read))) if not unread else yellow(str(len(read)))}"
+          f"  {dim('(a human read it; NOT clinical approval)')}")
+    if flagged:
+        print(f"  {yellow('author concerns')}      {len(flagged)}")
+    print(f"  clinical expert      {red('NOT_OBTAINED')}"
+          f"  {dim('(no qualified reviewer on this project)')}")
+    print(f"  fallback             {len(fallback)}")
     if guard_failed:
-        print(f"  {red('guard failing')} {len(guard_failed)}")
+        print(f"  {red('guard failing')}        {len(guard_failed)}")
 
     if not entries:
         print(red("\nNo explanations at all — run pregenerate_explanations.py."))
         return 1
-    if unreviewed:
-        print(yellow(f"\nNOT RELEASE READY: {len(unreviewed)} entry(ies) unreviewed."))
-        print(dim("  python scripts/review.py --reviewer '<name>'"))
-        print(dim("  or share reports/explanations_for_review.md for offline sign-off"))
+    if claims_expert:
+        print(red(f"\nSTOP: {len(claims_expert)} entry(ies) claim a clinical expert review."))
+        print(red("  No such reviewer exists on this project. Investigate before shipping."))
         return 1
-    if rejected:
-        print(red(f"\nNOT RELEASE READY: {len(rejected)} entry(ies) were REJECTED."))
-        for entry in rejected:
-            print(red(f"  · {entry['drug']}/{entry['phenotype']}: {entry.get('review_note', '')[:60]}"))
+    if unverified:
+        print(red(f"\nNOT RELEASE READY: {len(unverified)} entry(ies) have unverified clinical content."))
+        print(dim("  python scripts/verify_provenance.py -v      # see which sentences"))
         return 1
 
-    print(green("\nRELEASE READY: every entry reviewed and approved."))
+    print(green("\nRELEASE READY (provenance): every clinical claim traces to a cited source."))
+    if unread:
+        print(yellow(f"  {len(unread)} entry(ies) have not been read by anyone."))
+        print(dim("  python scripts/author_read.py --author '<name>'"))
+    if flagged:
+        print(yellow(f"  {len(flagged)} entry(ies) carry an unresolved author concern:"))
+        for entry in flagged:
+            print(yellow(f"    · {entry['drug']}/{entry['phenotype']}: {entry['author_concern'][:60]}"))
+    print(dim("\n  Provenance-verified means every clinical word came from a cited source."))
+    print(dim("  It does NOT mean a clinician has agreed the text is correct."))
     return 0
 
 

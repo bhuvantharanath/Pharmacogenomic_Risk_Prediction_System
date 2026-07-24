@@ -1,9 +1,9 @@
 # Explanation generation report
 
-**Generated:** 2026-07-23T14:21:13.327698+00:00  
+**Generated:** 2026-07-24T02:00:56.751704+00:00  
 **Explanation store:** `backend/app/data/explanations.json`  
-**Store generator:** `template`  
-**Store written:** 2026-07-23T04:10:28.115122+00:00
+**Store generator:** `llm`  
+**Store written:** 2026-07-23T15:41:55.774856+00:00
 
 All figures below are computed from the generated artefacts, not estimated.
 
@@ -16,8 +16,8 @@ All figures below are computed from the generated artefacts, not estimated.
 | Unreachable (documented, never authored) | 8 |
 | Entries in store | 20 |
 | — LLM-generated, guard-passed | 0 |
-| — Template fallback (guard rejected or API failed) | 0 |
-| — Template, pre-LLM legacy | 20 |
+| — Template fallback (guard rejected or API failed) | 1 |
+| — Template, pre-LLM legacy | 19 |
 | Reachable but missing | 0 |
 | Human-reviewed | 0 / 20 |
 
@@ -25,9 +25,9 @@ All figures below are computed from the generated artefacts, not estimated.
 
 | Field | Value |
 | --- | --- |
-| Model(s) | _none recorded_ |
-| Entries with a prompt hash | 0 / 20 |
-| Distinct prompt hashes | 0 |
+| Model(s) | `gemini-3.6-flash` |
+| Entries with a prompt hash | 1 / 20 |
+| Distinct prompt hashes | 1 |
 
 Each entry records the exact model id, a SHA-256 prefix of (model + system instruction + user prompt), and an ISO timestamp. A prompt change is therefore visible as a hash change rather than having to be remembered.
 
@@ -52,11 +52,18 @@ that deliberately provokes fabrication.
 | Drug | Reachable | Generated | Fallback | Unreachable |
 | --- | ---: | ---: | ---: | ---: |
 | `azathioprine` | 4 | 4 | 0 | 0 |
-| `clopidogrel` | 6 | 6 | 0 | 0 |
+| `clopidogrel` | 6 | 5 | 1 | 0 |
 | `codeine` | 1 | 1 | 0 | 4 |
 | `fluorouracil` | 4 | 4 | 0 | 0 |
 | `simvastatin` | 4 | 4 | 0 | 1 |
 | `warfarin` | 1 | 1 | 0 | 3 |
+
+### Fallback entries and why
+
+| Case | Reason |
+| --- | --- |
+| `clopidogrel` / `IM` | API error: Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema
+  Invalid JSON: EOF while parsing a string  |
 
 ## Unreachable cases
 
@@ -76,7 +83,7 @@ pipeline cannot produce would inflate the coverage figure with fiction.
 
 ## Review status
 
-**0 of 20** entries carry a `reviewed_by`.
+**0 of 20** entries have been read by the project author. No qualified clinical expert has reviewed any of them, and none is expected to — see `reports/provenance_report.md` for what is machine-verified in place of that.
 
 > ⚠️ **Not approved for demo or submission.** The API reports the
 > unreviewed count in `quality_metrics.warnings` on every response.

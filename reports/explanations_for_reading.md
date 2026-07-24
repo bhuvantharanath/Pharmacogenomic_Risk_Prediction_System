@@ -1,26 +1,39 @@
-# PharmaGuard — explanations for review
+# PharmaGuard — every explanation, for reading straight through
 
-**Exported:** 2026-07-23 14:20 UTC  
-**Model:** ``  
-**Entries:** 20 (0 template fallback, 0 already reviewed)
+**Exported:** 2026-07-23 16:01 UTC  
+**Model:** `gemini-3.6-flash`  
+**Entries:** 20 (1 template fallback, 0 read by the author)
 
 ---
 
-## What you are being asked to check
+## ⚠️ There is no clinical reviewer for this document
 
-Each explanation below is printed **next to the CPIC text it was
-generated from**. For each one, please judge:
+This project has **no qualified clinical expert**, and is not going to
+get one. Nothing in this document is an approval form, and nobody here
+is in a position to sign one.
 
-1. **Faithfulness** — does the explanation follow from the CPIC text
-   above it, without adding anything?
-2. **Direction of effect** — this is the one a machine cannot check.
-   The automated guard verifies that every drug, gene, dose and allele
-   mentioned appears in the source. It **cannot** tell that a mechanism
-   has been described backwards. "Reduced enzyme activity causes the
-   drug to accumulate" is fully grounded and completely wrong for a
-   prodrug like clopidogrel, where reduced activity means *less* active
-   drug. Please check each mechanism points the right way.
-3. **Plain language** — is `Patient-friendly` genuinely readable by a
+What has been done instead is narrower and machine-checked: every
+sentence making a clinical claim is verified to trace, word by word, to
+a CPIC recommendation issued by PharmCAT or to a cited mechanism
+document. See `reports/provenance_report.md`. That establishes the
+system invented nothing. It does **not** establish that the text is
+clinically correct.
+
+## Why read it anyway
+
+Reading twenty explanations in sequence catches things per-entry checks
+and automated ones both miss:
+
+1. **Direction of effect.** The one no check here can make. The guard
+   verifies every drug, gene, dose and allele appears in the source; the
+   provenance verifier additionally requires the whole claim to appear.
+   Neither can tell that a mechanism has been described **backwards**.
+   "Reduced enzyme activity causes the drug to accumulate" is fully
+   traced and completely wrong for a prodrug like clopidogrel, where
+   reduced activity means *less* active drug.
+2. **Inconsistency between phenotypes of one drug** — a hedge present in
+   five cases and missing in the sixth.
+3. **Plain language** — is `Patient-friendly` readable by a
    non-specialist, without being alarming or falsely reassuring?
 4. **Honest gaps** — where no result was obtained (CYP2D6, warfarin),
    does the text say so plainly rather than implying a normal result?
@@ -30,17 +43,17 @@ generated from**. For each one, please judge:
 `{diplotype}` and `{detected_variants}` are **intentional**. Each
 explanation is reused for every patient with that phenotype, and those
 values are substituted per patient at request time (then cross-checked
-against the actual genotype call). Please do not replace them with
-specific values.
+against the actual genotype call). Do not replace them with specific
+values.
 
-### Recording your decision
-
-Sign the block under each entry, or return the document with comments.
-Decisions are transcribed with:
+### Recording what you noticed
 
 ```bash
-python scripts/review.py --reviewer "<your name>"
+python scripts/author_read.py --author "<your name>"
 ```
+
+`d` records that you read an entry; `f` records a concern. Neither is
+clinical approval, and the CLI has no action that is.
 
 ---
 
@@ -50,7 +63,7 @@ python scripts/review.py --reviewer "<your name>"
 2. [azathioprine — NM](#2-azathioprine-nm)
 3. [azathioprine — PM](#3-azathioprine-pm)
 4. [azathioprine — Unknown](#4-azathioprine-unknown)
-5. [clopidogrel — IM](#5-clopidogrel-im)
+5. [clopidogrel — IM](#5-clopidogrel-im) ⚠️ *(template fallback)*
 6. [clopidogrel — NM](#6-clopidogrel-nm)
 7. [clopidogrel — PM](#7-clopidogrel-pm)
 8. [clopidogrel — RM](#8-clopidogrel-rm)
@@ -132,22 +145,20 @@ python scripts/review.py --reviewer "<your name>"
 > comes from published CPIC guidance, not from this tool. Discuss this with your doctor or
 > pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -212,22 +223,20 @@ python scripts/review.py --reviewer "<your name>"
 > published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist
 > before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -289,22 +298,20 @@ python scripts/review.py --reviewer "<your name>"
 > from published CPIC guidance, not from this tool. Discuss this with your doctor or
 > pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -365,22 +372,20 @@ python scripts/review.py --reviewer "<your name>"
 > question is still open. Discuss this with your doctor or pharmacist before making any
 > change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -393,11 +398,15 @@ python scripts/review.py --reviewer "<your name>"
 | Gene | `CYP2C19` |
 | Phenotype | `IM` |
 | Risk label | **Ineffective** |
-| Source | LLM-generated |
-| Model | `` |
-| Prompt hash | `—` |
-| Generated | 2026-07-23T04:10:28.115122+00:00 |
+| Source | ⚠️ template fallback |
+| Model | `gemini-3.6-flash` |
+| Prompt hash | `0f822d96aecda853` |
+| Generated | 2026-07-23T15:41:55.774735+00:00 |
 | Automated guard | ✅ passed |
+
+> ⚠️ **Fallback reason:** API error: Gemini returned output that did not match the schema: 1 validation error for _ExplanationSchema
+  Invalid JSON: EOF while parsing a string at line 4 column 84 [type=json_invalid, input_value='{\n  "summary": "For {dr...} diplotype {diplotype}', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.12/v/json_invalid
 
 ### Grounding — the source this must follow from
 
@@ -442,22 +451,20 @@ python scripts/review.py --reviewer "<your name>"
 > comes from published CPIC guidance, not from this tool. Discuss this with your doctor or
 > pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -518,22 +525,20 @@ python scripts/review.py --reviewer "<your name>"
 > published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist
 > before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -595,22 +600,20 @@ python scripts/review.py --reviewer "<your name>"
 > from published CPIC guidance, not from this tool. Discuss this with your doctor or
 > pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -671,22 +674,20 @@ python scripts/review.py --reviewer "<your name>"
 > comes from published CPIC guidance, not from this tool. Discuss this with your doctor or
 > pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -747,22 +748,20 @@ python scripts/review.py --reviewer "<your name>"
 > from published CPIC guidance, not from this tool. Discuss this with your doctor or
 > pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -822,22 +821,20 @@ python scripts/review.py --reviewer "<your name>"
 > question is still open. Discuss this with your doctor or pharmacist before making any
 > change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -898,22 +895,20 @@ python scripts/review.py --reviewer "<your name>"
 > question is still open. Discuss this with your doctor or pharmacist before making any
 > change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -978,22 +973,20 @@ python scripts/review.py --reviewer "<your name>"
 > shown with this result comes from published CPIC guidance, not from this tool. Discuss
 > this with your doctor or pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1057,22 +1050,20 @@ python scripts/review.py --reviewer "<your name>"
 > published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist
 > before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1135,22 +1126,20 @@ python scripts/review.py --reviewer "<your name>"
 > from published CPIC guidance, not from this tool. Discuss this with your doctor or
 > pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1212,22 +1201,20 @@ python scripts/review.py --reviewer "<your name>"
 > question is still open. Discuss this with your doctor or pharmacist before making any
 > change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1293,22 +1280,20 @@ python scripts/review.py --reviewer "<your name>"
 > shown with this result comes from published CPIC guidance, not from this tool. Discuss
 > this with your doctor or pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1372,22 +1357,20 @@ python scripts/review.py --reviewer "<your name>"
 > published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist
 > before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1452,22 +1435,20 @@ python scripts/review.py --reviewer "<your name>"
 > with this result comes from published CPIC guidance, not from this tool. Discuss this
 > with your doctor or pharmacist before making any change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1530,22 +1511,20 @@ python scripts/review.py --reviewer "<your name>"
 > question is still open. Discuss this with your doctor or pharmacist before making any
 > change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
@@ -1606,22 +1585,20 @@ python scripts/review.py --reviewer "<your name>"
 > question is still open. Discuss this with your doctor or pharmacist before making any
 > change to your medicines.
 
-### Reviewer decision
+### While reading, ask
 
-| | |
-| --- | --- |
-| ☐ Approve — faithful, correct direction, readable | |
-| ☐ Approve with edits *(note them below)* | |
-| ☐ Reject *(state why)* | |
+- Is the **direction of effect** right? Reduced enzyme activity means
+  more drug or less, depending on whether it is a prodrug — this is the
+  error no automated check here can catch, because such a sentence is
+  fully traced to its source and still wrong.
+- Does any sentence say more than the CPIC text above it?
+- Is `patient_friendly` genuinely plain language, and does it avoid
+  telling the reader what to do?
+- Does the *Unknown* case avoid implying a normal result?
 
-**Comments:**
+Anything that looks wrong: record it with
+`python scripts/author_read.py --author '<name>'` and press `f`.
 
-```
-
-
-```
-
-**Reviewer:** ______________________  **Date:** ____________
 
 ---
 
