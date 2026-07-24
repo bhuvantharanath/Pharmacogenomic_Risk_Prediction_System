@@ -1,8 +1,11 @@
-# Optional: only needed for EXPLANATION_MODE=live and for running
-# scripts/pregenerate_explanations.py with --generator llm.
+# Optional: only needed for EXPLANATION_MODE=live and for the build-time
+# generation scripts (pregenerate_explanations.py, benchmark_models.py).
 #
 # The DEPLOYED path (EXPLANATION_MODE=static) does not import this package and
 # makes no network call, so the production image does not install it.
 -r requirements.txt
 
-google-genai==2.13.0
+# Provider SDKs. Each provider imports its own lazily, so only the one you
+# actually use needs to import cleanly at runtime.
+google-genai==2.13.0      # provider: gemini
+openai>=1.40,<2           # providers: nvidia (OpenAI-compatible), ollama

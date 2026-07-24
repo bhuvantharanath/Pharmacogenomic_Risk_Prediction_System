@@ -1,29 +1,19 @@
 """
-PharmaGuard — Gemini explanation generator.
+PharmaGuard — LLM explanation generator (provider-agnostic).
 
 Used offline by `scripts/pregenerate_explanations.py`, and at runtime only when
 `EXPLANATION_MODE=live`. The deployed default never reaches this module, so the
 service has no API dependency in its normal path.
 
-MODEL SELECTION
-    Checked against https://ai.google.dev/gemini-api/docs/models on 2026-07-22.
-    The latest stable Flash model documented there is `gemini-3.6-flash`, which
-    is what `DEFAULT_MODEL` uses. Override with GEMINI_MODEL without editing
-    code.
+PROVIDER ABSTRACTION
+    This module builds the prompt, holds the response schema and the safety
+    system-instruction, and parses/validates the result. The actual API call is
+    delegated to a provider (`providers/`), selected by `LLM_PROVIDER`. That is
+    why a quota wall on one vendor no longer strands the project: switch
+    `LLM_PROVIDER` and the same prompt, schema and guard apply unchanged.
 
-    Free-tier eligibility is NOT stated on the models or rate-limits pages —
-    Google directs you to your own AI Studio dashboard for the limits that apply
-    to your key (https://aistudio.google.com/rate-limit). Confirm there before
-    running a full pre-generation sweep; if the tier is tight,
-    `gemini-3.5-flash-lite` is the cheaper documented option.
-
-    This matters less than it looks: pre-generation is ~36 calls, run once.
-
-SDK
-    google-genai 2.13.0, `client.models.generate_content(...)` with a
-    `GenerateContentConfig` carrying `system_instruction`, `response_mime_type`
-    and `response_schema`. Signatures were read off the installed package, not
-    from memory.
+    Providers: `nvidia` (NIM, OpenAI-compatible), `gemini` (google-genai),
+    `ollama` (local, zero-quota), `template` (deterministic, no network).
 
 SAFETY
     Structured output constrains the shape; it does nothing about truth. Every
@@ -35,87 +25,47 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 from pydantic import BaseModel, Field
 
+from . import generator_template
 from .context import Explanation, ExplanationContext
+from .providers import (
+    LlmUnavailableError,
+    QuotaExhausted,
+    get_provider,
+    resolve_model,
+    resolve_provider_name,
+)
+from .providers.gemini import (
+    GEMINI_MAX_OUTPUT_TOKENS,
+    GEMINI_THINKING_BUDGET,
+    reject_if_truncated as _reject_if_truncated,
+)
+from .providers.json_output import parse_into
+from .providers.redact import scrub as _scrub
 
 GENERATOR_NAME = "llm"
 
-# Verified against the Gemini model list on 2026-07-22. See MODEL SELECTION above.
-DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
-
-# Low but non-zero: near-deterministic prose, without the degenerate repetition
-# temperature 0 sometimes produces on short structured outputs.
+# Backward-compatible re-exports. Callers and tests import these names from here;
+# the real definitions now live with the Gemini provider and the base interface.
+DEFAULT_MODEL = os.environ.get("LLM_MODEL", os.environ.get("GEMINI_MODEL", "gemini-3.6-flash"))
 DEFAULT_TEMPERATURE = 0.2
+MAX_OUTPUT_TOKENS = GEMINI_MAX_OUTPUT_TOKENS
+THINKING_BUDGET = GEMINI_THINKING_BUDGET
 
-#: Output ceiling.
-#:
-#: Four prose fields need perhaps 600 tokens. The earlier value of 2048 looked
-#: generous and was not: on a **thinking** model, reasoning tokens are drawn
-#: from this same budget, so the model spent it deliberating and the JSON was
-#: cut off mid-string. Every failure surfaced as a pydantic error —
-#: "Invalid JSON: EOF while parsing a string at line 4 column 84" — which points
-#: at parsing and not at the token ceiling that actually caused it. That
-#: misdirection cost a whole run: 5 of 12 calls in the 2026-07-23 guard
-#: experiment failed this way (4 more hit the free-tier quota, leaving 3
-#: usable), and the generation run produced zero LLM output at all.
-MAX_OUTPUT_TOKENS = 8192
-
-#: Thinking budget, in tokens. Zero disables it.
-#:
-#: This task is not reasoning. The model composes prose from a closed context it
-#: is forbidden to add to, and the faithfulness guard — not the model's own
-#: deliberation — is what decides whether output is acceptable. Paying for
-#: thinking tokens here buys nothing and, at a finite ceiling, actively
-#: competes with the answer.
-THINKING_BUDGET = 0
-
-
-def _reject_if_truncated(response: object) -> None:
-    """
-    Fail with the real cause when the model ran out of output budget.
-
-    Without this, a truncated response falls through to JSON parsing and reports
-    `Invalid JSON: EOF while parsing a string at line 4 column 84`. That message
-    is true and useless: it describes the symptom at the parser and says nothing
-    about the token ceiling that produced it. Diagnosing it cost a full run.
-
-    `thoughts_token_count` is included because it is the number that makes the
-    cause obvious — if the model spent most of its budget thinking, the fix is
-    the thinking budget, not the prose.
-    """
-    candidates = getattr(response, "candidates", None) or []
-    if not candidates:
-        return
-    reason = getattr(candidates[0], "finish_reason", None)
-    if reason is None or getattr(reason, "name", str(reason)) != "MAX_TOKENS":
-        return
-
-    usage = getattr(response, "usage_metadata", None)
-    thoughts = getattr(usage, "thoughts_token_count", None) or 0
-    emitted = getattr(usage, "candidates_token_count", None) or 0
-    raise LlmUnavailableError(
-        f"Gemini hit the {MAX_OUTPUT_TOKENS}-token output ceiling and the "
-        f"response was cut off mid-JSON "
-        f"({thoughts} thinking tokens, {emitted} output tokens). "
-        "Raise MAX_OUTPUT_TOKENS or lower THINKING_BUDGET in generator_llm.py."
-    )
-
-
-def _scrub(text: object) -> str:
-    """Strip the API key out of any third-party error before it propagates."""
-    rendered = str(text)
-    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
-        secret = os.environ.get(name)
-        if secret and len(secret) > 8 and secret in rendered:
-            rendered = rendered.replace(secret, "<<REDACTED_API_KEY>>")
-    return rendered
-
-
-class LlmUnavailableError(RuntimeError):
-    """No API key, SDK missing, or the call failed. Callers fall back."""
+# `LlmUnavailableError` is re-exported from the providers package so existing
+# `except generator_llm.LlmUnavailableError` catches still work — it is the base
+# of every typed provider error.
+__all__ = [
+    "GENERATOR_NAME",
+    "LlmUnavailableError",
+    "LlmResult",
+    "SYSTEM_INSTRUCTION",
+    "generate",
+    "available",
+]
 
 
 class _ExplanationSchema(BaseModel):
@@ -199,17 +149,17 @@ class LlmResult:
     explanation: Explanation
     model: str
     raw_text: str
+    provider: str = ""
+    json_mode: str = ""
+    usage: dict = field(default_factory=dict)
 
 
-def available() -> bool:
-    """True if a key and the SDK are both present."""
-    if not os.environ.get("GEMINI_API_KEY"):
-        return False
+def available(provider: str | None = None) -> bool:
+    """True if the selected provider has everything it needs to make a call."""
     try:
-        import google.genai  # noqa: F401
-    except ImportError:
+        return get_provider(provider).is_configured()
+    except LlmUnavailableError:
         return False
-    return True
 
 
 def _build_prompt(context: ExplanationContext) -> str:
@@ -233,78 +183,77 @@ def _build_prompt(context: ExplanationContext) -> str:
 def generate(
     context: ExplanationContext,
     *,
+    provider: str | None = None,
     model: str | None = None,
     temperature: float = DEFAULT_TEMPERATURE,
     api_key: str | None = None,
     system_instruction: str | None = None,
 ) -> LlmResult:
     """
-    Call Gemini and parse a structured explanation.
+    Generate a structured explanation via the selected provider.
 
-    Raises `LlmUnavailableError` for anything that goes wrong — missing key,
-    missing SDK, transport failure, unparseable response. Callers treat that as
-    "fall back", never as a 500.
+    Provider and model come from `LLM_PROVIDER` / `LLM_MODEL` unless overridden
+    here. Raises `LlmUnavailableError` (or a typed subclass — `QuotaExhausted`,
+    `RateLimited`, `ModelUnavailable`, `InvalidResponse`) for anything that goes
+    wrong. Callers treat that as "fall back", never as a 500.
+
+    `api_key` is accepted for backward compatibility and, when given, is placed
+    in the environment for the provider to read — providers resolve their own
+    keys by name so no key is threaded through call signatures or logged.
     """
     # `system_instruction` lets the pre-generation CLI retry a guard failure
     # with a stricter prompt naming the offending entities. Defaults to the
     # module constant so the runtime path is unchanged.
     instruction = system_instruction or SYSTEM_INSTRUCTION
+    prompt = _build_prompt(context)
 
-    key = api_key or os.environ.get("GEMINI_API_KEY")
-    if not key:
-        raise LlmUnavailableError(
-            "GEMINI_API_KEY is not set. Live mode needs a key; the deployed "
-            "default (static mode) does not."
+    provider_name = resolve_provider_name(provider)
+
+    # The deterministic template is a "provider" for selection purposes, but it
+    # works from the structured context rather than a text prompt, so it is
+    # handled here where the context is in scope.
+    if provider_name == "template":
+        explanation = generator_template.generate(context)
+        return LlmResult(
+            explanation=explanation,
+            model="deterministic-template",
+            raw_text=json.dumps(explanation.fields(), ensure_ascii=False),
+            provider="template",
+            json_mode="none",
+            usage={},
         )
 
-    try:
-        from google import genai
-        from google.genai import types
-    except ImportError as exc:
+    impl = get_provider(provider_name)
+    model_id = model or resolve_model(impl)
+    if not model_id:
         raise LlmUnavailableError(
-            "google-genai is not installed. Install it with "
-            "`pip install -r requirements-llm.txt`."
+            f"no model id for provider {provider_name!r}; set LLM_MODEL or pass --model"
+        )
+
+    # Backward compat: a caller-supplied key is exposed to the provider by name.
+    if api_key:
+        _key_env = {"gemini": "GEMINI_API_KEY", "nvidia": "NVIDIA_API_KEY"}.get(provider_name)
+        if _key_env and not os.environ.get(_key_env):
+            os.environ[_key_env] = api_key
+
+    result = impl.generate(
+        prompt=prompt,
+        system=instruction,
+        schema=_ExplanationSchema,
+        model=model_id,
+        temperature=temperature,
+        max_tokens=MAX_OUTPUT_TOKENS,
+    )
+
+    # Providers hand back raw text; parsing/validation (and reasoning-block
+    # stripping) is done once here so every provider is judged on JSON content,
+    # not on delivery quirks.
+    try:
+        payload = parse_into(_ExplanationSchema, result.text)
+    except ValueError as exc:
+        raise LlmUnavailableError(
+            f"{provider_name} ({model_id}) returned unusable output: {_scrub(exc)}"
         ) from exc
-
-    model_id = model or DEFAULT_MODEL
-
-    try:
-        client = genai.Client(api_key=key)
-        response = client.models.generate_content(
-            model=model_id,
-            contents=_build_prompt(context),
-            config=types.GenerateContentConfig(
-                system_instruction=instruction,
-                response_mime_type="application/json",
-                response_schema=_ExplanationSchema,
-                temperature=temperature,
-                max_output_tokens=MAX_OUTPUT_TOKENS,
-                thinking_config=types.ThinkingConfig(thinking_budget=THINKING_BUDGET),
-            ),
-        )
-    except Exception as exc:  # noqa: BLE001 - SDK raises a wide range
-        # Scrub before the message escapes: this string is surfaced in CLI
-        # output and written to logs/guard_events.jsonl. Verified that
-        # google-genai does not echo the key, but a third-party error string is
-        # not something to take on trust.
-        raise LlmUnavailableError(f"Gemini call failed: {_scrub(exc)}") from exc
-
-    _reject_if_truncated(response)
-
-    parsed = getattr(response, "parsed", None)
-    if isinstance(parsed, _ExplanationSchema):
-        payload = parsed
-    else:
-        # `parsed` is None when the model returns JSON the schema rejects.
-        text = (getattr(response, "text", None) or "").strip()
-        if not text:
-            raise LlmUnavailableError("Gemini returned an empty response.")
-        try:
-            payload = _ExplanationSchema.model_validate_json(text)
-        except Exception as exc:  # noqa: BLE001
-            raise LlmUnavailableError(
-                f"Gemini returned output that did not match the schema: {_scrub(exc)}"
-            ) from exc
 
     return LlmResult(
         explanation=Explanation(
@@ -313,6 +262,9 @@ def generate(
             variant_rationale=payload.variant_rationale.strip(),
             patient_friendly=payload.patient_friendly.strip(),
         ),
-        model=model_id,
-        raw_text=getattr(response, "text", "") or "",
+        model=result.model or model_id,
+        raw_text=result.text,
+        provider=provider_name,
+        json_mode=result.json_mode,
+        usage=result.usage,
     )

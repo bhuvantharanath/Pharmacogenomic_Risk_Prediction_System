@@ -36,12 +36,15 @@ USAGE
 from __future__ import annotations
 
 import argparse
+import os
 import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
 from _common import (
+    DEFAULT_PROVIDER,
+    PROVIDER_KEY_ENV,
     DEFAULT_DELAY_SECONDS,
     DEFAULT_MODEL,
     EXPLANATIONS_PATH,
@@ -372,6 +375,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--cases", type=int, default=3, help="Real cases per arm (default 3).")
     parser.add_argument("--arms", default=",".join(ARMS), help=f"Comma-separated subset of {ARMS}.")
+    parser.add_argument("--provider", default=DEFAULT_PROVIDER,
+                        help=f"LLM provider (default {DEFAULT_PROVIDER}).")
     parser.add_argument("--model", default=DEFAULT_MODEL)
     parser.add_argument("--delay", type=float, default=DEFAULT_DELAY_SECONDS)
     parser.add_argument("--dry-run", action="store_true", help="Show the plan; make NO API call.")
@@ -379,6 +384,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     _assert_not_explanations(args.output)
+
+    os.environ["LLM_PROVIDER"] = args.provider
+    if args.model:
+        os.environ["LLM_MODEL"] = args.model
 
     arms = [a.strip() for a in args.arms.split(",") if a.strip()]
     unknown = [a for a in arms if a not in ARMS]
@@ -392,7 +401,7 @@ def main(argv: list[str] | None = None) -> int:
 
     total = len(contexts) * len(arms)
     print(bold("\nFaithfulness guard — adversarial validation"))
-    print(dim(f"  model={args.model}  cases={len(contexts)}  arms={arms}  runs={total}"))
+    print(dim(f"  provider={args.provider}  model={args.model or '(default)'}  cases={len(contexts)}  arms={arms}  runs={total}"))
     print(dim(f"  output={args.output.relative_to(REPO_ROOT)} (NEVER explanations.json)\n"))
 
     if args.dry_run:
@@ -403,8 +412,9 @@ def main(argv: list[str] | None = None) -> int:
         print(dim("No API call was made."))
         return 0
 
-    if not api_key():
-        print(red("GEMINI_API_KEY is not set."), file=sys.stderr)
+    key_env = PROVIDER_KEY_ENV.get(args.provider, "")
+    if key_env and not api_key(args.provider):
+        print(red(f"{key_env} is not set for provider {args.provider!r}."), file=sys.stderr)
         return 2
 
     limiter = RateLimiter(args.delay)
@@ -424,7 +434,7 @@ def main(argv: list[str] | None = None) -> int:
 
     RAW_PATH.parent.mkdir(parents=True, exist_ok=True)
     _assert_not_explanations(RAW_PATH)
-    RAW_PATH.write_text(json.dumps({"model": args.model, "results": results}, indent=1))
+    RAW_PATH.write_text(json.dumps({"provider": args.provider, "model": args.model, "results": results}, indent=1))
 
     write_report(results, args.model, args.output)
 

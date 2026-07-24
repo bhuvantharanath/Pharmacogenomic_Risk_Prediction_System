@@ -352,6 +352,30 @@ python test-data/generate_synthetic_vcf.py --definitions-dir definitions/ \
 - The backend is stateless: restart it and nothing persists, because nothing was
   ever persisted.
 
+### No patient genome ever reaches an LLM provider
+
+The explanations are written by a language model, yet **no patient genomic data
+is ever transmitted to that model — at build time or run time.** This is a
+property of the architecture, not a promise:
+
+- **Build time.** Explanations are pre-generated from *generic* cases: a
+  `(gene, phenotype, drug)` triple plus the **published CPIC recommendation
+  text**. Patient-specific values are placeholders (`{diplotype}`,
+  `{detected_variants}`), because one reviewed sentence is reused for every
+  patient sharing a phenotype. There is no patient at build time at all.
+- **Run time.** The deployed service runs in **static mode**: it looks the
+  pre-generated explanation up by `(drug, phenotype)` and fills the slots
+  **locally**. It imports no provider SDK and opens no socket to any model. A
+  real diplotype is substituted on the server and sent nowhere.
+
+So the only text that ever leaves for a model is text that already exists in a
+public CPIC guideline. This is what lets the system explain a genome without
+becoming a way to leak one — and it is pinned by
+[`test_privacy.py`](backend/tests/test_privacy.py), which checks every case's
+actual model payload carries no diplotype, rsID, variant or activity score, and
+that the static path reaches no provider even with every provider poisoned to
+raise on contact.
+
 This is asserted by tests, not just by policy —
 [`test_deployment.py::TestNoDataRetention`](backend/tests/test_deployment.py)
 checks the temp directory is empty after a real request **and** after a simulated

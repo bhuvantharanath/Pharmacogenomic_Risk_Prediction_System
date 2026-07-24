@@ -64,6 +64,45 @@ passing**.
 
 ---
 
+## Phase 5B — provider abstraction + NVIDIA (2026-07-24)
+
+### Status: abstraction complete and tested; **live NVIDIA run pending a key**
+
+The Gemini key hit its daily free-tier wall (`RESOURCE_EXHAUSTED`) during the
+5A run. Rather than wait for a reset, the LLM layer was made **provider-agnostic**
+so a quota wall on one vendor no longer strands the project.
+
+| Delivered | Detail |
+| --- | --- |
+| **Provider package** | `backend/app/explanation/providers/`: one interface, four implementations — `nvidia` (NIM, OpenAI-compatible), `gemini` (google-genai), `ollama` (local, zero-quota), `template` (deterministic). Selected by `LLM_PROVIDER` / `LLM_MODEL` |
+| **Typed errors** | `QuotaExhausted` / `RateLimited` / `ModelUnavailable` / `InvalidResponse`, normalised across vendors. **NVIDIA 402 → QuotaExhausted** with a distinct message; all subclass `LlmUnavailableError` so existing catches still work |
+| **JSON negotiation** | tries `response_format` then prompt-enforced; strips `<think>…</think>`, unwraps fences; records `json_mode` per entry |
+| **Model discovery** | `list_models.py --provider nvidia` queries `/v1/models` and probes JSON support. Credit-free status is **not** in the API — the script says so and points at the catalogue rather than guessing |
+| **Model benchmark** | `benchmark_models.py` runs candidates on the same 3 cases (Safe/Adjust/Toxic), ranks by guard > provenance > JSON. This *is* the model-selection experiment for the report |
+| **Privacy property** | pinned by `test_privacy.py`: no patient genome reaches any provider at build or run time (see below) |
+| **Tests** | +30: `test_providers.py` (24 — selection, error mapping, JSON recovery, quota→template) and `test_privacy.py` (6). Deployed path verified to import cleanly with **no SDK installed** |
+
+**What is NOT done:** no NVIDIA key is present, so `list_models`, the benchmark,
+and the real generation run have not executed. `explanations.json` is still the
+5A template store. The two "not measured" cells from 5A stay not-measured until a
+provider with quota runs. Everything up to that point — the abstraction, the
+tooling, the tests — is complete and green (398 passed, 10 skipped).
+
+### No patient genome reaches any LLM provider
+
+A real architectural property, now that a model is genuinely in the loop:
+
+- **Build time** — pregeneration sends a generic `(gene, phenotype, drug)` triple
+  plus published CPIC text; patient fields are placeholders. There is no patient.
+- **Run time** — the deployed service is static: it looks up by `(drug, phenotype)`
+  and fills slots locally, importing no provider and opening no socket.
+
+`test_privacy.py` checks every case's actual model payload carries no diplotype,
+rsID, variant or activity score, and that the static path reaches no provider
+even with all providers poisoned to raise on contact.
+
+---
+
 ## Phase 5A — real LLM generation (2026-07-23)
 
 ### Status: tooling complete, **run not executed**

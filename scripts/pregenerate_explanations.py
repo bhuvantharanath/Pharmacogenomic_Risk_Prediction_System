@@ -39,6 +39,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -46,6 +47,8 @@ from pathlib import Path
 
 from _common import (
     CASE_MATRIX_PATH,
+    DEFAULT_PROVIDER,
+    PROVIDER_KEY_ENV,
     DEFAULT_DELAY_SECONDS,
     DEFAULT_MODEL,
     EXPLANATIONS_PATH,
@@ -60,6 +63,7 @@ from _common import (
     load_json,
     prompt_hash,
     red,
+    rel,
     rule,
     scrub,
     write_json_atomic,
@@ -229,6 +233,7 @@ def generate_one(
     and is recorded as such, so one bad case cannot abort a long run.
     """
     from app.explanation import generator_llm
+    from app.explanation.providers import QuotaExhausted
 
     system_instruction = generator_llm.SYSTEM_INSTRUCTION
     user_prompt = generator_llm._build_prompt(context)
@@ -248,6 +253,11 @@ def generate_one(
             result = _call_with_backoff(
                 context, model, instruction, limiter, verbose
             )
+        except QuotaExhausted:
+            # A hard wall fails every remaining case identically. Let it out so
+            # the run stops cleanly rather than emitting 20 template fallbacks
+            # that bury the real cause.
+            raise
         except generator_llm.LlmUnavailableError as exc:
             if verbose:
                 print(red(f"      API error: {scrub(exc)}"))
@@ -266,8 +276,12 @@ def generate_one(
                 "phenotype": case.phenotype,
                 "derived_risk_label": context.risk_label.value,
                 "explanation": result.explanation.fields(),
-                "generator": f"llm:{result.model}",
+                # Template-as-provider is honestly labelled "template", not "llm:".
+                "generator": "template" if result.provider == "template" else f"llm:{result.model}",
+                "provider": result.provider,
                 "model": result.model,
+                "json_mode": result.json_mode,
+                "usage": result.usage,
                 "prompt_hash": phash,
                 "generated_at": datetime.now(timezone.utc).isoformat(),
                 "guard_report": report.to_dict(),
@@ -297,8 +311,15 @@ def generate_one(
 
 
 def _call_with_backoff(context, model: str, instruction: str, limiter: RateLimiter, verbose: bool):
-    """Call Gemini, backing off exponentially on 429."""
+    """
+    Call the selected provider, backing off exponentially on a transient limit.
+
+    A hard quota/credit wall (`QuotaExhausted`) is re-raised immediately: backing
+    off and retrying cannot recover credits, so waiting would only slow the
+    inevitable fall back to the template. Only a `RateLimited`/429 is retried.
+    """
     from app.explanation import generator_llm
+    from app.explanation.providers import QuotaExhausted
 
     last_error: Exception | None = None
     for attempt in range(1, 5):
@@ -306,6 +327,8 @@ def _call_with_backoff(context, model: str, instruction: str, limiter: RateLimit
             return generator_llm.generate(
                 context, model=model, system_instruction=instruction
             )
+        except QuotaExhausted:
+            raise  # a wall, not a speed bump — do not back off
         except generator_llm.LlmUnavailableError as exc:
             last_error = exc
             if not RateLimiter.is_rate_limit_error(exc) or attempt == 4:
@@ -355,7 +378,9 @@ def _fallback_entry(
         "derived_risk_label": context.risk_label.value,
         "explanation": explanation.fields(),
         "generator": "template",
+        "provider": "template",
         "model": model,
+        "json_mode": "none",
         "prompt_hash": phash,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "guard_report": report.to_dict(),
@@ -414,7 +439,9 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--resume", action="store_true", help="Skip cases already present in the output.")
     parser.add_argument("--force", action="store_true", help="Regenerate even if already present.")
     parser.add_argument("--limit", type=int, default=0, metavar="N", help="Stop after N cases.")
-    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--provider", default=DEFAULT_PROVIDER,
+                        help=f"LLM provider: nvidia|gemini|ollama|template (default {DEFAULT_PROVIDER}).")
+    parser.add_argument("--model", default=DEFAULT_MODEL, help="Model id within the provider.")
     parser.add_argument("--delay", type=float, default=DEFAULT_DELAY_SECONDS, help="Seconds between requests.")
     parser.add_argument("-o", "--output", type=Path, default=EXPLANATIONS_PATH)
     parser.add_argument("-v", "--verbose", action="store_true")
@@ -422,6 +449,13 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.resume and args.force:
         parser.error("--resume and --force are mutually exclusive")
+
+    # The generator reads provider/model from the environment; setting them from
+    # the CLI here keeps a single source of truth and lets every downstream call
+    # (generate, backoff) agree without threading the values through.
+    os.environ["LLM_PROVIDER"] = args.provider
+    if args.model:
+        os.environ["LLM_MODEL"] = args.model
 
     cases = load_reachable_cases()
     if args.only:
@@ -446,7 +480,8 @@ def main(argv: list[str] | None = None) -> int:
     print(bold("\nPharmaGuard explanation pre-generation"))
     print(
         dim(
-            f"  model={args.model}  delay={args.delay}s ({60 / max(args.delay, 0.01):.0f} RPM)  "
+            f"  provider={args.provider}  model={args.model or '(provider default)'}  "
+            f"delay={args.delay}s ({60 / max(args.delay, 0.01):.0f} RPM)  "
             f"reachable={len(cases)}  to-do={len(todo)}  already={len(by_key)}"
         )
     )
@@ -464,14 +499,19 @@ def main(argv: list[str] | None = None) -> int:
             context, _ = build_context(case)
             print_dry_run(case, context, args.model)
         print(rule())
-        print(f"\n{bold(str(len(todo)))} case(s) would be sent to {bold(args.model)}.")
+        target = f"{args.provider}:{args.model}" if args.model else args.provider
+        print(f"\n{bold(str(len(todo)))} case(s) would be sent to {bold(target)}.")
         print(dim(f"Estimated wall time at {args.delay}s/request: ~{len(todo) * args.delay / 60:.1f} min"))
         print(dim("No API call was made. Re-run without --dry-run to generate."))
         return 0
 
-    if not api_key():
-        print(red("GEMINI_API_KEY is not set — cannot generate."), file=sys.stderr)
+    key_env = PROVIDER_KEY_ENV.get(args.provider, "")
+    if key_env and not api_key(args.provider):
+        print(red(f"{key_env} is not set — cannot generate with provider {args.provider!r}."), file=sys.stderr)
+        print(dim("  Put it in repo-root .env, or switch --provider (ollama/template need no key)."), file=sys.stderr)
         return 2
+
+    from app.explanation.providers import QuotaExhausted
 
     limiter = RateLimiter(args.delay)
     generated = fallbacks = 0
@@ -479,7 +519,17 @@ def main(argv: list[str] | None = None) -> int:
     for index, case in enumerate(todo, start=1):
         print(f"  [{index:>2}/{len(todo)}] {case.drug:<14} {case.phenotype:<8} ", end="", flush=True)
         context, _ = build_context(case)
-        entry = generate_one(case, context, args.model, limiter, args.verbose)
+        try:
+            entry = generate_one(case, context, args.model, limiter, args.verbose)
+        except QuotaExhausted as exc:
+            # A depleted key fails every remaining case identically. Stop rather
+            # than churn out 20 template fallbacks that hide the real cause, and
+            # leave already-generated work saved.
+            print(red("QUOTA EXHAUSTED"))
+            print(red(f"\n  {scrub(exc)}"))
+            print(yellow(f"  Stopped after {index - 1} case(s). Work so far is saved."))
+            print(dim("  Switch --provider (e.g. nvidia/ollama) or top up, then --resume."))
+            return 3
 
         by_key[case.key] = entry
         if entry["fallback"]:
@@ -497,6 +547,7 @@ def main(argv: list[str] | None = None) -> int:
                 "version": 2,
                 "generated_at": datetime.now(timezone.utc).isoformat(),
                 "generator": "llm",
+                "provider": args.provider,
                 "model": args.model,
                 "pharmaguard_note": (
                     "LLM-generated, guard-checked explanations. Slots are filled at "
@@ -513,10 +564,10 @@ def main(argv: list[str] | None = None) -> int:
 
     print(rule())
     print(f"\n  generated {green(str(generated))}   fallback {yellow(str(fallbacks))}   total {len(by_key)}")
-    print(dim(f"  wrote {args.output.relative_to(REPO_ROOT)}"))
-    print(dim(f"  guard events appended to {GUARD_EVENTS_PATH.relative_to(REPO_ROOT)}"))
+    print(dim(f"  wrote {rel(args.output)}"))
+    print(dim(f"  guard events appended to {rel(GUARD_EVENTS_PATH)}"))
     print(dim("\nNext:  python scripts/generation_report.py"))
-    print(dim("Then:  python scripts/review.py --reviewer '<your name>'"))
+    print(dim("Then:  python scripts/verify_provenance.py --write"))
     return 0
 
 

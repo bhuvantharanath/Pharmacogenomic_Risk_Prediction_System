@@ -45,13 +45,31 @@ if str(BACKEND) not in sys.path:
 # Model + rate limiting
 # --------------------------------------------------------------------------- #
 
-#: Default model. Overridable with GEMINI_MODEL, and by `--model` on the CLIs.
+#: Which provider the CLIs talk to. One of nvidia | gemini | ollama | template.
 #:
-#: `gemini-3.6-flash` was confirmed present in this project's own
-#: `models.list()` output on 2026-07-23 (see scripts/README.md). It is not
-#: hardcoded anywhere in application source — only here, as a default that the
-#: environment can override, because model ids change often.
-DEFAULT_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
+#: After the Gemini key hit its daily wall on 2026-07-23, the generation layer
+#: became provider-agnostic. `LLM_PROVIDER` selects; `--model`/LLM_MODEL picks
+#: the id within that provider. The default stays `gemini` for continuity with
+#: existing config, but the phase that added NVIDIA sets `LLM_PROVIDER=nvidia`.
+DEFAULT_PROVIDER = os.environ.get("LLM_PROVIDER", "gemini").strip().lower()
+
+#: Default model id. `LLM_MODEL` is the provider-agnostic override; `GEMINI_MODEL`
+#: is still honoured for backward compatibility. No id is hardcoded in
+#: application source — model ids change often, and NVIDIA ids especially must be
+#: discovered with `scripts/list_models.py`, not written from memory.
+DEFAULT_MODEL = (
+    os.environ.get("LLM_MODEL")
+    or os.environ.get("GEMINI_MODEL")
+    or ("gemini-3.6-flash" if DEFAULT_PROVIDER == "gemini" else "")
+)
+
+#: Environment variable holding each provider's key. Ollama and template need none.
+PROVIDER_KEY_ENV = {
+    "nvidia": "NVIDIA_API_KEY",
+    "gemini": "GEMINI_API_KEY",
+    "ollama": "",
+    "template": "",
+}
 
 #: Seconds between requests.
 #:
@@ -80,9 +98,13 @@ def load_env() -> None:
         os.environ.setdefault(key.strip(), value.strip())
 
 
-def api_key() -> str | None:
+def api_key(provider: str | None = None) -> str | None:
+    """The key for `provider` (default: the configured one). None if not needed/set."""
     load_env()
-    return os.environ.get("GEMINI_API_KEY") or None
+    name = PROVIDER_KEY_ENV.get((provider or DEFAULT_PROVIDER).strip().lower(), "GEMINI_API_KEY")
+    if not name:  # ollama / template need no key
+        return None
+    return os.environ.get(name) or None
 
 
 def redact(secret: str | None) -> str:
@@ -105,7 +127,7 @@ def scrub(text: object) -> str:
     Cheap insurance: one string replace on a path that only runs on failure.
     """
     rendered = str(text)
-    for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY"):
+    for name in ("NVIDIA_API_KEY", "GEMINI_API_KEY", "GOOGLE_API_KEY", "OPENAI_API_KEY"):
         secret = os.environ.get(name)
         if secret and len(secret) > 8 and secret in rendered:
             rendered = rendered.replace(secret, "<<REDACTED_API_KEY>>")
@@ -199,6 +221,14 @@ def bold(t: str) -> str:
 
 def dim(t: str) -> str:
     return _c("2", t)
+
+
+def rel(path: Path) -> str:
+    """Path relative to the repo for display, or the absolute path if outside it."""
+    try:
+        return str(path.relative_to(REPO_ROOT))
+    except ValueError:
+        return str(path)
 
 
 def rule(title: str = "", width: int = 78) -> str:

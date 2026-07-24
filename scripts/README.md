@@ -77,51 +77,91 @@ output, and it does not.
 
 ---
 
+## Providers — the LLM layer is not tied to one vendor
+
+The generation layer is provider-agnostic. Two keys hit their walls during this
+project (Gemini's daily free-tier cap, then again), so the code that calls a
+model was pulled behind an interface and vendors became configuration.
+
+| Provider | `LLM_PROVIDER` | Key | Notes |
+| --- | --- | --- | --- |
+| **NVIDIA NIM** | `nvidia` | `NVIDIA_API_KEY` (`nvapi-…`) | OpenAI-compatible, `https://integrate.api.nvidia.com/v1`. The working provider for this phase |
+| Google Gemini | `gemini` | `GEMINI_API_KEY` | The original. Quota-exhausted as of 2026-07-23 |
+| Ollama (local) | `ollama` | none | Zero-quota dev against a local model (`OLLAMA_HOST`) |
+| Template | `template` | none | Deterministic, no network. The fallback, and an honest benchmark baseline |
+
+Select with two environment variables (or `--provider` / `--model` on any CLI):
+
+```bash
+export LLM_PROVIDER=nvidia
+export LLM_MODEL=<id from list_models.py>
+```
+
+**Switching when a key runs out** is now a config change, not a code change:
+set `LLM_PROVIDER` to another vendor and re-run with `--resume`. Errors are
+normalised across vendors — a depleted account raises `QuotaExhausted` (NVIDIA
+returns HTTP **402** for this; Gemini says `RESOURCE_EXHAUSTED`), which stops a
+batch cleanly instead of emitting 20 template fallbacks that bury the cause.
+
+**JSON output** is negotiated per model: the provider tries
+`response_format={"type":"json_object"}` first and falls back to prompt-enforced
+JSON, stripping any `<think>…</think>` reasoning block and unwrapping code
+fences before parsing. Which mode a model needed is recorded on every entry
+(`json_mode`).
+
+---
+
 ## From a clean checkout to reviewed explanations
 
-Ten steps. Only steps 6 and 8 spend quota; the rest are free.
+Eleven steps. Only steps 7 and 9 spend real quota; the rest are free.
 
 ```bash
 # 1. Dependencies
 python -m venv backend/.venv && source backend/.venv/bin/activate
 pip install -r backend/requirements.txt -r backend/requirements-llm.txt
 
-# 2. Key (repo root, gitignored — NOT backend/.env)
-echo 'GEMINI_API_KEY=...' > .env
+# 2. Provider + key (repo root .env, gitignored — NOT backend/.env)
+echo 'LLM_PROVIDER=nvidia'       >  .env
+echo 'NVIDIA_API_KEY=nvapi-...'  >> .env
 
-# 3. Confirm the model id is real. Never write one from memory.
-python scripts/list_models.py
-echo 'GEMINI_MODEL=gemini-3.6-flash' >> .env      # whatever step 3 showed
+# 3. Discover real model ids. Never write one from memory.
+python scripts/list_models.py --provider nvidia
+python scripts/list_models.py --provider nvidia --probe-json <id>   # check JSON support
 
-# 4. Gate everything on preflight. Exits non-zero if a run would fail.
+# 4. Pick the model on evidence, not reputation (tiny spend).
+python scripts/benchmark_models.py --auto --dry-run          # plan
+python scripts/benchmark_models.py --models <a,b,c>          # runs 3 cases each
+echo 'LLM_MODEL=<the winner>' >> .env
+
+# 5. Gate everything on preflight. Exits non-zero if a run would fail.
 python scripts/preflight.py
 
-# 5. Derive which cases the pipeline can actually produce.
+# 6. Derive which cases the pipeline can actually produce.
 python scripts/enumerate_cases.py
 
-# 6. Rehearse, then generate. --dry-run makes no API call.
+# 7. Rehearse, then generate. --dry-run makes no API call.
 python scripts/pregenerate_explanations.py --dry-run
 python scripts/pregenerate_explanations.py --resume
 
-# 7. The real numbers for the project report.
+# 8. The real numbers for the project report.
 python scripts/generation_report.py
 
-# 8. Adversarial validation of the guard. Separate quota spend.
+# 9. Adversarial validation of the guard. Separate quota spend.
 python scripts/guard_experiment.py --dry-run
 python scripts/guard_experiment.py
 
-# 9. The release gate. Traces every clinical sentence to a cited source.
+# 10. The release gate. Traces every clinical sentence to a cited source.
 python scripts/verify_provenance.py --write
 python scripts/review_status.py          # non-zero if anything is unverified
 
-# 10. Optional but worthwhile: read them yourself. Not clinical approval —
+# 11. Optional but worthwhile: read them yourself. Not clinical approval —
 #     nobody here can give that — but it catches direction-of-effect errors,
 #     which no check in this repo can.
 python scripts/export_for_reading.py
 python scripts/author_read.py --author "<your name>"
 ```
 
-Steps 4, 5, 7, 9 and 10 are safe to re-run at any time.
+Steps 5, 6, 8, 10 and 11 are safe to re-run at any time.
 
 ---
 
@@ -129,14 +169,15 @@ Steps 4, 5, 7, 9 and 10 are safe to re-run at any time.
 
 | Script | Spends quota | Purpose |
 | --- | --- | --- |
-| `_common.py` | — | Shared plumbing: key loading, throttle, redaction, atomic writes. Not a CLI |
-| `list_models.py` | metadata only | What model ids this key can actually see |
-| `preflight.py` | one metadata call | Ten checks. Gate a run on its exit code |
+| `_common.py` | — | Shared plumbing: provider/key resolution, throttle, redaction, atomic writes. Not a CLI |
+| `list_models.py` | metadata only | Real model ids per provider (`--provider nvidia`), with a JSON-support probe |
+| `benchmark_models.py` | **yes** (tiny) | Runs candidates on 3 real cases; ranks by guard > provenance > JSON. Picks the model |
+| `preflight.py` | one metadata call | Provider-aware checks. Gate a run on its exit code |
 | `enumerate_cases.py` | no | Derives reachable cases from PharmCAT's own phenotype definitions |
-| `pregenerate_explanations.py` | **yes** | Generates, guards, retries, falls back. Writes `explanations.json` |
+| `pregenerate_explanations.py` | **yes** | Generates via the selected provider, guards, retries, falls back. Writes `explanations.json` |
 | `guard_experiment.py` | **yes** | Four adversarial arms. Evidence that the guard discriminates |
 | `generation_report.py` | no | `reports/generation_report.md` — pass rates, fallbacks, coverage |
-| `export_for_reading.py` | no | All 20 explanations in one document, to read straight through |
+| `export_for_reading.py` | no | All explanations in one document, to read straight through |
 | `verify_provenance.py` | no | **The release gate.** Traces every clinical sentence to its source; non-zero exit on any failure |
 | `author_read.py` | no | Records that the author read an entry. No approve action — see below |
 | `review_status.py` | no | Provenance and author-read coverage, reported separately |
