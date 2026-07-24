@@ -66,6 +66,8 @@ from _common import (
     yellow,
 )
 
+from app.explanation.provenance import MECHANISM_REQUIRES_INDIVIDUAL_ADJUDICATION
+
 SCRIPTS = REPO_ROOT / "scripts"
 
 #: Bumped when the adjudication schema changes.
@@ -117,9 +119,17 @@ def collect_flagged(vp, entries: list[dict], include_all: bool) -> list[dict]:
     for entry in entries:
         result = vp.verify_entry(entry, labels, phenos)
         for sentence in result.sentences:
-            if sentence.kind in (vp.FRAMING, vp.PROCESS) and not include_all:
+            # Mechanism sentences ALWAYS require an individual decision. The
+            # closed-vocabulary check that would have screened them was retired
+            # from the gate at a measured 30% false-positive rate, so a human
+            # reads every one — that is what replaces it, not nothing.
+            mandatory = (
+                sentence.field_name == "mechanism"
+                and MECHANISM_REQUIRES_INDIVIDUAL_ADJUDICATION
+            )
+            if sentence.kind in (vp.FRAMING, vp.PROCESS) and not include_all and not mandatory:
                 continue
-            if sentence.verified and not include_all:
+            if sentence.verified and not include_all and not mandatory:
                 continue
             items.append({
                 "case": result.key,
@@ -234,15 +244,26 @@ def main(argv: list[str] | None = None) -> int:
 
     vp = _load("verify_provenance")
     store = load_json(args.input)
-    entries = store.get("explanations", [])
+
+    # `all_entries` is EVERY entry and is what gets written back. `entries` is
+    # only the subset this invocation examines.
+    #
+    # These were the same list once, and `--only` filtered it in place — so a
+    # run scoped to one drug wrote back only that drug and silently deleted the
+    # other sixteen entries. It destroyed a real store. Filtering what you look
+    # at must never change what you save.
+    all_entries = store.get("explanations", [])
+    entries = all_entries
     if args.only:
         wanted = {d.strip().lower() for d in args.only}
-        entries = [e for e in entries if e.get("drug", "").lower() in wanted]
+        entries = [e for e in all_entries if e.get("drug", "").lower() in wanted]
     if not entries:
         print(red("No entries match."), file=sys.stderr)
         return 2
 
-    by_case = {f"{e['drug']}:{e['phenotype']}": e for e in entries}
+    # Keyed over ALL entries: decisions mutate these dicts in place, so writing
+    # `all_entries` back preserves both the edits and everything untouched.
+    by_case = {f"{e['drug']}:{e['phenotype']}": e for e in all_entries}
 
     if args.bulk_accept_unflagged:
         # Every claim-bearing sentence the filter DID source. Recorded as a bulk

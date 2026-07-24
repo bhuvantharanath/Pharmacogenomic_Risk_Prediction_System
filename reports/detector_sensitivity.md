@@ -1,6 +1,6 @@
 # Detector sensitivity
 
-**Generated:** 2026-07-24T09:54:33.165622+00:00  
+**Generated:** 2026-07-24T10:06:44.085365+00:00  
 **Method:** known-bad sentences injected into real generated text, then run through the field-level + polarity checks.
 
 ## Why this exists
@@ -15,10 +15,50 @@ Violations are injected into **real generated prose**, not synthetic
 sentences — proving the check fires against the text actually shipped, in
 context, rather than merely proving a regex matches.
 
+## The mechanism vocabulary check: measured, then retired
+
+A decision rule was recorded **before any tuning**, to prevent the
+outcome that befell the first detector (tuned 12 → 4 → 0 flagged, and
+blunted in the process):
+
+> **new FP rate < 15%** → keep the check in the triage pipeline  
+> **new FP rate ≥ 15%** → retire it from the gate; keep it as a measured
+> capability with documented limits, and rely on mandatory individual
+> adjudication of every mechanism sentence
+
+| | False-positive rate on 53 real mechanism sentences |
+| --- | ---: |
+| Every content word (original) | **57%** (30/53) |
+| Concrete nouns only, POS-tagged (narrowed) | **30%** (16/53) |
+
+Narrowing to NOUN/PROPN plus an abstract-noun stoplist removed the
+adjective/adverb noise (`genetic`, `well`, `properly`, `effectively`)
+and preserved every planted catch. It is a real improvement and it is
+still above the threshold.
+
+**Branch taken: RETIRE.** 30% ≥ 15%. The check still runs and still
+reports — its output is shown to the adjudicator as a hint — but it does
+not fail a release. What replaces it is not nothing: every mechanism
+sentence now requires an individual human decision and cannot be
+bulk-accepted.
+
+It was not tuned further. Reaching a nicer number by continuing to relax
+the rule is exactly the failure the pre-commitment exists to prevent.
+
 ## Headline
 
-- **5/5 planted violations caught**
+- **5/5 planted violations detected**
+- of those, **4 FAIL the automated gate**; 1 are reported but non-gating
 - **0 false alarms** on 2 clean controls
+
+### Gating vs reported
+
+The mechanism closed-vocabulary check was **retired from the gate** at a
+measured 30% false-positive rate on real mechanism prose — above the 15%
+threshold recorded before any tuning. It still runs and still reports, so
+the fabricated-mechanism plant is *detected*; it no longer *fails* the
+check. What replaces it as the safeguard is mandatory individual
+adjudication of every mechanism sentence.
 
 ✅ **No misses.** Every planted violation was flagged.
 

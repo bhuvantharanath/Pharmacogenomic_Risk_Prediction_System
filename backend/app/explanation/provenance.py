@@ -482,34 +482,68 @@ def polarity_conflicts(sentence: str, source: str) -> list[str]:
 # "leukopenia" as "low white blood cell count" introduces words no clinical
 # source contains, and that is the field working correctly, not failing.
 
-#: Ordinary English that carries no biomedical claim. A term outside the corpus
-#: is only reported if it is not in here. Kept explicit rather than statistical
-#: so a false positive can be argued with by reading a list.
-_MECHANISM_STOPLIST = frozenset("""
-a an the and or but if then than that this these those there here of in on at to
-for with without from by as is are was were be been being it its your you their
-they them we our us who which what when where how why not no nor so such very
-more most much many few less least same can will just should now may might could
-would shall must has have had do does did doing done get got make made take
-also however therefore because since while during before after above below up
-down out off over under again further once about against between into through
-result results resulting show shows shown suggest suggests indicate indicates
-mean means meaning likely unlikely other others another each both all any some
-one two three both either neither
-person patient patients people body bodies someone individual individuals
-drug drugs medicine medicines medication medications dose doses therapy
-gene genes result called reported analysis test tests testing
-this that these those where which who whom
-amount amounts level levels rate rates way ways form forms type types kind kinds
-work works working help helps helping need needs needed use used using
-produce produces produced cause causes caused causing lead leads leading
-change changes changed changing affect affects affected
-normal reduced increased higher lower less more high low
+#: Abstract nouns that are grammatically nouns but carry no biomedical content.
+#: A POS tagger keeps "ability", "result" and "process" because they ARE nouns;
+#: they are excluded here because being outside the corpus tells us nothing.
+_ABSTRACT_NOUNS = frozenset("""
+ability abilities result results effect effects way ways level levels amount
+amounts rate rates process processes function functions response responses
+type types kind kinds form forms case cases term terms part parts point points
+reason reasons factor factors change changes difference differences
+person persons patient patients people body bodies someone individual individuals
+doctor doctors pharmacist pharmacists provider providers
+drug drugs medicine medicines medication medications dose doses therapy therapies
+treatment treatments gene genes result analysis test tests
+information detail details example examples number numbers time times
+condition conditions situation situations problem problems issue issues
 """.split())
 
-#: Content terms are words of 4+ characters not in the stoplist. Short words are
-#: overwhelmingly function words and generate noise.
+#: Minimum length for a checkable noun. Short nouns are overwhelmingly generic.
 _MECHANISM_MIN_LEN = 4
+
+#: Does the vocabulary check gate a release? **No.**
+#:
+#: A decision rule was recorded BEFORE tuning: keep it in the gate below a 15%
+#: false-positive rate on real mechanism text, retire it at or above. Narrowing
+#: to concrete nouns took it from 57% to 30% while preserving 5/5 planted
+#: catches — a real improvement, and still above the line. It is retired from
+#: the gate rather than tuned further, because the first detector was tuned
+#: 12 -> 4 -> 0 and ended up blunted; honouring a pre-committed threshold is the
+#: safeguard against repeating that.
+#:
+#: It remains a measured capability: it still runs, still reports, and its
+#: output is shown to the adjudicator as a hint. What replaces it as the
+#: safeguard is MANDATORY individual adjudication of every mechanism sentence.
+MECHANISM_VOCAB_GATES = False
+
+#: Because the vocabulary check does not gate, mechanism sentences cannot be
+#: bulk-accepted — each is read individually.
+MECHANISM_REQUIRES_INDIVIDUAL_ADJUDICATION = True
+
+_NLP = None
+_NLP_TRIED = False
+
+
+def _tagger():
+    """
+    Load the POS tagger once, lazily, and tolerate its absence.
+
+    Lazy and optional on purpose: this check is BUILD-TIME only. The deployed
+    service never calls it, so spaCy must never become a runtime dependency of
+    the served path — importing it at module scope would make the API refuse to
+    start without a package it does not use.
+    """
+    global _NLP, _NLP_TRIED
+    if _NLP_TRIED:
+        return _NLP
+    _NLP_TRIED = True
+    try:
+        import spacy
+
+        _NLP = spacy.load("en_core_web_sm", disable=["parser", "ner", "lemmatizer"])
+    except Exception:  # noqa: BLE001 — absent package or model
+        _NLP = None
+    return _NLP
 
 
 def _inflections(word: str) -> set[str]:
@@ -529,10 +563,31 @@ def _inflections(word: str) -> set[str]:
 
 
 def _mechanism_terms(text: str) -> set[str]:
-    bare = _SLOT.sub(" ", text.lower())
+    """
+    Concrete nouns worth checking against the corpus.
+
+    NOUN/PROPN only. The first implementation checked every content word and
+    produced a **57% false-positive rate** on real mechanism prose, flagging
+    `genetic`, `well`, `properly`, `ability`, `effectively` — adjectives,
+    adverbs and abstract nouns. A fabricated mechanism is a fabricated *thing*
+    ("grapefruit juice"), so restricting to nouns targets the actual failure
+    mode instead of penalising ordinary explanatory English.
+
+    With no tagger available the check degrades to returning nothing, so it
+    cannot silently fall back to the noisy behaviour it replaced.
+    """
+    nlp = _tagger()
+    if nlp is None:
+        return set()
+    doc = nlp(_SLOT.sub(" ", text))
     out = set()
-    for word in re.findall(r"[a-z][a-z\-]{2,}", bare):
-        if len(word) < _MECHANISM_MIN_LEN or word in _MECHANISM_STOPLIST:
+    for token in doc:
+        if token.pos_ not in ("NOUN", "PROPN"):
+            continue
+        word = token.text.lower().strip("-")
+        if len(word) < _MECHANISM_MIN_LEN or word in _ABSTRACT_NOUNS:
+            continue
+        if not word.isalpha() and "-" not in word:
             continue
         out.add(word)
     return out
@@ -540,12 +595,11 @@ def _mechanism_terms(text: str) -> set[str]:
 
 def mechanism_vocabulary_violations(sentence: str, corpus: str) -> list[str]:
     """
-    Content terms in a mechanism sentence that the cited corpus never uses.
+    Concrete nouns in a mechanism sentence that the cited corpus never uses.
 
-    Singular/plural and simple inflections are tolerated via `_normalise`, so
-    "metabolites" matches a corpus that says "metabolite". Anything genuinely
-    foreign — a drug, a food, an organ, a pathway the corpus never mentions —
-    is reported.
+    Singular/plural and simple inflections are tolerated, so "metabolites"
+    matches a corpus saying "metabolite". Anything genuinely foreign — a drug, a
+    food, an organ the corpus never mentions — is reported.
     """
     if not corpus.strip():
         return []
@@ -567,7 +621,9 @@ class SentenceVerdict:
     unsupported: list[Assertion] = field(default_factory=list)
     #: Concepts whose negation does not match the source's, in either direction.
     polarity: list[str] = field(default_factory=list)
-    #: Mechanism-field content terms absent from the cited corpus.
+    #: Mechanism-field concrete nouns absent from the cited corpus. REPORTED,
+    #: not gating: measured at a 30% false-positive rate, above the 15%
+    #: threshold pre-committed before tuning. See MECHANISM_VOCAB_GATES.
     foreign_terms: list[str] = field(default_factory=list)
 
     @property
@@ -622,7 +678,8 @@ def check_sentence(
         field_name=field_name,
         text=sentence,
         policy=policy,
-        verified=not unsupported and not polarity and not foreign,
+        # `foreign` deliberately does NOT gate — see MECHANISM_VOCAB_GATES.
+        verified=not unsupported and not polarity,
         assertions=assertions,
         unsupported=unsupported,
         polarity=polarity,

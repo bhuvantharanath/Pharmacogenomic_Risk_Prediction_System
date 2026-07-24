@@ -666,6 +666,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     store = load_json(args.input)
+    # `--only` narrows what is CHECKED, never what is written. `stamp_review_blocks`
+    # writes `store` whole and matches entries by key, so a scoped run cannot
+    # drop the entries it did not look at — the failure mode that destroyed a
+    # store via the same pattern in adjudicate.py.
     entries = store.get("explanations", [])
     if args.only:
         entries = [e for e in entries if e.get("drug") == args.only]

@@ -177,7 +177,13 @@ def run(vp, entries: list[dict]) -> list[dict]:
                 continue
             source = full if plant.field in ("summary", "mechanism", "variant_rationale") else full
             verdict = check_sentence(plant.field, plant.sentence, source, directive=cpic, corpus=corpus)
-            flagged = not verdict.verified
+            # "Gating" = fails the automated check. "Detected" also counts the
+            # retired vocabulary check, which still reports but no longer gates
+            # (30% FP rate, above the pre-committed 15% threshold). Conflating
+            # the two would either hide a real detection or overstate the gate.
+            gating = not verdict.verified
+            detected = gating or bool(verdict.foreign_terms)
+            flagged = detected
             results.append({
                 "host": host_key,
                 "kind": plant.kind,
@@ -186,7 +192,9 @@ def run(vp, entries: list[dict]) -> list[dict]:
                 "why": plant.why,
                 "must_flag": plant.must_flag,
                 "flagged": flagged,
-                "correct": flagged == plant.must_flag,
+                "gating": gating,
+                "detected": detected,
+                "correct": detected == plant.must_flag,
                 "reason": verdict.reason,
                 "cpic": cpic[:120],
             })
@@ -196,9 +204,11 @@ def run(vp, entries: list[dict]) -> list[dict]:
 def write_report(results: list[dict], path: Path) -> dict:
     violations = [r for r in results if r["must_flag"]]
     controls = [r for r in results if not r["must_flag"]]
-    caught = [r for r in violations if r["flagged"]]
-    missed = [r for r in violations if not r["flagged"]]
-    false_alarms = [r for r in controls if r["flagged"]]
+    caught = [r for r in violations if r["detected"]]
+    gating = [r for r in violations if r["gating"]]
+    reported_only = [r for r in violations if r["detected"] and not r["gating"]]
+    missed = [r for r in violations if not r["detected"]]
+    false_alarms = [r for r in controls if r["detected"]]
 
     by_kind: dict[str, dict] = {}
     for r in violations:
@@ -225,10 +235,51 @@ def write_report(results: list[dict], path: Path) -> dict:
         "sentences — proving the check fires against the text actually shipped, in",
         "context, rather than merely proving a regex matches.",
         "",
+        "## The mechanism vocabulary check: measured, then retired",
+        "",
+        "A decision rule was recorded **before any tuning**, to prevent the",
+        "outcome that befell the first detector (tuned 12 → 4 → 0 flagged, and",
+        "blunted in the process):",
+        "",
+        "> **new FP rate < 15%** → keep the check in the triage pipeline  ",
+        "> **new FP rate ≥ 15%** → retire it from the gate; keep it as a measured",
+        "> capability with documented limits, and rely on mandatory individual",
+        "> adjudication of every mechanism sentence",
+        "",
+        "| | False-positive rate on 53 real mechanism sentences |",
+        "| --- | ---: |",
+        "| Every content word (original) | **57%** (30/53) |",
+        "| Concrete nouns only, POS-tagged (narrowed) | **30%** (16/53) |",
+        "",
+        "Narrowing to NOUN/PROPN plus an abstract-noun stoplist removed the",
+        "adjective/adverb noise (`genetic`, `well`, `properly`, `effectively`)",
+        "and preserved every planted catch. It is a real improvement and it is",
+        "still above the threshold.",
+        "",
+        "**Branch taken: RETIRE.** 30% ≥ 15%. The check still runs and still",
+        "reports — its output is shown to the adjudicator as a hint — but it does",
+        "not fail a release. What replaces it is not nothing: every mechanism",
+        "sentence now requires an individual human decision and cannot be",
+        "bulk-accepted.",
+        "",
+        "It was not tuned further. Reaching a nicer number by continuing to relax",
+        "the rule is exactly the failure the pre-commitment exists to prevent.",
+        "",
         "## Headline",
         "",
-        f"- **{len(caught)}/{len(violations)} planted violations caught**",
+        f"- **{len(caught)}/{len(violations)} planted violations detected**",
+        f"- of those, **{len(gating)} FAIL the automated gate**; "
+        f"{len(reported_only)} are reported but non-gating",
         f"- **{len(false_alarms)} false alarms** on {len(controls)} clean controls",
+        "",
+        "### Gating vs reported",
+        "",
+        "The mechanism closed-vocabulary check was **retired from the gate** at a",
+        "measured 30% false-positive rate on real mechanism prose — above the 15%",
+        "threshold recorded before any tuning. It still runs and still reports, so",
+        "the fabricated-mechanism plant is *detected*; it no longer *fails* the",
+        "check. What replaces it as the safeguard is mandatory individual",
+        "adjudication of every mechanism sentence.",
         "",
     ]
     if missed:
@@ -283,8 +334,9 @@ def write_report(results: list[dict], path: Path) -> dict:
     ]
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    return {"caught": len(caught), "planted": len(violations),
-            "missed": missed, "false_alarms": len(false_alarms), "controls": len(controls)}
+    return {"caught": len(caught), "planted": len(violations), "gating": len(gating),
+            "reported_only": len(reported_only), "missed": missed,
+            "false_alarms": len(false_alarms), "controls": len(controls)}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -316,7 +368,8 @@ def main(argv: list[str] | None = None) -> int:
         mark = green("OK ") if r["correct"] else red("MISS")
         print(f"  {mark} {r['kind']:<14} expect {expect:<4} got {got:<4} {dim(r['sentence'][:46])}")
     print(rule())
-    print(f"\n  caught {bold(str(summary['caught']) + '/' + str(summary['planted']))} planted violations")
+    print(f"\n  detected {bold(str(summary['caught']) + '/' + str(summary['planted']))} planted violations")
+    print(f"  of those, {summary['gating']} fail the gate; {summary['reported_only']} reported-only")
     print(f"  false alarms {summary['false_alarms']} of {summary['controls']} controls")
     print(dim(f"  wrote {rel(args.output)}"))
 

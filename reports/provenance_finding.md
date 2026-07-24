@@ -7,30 +7,35 @@ Date: 2026-07-24 · All evidence below is reproducible from the repository.
 
 ## Summary
 
-A natural way to verify that a generated clinical explanation is "grounded" is
-to check that its content appears in the source it was generated from. We built
-such a checker, ran it against real model output, and it reported that the
-language model failed on 100% of cases while a deterministic template passed on
-100%.
+**Automated verification of clinical faithfulness has structural limits that
+differ by claim type.** We tested three independent approaches against real
+generated clinical text. Each failed in a different way, and the three failures
+are not variations of one bug — they are three distinct boundaries.
 
-Both numbers were artifacts. The checker was measuring **lexical overlap**, and
-lexical overlap is:
+| # | Approach | How it failed | Measured |
+| --- | --- | --- | ---: |
+| **a** | Lexical term-overlap | Unsound *and* incomplete: passed a polarity-reversed claim, failed a faithful paraphrase | **15/16** failures were false positives |
+| **b** | Assertion-marker rules | Structurally blind to a fabricated *mechanism* — no number, no duration, no known concept, so nothing fires | 1 named miss, unfixable within the approach |
+| **c** | Closed-vocabulary (nouns vs corpus) | Catches the fabricated mechanism, but penalises plain-language explanation of a technical corpus | **57%** FP, **30%** after narrowing |
 
-- **not sound** — it accepts a sentence that asserts the *opposite* of the
-  source, because negating a claim reuses the claim's vocabulary; and
-- **not complete** — it rejects a faithful restatement in different words, which
-  is precisely what a plain-language explanation is required to do.
+Approach (c) was narrowed with a decision rule recorded *before* tuning — keep
+below 15% false positives, retire at or above. It reached 30%. It was retired
+from the gate rather than tuned further, because the first detector had already
+been tuned 12 → 4 → 0 and was blunted in the process.
 
-The template's perfect score followed from how the template was built (assembled
-from source words), not from it being more faithful. The model's zero followed
-from it paraphrasing, not from it fabricating.
+**The conclusion is not that verification is hopeless.** Each check is genuinely
+useful within its boundary: entity-level guarding catches fabricated doses,
+assertion-level checking catches invented quantities and timelines, polarity
+checking catches negation reversal, and vocabulary checking detects foreign
+entities. What none of them can do — individually or together — is certify that
+a clinical sentence is *correct*.
 
-The consequence is architectural, and it is the point of this writeup:
-**automated provenance checking is triage, not adjudication.** It can narrow a
-corpus to the sentences a human should look at. It cannot certify a clinical
-claim.
-
----
+**So automated checks are triage, and human adjudication is the gate.** The
+checks reduce twenty explanations to the sentences a person must examine; the
+person decides. With a pre-generated set of twenty that is tractable, which is
+the practical payoff of pre-generating the entire explanation space rather than
+generating per request. An LLM in the request path forecloses this by
+construction: you can review a sample, never the thing the next user receives.
 
 ## The checker under test
 
@@ -109,6 +114,40 @@ against its source.
 Full per-sentence detail: `reports/provenance_diagnosis.md`.
 
 ---
+
+## Evidence 4 — (b) assertion rules are blind to fabricated mechanisms
+
+Injected into real generated mechanism prose:
+
+> *"The enzyme is inhibited by grapefruit juice, which raises plasma levels."*
+
+No number. No duration. No unknown concept word. Every assertion rule passed it.
+A fabricated causal mechanism can be assembled entirely from ordinary vocabulary,
+so a checker built on assertion markers cannot see it — not a tuning gap, a
+structural one.
+
+Reproduce: `python scripts/detector_sensitivity.py`
+
+## Evidence 5 — (c) closed vocabulary trades one error for the other
+
+Requiring mechanism nouns to appear in the cited corpus catches the grapefruit
+sentence immediately. Applied to the 53 real mechanism sentences actually
+generated, it flagged 30 of them — a **57% false-positive rate**. The flagged
+terms were `genetic`, `well`, `properly`, `ability`, `effectively`: ordinary
+English used to explain a technical corpus in readable prose.
+
+Restricting to POS-tagged concrete nouns (excluding abstract nouns) halved it to
+**30%**, still flagging `side`, `blood`, `bloodstream`, `buildup` — again, the
+vocabulary of explanation rather than of fabrication.
+
+This is the same tension as (a), reappearing at a narrower scope: any check that
+requires shipped words to resemble source words penalises the act of explaining.
+
+| Approach | Catches fabricated mechanism | FP rate on real prose |
+| --- | :---: | ---: |
+| Assertion markers | ❌ | 0% |
+| Closed vocabulary, all content words | ✅ | 57% |
+| Closed vocabulary, concrete nouns | ✅ | 30% |
 
 ## The replacement: field-level policy
 

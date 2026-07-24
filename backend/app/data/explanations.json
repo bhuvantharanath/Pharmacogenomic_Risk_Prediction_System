@@ -41,12 +41,84 @@
    "cpic_recommendation_used": "Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
    "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "bf52384a1f3e1cca": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result may affect how well you tolerate azathioprine.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847824+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "baac17791617cac2": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "You are an Intermediate Metabolizer, which means you may have a moderate to high risk of experiencing myelosuppression, a condition that can cause low blood cell counts.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847976+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "bb4bf3bcbbdde104": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called TPMT as {diplotype}, which corresponds to a Intermediate Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847978+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9f181da2471268dc": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847979+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "0fd92512d5b39411": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you're taking azathioprine, your doctor may need to start you on a lower dose to help your body handle the medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847986+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "0e03ddc88b11de8b": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "They will also need to monitor your blood cell counts closely to make sure you're not experiencing any side effects.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847987+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "d9398bd7f3036b9f": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "It may take a few weeks for your body to adjust to the new dose, so be patient and work closely with your doctor to find the right balance.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847989+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -84,12 +156,74 @@
    "cpic_recommendation_used": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
    "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "bc23dfa001b3197e": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result indicates that you are a normal metabolizer of azathioprine, which means you are at safe risk for thiopurine-related side effects such as leukopenia, neutropenia, and myelosuppression.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847991+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "5d04b04c4cd3d224": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called NUDT15 as {diplotype}, which corresponds to a Normal Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847993+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9fecaac93dfc099d": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847994+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "72a7dd28cb3ef0b3": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "You are at safe risk for the side effects of azathioprine, such as low white blood cell count and anemia.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847995+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "43cec33f8bd4058e": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because your body handles the medication in a normal way.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847997+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "1ee0f812d6c57ad4": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "However, it's always best to speak with your doctor or pharmacist to confirm this information and get personalized advice.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847998+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -127,12 +261,64 @@
    "cpic_recommendation_used": "Consider alternative nonthiopurine immunosuppressant therapy.",
    "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "92b95f4e931acd94": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result affects how you metabolize a certain type of medication, which can increase the risk of serious side effects.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.847999+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "78b406a25d863f33": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called TPMT as {diplotype}, which corresponds to a Poor Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848000+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9c88d8d1804b7198": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848001+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "70f4f50e3749dd32": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you have this genetic result, it's best to talk to your doctor or pharmacist about using a different medication that doesn't have the same risk of serious side effects.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848002+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "c9d99a9a1f5bc759": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "They can help you find a safer option that works for you.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848004+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -170,12 +356,74 @@
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT — Relling MV et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update. Clin Pharmacol Ther (2026). PMID: 41618934",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "f3d7a4347fd8522f": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result has not been determined for the gene involved in how your body handles a certain medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848005+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "cd98b62663a21176": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "This means we cannot provide a specific recommendation for how to use this medication safely.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848006+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "4dc40f7cbb8ffa8c": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "No genotype was called for azathioprine in this analysis, so there is no variant-level rationale to report.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848007+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "a7128c15e04f3a54": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "We don't have enough information about how your body handles this medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848008+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "c9b50714e5c206db": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This means we can't give you specific advice on how to use it safely.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848009+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "db551f6c1f9bfae3": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "It's always best to talk to your doctor or pharmacist about any concerns you have about your medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848010+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -213,12 +461,84 @@
    "cpic_recommendation_used": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "a08b25ed7f58246d": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result affects how well you respond to clopidogrel.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848012+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9510dcaf686365cb": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "It's recommended to avoid the standard dose of clopidogrel if possible.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848012+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "ad52527c6bca289f": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called CYP2C19 as {diplotype}, which corresponds to a Intermediate Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848014+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "bafc2b0af21bd9c6": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848015+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "81a7737cea726999": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you have a certain genetic result, clopidogrel might not work as well as it should.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848016+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "b7b31b0a89a3bccd": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because your body doesn't make enough of the active form of the medicine.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848017+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9c73ef0c6b4e7f99": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Your doctor or pharmacist can help you find a different medicine that works better for you.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848018+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -256,12 +576,64 @@
    "cpic_recommendation_used": "If considering clopidogrel, use at standard dose (75 mg/day)",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "3a1e82e37a6b1278": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result suggests that you are a normal metabolizer of clopidogrel, which means that you can take the standard dose without concern.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848019+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "4fd4c508a5993307": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called CYP2C19 as {diplotype}, which corresponds to a Normal Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848020+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "32031b0049bfe9a0": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848022+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "bb7a139c086f1b01": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This means that you can take the standard dose of clopidogrel without worrying about it not working properly.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848023+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "37f3e4775af9ac4c": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "However, it's always best to speak with your doctor or pharmacist to confirm the right dose for you.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848024+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -299,12 +671,84 @@
    "cpic_recommendation_used": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "9e5eb26eadf448c2": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result affects how well you respond to clopidogrel.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848025+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "3ed47952af2af9f6": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "People with this result are at increased risk for the drug not working as intended, which can lead to serious cardiac and cerebrovascular events.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848026+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "7df33ba7cc8dc76d": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called CYP2C19 as {diplotype}, which corresponds to a Poor Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848028+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "ff90515cd10b345f": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848029+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "91e8719016511f27": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you have this result, it's best to avoid clopidogrel if possible.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848030+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "b42f0e47358d6cf8": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you can't avoid it, your doctor may recommend a different medication, such as prasugrel or ticagrelor, at the standard dose.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848031+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "02a7e2b543069dbf": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Always talk to your doctor or pharmacist about your specific situation and any concerns you may have.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848032+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -342,12 +786,74 @@
    "cpic_recommendation_used": "If considering clopidogrel, use at standard dose (75 mg/day)",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "8aeb7e866bbbb429": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result indicates you are a rapid metabolizer of clopidogrel, meaning your body processes the medication quickly and effectively.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848033+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "256c2b5256bc8d49": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called CYP2C19 as {diplotype}, which corresponds to a Rapid Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848034+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "e10f142088fa3911": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848035+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "af96e55464ef795a": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you're considering taking clopidogrel, you can take it at the standard dose.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848036+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "b15cf39d265ae4f0": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because your body is good at breaking down the medication and making it work.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848037+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "b8c87dc6ac19dc49": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "However, it's always best to speak with your doctor or pharmacist to confirm the right dosage for you.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848038+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -385,12 +891,74 @@
    "cpic_recommendation_used": "If considering clopidogrel, use at standard dose (75 mg/day)",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "735994172b8fe365": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Based on your genetic result, the recommended dose for clopidogrel is at standard dose (75 mg/day).",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848039+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "434e64aeb48c0f0a": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called CYP2C19 as {diplotype}, which corresponds to a Ultrarapid Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848040+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "5610887296801724": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848041+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "0ada9de748876af4": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Your genetic result shows that you are a safe candidate for taking clopidogrel.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848042+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "4a9067a1243b577f": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "However, to make sure the drug works properly, it's recommended to take it at the standard dose.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848043+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "e4dd1071e6b2aa8c": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This means you should talk to your doctor or pharmacist about the best way to take clopidogrel based on your individual needs.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848044+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -428,12 +996,74 @@
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "3fec09dafe73eca7": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result does not provide enough information to determine how you metabolize clopidogrel.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848045+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "3f346e5affb10fb7": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Therefore, the CPIC recommendation is unknown.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848046+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "a17b69dfd4635b0a": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "No genotype was called for clopidogrel in this analysis, so there is no variant-level rationale to report.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848047+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9aedbdc7f03309a4": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "We don't have enough information about how your body processes clopidogrel to give a specific recommendation.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848048+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "e81686bebcd0a3f6": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This means we can't say for sure how well the drug will work for you.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848049+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "63a028a69b856192": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "It's always a good idea to talk to your doctor or pharmacist about your specific situation and any concerns you may have.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848050+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -471,12 +1101,64 @@
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for codeine and CYP2D6 — Crews KR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy. Clin Pharmacol Ther (2021). PMID: 33387367",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "439af963735c02e8": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result for codeine is unknown, so we cannot explain how it will be handled by your body.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848051+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "cf792672f88b468e": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "No genotype was called for codeine in this analysis, so there is no variant-level rationale to report.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848052+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "3aba2ffda3dfdebb": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "We don't know how your body will handle codeine because we can't determine how active the enzyme that breaks it down is in your body.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848053+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "4167c317eb19a0b4": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This enzyme, CYP2D6, helps turn codeine into a different medicine that actually helps with pain.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848054+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "a6aa1b982ac99fe2": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you're taking codeine, it's best to speak with your doctor or pharmacist to understand how it will affect you.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848055+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -514,12 +1196,84 @@
    "cpic_recommendation_used": "Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available). Patients with the c.2846A&gt;T/c.2846A&gt;T genotype may require &gt;50% reduction in starting dose.",
    "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "a2051c364d1f7875": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result indicates that you are an Intermediate Metabolizer of fluorouracil.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848056+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "32bd81db5eb2a8cb": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "This means that you may be at increased risk for severe or even fatal drug toxicity when treated with this medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848057+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "49912aa25258ae89": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called DPYD as {diplotype}, which corresponds to a Intermediate Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848059+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "3a81c3ef20162a77": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848059+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "7c1605942f79e995": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you're taking fluorouracil, your doctor may need to adjust your dosage based on your genetic result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848060+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "03f4fa5ef3869d25": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because your body may not be able to break down the medication as well as others.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848062+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "e490223a20365af8": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Your doctor will work with you to find the right dose to minimize the risk of side effects.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848062+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -557,12 +1311,94 @@
    "cpic_recommendation_used": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
    "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "5fc2d6166f138525": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Based on your genetic result, there is no indication to change the dose or therapy for fluorouracil.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848063+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "a02b21fe1a497100": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Use the label-recommended dosage and administration.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848064+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "3f35b4d693b52e4f": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called DPYD as {diplotype}, which corresponds to a Normal Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848066+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "70184df6659a6f19": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848067+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "89980a637fb7a392": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Your genetic result shows that you are a normal metabolizer of fluorouracil.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848068+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "f79ef39d60acfdbd": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This means that your body is able to break down the drug in a normal way, which reduces the risk of severe side effects.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848068+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "cfb556184673f3c9": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "You should be able to take the standard dose of fluorouracil without any problems.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848069+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "e641e2ad3db493f4": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "However, it's always best to speak with your doctor or pharmacist to confirm the best course of treatment for you.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848070+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -600,12 +1436,64 @@
    "cpic_recommendation_used": "Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens.",
    "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "6b811a379c754241": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result indicates that you are at a higher risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs, such as fluorouracil.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848071+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "88f28647f0c3e2e4": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called DPYD as {diplotype}, which corresponds to a Poor Metabolizer result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848072+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "cc1c491a73270387": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848073+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "72e1aa60e346aa64": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you have a genetic result that shows you're at risk for severe side effects from certain cancer medications, it's best to talk to your doctor or pharmacist about alternative treatment options.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848074+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "0c182fb59e78ad88": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "They can help you make an informed decision about your care.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848075+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -643,12 +1531,84 @@
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for fluorouracil and DPYD — Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "e2086357f2e9905d": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "The mechanism behind how your genetic result affects fluorouracil is related to how the body breaks down the drug.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848076+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "ce72ff537b35602c": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Fluorouracil is inactivated by an enzyme called dihydropyrimidine dehydrogenase (DPD).",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848077+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "f806b02130f8c581": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "If this enzyme is not working properly, the drug can build up in the body and cause more severe side effects.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848077+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "c65289189f7ea4dd": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "No genotype was called for fluorouracil in this analysis, so there is no variant-level rationale to report.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848079+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "0c7edd1a6064f039": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you have a problem with the way your body breaks down fluorouracil, you may experience more severe side effects.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848080+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "112b531a5a857190": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because the drug can build up in your body and cause problems.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848081+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "c4ba4a497b7d0488": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "It's always best to speak with your doctor or pharmacist about any concerns you have about your medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848081+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -686,12 +1646,94 @@
    "cpic_recommendation_used": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins). If simvastatin therapy is warranted, limit dose to &lt;20mg/day.",
    "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "b17abd6bf5ed6ada": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result affects how your body handles simvastatin, a type of statin medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848082+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "eb429db49bbc3fbc": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "This can increase your risk of muscle toxicity.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848083+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "f0dbf62e453398c1": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called SLCO1B1 as {diplotype}, which corresponds to a Decreased Function result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848084+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9b320b6d1cc1f8a4": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848085+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "f814d9253ead348d": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you have this genetic result, your doctor may want to prescribe a different statin or limit the dose of simvastatin to less than 20mg per day.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848086+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "c70e7c55c5ecf9e5": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because your body may not be able to remove simvastatin from the circulation into the liver as efficiently as usual.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848087+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "805083cf06618917": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This can increase your risk of muscle problems.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848088+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "21fe71707159b6f0": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Be sure to talk to your doctor or pharmacist about your genetic result and how it may affect your medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848089+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -729,12 +1771,84 @@
    "cpic_recommendation_used": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
    "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "c388d20d9b0d9349": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result does not affect the typical risk of muscle toxicity from simvastatin.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848090+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "38fb8eb70e106d2b": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "You can be prescribed the desired starting dose and adjust doses based on disease-specific guidelines.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848091+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "003198218644a1fe": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called SLCO1B1 as {diplotype}, which corresponds to a Normal Function result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848092+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "af82180a64d830aa": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848093+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "bdaf0b2506069fe3": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "You don't have a genetic variation that affects how your body handles simvastatin.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848094+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "88a710100765ed32": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This means you can take the usual dose and adjust it based on your disease and how you're responding to the medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848095+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "01a370b76f7e36ed": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "It's always a good idea to talk to your doctor or pharmacist about your specific situation and any concerns you may have.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848096+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -772,12 +1886,74 @@
    "cpic_recommendation_used": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins).",
    "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "1545e70746cf00d4": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result suggests that you may be at increased risk for muscle toxicity when taking simvastatin.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848096+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "e27e5201882d4e91": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "PharmCAT called SLCO1B1 as {diplotype}, which corresponds to a Poor Function result.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848097+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "1cbc81df47b72ae1": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "The non-reference positions supporting this call were no non-reference variants were detected.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848098+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "68b5c8a2ffaeaab2": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Your doctor may want to consider a different type of statin that is safer for you to take.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848099+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "1460b22b2c9fa8b8": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because your body is not able to remove simvastatin from the bloodstream as well as it should be, which can cause muscle problems.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848100+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "487f4c63cae6960a": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "It's always best to talk to your doctor or pharmacist about any concerns you have about your medication.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848101+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -815,12 +1991,84 @@
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 — Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "30677694ad44a8da": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "The recommendation for your genetic result and simvastatin is unknown because your genetic result was not available for this gene.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848102+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "360c086ed40d7f6e": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "No genotype was called for simvastatin in this analysis, so there is no variant-level rationale to report.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848103+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "a83839ed4bd79ac5": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "We don't have enough information about your genetic result to make a recommendation about taking simvastatin.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848104+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "82991ae0bde1d7ce": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "This is because your genetic result was not available for this gene.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848105+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "3805e0dc02012432": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Simvastatin works by being taken up by the liver, which helps keep systemic exposure low.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848106+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "78131d9aac93415b": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If the liver doesn't take up the drug well, more of it stays in the bloodstream and can cause muscle problems.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848107+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "c9ba9b91c2af59bf": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "To understand your risk, you should speak with your doctor or pharmacist.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848108+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   },
   {
@@ -858,12 +2106,64 @@
    "cpic_recommendation_used": "",
    "mechanism_source": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1 — Johnson JA et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update. Clin Pharmacol Ther (2017). PMID: 28198005",
    "review": {
-    "provenance_verified": false,
-    "verified_by": "",
-    "verified_at": "",
+    "provenance_verified": true,
+    "verified_by": "verify_provenance.py v1.0.0",
+    "verified_at": "2026-07-24T10:13:26.522964+00:00",
     "read_by_author": null,
     "clinical_expert_review": null,
     "clinical_expert_review_status": "NOT_OBTAINED"
+   },
+   "provenance_adjudications": {
+    "9a20a93a47a3d00e": {
+     "version": 1,
+     "field": "summary",
+     "sentence": "Your genetic result does not provide enough information to make a recommendation for warfarin dosing.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848108+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9f4bbdda9bef75a8": {
+     "version": 1,
+     "field": "variant_rationale",
+     "sentence": "No genotype was called for warfarin in this analysis, so there is no variant-level rationale to report.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848109+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "9920b94bb5139c3b": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "We don't have enough information about your genetic result to give you specific advice about taking warfarin.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848110+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "dc3bc55d3753b524": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "Warfarin is a medication that helps prevent blood clots, but it can also cause bleeding.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848111+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    },
+    "51d731006d3604f7": {
+     "version": 1,
+     "field": "patient_friendly",
+     "sentence": "If you're taking warfarin, it's essential to work closely with your doctor or pharmacist to monitor your treatment and adjust your dose as needed.",
+     "decision": "accepted",
+     "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read",
+     "adjudicated_by": "Bhuvan T",
+     "adjudicated_at": "2026-07-24T10:13:25.848112+00:00",
+     "note": "provenance adjudication by the project author; NOT clinical approval"
+    }
    }
   }
  ]

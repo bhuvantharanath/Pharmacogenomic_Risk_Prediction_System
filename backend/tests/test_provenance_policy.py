@@ -238,3 +238,169 @@ class TestPolarity:
             "Avoid clopidogrel if possible. Use prasugrel at standard dose.",
         )
         assert verdict.verified, verdict.reason
+
+
+class TestMechanismVocabularyCheck:
+    """
+    The closed-vocabulary check, and the decision to retire it from the gate.
+
+    A rule was recorded BEFORE tuning: keep it gating below a 15% false-positive
+    rate on real mechanism text, retire it at or above. Narrowing from every
+    content word to concrete nouns took it from 57% to 30% — a real improvement,
+    and still above the line. It was retired rather than tuned further, because
+    the previous detector was tuned 12 → 4 → 0 and ended up blunted.
+    """
+
+    CORPUS = (
+        "TPMT encodes thiopurine S-methyltransferase, a cytosolic enzyme that "
+        "methylates thiopurine compounds and diverts them from active thioguanine "
+        "nucleotides. Reduced function allows accumulation in haematopoietic "
+        "cells, causing bone-marrow suppression."
+    )
+
+    def test_it_detects_a_fabricated_mechanism_entity(self) -> None:
+        """The miss the sensitivity check named: a plausible foreign substance."""
+        from app.explanation.provenance import mechanism_vocabulary_violations
+
+        foreign = mechanism_vocabulary_violations(
+            "The enzyme is inhibited by grapefruit juice, which raises plasma levels.",
+            self.CORPUS,
+        )
+        assert "grapefruit" in foreign and "juice" in foreign
+
+    def test_faithful_mechanism_prose_is_not_flagged(self) -> None:
+        from app.explanation.provenance import mechanism_vocabulary_violations
+
+        assert not mechanism_vocabulary_violations(
+            "TPMT methylates thiopurine compounds, diverting them from active "
+            "thioguanine nucleotides.",
+            self.CORPUS,
+        )
+
+    def test_it_does_not_gate(self) -> None:
+        """
+        Retired at 30% FP. It reports; it does not fail a release. Pinned so the
+        retirement cannot be silently reversed without this test being updated.
+        """
+        from app.explanation.provenance import MECHANISM_VOCAB_GATES, check_sentence
+
+        assert MECHANISM_VOCAB_GATES is False
+        verdict = check_sentence(
+            "mechanism",
+            "The enzyme is inhibited by grapefruit juice, which raises plasma levels.",
+            self.CORPUS,
+            directive="",
+            corpus=self.CORPUS,
+        )
+        assert verdict.foreign_terms, "it must still REPORT the foreign terms"
+        assert verdict.verified, "but it must NOT fail the automated check"
+
+    def test_mechanism_sentences_require_individual_adjudication(self) -> None:
+        """What replaces the retired gate. Not nothing — a mandatory human read."""
+        from app.explanation.provenance import (
+            MECHANISM_REQUIRES_INDIVIDUAL_ADJUDICATION,
+        )
+
+        assert MECHANISM_REQUIRES_INDIVIDUAL_ADJUDICATION is True
+
+    def test_it_is_never_applied_to_patient_friendly(self) -> None:
+        """
+        Lexical checking on plain language is exactly what the provenance
+        diagnosis proved unsound — rendering "leukopenia" as "low white blood
+        cell count" introduces words no clinical source contains.
+        """
+        from app.explanation.provenance import check_sentence
+
+        verdict = check_sentence(
+            "patient_friendly",
+            "Your low white blood cell count may need watching.",
+            self.CORPUS,
+            directive="",
+            corpus=self.CORPUS,
+        )
+        assert not verdict.foreign_terms
+
+    def test_spacy_is_build_time_only(self) -> None:
+        """
+        The deployed service must not need a POS tagger. With spaCy absent the
+        check degrades to reporting nothing rather than falling back to the
+        noisy every-content-word behaviour it replaced.
+        """
+        import app.explanation.provenance as prov
+
+        saved_nlp, saved_tried = prov._NLP, prov._NLP_TRIED
+        try:
+            prov._NLP, prov._NLP_TRIED = None, True   # simulate "not installed"
+            assert prov.mechanism_vocabulary_violations(
+                "Inhibited by grapefruit juice.", self.CORPUS
+            ) == []
+        finally:
+            prov._NLP, prov._NLP_TRIED = saved_nlp, saved_tried
+
+
+class TestScopedRunsNeverDeleteEntries:
+    """
+    A regression test for real data loss.
+
+    `adjudicate.py --only azathioprine` filtered the entry list and then wrote
+    that filtered list back, silently deleting the other sixteen entries. It
+    destroyed a populated store, and the command had been recommended in
+    writing before the bug was found.
+
+    The invariant: **narrowing what a tool examines must never narrow what it
+    saves.** Asserted against every CLI that both filters and writes.
+    """
+
+    def _store(self, tmp_path):
+        import json
+
+        entries = [
+            {
+                "drug": drug, "gene": "G", "phenotype": "PM",
+                "derived_risk_label": "Toxic",
+                "cpic_recommendation_used": "Consider an alternative agent.",
+                "cpic_implications": [],
+                "explanation": {
+                    "summary": "This result may affect how the drug works.",
+                    "mechanism": "The enzyme has reduced function.",
+                    "variant_rationale": "PharmCAT called G as *1/*1.",
+                    "patient_friendly": "Please talk to your doctor.",
+                },
+            }
+            for drug in ("azathioprine", "clopidogrel", "simvastatin")
+        ]
+        path = tmp_path / "store.json"
+        path.write_text(json.dumps({"version": 2, "explanations": entries}))
+        return path
+
+    def test_adjudicate_only_preserves_unselected_entries(self, tmp_path) -> None:
+        import importlib.util
+        import json
+        import sys
+        from pathlib import Path
+
+        scripts = Path(__file__).resolve().parents[2] / "scripts"
+        if str(scripts) not in sys.path:
+            sys.path.insert(0, str(scripts))
+        spec = importlib.util.spec_from_file_location("adjudicate", scripts / "adjudicate.py")
+        adjudicate = importlib.util.module_from_spec(spec)
+        sys.modules["adjudicate"] = adjudicate
+        spec.loader.exec_module(adjudicate)
+
+        path = self._store(tmp_path)
+        before = {e["drug"] for e in json.loads(path.read_text())["explanations"]}
+        assert len(before) == 3
+
+        adjudicate.main([
+            "--adjudicator", "Test Person",
+            "--only", "azathioprine",
+            "--bulk-accept-unflagged",
+            "-i", str(path),
+        ])
+
+        after = json.loads(path.read_text())["explanations"]
+        assert {e["drug"] for e in after} == before, (
+            "a --only run deleted entries outside its filter — this is the "
+            "data-loss bug that destroyed a real store"
+        )
+        assert len(after) == 3

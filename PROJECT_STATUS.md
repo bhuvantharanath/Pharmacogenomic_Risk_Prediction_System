@@ -334,6 +334,41 @@ never as an approval — the CLI has no action that records clinical approval, a
 
 ---
 
+## Field authorship and the limits of automated checking
+
+### Field authorship — who writes what
+
+Not everything in an explanation has the same author, and conflating them was a
+real defect: a prose model asked to emit `{diplotype}` templating complied 4
+times in 14, leaving ten entries unable to show the patient's genotype.
+
+| Field | Author | Guarantee |
+| --- | --- | --- |
+| `clinical_recommendation` | **PharmCAT / CPIC, verbatim** | Byte-identical to the guideline text. Never model-authored. |
+| `variant_rationale` | **Composed by code** at request time from that response's own PharmCAT profile | Always present, always agrees with the reported genotype — structurally, not by instruction |
+| `summary`, `mechanism`, `patient_friendly` | LLM (`meta/llama-3.1-8b-instruct`), genotype-agnostic | May not name a diplotype or emit placeholders; every clinical assertion must trace to a cited source |
+
+### What the automated checks can and cannot do
+
+Measured, not asserted — see `reports/provenance_finding.md`:
+
+- Entity guard catches fabricated doses, genes, rsIDs, star alleles.
+- Assertion checking catches invented quantities and timelines, but is
+  **structurally blind to a fabricated mechanism** ("inhibited by grapefruit
+  juice" contains no number and no unknown concept).
+- Polarity checking catches negation reversal in both directions.
+- Closed-vocabulary checking on mechanism text detects foreign entities but had a
+  **57% false-positive rate** on real prose (30% after narrowing to concrete
+  nouns), so it is **retired from the gate** and reports only.
+
+**No combination of these certifies that a sentence is clinically correct.** They
+are triage. The release gate is human adjudication of every shipped sentence, and
+every mechanism sentence requires an individual decision. Adjudication is the
+project author checking prose against its cited source — **not clinical expert
+review**, which this project has never had and does not claim.
+
+---
+
 ## A. What actually exists
 
 ### A1. Phase completion

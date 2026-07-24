@@ -252,7 +252,16 @@ class TestAdversarialArmsCaughtRealFabrication:
                 "summary", "mechanism", "variant_rationale", "patient_friendly"
             }, row
             for name, value in text.items():
-                assert value.strip(), f"{row['arm']}/{row['drug']}: {name} is empty"
+                if row["arm"] == "grounded":
+                    assert value.strip(), f"{row['arm']}/{row['drug']}: {name} is empty"
+                    continue
+                # Adversarial arms may legitimately yield an empty field. In the
+                # 2026-07-24 llama-3.1-8b run the `stripped` arm returned an
+                # empty mechanism — given almost no context the model declined
+                # to write one rather than inventing biology. That is the
+                # behaviour we want; asserting non-empty here would have made
+                # correct refusal look like a defect.
+                assert isinstance(value, str)
 
     def test_the_adversarial_arms_were_caught(self) -> None:
         """

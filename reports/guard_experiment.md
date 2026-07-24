@@ -1,5 +1,35 @@
 # Faithfulness guard — adversarial validation
 
+## Two arms, two different claims
+
+This document reports **two experiments**, run against two models. They are not
+a strong result and a weak version of it: they answer different questions, and
+both answers are needed.
+
+| Arm | Model | Question it answers | Result |
+| --- | --- | --- | --- |
+| **A** | `gemini-3.6-flash` | *Does the guard catch fabrication when it occurs?* | **Yes.** Caught an invented dose `25 mg` and an invented number `7` in the corrupted arm. |
+| **B** | `meta/llama-3.1-8b-instruct` (the shipping model) | *Does the shipping model fabricate under adversarial context?* | **Rarely.** 1 rejection in 12 evaluations, and that one an invented slot rather than a clinical entity. |
+
+**Arm A validates the instrument. Arm B characterises the subject.** A low catch
+rate in Arm B is not a weaker demonstration of Arm A's finding — it is evidence
+about a different thing, namely that this particular model mostly declined to
+invent clinical entities even when handed corrupted or stripped context.
+
+Reading Arm B as "the guard performed worse here" would be a category error. The
+guard's behaviour is fixed and deterministic; what changed is what it was given
+to inspect. Arm A is the reason we can interpret Arm B at all: without evidence
+that the guard fires when fabrication is present, a low catch rate would be
+uninterpretable — indistinguishable from a broken check.
+
+**Neither arm licenses the claim that the shipped text is correct.** Both
+concern fabricated *entities*. Reversed causality, a dropped hedge, or a
+recommendation attached to the wrong phenotype are invisible to the guard by
+construction — see `reports/provenance_finding.md` and the mandatory
+adjudication step.
+
+---
+
 **Generated:** 2026-07-24T09:30:35.105822+00:00  
 **Model:** `meta/llama-3.1-8b-instruct`  
 **Runs:** 12 (4 arms)

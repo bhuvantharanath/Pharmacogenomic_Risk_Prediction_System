@@ -3,3 +3,9 @@
 
 pytest==8.4.2
 httpx==0.28.1                 # required by fastapi.testclient.TestClient
+
+# Build-time only: the mechanism closed-vocabulary check POS-tags candidate
+# sentences. Imported lazily and optionally by app/explanation/provenance.py, so
+# the deployed service never needs it — verified by a test that blocks the
+# import and still boots the app.
+spacy>=3.7,<4

@@ -268,9 +268,17 @@ class TestThroughTheApi:
 
         for analysis in body["analyses"]:
             diplotype = analysis["pharmacogenomic_profile"]["diplotype"]
-            summary = analysis["llm_generated_explanation"]["summary"]
-            if diplotype != "Unknown" and "{" not in summary:
-                assert diplotype in summary, (
+            # The diplotype now lives in `variant_rationale`, which is COMPOSED
+            # BY CODE from this same response's profile — so agreement is
+            # structural rather than something a model can get wrong. `summary`
+            # is genotype-agnostic by design and no longer names a diplotype,
+            # so asserting against it would pin a property the split removed.
+            rationale = analysis["llm_generated_explanation"]["variant_rationale"]
+            if diplotype != "Unknown":
+                assert diplotype in rationale, (
                     f"{analysis['drug']}: card shows {diplotype!r} but the "
-                    f"explanation says {summary!r}"
+                    f"composed rationale says {rationale!r}"
+                )
+                assert "{" not in rationale, (
+                    "composed text must contain no unfilled placeholders"
                 )

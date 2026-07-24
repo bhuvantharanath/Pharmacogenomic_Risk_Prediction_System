@@ -342,7 +342,11 @@ class TestRealResults:
         assert "STUB" not in explanation["mechanism"]
         assert "TODO" not in explanation["mechanism"]
         # Real mechanism content, drawn from the corpus.
-        assert "CYP2C19" in explanation["mechanism"]
+        # The gene is named in `variant_rationale`, which is COMPOSED BY CODE from
+        # the profile. `summary` is deliberately genotype-agnostic now: the model
+        # is no longer allowed to state a gene or diplotype, so asserting the gene
+        # appears in its prose would pin a property the design removed.
+        assert "CYP2C19" in explanation["variant_rationale"]
 
     def test_no_unfilled_slots_reach_the_client(
         self, client: TestClient, valid_vcf_bytes: bytes
