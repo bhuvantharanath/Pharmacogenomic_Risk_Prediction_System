@@ -175,6 +175,42 @@ def render(item: dict, index: int, total: int) -> None:
     print(dim("    Does it add a dose, timeline or probability the source lacks?"))
 
 
+def _render_claim(claim, index: int, total: int) -> None:
+    """Show one claim beside the corpus passages that would support it."""
+    tier_note = {
+        1: red("TIER 1 — no passage aligned (NOT a finding of fabrication)"),
+        2: yellow("TIER 2 — source found; claim adds a causal step or specificity"),
+        3: green("TIER 3 — source found; wording differs only"),
+    }[claim.tier]
+    print("\n" + rule(f"[{index}/{total}]  {claim.claim_id}  ·  {claim.drug} ({claim.gene})"))
+    print(f"  {tier_note}")
+    print(f"  {bold('occurrences')}  {len(claim.occurrences)}: "
+          + ", ".join(o.case for o in claim.occurrences))
+
+    print("\n" + bold("  ── THE CLAIM ──"))
+    print(green(wrap(claim.text)))
+    extra = claim.variants[1:]
+    if extra:
+        print(dim(f"\n  ({len(extra)} wording variant(s) of the same claim)"))
+        for variant in extra[:3]:
+            print(dim(wrap(variant)))
+
+    print("\n" + bold("  ── SOURCE THAT WOULD SUPPORT IT ──"))
+    print(dim(f"  {claim.corpus_file or '(no corpus file)'}"))
+    if claim.support:
+        for passage, score in claim.support:
+            print(dim(wrap(passage.text)))
+            print(dim(f"      §{passage.section}, line {passage.line} ({score:.0%} of terms)"))
+    else:
+        print(red("      NO PASSAGE ALIGNED — read the corpus file directly before deciding."))
+    print(f"\n  {bold('what differs')}  {claim.difference}")
+
+    print("\n" + bold("  ── ASK YOURSELF ──"))
+    print(dim("    Does the source support this claim, including the DIRECTION?"))
+    print(dim("    Prodrug (clopidogrel, azathioprine): less enzyme -> LESS active drug."))
+    print(dim("    Cleared by enzyme (fluorouracil):    less enzyme -> MORE drug."))
+
+
 def edit_text(current: str) -> str | None:
     editor = os.environ.get("EDITOR", "nano")
     with tempfile.NamedTemporaryFile("w+", suffix=".txt", delete=False) as handle:
@@ -197,7 +233,8 @@ def apply_edit(entry: dict, field_name: str, old: str, new: str) -> bool:
 
 
 def record(entry: dict, item: dict, decision: str, rationale: str, adjudicator: str,
-           key: str | None = None) -> None:
+           key: str | None = None, claim_id: str | None = None,
+           scope: str | None = None) -> None:
     """
     Write the decision onto the entry.
 
@@ -215,6 +252,10 @@ def record(entry: dict, item: dict, decision: str, rationale: str, adjudicator: 
         "adjudicated_by": adjudicator,
         "adjudicated_at": datetime.now(timezone.utc).isoformat(),
         "note": "provenance adjudication by the project author; NOT clinical approval",
+        # Present only for claim-level decisions, so a reader can always tell
+        # whether this sentence was judged individually or as one of a group.
+        **({"claim_id": claim_id} if claim_id else {}),
+        **({"decision_scope": scope} if scope else {}),
     }
 
 
@@ -227,6 +268,9 @@ def main(argv: list[str] | None = None) -> int:
                         help="Include sentences the automated check already sourced.")
     parser.add_argument("-i", "--input", type=Path, default=EXPLANATIONS_PATH)
     parser.add_argument("--redo", action="store_true", help="Re-ask already-decided sentences.")
+    parser.add_argument("--by-claim", action="store_true",
+                        help="Walk unique CLAIMS (worksheet order) and apply one "
+                             "decision to every occurrence of that claim.")
     parser.add_argument("--bulk-accept-unflagged", action="store_true",
                         help="Record a bulk decision for sentences the filter already sourced. "
                              "The record states it was a bulk decision, not an individual read.")
@@ -264,6 +308,93 @@ def main(argv: list[str] | None = None) -> int:
     # Keyed over ALL entries: decisions mutate these dicts in place, so writing
     # `all_entries` back preserves both the edits and everything untouched.
     by_case = {f"{e['drug']}:{e['phenotype']}": e for e in all_entries}
+
+    if args.by_claim:
+        # One decision per CLAIM, applied to every sentence that expresses it.
+        #
+        # Mechanism describes gene-drug biology, which does not vary by
+        # phenotype, so the same claim recurs across every entry for a drug.
+        # Deciding it once is the same judgement recorded consistently, not a
+        # shortcut: reading the identical sentence twenty times invites
+        # inattention, which is the failure this gate exists to prevent.
+        worksheet = _load("build_adjudication_worksheet")
+        every = collect_flagged(vp, entries, include_all=True)
+        outstanding = [
+            i for i in every
+            if i["field"] == "mechanism"
+            and i["key"] not in (
+                by_case[i["case"]].get("provenance_adjudications") or {}
+            )
+        ]
+        if not outstanding:
+            print(green("\nNo outstanding mechanism claims."))
+            return 0
+
+        claims = worksheet.cluster(outstanding)
+        for claim in claims:
+            worksheet.align(claim)
+        claims.sort(key=lambda c: (c.tier, c.drug, c.claim_id))
+
+        print(bold("\nPharmaGuard adjudication — by claim"))
+        print(dim(f"  adjudicator={args.adjudicator}   "
+                  f"{len(outstanding)} sentences → {len(claims)} claims"))
+        print(yellow("  One decision per claim applies to every occurrence."))
+        print(yellow("  This records provenance judgement, NOT clinical approval."))
+        print(dim("  a=accept  r=reject  e=edit  s=skip  q=quit (saves as you go)"))
+
+        accepted = rejected = edited = skipped = 0
+        for index, claim in enumerate(claims, start=1):
+            while True:
+                _render_claim(claim, index, len(claims))
+                try:
+                    choice = input(bold(
+                        "\n  [a]ccept  [r]eject  [e]dit  [s]kip  [q]uit > "
+                    )).strip().lower()
+                except (EOFError, KeyboardInterrupt):
+                    print(yellow("\n\nInterrupted — decisions so far are saved."))
+                    choice = "q"
+
+                if choice in ("a", "accept", "r", "reject"):
+                    decision = "accepted" if choice.startswith("a") else "rejected"
+                    why = input("  reasoning (recorded): ").strip()
+                    for occurrence in claim.occurrences:
+                        entry = by_case[occurrence.case]
+                        item = {
+                            "case": occurrence.case, "field": occurrence.field,
+                            "text": occurrence.text, "key": occurrence.key,
+                        }
+                        record(entry, item, decision, why, args.adjudicator,
+                               claim_id=claim.claim_id,
+                               scope=f"claim-level decision applied to "
+                                     f"{len(claim.occurrences)} occurrence(s)")
+                    accepted += decision == "accepted"
+                    rejected += decision == "rejected"
+                    print((green if decision == "accepted" else red)(
+                        f"  {decision} — applied to {len(claim.occurrences)} occurrence(s)"))
+                    break
+                if choice in ("e", "edit"):
+                    print(yellow("  Editing text is per-sentence; use the default mode:"))
+                    print(dim(f"    python scripts/adjudicate.py --adjudicator "
+                              f"'{args.adjudicator}' --only {claim.drug}"))
+                    continue
+                if choice in ("s", "skip", ""):
+                    skipped += 1
+                    print(dim("  skipped — still unadjudicated"))
+                    break
+                if choice in ("q", "quit"):
+                    write_json_atomic(args.input, {**store, "explanations": all_entries})
+                    print(f"\n  accepted {accepted}  rejected {rejected}  skipped {skipped}")
+                    print(dim(f"  saved {rel(args.input)}"))
+                    return 0
+                print(yellow("  unrecognised — use a, r, e, s or q"))
+            write_json_atomic(args.input, {**store, "explanations": all_entries})
+
+        print(rule())
+        print(f"\n  accepted {green(str(accepted))}  rejected {red(str(rejected))}  "
+              f"skipped {dim(str(skipped))}")
+        print(dim(f"  saved {rel(args.input)}"))
+        print(dim("\nNext:  python scripts/adjudication_status.py"))
+        return 0
 
     if args.bulk_accept_unflagged:
         # Every claim-bearing sentence the filter DID source. Recorded as a bulk

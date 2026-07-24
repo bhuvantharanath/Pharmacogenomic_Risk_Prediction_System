@@ -404,3 +404,83 @@ class TestScopedRunsNeverDeleteEntries:
             "data-loss bug that destroyed a real store"
         )
         assert len(after) == 3
+
+
+class TestClaimLevelPropagation:
+    """
+    `--by-claim` records one human decision against every occurrence of a claim.
+
+    Mechanism prose describes gene-drug biology, which does not vary by
+    phenotype, so the same claim recurs across every entry for a drug — one
+    claim spans six clopidogrel entries. Asking for the same judgement six times
+    invites inattention, which is the failure this gate exists to prevent.
+
+    What must NOT happen is the decision silently covering occurrences the
+    adjudicator never saw. Each record therefore carries the `claim_id` and a
+    `decision_scope` naming how many occurrences it covered, so a reader can
+    always tell an individual judgement from a propagated one.
+    """
+
+    def _drive(self, tmp_path, monkeypatch, answers):
+        import importlib.util
+        import json
+        import sys
+        from pathlib import Path
+
+        scripts = Path(__file__).resolve().parents[2] / "scripts"
+        if str(scripts) not in sys.path:
+            sys.path.insert(0, str(scripts))
+        spec = importlib.util.spec_from_file_location("adjudicate", scripts / "adjudicate.py")
+        adjudicate = importlib.util.module_from_spec(spec)
+        sys.modules["adjudicate"] = adjudicate
+        spec.loader.exec_module(adjudicate)
+
+        store = json.loads(
+            (Path(__file__).resolve().parents[1] / "app" / "data" / "explanations.json").read_text()
+        )
+        path = tmp_path / "store.json"
+        path.write_text(json.dumps(store))
+
+        supplied = iter(answers)
+        monkeypatch.setattr("builtins.input", lambda *a, **k: next(supplied))
+        adjudicate.main([
+            "--adjudicator", "Test Person", "--by-claim", "-i", str(path),
+        ])
+        return json.loads(path.read_text())
+
+    def test_one_decision_covers_every_occurrence(self, tmp_path, monkeypatch) -> None:
+        # Accept the first claim, then quit.
+        result = self._drive(tmp_path, monkeypatch, ["a", "because the source supports it", "q"])
+
+        records = [
+            (f"{e['drug']}:{e['phenotype']}", r)
+            for e in result["explanations"]
+            for r in (e.get("provenance_adjudications") or {}).values()
+            if r.get("claim_id")
+        ]
+        assert records, "no claim-level record was written"
+        claim_ids = {r["claim_id"] for _, r in records}
+        assert len(claim_ids) == 1, "one decision must not touch multiple claims"
+
+        for _, record in records:
+            assert record["decision"] == "accepted"
+            assert record["adjudicated_by"] == "Test Person"
+            assert record["rationale"] == "because the source supports it"
+            # Every propagated record must SAY it was propagated.
+            assert "claim-level decision applied to" in record["decision_scope"]
+            assert "NOT clinical approval" in record["note"]
+
+    def test_it_never_deletes_entries(self, tmp_path, monkeypatch) -> None:
+        """The --only data-loss bug, guarded on this path too."""
+        result = self._drive(tmp_path, monkeypatch, ["a", "r", "q"])
+        assert len(result["explanations"]) == 20
+
+    def test_skipping_records_nothing(self, tmp_path, monkeypatch) -> None:
+        """A skipped claim must remain outstanding, not default to accepted."""
+        result = self._drive(tmp_path, monkeypatch, ["s", "q"])
+        claim_level = [
+            r for e in result["explanations"]
+            for r in (e.get("provenance_adjudications") or {}).values()
+            if r.get("claim_id")
+        ]
+        assert claim_level == [], "skipping must not write a decision"
