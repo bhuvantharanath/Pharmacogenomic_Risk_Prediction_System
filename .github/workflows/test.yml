@@ -66,10 +66,16 @@ jobs:
           EXPLANATION_MODE: static
         run: python -m pytest -q
 
-      # The release gate. Exits non-zero if any sentence making a clinical claim
-      # cannot be traced to a CPIC recommendation or a cited mechanism document.
-      - name: Verify explanation provenance
+      # A FILTER, not the gate: flags sentences whose clinical assertions it
+      # cannot source. See reports/provenance_diagnosis.md for why the old
+      # word-overlap version was replaced.
+      - name: Provenance filter (field-level policy)
         run: python scripts/verify_provenance.py
+
+      # THE RELEASE GATE. Fails if any flagged claim is unadjudicated, or if a
+      # rejected sentence is still in the store.
+      - name: Adjudication gate
+        run: python scripts/adjudication_status.py
 
       - name: Review status
         run: python scripts/review_status.py

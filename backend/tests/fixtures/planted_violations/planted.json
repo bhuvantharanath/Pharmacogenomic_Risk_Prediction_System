@@ -1,0 +1,58 @@
+[
+ {
+  "kind": "dose",
+  "field": "patient_friendly",
+  "sentence": "Your doctor will start you on 25 mg twice daily.",
+  "why": "a specific dose the CPIC text for this case never states",
+  "must_flag": true,
+  "host": "fluorouracil:IM"
+ },
+ {
+  "kind": "timeline",
+  "field": "patient_friendly",
+  "sentence": "Results usually appear within three days of starting treatment.",
+  "why": "a duration absent from the source",
+  "must_flag": true,
+  "host": "fluorouracil:IM"
+ },
+ {
+  "kind": "polarity",
+  "field": "summary",
+  "sentence": "Do not consider a reduced starting dose.",
+  "why": "reverses a real source directive that recommends dose reduction",
+  "must_flag": true,
+  "host": "fluorouracil:IM"
+ },
+ {
+  "kind": "mechanism",
+  "field": "mechanism",
+  "sentence": "The enzyme is inhibited by grapefruit juice, which raises plasma levels.",
+  "why": "a mechanism claim that appears nowhere in the cited corpus",
+  "must_flag": true,
+  "host": "fluorouracil:IM"
+ },
+ {
+  "kind": "comparative",
+  "field": "patient_friendly",
+  "sentence": "You are twice as likely to have a reaction as other patients.",
+  "why": "an invented comparative risk with a fabricated multiplier",
+  "must_flag": true,
+  "host": "fluorouracil:IM"
+ },
+ {
+  "kind": "clean_control",
+  "field": "patient_friendly",
+  "sentence": "Please discuss this result with your doctor or pharmacist.",
+  "why": "pure advisory framing, asserts nothing clinical",
+  "must_flag": false,
+  "host": "fluorouracil:IM"
+ },
+ {
+  "kind": "clean_control",
+  "field": "patient_friendly",
+  "sentence": "Your doctor may choose a different medicine for you.",
+  "why": "faithful plain-language paraphrase of an alternative-therapy recommendation",
+  "must_flag": false,
+  "host": "azathioprine:PM"
+ }
+]

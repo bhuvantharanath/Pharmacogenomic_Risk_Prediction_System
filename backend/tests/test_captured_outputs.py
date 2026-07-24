@@ -303,8 +303,11 @@ class TestProvenanceVerifierOnCapturedText:
         }
         result = verifier.verify_entry(entry, *verifier.load_paraphrases())
         assert not result.clinical_ok
-        untraced = {w for s in result.failures for w in s.untraced}
-        assert "25" in untraced or "reduce" in untraced, untraced
+        # The verifier now reports the unsupported *assertion*, not a bare word:
+        # the field-level policy flags "quantity:'25 mg'" because that dose
+        # appears nowhere in the source with that unit.
+        unsupported = {w for s in result.failures for w in s.untraced}
+        assert any("25 mg" in w for w in unsupported), unsupported
 
     def test_a_planted_invented_risk_claim_fails(self, verifier) -> None:
         entry = {

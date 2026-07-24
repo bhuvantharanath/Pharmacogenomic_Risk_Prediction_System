@@ -16,10 +16,11 @@ explanation. `generate_explanation` does not raise.
 from __future__ import annotations
 
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from enum import Enum
 
 from ..models import PharmacogenomicProfile
+from .compose import compose_variant_rationale
 from .context import Explanation, ExplanationContext
 from .guard import GuardReport, check, log_violation
 from .slot_verifier import SlotVerification, verify as verify_slots
@@ -164,6 +165,11 @@ def _static_result(
                 "more dangerous than plainer text, because it is more credible."
             )
             return None
+
+    # `variant_rationale` is never model-authored and never slot-filled: it is
+    # composed here from the profile in this very response, so the sentence and
+    # the reported genotype cannot disagree. See explanation/compose.py.
+    filled = replace(filled, variant_rationale=compose_variant_rationale(context))
 
     return ExplanationResult(
         explanation=filled,

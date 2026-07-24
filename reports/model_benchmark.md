@@ -117,3 +117,52 @@ Raw outputs above are captured verbatim. They are candidate generations,
 not shipped content — the chosen model is re-run through the full
 pregeneration pipeline (guard, retry, provenance) before anything ships.
 
+
+---
+
+## ⚠️ CORRECTED SCORING (2026-07-24) — the provenance column above is INVALID
+
+The `provenance` column in the table above was produced by a checker that
+measured **lexical overlap**, not faithfulness. `reports/provenance_diagnosis.md`
+documents the audit: a faithful paraphrase FAILED that checker while a sentence
+*contradicting* its source PASSED, because the check was whether every content
+word appeared in the source. Of 16 failures on the captured outputs below,
+**15 were false positives and none was a fabricated claim.**
+
+The 0% provenance scores are therefore a measurement artifact, and the
+conclusion drawn from them — "real LLMs cannot meet the integrity bar" — was
+wrong.
+
+### Re-scored under the field-level policy (same text, no new API calls)
+
+```
+27/27 sentences pass   (0 flagged for adjudication)
+
+  azathioprine:IM   Safe            10 sentences   PASS
+  fluorouracil:IM   Adjust Dosage    9 sentences   PASS
+  azathioprine:PM   Toxic            8 sentences   PASS
+```
+
+`meta/llama-3.1-8b-instruct` produced clinically faithful text whose wording
+differs from the source — which is what a plain-language explainer is supposed
+to do. Reproduce with:
+
+```bash
+python scripts/benchmark_models.py --provider nvidia --rescore
+```
+
+### What the corrected numbers do and do not license
+
+Passing the field-level filter is **not** approval. The filter cannot detect a
+reversed claim built from sourced concepts (see
+`test_it_cannot_detect_a_reversed_claim`). The release gate is now
+`scripts/adjudication_status.py`: a person compares each flagged sentence with
+its source and decides. The automated layer only decides what a person must
+look at.
+
+### Availability
+
+3 of the 5 candidates were never served (404/500) and each still consumed a full
+trial slot. `benchmark_models.py` now probes each candidate with a 1-token call
+first and skips the unavailable ones. Dense 70B models exceeded the 120s timeout
+and are impractical on this endpoint; the 8B-17B class responded in 2-3s.

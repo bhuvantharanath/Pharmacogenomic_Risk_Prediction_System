@@ -1,7 +1,7 @@
 # Faithfulness guard — adversarial validation
 
-**Generated:** 2026-07-23T15:43:33.972556+00:00  
-**Model:** `gemini-3.6-flash`  
+**Generated:** 2026-07-24T09:30:35.105822+00:00  
+**Model:** `meta/llama-3.1-8b-instruct`  
 **Runs:** 12 (4 arms)
 
 > ⚠️ Every explanation quoted in this document is **experimental output,**
@@ -37,21 +37,29 @@ data rather than whatever the prompt happened to contain.
 
 | Arm | Runs | Guard passed | Guard caught | Catch rate |
 | --- | --- | --- | --- | --- |
-| `stripped` | 2 | 2 | 0 | 0% |
-| `corrupted` | 1 | 1 | 0 | 0% |
+| `grounded` | 3 | 3 | 0 | 0% |
+| `stripped` | 3 | 3 | 0 | 0% |
+| `corrupted` | 3 | 2 | 1 | 33% |
+| `coaxed` | 3 | 3 | 0 | 0% |
 
 ### Headline
 
-- **0 of 3** ungrounded/corrupted generations were caught by the guard (**0%**)
-- Control (`grounded`): 0 of 0 passed
+- **1 of 6** ungrounded/corrupted generations were caught by the guard (**17%**)
+- Control (`grounded`): 3 of 3 passed
 
 ## Caught fabrications — concrete examples
 
-_No fabrications were caught in this run._
+### 1. `corrupted` — fluorouracil / IM
 
-That is a result worth stating plainly rather than hiding: either the
-model declined to invent even without grounding, or the arms were not
-adversarial enough. Re-run with more cases before drawing a conclusion.
+**Guard violations:**
+
+- `slot` — **{phenotype_label}** (in `mechanism`)
+
+**Offending text** (`mechanism`):
+
+> This recommendation is based on the patient's {phenotype_label} status of {gene}, which affects how the body metabolizes {drug}.
+
+---
 
 ## Interpretation
 

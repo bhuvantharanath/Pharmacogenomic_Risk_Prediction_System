@@ -1,71 +1,54 @@
 #!/usr/bin/env python3
 """
-Sentence-level provenance verification — the release gate.
+Field-level provenance verification — flags candidates for human adjudication.
 
     python scripts/verify_provenance.py              # table + report, exit code
     python scripts/verify_provenance.py --json
     python scripts/verify_provenance.py --only clopidogrel -v
 
-WHAT THIS IS FOR
+WHAT CHANGED, AND WHY
 
-This project has **no qualified clinical reviewer**. The planned expert sign-off
-does not exist and will not exist, so the usual backstop — a clinician reads the
-prose and takes responsibility for it — is unavailable.
+This script used to require every content word of a sentence to appear in the
+source. `reports/provenance_diagnosis.md` records what that actually measured:
+a faithful paraphrase FAILED, while a sentence that *contradicted* the source
+PASSED because it reused the vocabulary. Of 16 failures on real model output,
+15 were false positives and none was a fabricated claim. It scored copying, and
+the template's 100% was true by construction rather than by merit.
 
-What replaces it is not a weaker version of review. It is a different claim,
-and a checkable one: **the system asserts no clinical content of its own.**
-Every sentence that makes a clinical claim must be traceable, word by word, to
-text this project did not write — a CPIC recommendation as PharmCAT emitted it,
-or a mechanism document carrying a citation and a retrieval date.
+It now applies `app.explanation.provenance`, which gives each field the rule it
+actually needs:
 
-That claim is machine-checkable, and this script is what checks it. A sentence
-that cannot be traced is not a style problem. It is the system saying something
-on its own authority, which is the one thing it must never do.
+    clinical_recommendation   VERBATIM — byte-identical to PharmCAT's output.
+                              Never model-authored.
+    summary / mechanism /     CLAIM-LEVEL — wording may differ; every clinical
+    variant_rationale         ASSERTION must trace. mechanism also traces to the
+                              cited mechanism corpus.
+    patient_friendly          NO NEW CLAIMS — paraphrase is expected (rendering
+                              "leukopenia" as "low white blood cell count" is the
+                              point of the field); it may not introduce a dose,
+                              timeline, probability, comparative risk or
+                              mechanism the source does not support.
 
-HOW IT WORKS
+Declared paraphrases in `label_paraphrases.yaml` keep their exact-match rule and
+must match THIS entry's own label/phenotype, so the "Safe" wording on a Toxic
+result still fails.
 
-Each sentence of each explanation is classified:
+WHAT THIS IS AND IS NOT
 
-    CLINICAL          a dose, a recommendation, a risk or severity statement,
-                      or a prescribing action. Must trace to the CPIC text.
-    LABEL_PARAPHRASE  the one patient-facing sentence that restates the derived
-                      risk label. Must be declared in label_paraphrases.yaml
-                      AND match this entry's own label.
-    MECHANISM         biological background. Must trace to the corpus file for
-                      that gene-drug pair.
-    PROCESS           a statement about what this analysis did ("no genotype
-                      was called"). Traces to the PharmCAT result; requiring it
-                      to appear in a CPIC guideline is a category error.
-    FRAMING           connective phrasing carrying no clinical claim. Exempt,
-                      but listed in full so it can be eyeballed — "exempt" must
-                      not become "unexamined".
+It is a **filter**, not a verdict. It flags sentences whose claims it cannot
+source. It cannot detect a reversed claim assembled from sourced concepts —
+"increased activity" where the source says decreased still matches the direction
+family. Negation and direction-of-effect need a reader.
 
-CLINICAL and LABEL_PARAPHRASE gate the release. The other three are reported.
+That is why the release gate is now `scripts/adjudication_status.py`: this script
+narrows twenty entries down to the handful of sentences a person must actually
+look at, and the person decides. With a pre-generated set that is tractable —
+which is the whole payoff of pre-generating rather than generating per request.
 
-Tracing is **lexical coverage**: every content word in the sentence must appear
-in the source. This is deliberately stricter than the faithfulness guard, which
-checks only entities (doses, numbers, rsIDs, star alleles, genes, drugs). A
-sentence can pass the guard while making a claim the source never made, because
-its individual numbers all appear somewhere. Here the whole claim must be
-present — verbs, risk terms and all.
-
-WHAT THIS CANNOT DO
-
-Lexical tracing is not semantic verification. A sentence assembled entirely from
-source words can still be **wrong**: reversed causality, a recommendation
-attached to the wrong phenotype, a hedge dropped. Detecting that needs a
-clinician, and this project does not have one.
-
-So the guarantee is bounded, and stating the bound precisely is part of being
-honest about it:
-
-    verified   -> every clinical word came from a cited source
-    NOT        -> a clinician agrees the sentence is correct
-
-`reports/provenance_report.md` says this in the same words, so the number cannot
-be quoted without the caveat travelling with it.
+No LLM is used as a judge anywhere here. Using a model to certify a model is
+circular, and it would spend quota to answer a question that documented rules
+answer more predictably.
 """
-
 from __future__ import annotations
 
 import argparse
@@ -90,6 +73,12 @@ from _common import (
     yellow,
 )
 
+from app.explanation.provenance import (
+    CLAIM_LEVEL,
+    CORPUS_BACKED,
+    FIELD_POLICY,
+    check_sentence,
+)
 from app.retrieval import retrieve_mechanism
 
 #: Bumped when classification or tracing changes, so a recorded
@@ -192,7 +181,7 @@ PROCESS = "PROCESS"
 FRAMING = "FRAMING"
 
 #: Classes that make a claim about the patient, and therefore gate a release.
-GATED = (CLINICAL, LABEL_PARAPHRASE, PHENOTYPE_PARAPHRASE)
+GATED = (CLINICAL, LABEL_PARAPHRASE, PHENOTYPE_PARAPHRASE, "CLAIM_LEVEL", "NO_NEW_CLAIMS", "VERBATIM")
 
 
 def split_sentences(text: str) -> list[str]:
@@ -386,6 +375,7 @@ class EntryResult:
 
     @property
     def failures(self) -> list[SentenceResult]:
+        """Sentences needing human adjudication: a claim whose source we cannot find."""
         exempt = (FRAMING, PROCESS)
         return [s for s in self.sentences if s.kind not in exempt and not s.verified]
 
@@ -423,49 +413,46 @@ def verify_entry(
             "no CPIC recommendation text for this case"
         )
 
+    corpus_text = document.body if document else ""
+    clinical_source = " ".join([cpic, implications])
+    full_source = clinical_source + " " + corpus_text
+
     for field_name, text in (entry.get("explanation") or {}).items():
         for sentence in split_sentences(text):
-            kind = classify(sentence, paraphrases, phenotype_paraphrases)
+            normalised = _normalise_sentence(sentence)
 
-            if kind == CLINICAL:
-                verified, untraced = traces_to(sentence, cpic, implications)
-                source = "CPIC recommendation (verbatim PharmCAT output)"
-
-            elif kind == LABEL_PARAPHRASE:
-                # Declared, but it must be the paraphrase for *this* entry's
-                # label. Attaching the "Safe" wording to a Toxic result would
-                # otherwise sail through as "declared" — the failure mode that
-                # matters most.
-                declared = (paraphrases or {}).get(_normalise_sentence(sentence), "")
+            # Declared paraphrases keep their own exact-match rule: they restate
+            # a derived value, and the check is that the wording is the declared
+            # one FOR THIS ENTRY (the Safe wording on a Toxic result must fail).
+            if paraphrases and normalised in paraphrases:
+                declared = paraphrases.get(normalised, "")
                 verified = declared == label
-                untraced = set() if verified else {f"label={declared or 'undeclared'}"}
-                source = f"label_paraphrases.yaml -> {label} (via label_mapping.yaml)"
-
-            elif kind == PHENOTYPE_PARAPHRASE:
-                # Must be the paraphrase for *this* entry's phenotype. The
-                # "much higher activity" wording on a Poor Metabolizer result
-                # is the failure this check exists for.
-                declared = (phenotype_paraphrases or {}).get(
-                    _normalise_sentence(sentence), ""
-                )
+                result.sentences.append(SentenceResult(
+                    field_name, sentence, LABEL_PARAPHRASE, verified,
+                    set() if verified else {f"label={declared or 'undeclared'}"},
+                    f"label_paraphrases.yaml -> {label}"))
+                continue
+            if phenotype_paraphrases and normalised in phenotype_paraphrases:
+                declared = phenotype_paraphrases.get(normalised, "")
                 verified = declared == result.phenotype
-                untraced = set() if verified else {f"phenotype={declared or 'undeclared'}"}
-                source = f"label_paraphrases.yaml -> {result.phenotype} (PharmCAT call)"
+                result.sentences.append(SentenceResult(
+                    field_name, sentence, PHENOTYPE_PARAPHRASE, verified,
+                    set() if verified else {f"phenotype={declared or 'undeclared'}"},
+                    f"label_paraphrases.yaml -> {result.phenotype}"))
+                continue
 
-            elif kind == MECHANISM:
-                verified, untraced = traces_to(sentence, corpus, cpic, implications)
-                source = document.citation_line if document else "(no corpus file)"
+            # Everything else goes through the field-level policy: assertions
+            # must trace, wording may differ, framing is exempt.
+            source = full_source if field_name in CORPUS_BACKED else clinical_source + " " + corpus_text
+            verdict = check_sentence(field_name, sentence, source, directive=cpic, corpus=corpus_text)
+            kind = FRAMING if verdict.is_framing else FIELD_POLICY.get(field_name, CLAIM_LEVEL).upper()
+            result.sentences.append(SentenceResult(
+                field_name, sentence, kind, verdict.verified,
+                {str(a) for a in verdict.unsupported} | set(verdict.polarity)
+                | {f'not-in-corpus:{w}' for w in verdict.foreign_terms},
+                f"{verdict.policy} against {'CPIC+corpus' if field_name in CORPUS_BACKED else 'CPIC'}",
+            ))
 
-            elif kind == PROCESS:
-                verified, untraced = True, set()
-                source = "describes this analysis, not a clinical claim"
-
-            else:
-                verified, untraced, source = True, set(), "exempt"
-
-            result.sentences.append(
-                SentenceResult(field_name, sentence, kind, verified, untraced, source)
-            )
     return result
 
 
@@ -747,9 +734,10 @@ def main(argv: list[str] | None = None) -> int:
         print(dim(f"Report: {args.output.relative_to(REPO_ROOT)}"))
 
     passed = all(r.clinical_ok for r in results)
-    print(green("\nAll clinical sentences trace to a cited source.") if passed
+    print(green("\nAll clinical assertions trace to a cited source.") if passed
           else red("\nUnverified clinical content present — this is a release gate failure."))
-    print(dim("Verified means every clinical word came from a cited source."))
+    print(dim("Verified means every clinical ASSERTION traces to a cited source."))
+    print(dim("Wording may differ — paraphrase is allowed; invented claims are not."))
     print(dim("It does NOT mean a clinician has agreed the sentence is correct."))
     return 0 if passed else 1
 
