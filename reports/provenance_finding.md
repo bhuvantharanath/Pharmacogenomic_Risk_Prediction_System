@@ -205,6 +205,48 @@ match.
 
 ---
 
+## Methods note — pre-committing a retirement threshold
+
+The narrowing of the vocabulary check (Evidence 5) followed a rule recorded
+**before any tuning began**:
+
+> new false-positive rate **< 15%** → keep the check in the gate
+> new false-positive rate **≥ 15%** → retire it from the gate, keep it as a
+> measured capability with documented limits
+
+Narrowing from every content word to POS-tagged concrete nouns moved the rate
+from **57% to 30%**, preserving every planted catch. 30% is above the line, so
+the check was retired rather than tuned further.
+
+**This is a methods contribution, not only a result.** Continuing was available
+and would have worked: adding `side`, `blood`, `buildup` and `bloodstream` to
+the stoplist would have brought the rate under 15% within minutes. Every one of
+those edits would have been individually defensible, and the composite would
+have been a detector tuned until it agreed with the text it was judging.
+
+That failure had already occurred once in this project. The first detector was
+tuned across three rounds — 12 flagged, then 4, then 0 — each round removing a
+category of apparent false positive. The endpoint was a checker that flagged
+nothing on the shipped set, and it took a deliberate sensitivity experiment
+(injecting known-bad sentences into real prose) to establish whether that zero
+meant clean text or a blunted instrument. It meant partly the latter.
+
+The general hazard: when the same person tunes a detector and judges its output,
+each relaxation looks locally reasonable, and there is no point at which the
+detector announces it has stopped working. A threshold fixed in advance converts
+that into a decision that can be made once, checked, and audited — and makes
+"we stopped here" a recorded choice rather than the point at which the numbers
+happened to look acceptable.
+
+Two practices made it enforceable rather than aspirational:
+
+1. **The threshold was written down before the first measurement**, so it could
+   not be adjusted to fit the result.
+2. **The retirement is asserted in a test**
+   (`TestMechanismVocabularyCheck::test_it_does_not_gate`), so reinstating the
+   check silently is not possible — the test must be edited, deliberately, by
+   someone who has read why.
+
 ## Consequence
 
 1. **Automated provenance checking is triage.** It reduces twenty explanations

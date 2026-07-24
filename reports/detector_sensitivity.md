@@ -1,6 +1,6 @@
 # Detector sensitivity
 
-**Generated:** 2026-07-24T10:06:44.085365+00:00  
+**Generated:** 2026-07-24T10:18:18.343264+00:00  
 **Method:** known-bad sentences injected into real generated text, then run through the field-level + polarity checks.
 
 ## Why this exists

