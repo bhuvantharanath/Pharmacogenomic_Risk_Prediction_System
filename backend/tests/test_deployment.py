@@ -85,11 +85,57 @@ class TestHealthAndReady:
     def test_ready_is_503_when_pharmcat_is_missing(
         self, monkeypatch: pytest.MonkeyPatch
     ) -> None:
-        monkeypatch.setattr(main, "pharmcat_available", lambda: False)
+        # Patches `resolve_invoker`, which is the seam /ready actually consults
+        # now that the jar is the primary path. `pharmcat_available` is derived
+        # from the same resolver, so patching that alone would no longer make
+        # this endpoint report a failure.
+        monkeypatch.setattr(main, "resolve_invoker", lambda: None)
         response = TestClient(main.app).get("/ready")
         assert response.status_code == 503
         assert response.json()["status"] == "not_ready"
         assert response.json()["checks"]["pharmcat"]["ok"] is False
+        # The message must say what to DO, not just what is missing — the whole
+        # reason this path was reworked is that "not installed" pointed at the
+        # wrapper while a usable jar sat on disk.
+        detail = response.json()["checks"]["pharmcat"]["detail"]
+        assert "PHARMCAT_JAR" in detail or "fetch_reference_data" in detail
+
+    def test_missing_jar_message_leads_with_the_jar_not_the_wrapper(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """
+        The Docker case: no jar, no wrapper, and the operator needs one command.
+
+        This is the regression that motivated the rework. An earlier draft of
+        `unavailable_reason()` returned "the optional 'pharmcat_pipeline' wrapper
+        is also absent" whenever the jar happened to resolve — actionable for
+        nobody, and pointing at the component that is explicitly optional.
+        """
+        from app import pharmcat_runner
+
+        monkeypatch.setattr(pharmcat_runner, "find_jar", lambda: None)
+        monkeypatch.setattr(pharmcat_runner.shutil, "which", lambda _: None)
+        reason = pharmcat_runner.unavailable_reason()
+
+        assert "fetch_reference_data" in reason, "must name the command that fixes it"
+        assert "PHARMCAT_JAR" in reason, "must name the override env var"
+        assert not reason.startswith("the optional"), (
+            "the optional wrapper must never lead the diagnosis"
+        )
+
+    def test_unavailable_reason_never_blames_only_the_wrapper(self) -> None:
+        """
+        Holds on THIS machine, where the jar is present.
+
+        Guards the branch that produced a nonsense message: jar found, JRE found,
+        resolution still failed. The honest answer is 'this should have worked' —
+        never a confident wrong cause.
+        """
+        from app import pharmcat_runner
+
+        reason = pharmcat_runner.unavailable_reason()
+        assert "pharmcat_pipeline" not in reason or "jar" in reason.lower()
+        assert len(reason) > 40, "a bare phrase is not a remediation"
 
     def test_missing_explanations_does_not_fail_readiness(
         self, monkeypatch: pytest.MonkeyPatch, tmp_path

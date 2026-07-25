@@ -52,7 +52,9 @@ from .pharmcat_runner import (
     CYP2D6_WARNING,
     PharmcatExecutionError,
     pharmcat_available,
+    resolve_invoker,
     run_pharmcat,
+    unavailable_reason,
 )
 from .vcf_validation import (
     MAX_UPLOAD_BYTES,
@@ -84,6 +86,31 @@ async def lifespan(_: FastAPI):
     # health check while blocking every real browser request, so it would
     # otherwise be discovered by a visitor rather than by the deployer.
     security.assert_cors_configured()
+
+    # PharmCAT reachability, checked at startup rather than at first request.
+    #
+    # Previously the only signal was a 503 PHARMCAT_UNAVAILABLE when a user
+    # uploaded a VCF — so a deploy with a missing jar looked completely healthy
+    # until someone tried to use it, and the error named the wrapper rather than
+    # the fix. Whether this is fatal is a deployment decision, not ours to force:
+    # STRICT_PHARMCAT=1 refuses to start, the default starts and says loudly what
+    # is wrong. /ready already reports the same state for orchestrators.
+    invoker = resolve_invoker()
+    if invoker is None:
+        reason = unavailable_reason()
+        message = (
+            f"PharmCAT cannot be invoked, so /analyze will return 503 for every "
+            f"request. {reason}"
+        )
+        if os.environ.get("STRICT_PHARMCAT", "").strip().lower() in {"1", "true", "yes"}:
+            raise RuntimeError(f"[startup] FATAL: {message}")
+        print(f"[startup] WARNING: {message}", flush=True)
+    else:
+        print(
+            f"[startup] pharmcat={invoker.kind} via {invoker.describe}",
+            flush=True,
+        )
+
     print(
         f"[startup] explanation_mode={ExplanationMode.from_env().value} "
         f"cors_origins={security.allowed_origins() or '(localhost only)'} "
@@ -176,13 +203,17 @@ async def ready() -> JSONResponse:
     """
     checks: dict[str, object] = {}
 
-    pharmcat_ok = pharmcat_available()
+    # Reports HOW PharmCAT will be invoked, not merely whether. The previous
+    # message named only the wrapper, which is misleading now that the jar is the
+    # primary path — and on failure it said what was missing without saying what
+    # to do about it.
+    invoker = resolve_invoker()
     checks["pharmcat"] = {
-        "ok": pharmcat_ok,
+        "ok": invoker is not None,
         "detail": (
-            f"'{os.environ.get('PHARMCAT_PIPELINE', 'pharmcat_pipeline')}' on PATH"
-            if pharmcat_ok
-            else "pipeline executable not found; /analyze will return 503"
+            f"{invoker.kind}: {invoker.describe}"
+            if invoker is not None
+            else f"{unavailable_reason()}; /analyze will return 503"
         ),
     }
 

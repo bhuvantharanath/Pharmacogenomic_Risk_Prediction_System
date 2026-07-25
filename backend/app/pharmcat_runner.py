@@ -2,21 +2,28 @@
 PharmaGuard — running PharmCAT and parsing its output.
 
 Two responsibilities, kept in one module because they are two halves of the same
-seam: invoke the `pharmcat_pipeline` executable, and turn its `-reporterJson`
-output into the typed models in `pharmcat_models.py`.
+seam: invoke PharmCAT, and turn its `-reporterJson` output into the typed models
+in `pharmcat_models.py`.
 
 The parser half is importable and testable **without PharmCAT installed** — that
 is why `parse_report()` takes a dict. The backend's test suite runs against
 checked-in fixtures captured from a real PharmCAT 3.4.0 run.
 
-Verified command (see infra/PHARMCAT_NOTES.md for how it was discovered):
+Verified commands (see infra/PHARMCAT_NOTES.md for how they were established):
 
-    pharmcat_pipeline <input.vcf> -o <outdir> -reporterJson
+    java -jar pharmcat-3.4.0-all.jar -vcf <in.vcf> -o <outdir> -reporterJson   # primary
+    pharmcat_pipeline <in.vcf> -o <outdir> -reporterJson                       # optional
 
-OPERATIONAL HAZARD, learned the hard way: the pipeline's preprocessor **rewrites
-the input directory** — it bgzips `input.vcf` into `input.vcf.bgz` and deletes
-the original. Never point it at a caller-owned path. We copy the upload into a
-private temp directory, which is also why cleanup is unconditional.
+The jar is primary and the wrapper is an optional fast path — never a dependency.
+`resolve_invoker()` documents why; the short version is that the wrapper can be
+missing while a working install is present, and that produced a 503 on a machine
+that had everything it needed.
+
+OPERATIONAL HAZARD, learned the hard way, and specific to the WRAPPER: its
+preprocessor **rewrites the input directory** — it bgzips `input.vcf` into
+`input.vcf.bgz` and deletes the original. The jar leaves the input alone. We copy
+the upload into a private temp directory either way, which is also why cleanup is
+unconditional.
 """
 
 from __future__ import annotations
@@ -43,7 +50,24 @@ from .pharmcat_models import (
 # --------------------------------------------------------------------------- #
 
 # Overridable so the same code runs in the Docker image, in CI, and on a laptop.
+#
+# The wrapper is an OPTIONAL fast path, never a dependency — see `resolve_invoker`.
 PHARMCAT_PIPELINE = os.environ.get("PHARMCAT_PIPELINE", "pharmcat_pipeline")
+
+#: The distributable that actually matters. `pharmcat_pipeline` is a thin shell
+#: script around this jar; the jar is what every install has.
+PHARMCAT_JAR = os.environ.get("PHARMCAT_JAR", "")
+PHARMCAT_JAVA = os.environ.get("PHARMCAT_JAVA", "java")
+
+#: Where to look for the jar when `PHARMCAT_JAR` is unset. Ordered; first hit wins.
+#: `test-data/reference/tools/` is where `fetch_reference_data.py --fetch-tools`
+#: puts it, so a developer who has run the validation setup needs no extra config.
+_JAR_SEARCH_PATHS: tuple[Path, ...] = (
+    Path(__file__).resolve().parents[2] / "test-data/reference/tools",
+    Path("/opt/pharmcat"),
+    Path("/usr/local/share/pharmcat"),
+)
+_JAR_GLOB = "pharmcat-*-all.jar"
 
 # PharmCAT on a free-tier CPU takes a few seconds for a PGx-sized VCF; 120s is
 # a generous ceiling that still stops a wedged JVM from pinning a worker.
@@ -102,9 +126,144 @@ class PharmcatInvocation:
     stderr: str
 
 
+def find_jar() -> Path | None:
+    """The PharmCAT jar, from `PHARMCAT_JAR` or the search paths. None if absent."""
+    if PHARMCAT_JAR:
+        candidate = Path(PHARMCAT_JAR).expanduser()
+        return candidate if candidate.is_file() else None
+    for directory in _JAR_SEARCH_PATHS:
+        if not directory.is_dir():
+            continue
+        # Sorted so a directory holding two versions resolves deterministically
+        # rather than by filesystem order. Highest version name wins.
+        for jar in sorted(directory.glob(_JAR_GLOB), reverse=True):
+            if jar.is_file():
+                return jar
+    return None
+
+
+@dataclass(frozen=True)
+class Invoker:
+    """
+    How to run PharmCAT, resolved once from the environment.
+
+    WHY THE JAR IS PREFERRED
+
+    `pharmcat_pipeline` is a shell wrapper. It can be absent while a perfectly
+    good PharmCAT install sits right there — which is exactly what happened here:
+    the 3.4.0 jar was present and `/analyze` still returned 503
+    `PHARMCAT_UNAVAILABLE`, because the runner asked `shutil.which()` about the
+    wrapper and nothing else. In a container the same gap reappears the moment the
+    image installs the jar without putting the wrapper on PATH.
+
+    So the jar is the primary path and the wrapper is an optional fast path. Both
+    produce byte-comparable calls: verified gene-by-gene against a fixture
+    captured from a real `pharmcat_pipeline` run, all 7 target genes identical
+    (diplotype, phenotype and callSource). See infra/PHARMCAT_NOTES.md.
+
+    ONE REAL DIFFERENCE, and it favours the jar: the wrapper's preprocessor
+    rewrites the input directory, bgzipping `input.vcf` to `input.vcf.bgz` and
+    deleting the original. The jar leaves the input untouched. The private temp
+    dir is kept regardless, because it is also what guarantees cleanup.
+    """
+
+    kind: str          # "jar" | "wrapper"
+    command_prefix: list[str]
+    version_args: list[str]
+    describe: str
+
+    def build(self, vcf_path: Path, output_dir: Path) -> list[str]:
+        if self.kind == "jar":
+            # -vcf runs the full pipeline: matcher -> phenotyper -> reporter.
+            return [
+                *self.command_prefix,
+                "-vcf", str(vcf_path),
+                "-o", str(output_dir),
+                "-reporterJson",
+            ]
+        # The wrapper takes the VCF positionally. Flags are otherwise identical,
+        # deliberately: the two paths must not diverge in what they ask for.
+        return [
+            *self.command_prefix,
+            str(vcf_path),
+            "-o", str(output_dir),
+            "-reporterJson",
+        ]
+
+
+def resolve_invoker() -> Invoker | None:
+    """
+    Pick an invocation strategy, or None if PharmCAT cannot be run at all.
+
+    Jar first. The wrapper is used only when no jar is found, so a working install
+    is never rejected because one shell script is missing.
+    """
+    jar = find_jar()
+    if jar is not None and shutil.which(PHARMCAT_JAVA) is not None:
+        return Invoker(
+            kind="jar",
+            command_prefix=[PHARMCAT_JAVA, "-jar", str(jar)],
+            version_args=[PHARMCAT_JAVA, "-jar", str(jar), "-version"],
+            describe=f"{PHARMCAT_JAVA} -jar {jar}",
+        )
+    wrapper = shutil.which(PHARMCAT_PIPELINE)
+    if wrapper is not None:
+        return Invoker(
+            kind="wrapper",
+            command_prefix=[wrapper],
+            version_args=[wrapper, "--version"],
+            describe=wrapper,
+        )
+    return None
+
+
+def unavailable_reason() -> str:
+    """
+    An actionable message naming what is missing and how to fix it.
+
+    Written as remediation rather than diagnosis: "not installed" sent a previous
+    debugging session looking for the wrong thing.
+    """
+    jar = find_jar()
+    java = shutil.which(PHARMCAT_JAVA)
+    wrapper = shutil.which(PHARMCAT_PIPELINE)
+
+    # Remediation, in the order a reader should act on it. Every branch below must
+    # name something to DO; a message that only reports what is absent is what
+    # sent a previous session hunting for the wrapper while a usable jar sat on
+    # disk, so "the wrapper is missing" is never the headline.
+    if jar is None:
+        searched = ", ".join(str(p) for p in _JAR_SEARCH_PATHS)
+        fix = (
+            f"no PharmCAT jar found (looked for {_JAR_GLOB} in: {searched}). "
+            f"Fix: run `python scripts/fetch_reference_data.py --fetch-tools`, or "
+            f"set PHARMCAT_JAR=/path/to/pharmcat-3.4.0-all.jar"
+        )
+        if wrapper is not None:
+            fix += f" (the {PHARMCAT_PIPELINE!r} wrapper IS present at {wrapper})"
+        return fix
+
+    if java is None:
+        return (
+            f"the PharmCAT jar is present at {jar}, but no Java runtime was found "
+            f"({PHARMCAT_JAVA!r} is not on PATH). Fix: install a JRE 17 or newer, "
+            f"or set PHARMCAT_JAVA to the java binary's full path"
+        )
+
+    # Both halves resolve, so nothing here explains a failure. Say exactly that
+    # instead of inventing a cause — a confidently wrong diagnosis costs more
+    # debugging time than an honest "this should have worked".
+    return (
+        f"PharmCAT looks invokable ({PHARMCAT_JAVA} -jar {jar}) yet could not be "
+        f"run, so the cause is outside jar/JRE discovery — check the startup log "
+        f"for the JVM's own error, and set PHARMCAT_JAR/PHARMCAT_JAVA explicitly "
+        f"to rule out path resolution"
+    )
+
+
 def pharmcat_available() -> bool:
-    """True if the pipeline executable is on PATH (used by /health)."""
-    return shutil.which(PHARMCAT_PIPELINE) is not None
+    """True if PharmCAT can be invoked by any strategy (used by /health)."""
+    return resolve_invoker() is not None
 
 
 # --------------------------------------------------------------------------- #
@@ -133,14 +292,12 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
         vcf_path = input_dir / f"{base}.vcf"
         vcf_path.write_text(vcf_text, encoding="utf-8")
 
-        command = [
-            PHARMCAT_PIPELINE,
-            str(vcf_path),
-            "-o",
-            str(output_dir),
-            "-reporterJson",
-        ]
-        invocation = await _exec(command)
+        invoker = resolve_invoker()
+        if invoker is None:
+            raise PharmcatExecutionError(
+                f"PharmCAT cannot be invoked on this server: {unavailable_reason()}.",
+            )
+        invocation = await _exec(invoker.build(vcf_path, output_dir))
 
         report_path = output_dir / f"{base}.report.json"
         if not report_path.is_file():
@@ -174,10 +331,11 @@ async def _exec(command: list[str]) -> PharmcatInvocation:
             stderr=asyncio.subprocess.PIPE,
         )
     except FileNotFoundError as exc:
+        # resolve_invoker() already confirmed the executable existed, so reaching
+        # here means it vanished between resolution and exec — rare, but the
+        # message should still say what to do rather than just what failed.
         raise PharmcatExecutionError(
-            f"PharmCAT is not installed on this server (could not find "
-            f"'{PHARMCAT_PIPELINE}'). The API is running without a working "
-            "analysis pipeline.",
+            f"PharmCAT could not be executed ({command[0]!r}): {unavailable_reason()}.",
             detail=str(exc),
         ) from exc
 

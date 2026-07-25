@@ -47,25 +47,112 @@ pharmcat_vcf_preprocessor --help
 
 ### The command PharmaGuard actually runs
 
+**Primary — direct JAR, no wrapper required:**
+
+```bash
+java -jar pharmcat-3.4.0-all.jar -vcf <input.vcf> -o <outdir> -reporterJson
+```
+
+**Optional fast path, used only if no jar is found:**
+
 ```bash
 pharmcat_pipeline <input.vcf> -o <outdir> -reporterJson
 ```
 
-That single invocation runs preprocessor → named allele matcher → phenotyper →
-reporter. It writes:
+#### Why the jar is primary
+
+`pharmcat_pipeline` is a shell wrapper. It can be absent while a complete,
+working PharmCAT install sits on disk — and that is not hypothetical: `/analyze`
+returned `503 PHARMCAT_UNAVAILABLE` on a machine holding the 3.4.0 jar and a JRE,
+because the runner asked `shutil.which("pharmcat_pipeline")` and nothing else. The
+error named the wrapper, so the fix looked like "install PharmCAT" when PharmCAT
+was already there. In a container the same gap reappears the moment an image
+installs the jar without putting the wrapper on PATH.
+
+A shell script is an extra dependency that can go missing independently of the
+thing it wraps. The jar cannot: it *is* the distributable.
+
+#### Verified equivalent — measured, not assumed
+
+The concern with dropping the wrapper is that it runs the VCF **preprocessor**
+first, and `-vcf` on the jar does not. So the two were compared gene-by-gene
+against `backend/tests/fixtures/pharmcat_report_cyp2c19_pm.json`, captured from a
+real `pharmcat_pipeline` run:
+
+| Gene | Wrapper fixture | Direct jar | Match |
+| --- | --- | --- | :---: |
+| CYP2C19 | `*2/*2` · Poor Metabolizer · MATCHER | `*2/*2` · Poor Metabolizer · MATCHER | ✅ |
+| CYP2C9 | `*1/*1` · Normal Metabolizer · MATCHER | identical | ✅ |
+| SLCO1B1 | `*1/*1` · Normal Function · MATCHER | identical | ✅ |
+| TPMT | `*1/*1` · Normal Metabolizer · MATCHER | identical | ✅ |
+| NUDT15 | `*1/*1` · Normal Metabolizer · MATCHER | identical | ✅ |
+| DPYD | `Reference/Reference` · Normal Metabolizer | identical | ✅ |
+| CYP2D6 | `Unknown/Unknown` · No Result · **NONE** | identical | ✅ |
+
+**7/7 target genes identical** on diplotype, phenotype and `callSource`. The jar
+also emits 16 further genes the fixture never stored (it is pruned to
+`TARGET_GENES`); those rows are *absent from the fixture*, not disagreements.
+
+Scope of that claim: one sample, our seven genes, PGx-sized VCFs already
+restricted to PharmCAT positions. It does **not** establish that preprocessing is
+unnecessary for arbitrary input — a VCF needing normalisation (multi-allelic
+records, non-left-aligned indels, mismatched contig naming) may well behave
+differently, and `--absent-to-ref` semantics are untested here. Section 2 of
+`reports/validation_report.md` extends the comparison to hundreds of real 1000
+Genomes samples.
+
+#### One real difference, and it favours the jar
+
+The wrapper's preprocessor **rewrites the input directory** (see §2 below). The
+jar leaves the input untouched — verified: after a direct run, the input dir still
+contained exactly `in.vcf`, with no `.bgz` and nothing deleted. The private temp
+dir is kept regardless, because that is also what guarantees cleanup.
+
+#### Resolution order and overrides
+
+`pharmcat_runner.resolve_invoker()` tries, in order:
+
+1. `PHARMCAT_JAR` if set, else `pharmcat-*-all.jar` under
+   `test-data/reference/tools/`, `/opt/pharmcat`, `/usr/local/share/pharmcat`
+   (first hit; within a directory, highest version name wins) — needs
+   `PHARMCAT_JAVA` (default `java`) on PATH
+2. `PHARMCAT_PIPELINE` (default `pharmcat_pipeline`) on PATH
+
+If neither resolves, `unavailable_reason()` returns remediation naming the
+`--fetch-tools` command and the override variables. `STRICT_PHARMCAT=1` makes
+startup fatal instead of a loud warning; `/ready` reports which strategy resolved.
+
+Both strategies pass identical flags, deliberately: the two paths must not diverge
+in what they ask PharmCAT for.
+
+#### Output files differ between the two paths
+
+**Direct jar** — observed, three files:
 
 ```
-<base>.preprocessed.vcf.bgz     normalised input
-<base>.missing_pgx_var.vcf      positions absent from the input
 <base>.match.json               named allele matcher output
 <base>.phenotype.json           phenotyper output
 <base>.report.json              reporter output  <-- the only one we parse
 ```
 
-`report.json` is a superset of the other two for our purposes (it contains gene
-calls *and* CPIC recommendations), so `pharmcat_runner.py` reads only that file.
+**Wrapper** — the same three, plus two preprocessor artifacts:
 
-Typical runtime for a 306-position PGx VCF: **~1.5 s** wall clock.
+```
+<base>.preprocessed.vcf.bgz     normalised input
+<base>.missing_pgx_var.vcf      positions absent from the input
+```
+
+`report.json` is a superset of the others for our purposes (it contains gene calls
+*and* CPIC recommendations), so `pharmcat_runner.py` reads only that file — which
+is why the missing preprocessor artifacts cost us nothing.
+
+Worth knowing: `<base>.missing_pgx_var.vcf` is the wrapper's report of which PGx
+positions the input lacked. The jar path does not produce it, so coverage-based
+failure classification (§3 of the validation report) derives that from the input
+VCF and PharmCAT's own positions file instead.
+
+Typical runtime for a 306-position PGx VCF: **~1.2 s** wall clock via the jar
+(measured), ~1.5 s via the wrapper.
 
 ---
 
