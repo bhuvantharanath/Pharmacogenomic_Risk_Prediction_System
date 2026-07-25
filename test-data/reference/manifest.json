@@ -1,0 +1,118 @@
+{
+ "generated_at": "2026-07-25T08:48:03.029684+00:00",
+ "verified_sources": [
+  {
+   "name": "PharmCAT release assets",
+   "url": "https://github.com/PharmGKB/PharmCAT/releases/download/v3.4.0/pharmcat-3.4.0-all.jar",
+   "verified": "2026-07-24",
+   "note": "pharmcat-3.4.0-all.jar (32 MB) + positions VCF; runs under OpenJDK 25, reports 'PharmCAT 3.4.0'"
+  },
+  {
+   "name": "1000 Genomes GRCh38 high coverage (3202 samples)",
+   "url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV",
+   "verified": "2026-07-24",
+   "note": "directory listing confirmed the filename pattern; remote .tbi present (.csi absent). A guessed shorter path returned 404 \u2014 this one was found by listing, not recalled."
+  },
+  {
+   "name": "GeT-RM PGx consensus genotypes (Coriell mirror)",
+   "url": "https://www.coriell.org/1/media/8433aa41-b6e9-405b-9096-4537dd8d42a7/UFTJ2Q/NIGMS/Documents/Get-RM%20Confirmed%20Mutations/Get-RM_Pharmacogenomics.xls",
+   "verified": "2026-07-24",
+   "note": "107 samples; CYP2D6/CYP2C19/CYP2C9/VKORC1/UGT1A1 only. CDC GeT-RM pages return HTTP 403 to non-browser clients, so TPMT/NUDT15/DPYD/SLCO1B1 consensus data is NOT obtainable programmatically."
+  }
+ ],
+ "pharmcat_version": "3.4.0",
+ "gene_regions": {
+  "CYP2C19": {
+   "chrom": "chr10",
+   "start": 94761900,
+   "end": 94852914,
+   "pharmcat_positions": 35,
+   "region": "chr10:94761900-94852914"
+  },
+  "CYP2C9": {
+   "chrom": "chr10",
+   "start": 94938683,
+   "end": 94989023,
+   "pharmcat_positions": 88,
+   "region": "chr10:94938683-94989023"
+  },
+  "CYP2D6": {
+   "chrom": "chr22",
+   "start": 42126578,
+   "end": 42130782,
+   "pharmcat_positions": 157,
+   "region": "chr22:42126578-42130782"
+  },
+  "DPYD": {
+   "chrom": "chr1",
+   "start": 97078987,
+   "end": 97883368,
+   "pharmcat_positions": 83,
+   "region": "chr1:97078987-97883368"
+  },
+  "NUDT15": {
+   "chrom": "chr13",
+   "start": 48037748,
+   "end": 48045771,
+   "pharmcat_positions": 20,
+   "region": "chr13:48037748-48045771"
+  },
+  "SLCO1B1": {
+   "chrom": "chr12",
+   "start": 21141575,
+   "end": 21239158,
+   "pharmcat_positions": 35,
+   "region": "chr12:21141575-21239158"
+  },
+  "TPMT": {
+   "chrom": "chr6",
+   "start": 18130687,
+   "end": 18149127,
+   "pharmcat_positions": 45,
+   "region": "chr6:18130687-18149127"
+  }
+ },
+ "coordinate_provenance": "derived from PharmCAT's own positions VCF (INFO/PX), not hardcoded",
+ "getrm": {
+  "samples": 107,
+  "genes_covered": [
+   "CYP2D6",
+   "CYP2C19",
+   "CYP2C9",
+   "VKORC1",
+   "UGT1A1"
+  ],
+  "genes_NOT_covered": [
+   "TPMT",
+   "NUDT15",
+   "DPYD",
+   "SLCO1B1"
+  ],
+  "source_sha256": "62d6f742ebc003993c9017c566e61488f749ba2b77f3cc5590d342ec0a6b9c8b"
+ },
+ "thousand_genomes": {
+  "panel_samples": 3202,
+  "getrm_overlap": [
+   "NA12273"
+  ],
+  "overlap_count": 1
+ },
+ "slices": {
+  "HG00096.vcf.gz": {
+   "sha256": "e6a4fae486ee9be5a3234256b641a71c43242249d9a967033706a261b1f58744",
+   "bytes": 2475301
+  },
+  "NA12273.vcf.gz": {
+   "sha256": "0703f8ef31da1b61b93b529a5977b64c79cd6b9512db87336b19bc0eb649e87a",
+   "bytes": 2475198
+  },
+  "NA12878.vcf.gz": {
+   "sha256": "64d4e4e226546022b16c81364a017b433520de3afbccba9f188821c236cfa145",
+   "bytes": 2474700
+  },
+  "NA19790.vcf.gz": {
+   "sha256": "3ec225a7b6d9ec609b14590b6a992d630ee4d685f05517ee7133f63ce8fb98e1",
+   "bytes": 2474990
+  }
+ }
+}

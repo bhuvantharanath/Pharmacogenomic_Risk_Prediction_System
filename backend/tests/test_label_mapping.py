@@ -103,7 +103,9 @@ REAL_CPIC_ROWS = [
         "drug toxicity when treated with fluoropyrimidine drugs",
         {"dosing": True},
         RiskLabel.ADJUST_DOSAGE,
-        "dose_change_or_monitoring",
+        # Phase 6 precedence fix: reduced-dose text is now claimed by the more
+        # specific `modified_dose_instruction`. Label unchanged.
+        "modified_dose_instruction",
         id="fluorouracil-IM-adjust",
     ),
     pytest.param(
@@ -202,7 +204,11 @@ class TestSyntheticText:
             annotation("Reduce dose for c.2846A&gt;T carriers.", "")
         )
         assert label is RiskLabel.ADJUST_DOSAGE
-        assert rule_id == "dose_change_or_monitoring"
+        # Rule id updated after the Phase 6 precedence fix: reduced-dose text is
+        # now claimed by the more specific `modified_dose_instruction`, which is
+        # evaluated before `standard_dosing`. The LABEL — the clinically
+        # meaningful assertion — is unchanged.
+        assert rule_id == "modified_dose_instruction"
 
     def test_flag_only_annotation_uses_dosing_flag(self) -> None:
         label, rule_id, _ = classify_annotation(

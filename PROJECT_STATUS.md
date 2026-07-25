@@ -765,6 +765,22 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 > ✅ Six items below were completed in the 2026-07-23 fix pass and are struck
 > through. The remainder are still open.
 
+- [ ] **🟡 P2 · Split `Phenotype.Unknown` into `NoResult` and `Indeterminate`.**
+      The two states are clinically opposite (see limitation #21) and the contract
+      cannot express the difference, so the distinction currently rides in a
+      warning string that no client can branch on. *Scope, all in one change:*
+      `Phenotype` in `backend/app/models.py`, the `phenotype_map` entries for
+      `"indeterminate"` / `"no result"` in `label_mapping.yaml`, the `Phenotype`
+      enum in `app/lib/models/enums.dart` (wire values must stay in lockstep —
+      `contract_test.dart` compares them), and any Unknown-keyed explanation
+      entry whose prose should then say which state applies. *Then delete:* the
+      warning workaround in `map_phenotype_noted()`, README limitation row #21,
+      and this item. `test_phenotype_table.py::test_phenotype_enum_still_has_no_indeterminate_value`
+      fails the moment the enum changes and names what else to update — that
+      failure is the checklist, not an obstacle. *If skipped:* a called-but-
+      unclassifiable gene stays indistinguishable from an uncalled one to every
+      API consumer, which is the weaker of the two disclosures available.
+
 - [x] ~~**🔴 P0 · Fix the Android package mismatch.**~~ ✅ **DONE** Either move
       `MainActivity.kt` to `.../kotlin/com/pharmaguard/app/` and change its
       `package` declaration, or revert `namespace`/`applicationId` to
@@ -1036,6 +1052,7 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 | 18 | **Free-tier caps** (HF 16 GB/2 vCPU; Render 512 MB & 750 h; Cloud Run 180k vCPU-s) | ✅ Intentional | Throttling/OOM under load | ✅ DEPLOY_NOTES table |
 | ~~19~~ | ~~**Dead `stub_analyzer.py` with fabricated clinical values**~~ | ✅ **FIXED** | — | Deleted 2026-07-23 |
 | 20 | **Live LLM path never executed** against the real API | ⚠️ Accidental | `live` mode is unproven | ❌ **NOT disclosed** — README presents it as a working mode |
+| 21 | **`Phenotype.Unknown` conflates *no result* with *indeterminate*** | ⚠️ **Deferred, not intentional** — the right fix is a distinct enum value, held back only because it changes the response contract, the Pydantic model, and the Dart client together | A gene that WAS called but is unclassifiable reports identically to one never called. The prose served for both used to assert *"your genetic result was not available for this gene"* — false in the indeterminate case, and a claim the pipeline made about **its own inputs**, not a clinical judgement | ✅ **Disclosed** — the falsehood is removed (Unknown-keyed prose now says only that no *usable* result was established, true of both states); `map_phenotype_noted()` surfaces PharmCAT's raw phenotype string in `quality_metrics.warnings`; README limitations table states plainly that a warning is weaker than a typed field; `test_phenotype_table.py` pins both the removal and the deferral |
 
 ### 🔊 Loudest disclosure gaps
 

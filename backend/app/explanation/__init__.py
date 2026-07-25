@@ -21,6 +21,7 @@ from enum import Enum
 
 from ..models import PharmacogenomicProfile
 from .compose import compose_variant_rationale
+from .consistency import check_consistency
 from .context import Explanation, ExplanationContext
 from .guard import GuardReport, check, log_violation
 from .slot_verifier import SlotVerification, verify as verify_slots
@@ -170,6 +171,32 @@ def _static_result(
     # composed here from the profile in this very response, so the sentence and
     # the reported genotype cannot disagree. See explanation/compose.py.
     filled = replace(filled, variant_rationale=compose_variant_rationale(context))
+
+    # LABEL/PROSE CONSISTENCY — the check that was missing.
+    #
+    # The provenance guard verifies explanation -> CPIC and the mapping
+    # validation verifies label -> CPIC, but nothing verified explanation ->
+    # label. Two artifacts can each trace to the same source and still
+    # contradict each other, because they trace to different parts of it. Three
+    # real divergences were found this way, including a green "Safe" badge over
+    # prose telling the reader they need a lower dose.
+    #
+    # Degrade rather than serve the pair: a fluent contradiction is more
+    # dangerous than plainer text, because it is more credible.
+    consistency = check_consistency(
+        label=context.risk_label,
+        phenotype=context.phenotype,
+        fields=filled.fields(),
+    )
+    if not consistency.consistent:
+        notes.append(
+            "Pre-generated explanation contradicts its own risk label "
+            f"({consistency.summary}); falling back to the deterministic "
+            "template. Text that disagrees with the label beside it is worse "
+            "than plainer text, because the reader has no way to tell which "
+            "one to believe."
+        )
+        return None
 
     return ExplanationResult(
         explanation=filled,

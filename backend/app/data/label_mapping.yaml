@@ -75,6 +75,25 @@ phenotype_map:
   "likely intermediate metabolizer": IM
   "decreased function": IM
   "possible intermediate metabolizer": IM
+  # A TENTATIVE call is still a call. This entry closes a table gap found by the
+  # label/prose cross-check: SLCO1B1 "Possible Decreased Function" was the only
+  # phenotype string PharmCAT emits for our genes that had no mapping, so it fell
+  # through to Unknown. The consequence was a red `Toxic` badge (correctly derived
+  # from CPIC's text) sitting above prose reading "your genetic result was not
+  # available for this gene" — which was false: the result WAS obtained, it is
+  # simply less certain.
+  #
+  # Mapped to IM for the same reason "decreased function" and "possible
+  # intermediate metabolizer" both are: the tentative prefix qualifies confidence,
+  # not the functional class. Under-reporting a real call is the mirror image of
+  # the over-claiming the CYP2D6 negative control exists to prevent — both
+  # misstate what we know.
+  #
+  # Confidence is expressed where it belongs: `derive_severity` escalates only
+  # for the extreme phenotypes (PM/URM), so a tentative IM lands at `high` while a
+  # confident Poor Function lands at `critical`. The distinction survives without
+  # a new enum value.
+  "possible decreased function": IM
   "normal metabolizer": NM
   "normal function": NM
   "rapid metabolizer": RM
@@ -93,11 +112,112 @@ phenotype_map:
 # recommendation + implications text. `all_flags` requires each named boolean
 # to equal the given value. A rule with neither is a catch-all.
 # ---------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# PRINCIPLE: match text that DIRECTS, never text that DESCRIBES
+#
+# Every defect the exhaustive CPIC validation found, and both over-broad patterns
+# that had to be reverted while fixing them, share one shape: a rule matched
+# prose that DESCRIBES dosing instead of prose that DIRECTS it. Write new rules
+# against this axis.
+#
+#   DESCRIBES (must NOT trigger a dose-change or a directive label)
+#     "30-80% of standard starting dose"   the phrase "standard starting dose"
+#                                          appears, governed by a modifier — the
+#                                          directive is the REDUCTION, not the
+#                                          standard
+#     "During therapy, adjust doses based on disease-specific guidelines"
+#                                          generic downstream advice attached to
+#                                          rows CPIC labels standard dosing
+#     "takes at least 2 weeks to reach steady state after each dose adjustment"
+#                                          pharmacokinetics, not an instruction
+#     implications prose generally         explains biology; may mention dose,
+#                                          risk or monitoring even where CPIC
+#                                          gives NO directive at all
+#
+#   DIRECTS (may set the label)
+#     "Initiate therapy with reduced starting doses"   modifier before dose
+#     "Reduce starting dose by 50%"                    imperative + quantity
+#     "Avoid clopidogrel if possible"                  imperative
+#     "Prescribe an alternative statin"                imperative + substitution
+#
+# Two practical consequences, both already load-bearing in the rules below:
+#
+#   1. Specificity must win. A modifier-governed phrase has to be claimed by a
+#      more specific rule BEFORE a rule keyed on the bare phrase can see it.
+#      That is why `modified_dose_instruction` precedes `standard_dosing`.
+#
+#   2. Establishing whether a directive EXISTS must read the recommendation
+#      field alone (`match_field: recommendation`). Implications describe; they
+#      do not direct. Reading them to answer "is there guidance here?" is what
+#      labelled two "No recommendation" rows as Adjust Dosage.
+#
+# The failure mode is subtle because descriptive text is *about* the right topic
+# and shares the right vocabulary. Substring matching cannot separate the two;
+# only seeing the grammatical relationship can, which is why several rules here
+# use `any_text_regex` rather than a phrase list.
+# ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# POLICY: Toxic vs Ineffective
+#
+# Both mean "do not use this drug as-is", so the split needs one rule applied
+# uniformly rather than ten case-by-case calls. The exhaustive CPIC validation
+# (reports/validation_report.md) surfaced 11 rows where the two labels were in
+# contention; this is the policy that resolves all of them.
+#
+#   TOXIC        CPIC's stated concern is HARM ARISING FROM EXPOSURE — the drug
+#                or its metabolite accumulates and damages the patient.
+#                e.g. simvastatin + decreased SLCO1B1 function: increased
+#                simvastatin acid exposure -> myopathy.
+#
+#   INEFFECTIVE  CPIC's stated concern is THERAPEUTIC FAILURE — the drug does not
+#                produce its intended effect. This holds EVEN WHEN the failure
+#                has dangerous consequences.
+#                e.g. clopidogrel + CYP2C19 PM: reduced active metabolite ->
+#                higher platelet reactivity -> cardiovascular events. The events
+#                are caused by the ABSENCE of antiplatelet effect, not by the
+#                drug harming the patient.
+#                e.g. codeine + CYP2D6 PM: reduced morphine formation ->
+#                diminished analgesia.
+#
+# The distinguishing question is therefore NOT "does the text mention harm?" —
+# both classes mention harm. It is "does the harm come from the drug acting, or
+# from the drug failing to act?"
+#
+# This mattered: a first pass at the independent expectation table classified all
+# ten clopidogrel rows as Toxic purely because their implications contain the
+# word "adverse". That is the wrong reading, and the policy above is what
+# corrects it. Prodrug failure is the commonest shape in this domain, so getting
+# it wrong would have mislabelled a whole drug.
+# ---------------------------------------------------------------------------
+
 risk_label_rules:
 
   # Ordering note: every rule below was checked against real PharmCAT 3.4.0
   # output for the genotypes in test-data/. The order is not cosmetic — see
   # tests/test_label_mapping.py, which pins the outcome of each real text.
+
+  - id: no_cpic_guidance
+    label: Unknown
+    # Rationale: CPIC declined to make a recommendation, so neither may we.
+    #
+    # MUST BE FIRST. This is the mapping-layer equivalent of the provenance rule
+    # the explanation layer has always enforced: never assert clinical content
+    # absent from the source. That promise was enforced on generated prose while
+    # this layer sat unguarded, and the exhaustive CPIC validation found the gap —
+    # two clopidogrel rows whose recommendation text is literally
+    # "No recommendation" were being labelled **Adjust Dosage**, because the
+    # *implications* prose mentioned monitoring. The label was ours, not CPIC's.
+    #
+    # Matching the recommendation field alone is deliberate. Implications describe
+    # biology and may discuss dose or risk even when CPIC has no directive; only
+    # the recommendation field carries the directive, so only it may establish
+    # that one exists.
+    any_text_regex:
+      - '^\s*no\s+recommendation\s*\.?\s*$'
+      - '^\s*(?:not\s+applicable|n/?a)\s*\.?\s*$'
+    match_field: recommendation
+    severity_hint: none
 
   - id: contraindicated
     label: Toxic
@@ -166,6 +286,44 @@ risk_label_rules:
       - "select another"
     severity_hint: high
 
+  - id: prescribe_alternative_drug
+    label: Toxic
+    # Rationale: CPIC directing a DIFFERENT drug is the strongest signal short of
+    # an outright contraindication, and it must not fall through to Unknown.
+    #
+    # Found by the exhaustive CPIC validation: three simvastatin rows read
+    # "Prescribe an alternative statin depending on the desired potency" with
+    # implications "increased risk of myopathy", and reached
+    # `fallback_unmatched` -> Unknown. The avoid/contraindicated rules look for
+    # "avoid" and "alternative therapy"; none matched "prescribe an alternative
+    # <drug class>". Returning Unknown there silently DROPS a toxicity warning,
+    # which is worse than a conservative label — Unknown reads as "no
+    # information", not "use something else".
+    #
+    # Labelled Toxic rather than Ineffective per the documented policy below:
+    # CPIC's stated concern here is harm from exposure (myopathy), not
+    # therapeutic failure.
+    any_text_regex:
+      - '\b(?:prescribe|use|select|choose|consider)\s+(?:an?\s+)?alternat\w+'
+      - '\balternat\w+\s+(?:statin|agent|drug|therapy|medication)\b'
+    severity_hint: high
+
+  - id: avoid_for_therapeutic_failure
+    label: Ineffective
+    # Rationale: applies the Toxic-vs-Ineffective policy above. CPIC's codeine
+    # PM text says to avoid the drug because it does not WORK ("greatly reduced
+    # morphine formation leading to diminished analgesia"), not because it harms.
+    # It previously reached `avoid_unqualified`, whose Toxic default mislabelled
+    # therapeutic failure as poisoning.
+    require_any_text:
+      - "avoid"
+      - "alternative"
+    any_text_regex:
+      - '\bdiminish\w*\s+(?:\w+\s+){0,2}?analgesi'
+      - '\breduced\s+(?:\w+\s+){0,3}?(?:morphine|active\s+metabolite)\s+formation'
+      - '\b(?:lack|loss)\s+of\s+(?:efficacy|effect|analgesia)\b'
+    severity_hint: high
+
   - id: avoid_unqualified
     label: Toxic
     # Rationale: an avoidance instruction with no reason our phrase lists
@@ -174,6 +332,60 @@ risk_label_rules:
     any_text:
       - "avoid"
     severity_hint: high
+
+  - id: modified_dose_instruction
+    label: Adjust Dosage
+    # Rationale: a dose instruction GOVERNED BY A MODIFIER is a dose change, and
+    # must be recognised before any unmodified-standard-dosing rule can claim it.
+    #
+    # This rule exists because of a real, clinically consequential defect found
+    # by the exhaustive CPIC validation (reports/validation_report.md). CPIC's
+    # azathioprine text reads:
+    #
+    #   "Initiate therapy with REDUCED starting doses (30-80% of standard
+    #    starting dose) if standard starting dose is >=2 mg/kg/day."
+    #
+    # `standard_dosing` matched the substring "standard starting dose" occurring
+    # inside "30-80% of standard starting dose" and returned Safe — telling a
+    # patient who needs a 30-80% dose reduction that normal dosing is fine. It
+    # affected 16 of the 35 azathioprine recommendation rows.
+    #
+    # The fix is deliberately GENERAL, not a patch for azathioprine. No pattern
+    # here names a drug, a gene, or a specific percentage: the bug is the class
+    # "modifier-governed phrase matched by an unmodified-phrase rule", and a
+    # targeted fix would have left that class live for every other drug whose
+    # CPIC text says "...% of standard dose". Ordering it above `standard_dosing`
+    # is what makes specificity win, which is the same discipline the rest of
+    # this file already relies on.
+    #
+    # Regex rather than substrings because the distinction is structural: the
+    # modifier has to be seen governing the dose phrase. See
+    # cpic_engine._rule_matches.
+    any_text_regex:
+      # "30-80% of standard dose", "20%-50% of the normal starting dose"
+      - '\d+\s*%?\s*(?:-|–|to)?\s*\d*\s*%\s*of\s+(?:the\s+)?(?:standard|normal|usual|label)'
+      # "reduced starting doses", "reduce the starting dose"
+      - '\breduc\w*\s+(?:the\s+)?(?:\w+\s+){0,2}?(?:starting\s+)?dos'
+      # "increased dose", "increase the starting dose"
+      - '\bincreas\w*\s+(?:the\s+)?(?:\w+\s+){0,2}?(?:starting\s+)?dos'
+      # "adjusted dose" / "dose adjustment" as an instruction
+      # NOTE: the NOUN forms ("dose reduction", "dose adjustment") are
+      # deliberately absent. They are ambiguous between instruction and
+      # background: CPIC's normal-metaboliser rows contain "it usually takes at
+      # least 2 weeks to reach steady state after each dose adjustment", which is
+      # pharmacokinetics, not a direction to change the dose. Including them cost
+      # 5 regressions. Only MODIFIER-BEFORE-DOSE ("reduced starting dose") and
+      # percentage-of-standard are unambiguous, and only those need to pre-empt
+      # `standard_dosing`. Genuine noun-form instructions are still caught by
+      # `dose_change_or_monitoring` below.
+      # NOT a bare "adjust ... dose" pattern. That was tried and reverted: it
+      # matched CPIC's generic downstream advice "During therapy, adjust doses
+      # based on disease-specific guidelines", which appears in normal-metaboliser
+      # rows that CPIC explicitly labels standard dosing — 7 regressions in the
+      # exhaustive run. Genuine "adjust" instructions are still caught by
+      # `dose_change_or_monitoring` further down; they do not need to pre-empt
+      # `standard_dosing`, because only a MODIFIED dose does.
+    severity_hint: none
 
   - id: standard_dosing
     label: Safe

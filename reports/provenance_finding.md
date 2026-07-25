@@ -205,6 +205,44 @@ match.
 
 ---
 
+## Evidence 6 — (d) two independent implementations both defaulted toward reassurance
+
+The fourth confirmation, and the one that turns a pattern into a finding about
+direction.
+
+The exhaustive CPIC label-mapping validation (Phase 6) was written to check
+`label_mapping.yaml` against an expectation table derived from *different* input
+fields, specifically so the two would be independent. **Both made the same class
+of error, independently:**
+
+| Artifact | The error |
+| --- | --- |
+| `label_mapping.yaml` | Labelled a required 30–80% dose reduction as **Safe** (substring collision), and labelled rows reading literally "No recommendation" as **Adjust Dosage** |
+| the independent expectation table | Treated "No recommendation" as **Safe**, inferring safety from the absence of a directive |
+
+Two implementations, written days apart, reading different fields, by the same
+author — and both erred **in the same direction**: toward telling the patient
+that nothing is wrong.
+
+**The direction is the finding.** These errors are not symmetric in consequence:
+
+- A false alarm adds a caution that a clinician can discount.
+- **False reassurance removes a caution that would otherwise have been given.**
+  Nothing downstream recovers it, and the patient has no signal that anything was
+  omitted.
+
+That asymmetry is why "absence of guidance" must map to **Unknown** and never to
+Safe, and why the accepted divergences in the validation were all left erring
+toward caution rather than tuned toward agreement.
+
+It also says something about where verification effort belongs. All three earlier
+confirmations concern checks that were too *weak* to catch fabrication. This one
+concerns a check and its own validator drifting the same way — which no amount of
+independence between them prevents, because the shared factor was the author, not
+the input. A contradiction guard reading CPIC's structured booleans now provides
+the genuinely orthogonal signal: it cannot make the mapping right, but it caught
+defect 1 without any expectation table at all.
+
 ## Methods note — pre-committing a retirement threshold
 
 The narrowing of the vocabulary check (Evidence 5) followed a rule recorded

@@ -1962,10 +1962,10 @@
    "phenotype": "Unknown",
    "derived_risk_label": "Unknown",
    "explanation": {
-    "summary": "The recommendation for your genetic result and simvastatin is unknown because your genetic result was not available for this gene.",
+    "summary": "The recommendation for your genetic result and simvastatin is unknown because no usable result for this gene was established.",
     "mechanism": "SLCO1B1 encodes OATP1B1, a hepatic uptake transporter that moves drugs out of portal blood and into liver cells. Simvastatin inhibits HMG-CoA reductase inside hepatocytes, so the liver is both its site of action and its route of elimination. Efficient hepatic uptake delivers the drug to its target and keeps systemic exposure low.",
     "variant_rationale": "No genotype was called for simvastatin in this analysis, so there is no variant-level rationale to report.",
-    "patient_friendly": "We don't have enough information about your genetic result to make a recommendation about taking simvastatin. This is because your genetic result was not available for this gene. Simvastatin works by being taken up by the liver, which helps keep systemic exposure low. If the liver doesn't take up the drug well, more of it stays in the bloodstream and can cause muscle problems. To understand your risk, you should speak with your doctor or pharmacist."
+    "patient_friendly": "We don't have enough information about your genetic result to make a recommendation about taking simvastatin. This is because no usable result for this gene was established. Simvastatin works by being taken up by the liver, which helps keep systemic exposure low. If the liver doesn't take up the drug well, more of it stays in the bloodstream and can cause muscle problems. To understand your risk, you should speak with your doctor or pharmacist."
    },
    "generator": "llm:meta/llama-3.1-8b-instruct",
    "provider": "nvidia",

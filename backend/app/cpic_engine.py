@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import functools
 import html
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -121,6 +122,50 @@ def map_phenotype(raw: str | None, mapping: dict | None = None) -> Phenotype:
         return Phenotype.UNKNOWN
 
 
+def map_phenotype_noted(
+    raw: str | None, mapping: dict | None = None
+) -> tuple[Phenotype, str | None]:
+    """
+    `map_phenotype`, plus a warning when the enum loses information.
+
+    WHY THIS EXISTS
+
+    `Phenotype.UNKNOWN` conflates two clinically different states:
+
+        NO RESULT      the gene was not called — coverage, no data, a failed run
+        INDETERMINATE  the gene WAS called, but the diplotype has no CPIC
+                       phenotype assignment
+
+    In the first, we know nothing. In the second, we ran the assay and got an
+    answer that CPIC's table cannot classify. Collapsing them makes the served
+    prose assert the stronger claim — "no result" — for a case where a result
+    exists. That is a falsehood the pipeline generates about its own inputs.
+
+    The honest fix is a distinct enum value, which is a schema change across
+    Pydantic, the response contract, and the Dart client. Deferred deliberately;
+    see PROJECT_STATUS. Until then the distinction is carried here, where it costs
+    nothing and hides nothing: the raw string PharmCAT returned is surfaced
+    verbatim, so a reader of the response can always tell which state produced
+    the Unknown. A warning is strictly weaker than a typed field — it is not
+    machine-checkable by the client — and that limitation is the reason this is
+    a deferral rather than a solution.
+    """
+    cfg = mapping or load_mapping()
+    phenotype = map_phenotype(raw, cfg)
+    if phenotype is not Phenotype.UNKNOWN:
+        return phenotype, None
+    text = (raw or "").strip()
+    if not text:
+        # Genuinely no result. The enum says exactly what happened.
+        return phenotype, None
+    return phenotype, (
+        f"PharmCAT returned the phenotype {text!r}, which this build reports as "
+        f"Unknown. A result WAS obtained for this gene — 'Unknown' here means the "
+        f"call could not be placed in a CPIC phenotype class, not that data was "
+        f"missing. The response contract has no separate value for that state yet."
+    )
+
+
 # --------------------------------------------------------------------------- #
 # Rule matching
 # --------------------------------------------------------------------------- #
@@ -150,6 +195,28 @@ def _rule_matches(rule: dict, text: str, annotation: CpicAnnotation) -> bool:
 
     require_any = rule.get("require_any_text")
     if require_any and not any(phrase.lower() in text for phrase in require_any):
+        return False
+
+    # Regex conditions exist because some distinctions are structural, not
+    # lexical. The substring collision found by the Phase 6 validation is the
+    # motivating case: "30-80% of standard starting dose" contains the phrase
+    # "standard starting dose", so no list of substrings can tell a MODIFIED
+    # dose instruction from an unmodified one. That needs to see the modifier
+    # governing the phrase, which needs a pattern.
+    # `match_field: recommendation` narrows a rule to the directive alone.
+    # Implications describe biology and may mention dose or risk even where CPIC
+    # gives no directive, so a rule establishing whether a directive EXISTS must
+    # not read them. See the `no_cpic_guidance` rationale.
+    scoped = text
+    if rule.get("match_field") == "recommendation":
+        scoped = html.unescape(annotation.drug_recommendation or "").lower()
+
+    any_regex = rule.get("any_text_regex")
+    if any_regex and not any(re.search(p, scoped, re.IGNORECASE) for p in any_regex):
+        return False
+
+    none_regex = rule.get("none_text_regex")
+    if none_regex and any(re.search(p, text, re.IGNORECASE) for p in none_regex):
         return False
 
     for flag, expected in (rule.get("all_flags") or {}).items():
@@ -529,7 +596,11 @@ def evaluate(
 
     # --- no annotation matched the phenotype --------------------------------
     if annotation is None:
-        phenotype = map_phenotype(gene_call.phenotype_raw if gene_call else None, cfg)
+        phenotype, phenotype_note = map_phenotype_noted(
+            gene_call.phenotype_raw if gene_call else None, cfg
+        )
+        if phenotype_note:
+            warnings.append(phenotype_note)
         return (
             RiskAssessment(
                 risk_label=RiskLabel.UNKNOWN,
@@ -554,7 +625,11 @@ def evaluate(
         )
 
     # --- the normal path ----------------------------------------------------
-    phenotype = map_phenotype(gene_call.phenotype_raw if gene_call else None, cfg)
+    phenotype, phenotype_note = map_phenotype_noted(
+        gene_call.phenotype_raw if gene_call else None, cfg
+    )
+    if phenotype_note:
+        warnings.append(phenotype_note)
     risk_label, rule_id, severity_hint = classify_annotation(annotation, cfg)
     severity = derive_severity(risk_label, phenotype, severity_hint, cfg)
     confidence = derive_confidence(
@@ -591,3 +666,75 @@ def evaluate(
         gene_call,
         warnings,
     )
+
+class LabelContradiction(RuntimeError):
+    """
+    The text-derived label contradicts CPIC's own structured fields.
+
+    Raised loudly rather than logged. A contradiction here means the mapping read
+    CPIC's prose one way while CPIC's machine-readable flags say the opposite, and
+    silently serving either answer would be worse than failing.
+    """
+
+
+#: Labels asserting that nothing about prescribing needs to change.
+_NO_ACTION_LABELS = frozenset({RiskLabel.SAFE})
+
+
+def check_label_contradiction(annotation: CpicAnnotation, label: RiskLabel) -> str | None:
+    """
+    Cross-check a text-derived label against CPIC's structured booleans.
+
+    WHY THIS IS A CROSS-CHECK AND NOT AN INPUT
+
+    The mapping deliberately keeps reading recommendation TEXT. The exhaustive
+    validation in `scripts/validate_label_mapping.py` derives its expectations
+    from these same structured booleans, so if the mapping consumed them the two
+    sides would share an input and the validation would become tautological —
+    it would agree by construction and stop catching anything.
+
+    Used as an assertion instead, the booleans add a genuinely independent
+    signal: they cannot make the mapping right, but they can prove it wrong.
+
+    THIS WOULD HAVE CAUGHT THE PHASE 6 BUG ON ITS OWN
+
+    The 16 azathioprine rows labelled `Safe` by a substring collision all carry
+    `dosingInformation = true`. A label of "nothing needs to change" against a
+    flag saying "the dose must change" is exactly this contradiction, so the guard
+    would have failed on them without anyone writing an expectation table.
+
+    Returns a description, or None when consistent.
+    """
+    if label not in _NO_ACTION_LABELS:
+        return None
+
+    if annotation.dosing_information:
+        return (
+            f"label {label.value!r} asserts unchanged prescribing, but CPIC sets "
+            "dosingInformation=true for this recommendation (a dose change or "
+            "monitoring requirement applies)"
+        )
+    if annotation.alternate_drug_available:
+        return (
+            f"label {label.value!r} asserts no action needed, but CPIC sets "
+            "alternateDrugAvailable=true for this recommendation (another drug "
+            "should be considered instead)"
+        )
+    return None
+
+
+def classify_annotation_checked(
+    annotation: CpicAnnotation, mapping: dict | None = None
+) -> tuple[RiskLabel, str, str]:
+    """
+    `classify_annotation`, with the contradiction guard enforced.
+
+    Raises `LabelContradiction`. Callers that must degrade rather than fail
+    should catch it — but they must not ignore it, because the failure it
+    reports is a mislabelled clinical recommendation.
+    """
+    label, rule_id, hint = classify_annotation(annotation, mapping)
+    problem = check_label_contradiction(annotation, label)
+    if problem is not None:
+        raise LabelContradiction(f"{problem} (rule: {rule_id})")
+    return label, rule_id, hint

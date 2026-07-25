@@ -1,0 +1,1750 @@
+{
+ "generated_at": "2026-07-25T09:55:52.137727+00:00",
+ "source": "CPIC guideline annotations bundled with PharmCAT 3.4.0 (org/pharmgkb/pharmcat/reporter/prescribing_guidance.json)",
+ "source_note": "PharmCAT ships CPIC's own published recommendation rows. Text is verbatim (HTML stripped); nothing is paraphrased.",
+ "accessed": "2026-07-24",
+ "expectation_rule": "Derived ONLY from CPIC's structured fields, never from the recommendation text\nthat label_mapping.yaml matches on:\n\n  recommendation is \"No recommendation\" / phenotype unassignable / an algorithm\n                                  pointer                          -> Unknown\n  alternateDrugAvailable = true   CPIC says another drug should be used instead,\n                                  so this drug is not appropriate as-is:\n                                    implications indicate harm/toxicity -> Toxic\n                                    implications indicate lost efficacy -> Ineffective\n  alternateDrugAvailable = false\n    dosingInformation = true      CPIC keeps the drug but changes the dose or\n                                  adds monitoring                  -> Adjust Dosage\n    dosingInformation = false     CPIC changes nothing              -> Safe\n",
+ "independence": "Expected labels come from CPIC's structured booleans (alternateDrugAvailable, dosingInformation) and the implications category. label_mapping.yaml matches recommendation TEXT. Different inputs, so agreement is evidence rather than tautology.",
+ "rows": [
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Possible Intermediate Metabolizer",
+    "NUDT15": "Normal Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Possible Intermediate Metabolizer",
+    "NUDT15": "Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is \u2265 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Possible Intermediate Metabolizer",
+    "NUDT15": "Poor Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Possible Intermediate Metabolizer",
+    "NUDT15": "Possible Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is \u2265 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Intermediate Metabolizer",
+    "NUDT15": "Normal Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Normal Metabolizer",
+    "NUDT15": "Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Normal Metabolizer",
+    "NUDT15": "Normal Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+   "implications": [
+    "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Normal Metabolizer",
+    "NUDT15": "Possible Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Intermediate Metabolizer",
+    "NUDT15": "Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is \u2265 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Intermediate Metabolizer",
+    "NUDT15": "Poor Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Intermediate Metabolizer",
+    "NUDT15": "Possible Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is \u2265 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Normal Metabolizer",
+    "NUDT15": "Poor Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Poor Metabolizer",
+    "NUDT15": "Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+    "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Poor Metabolizer",
+    "NUDT15": "Normal Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+    "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "No Result",
+    "NUDT15": "Indeterminate"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenotype. If thiopurines are required and either TPMT or NUDT15 status is unknown, monitor closely for toxicity.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Indeterminate",
+    "NUDT15": "Indeterminate"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenotype. If thiopurines are required and either TPMT or NUDT15 status is unknown, monitor closely for toxicity.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Poor Metabolizer",
+    "NUDT15": "Indeterminate"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+    "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "No Result",
+    "NUDT15": "Intermediate Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Possible Intermediate Metabolizer",
+    "NUDT15": "No Result"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "No Result",
+    "NUDT15": "Possible Intermediate Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Indeterminate",
+    "NUDT15": "Poor Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Poor Metabolizer",
+    "NUDT15": "No Result"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+    "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs.Consider alternative nonthiopurine immunosuppressant therapy."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Normal Metabolizer",
+    "NUDT15": "No Result"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on TPMT, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+   "implications": [
+    "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Intermediate Metabolizer",
+    "NUDT15": "Indeterminate"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "No Result",
+    "NUDT15": "Normal Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on NUDT15, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+   "implications": [
+    "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Intermediate Metabolizer",
+    "NUDT15": "No Result"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Normal Metabolizer",
+    "NUDT15": "Indeterminate"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on TPMT, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+   "implications": [
+    "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Indeterminate",
+    "NUDT15": "Normal Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on NUDT15, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+   "implications": [
+    "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Possible Intermediate Metabolizer",
+    "NUDT15": "Indeterminate"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+    "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "No Result",
+    "NUDT15": "Poor Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Indeterminate",
+    "NUDT15": "Possible Intermediate Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Indeterminate",
+    "NUDT15": "No Result"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenotype. If thiopurines are required and either TPMT or NUDT15 status is unknown, monitor closely for toxicity.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Indeterminate",
+    "NUDT15": "Intermediate Metabolizer"
+   },
+   "population": "",
+   "classification": "Strong",
+   "recommendation": "Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is \u22652 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.",
+   "implications": [
+    "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Poor Metabolizer",
+    "NUDT15": "Poor Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+    "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "azathioprine",
+   "lookup": {
+    "TPMT": "Poor Metabolizer",
+    "NUDT15": "Possible Intermediate Metabolizer"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Consider alternative nonthiopurine immunosuppressant therapy.",
+   "implications": [
+    "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+    "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Ultrarapid Metabolizer"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "Strong",
+   "recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+   "implications": [
+    "CYP2C19: Increased clopidogrel active metabolite formation; lower on-treatment platelet reactivity; no association with higher bleeding risk"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Rapid Metabolizer"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "Strong",
+   "recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+   "implications": [
+    "CYP2C19: Normal or increased clopidogrel active metabolite formation; normal or lower on-treatment platelet reactivity; no association with higher bleeding risk"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Normal Metabolizer"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "Strong",
+   "recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+   "implications": [
+    "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Likely Intermediate Metabolizer"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "Strong",
+   "recommendation": "Avoid standard dose clopidogrel (75 mg) if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+   "implications": [
+    "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Intermediate Metabolizer"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "Strong",
+   "recommendation": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+   "implications": [
+    "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Likely Poor Metabolizer"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "Strong",
+   "recommendation": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+   "implications": [
+    "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Poor Metabolizer"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "Strong",
+   "recommendation": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+   "implications": [
+    "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Ultrarapid Metabolizer"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: Increased clopidogrel active metabolite formation; lower on-treatment platelet reactivity; no association with higher bleeding risk"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Rapid Metabolizer"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: Normal or increased clopidogrel active metabolite formation; normal or lower on-treatment platelet reactivity; no association with higher bleeding risk"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Normal Metabolizer"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "Strong",
+   "recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+   "implications": [
+    "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Likely Intermediate Metabolizer"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Intermediate Metabolizer"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Likely Poor Metabolizer"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "Moderate",
+   "recommendation": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+   "implications": [
+    "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Poor Metabolizer"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "Moderate",
+   "recommendation": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+   "implications": [
+    "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Ultrarapid Metabolizer"
+   },
+   "population": "NVI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: Increased clopidogrel active metabolite formation; lower on-treatment platelet reactivity"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Rapid Metabolizer"
+   },
+   "population": "NVI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: Normal or increased clopidogrel active metabolite formation; normal or lower on-treatment platelet reactivity"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Normal Metabolizer"
+   },
+   "population": "NVI",
+   "classification": "Strong",
+   "recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+   "implications": [
+    "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Likely Intermediate Metabolizer"
+   },
+   "population": "NVI",
+   "classification": "Moderate",
+   "recommendation": "Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.",
+   "implications": [
+    "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Intermediate Metabolizer"
+   },
+   "population": "NVI",
+   "classification": "Moderate",
+   "recommendation": "Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.",
+   "implications": [
+    "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Likely Poor Metabolizer"
+   },
+   "population": "NVI",
+   "classification": "Moderate",
+   "recommendation": "Avoid clopidogrel if possible. Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.",
+   "implications": [
+    "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Poor Metabolizer"
+   },
+   "population": "NVI",
+   "classification": "Moderate",
+   "recommendation": "Avoid clopidogrel if possible. Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.",
+   "implications": [
+    "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Indeterminate"
+   },
+   "population": "CVI ACS PCI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: n/a"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Indeterminate"
+   },
+   "population": "NVI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: n/a"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "clopidogrel",
+   "lookup": {
+    "CYP2C19": "Indeterminate"
+   },
+   "population": "CVI non-ACS non-PCI",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2C19: n/a"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "\u22653.75"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "n/a"
+   },
+   "population": "general",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "CYP2D6: n/a"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "xN combinations"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "xN is not a valid input for CYP2D6 copy number alleles. Please select a copy number representation as outlined below. \n \n \n \n xN Allele \n Possible selection \n \n \n \n \n *1xN \n *1x2 or *1x\u22653 \n \n \n *2xN \n *2x2 or *2x\u22653 \n \n \n *3xN \n *3x2 \n \n \n *4xN \n *4x2 or *4x\u22653 \n \n \n *6xN \n *6x2 \n \n \n *35xN \n *35x2 \n \n \n *36xN \n *36x2 \n \n \n *43xN \n *43x2 \n \n \n *45xN \n *45x2 \n \n \n \n \n For normal function alleles (*1 and *2) selecting  *1x2 versus *1x\u22653  or  *2x2 versus *2x\u22653  will affect the resulting CYP2D6 phenotype. \n CPIC CYP2D6 ultrarapid metabolizer phenotype is assigned an activity score (AS) of >2.25. \n DPWG CYP2D6 ultrarapid metabolizer phenotype is assigned an AS of >2.5. \n \n \n \n \n Guideline \n CNV Allele \n Function \n Activity value \n Other Allele Function \n Activity value \n CYP2D6 AS \n Phenotype \n \n \n \n \n CPIC or DPWG \n *1x2 \n Increased \n 2 \n No function \n 0 \n 2 \n Normal metabolizer \n \n \n CPIC or DPWG \n *1x2 \n Increased \n 2 \n Decreased function \n 0.25 \n 2.25 \n Normal metabolizer \n \n \n CPIC \n *1x2 \n Increased \n 2 \n Decreased function \n 0.5 \n 2.5 \n Ultrarapid metabolizer \n \n \n DPWG \n *1x2 \n Increased \n 2 \n Decreased function \n 0.5 \n 2.5 \n Normal metabolizer \n \n \n CPIC or DPWG \n *1x2 \n Increased \n 2 \n Normal function \n 1.0 \n 3.0 \n Ultrarapid metabolizer \n \n \n CPIC or DPWG \n *1x\u22653 \n Increased \n \u22653 \n  \n  \n \u22653 \n Ultrarapid metabolizer",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "0.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of possibility of diminished analgesia. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Greatly reduced morphine formation leading to diminished analgesia."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Ineffective",
+   "basis": "CPIC: alternative drug available + therapeutic failure"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "0.25"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Reduced morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "4.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "1.25"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing.",
+   "implications": [
+    "CYP2D6: Expected morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "\u22653.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "\u22655.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "0.5"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Reduced morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "2.5"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "1.5"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing.",
+   "implications": [
+    "CYP2D6: Expected morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "\u22656.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "\u22653.25"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "2.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing.",
+   "implications": [
+    "CYP2D6: Expected morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "0.75"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Reduced morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "1.75"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing.",
+   "implications": [
+    "CYP2D6: Expected morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "3.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "\u22653.5"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "2.25"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing.",
+   "implications": [
+    "CYP2D6: Expected morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "1.0"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Reduced morphine formation"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "\u22654.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "codeine",
+   "lookup": {
+    "CYP2D6": "2.75"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.",
+   "implications": [
+    "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "fluorouracil",
+   "lookup": {
+    "DPYD": "1.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available). Patients with the c.2846A>T/c.2846A>T genotype may require >50% reduction in starting dose.",
+   "implications": [
+    "DPYD: Decreased DPD activity (leukocyte DPD activity at 30% to 70% that of the normal population) and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "fluorouracil",
+   "lookup": {
+    "DPYD": "2.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+   "implications": [
+    "DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "fluorouracil",
+   "lookup": {
+    "DPYD": "1.5"
+   },
+   "population": "general",
+   "classification": "Moderate",
+   "recommendation": "Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available).",
+   "implications": [
+    "DPYD: Decreased DPD activity (leukocyte DPD activity at 30% to 70% that of the normal population) and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Adjust Dosage",
+   "basis": "CPIC: drug retained, dosing/monitoring information applies"
+  },
+  {
+   "drug": "fluorouracil",
+   "lookup": {
+    "DPYD": "0.0"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens.",
+   "implications": [
+    "DPYD: Complete DPD deficiency and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "fluorouracil",
+   "lookup": {
+    "DPYD": "0.5"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens. In the event, based on clinical advice, alternative agents are not considered a suitable therapeutic option, 5-fluorouracil should be administered at a strongly reduced dose with early therapeutic drug monitoring.",
+   "implications": [
+    "DPYD: Complete DPD deficiency and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs."
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": true,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "simvastatin",
+   "lookup": {
+    "SLCO1B1": "Increased Function"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+   "implications": [
+    "SLCO1B1: Typical myopathy risk and statin exposure"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "simvastatin",
+   "lookup": {
+    "SLCO1B1": "Normal Function"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+   "implications": [
+    "SLCO1B1: Typical myopathy risk and statin exposure"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Safe",
+   "basis": "CPIC: no alternative drug and no dosing change"
+  },
+  {
+   "drug": "simvastatin",
+   "lookup": {
+    "SLCO1B1": "Possible Decreased Function"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins). If simvastatin therapy is warranted, limit dose to <20mg/day.",
+   "implications": [
+    "SLCO1B1: Increased simvastatin acid exposure as compared to normal function; increased risk of myopathy"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": true,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "simvastatin",
+   "lookup": {
+    "SLCO1B1": "Decreased Function"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins). If simvastatin therapy is warranted, limit dose to <20mg/day.",
+   "implications": [
+    "SLCO1B1: Increased simvastatin acid exposure as compared to normal function; increased risk of myopathy"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": true,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "simvastatin",
+   "lookup": {
+    "SLCO1B1": "Poor Function"
+   },
+   "population": "general",
+   "classification": "Strong",
+   "recommendation": "Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins).",
+   "implications": [
+    "SLCO1B1: Increased simvastatin acid exposure compared to normal and decreased function; highly increased myopathy risk"
+   ],
+   "alternateDrugAvailable": true,
+   "dosingInformation": false,
+   "expected_label": "Toxic",
+   "basis": "CPIC: alternative drug available + implications indicate harm"
+  },
+  {
+   "drug": "simvastatin",
+   "lookup": {
+    "SLCO1B1": "Indeterminate"
+   },
+   "population": "general",
+   "classification": "No recommendation",
+   "recommendation": "No recommendation",
+   "implications": [
+    "SLCO1B1: n/a"
+   ],
+   "alternateDrugAvailable": false,
+   "dosingInformation": false,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "No Result",
+    "CYP4F2": "No Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "No Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "Any Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "Any Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "No Result",
+    "CYP4F2": "Any Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "No Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "No Result",
+    "VKORC1": "No Result",
+    "rs12777823": "No Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "No Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "No Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "Any Result",
+    "VKORC1": "No Result",
+    "rs12777823": "No Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "No Result",
+    "VKORC1": "No Result",
+    "rs12777823": "Any Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "No Result",
+    "CYP4F2": "Any Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "Any Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "Any Result",
+    "VKORC1": "No Result",
+    "rs12777823": "Any Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "No Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "Any Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "Any Result",
+    "CYP4F2": "Any Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "No Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  },
+  {
+   "drug": "warfarin",
+   "lookup": {
+    "CYP2C9": "No Result",
+    "CYP4F2": "No Result",
+    "VKORC1": "Any Result",
+    "rs12777823": "Any Result"
+   },
+   "population": "",
+   "classification": "",
+   "recommendation": "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See  CPIC guideline annotation  for details.",
+   "implications": [],
+   "alternateDrugAvailable": false,
+   "dosingInformation": true,
+   "expected_label": "Unknown",
+   "basis": "CPIC states no actionable recommendation for this combination"
+  }
+ ]
+}

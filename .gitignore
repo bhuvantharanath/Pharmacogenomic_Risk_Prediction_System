@@ -75,3 +75,14 @@ logs/
 # Raw experiment output — deliberately contains fabricated clinical text.
 # The readable write-up (reports/guard_experiment.md) is committed instead.
 reports/guard_experiment_raw.json
+
+# Phase 6 validation: remote-sliced sample VCFs and the PharmCAT jar are large
+# and fully re-derivable from test-data/reference/manifest.json (which IS
+# committed, with checksums and verified source URLs).
+test-data/reference/slices/
+test-data/reference/tools/
+
+# bcftools writes a local .tbi beside the CWD when slicing a REMOTE panel, so
+# these appear at the repo root as a byproduct of scripts/fetch_reference_data.py.
+# They are indexes for panels we never download; re-fetched on demand.
+/1kGP_high_coverage_Illumina.*.vcf.gz.tbi
