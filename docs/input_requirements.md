@@ -126,7 +126,18 @@ Usable-result rate over 2 400 (sample, gene) pairs: **82.79% → 12.58%**, with
 **1 685** results moving from confident to honest `Unknown` and **zero** moving the
 other way. Only DPYD clears its bar.
 
-### ⚠️ These thresholds are probably too strict for real filtered panels
+### These thresholds are deliberately strict, and stay that way
+
+**Decision recorded 2026-07-26: the monomorphic-aware relaxation was rejected.** It
+would assert "this position is usually reference, therefore this patient is
+reference" — the structural bias the gate exists to prevent, with a probability
+attached. It fails worst for rare severe variants: DPYD deficiency alleles are rare
+(hence monomorphic in a panel) and missing one is fatally consequential. See the
+postscript in `reports/provenance_finding.md`.
+
+The caveat below still holds and is the honest reason the gate is blunt rather than
+wrong:
+
 
 Stated plainly because it affects how the number above should be read. The sweep
 that produced them dropped positions **at random**. 1000 Genomes filtering does not:

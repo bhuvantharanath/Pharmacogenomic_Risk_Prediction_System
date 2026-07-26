@@ -620,3 +620,53 @@ fifth edge pointing the other way:
 A verification architecture that only ever audits its own output can be complete,
 self-consistent, and still confidently wrong — because the thing it never checks is
 whether it was given enough to answer at all.
+
+---
+
+## Postscript — an optimisation considered and rejected, for a stated safety reason
+
+The gate declines 5 of 6 genes on 1000 Genomes slices, which is blunt. The obvious
+relaxation: treat an absent position as covered when a reference panel shows it is
+**monomorphic** — nobody varies there, so reference is almost certainly right.
+
+**Rejected.** It is the structural bias of this document with a probability bolted
+on. The gate exists because absent data reads as reference; the relaxation would
+make that reading *official*, asserting "this position is usually reference,
+therefore this patient is reference." Being usually right is not the standard, and a
+per-position probability does not become a per-patient fact.
+
+It fails worst exactly where the stakes are highest. A variant is monomorphic in a
+panel **because it is rare** — and rare is what severe pharmacogenomic variants are.
+DPYD deficiency alleles are rare enough to be absent from many panels, and the
+consequence of missing one is fatal fluorouracil toxicity. The relaxation would
+therefore be most confident precisely about the positions whose absence matters
+most, and the error it produced would be indistinguishable from a correct call.
+
+It would also have improved the headline number — 12.58% usable to something far
+more presentable — while reintroducing the defect the number exists to disclose.
+That is the whole trap: the optimisation is attractive *because* it makes the metric
+look better, and the metric looks bad for a true reason.
+
+**Recording the rejection is the result.** A validation exercise that only ever adds
+capability is not a validation exercise; declining a plausible improvement on
+grounds this document already established, and saying so, is what the exercise was
+for.
+
+### The unit problem — noted, not solved
+
+A percentage threshold is an artifact of how the sweep was built. Positions were
+dropped at random, which no real pipeline does. The evidence that count is the wrong
+unit is already in the data:
+
+> **DPYD passes at 37.3% coverage with a 0% wrong rate. CYP2C9 fails at 19.3%.**
+
+The difference is not how many positions are present but **which**. DPYD's actionable
+variants are each defined by a single position, and CPIC scores it by activity; CYP2C9
+needs a full reference haplotype confirmed before `*1` can be asserted. Position
+*identity* carries the information; the count is a proxy that happens to correlate.
+
+The principled replacement, for future work rather than this phase: **scope the
+alleles being claimed, and require exactly their defining positions.** If a response
+asserts `*1/*2`, the input must cover every position defining `*1` and `*2` — no
+percentage, no reference panel, no external frequency data. That is strictly stronger
+than a threshold and needs nothing this project does not already have.

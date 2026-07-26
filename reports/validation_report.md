@@ -452,6 +452,23 @@ not merely decline more often — for three of six genes it begins answering
 *confidently and wrongly*, always replacing a reduced-function phenotype with a
 normal one. See `docs/input_requirements.md`.
 
+
+### Two input classes, always stated together
+
+The rates below characterise **the input**, not the system. Quoting either alone
+misrepresents it in opposite directions.
+
+| Input class | Confident-label rate | Measured wrong rate |
+| --- | ---: | ---: |
+| **Complete coverage** (clinical PGx panel, all-sites WGS/WES) | **100%** | **0%** |
+| **Polymorphic-filtered slices** (1000 Genomes, 19–57% position coverage) | **12.58%** | gate declines the remainder |
+
+On the filtered slices the coverage gate declines 5 of 6 genes as unsuitable for
+confident calling. **That 12.58% is a property of the input, not a failure rate of
+the pipeline** — the same pipeline reaches 100% with 0% error on input that meets
+the documented requirements. The gate is doing its job when it declines: the
+alternative, measured, is a confident wrong call in the false-reassurance direction.
+
 ### Frequency concordance — an aggregate sanity check, and only that
 
 **Stated explicitly: this is not per-sample validation.** It asks whether the
