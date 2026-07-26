@@ -91,6 +91,7 @@ class PharmacogenomicProfile {
     required this.primaryGene,
     required this.diplotype,
     required this.recommendationDiplotype,
+    required this.candidateDiplotypes,
     required this.phenotype,
     required this.activityScore,
     required this.detectedVariants,
@@ -110,6 +111,11 @@ class PharmacogenomicProfile {
   /// was a real defect on the backend; showing it to a patient would repeat the
   /// confusion in the UI instead of the parser.
   final String? recommendationDiplotype;
+
+  /// Every equally-likely diplotype, when PharmCAT could not narrow to one.
+  /// Empty for an unambiguous call. When non-empty, [diplotype] is a marker
+  /// ("Undetermined (4 equally likely)") rather than a call.
+  final List<String> candidateDiplotypes;
   final Phenotype phenotype;
 
   /// Null for genes with no activity-score model — do not render as 0.
@@ -122,6 +128,10 @@ class PharmacogenomicProfile {
       primaryGene: _str(json['primary_gene'], 'Unknown'),
       diplotype: _str(json['diplotype'], 'Unknown'),
       recommendationDiplotype: json['recommendation_diplotype'] as String?,
+      candidateDiplotypes: (json['candidate_diplotypes'] as List<dynamic>?)
+              ?.whereType<String>()
+              .toList(growable: false) ??
+          const <String>[],
       phenotype: Phenotype.fromJson(json['phenotype']),
       activityScore: _optDouble(json['activity_score']),
       detectedVariants: raw is List
@@ -137,6 +147,7 @@ class PharmacogenomicProfile {
     'primary_gene': primaryGene,
     'diplotype': diplotype,
     'recommendation_diplotype': recommendationDiplotype,
+    'candidate_diplotypes': candidateDiplotypes,
     'phenotype': phenotype.toJson(),
     'activity_score': activityScore,
     'detected_variants': detectedVariants

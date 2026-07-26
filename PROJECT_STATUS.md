@@ -1087,6 +1087,7 @@ Validation. Every number below is measured and traceable to an artifact under
 | **Usable-result rate** | **82.79%** | 1 987 / 2 400 callable (sample, gene) pairs. A floor, not a production estimate — see below |
 | **External genotype concordance** | **n = 1** | `NA12273`, 2/2 exact. Reported as n=1 throughout, never as a percentage |
 | **Label/prose cross-check** | **0 divergences** | 20 / 20 reachable explanation entries |
+| **Phenotype/label invariant** | **294 labels corrected** | 400 samples × 6 drugs. Every change removed a confident label; none added one. Checked at build time over all reachable cases and at request time on every response |
 | **SAS breakout** | **n = 75** | CYP2C19 reduced-function (IM+PM) **53.3%** (40/75), second only to EAS. No per-population claim: n=8–23 per population |
 
 Both halves of the 82.79%: the 1000 Genomes panel is filtered to polymorphic
@@ -1121,15 +1122,37 @@ and a frequency estimator whose "stricter" variant was systematically worse
 (dropping ambiguous calls pushed CYP2C9 `*2` in Europeans from a near-exact 13.3%
 to 0.0% against a published 12.7%).
 
-### Measured and deliberately NOT implemented
+6. **🔴 phenotype → label was never verified** — the largest defect of the phase,
+   and the fourth edge of the verification graph. A confident label could sit beside
+   a phenotype the caller declined to assert: `lookup_keys` derive from
+   `recommendationDiplotypes` (whose job is to find a table row, not to state what
+   the patient has), and reading `candidate[0]` asserted one of several disagreeing
+   candidates. Fixed as a general invariant gated before the CPIC lookup, plus a
+   phenotype→label check at build and request time.
 
-**30 ambiguous SLCO1B1 calls (7.5% of the cohort) report `Unknown` although every
-informative candidate reads `Decreased Function` or `Possible Decreased Function`**
-— unanimous on the functional class. That is a silently dropped statin-myopathy
-signal, the mirror of defect 2. Surfacing it needs a contract state for "phenotype
-confident, diplotype ambiguous"; the proposal is written up in the validation
-report and awaits a decision. The other 83% of ambiguous SLCO1B1 calls, and 100% of
-CYP2C9's, are genuinely phenotype-discordant — `Unknown` is right for those.
+   **294 of 2 400 (drug, sample) results changed, every one removing a confident
+   label:** simvastatin 195 `Safe`→`Unknown`, fluorouracil 81 `Safe`→`Unknown` and
+   17 `Adjust Dosage`→`Unknown`, azathioprine 1. None moved the other way. 49% of
+   the cohort had been shown a green `Safe` for simvastatin unsupported by evidence.
+
+7. **The one defect in the opposite direction** — 30 SLCO1B1 calls where every
+   informative candidate agrees function is decreased. A naive invariant would have
+   suppressed those to `Unknown`, discarding a myopathy warning the source *did*
+   assert. The invariant therefore keys on phenotype agreement, never on diplotype
+   ambiguity, and `variant_rationale` states the split.
+
+A correction worth recording: an earlier draft of the validation report claimed
+those 30 calls returned `Unknown` and dropped a warning. They did not — they already
+reported `Toxic`. The wrong figure came from the validation script's own failure
+classification rather than from the pipeline, and checking the pipeline directly
+disproved it. The real defect was the reverse and 6× larger.
+
+Two further defects were in my own measurement code, recorded because they shaped
+results: a first fix for the ambiguity case filtered every `UNKNOWN`-mapping
+candidate out before comparing, which collapsed `{Normal Function, Indeterminate}`
+to `{NM}` and left all 195 samples exactly as broken while measuring as a fix —
+caught only by re-running the cohort. `n/a` is silence; `Indeterminate` is
+testimony.
 
 ---
 

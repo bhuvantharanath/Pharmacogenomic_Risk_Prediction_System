@@ -359,9 +359,21 @@ def _profile(call: PharmcatGeneCall | None, phenotype: Phenotype) -> Pharmacogen
             activity_score=None,
             detected_variants=[],
         )
+    ambiguous = list(call.candidate_diplotypes or [])
+    if len(ambiguous) < 2:
+        ambiguous = []
     return PharmacogenomicProfile(
         primary_gene=call.gene,
-        diplotype=call.diplotype or "Unknown",
+        # An ambiguous call gets a marker, not one of the candidates. The
+        # phenotype may still be asserted (every candidate agreed on function);
+        # the exact star alleles are simply not determined, and saying otherwise
+        # is the over-claiming this whole layer exists to prevent.
+        diplotype=(
+            f"Undetermined ({len(ambiguous)} equally likely)"
+            if ambiguous
+            else (call.diplotype or "Unknown")
+        ),
+        candidate_diplotypes=ambiguous,
         # Only surfaced when it actually differs — repeating the same string under
         # two names would invite exactly the conflation the field exists to expose.
         recommendation_diplotype=(
@@ -409,6 +421,7 @@ def _build_context(
         cpic_evidence_level=recommendation.cpic_evidence_level.value,
         mechanism=retrieve_mechanism(gene, drug),
         phenotype_label=(call.phenotype_raw or "") if call else "",
+        candidate_diplotypes=list(call.candidate_diplotypes) if call else [],
     )
 
 

@@ -86,6 +86,7 @@ class TestContractCompatibility:
                 # unaffected — but the key IS in the contract now, and this
                 # assertion is what keeps Pydantic and the Dart model in step.
                 "recommendation_diplotype",
+                "candidate_diplotypes",
                 "phenotype",
                 "activity_score",
                 "detected_variants",

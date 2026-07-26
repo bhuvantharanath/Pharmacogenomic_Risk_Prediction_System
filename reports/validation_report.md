@@ -328,14 +328,16 @@ ambiguous calls, 7.5% of the cohort)** share one pattern exactly:
 All 30 have that shape: every candidate that says anything agrees the transporter
 function is **decreased**, differing only in confidence. We report `Unknown`.
 
-#### 🟠 So we are discarding actionable information, in the unsafe direction
+#### What these 30 actually did — corrected
 
-For those 30 samples the system says "no usable result" when its own evidence
-unanimously indicates decreased SLCO1B1 function — the simvastatin myopathy signal.
-That is a **silently dropped warning**, and it is the mirror image of the DPYD
-defect in §2b: there the pipeline manufactured certainty PharmCAT withheld; here it
-withholds certainty PharmCAT's candidates jointly support. Both misstate what is
-known; this one errs toward false reassurance.
+**They already reported `Toxic`.** An earlier draft of this section claimed they
+returned `Unknown` and dropped a myopathy warning; that came from this script's own
+failure classification rather than from the pipeline, and checking the pipeline
+directly disproved it. They were correct — though only incidentally, because
+`candidate[0]` happened to be the informative candidate. That is now principled
+rather than accidental: the resolver requires every informative candidate to agree.
+
+The real defect was the reverse, and much larger — see the correction below.
 
 #### Proposal — NOT implemented
 
@@ -370,6 +372,66 @@ expandable card, and new explanation-store routing for a phenotype-known /
 diplotype-unknown state — for 7.5% of samples on one gene, where the root cause is
 input incompleteness rather than pipeline design. Deferring is defensible. Doing it
 silently is not, which is why both halves are in the limitations table.
+
+### 🔴 Correction and the largest defect of the phase — phenotype → label
+
+**An earlier draft of this report said 30 concordant SLCO1B1 calls "report
+Unknown, dropping a myopathy warning". That was wrong**, and the error was mine:
+the 39.8% figure came from the validation script's own failure classification, not
+from the pipeline. Checked directly, the pipeline already reported `Toxic` for
+those 30. Nothing was being dropped there.
+
+What the direct check *did* find is larger and worse, in the opposite direction.
+
+The verification graph had four edges and only three were checked —
+explanation→CPIC, label→CPIC and explanation→label. **phenotype→label was not.**
+A confident label could therefore sit beside a phenotype the caller declined to
+assert, and every existing checker would pass, because each was correct about its
+own edge.
+
+Two mechanisms produced it:
+
+1. **Unasserted phenotype reaching the lookup.** `lookup_keys` come from
+   `recommendationDiplotypes`, which exists to *find a table row*. A DPYD
+   `Indeterminate` call still carries activity score 2.0, so the lookup found the
+   Normal Metabolizer row and the label engine rendered `Safe` — on fluorouracil,
+   where deficiency is fatal.
+2. **Reading `candidate[0]` when candidates disagree.** For SLCO1B1, one candidate
+   said `Normal Function` and a co-equal one said `Indeterminate`; taking the first
+   asserted a confident `Safe`.
+
+Measured effect of the fix over the same 400 samples × 6 drugs:
+
+| Drug | Change | n |
+| --- | --- | ---: |
+| simvastatin | `Safe` → `Unknown` | **195** |
+| fluorouracil | `Safe` → `Unknown` | 81 |
+| fluorouracil | `Adjust Dosage` → `Unknown` | 17 |
+| azathioprine | `Safe` → `Unknown` | 1 |
+| clopidogrel, warfarin, codeine | unaffected | 0 |
+
+**294 of 2 400 results changed, every one removing a confident label. None moved
+the other way.** 49% of the cohort had been shown a green `Safe` for simvastatin
+on evidence that did not support it.
+
+The invariant is general — *a phenotype the caller declined to assert can never
+produce a confident label* — and gated **before** the CPIC lookup, so an unasserted
+phenotype never reaches `lookup_keys`. A phenotype→label check now runs at build
+time over every reachable case and at request time on every response, degrading to
+`Unknown` with a warning rather than serving a contradiction.
+
+**It keys on phenotype agreement, never on diplotype ambiguity.** 30 calls have
+every informative candidate reading `Decreased Function` or `Possible Decreased
+Function` — unanimous on function, differing only in confidence — and those still
+produce a confident `Toxic`, with `variant_rationale` stating the split: function
+known, exact star alleles undetermined. Suppressing them would have traded
+over-claiming for under-claiming. The genuinely discordant 195 and all 71 ambiguous
+CYP2C9 calls remain `Unknown`, which is correct for them.
+
+A trap worth recording: the first implementation filtered every `UNKNOWN`-mapping
+candidate out before comparing, collapsing `{Normal Function, Indeterminate}` to
+`{NM}` and leaving all 195 samples as broken as before. `n/a` is silence;
+`Indeterminate` is testimony. Only re-running the cohort caught it.
 
 ### Frequency concordance — an aggregate sanity check, and only that
 

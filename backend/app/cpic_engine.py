@@ -166,6 +166,133 @@ def map_phenotype_noted(
     )
 
 
+@dataclass(frozen=True)
+class ResolvedPhenotype:
+    """
+    The phenotype we are willing to assert, and whether we assert it at all.
+
+    THE INVARIANT THIS EXISTS TO ENFORCE
+
+        A phenotype the caller declined to assert can never produce a
+        confident risk label.
+
+    Stated generally, over every gene and drug — not as a DPYD special case. Two
+    measured defects motivated it, and they fail in opposite directions:
+
+      OVER-CLAIMING (DPYD, 4/302 samples). PharmCAT called `Indeterminate`; the
+      pipeline rendered `Safe` on fluorouracil, where deficiency is fatal. The
+      label came from `lookup_keys`, which are derived from
+      `recommendationDiplotypes` — and that structure exists to FIND A TABLE ROW,
+      not to assert what the patient has. Using it to derive a risk label repeats
+      the sourceDiplotypes category error one layer up.
+
+      OVER-CLAIMING (SLCO1B1, 195/400 samples). Several equally-likely candidate
+      diplotypes disagreed about function — one said `Normal Function`, another
+      `Indeterminate` — and reading only candidate[0] rendered a confident `Safe`
+      for 49% of the cohort.
+
+    So assertion is decided from ALL candidates, not the first:
+
+      * one candidate, phenotype maps        -> asserted
+      * several candidates, all informative ones map to the SAME class
+                                             -> asserted (function is known even
+                                                though the exact diplotype is not)
+      * several candidates that disagree     -> NOT asserted
+      * nothing informative                  -> NOT asserted
+
+    The middle case is why this keys on PHENOTYPE and never on diplotype
+    ambiguity: 30 SLCO1B1 calls have every informative candidate reading
+    `Decreased Function` or `Possible Decreased Function`. Both mean decreased
+    transporter function, so the myopathy risk is known and must still produce a
+    label. Suppressing those would trade one direction of dishonesty for the other.
+    """
+
+    phenotype: Phenotype
+    asserted: bool
+    #: Lookup keys safe to match a CPIC row with. Empty when nothing is asserted,
+    #: so an unasserted phenotype cannot reach the lookup at all.
+    lookup_keys: tuple[str, ...]
+    reason: str = ""
+
+
+def resolve_phenotype(
+    call: PharmcatGeneCall | None, mapping: dict | None = None
+) -> ResolvedPhenotype:
+    """Decide what phenotype, if any, this gene call supports. See `ResolvedPhenotype`."""
+    cfg = mapping or load_mapping()
+    if call is None:
+        return ResolvedPhenotype(
+            Phenotype.UNKNOWN, False, (), "no gene call for this drug"
+        )
+
+    candidates = [p for p in (call.candidate_phenotypes or []) if p and p.strip()]
+    if not candidates and call.phenotype_raw:
+        # Older fixtures predate `candidate_phenotypes`; fall back so they still
+        # resolve rather than silently becoming unasserted.
+        candidates = [call.phenotype_raw]
+
+    if not candidates:
+        return ResolvedPhenotype(
+            Phenotype.UNKNOWN, False, (),
+            f"{call.gene}: PharmCAT assigned no phenotype to any candidate diplotype",
+        )
+
+    # `Indeterminate` is a CLAIM, not an absence of one.
+    #
+    # Subtle and load-bearing: `n/a` was already dropped by the parser because it
+    # marks a candidate PharmCAT never assigned a phenotype to. `Indeterminate` is
+    # different — it is PharmCAT positively stating that this genotype HAS no
+    # phenotype assignment. So a candidate reading `Indeterminate` genuinely
+    # DISAGREES with one reading `Normal Function`, and both must count.
+    #
+    # A first version of this function filtered every candidate mapping to UNKNOWN
+    # out of the comparison, which collapsed {Normal Function, Indeterminate} to
+    # {NM} and asserted `Safe` — leaving all 195 affected samples exactly as
+    # broken as before. Classes are therefore compared WITHOUT dropping UNKNOWN.
+    classes = {map_phenotype(p, cfg) for p in candidates}
+
+    if len(classes) > 1:
+        return ResolvedPhenotype(
+            Phenotype.UNKNOWN, False, (),
+            f"{call.gene}: candidate diplotypes disagree about function "
+            f"({', '.join(sorted(candidates))}), so no phenotype can be asserted",
+        )
+
+    resolved = next(iter(classes))
+    if resolved is Phenotype.UNKNOWN:
+        return ResolvedPhenotype(
+            Phenotype.UNKNOWN, False, (),
+            f"{call.gene}: PharmCAT returned {candidates[0]!r}, which is not a "
+            f"phenotype this build can act on",
+        )
+    keys = tuple(call.candidate_lookup_keys or call.lookup_keys or ())
+    return ResolvedPhenotype(resolved, True, keys)
+
+
+def check_phenotype_label(
+    phenotype: Phenotype, label: RiskLabel
+) -> str | None:
+    """
+    THE MISSING VERIFICATION EDGE. Returns a message on violation, else None.
+
+    Three edges were already checked — explanation->CPIC (the provenance guard),
+    label->CPIC (the mapping validation) and explanation->label (the consistency
+    check). **phenotype->label was not**, and that is precisely where a green
+    `Safe` badge sat above an `Unknown` phenotype on a drug that can kill.
+
+    Deliberately one-directional. An `Unknown` phenotype must not carry a
+    confident label; a *known* phenotype carrying `Unknown` is legitimate — CPIC
+    may simply have no guidance for that pair, which is a gap in the table rather
+    than a contradiction about what we know.
+    """
+    if phenotype is Phenotype.UNKNOWN and label is not RiskLabel.UNKNOWN:
+        return (
+            f"phenotype is Unknown but the label is {label.value!r}: a phenotype "
+            f"the caller declined to assert cannot support a confident label"
+        )
+    return None
+
+
 # --------------------------------------------------------------------------- #
 # Rule matching
 # --------------------------------------------------------------------------- #
@@ -330,10 +457,18 @@ def _annotation_matches_calls(
         compared = 0
         for gene_symbol, phenotype in entry.items():
             call = report.gene(gene_symbol)
-            if call is None or not call.lookup_keys:
+            if call is None:
+                continue
+            # An unasserted phenotype must never reach the lookup. Its
+            # `lookup_keys` come from `recommendationDiplotypes`, which exists to
+            # find a table row — not to state what the patient has. Matching on it
+            # is what let an `Indeterminate` DPYD call select the Normal
+            # Metabolizer row and render `Safe` on fluorouracil.
+            resolved = resolve_phenotype(call)
+            if not resolved.asserted or not resolved.lookup_keys:
                 continue
             compared += 1
-            called = {k.strip().lower() for k in call.lookup_keys}
+            called = {k.strip().lower() for k in resolved.lookup_keys}
             if phenotype.strip().lower() not in called:
                 break
         else:
@@ -582,6 +717,40 @@ def evaluate(
             warnings,
         )
 
+    # --- THE INVARIANT: no asserted phenotype -> no confident label ----------
+    # Checked BEFORE annotation selection so an unasserted phenotype never
+    # reaches `lookup_keys`. See `ResolvedPhenotype` for the two measured defects
+    # this prevents, one of which rendered `Safe` for 195 of 400 real samples.
+    resolved = resolve_phenotype(gene_call, cfg)
+    if gene_call is not None and not resolved.asserted:
+        warnings.extend(gene_call.warnings)
+        if resolved.reason:
+            warnings.append(
+                f"{resolved.reason}. Reported as Unknown rather than assuming one "
+                f"of the possibilities."
+            )
+        return (
+            RiskAssessment(
+                risk_label=RiskLabel.UNKNOWN,
+                confidence_score=derive_confidence(
+                    gene_call.status,
+                    has_guidance=False,
+                    known_drug=True,
+                    mapping=cfg,
+                ),
+                severity=Severity.NONE,
+            ),
+            build_clinical_recommendation(
+                None, guideline,
+                fallback_reason=(
+                    f"{resolved.reason}, so no pharmacogenomic recommendation can "
+                    f"be made for {drug}."
+                ),
+            ),
+            gene_call,
+            warnings,
+        )
+
     annotation, selection_warnings = select_annotation(guideline, report)
     warnings.extend(selection_warnings)
     # Re-resolve the gene now that we know which CPIC row matched: for
@@ -625,11 +794,27 @@ def evaluate(
         )
 
     # --- the normal path ----------------------------------------------------
-    phenotype, phenotype_note = map_phenotype_noted(
-        gene_call.phenotype_raw if gene_call else None, cfg
-    )
-    if phenotype_note:
-        warnings.append(phenotype_note)
+    # Re-resolve: `select_reporting_gene` may have changed which gene we report.
+    resolved = resolve_phenotype(gene_call, cfg)
+    phenotype = resolved.phenotype
+    if resolved.asserted:
+        _, phenotype_note = map_phenotype_noted(
+            gene_call.phenotype_raw if gene_call else None, cfg
+        )
+        if phenotype_note:
+            warnings.append(phenotype_note)
+        if gene_call is not None and len(gene_call.candidate_phenotypes or []) > 1:
+            # Function known, exact diplotype not. Say so rather than letting the
+            # single reported diplotype imply more precision than we have.
+            warnings.append(
+                f"{gene_call.gene}: PharmCAT could not narrow the diplotype "
+                f"({len(gene_call.candidate_diplotypes)} equally likely: "
+                f"{', '.join(gene_call.candidate_diplotypes[:4])}"
+                f"{'…' if len(gene_call.candidate_diplotypes) > 4 else ''}), but "
+                f"every candidate with a phenotype indicates "
+                f"{phenotype.value}, so the functional result is reported with "
+                f"confidence while the exact diplotype remains undetermined."
+            )
     risk_label, rule_id, severity_hint = classify_annotation(annotation, cfg)
     severity = derive_severity(risk_label, phenotype, severity_hint, cfg)
     confidence = derive_confidence(
@@ -655,6 +840,16 @@ def evaluate(
             "source": f"{recommendation.source} [label rule: {rule_id}]",
         }
     )
+
+    # Request-time verification edge. Degrade rather than serve a contradiction:
+    # a confident badge above an Unknown phenotype is worse than a plain Unknown.
+    violation = check_phenotype_label(phenotype, risk_label)
+    if violation:
+        warnings.append(
+            f"{violation}. Degraded to Unknown. This is a bug in the label path, "
+            f"not a genotype finding."
+        )
+        risk_label, severity = RiskLabel.UNKNOWN, Severity.NONE
 
     return (
         RiskAssessment(

@@ -67,6 +67,15 @@ class ExplanationContext:
     # the enum because it reads better in prose than "PM".
     phenotype_label: str = ""
 
+    # Every equally-likely diplotype PharmCAT returned. Length > 1 means the
+    # FUNCTION is known while the exact star alleles are not — a state the prose
+    # must state rather than paper over by naming one of them.
+    candidate_diplotypes: list[str] = field(default_factory=list)
+
+    @property
+    def diplotype_is_ambiguous(self) -> bool:
+        return len(self.candidate_diplotypes) > 1
+
     @property
     def gene_display(self) -> str:
         return self.gene or "the relevant gene"

@@ -318,6 +318,94 @@ space at all. **Exhaustiveness over the wrong space is not coverage.** Only
 running real, messy, unselected inputs at n=400 produced a genotype whose shape
 the code had never been asked to handle.
 
+## Evidence 8 — (f) the third missing edge, and the largest defect found
+
+The verification graph had four edges. Three were checked:
+
+| Edge | Checker | Status |
+| --- | --- | --- |
+| explanation → CPIC | provenance guard | checked |
+| label → CPIC | 105-combination mapping validation | checked |
+| explanation → label | consistency check (Phase 6 §3) | checked |
+| **phenotype → label** | **nothing** | **← the gap** |
+
+Nothing verified that the phenotype and the label agreed with each other. So a
+green `Safe` badge could sit above an `Unknown` phenotype, and every existing
+checker would pass: the prose matched the label, the label matched CPIC's text,
+and the explanation traced to its source. Each check was correct about its own
+edge; the contradiction lived in the one nobody was looking at.
+
+**All three previously-missing edges produced the same directional failure.**
+Explanation→label gave a green badge over prose describing a dose reduction.
+Phenotype→label gave a green badge over a phenotype the caller declined to assert.
+In both cases the *reassuring* half won.
+
+### Mechanism: a lookup key is not a claim
+
+`lookup_keys` derive from `recommendationDiplotypes`, whose purpose is to **find a
+table row** — PharmCAT splits compound alleles and assigns an activity score
+precisely so a guideline can be located. Using that structure to derive a *risk
+label* asserts it as a statement about the patient. It is the same category error
+as Evidence 7, one layer up: there the reduction was displayed as the genotype,
+here it was allowed to decide the label.
+
+### Scale: 294 labels, and 195 of them on one gene
+
+| Drug | Change | n |
+| --- | --- | ---: |
+| simvastatin | `Safe` → `Unknown` | **195** |
+| fluorouracil | `Safe` → `Unknown` | 81 |
+| fluorouracil | `Adjust Dosage` → `Unknown` | 17 |
+| azathioprine | `Safe` → `Unknown` | 1 |
+| clopidogrel, warfarin, codeine | none | 0 |
+
+**294 of 2 400 (drug, sample) results, every single one removing a confident
+label.** Not one moved the other way. The simvastatin cases are the second
+mechanism: PharmCAT returned several equally-likely diplotypes whose phenotypes
+*disagreed* — one `Normal Function`, another `Indeterminate` — and reading only
+`candidate[0]` rendered a confident `Safe` for 49% of the cohort.
+
+### A trap inside the fix
+
+The first implementation of the resolver filtered every candidate mapping to
+`UNKNOWN` out of the comparison before asking whether the rest agreed. That
+collapsed `{Normal Function, Indeterminate}` to `{NM}`, asserted `Safe`, and left
+all 195 samples **exactly as broken as before** — a fix that measured as a fix and
+changed nothing. It was caught only by re-running the 400-sample cohort and seeing
+the number fail to move.
+
+The error was treating `Indeterminate` as an absence of information. It is not:
+`n/a` marks a candidate PharmCAT never assigned a phenotype to, whereas
+`Indeterminate` is PharmCAT **positively stating** that this genotype has no
+assignment. One is silence, the other is testimony, and only the first can be
+ignored. That distinction is now the load-bearing comment in the resolver.
+
+## Evidence 9 — the first defect in the OPPOSITE direction
+
+Every instance above manufactured certainty. This one discards it, and it is
+recorded because it completes the picture: the system was misrepresenting its own
+epistemic state in **both** directions, not merely inflating it.
+
+30 SLCO1B1 calls (7.5% of the cohort) have several candidate diplotypes whose
+informative phenotypes read `Decreased Function` and `Possible Decreased Function`
+— **unanimous that transporter function is decreased**, differing only in
+confidence. The functional finding is therefore known, and it is the simvastatin
+myopathy signal.
+
+A naive reading of the phenotype→label invariant would suppress those to `Unknown`
+along with the genuinely discordant ones, discarding a warning the source *did*
+assert. That is why the invariant keys on **phenotype agreement**, never on
+diplotype ambiguity: an ambiguous diplotype with a concordant phenotype still
+produces a confident label, and `variant_rationale` states the split explicitly —
+confident about function, undetermined about which star alleles produced it.
+
+Both errors are failures of the same discipline: **report exactly what the source
+asserted, no more and no less.** Over-claiming is more dangerous, and this project
+found six instances of it against one of under-claiming. But a checker built only
+to catch over-claiming would have introduced the under-claiming case itself while
+"fixing" the over-claiming one — which is precisely what the first draft of the
+resolver did.
+
 ## Methods note — pre-committing a retirement threshold
 
 The narrowing of the vocabulary check (Evidence 5) followed a rule recorded

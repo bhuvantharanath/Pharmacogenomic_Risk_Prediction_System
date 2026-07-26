@@ -49,10 +49,32 @@ def compose_variant_rationale(context: ExplanationContext) -> str:
             "there is no variant-level rationale to report."
         )
 
-    sentences = [
-        f"PharmCAT called {context.gene} as {context.diplotype_display}, which "
-        f"corresponds to a {context.phenotype_display} result."
-    ]
+    if context.diplotype_is_ambiguous:
+        # FUNCTION KNOWN, EXACT GENOTYPE NOT.
+        #
+        # Naming one of several equally-likely diplotypes here would assert a
+        # specific genotype we cannot support — the same over-claiming that put a
+        # green `Safe` badge on 195 real samples. The phenotype IS asserted (every
+        # informative candidate agreed on the functional class), so the sentence
+        # states exactly that split: confident about function, undetermined about
+        # which star alleles produced it.
+        count = len(context.candidate_diplotypes)
+        shown = ", ".join(context.candidate_diplotypes[:4])
+        if count > 4:
+            shown += f", and {count - 4} more"
+        sentences = [
+            f"PharmCAT could not narrow {context.gene} to a single diplotype: "
+            f"{count} were equally consistent with this VCF ({shown}).",
+            f"Every one of them that carries a phenotype indicates a "
+            f"{context.phenotype_display} result, so the functional finding is "
+            f"reported with confidence while the exact diplotype remains "
+            f"undetermined.",
+        ]
+    else:
+        sentences = [
+            f"PharmCAT called {context.gene} as {context.diplotype_display}, which "
+            f"corresponds to a {context.phenotype_display} result."
+        ]
     if context.activity_score is not None:
         sentences.append(f"The reported activity score is {context.activity_score}.")
     sentences.append(

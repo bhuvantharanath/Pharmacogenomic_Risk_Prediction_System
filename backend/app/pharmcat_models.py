@@ -75,6 +75,13 @@ class PharmcatGeneCall(BaseModel):
     # activity score (DPYD in practice). Present so a reviewer can see why a
     # recommendation applies without re-deriving PharmCAT's reduction.
     recommendation_diplotype: str | None = None
+    # Every DISTINCT phenotype across all candidate diplotypes, `n/a` excluded.
+    # Length > 1 means the candidates disagree about function, which is different
+    # from — and more consequential than — disagreeing about identity.
+    candidate_phenotypes: list[str] = Field(default_factory=list)
+    # The corresponding CPIC lookup keys, so a guideline row can still be found
+    # when the candidates agree on function but not on the exact diplotype.
+    candidate_lookup_keys: list[str] = Field(default_factory=list)
     # Per-allele function text, e.g. "No function".
     allele_functions: list[str] = Field(default_factory=list)
     variants: list[PharmcatVariant] = Field(default_factory=list)

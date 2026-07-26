@@ -144,6 +144,12 @@ class PharmacogenomicProfile(BaseModel):
     #: where PharmCAT had called `Indeterminate`, and dropped a carried variant
     #: from the reported genotype. Null when PharmCAT gives only one list.
     recommendation_diplotype: str | None = None
+    #: Every equally-likely diplotype PharmCAT returned, when it could not narrow
+    #: to one. Empty for an unambiguous call. When this is populated, `diplotype`
+    #: is a marker rather than a call — naming one of several co-equal candidates
+    #: would assert a genotype the evidence does not support, which is what put a
+    #: confident `Safe` badge on 195 of 400 validation samples.
+    candidate_diplotypes: list[str] = Field(default_factory=list)
     phenotype: Phenotype
     # Only defined for genes that use an activity-score model (CYP2D6, CYP2C9,
     # DPYD). Null everywhere else — do not coerce to 0.0, that means something.

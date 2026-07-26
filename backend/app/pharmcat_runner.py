@@ -77,6 +77,10 @@ PHARMCAT_TIMEOUT_SECONDS = float(os.environ.get("PHARMCAT_TIMEOUT_SECONDS", "120
 # sections; PharmaGuard is CPIC-only by design, so we read just this one.
 CPIC_SECTION = "CPIC Guideline Annotation"
 
+#: PharmCAT's markers for "this candidate carries no CPIC phenotype assignment".
+#: An absence of a claim, not a competing claim — see `_parse_gene`.
+_NO_PHENOTYPE_INFO = frozenset({"n/a", "", "no result", "unknown"})
+
 # Genes PharmaGuard reports on. CYP2D6 is included deliberately so we can say
 # "not callable" rather than stay silent about it.
 TARGET_GENES: tuple[str, ...] = (
@@ -511,6 +515,40 @@ def _parse_gene(symbol: str, block: dict) -> PharmcatGeneCall:
     lookup_keys = [
         k for k in (lookup_primary.get("lookupKey") or []) if isinstance(k, str)
     ]
+
+    # EVERY candidate's phenotype, not just the first one's.
+    #
+    # When PharmCAT returns several equally-likely diplotypes, reading only
+    # candidate[0] asserts one of them. Measured on 400 real samples, that made
+    # 195 SLCO1B1 calls (49% of the cohort) render a confident `Safe` while a
+    # co-equal candidate said `Indeterminate`. Whether the candidates actually
+    # agree about FUNCTION is a question the caller must be allowed to answer, so
+    # the parser reports all of them and `cpic_engine.resolve_phenotype` decides.
+    #
+    # `n/a` is dropped here: it marks a candidate with no CPIC phenotype
+    # assignment, which is an absence of a claim rather than a competing one.
+    candidate_phenotypes: list[str] = []
+    candidate_lookup_keys: list[str] = []
+    for entry in display_list:
+        if not isinstance(entry, dict):
+            continue
+        for value in entry.get("phenotypes") or []:
+            if (
+                isinstance(value, str)
+                and value.strip().lower() not in _NO_PHENOTYPE_INFO
+                and value not in candidate_phenotypes
+            ):
+                candidate_phenotypes.append(value)
+    for entry in lookup_list:
+        if not isinstance(entry, dict):
+            continue
+        for value in entry.get("lookupKey") or []:
+            if (
+                isinstance(value, str)
+                and value.strip().lower() not in _NO_PHENOTYPE_INFO
+                and value not in candidate_lookup_keys
+            ):
+                candidate_lookup_keys.append(value)
     #: The reduced diplotype CPIC guidance was actually found by. Kept alongside
     #: the called one so a reviewer can see WHY a given recommendation applies to
     #: a compound genotype, rather than having to re-derive it.
@@ -526,6 +564,8 @@ def _parse_gene(symbol: str, block: dict) -> PharmcatGeneCall:
             lookup_primary.get("activityScore") or primary.get("activityScore")
         ),
         lookup_keys=lookup_keys,
+        candidate_phenotypes=candidate_phenotypes,
+        candidate_lookup_keys=candidate_lookup_keys,
         recommendation_diplotype=recommendation_diplotype,
         allele_functions=[f for f in allele_functions if f],
         variants=variants,
