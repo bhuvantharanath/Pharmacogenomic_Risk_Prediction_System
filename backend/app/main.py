@@ -30,6 +30,7 @@ from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
+from . import coverage as coverage_mod
 from . import cpic_engine, security
 from .explanation import ExplanationMode, generate_explanation
 from .explanation import static_store as explanation_store
@@ -426,7 +427,9 @@ def _build_context(
 
 
 def build_result(
-    drug: str, report: PharmcatReport
+    drug: str,
+    report: PharmcatReport,
+    starved_genes: set[str] | None = None,
 ) -> tuple[PerDrugResult, list[str], str]:
     """
     Map one drug through the engine and assemble its contract object.
@@ -437,6 +440,25 @@ def build_result(
     """
     assessment, recommendation, call, warnings = cpic_engine.evaluate(drug, report)
     phenotype = cpic_engine.map_phenotype(call.phenotype_raw if call else None)
+
+    # Coverage-starved gene: demote to Unknown. The per-gene reason is already in
+    # quality_metrics.warnings; repeating it per drug would spam a 6-drug request.
+    if starved_genes and call is not None and call.gene in starved_genes:
+        phenotype = Phenotype.UNKNOWN
+        assessment = RiskAssessment(
+            risk_label=RiskLabel.UNKNOWN,
+            confidence_score=0.0,
+            severity=assessment.severity.__class__.NONE,
+        )
+        recommendation = cpic_engine.build_clinical_recommendation(
+            None,
+            report.drug(drug.strip().lower()),
+            fallback_reason=(
+                f"The uploaded VCF does not cover enough of {call.gene}'s required "
+                f"positions to support a confident call, so no recommendation is "
+                f"made for {drug}."
+            ),
+        )
 
     # Build the profile FIRST so it can be handed to the explanation layer.
     # This is the object the client renders in the card, and it is what every
@@ -469,14 +491,29 @@ def build_response(
     drugs: list[str],
     metadata: VcfMetadata,
     elapsed_ms: int,
+    cov: "coverage_mod.CoverageReport | None" = None,
 ) -> AnalyzeResponse:
     """Assemble the full contract response from a parsed PharmCAT report."""
     analyses: list[PerDrugResult] = []
     warnings: list[str] = list(metadata.warnings)
     provenances: list[str] = []
 
+    # THE COVERAGE GATE. Genes whose input coverage is below the measured minimum
+    # cannot support a confident phenotype, so they are suppressed BEFORE the label
+    # engine sees them. This is the only check that can catch a confidently-wrong
+    # call, because the wrongness is in the input, not the output.
+    starved: set[str] = set()
+    if cov is not None:
+        if cov.variants_only:
+            warnings.append(coverage_mod.variants_only_warning())
+        for gene_cov in cov.insufficient():
+            starved.add(gene_cov.gene)
+            warnings.append(coverage_mod.insufficient_warning(gene_cov))
+
     for drug in drugs:
-        result, drug_warnings, provenance = build_result(drug, report)
+        result, drug_warnings, provenance = build_result(
+            drug, report, starved_genes=starved
+        )
         analyses.append(result)
         warnings.extend(drug_warnings)
         provenances.append(provenance)
@@ -544,6 +581,9 @@ def build_response(
             variants_detected_count=detected,
             processing_time_ms=elapsed_ms,
             warnings=deduped,
+            position_coverage=(
+                cov.as_metrics() if cov is not None else {}
+            ),
         ),
     )
 
@@ -613,6 +653,12 @@ async def analyze(
     # A missing/ambiguous reference build is not fatal — validate_vcf has already
     # recorded a warning in metadata.warnings, which flows into quality_metrics.
 
+    # THE FOURTH EDGE, and the only one facing the input. Computed before PharmCAT
+    # because no output check can see it: missing positions do not make PharmCAT
+    # decline, they make it confidently call the reference haplotype. See
+    # `app/coverage.py` for the measured wrong-call rates.
+    cov = coverage_mod.assess(metadata.text)
+
     try:
         report = await run_pharmcat(
             metadata.text,
@@ -623,4 +669,4 @@ async def analyze(
         raise ApiError(503, "PHARMCAT_UNAVAILABLE", exc.message) from exc
 
     elapsed_ms = int((time.perf_counter() - started) * 1000)
-    return build_response(report, requested, metadata, elapsed_ms)
+    return build_response(report, requested, metadata, elapsed_ms, cov=cov)

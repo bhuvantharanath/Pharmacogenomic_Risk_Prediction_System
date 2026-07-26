@@ -212,6 +212,11 @@ class QualityMetrics(BaseModel):
     variants_detected_count: int = Field(ge=0)
     processing_time_ms: int = Field(ge=0)
     warnings: list[str] = Field(default_factory=list)
+    #: Per-gene coverage of PharmCAT's required defining positions, computed from
+    #: the uploaded VCF BEFORE PharmCAT runs. Present on every response, pass or
+    #: fail, because a confident result at low coverage is the dangerous case and
+    #: the reader needs the number either way.
+    position_coverage: dict[str, dict] = Field(default_factory=dict)
 
 
 class AnalyzeResponse(BaseModel):

@@ -100,3 +100,49 @@ against consensus genotypes remains **n=1** (`NA12273`), reported as n=1.
 What it does establish, and could not be established any other way: the pipeline's
 answers degrade **silently** as input coverage falls, and the degradation favours
 reassurance.
+
+---
+
+## The gate, and an honest caveat about its thresholds
+
+These thresholds are enforced at upload (`backend/app/coverage.py`). Coverage is
+computed from the VCF **before PharmCAT runs**, and any gene below its minimum is
+reported `Unknown` with a warning naming the coverage achieved and required.
+Per-gene coverage appears in `quality_metrics.position_coverage` on every response,
+pass or fail.
+
+Applied to our own 1000 Genomes validation slices, the effect is drastic:
+
+| Gene | Slice coverage | Minimum | Result |
+| --- | ---: | ---: | --- |
+| SLCO1B1 | 57.1% | 100% | gated |
+| CYP2C19 | 45.7% | 100% | gated |
+| DPYD | 37.3% | 20% | passes |
+| NUDT15 | 25.0% | 80% | gated |
+| TPMT | 20.0% | 80% | gated |
+| CYP2C9 | 19.3% | 100% | gated |
+
+Usable-result rate over 2 400 (sample, gene) pairs: **82.79% → 12.58%**, with
+**1 685** results moving from confident to honest `Unknown` and **zero** moving the
+other way. Only DPYD clears its bar.
+
+### ⚠️ These thresholds are probably too strict for real filtered panels
+
+Stated plainly because it affects how the number above should be read. The sweep
+that produced them dropped positions **at random**. 1000 Genomes filtering does not:
+it drops **monomorphic** positions — sites where nobody in the cohort carries a
+variant, and where reference is therefore the *correct* call.
+
+Random dropping removes rare functional variants at the same rate as invariant
+sites, so it manufactures wrong calls that filtering largely would not. The measured
+confidently-wrong rates are consequently an **upper bound** for a
+monomorphic-filtered panel, and the 100% thresholds derived from them are stricter
+than that input actually requires.
+
+The bound is stated qualitatively on purpose: quantifying it needs a truth set for
+this cohort, which does not exist at n>1. What is certain is the direction — the real
+risk on 1000G-style input is *lower* than 47.8%, and the safe-but-blunt behaviour of
+the gate is the price of not knowing by how much.
+
+For a clinical PGx panel or all-sites WGS the question does not arise: coverage is
+complete, every gene passes, and the measured wrong rate is 0%.

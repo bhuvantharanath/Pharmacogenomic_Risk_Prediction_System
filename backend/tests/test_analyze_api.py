@@ -111,6 +111,10 @@ class TestContractCompatibility:
             "variants_detected_count",
             "processing_time_ms",
             "warnings",
+            # Added Phase 6: per-gene coverage of PharmCAT's required positions,
+            # computed from the input before PharmCAT runs. Present pass or fail,
+            # because a confident result at low coverage is the dangerous case.
+            "position_coverage",
         }
 
     def test_enum_values_stay_within_the_contract(

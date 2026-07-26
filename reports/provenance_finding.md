@@ -573,3 +573,50 @@ python scripts/diagnose_provenance.py                      # probes + hand class
 python scripts/benchmark_models.py --provider nvidia --rescore   # corrected scores, no API calls
 python -m pytest tests/test_provenance_policy.py -v        # every claim above, pinned
 ```
+
+---
+
+## Concluding result — one structural bias, eight surfacings
+
+Every finding above shares a direction. Not most of them: **all** of them. Each
+erred toward sounding more confident, more reassuring, or lower-risk than its
+evidence supported, and not one erred toward excess caution. Across text-matching
+failures, two independently-written artifacts, a category error between data
+structures, an unverified graph edge, and missing input coverage — different layers,
+different mechanisms, one direction.
+
+That is not eight coincidences. It is one structural property of the domain:
+
+> **In variant-based genomics the reference allele is the low-risk state. Missing
+> data therefore does not read as uncertainty — it reads as normal.**
+
+A gap in a VCF is not a blank; it is silently filled with the reference genotype,
+which maps to normal function, which maps to a green label. The same asymmetry
+propagates upward: an unmapped phenotype string becomes `Unknown` which a lookup
+key quietly converts back into `Normal Metabolizer`; a candidate diplotype with no
+assignment gets filtered out, leaving the reference-like candidate unopposed; prose
+with nothing specific to say defaults to reassurance. At every layer, **absence of
+evidence renders as evidence of safety.**
+
+Once that is named, the eight findings stop looking like unrelated bugs and start
+looking like one bias surfacing wherever a layer had to decide what to do with
+missing information. It also predicts where the next one will be: any place this
+system treats "no data" as a value rather than as a question.
+
+The methodological consequence is the reason this document exists. Four checks were
+built, and all four faced the **output** — they reason about what PharmCAT reported.
+The coverage defect was invisible to every one of them, because the output was
+internally consistent and only the *input* was deficient. Catching it required a
+fifth edge pointing the other way:
+
+| Edge | Direction | Catches |
+| --- | --- | --- |
+| explanation → CPIC | output | invented clinical claims |
+| label → CPIC | output | mapping errors |
+| explanation → label | output | prose contradicting its badge |
+| phenotype → label | output | confident labels over unasserted phenotypes |
+| **input → required positions** | **input** | **confidently wrong calls from incomplete data** |
+
+A verification architecture that only ever audits its own output can be complete,
+self-consistent, and still confidently wrong — because the thing it never checks is
+whether it was given enough to answer at all.
