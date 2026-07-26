@@ -1,6 +1,6 @@
-# Validation against reference materials — PARTIAL (Phase 6, in progress)
+# Validation against reference materials — Phase 6 COMPLETE
 
-**Date:** 2026-07-25 · **Status:** integration fidelity now measured at scale
+**Date:** 2026-07-25 · **Status:** Phase 6 closed. Integration fidelity measured at scale
 (400 samples, §2b) alongside the exhaustive label-mapping validation (§4).
 External genotype concordance remains **n=1** and is reported as n=1 throughout —
 never as a percentage. Every number here is real; none is projected.
@@ -228,6 +228,17 @@ to fail, and counting it as failure would flatter nothing and confuse everything
 | Produced a usable phenotype | 1 987 |
 | **Usable-result rate** | **82.79%** |
 
+**Both halves of that number, because either alone misleads.** 82.79% is what this
+*validation input* yields, and it is a **floor rather than an estimate of production
+performance**: the 1000 Genomes panel is filtered to polymorphic sites, so our
+slices carry only 19–57% of the positions PharmCAT asks for (table below), and the
+missing ones disproportionately define reference-like haplotypes — which is exactly
+what produces the 308 ambiguous calls that make up three-quarters of the shortfall.
+A clinical panel or unfiltered WGS covering PharmCAT's full position list would call
+more. Equally, it is **not** a number to wave away: it is measured on real human
+data, the ambiguity is genuine, and for CYP2C9 every ambiguous call is truly
+phenotype-discordant, so `Unknown` is the honest answer there and not an artifact.
+
 | Failure class | n | What it means |
 | --- | ---: | --- |
 | `not_attempted_structural` | 400 | CYP2D6, `callSource: NONE`. **400/400 — the negative control held perfectly.** Not one fabricated call |
@@ -276,6 +287,89 @@ which is why they drive *ambiguity* rather than wrong calls.
 This is a property of the validation input, not of the product: a clinical VCF
 covering PharmCAT's full position list would not behave this way. It does mean the
 call rates above are a **floor**, not an estimate of production performance.
+
+### Is an ambiguous diplotype also an ambiguous phenotype? — measured 2026-07-25
+
+The pipeline collapses every ambiguous call to `Unknown`. That is only correct if
+the candidate diplotypes disagree about *function*, which does not follow from
+disagreeing about *identity*. Measured over the same 400 samples, three ways:
+**strict** (identical phenotype strings), **informative** (agreement among
+candidates that say anything — `n/a` is an absence of a claim, not a competing one),
+and **class** (all informative candidates map to one value of our `Phenotype` enum,
+which is the actionable condition).
+
+| Gene | Called | Ambiguous | Strict | Informative | Same class |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| CYP2C19 | 400 | **0** | — | — | — |
+| TPMT | 400 | **0** | — | — | — |
+| NUDT15 | 400 | **0** | — | — | — |
+| DPYD | 400 | **0** | — | — | — |
+| CYP2D6 | 400 | **0** | — | — | — |
+| CYP2C9 | 400 | 71 | 0 (0.0%) | 0 (0.0%) | **0 (0.0%)** |
+| SLCO1B1 | 400 | 237 | 2 (0.8%) | 10 (4.2%) | **40 (16.9%)** |
+
+Ambiguity is confined to two genes. Four of the seven — including every gene whose
+call rate exceeds 99% — have no ambiguous calls at all.
+
+**CYP2C9: 0 of 71 concordant by any definition.** `Unknown` is unambiguously the
+right answer; this is a limitation to document, not a bug. The pattern is always a
+real phenotype against `Indeterminate`, e.g. `*1/*3 → Intermediate Metabolizer`
+versus `*1/*18 → Indeterminate`. We genuinely do not know.
+
+**SLCO1B1: 40 of 237 class-concordant, but only 30 usefully so.** Ten of the forty
+resolve to `Unknown` anyway (every informative candidate was itself
+`Indeterminate`), so recovering them gains nothing. The remaining **30 (12.7% of
+ambiguous calls, 7.5% of the cohort)** share one pattern exactly:
+
+| Candidates | Informative phenotypes | Our enum |
+| --- | --- | --- |
+| `*5/*37`, `*5/*42`, `*5/*52`, `*5/*56` | `Decreased Function`, `Possible Decreased Function` | both → **IM** |
+
+All 30 have that shape: every candidate that says anything agrees the transporter
+function is **decreased**, differing only in confidence. We report `Unknown`.
+
+#### 🟠 So we are discarding actionable information, in the unsafe direction
+
+For those 30 samples the system says "no usable result" when its own evidence
+unanimously indicates decreased SLCO1B1 function — the simvastatin myopathy signal.
+That is a **silently dropped warning**, and it is the mirror image of the DPYD
+defect in §2b: there the pipeline manufactured certainty PharmCAT withheld; here it
+withholds certainty PharmCAT's candidates jointly support. Both misstate what is
+known; this one errs toward false reassurance.
+
+#### Proposal — NOT implemented
+
+Recorded for a decision, deliberately unbuilt.
+
+**The rule.** When a call is ambiguous, map every informative candidate phenotype
+through `phenotype_map`. If they all yield one enum value, report that phenotype and
+mark the diplotype as unresolved. If they do not, keep `Unknown` — which preserves
+today's behaviour for 83% of ambiguous SLCO1B1 calls and 100% of CYP2C9's.
+
+**Contract change: yes, and it cannot be avoided.** The response can currently say
+"we know the genotype" or "we know nothing"; it has no way to say "we know the
+function but not the genotype". Minimally:
+
+* `diplotype` — set to a plain unresolved marker rather than one arbitrary candidate.
+  Picking `sourceDiplotypes[0]` for display would assert a specific genotype we
+  cannot support, repeating the §2b error in a new place.
+* `candidate_diplotypes` — the list, already parsed and currently dropped.
+* `phenotype_confidence` or similar — needed so a client can distinguish this state
+  from a fully resolved call. A warning string will not do: the client cannot branch
+  on prose, which is the same limitation already recorded as #21.
+
+**What the client would show.** The risk badge and CPIC recommendation exactly as
+for a resolved call — those follow from the phenotype, which is what we would now
+know. The genotype line changes from `*5/*37` to something like *"decreased function
+(4 possible genotypes)"*, expandable to the candidate list. The honest framing is
+that the *functional consequence* is established while the *specific star alleles*
+are not.
+
+**Cost against benefit.** Pydantic, the response contract, the Dart model, the
+expandable card, and new explanation-store routing for a phenotype-known /
+diplotype-unknown state — for 7.5% of samples on one gene, where the root cause is
+input incompleteness rather than pipeline design. Deferring is defensible. Doing it
+silently is not, which is why both halves are in the limitations table.
 
 ### Frequency concordance — an aggregate sanity check, and only that
 

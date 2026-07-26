@@ -90,13 +90,26 @@ class PharmacogenomicProfile {
   const PharmacogenomicProfile({
     required this.primaryGene,
     required this.diplotype,
+    required this.recommendationDiplotype,
     required this.phenotype,
     required this.activityScore,
     required this.detectedVariants,
   });
 
   final String primaryGene;
+
+  /// What PharmCAT called — the patient's genotype, compound alleles intact.
   final String diplotype;
+
+  /// The reduced diplotype CPIC guidance was found by. Differs from [diplotype]
+  /// only for compound genotypes (DPYD in practice).
+  ///
+  /// PROVENANCE, NOT PATIENT-FACING — deliberately not rendered anywhere. It is
+  /// carried so the client stays in sync with the response contract and so an
+  /// audit can see why a recommendation applied. Conflating it with [diplotype]
+  /// was a real defect on the backend; showing it to a patient would repeat the
+  /// confusion in the UI instead of the parser.
+  final String? recommendationDiplotype;
   final Phenotype phenotype;
 
   /// Null for genes with no activity-score model — do not render as 0.
@@ -108,6 +121,7 @@ class PharmacogenomicProfile {
     return PharmacogenomicProfile(
       primaryGene: _str(json['primary_gene'], 'Unknown'),
       diplotype: _str(json['diplotype'], 'Unknown'),
+      recommendationDiplotype: json['recommendation_diplotype'] as String?,
       phenotype: Phenotype.fromJson(json['phenotype']),
       activityScore: _optDouble(json['activity_score']),
       detectedVariants: raw is List
@@ -122,6 +136,7 @@ class PharmacogenomicProfile {
   Map<String, dynamic> toJson() => <String, dynamic>{
     'primary_gene': primaryGene,
     'diplotype': diplotype,
+    'recommendation_diplotype': recommendationDiplotype,
     'phenotype': phenotype.toJson(),
     'activity_score': activityScore,
     'detected_variants': detectedVariants

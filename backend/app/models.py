@@ -132,7 +132,18 @@ class PharmacogenomicProfile(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     primary_gene: str = Field(examples=["CYP2D6"])
+    #: What PharmCAT CALLED, from its `sourceDiplotypes`. Compound alleles stay
+    #: intact ("[a + b]"). This is the patient's genotype.
     diplotype: str = Field(examples=["*1/*1"])
+    #: The REDUCED diplotype PharmCAT used to find a CPIC row, from its
+    #: `recommendationDiplotypes`. Differs from `diplotype` only when a compound
+    #: allele had to be split to assign an activity score — DPYD in practice.
+    #:
+    #: Provenance, not patient-facing. It exists because conflating the two was a
+    #: real defect: reading the reduction for display showed `Normal Metabolizer`
+    #: where PharmCAT had called `Indeterminate`, and dropped a carried variant
+    #: from the reported genotype. Null when PharmCAT gives only one list.
+    recommendation_diplotype: str | None = None
     phenotype: Phenotype
     # Only defined for genes that use an activity-score model (CYP2D6, CYP2C9,
     # DPYD). Null everywhere else — do not coerce to 0.0, that means something.

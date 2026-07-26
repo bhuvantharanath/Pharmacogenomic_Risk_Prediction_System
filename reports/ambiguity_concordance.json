@@ -1,0 +1,189 @@
+{
+ "generated_at": "2026-07-26T02:44:35Z",
+ "cohort": "pharmcat_n400",
+ "samples": 400,
+ "definitions": {
+  "strict": "all candidates carry the identical phenotype string",
+  "informative": "all candidates that say anything agree; n/a ignored",
+  "class": "all informative candidates map to one Phenotype enum value"
+ },
+ "per_gene": {
+  "CYP2C19": {
+   "called": 400,
+   "ambiguous": 0,
+   "strict_concordant": 0,
+   "informative_concordant": 0,
+   "class_concordant": 0,
+   "class_concordant_rate": null,
+   "recoverable_phenotypes": {}
+  },
+  "CYP2C9": {
+   "called": 400,
+   "ambiguous": 71,
+   "strict_concordant": 0,
+   "informative_concordant": 0,
+   "class_concordant": 0,
+   "class_concordant_rate": 0.0,
+   "recoverable_phenotypes": {}
+  },
+  "SLCO1B1": {
+   "called": 400,
+   "ambiguous": 237,
+   "strict_concordant": 2,
+   "informative_concordant": 10,
+   "class_concordant": 40,
+   "class_concordant_rate": 0.16877637130801687,
+   "recoverable_phenotypes": {
+    "IM": 30,
+    "Unknown": 10
+   }
+  },
+  "TPMT": {
+   "called": 400,
+   "ambiguous": 0,
+   "strict_concordant": 0,
+   "informative_concordant": 0,
+   "class_concordant": 0,
+   "class_concordant_rate": null,
+   "recoverable_phenotypes": {}
+  },
+  "NUDT15": {
+   "called": 400,
+   "ambiguous": 0,
+   "strict_concordant": 0,
+   "informative_concordant": 0,
+   "class_concordant": 0,
+   "class_concordant_rate": null,
+   "recoverable_phenotypes": {}
+  },
+  "DPYD": {
+   "called": 400,
+   "ambiguous": 0,
+   "strict_concordant": 0,
+   "informative_concordant": 0,
+   "class_concordant": 0,
+   "class_concordant_rate": null,
+   "recoverable_phenotypes": {}
+  },
+  "CYP2D6": {
+   "called": 400,
+   "ambiguous": 0,
+   "strict_concordant": 0,
+   "informative_concordant": 0,
+   "class_concordant": 0,
+   "class_concordant_rate": null,
+   "recoverable_phenotypes": {}
+  }
+ },
+ "discordant_examples": {
+  "CYP2C9": [
+   {
+    "sample": "HG00136",
+    "candidates": [
+     "*1/*3 -> Intermediate Metabolizer",
+     "*1/*18 -> Indeterminate",
+     "*1/*68 -> Indeterminate"
+    ],
+    "classes": [
+     "IM",
+     "Unknown"
+    ]
+   },
+   {
+    "sample": "HG00150",
+    "candidates": [
+     "*1/*2 -> Intermediate Metabolizer",
+     "*1/*92 -> Indeterminate"
+    ],
+    "classes": [
+     "IM",
+     "Unknown"
+    ]
+   },
+   {
+    "sample": "HG00154",
+    "candidates": [
+     "*1/*3 -> Intermediate Metabolizer",
+     "*1/*18 -> Indeterminate",
+     "*1/*68 -> Indeterminate"
+    ],
+    "classes": [
+     "IM",
+     "Unknown"
+    ]
+   },
+   {
+    "sample": "HG00185",
+    "candidates": [
+     "*1/*3 -> Intermediate Metabolizer",
+     "*1/*18 -> Indeterminate",
+     "*1/*68 -> Indeterminate"
+    ],
+    "classes": [
+     "IM",
+     "Unknown"
+    ]
+   }
+  ],
+  "SLCO1B1": [
+   {
+    "sample": "HG00185",
+    "candidates": [
+     "*37/*37 -> Normal Function",
+     "*37/*42 -> Indeterminate",
+     "*37/*52 -> n/a",
+     "*37/*56 -> n/a",
+     "*42/*42 -> Indeterminate",
+     "*42/*52 -> n/a"
+    ],
+    "classes": [
+     "NM",
+     "Unknown"
+    ]
+   },
+   {
+    "sample": "HG00376",
+    "candidates": [
+     "*1/*37 -> Normal Function",
+     "*1/*42 -> Indeterminate",
+     "*1/*52 -> n/a",
+     "*1/*56 -> n/a"
+    ],
+    "classes": [
+     "NM",
+     "Unknown"
+    ]
+   },
+   {
+    "sample": "HG00406",
+    "candidates": [
+     "*37/*37 -> Normal Function",
+     "*37/*42 -> Indeterminate",
+     "*37/*52 -> n/a",
+     "*37/*56 -> n/a",
+     "*42/*42 -> Indeterminate",
+     "*42/*52 -> n/a"
+    ],
+    "classes": [
+     "NM",
+     "Unknown"
+    ]
+   },
+   {
+    "sample": "HG00436",
+    "candidates": [
+     "*37/*37 -> Normal Function",
+     "*37/*42 -> Indeterminate",
+     "*37/*52 -> n/a",
+     "*37/*56 -> n/a",
+     "*42/*42 -> Indeterminate",
+     "*42/*52 -> n/a"
+    ],
+    "classes": [
+     "NM",
+     "Unknown"
+    ]
+   }
+  ]
+ }
+}

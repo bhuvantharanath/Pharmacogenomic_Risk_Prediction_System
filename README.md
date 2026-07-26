@@ -157,11 +157,15 @@ cd backend
 python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-# PharmCAT is a Java app, not a pip package
-pip install colorama 'pandas>=2.3.3' packaging
-curl -LO https://github.com/PharmGKB/PharmCAT/releases/download/v3.4.0/pharmcat-pipeline-3.4.0.tar.gz
-mkdir -p pharmcat && tar xzf pharmcat-pipeline-3.4.0.tar.gz -C pharmcat/
-export PHARMCAT_PIPELINE="$PWD/pharmcat/pharmcat_pipeline"
+# PharmCAT is a Java app, not a pip package. The JAR is all you need — the
+# shell wrapper is optional, and depending on it once caused /analyze to 503 on a
+# machine that had a perfectly good install. Needs a JRE 17+.
+python ../scripts/fetch_reference_data.py --fetch-tools   # -> test-data/reference/tools/
+# ...or point at your own copy:
+export PHARMCAT_JAR=/path/to/pharmcat-3.4.0-all.jar
+
+# Refuse to start if PharmCAT is unreachable, instead of failing at first upload:
+export STRICT_PHARMCAT=1
 
 uvicorn app.main:app --reload --port 8000
 ```
@@ -208,7 +212,7 @@ Verifies what `/analyze` actually needs. `200` when an analysis would work,
 {
   "status": "ready",
   "checks": {
-    "pharmcat":         { "ok": true, "detail": "'pharmcat_pipeline' on PATH" },
+    "pharmcat":         { "ok": true, "detail": "jar: java -jar pharmcat-3.4.0-all.jar" },
     "mechanism_corpus": { "ok": true, "detail": "6 mechanism document(s) loaded" },
     "explanations":     { "ok": true, "detail": "20 pre-generated (0 reviewed)" },
     "label_mapping":    { "ok": true, "detail": "label_mapping.yaml parsed" }
@@ -250,6 +254,7 @@ curl -F "file=@test-data/cyp2c19_poor_metabolizer.vcf" \
       "pharmacogenomic_profile": {
         "primary_gene": "CYP2C19",
         "diplotype": "*2/*2",
+        "recommendation_diplotype": null,
         "phenotype": "PM",
         "activity_score": null,
         "detected_variants": [
@@ -294,6 +299,33 @@ curl -F "file=@test-data/cyp2c19_poor_metabolizer.vcf" \
 
 **Every label is traceable.** `clinical_recommendation.source` names the CPIC
 guideline *and* the mapping rule that produced the label.
+
+### `diplotype` vs `recommendation_diplotype` — two different things
+
+PharmCAT publishes **two** diplotype lists, and conflating them was a real defect
+found by the 400-sample validation run. The response now carries both:
+
+| Field | PharmCAT source | Means |
+| --- | --- | --- |
+| `diplotype` | `sourceDiplotypes` | **What was called.** The patient's genotype. Compound alleles stay intact, e.g. `c.85T>C (*9A)/[c.85T>C (*9A) + c.1371C>T]` |
+| `recommendation_diplotype` | `recommendationDiplotypes` | **What CPIC guidance was found by.** PharmCAT's own reduction — compound alleles split so an activity score can be assigned, e.g. `c.85T>C (*9A)/c.85T>C (*9A)` |
+
+They are identical for almost every call, and `recommendation_diplotype` is
+**null** whenever they agree — the field is only populated when there is a real
+difference to disclose. In practice that means DPYD compound genotypes.
+
+**Why the distinction is load-bearing.** The pipeline originally read the
+*reduction* for everything. That is correct for finding a guideline row and wrong
+for describing a patient: in 4 of 302 called DPYD samples it dropped a variant the
+patient carries from the reported genotype, and reported `Normal Metabolizer`
+where PharmCAT had explicitly called `Indeterminate`. For fluorouracil, where DPYD
+deficiency causes fatal toxicity, a false `Normal Metabolizer` is the worst error
+available. See §2b of `reports/validation_report.md`.
+
+`recommendation_diplotype` is **provenance, not patient-facing.** The Flutter
+client parses it to stay in contract sync and deliberately never renders it —
+showing a patient two diplotypes would move the confusion from the parser into the
+UI. It exists so an auditor can see *why* a given recommendation applied.
 
 ### Errors
 
@@ -398,6 +430,8 @@ PharmCAT crash, and that no uploaded content is echoed back in the response.
 | **Not clinically validated** | Synthetic VCFs prove the plumbing, not correctness. Validation against GeT-RM consensus genotypes is future work |
 | **No clinical reviewer — declared, not pending** | This project has **no qualified clinical expert**, and will not get one. Rather than shipping unchecked prose, the system asserts no clinical content of its own: every sentence making a clinical claim is machine-verified to trace, word for word, to a CPIC recommendation issued by PharmCAT or to a cited mechanism document. `scripts/verify_provenance.py` enforces this as a release gate and CI runs it on every push. **20/20 entries pass.** What that establishes is that nothing was invented — *not* that a clinician agrees the text is correct. See [`reports/provenance_report.md`](reports/provenance_report.md) |
 | **`Unknown` phenotype means two different things** | The contract has one value where the data has two states: **no result** (the gene was never called — coverage, missing data) and **indeterminate** (the gene *was* called, but the diplotype has no CPIC phenotype assignment). Clinically these are opposites — one is ignorance, the other is a finished assay CPIC's table cannot classify. A distinct enum value is the right fix; it is **deliberately deferred** because it changes the response contract, the Pydantic model, and the Dart client together. Until then `map_phenotype_noted()` surfaces PharmCAT's raw phenotype string in `quality_metrics.warnings`, so any reader can tell which state produced the `Unknown`. A warning is strictly weaker than a typed field — a client cannot branch on it — and that is exactly why this is listed as a limitation rather than a solution. `test_phenotype_table.py` pins the deferral: adding the enum value fails a test whose message names every doc that must change with it |
+| **SLCO1B1 resolves to a single diplotype for only 39.8% of validation samples** | Measured on 400 real 1000 Genomes samples. It is **not** a parsing failure — 398/400 produced *a* diplotype; PharmCAT could not narrow it to one (163 samples had 1 candidate, 153 had 4, 84 had 10). **And it is a floor, not a production estimate:** the 1000 Genomes panel is filtered to polymorphic sites, so our slices carry only 19–57% of the positions PharmCAT asks for, and the absent ones are those defining reference-like haplotypes — exactly what drives ambiguity. A clinical panel or unfiltered WGS covering PharmCAT's full position list would resolve more. Stating either half alone misleads in opposite directions. Of the ambiguous SLCO1B1 calls, 83% are genuinely phenotype-*discordant*, so `Unknown` is the correct answer for them; see limitation below for the 17% that are not |
+| **30 ambiguous SLCO1B1 calls report `Unknown` although every candidate indicates decreased function** | Measured, not fixed. In 30 of 237 ambiguous SLCO1B1 calls (7.5% of the cohort) every informative candidate diplotype reads `Decreased Function` or `Possible Decreased Function` — unanimous on the functional class, differing only in confidence. We collapse those to `Unknown`, dropping a simvastatin-myopathy signal we could state. Surfacing it needs a way to express "phenotype confident, diplotype ambiguous", which the response contract has no room for; a proposal is recorded in the validation report and **not** implemented |
 | **Rate limit is in-memory** | Resets on restart; keyed on a spoofable header. Abuse dampening, not a security boundary |
 
 ---
@@ -444,15 +478,18 @@ review**, which this project has never had and does not claim.
 | 2 | VCF validation → PharmCAT → CPIC label mapping | ✅ |
 | 3 | Mechanism corpus, pre-generated explanations, faithfulness guard | ✅ |
 | 4 | Deployment, cold-start resilience, security hardening, APK | ✅ |
-| 5 | Outside CYP2D6 diplotype input | 🔜 |
-| 6 | Validation against GeT-RM / 1000 Genomes | 🔜 |
+| 5A | Provider abstraction, LLM prose, provenance policy, human adjudication | ✅ (adjudication in progress) |
+| 5B | Outside CYP2D6 diplotype input | 🔜 |
+| 6 | Validation: 400-sample integration fidelity, exhaustive label mapping, frequency concordance | ✅ **complete** |
+| 7 | Docs, demo, team review | 🔜 |
+| 8 | Deployment | 🔜 |
 
 ---
 
 ## ✅ Tests
 
 ```bash
-cd backend && pip install -r requirements-dev.txt && pytest   # 305 passed, 4 skipped
+cd backend && pip install -r requirements-dev.txt && pytest   # 491 passed, 4 skipped
 cd app     && flutter test && flutter analyze                 # 21 tests
 ```
 

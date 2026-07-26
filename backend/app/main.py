@@ -362,6 +362,14 @@ def _profile(call: PharmcatGeneCall | None, phenotype: Phenotype) -> Pharmacogen
     return PharmacogenomicProfile(
         primary_gene=call.gene,
         diplotype=call.diplotype or "Unknown",
+        # Only surfaced when it actually differs — repeating the same string under
+        # two names would invite exactly the conflation the field exists to expose.
+        recommendation_diplotype=(
+            call.recommendation_diplotype
+            if call.recommendation_diplotype
+            and call.recommendation_diplotype != call.diplotype
+            else None
+        ),
         phenotype=phenotype,
         activity_score=call.activity_score,
         detected_variants=_detected_variants(call),

@@ -81,6 +81,11 @@ class TestContractCompatibility:
             assert set(analysis["pharmacogenomic_profile"]) == {
                 "primary_gene",
                 "diplotype",
+                # Added Phase 6 as provenance: the reduced diplotype CPIC guidance
+                # was found by. Additive and nullable, so existing clients are
+                # unaffected — but the key IS in the contract now, and this
+                # assertion is what keeps Pydantic and the Dart model in step.
+                "recommendation_diplotype",
                 "phenotype",
                 "activity_score",
                 "detected_variants",

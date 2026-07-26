@@ -1071,6 +1071,79 @@ Correctly described in-code as *"abuse dampening, not a security boundary."*
 
 ---
 
+## Phase 6 — COMPLETE (closed 2026-07-25)
+
+Validation. Every number below is measured and traceable to an artifact under
+`reports/`; none is projected.
+
+### Final numbers
+
+| Measurement | Result | Scope |
+| --- | ---: | --- |
+| **Label-mapping correctness** | **92 / 105** | Exhaustive over every phenotype combination for all 6 drugs. 13 accepted divergences, individually justified |
+| **Integration fidelity — 1000 Genomes** | **100.0000%** | 400 samples · 2 800 (sample, gene) pairs · **5 600 field comparisons** · 0 mismatches · 0 parser errors |
+| **Integration fidelity — adversarial VCFs** | **0 mismatches** | All 74 of PharmCAT's own unit-test VCFs for our genes, 148 field comparisons |
+| **CYP2D6 negative control** | **400 / 400 declined** | Not one fabricated call across the whole cohort |
+| **Usable-result rate** | **82.79%** | 1 987 / 2 400 callable (sample, gene) pairs. A floor, not a production estimate — see below |
+| **External genotype concordance** | **n = 1** | `NA12273`, 2/2 exact. Reported as n=1 throughout, never as a percentage |
+| **Label/prose cross-check** | **0 divergences** | 20 / 20 reachable explanation entries |
+| **SAS breakout** | **n = 75** | CYP2C19 reduced-function (IM+PM) **53.3%** (40/75), second only to EAS. No per-population claim: n=8–23 per population |
+
+Both halves of the 82.79%: the 1000 Genomes panel is filtered to polymorphic
+sites, so slices carry only 19–57% of PharmCAT's required positions, and the absent
+ones disproportionately define reference-like haplotypes — which is what produces
+the 308 ambiguous calls making up most of the shortfall. A clinical panel would
+call more. But the ambiguity is real, and for CYP2C9 all 71 ambiguous calls are
+genuinely phenotype-discordant, so `Unknown` is correct there rather than an
+artifact.
+
+### Defects found by this phase
+
+1. **Substring collision in `label_mapping.yaml`** — 16 azathioprine rows labelled
+   `Safe` where CPIC directs a reduced starting dose. Fixed by precedence, against
+   a pre-committed definition of "fixed" recorded before any edit.
+2. **`sourceDiplotypes` vs `recommendationDiplotypes`** — displayed `Normal
+   Metabolizer` where PharmCAT called `Indeterminate`, and dropped a carried variant
+   from the reported genotype. 4 of 302 called DPYD samples. **Found only at n=400**;
+   invisible to unit tests, to the exhaustive mapping validation, and to n=1
+   concordance. Written up as Evidence 7 in `provenance_finding.md`.
+3. **Tentative phenotype table gap** — SLCO1B1 `Possible Decreased Function`
+   collapsed to `Unknown` under a red `Toxic` badge. Confirmed real in the cohort
+   (4 occurrences).
+4. **Unknown-keyed prose asserted a falsehood** — "your genetic result was not
+   available" is untrue when the gene was called but unclassifiable.
+5. **Wrapper-only PharmCAT dependency** — `/analyze` returned 503 on a machine
+   holding a working jar and JRE. Now invoked via the jar directly.
+
+Two defects were in my own measurement code and are recorded because they shaped
+the results: a comparator that scored 26 documented normalisations as mismatches,
+and a frequency estimator whose "stricter" variant was systematically worse
+(dropping ambiguous calls pushed CYP2C9 `*2` in Europeans from a near-exact 13.3%
+to 0.0% against a published 12.7%).
+
+### Measured and deliberately NOT implemented
+
+**30 ambiguous SLCO1B1 calls (7.5% of the cohort) report `Unknown` although every
+informative candidate reads `Decreased Function` or `Possible Decreased Function`**
+— unanimous on the functional class. That is a silently dropped statin-myopathy
+signal, the mirror of defect 2. Surfacing it needs a contract state for "phenotype
+confident, diplotype ambiguous"; the proposal is written up in the validation
+report and awaits a decision. The other 83% of ambiguous SLCO1B1 calls, and 100% of
+CYP2C9's, are genuinely phenotype-discordant — `Unknown` is right for those.
+
+---
+
+## Remaining work, project-wide
+
+| Item | State | Blocker |
+| --- | --- | --- |
+| **Human adjudication of explanation prose** | **In progress** — 124 of 179 claim sentences decided, 55 outstanding | Human judgement; the release gate stays red until it is done. The explanation store is frozen while this runs |
+| **Phase 5B — outside CYP2D6 diplotype input** | Not started | Needs a trustworthy external caller (Stargazer/Cyrius or a lab report). `-po` is already supported by PharmCAT 3.4.0; research mode stays disabled deliberately |
+| **Phase 7 — docs, demo, team review** | Not started | Demo video, README links, team sign-off |
+| **Phase 8 — deployment** | Not started | Accounts only the project owner can create; every step written and verified in `infra/DEPLOY_NOTES.md`. Blocked behind the adjudication gate by design |
+| **`Phenotype.Unknown` enum split** | Deferred, documented (limitation #21) | Contract + Dart change; pinned by a test that fails if someone adds the value without updating the docs |
+| **SLCO1B1 phenotype-without-diplotype state** | Proposed, not built | Awaiting decision (see above) |
+
 ## E. Top risks to a live demo
 
 Ranked by likelihood × damage.

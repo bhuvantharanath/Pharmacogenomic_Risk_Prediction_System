@@ -27,6 +27,7 @@ const String _fixture = '''
       "pharmacogenomic_profile": {
         "primary_gene": "CYP2D6",
         "diplotype": "*1/*2xN",
+        "recommendation_diplotype": null,
         "phenotype": "URM",
         "activity_score": 3.0,
         "detected_variants": [
@@ -72,6 +73,7 @@ const String _fixture = '''
       "pharmacogenomic_profile": {
         "primary_gene": "Unknown",
         "diplotype": "Unknown",
+        "recommendation_diplotype": null,
         "phenotype": "Unknown",
         "activity_score": null,
         "detected_variants": []

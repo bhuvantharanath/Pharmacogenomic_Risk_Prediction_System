@@ -243,6 +243,81 @@ the input. A contradiction guard reading CPIC's structured booleans now provides
 the genuinely orthogonal signal: it cannot make the mapping right, but it caught
 defect 1 without any expectation table at all.
 
+## Evidence 7 — (e) a category error between data structures, not a text failure
+
+Found 2026-07-25 by the 400-sample integration-fidelity run. This instance matters
+because **its mechanism is unlike every one above**, and yet its direction is
+identical.
+
+Every prior instance was a **text-matching** failure: entity overlap standing in
+for entailment, a vocabulary list standing in for correctness, a corpus haystack
+too narrow. This one involves no text matching at all. PharmCAT publishes two
+structurally similar objects with different purposes:
+
+| Field | Purpose | DPYD example |
+| --- | --- | --- |
+| `sourceDiplotypes` | what the matcher **called** — the patient's genotype | `c.85T>C (*9A)/[c.85T>C (*9A) + c.1371C>T]`, phenotype **`Indeterminate`** |
+| `recommendationDiplotypes` | the reduction used to **find a CPIC row** — compound alleles split so an activity score exists | `c.85T>C (*9A)/c.85T>C (*9A)`, phenotype `Normal Metabolizer` |
+
+Our parser read the second for both purposes. Nothing was mis-parsed; both objects
+were read correctly. The defect was reading the *right value for the wrong
+question* — a category error, invisible to any checker comparing strings, because
+the string we emitted was a genuine PharmCAT string.
+
+### Direction: identical to all six prior instances
+
+The pipeline **manufactured certainty its source explicitly withheld.** PharmCAT
+said `Indeterminate` — a positive statement that the genotype has no phenotype
+assignment — and we displayed `Normal Metabolizer`. We also dropped a variant the
+patient carries (`c.1371C>T`) from the reported genotype.
+
+That is now **seven for seven**. Across text-matching failures, two independent
+artifacts drifting toward reassurance, and now a structural category error, every
+defect this project has found in its own honesty layer erred toward *sounding more
+confident and more reassuring than the evidence supported*. The consistency of the
+direction is the finding; no instance has ever erred toward excess caution.
+
+The safety asymmetry recorded in Evidence 6 applies with unusual force here.
+DPYD deficiency causes fatal fluorouracil toxicity, so a false `Normal Metabolizer`
+on that gene is the single worst error this pipeline can produce: it removes the
+one warning standing between a deficient patient and a lethal dose, and removes it
+silently, wearing the appearance of a confident result.
+
+### Scope: the honesty layer, not the safety layer
+
+Worth stating precisely, because it bounds the harm. CPIC recommendation selection
+matches on `lookup_keys`, which correctly came from the recommendation entry all
+along. **No CPIC recommendation changed** when this was fixed — the guidance text
+served was right before and after. What was wrong was the genotype and phenotype
+*displayed beside it*.
+
+So the defect lived in the layer that tells the user what we know, not the layer
+that decides what to do. That is the less dangerous of the two places for it to be,
+and it is still exactly the layer this document exists to police.
+
+### Detection: only scale found it
+
+The most transferable lesson. This defect was invisible to everything else:
+
+* **Unit tests passed** — fixtures were captured from synthetic VCFs, where the
+  two lists agree, so no fixture ever exercised a compound genotype.
+* **The exhaustive 105-combination mapping validation passed** — it validates
+  label-from-CPIC-text, and both labels were correct.
+* **The label/prose cross-check passed** — prose and label agreed with each other.
+* **n=1 external concordance passed** — NA12273 has no compound DPYD genotype.
+
+It surfaced in **4 of 302 called DPYD samples (1.3%)**. A 20-sample evaluation set
+would have had roughly a 23% chance of containing even one, and a reviewer looking
+at one such sample would have had to notice that a plausible `Normal Metabolizer`
+should have read `Indeterminate` — the failure is quiet by construction.
+
+The project's other novel validation is *exhaustive over a small space* (every one
+of 105 phenotype combinations). That is genuinely stronger than sampling for what
+it covers, and it could not have found this: the defect is not in the mapping
+space at all. **Exhaustiveness over the wrong space is not coverage.** Only
+running real, messy, unselected inputs at n=400 produced a genotype whose shape
+the code had never been asked to handle.
+
 ## Methods note — pre-committing a retirement threshold
 
 The narrowing of the vocabulary check (Evidence 5) followed a rule recorded
