@@ -406,6 +406,100 @@ to catch over-claiming would have introduced the under-claiming case itself whil
 "fixing" the over-claiming one — which is precisely what the first draft of the
 resolver did.
 
+## Evidence 10 — the invariant-vs-patch result, measured
+
+A design preference converted into a number. The phenotype→label defect surfaced on
+DPYD/fluorouracil, and a DPYD-specific patch was the obvious minimal fix.
+Implemented as a general invariant instead, the measured effect over 400 samples ×
+6 drugs was **294 corrected results**:
+
+| Drug | Change | n |
+| --- | --- | ---: |
+| simvastatin | `Safe` → `Unknown` | 195 |
+| fluorouracil | `Safe` → `Unknown` | 81 |
+| fluorouracil | `Adjust Dosage` → `Unknown` | 17 |
+| azathioprine | `Safe` → `Unknown` | 1 |
+
+**A DPYD-only patch would have left 293 of the 294 live** — including all 195
+simvastatin cases, which are 49% of the cohort and reach a different gene by a
+different mechanism. Every change removed an unsupported confident label; none
+added one.
+
+## Evidence 11 — validation tooling is itself unvalidated code
+
+The uncomfortable corollary of a verification-heavy architecture. Four times a
+*check* produced false results before being corrected:
+
+| Check | False output | Cause |
+| --- | ---: | --- |
+| Label/prose cross-check | 8 false positives on 20 entries | action vocabulary applied to `mechanism`, which describes biology |
+| Integration-fidelity comparator | 26 false positives | scored a documented `None`-for-uncalled normalisation as mismatch |
+| Detector sensitivity probe | 10 spurious plant misses | corpus haystack too narrow |
+| Ambiguity classifier | **the 30-call SLCO1B1 misclassification** | reported that 30 calls returned `Unknown`; the pipeline already returned `Toxic` |
+
+The last is the instructive one. The claim "30 calls drop a myopathy warning" was
+written into a report and reported as a finding. It came from the validation
+script's own failure classification, never from the pipeline — and it was caught
+**only by querying the pipeline directly** instead of trusting the harness. The
+harness had classified ambiguity as unusable; the pipeline had resolved it.
+
+A fifth belongs here too: the first phenotype→label resolver filtered every
+`UNKNOWN`-mapping candidate out before comparing, **measured as a fix, and left all
+195 samples broken.**
+
+The conclusion is not that checking is futile — every real defect in this project
+was found by a check. It is that **in a verification-heavy architecture, each check
+needs its own validation before its output carries weight.** A check is code, code
+has defects, and a defective check is more dangerous than no check because it
+launders a wrong answer as a verified one. The practices that actually caught these:
+sabotage tests, pre-committed thresholds, and querying the system under test
+directly rather than through the harness.
+
+## The no-data / indeterminate conflation — now in a THIRD layer
+
+Recorded together because it is the same conflation reappearing:
+
+1. **Phenotype mapping** — `Indeterminate` and `No Result` both collapsed to
+   `Phenotype.UNKNOWN`, so a called-but-unclassifiable gene was indistinguishable
+   from one never called (limitation #21).
+2. **Unknown-keyed prose** — asserted "your genetic result was not available",
+   false whenever the gene *was* called.
+3. **Candidate filtering** — the resolver dropped every `UNKNOWN`-mapping candidate
+   before asking whether the rest agreed, collapsing
+   `{Normal Function, Indeterminate}` to `{NM}` and asserting `Safe`.
+
+The third is the worst, because it **measured as a fix while leaving 195 samples
+broken** — the 400-sample re-run was the only thing that caught it.
+
+The distinction, stated so it survives:
+
+> **`n/a` is silence. `Indeterminate` is testimony.**
+
+`n/a` marks a candidate PharmCAT never assigned a phenotype to — no claim was made,
+so ignoring it loses nothing. `Indeterminate` is PharmCAT positively stating that
+this genotype *has* no phenotype assignment. It therefore **disagrees** with a
+candidate reading `Normal Function`, and must count. Only silence can be ignored.
+
+## Evidence 12 — coverage degrades silently, toward reassurance
+
+Measured 2026-07-26 over 120 synthetic samples; see `docs/input_requirements.md`.
+
+The question was "at what input coverage does the pipeline decline?" The answer is
+that it largely **does not decline — it confidently calls the reference haplotype**,
+because a variant whose defining position is absent is invisible and every observed
+position reads reference. Confidently-wrong rate at 60% coverage: CYP2C9 28.6%,
+NUDT15 25.0%, SLCO1B1 15.0%. At 20%: up to 47.8%.
+
+Direction, again: **every** wrong call in the sweep replaced a reduced-function
+phenotype with a normal one. Never the reverse.
+
+This is the only defect in this document that **no layer of ours can catch**. The
+guard, the mapping validation, the cross-check and the phenotype→label invariant all
+reason about what PharmCAT reported; none can know that a position was never
+assayed. The mitigation is therefore an input requirement, not a check — three of
+six genes need complete coverage of PharmCAT's position list, and a variants-only
+VCF is indistinguishable from one where those positions were never measured.
+
 ## Methods note — pre-committing a retirement threshold
 
 The narrowing of the vocabulary check (Evidence 5) followed a rule recorded

@@ -1084,10 +1084,12 @@ Validation. Every number below is measured and traceable to an artifact under
 | **Integration fidelity — 1000 Genomes** | **100.0000%** | 400 samples · 2 800 (sample, gene) pairs · **5 600 field comparisons** · 0 mismatches · 0 parser errors |
 | **Integration fidelity — adversarial VCFs** | **0 mismatches** | All 74 of PharmCAT's own unit-test VCFs for our genes, 148 field comparisons |
 | **CYP2D6 negative control** | **400 / 400 declined** | Not one fabricated call across the whole cohort |
-| **Usable-result rate** | **82.79%** | 1 987 / 2 400 callable (sample, gene) pairs. A floor, not a production estimate — see below |
+| **Usable-result rate** | **82.79% floor / 100% ceiling** | Floor measured on 1000G filtered slices (19–57% position coverage); ceiling measured on complete-coverage synthetic input. Never quote one alone |
+| **Input requirements** | **3 of 6 genes need 100% coverage** | CYP2C19, CYP2C9, SLCO1B1. Below that the pipeline answers confidently and *wrongly* (CYP2C9 17.4% wrong at 80% coverage), always replacing reduced function with normal. `docs/input_requirements.md` |
 | **External genotype concordance** | **n = 1** | `NA12273`, 2/2 exact. Reported as n=1 throughout, never as a percentage |
 | **Label/prose cross-check** | **0 divergences** | 20 / 20 reachable explanation entries |
 | **Phenotype/label invariant** | **294 labels corrected** | 400 samples × 6 drugs. Every change removed a confident label; none added one. Checked at build time over all reachable cases and at request time on every response |
+| **Invariant vs patch** | **293 of 294** | A DPYD-only patch would have left 293 of the 294 corrections live, including all 195 simvastatin cases |
 | **SAS breakout** | **n = 75** | CYP2C19 reduced-function (IM+PM) **53.3%** (40/75), second only to EAS. No per-population claim: n=8–23 per population |
 
 Both halves of the 82.79%: the 1000 Genomes panel is filtered to polymorphic
@@ -1161,7 +1163,8 @@ testimony.
 | Item | State | Blocker |
 | --- | --- | --- |
 | **Human adjudication of explanation prose** | **In progress** — 124 of 179 claim sentences decided, 55 outstanding | Human judgement; the release gate stays red until it is done. The explanation store is frozen while this runs |
-| **Phase 5B — outside CYP2D6 diplotype input** | Not started | Needs a trustworthy external caller (Stargazer/Cyrius or a lab report). `-po` is already supported by PharmCAT 3.4.0; research mode stays disabled deliberately |
+| **Phase 5B — warfarin regressor + SHAP, CYP2D6 external diplotype, encrypted offline cache** | Not started | CYP2D6 needs a trustworthy external caller (Stargazer/Cyrius or a lab report); `-po` is already supported in 3.4.0 and research mode stays disabled deliberately. **⚠️ Check "Indian population priors" for redundancy before building it** — the Phase 6 SAS result (n=75, CYP2C19 reduced-function 53.3%, allele frequencies agreeing with CPIC's Central/South Asian figures) already delivers part of what that item was scoped to provide, from real data rather than priors |
+| **Phase 7 — demo VCFs** | Not started | ⚠️ Demo inputs **must** use complete-coverage VCFs, labelled plainly as clinical-panel-equivalent, and cite both the floor and ceiling rates. A demo on 1000G-style slices would show simvastatin `Unknown` for 54% of cases and would also risk showing a confidently wrong call |
 | **Phase 7 — docs, demo, team review** | Not started | Demo video, README links, team sign-off |
 | **Phase 8 — deployment** | Not started | Accounts only the project owner can create; every step written and verified in `infra/DEPLOY_NOTES.md`. Blocked behind the adjudication gate by design |
 | **`Phenotype.Unknown` enum split** | Deferred, documented (limitation #21) | Contract + Dart change; pinned by a test that fails if someone adds the value without updating the docs |

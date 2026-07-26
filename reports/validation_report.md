@@ -433,6 +433,25 @@ candidate out before comparing, collapsing `{Normal Function, Indeterminate}` to
 `{NM}` and leaving all 195 samples as broken as before. `n/a` is silence;
 `Indeterminate` is testimony. Only re-running the cohort caught it.
 
+
+### Every rate here has a floor and a ceiling — both are stated
+
+| Measure | Floor (1000G filtered slices, 19–57% position coverage) | Ceiling (complete coverage) |
+| --- | ---: | ---: |
+| Overall usable-result rate | **82.79%** (1 987/2 400) | **100%** — every gene resolves to one diplotype at complete coverage |
+| SLCO1B1 single-diplotype rate | **39.8%** | **100%** |
+| simvastatin confident label | **46%** (218/400 Unknown) | **100%** |
+| DPYD confident label | **75.5%** | **100%** |
+
+Neither number alone is honest. The floor is real, measured on human data, and is
+what a variants-only VCF will produce. The ceiling is also real and is what a
+clinical PGx panel produces. **The gap is input coverage, not pipeline capability.**
+
+And a warning that belongs beside both: below complete coverage the pipeline does
+not merely decline more often — for three of six genes it begins answering
+*confidently and wrongly*, always replacing a reduced-function phenotype with a
+normal one. See `docs/input_requirements.md`.
+
 ### Frequency concordance — an aggregate sanity check, and only that
 
 **Stated explicitly: this is not per-sample validation.** It asks whether the
