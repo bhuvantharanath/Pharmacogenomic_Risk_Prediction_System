@@ -1,9 +1,14 @@
 # Validation against reference materials — PARTIAL (Phase 6, in progress)
 
-**Date:** 2026-07-24 · **Status:** data acquisition complete and proven
-end-to-end; the harness (`scripts/validate.py`) is **not yet written**, so the
-per-gene concordance and label-mapping tables below are populated only for the
-samples run by hand. Every number here is real; none is projected.
+**Date:** 2026-07-25 · **Status:** integration fidelity now measured at scale
+(400 samples, §2b) alongside the exhaustive label-mapping validation (§4).
+External genotype concordance remains **n=1** and is reported as n=1 throughout —
+never as a percentage. Every number here is real; none is projected.
+
+The validation harness is written: `scripts/validate_integration.py` (cohort
+fidelity + failure classes), `scripts/validate_testvcfs.py` (PharmCAT's own
+adversarial test VCFs), `scripts/validate_frequency.py` (aggregate frequency
+concordance). Artifacts under `reports/*.json` carry every number below.
 
 ---
 
@@ -105,6 +110,267 @@ genotypes, which is corroborating (though not GeT-RM consensus from this table).
 
 Parsing used the **production** `parse_report()` from `pharmcat_runner.py`, so
 this exercises the real integration path rather than a test double.
+
+---
+
+## 2b. Integration fidelity at scale — 400 samples, 2026-07-25
+
+The n=1 external concordance above is unchanged and still n=1. This section
+measures something different and much larger: **does PharmaGuard report what
+PharmCAT actually said?** That question needs no truth labels, so it scales.
+
+**Cohort.** 400 of the 3202 samples in the 1000 Genomes high-coverage phased
+panel, stratified proportionally by superpopulation and selected deterministically
+(seed 20260725): AFR 112, EUR 79, SAS 75, EAS 73, AMR 61. Sliced by remote region
+extraction — no whole-genome download.
+
+Two measurements made the run cheap enough to be routine: slicing cost is
+dominated by reading the region's compressed blocks rather than by sample count
+(1 sample 3.87 s, 300 samples 3.83 s, same region), and PharmCAT accepts a
+multi-sample VCF, so the whole cohort costs one JVM start. Total wall clock for
+400 samples: **11.7 minutes**.
+
+### Result: 100.0000%
+
+| | |
+| --- | ---: |
+| Samples requested | 400 |
+| Samples with a PharmCAT report | **400** |
+| (sample, gene) pairs compared | 2 800 |
+| Field comparisons (diplotype + phenotype) | **5 600** |
+| Mismatches | **0** |
+| Samples erroring in our parser | **0** |
+
+Compared field-by-field against `report.json` read independently of our parser —
+deliberately not reusing `parse_report()`, because a comparator sharing code with
+the thing it checks is the circularity that made an earlier provenance metric
+meaningless.
+
+### 🔴 One real defect, found and fixed by this run
+
+The first run scored **95.60%**, and the 8 mismatches were all DPYD. PharmCAT
+publishes two diplotype lists that mean different things:
+
+| Field | NA19042 DPYD | Phenotype |
+| --- | --- | --- |
+| `sourceDiplotypes` | `c.85T>C (*9A)/[c.85T>C (*9A) + c.1371C>T]` | **Indeterminate** |
+| `recommendationDiplotypes` | `c.85T>C (*9A)/c.85T>C (*9A)` | Normal Metabolizer |
+
+`sourceDiplotypes` is what the matcher **called**. `recommendationDiplotypes` is
+PharmCAT's own reduction for **looking up** a CPIC row — compound alleles split so
+an activity score can be assigned. Our parser read the second for everything,
+which is right for the lookup and wrong for the display. The consequence, in 4 of
+302 called DPYD samples:
+
+* a variant the patient carries (`c.1371C>T`) silently dropped from the reported
+  genotype, and
+* **`Normal Metabolizer` displayed where PharmCAT had said `Indeterminate`** —
+  presenting certainty PharmCAT explicitly withheld.
+
+That second one is over-claiming, the mirror image of limitation #21 where the
+same enum under-claimed. Fixed architecturally rather than by special-casing DPYD:
+`sourceDiplotypes` now drives what we report about the patient, and
+`recommendationDiplotypes` continues to drive CPIC selection via `lookup_keys`, so
+no recommendation changed. A new `recommendation_diplotype` field keeps the
+reduction visible for audit. Re-measured: **100.0000%**.
+
+A second class of apparent mismatch — 26 CYP2D6 rows of `'Unknown/Unknown'` vs
+`None` — was a false positive of the comparator, not a defect: our parser
+normalises every no-call sentinel to `None`, which `PharmcatGeneCall` documents.
+The equivalence is now declared explicitly rather than silently ignored.
+
+### Second fidelity check: PharmCAT's own test VCFs
+
+The 1000 Genomes cohort exercises *common* variation. PharmCAT's unit-test VCFs
+are hand-built to break the matcher — rare alleles, missing positions, compound
+heterozygotes, hom/het boundaries. All 74 covering our genes were run, taken from
+`src/test/resources/.../haplotype` at tag v3.4.0.
+
+| | |
+| --- | ---: |
+| Files compared | **74 / 74** |
+| Field comparisons | 148 |
+| Mismatches | **0** |
+| Errors | **0** |
+
+Per gene: CYP2C19 27, SLCO1B1 17, TPMT 11, CYP2C9 9, DPYD 7, NUDT15 3.
+
+**A secondary comparison, reported separately because it does not test us.**
+These files are named after the genotype they encode (`s1s2.vcf` → \*1/\*2). Of
+74, **29 names were decodable** by a strict star-pair rule; 45 were left undecoded
+rather than guessed at, because inventing an expected value would manufacture a
+denominator. Of the 29, **23 matched PharmCAT's call**. All 6 differences were
+traced to the decoder, not to PharmCAT:
+
+| File | Name encodes | PharmCAT called | Why the name is not the answer |
+| --- | --- | --- | --- |
+| `s1s4b`, `s4as4b`, `s4bs17` | \*4A / \*4B | \*4 | PharmCAT 3.4.0 defines no \*4A/\*4B — only \*4 (verified in the shipped allele definitions) |
+| `s3bs3c` (TPMT) | \*3B/\*3C | \*1/\*3A | \*3A is defined by exactly the two positions of \*3B + \*3C; unphased data cannot distinguish cis from trans, so \*1/\*3A is the correct call |
+| `s1s1s` (TPMT) | \*1/\*1S | \*1/\*1 | decoder mis-split the name |
+| `s1s2b` (DPYD) | \*1/\*2B | `c.1627A>G (*5)` | DPYD does not use plain star nomenclature |
+
+So the honest reading is 74/74 integration fidelity, and **zero** evidence of a
+PharmCAT calling error in this set.
+
+---
+
+## 3. Call rates, failure characterisation, and frequency concordance
+
+### Usable-result rate
+
+A "usable" result means the gene produced a phenotype CPIC can act on. CYP2D6 is
+excluded from the denominator because it is the negative control — it is *expected*
+to fail, and counting it as failure would flatter nothing and confuse everything.
+
+| | |
+| --- | ---: |
+| Callable (sample, gene) pairs — 6 genes × 400 | 2 400 |
+| Produced a usable phenotype | 1 987 |
+| **Usable-result rate** | **82.79%** |
+
+| Failure class | n | What it means |
+| --- | ---: | --- |
+| `not_attempted_structural` | 400 | CYP2D6, `callSource: NONE`. **400/400 — the negative control held perfectly.** Not one fabricated call |
+| `ambiguous_multiple_diplotypes` | 308 | PharmCAT returned several equally-likely diplotypes |
+| `called_but_unclassifiable` | 103 | genotype obtained, no CPIC phenotype assignment (`Indeterminate`) |
+| `no_call_missing_positions` | 2 | matcher ran, could not call |
+
+Per-gene call rate (phenotype obtained):
+
+| Gene | Called | Rate |
+| --- | ---: | ---: |
+| NUDT15 | 400/400 | 100.0% |
+| TPMT | 399/400 | 99.8% |
+| CYP2C19 | 398/400 | 99.5% |
+| CYP2C9 | 329/400 | 82.2% |
+| DPYD | 302/400 | 75.5% |
+| SLCO1B1 | 159/400 | 39.8% |
+| CYP2D6 | 0/400 | 0.0% *(negative control)* |
+
+**SLCO1B1's 39.8% is the headline weakness.** It is not a parsing failure — 398
+of 400 samples got a *diplotype*; they just could not be resolved to a single one.
+Ambiguity there is severe and population-structured: only 163 of 400 samples had
+exactly one candidate, 153 had four, and 84 had ten.
+
+### Input completeness — a property of the slices, stated plainly
+
+Our sliced VCFs contain a minority of the positions PharmCAT asks for, because the
+1000 Genomes panel is filtered to polymorphic sites: a position where nobody in
+the panel varies simply is not there.
+
+| Gene | Positions present / required |
+| --- | ---: |
+| SLCO1B1 | 20/35 (57.1%) |
+| CYP2C19 | 16/35 (45.7%) |
+| CYP2D6 | 67/157 (42.7%) |
+| DPYD | 31/83 (37.3%) |
+| NUDT15 | 5/20 (25.0%) |
+| TPMT | 9/45 (20.0%) |
+| CYP2C9 | 17/88 (19.3%) |
+
+Checked directly: the defining positions for the alleles that matter clinically
+(CYP2C9 \*2/\*3/\*8/\*9, CYP2C19 \*2/\*3/\*17, SLCO1B1 \*5/\*15/\*37) are **all
+present**. The absent positions are ones that define reference-like haplotypes,
+which is why they drive *ambiguity* rather than wrong calls.
+
+This is a property of the validation input, not of the product: a clinical VCF
+covering PharmCAT's full position list would not behave this way. It does mean the
+call rates above are a **floor**, not an estimate of production performance.
+
+### Frequency concordance — an aggregate sanity check, and only that
+
+**Stated explicitly: this is not per-sample validation.** It asks whether the
+distribution of alleles we call across 400 unrelated people resembles CPIC's
+published distributions. A pipeline that shuffled calls between samples at random
+would still pass it. What it *is* sensitive to is whole-class error — a strand
+flip, a coordinate off-by-one, a reference/alternate swap, or a population-specific
+allele never being called.
+
+**Source:** CPIC API, `https://api.cpicpgx.org/v1/population_frequency_view`,
+verified live and **accessed 2026-07-25**; responses cached under
+`test-data/reference/cpic_frequencies/`.
+
+**The population mapping is approximate and load-bearing.** 1000G superpopulations
+and CPIC biogeographic groups are different taxonomies: EUR→European,
+EAS→East Asian, SAS→Central/South Asian, AFR→Sub-Saharan African, AMR→Latino.
+CPIC's "Sub-Saharan African" and 1000G's AFR are not the same population. A few
+points of deviation should be read against that, not as pipeline error.
+
+#### Where it agrees
+
+CYP2C19, TPMT and NUDT15 had **no ambiguous calls at all**, so their frequencies
+are unqualified:
+
+| Gene · allele | Ours | CPIC |
+| --- | ---: | ---: |
+| CYP2C19 \*2 | 21.6% | 19.2% |
+| CYP2C19 \*17 | 14.8% | 14.9% |
+| CYP2C19 \*17 in EAS | **0.0%** | 2.1% |
+| TPMT \*1 | 94.8% | 95.6% |
+| TPMT \*3A | 1.4% | 1.6% |
+| NUDT15 \*3 | 3.5% | 3.4% |
+| NUDT15 \*3 in SAS | 6.7% | 6.7% |
+
+The near-absence of CYP2C19 \*17 in East Asians is reproduced, which is the kind
+of population-specific structure a coordinate or strand error would destroy.
+
+#### Deviations, reported rather than buried
+
+**CYP2C19 \*1 in SAS: ours 39.3% vs CPIC 54.4% (−15.0 pp).** Explained by
+nomenclature, not error. PharmCAT 3.4.0 calls \*38 where CPIC's frequency table
+still counts \*1, and CPIC publishes no \*38 row at all. Combining them:
+
+| | EUR | EAS | SAS | AFR | AMR |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| ours \*1+\*38 | 62.0% | 64.4% | 48.7% | 54.9% | 72.1% |
+| CPIC \*1 | 62.5% | 59.6% | 54.4% | 55.2% | 71.7% |
+
+Three of five groups agree to within 0.5 pp.
+
+**SLCO1B1: no defensible frequency estimate, and that is the finding.** Two
+reasonable estimators disagree wildly, because 59% of SLCO1B1 calls are ambiguous
+and the ambiguity is population-structured (EUR 10%, SAS 63%, AFR 82%, EAS 92%):
+
+| Estimator | SLCO1B1 \*37 | SLCO1B1 \*1 | CYP2C9 \*2 in EUR |
+| --- | ---: | ---: | ---: |
+| take first candidate | 40.3% | 36.7% | 13.3% |
+| unambiguous calls only | **0.0%** | 64.0% | **0.0%** |
+| CPIC published | 53.2% | 32.5% | 12.7% |
+
+Taking the first candidate is an arbitrary pick among equals; restricting to
+unambiguous calls sounds stricter but is systematically worse, because variant
+carriers are the ones most often ambiguous, so excluding them inflates the
+reference allele — visibly so for CYP2C9 \*2, which falls from a near-exact 13.3%
+to 0.0%. Publishing either number alone would hide that the answer depends on the
+choice. Both are reported; where they differ by ≥5 pp (SLCO1B1 \*37, \*1, \*14 and
+CYP2C9 \*1) **no frequency claim is made.**
+
+### The SAS breakout — n is the honest headline
+
+The project's motivation cites Indian populations; this is the first real data
+behind that claim, and the data does not support a per-population statement.
+
+| SAS population | Cohort n | CYP2C19 result |
+| --- | ---: | --- |
+| PJL (Punjabi, Lahore) | 23 | IM 12, RM 6, NM 4, URM 1 |
+| BEB (Bengali, Bangladesh) | 16 | NM 5, PM 4, IM 4, RM 3 |
+| GIH (Gujarati Indian, Houston) | 15 | NM 6, IM 3, RM 3, PM 1 |
+| STU (Sri Lankan Tamil) | 13 | IM 8, PM 3, NM 2 |
+| ITU (Indian Telugu) | 8 | IM 5, RM 1, NM 1 |
+
+**No per-population conclusion is drawn.** At n=8 to n=23, one individual moves a
+proportion by 4–12 points; these counts are reported so the sample size is visible,
+not because they support inference.
+
+At the **superpopulation** level SAS has n=75 (150 chromosomes), which supports a
+cautious statement: **CYP2C19 reduced-function phenotypes (IM + PM) reach 53.3% in
+SAS** (40/75; IM 42.7%, PM 10.7%) — the second-highest of the five groups after EAS
+(57.5%) and well above EUR (32.9%). Allele frequencies agree with CPIC's
+Central/South Asian figures (\*2 31.3% vs 27.0%; \*17 16.7% vs 17.1%).
+
+That is a real, defensible result relevant to the stated motivation, and it is a
+statement about the 1000 Genomes SAS panel — not about any clinical population, and
+not a substitute for per-sample validation.
 
 ---
 

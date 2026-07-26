@@ -1,0 +1,2910 @@
+{
+ "generated_at": "2026-07-25T15:40:26Z",
+ "elapsed_seconds": 702.5,
+ "cohort_seed": 20260725,
+ "requested_samples": 400,
+ "samples_with_report": 400,
+ "integration_fidelity": {
+  "pairs_compared": 2800,
+  "field_comparisons": 5600,
+  "mismatches": 0,
+  "match_rate": 1.0,
+  "mismatch_detail": [],
+  "sample_errors": {}
+ },
+ "usable_results": {
+  "callable_pairs": 2400,
+  "usable": 1987,
+  "rate": 0.8279166666666666,
+  "reason_classes": {
+   "not_attempted_structural": 400,
+   "ambiguous_multiple_diplotypes": 308,
+   "called_but_unclassifiable": 103,
+   "no_call_missing_positions": 2
+  }
+ },
+ "frequencies": {
+  "diplotype": {
+   "CYP2C19": {
+    "*1/*1": 128,
+    "*1/*2": 90,
+    "*2/*38": 8,
+    "*1/*17": 66,
+    "*1/*38": 19,
+    "*2/*2": 21,
+    "*2/*17": 24,
+    "*17/*17": 11,
+    "*1/*3": 3,
+    "*2/*3": 5,
+    "*9/*13": 1,
+    "*1/*4": 2,
+    "*17/*38": 3,
+    "*1/*13": 5,
+    "*13/*17": 1,
+    "*13/*35": 1,
+    "*3/*17": 1,
+    "*1/*9": 1,
+    "*1/*35": 2,
+    "*2/*35": 2,
+    "*38/*40": 1,
+    "*35/*35": 1,
+    "*2/*40": 1,
+    "*17/*40": 1
+   },
+   "CYP2C9": {
+    "*1/*1": 286,
+    "*1/*8": 11,
+    "*1/*13": 1,
+    "*1/*9": 17,
+    "*9/*9": 2,
+    "*1/*11": 5,
+    "*1/*6": 2,
+    "*8/*9": 1,
+    "*1/*14": 3,
+    "*11/*11": 1
+   },
+   "DPYD": {
+    "c.1627A>G (*5) (heterozygous)": 59,
+    "c.1601G>A (*4) (heterozygous)": 4,
+    "Reference/Reference": 98,
+    "c.85T>C (*9A) (heterozygous)": 56,
+    "c.1627A>G (*5)/c.1896T>C": 3,
+    "c.1896T>C/c.1896T>C": 2,
+    "c.1627A>G (*5)/c.1627A>G (*5)": 11,
+    "c.1896T>C (heterozygous)": 10,
+    "c.85T>C (*9A)/c.1896T>C": 3,
+    "c.1627A>G (*5)/c.2194G>A (*6)": 2,
+    "c.85T>C (*9A)/c.2194G>A (*6)": 3,
+    "c.2194G>A (*6) (heterozygous)": 9,
+    "c.1601G>A (*4)/c.1601G>A (*4)": 2,
+    "c.85T>C (*9A)/c.496A>G": 4,
+    "c.451A>G (heterozygous)": 1,
+    "c.85T>C (*9A)/c.1627A>G (*5)": 8,
+    "c.496A>G (heterozygous)": 5,
+    "c.85T>C (*9A)/c.85T>C (*9A)": 14,
+    "c.1218G>A (heterozygous)": 2,
+    "c.1371C>T (heterozygous)": 1,
+    "c.1129-5923C>G, c.1236G>A (HapB3) (heterozygous)": 2,
+    "c.1601G>A (*4)/c.1627A>G (*5)": 1,
+    "c.1627A>G (*5)/c.2161G>A": 1,
+    "c.1905+1G>A (*2A) (heterozygous)": 1
+   },
+   "NUDT15": {
+    "*1/*1": 372,
+    "*1/*3": 26,
+    "*3/*3": 1,
+    "*1/*4": 1
+   },
+   "SLCO1B1": {
+    "*1/*1": 70,
+    "*1/*14": 22,
+    "*1/*15": 26,
+    "*1/*20": 9,
+    "*1/*5": 1,
+    "*14/*15": 6,
+    "*14/*20": 3,
+    "*15/*15": 2,
+    "*14/*31": 1,
+    "*31/*43": 2,
+    "*27/*41": 1,
+    "*1/*41": 2,
+    "*20/*31": 2,
+    "*30/*55": 1,
+    "*27/*31": 1,
+    "*14/*14": 1,
+    "*1/*54": 5,
+    "*14/*54": 1,
+    "*15/*20": 2,
+    "*1/*31": 1
+   },
+   "TPMT": {
+    "*1/*1": 359,
+    "*1/*3A": 11,
+    "*1/*3C": 21,
+    "*1/*2": 2,
+    "*1/*8": 5,
+    "*3C/*3C": 1
+   }
+  },
+  "phenotype": {
+   "CYP2C19": {
+    "Normal Metabolizer": 152,
+    "Intermediate Metabolizer": 131,
+    "Rapid Metabolizer": 70,
+    "Poor Metabolizer": 29,
+    "Ultrarapid Metabolizer": 11,
+    "Likely Intermediate Metabolizer": 2,
+    "n/a": 3
+   },
+   "CYP2C9": {
+    "Normal Metabolizer": 305,
+    "Intermediate Metabolizer": 24
+   },
+   "DPYD": {
+    "Normal Metabolizer": 299,
+    "Intermediate Metabolizer": 3
+   },
+   "NUDT15": {
+    "Normal Metabolizer": 372,
+    "Intermediate Metabolizer": 27,
+    "Poor Metabolizer": 1
+   },
+   "SLCO1B1": {
+    "Normal Function": 101,
+    "Decreased Function": 41,
+    "Increased Function": 4,
+    "Poor Function": 2,
+    "Possible Decreased Function": 4,
+    "n/a": 7
+   },
+   "TPMT": {
+    "Normal Metabolizer": 364,
+    "Intermediate Metabolizer": 34,
+    "Poor Metabolizer": 1
+   }
+  },
+  "phenotype_by_population": {
+   "CYP2C19|GBR": {
+    "Normal Metabolizer": 7,
+    "Intermediate Metabolizer": 4,
+    "Rapid Metabolizer": 3,
+    "Poor Metabolizer": 1
+   },
+   "CYP2C19|EUR": {
+    "Normal Metabolizer": 29,
+    "Intermediate Metabolizer": 21,
+    "Rapid Metabolizer": 23,
+    "Poor Metabolizer": 5,
+    "Ultrarapid Metabolizer": 1
+   },
+   "CYP2C9|GBR": {
+    "Normal Metabolizer": 10
+   },
+   "CYP2C9|EUR": {
+    "Normal Metabolizer": 49
+   },
+   "DPYD|GBR": {
+    "Normal Metabolizer": 10
+   },
+   "DPYD|EUR": {
+    "Normal Metabolizer": 52,
+    "Intermediate Metabolizer": 3
+   },
+   "NUDT15|GBR": {
+    "Normal Metabolizer": 15
+   },
+   "NUDT15|EUR": {
+    "Normal Metabolizer": 79
+   },
+   "SLCO1B1|GBR": {
+    "Normal Function": 10,
+    "Decreased Function": 5
+   },
+   "SLCO1B1|EUR": {
+    "Normal Function": 50,
+    "Decreased Function": 21
+   },
+   "TPMT|GBR": {
+    "Normal Metabolizer": 13,
+    "Intermediate Metabolizer": 2
+   },
+   "TPMT|EUR": {
+    "Normal Metabolizer": 74,
+    "Intermediate Metabolizer": 5
+   },
+   "CYP2C19|FIN": {
+    "Intermediate Metabolizer": 3,
+    "Rapid Metabolizer": 2,
+    "Normal Metabolizer": 2,
+    "Ultrarapid Metabolizer": 1
+   },
+   "CYP2C9|FIN": {
+    "Normal Metabolizer": 5
+   },
+   "DPYD|FIN": {
+    "Normal Metabolizer": 2
+   },
+   "NUDT15|FIN": {
+    "Normal Metabolizer": 8
+   },
+   "SLCO1B1|FIN": {
+    "Normal Function": 2,
+    "Decreased Function": 3
+   },
+   "TPMT|FIN": {
+    "Normal Metabolizer": 8
+   },
+   "CYP2C19|CHS": {
+    "Intermediate Metabolizer": 15,
+    "Normal Metabolizer": 4,
+    "Poor Metabolizer": 5
+   },
+   "CYP2C19|EAS": {
+    "Intermediate Metabolizer": 32,
+    "Normal Metabolizer": 31,
+    "Poor Metabolizer": 10
+   },
+   "CYP2C9|CHS": {
+    "Normal Metabolizer": 24
+   },
+   "CYP2C9|EAS": {
+    "Normal Metabolizer": 70,
+    "Intermediate Metabolizer": 1
+   },
+   "DPYD|CHS": {
+    "Normal Metabolizer": 22
+   },
+   "DPYD|EAS": {
+    "Normal Metabolizer": 60
+   },
+   "NUDT15|CHS": {
+    "Intermediate Metabolizer": 6,
+    "Normal Metabolizer": 17,
+    "Poor Metabolizer": 1
+   },
+   "NUDT15|EAS": {
+    "Intermediate Metabolizer": 13,
+    "Normal Metabolizer": 59,
+    "Poor Metabolizer": 1
+   },
+   "TPMT|CHS": {
+    "Normal Metabolizer": 22,
+    "Intermediate Metabolizer": 2
+   },
+   "TPMT|EAS": {
+    "Normal Metabolizer": 68,
+    "Intermediate Metabolizer": 5
+   },
+   "SLCO1B1|CHS": {
+    "Decreased Function": 1
+   },
+   "SLCO1B1|EAS": {
+    "Decreased Function": 3,
+    "Poor Function": 1,
+    "Normal Function": 1
+   },
+   "CYP2C19|PUR": {
+    "Normal Metabolizer": 7,
+    "Poor Metabolizer": 1,
+    "Likely Intermediate Metabolizer": 1,
+    "Rapid Metabolizer": 6,
+    "Intermediate Metabolizer": 4
+   },
+   "CYP2C19|AMR": {
+    "Normal Metabolizer": 32,
+    "Poor Metabolizer": 1,
+    "Likely Intermediate Metabolizer": 1,
+    "Rapid Metabolizer": 13,
+    "Intermediate Metabolizer": 14
+   },
+   "DPYD|PUR": {
+    "Normal Metabolizer": 13
+   },
+   "DPYD|AMR": {
+    "Normal Metabolizer": 45
+   },
+   "NUDT15|PUR": {
+    "Normal Metabolizer": 19
+   },
+   "NUDT15|AMR": {
+    "Normal Metabolizer": 57,
+    "Intermediate Metabolizer": 4
+   },
+   "SLCO1B1|PUR": {
+    "Normal Function": 6,
+    "Increased Function": 3,
+    "Decreased Function": 3,
+    "Poor Function": 1
+   },
+   "SLCO1B1|AMR": {
+    "Normal Function": 25,
+    "Increased Function": 3,
+    "Decreased Function": 9,
+    "Poor Function": 1
+   },
+   "TPMT|PUR": {
+    "Normal Metabolizer": 16,
+    "Intermediate Metabolizer": 3
+   },
+   "TPMT|AMR": {
+    "Normal Metabolizer": 53,
+    "Intermediate Metabolizer": 8
+   },
+   "CYP2C9|PUR": {
+    "Normal Metabolizer": 10,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C9|AMR": {
+    "Normal Metabolizer": 42,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C19|CDX": {
+    "Normal Metabolizer": 5,
+    "Intermediate Metabolizer": 3,
+    "Poor Metabolizer": 2
+   },
+   "CYP2C9|CDX": {
+    "Normal Metabolizer": 9,
+    "Intermediate Metabolizer": 1
+   },
+   "DPYD|CDX": {
+    "Normal Metabolizer": 8
+   },
+   "NUDT15|CDX": {
+    "Intermediate Metabolizer": 1,
+    "Normal Metabolizer": 9
+   },
+   "TPMT|CDX": {
+    "Normal Metabolizer": 9,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C19|CLM": {
+    "Normal Metabolizer": 8,
+    "Rapid Metabolizer": 2,
+    "Intermediate Metabolizer": 2
+   },
+   "CYP2C9|CLM": {
+    "Normal Metabolizer": 10
+   },
+   "DPYD|CLM": {
+    "Normal Metabolizer": 10
+   },
+   "NUDT15|CLM": {
+    "Normal Metabolizer": 11,
+    "Intermediate Metabolizer": 1
+   },
+   "SLCO1B1|CLM": {
+    "Normal Function": 7,
+    "Decreased Function": 3
+   },
+   "TPMT|CLM": {
+    "Normal Metabolizer": 11,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C19|IBS": {
+    "Normal Metabolizer": 7,
+    "Intermediate Metabolizer": 5,
+    "Rapid Metabolizer": 3
+   },
+   "CYP2C9|IBS": {
+    "Normal Metabolizer": 10
+   },
+   "NUDT15|IBS": {
+    "Normal Metabolizer": 15
+   },
+   "SLCO1B1|IBS": {
+    "Normal Function": 10,
+    "Decreased Function": 1
+   },
+   "TPMT|IBS": {
+    "Normal Metabolizer": 13,
+    "Intermediate Metabolizer": 2
+   },
+   "CYP2C19|PJL": {
+    "Normal Metabolizer": 4,
+    "Rapid Metabolizer": 6,
+    "Ultrarapid Metabolizer": 1,
+    "Intermediate Metabolizer": 12
+   },
+   "CYP2C19|SAS": {
+    "Normal Metabolizer": 18,
+    "Rapid Metabolizer": 13,
+    "Ultrarapid Metabolizer": 1,
+    "Intermediate Metabolizer": 32,
+    "Poor Metabolizer": 8,
+    "n/a": 3
+   },
+   "CYP2C9|PJL": {
+    "Normal Metabolizer": 21
+   },
+   "CYP2C9|SAS": {
+    "Normal Metabolizer": 55,
+    "Intermediate Metabolizer": 3
+   },
+   "DPYD|PJL": {
+    "Normal Metabolizer": 17
+   },
+   "DPYD|SAS": {
+    "Normal Metabolizer": 60
+   },
+   "NUDT15|PJL": {
+    "Intermediate Metabolizer": 3,
+    "Normal Metabolizer": 20
+   },
+   "NUDT15|SAS": {
+    "Intermediate Metabolizer": 10,
+    "Normal Metabolizer": 65
+   },
+   "TPMT|PJL": {
+    "Normal Metabolizer": 23
+   },
+   "TPMT|SAS": {
+    "Normal Metabolizer": 72,
+    "Intermediate Metabolizer": 3
+   },
+   "DPYD|IBS": {
+    "Normal Metabolizer": 13
+   },
+   "CYP2C19|KHV": {
+    "Normal Metabolizer": 10,
+    "Intermediate Metabolizer": 5
+   },
+   "CYP2C9|KHV": {
+    "Normal Metabolizer": 14
+   },
+   "NUDT15|KHV": {
+    "Normal Metabolizer": 11,
+    "Intermediate Metabolizer": 4
+   },
+   "TPMT|KHV": {
+    "Normal Metabolizer": 15
+   },
+   "DPYD|KHV": {
+    "Normal Metabolizer": 12
+   },
+   "CYP2C19|ACB": {
+    "Rapid Metabolizer": 4,
+    "Normal Metabolizer": 4,
+    "Intermediate Metabolizer": 3
+   },
+   "CYP2C19|AFR": {
+    "Rapid Metabolizer": 21,
+    "Normal Metabolizer": 42,
+    "Intermediate Metabolizer": 32,
+    "Ultrarapid Metabolizer": 9,
+    "Poor Metabolizer": 5,
+    "Likely Intermediate Metabolizer": 1
+   },
+   "CYP2C9|ACB": {
+    "Normal Metabolizer": 10,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C9|AFR": {
+    "Normal Metabolizer": 89,
+    "Intermediate Metabolizer": 19
+   },
+   "NUDT15|ACB": {
+    "Normal Metabolizer": 11
+   },
+   "NUDT15|AFR": {
+    "Normal Metabolizer": 112
+   },
+   "TPMT|ACB": {
+    "Normal Metabolizer": 10
+   },
+   "TPMT|AFR": {
+    "Normal Metabolizer": 97,
+    "Intermediate Metabolizer": 13,
+    "Poor Metabolizer": 1
+   },
+   "CYP2C19|PEL": {
+    "Normal Metabolizer": 13,
+    "Rapid Metabolizer": 1,
+    "Intermediate Metabolizer": 3
+   },
+   "CYP2C9|PEL": {
+    "Normal Metabolizer": 14
+   },
+   "NUDT15|PEL": {
+    "Intermediate Metabolizer": 3,
+    "Normal Metabolizer": 14
+   },
+   "TPMT|PEL": {
+    "Normal Metabolizer": 14,
+    "Intermediate Metabolizer": 3
+   },
+   "SLCO1B1|PEL": {
+    "Normal Function": 6,
+    "Decreased Function": 2
+   },
+   "DPYD|PEL": {
+    "Normal Metabolizer": 12
+   },
+   "DPYD|ACB": {
+    "Normal Metabolizer": 6
+   },
+   "DPYD|AFR": {
+    "Normal Metabolizer": 82
+   },
+   "SLCO1B1|KHV": {
+    "Poor Function": 1
+   },
+   "SLCO1B1|ACB": {
+    "Decreased Function": 1,
+    "Normal Function": 1,
+    "Possible Decreased Function": 1
+   },
+   "SLCO1B1|AFR": {
+    "Decreased Function": 6,
+    "Normal Function": 6,
+    "Possible Decreased Function": 4,
+    "n/a": 1
+   },
+   "CYP2C19|GWD": {
+    "Intermediate Metabolizer": 7,
+    "Ultrarapid Metabolizer": 2,
+    "Normal Metabolizer": 9,
+    "Rapid Metabolizer": 5,
+    "Likely Intermediate Metabolizer": 1
+   },
+   "CYP2C9|GWD": {
+    "Normal Metabolizer": 20,
+    "Intermediate Metabolizer": 4
+   },
+   "DPYD|GWD": {
+    "Normal Metabolizer": 19
+   },
+   "NUDT15|GWD": {
+    "Normal Metabolizer": 24
+   },
+   "TPMT|GWD": {
+    "Normal Metabolizer": 22,
+    "Intermediate Metabolizer": 2
+   },
+   "SLCO1B1|GWD": {
+    "Possible Decreased Function": 1,
+    "Decreased Function": 1,
+    "Normal Function": 1
+   },
+   "SLCO1B1|PJL": {
+    "Normal Function": 7,
+    "Increased Function": 1,
+    "n/a": 2,
+    "Decreased Function": 1
+   },
+   "SLCO1B1|SAS": {
+    "Normal Function": 19,
+    "Increased Function": 1,
+    "n/a": 6,
+    "Decreased Function": 2
+   },
+   "CYP2C19|ESN": {
+    "Normal Metabolizer": 8,
+    "Intermediate Metabolizer": 8,
+    "Rapid Metabolizer": 2,
+    "Ultrarapid Metabolizer": 2
+   },
+   "DPYD|ESN": {
+    "Normal Metabolizer": 18
+   },
+   "NUDT15|ESN": {
+    "Normal Metabolizer": 21
+   },
+   "TPMT|ESN": {
+    "Normal Metabolizer": 20,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C9|ESN": {
+    "Normal Metabolizer": 15,
+    "Intermediate Metabolizer": 5
+   },
+   "CYP2C19|MSL": {
+    "Ultrarapid Metabolizer": 2,
+    "Normal Metabolizer": 6,
+    "Poor Metabolizer": 2,
+    "Intermediate Metabolizer": 4,
+    "Rapid Metabolizer": 4
+   },
+   "CYP2C9|MSL": {
+    "Normal Metabolizer": 14,
+    "Intermediate Metabolizer": 3
+   },
+   "NUDT15|MSL": {
+    "Normal Metabolizer": 18
+   },
+   "TPMT|MSL": {
+    "Normal Metabolizer": 14,
+    "Intermediate Metabolizer": 3,
+    "Poor Metabolizer": 1
+   },
+   "DPYD|MSL": {
+    "Normal Metabolizer": 13
+   },
+   "SLCO1B1|MSL": {
+    "Normal Function": 1,
+    "n/a": 1
+   },
+   "SLCO1B1|ESN": {
+    "Normal Function": 1,
+    "Possible Decreased Function": 2,
+    "Decreased Function": 1
+   },
+   "CYP2C19|BEB": {
+    "Normal Metabolizer": 5,
+    "Poor Metabolizer": 4,
+    "Intermediate Metabolizer": 4,
+    "Rapid Metabolizer": 3
+   },
+   "CYP2C9|BEB": {
+    "Normal Metabolizer": 13,
+    "Intermediate Metabolizer": 1
+   },
+   "DPYD|BEB": {
+    "Normal Metabolizer": 14
+   },
+   "NUDT15|BEB": {
+    "Normal Metabolizer": 13,
+    "Intermediate Metabolizer": 3
+   },
+   "TPMT|BEB": {
+    "Normal Metabolizer": 16
+   },
+   "CYP2C19|STU": {
+    "Intermediate Metabolizer": 8,
+    "Normal Metabolizer": 2,
+    "Poor Metabolizer": 3
+   },
+   "CYP2C9|STU": {
+    "Normal Metabolizer": 9
+   },
+   "DPYD|STU": {
+    "Normal Metabolizer": 11
+   },
+   "NUDT15|STU": {
+    "Normal Metabolizer": 10,
+    "Intermediate Metabolizer": 3
+   },
+   "TPMT|STU": {
+    "Normal Metabolizer": 13
+   },
+   "SLCO1B1|STU": {
+    "Decreased Function": 1,
+    "Normal Function": 4
+   },
+   "CYP2C19|ITU": {
+    "Intermediate Metabolizer": 5,
+    "Rapid Metabolizer": 1,
+    "n/a": 1,
+    "Normal Metabolizer": 1
+   },
+   "CYP2C9|ITU": {
+    "Normal Metabolizer": 4
+   },
+   "DPYD|ITU": {
+    "Normal Metabolizer": 6
+   },
+   "NUDT15|ITU": {
+    "Normal Metabolizer": 7,
+    "Intermediate Metabolizer": 1
+   },
+   "TPMT|ITU": {
+    "Normal Metabolizer": 7,
+    "Intermediate Metabolizer": 1
+   },
+   "SLCO1B1|BEB": {
+    "Normal Function": 5
+   },
+   "SLCO1B1|ITU": {
+    "n/a": 1
+   },
+   "CYP2C19|CEU": {
+    "Rapid Metabolizer": 9,
+    "Normal Metabolizer": 8,
+    "Intermediate Metabolizer": 7,
+    "Poor Metabolizer": 3
+   },
+   "DPYD|CEU": {
+    "Normal Metabolizer": 18,
+    "Intermediate Metabolizer": 2
+   },
+   "NUDT15|CEU": {
+    "Normal Metabolizer": 27
+   },
+   "SLCO1B1|CEU": {
+    "Normal Function": 20,
+    "Decreased Function": 6
+   },
+   "TPMT|CEU": {
+    "Normal Metabolizer": 26,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C9|CEU": {
+    "Normal Metabolizer": 14
+   },
+   "CYP2C19|YRI": {
+    "Intermediate Metabolizer": 5,
+    "Rapid Metabolizer": 2,
+    "Poor Metabolizer": 3,
+    "Ultrarapid Metabolizer": 3,
+    "Normal Metabolizer": 6
+   },
+   "CYP2C9|YRI": {
+    "Intermediate Metabolizer": 4,
+    "Normal Metabolizer": 14
+   },
+   "NUDT15|YRI": {
+    "Normal Metabolizer": 20
+   },
+   "TPMT|YRI": {
+    "Normal Metabolizer": 19,
+    "Intermediate Metabolizer": 1
+   },
+   "DPYD|YRI": {
+    "Normal Metabolizer": 17
+   },
+   "CYP2C19|CHB": {
+    "Intermediate Metabolizer": 7,
+    "Normal Metabolizer": 3,
+    "Poor Metabolizer": 1
+   },
+   "CYP2C9|CHB": {
+    "Normal Metabolizer": 10
+   },
+   "DPYD|CHB": {
+    "Normal Metabolizer": 9
+   },
+   "NUDT15|CHB": {
+    "Normal Metabolizer": 9,
+    "Intermediate Metabolizer": 2
+   },
+   "TPMT|CHB": {
+    "Normal Metabolizer": 11
+   },
+   "SLCO1B1|CHB": {
+    "Decreased Function": 1
+   },
+   "CYP2C19|JPT": {
+    "Poor Metabolizer": 2,
+    "Intermediate Metabolizer": 2,
+    "Normal Metabolizer": 9
+   },
+   "CYP2C9|JPT": {
+    "Normal Metabolizer": 13
+   },
+   "DPYD|JPT": {
+    "Normal Metabolizer": 9
+   },
+   "NUDT15|JPT": {
+    "Normal Metabolizer": 13
+   },
+   "TPMT|JPT": {
+    "Normal Metabolizer": 11,
+    "Intermediate Metabolizer": 2
+   },
+   "SLCO1B1|JPT": {
+    "Normal Function": 1,
+    "Decreased Function": 1
+   },
+   "CYP2C19|LWK": {
+    "Normal Metabolizer": 5,
+    "Intermediate Metabolizer": 4,
+    "Rapid Metabolizer": 1
+   },
+   "CYP2C9|LWK": {
+    "Intermediate Metabolizer": 1,
+    "Normal Metabolizer": 9
+   },
+   "DPYD|LWK": {
+    "Normal Metabolizer": 5
+   },
+   "NUDT15|LWK": {
+    "Normal Metabolizer": 10
+   },
+   "TPMT|LWK": {
+    "Normal Metabolizer": 7,
+    "Intermediate Metabolizer": 3
+   },
+   "SLCO1B1|YRI": {
+    "Decreased Function": 2,
+    "Normal Function": 1
+   },
+   "SLCO1B1|LWK": {
+    "Decreased Function": 1
+   },
+   "CYP2C19|MXL": {
+    "Intermediate Metabolizer": 5,
+    "Rapid Metabolizer": 4,
+    "Normal Metabolizer": 4
+   },
+   "CYP2C9|MXL": {
+    "Normal Metabolizer": 8
+   },
+   "DPYD|MXL": {
+    "Normal Metabolizer": 10
+   },
+   "NUDT15|MXL": {
+    "Normal Metabolizer": 13
+   },
+   "TPMT|MXL": {
+    "Normal Metabolizer": 12,
+    "Intermediate Metabolizer": 1
+   },
+   "SLCO1B1|MXL": {
+    "Normal Function": 6,
+    "Decreased Function": 1
+   },
+   "CYP2C19|ASW": {
+    "Rapid Metabolizer": 3,
+    "Normal Metabolizer": 4,
+    "Intermediate Metabolizer": 1
+   },
+   "CYP2C9|ASW": {
+    "Normal Metabolizer": 7,
+    "Intermediate Metabolizer": 1
+   },
+   "NUDT15|ASW": {
+    "Normal Metabolizer": 8
+   },
+   "TPMT|ASW": {
+    "Normal Metabolizer": 5,
+    "Intermediate Metabolizer": 3
+   },
+   "DPYD|ASW": {
+    "Normal Metabolizer": 4
+   },
+   "SLCO1B1|ASW": {
+    "Normal Function": 1
+   },
+   "CYP2C19|TSI": {
+    "Normal Metabolizer": 5,
+    "Poor Metabolizer": 1,
+    "Rapid Metabolizer": 6,
+    "Intermediate Metabolizer": 2
+   },
+   "CYP2C9|TSI": {
+    "Normal Metabolizer": 10
+   },
+   "DPYD|TSI": {
+    "Normal Metabolizer": 9,
+    "Intermediate Metabolizer": 1
+   },
+   "NUDT15|TSI": {
+    "Normal Metabolizer": 14
+   },
+   "SLCO1B1|TSI": {
+    "Normal Function": 8,
+    "Decreased Function": 6
+   },
+   "TPMT|TSI": {
+    "Normal Metabolizer": 14
+   },
+   "CYP2C19|GIH": {
+    "Normal Metabolizer": 6,
+    "Intermediate Metabolizer": 3,
+    "Rapid Metabolizer": 3,
+    "n/a": 2,
+    "Poor Metabolizer": 1
+   },
+   "DPYD|GIH": {
+    "Normal Metabolizer": 12
+   },
+   "NUDT15|GIH": {
+    "Normal Metabolizer": 15
+   },
+   "TPMT|GIH": {
+    "Normal Metabolizer": 13,
+    "Intermediate Metabolizer": 2
+   },
+   "CYP2C9|GIH": {
+    "Normal Metabolizer": 8,
+    "Intermediate Metabolizer": 2
+   },
+   "SLCO1B1|GIH": {
+    "Normal Function": 3,
+    "n/a": 3
+   }
+  }
+ },
+ "cohort": [
+  {
+   "sample": "HG00117",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00119",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00123",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00136",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00141",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00145",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00149",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00150",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00154",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00176",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00182",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00185",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00231",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00246",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00250",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00253",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00254",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00258",
+   "population": "GBR",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00313",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00356",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00373",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00376",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00378",
+   "population": "FIN",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG00406",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00436",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00438",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00443",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00450",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00453",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00464",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00513",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00524",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00532",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00533",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00608",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00613",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00619",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00621",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00625",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00627",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00652",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00662",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00663",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00683",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00700",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00701",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00702",
+   "population": "CHS",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00732",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG00733",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG00739",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG00864",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG00956",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01029",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01051",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01062",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01063",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01069",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01083",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01106",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01107",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01125",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01135",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01168",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01175",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01176",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01198",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01247",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01249",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01303",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01323",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01326",
+   "population": "PUR",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01347",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01349",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01361",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01456",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01457",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01479",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01486",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01488",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01493",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01516",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01556",
+   "population": "CLM",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01589",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG01607",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01608",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01610",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01622",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01624",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01629",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01667",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01679",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01700",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01702",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01709",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01770",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01780",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01781",
+   "population": "IBS",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "HG01805",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01809",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01847",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01866",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01872",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01874",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG01912",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG01915",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG01955",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01958",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG01968",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01969",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01971",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01972",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01977",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01984",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG01986",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG01997",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02018",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02040",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02047",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02061",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02068",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02070",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02072",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02077",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02079",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02081",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02146",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02148",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02182",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02185",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02250",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02271",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02278",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02282",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02286",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02291",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02301",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02343",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02345",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02375",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02380",
+   "population": "CDX",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02425",
+   "population": "PEL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "HG02429",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02485",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02489",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02493",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02523",
+   "population": "KHV",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "HG02545",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02561",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02577",
+   "population": "ACB",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02589",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02614",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02615",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02625",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02643",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02651",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02660",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02661",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02679",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02703",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02726",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02737",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02759",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02764",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02784",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02794",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG02813",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02815",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02816",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02820",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02838",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02860",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02862",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02892",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02922",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02923",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02946",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02954",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG02978",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03022",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03024",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03034",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03052",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03055",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03057",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03066",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03074",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03086",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03088",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03097",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03098",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03111",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03122",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03135",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03163",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03169",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03170",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03191",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03229",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03235",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03238",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03240",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03247",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03250",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03265",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03279",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03343",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03352",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03368",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03369",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03372",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03382",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03391",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03397",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03401",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03452",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03458",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03485",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03488",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03491",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03515",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03517",
+   "population": "ESN",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03539",
+   "population": "GWD",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03579",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03584",
+   "population": "MSL",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "HG03604",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03615",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03625",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03646",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03651",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03653",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03654",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03660",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03668",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03669",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03682",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03684",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03688",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03692",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03704",
+   "population": "PJL",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03744",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03746",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03752",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03774",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03779",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03797",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03814",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03832",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03856",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03857",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03867",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03884",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03916",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03925",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03944",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG03974",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04015",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04018",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04026",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04042",
+   "population": "STU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04118",
+   "population": "ITU",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04132",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04133",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04135",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04142",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04144",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04147",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04159",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04183",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "HG04188",
+   "population": "BEB",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA06986",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA06995",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA07022",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA07034",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA07051",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA07346",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA07435",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA10846",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA10851",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA10856",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA11829",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA11840",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA11918",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA11930",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12043",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12058",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12144",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12146",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12156",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12274",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12716",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12717",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12813",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12818",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12832",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12878",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA12891",
+   "population": "CEU",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA18489",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA18519",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA18545",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18552",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18572",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18602",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18617",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18618",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18624",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18636",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18637",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18647",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18745",
+   "population": "CHB",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18864",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA18933",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA18934",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA18935",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA18941",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18947",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18954",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18966",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18968",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18972",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18973",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18989",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA18994",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA19006",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA19017",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19024",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19027",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19031",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19042",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19076",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA19081",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA19087",
+   "population": "JPT",
+   "superpopulation": "EAS"
+  },
+  {
+   "sample": "NA19094",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19109",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19117",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19122",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19137",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19152",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19161",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19199",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19206",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19208",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19213",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19237",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19248",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19256",
+   "population": "YRI",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19307",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19323",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19372",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19440",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19462",
+   "population": "LWK",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19652",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19653",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19669",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19676",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19677",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19722",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19747",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19752",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19761",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19777",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19780",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19783",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19795",
+   "population": "MXL",
+   "superpopulation": "AMR"
+  },
+  {
+   "sample": "NA19819",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19900",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19904",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA19914",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA20287",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA20296",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA20314",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA20320",
+   "population": "ASW",
+   "superpopulation": "AFR"
+  },
+  {
+   "sample": "NA20503",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20509",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20511",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20520",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20527",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20535",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20540",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20760",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20761",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20762",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20765",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20767",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20803",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20812",
+   "population": "TSI",
+   "superpopulation": "EUR"
+  },
+  {
+   "sample": "NA20851",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA20858",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA20863",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA20864",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA20892",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA20900",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA20905",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21097",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21103",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21108",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21111",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21116",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21122",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21128",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  },
+  {
+   "sample": "NA21141",
+   "population": "GIH",
+   "superpopulation": "SAS"
+  }
+ ]
+}

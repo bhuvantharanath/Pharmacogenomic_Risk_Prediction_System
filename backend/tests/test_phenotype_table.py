@@ -167,3 +167,72 @@ def test_every_phenotype_map_value_is_a_real_enum_member() -> None:
     valid = {p.value for p in Phenotype}
     bad = {k: v for k, v in load_mapping()["phenotype_map"].items() if v not in valid}
     assert not bad, f"phenotype_map values not in the Phenotype enum: {bad}"
+
+
+# --------------------------------------------------------------------------- #
+# sourceDiplotypes vs recommendationDiplotypes (found at scale, 2026-07-25)
+# --------------------------------------------------------------------------- #
+
+
+def test_called_diplotype_is_reported_not_the_lookup_reduction() -> None:
+    """
+    The DPYD defect the 400-sample fidelity run found.
+
+    PharmCAT publishes what it CALLED (`sourceDiplotypes`, compound alleles
+    intact, phenotype possibly "Indeterminate") separately from the reduction it
+    uses to FIND a CPIC row (`recommendationDiplotypes`, compound alleles split so
+    an activity score can be assigned). Reading the second for both purposes
+    displayed `Normal Metabolizer` where PharmCAT had said `Indeterminate`, and
+    dropped a real variant from the reported genotype.
+
+    Over-claiming certainty PharmCAT withheld is the mirror of the under-claiming
+    in [[limitation #21]]; both misstate what is known.
+    """
+    from app.pharmcat_runner import _parse_gene
+
+    block = {
+        "callSource": "MATCHER",
+        "sourceDiplotypes": [{
+            "label": "c.85T>C (*9A)/[c.85T>C (*9A) + c.1371C>T]",
+            "phenotypes": ["Indeterminate"],
+            "lookupKey": ["n/a"],
+        }],
+        "recommendationDiplotypes": [{
+            "label": "c.85T>C (*9A)/c.85T>C (*9A)",
+            "phenotypes": ["Normal Metabolizer"],
+            "activityScore": 2.0,
+            "lookupKey": ["2.0"],
+        }],
+    }
+    call = _parse_gene("DPYD", block)
+
+    # What the patient has -> from the CALLED diplotype.
+    assert call.diplotype == "c.85T>C (*9A)/[c.85T>C (*9A) + c.1371C>T]"
+    assert "c.1371C>T" in call.diplotype, "a carried variant was dropped"
+    assert call.phenotype_raw == "Indeterminate", (
+        "reported a definite phenotype PharmCAT explicitly withheld"
+    )
+
+    # How CPIC guidance is found -> from the RECOMMENDATION entry, unchanged.
+    assert call.lookup_keys == ["2.0"], "CPIC lookup must not regress to 'n/a'"
+    assert call.activity_score == 2.0
+    assert call.recommendation_diplotype == "c.85T>C (*9A)/c.85T>C (*9A)"
+
+
+def test_single_list_genes_are_unaffected_by_the_split() -> None:
+    """For every gene but DPYD the two lists agree, so nothing should change."""
+    from app.pharmcat_runner import _parse_gene
+
+    entry = {
+        "label": "*1/*2",
+        "phenotypes": ["Intermediate Metabolizer"],
+        "lookupKey": ["Intermediate Metabolizer"],
+    }
+    call = _parse_gene("CYP2C19", {
+        "callSource": "MATCHER",
+        "sourceDiplotypes": [entry],
+        "recommendationDiplotypes": [entry],
+    })
+    assert call.diplotype == "*1/*2"
+    assert call.phenotype_raw == "Intermediate Metabolizer"
+    assert call.lookup_keys == ["Intermediate Metabolizer"]

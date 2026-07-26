@@ -86,3 +86,13 @@ test-data/reference/tools/
 # these appear at the repo root as a byproduct of scripts/fetch_reference_data.py.
 # They are indexes for panels we never download; re-fetched on demand.
 /1kGP_high_coverage_Illumina.*.vcf.gz.tbi
+
+# Phase 6 scale validation: the 400-sample cohort slices, the multi-sample VCF and
+# PharmCAT's per-sample reports are large and fully re-derivable from
+# scripts/validate_integration.py (deterministic cohort, seeded). The measured
+# numbers live in reports/*.json, which ARE committed.
+test-data/reference/cohort/
+test-data/reference/pharmcat_testvcfs/
+
+# PharmCAT writes a dated log beside the working directory on every run.
+pharmcat.*.log

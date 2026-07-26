@@ -1,0 +1,568 @@
+{
+ "generated_at": "2026-07-26T02:30:17Z",
+ "cohort": "pharmcat_n400",
+ "samples": 400,
+ "nature": "aggregate sanity check; NOT per-sample validation",
+ "cpic_source": "https://api.cpicpgx.org/v1/population_frequency_view?genesymbol=eq.<GENE>",
+ "cpic_accessed": [
+  "2026-07-26"
+ ],
+ "population_mapping": {
+  "EUR": "European",
+  "EAS": "East Asian",
+  "SAS": "Central/South Asian",
+  "AFR": "Sub-Saharan African",
+  "AMR": "Latino"
+ },
+ "population_mapping_caveat": "1000G superpopulations and CPIC biogeographic groups are different taxonomies; the correspondence is conventional, not an identity.",
+ "min_chromosomes_for_a_percentage": 30,
+ "our_counts": {
+  "CYP2C19|EUR|first": {
+   "*1": 88,
+   "*2": 31,
+   "*38": 10,
+   "*17": 29
+  },
+  "CYP2C19|ALL|first": {
+   "*1": 445,
+   "*2": 173,
+   "*38": 31,
+   "*17": 118,
+   "*3": 9,
+   "*9": 2,
+   "*13": 8,
+   "*4": 2,
+   "*35": 7,
+   "*39": 2,
+   "*40": 3
+  },
+  "CYP2C19|EUR|unambiguous": {
+   "*1": 88,
+   "*2": 31,
+   "*38": 10,
+   "*17": 29
+  },
+  "CYP2C19|ALL|unambiguous": {
+   "*1": 445,
+   "*2": 173,
+   "*38": 31,
+   "*17": 118,
+   "*3": 9,
+   "*9": 2,
+   "*13": 8,
+   "*4": 2,
+   "*35": 7,
+   "*39": 2,
+   "*40": 3
+  },
+  "CYP2C9|EUR|first": {
+   "*1": 126,
+   "*3": 11,
+   "*2": 21
+  },
+  "CYP2C9|ALL|first": {
+   "*1": 675,
+   "*3": 34,
+   "*2": 37,
+   "*8": 13,
+   "*13": 1,
+   "*9": 22,
+   "*11": 7,
+   "*5": 4,
+   "*6": 2,
+   "*14": 5
+  },
+  "CYP2C9|EUR|unambiguous": {
+   "*1": 98
+  },
+  "CYP2C9|ALL|unambiguous": {
+   "*1": 611,
+   "*8": 12,
+   "*13": 1,
+   "*9": 22,
+   "*11": 7,
+   "*6": 2,
+   "*14": 3
+  },
+  "SLCO1B1|EUR|first": {
+   "*1": 100,
+   "*14": 20,
+   "*15": 20,
+   "*20": 7,
+   "*5": 2,
+   "*37": 9
+  },
+  "SLCO1B1|ALL|first": {
+   "*1": 292,
+   "*14": 44,
+   "*15": 58,
+   "*20": 34,
+   "*5": 3,
+   "*37": 321,
+   "*27": 10,
+   "*31": 9,
+   "*24": 1,
+   "*43": 4,
+   "*53": 1,
+   "*41": 9,
+   "*30": 2,
+   "*55": 1,
+   "*54": 7
+  },
+  "SLCO1B1|EUR|unambiguous": {
+   "*1": 94,
+   "*14": 20,
+   "*15": 20,
+   "*20": 7,
+   "*5": 1
+  },
+  "SLCO1B1|ALL|unambiguous": {
+   "*1": 206,
+   "*14": 35,
+   "*15": 38,
+   "*20": 18,
+   "*5": 1,
+   "*27": 4,
+   "*31": 7,
+   "*43": 2,
+   "*41": 3,
+   "*30": 1,
+   "*55": 1,
+   "*54": 6
+  },
+  "TPMT|EUR|first": {
+   "*1": 153,
+   "*3A": 5
+  },
+  "TPMT|ALL|first": {
+   "*1": 758,
+   "*3A": 11,
+   "*3C": 23,
+   "*2": 2,
+   "*24": 1,
+   "*8": 5
+  },
+  "TPMT|EUR|unambiguous": {
+   "*1": 153,
+   "*3A": 5
+  },
+  "TPMT|ALL|unambiguous": {
+   "*1": 758,
+   "*3A": 11,
+   "*3C": 23,
+   "*2": 2,
+   "*24": 1,
+   "*8": 5
+  },
+  "NUDT15|EUR|first": {
+   "*1": 158
+  },
+  "NUDT15|ALL|first": {
+   "*1": 771,
+   "*3": 28,
+   "*4": 1
+  },
+  "NUDT15|EUR|unambiguous": {
+   "*1": 158
+  },
+  "NUDT15|ALL|unambiguous": {
+   "*1": 771,
+   "*3": 28,
+   "*4": 1
+  },
+  "CYP2C19|EAS|first": {
+   "*1": 92,
+   "*2": 44,
+   "*3": 7,
+   "*38": 2,
+   "*4": 1
+  },
+  "CYP2C19|EAS|unambiguous": {
+   "*1": 92,
+   "*2": 44,
+   "*3": 7,
+   "*38": 2,
+   "*4": 1
+  },
+  "CYP2C9|EAS|first": {
+   "*1": 143,
+   "*13": 1,
+   "*3": 2
+  },
+  "CYP2C9|EAS|unambiguous": {
+   "*1": 141,
+   "*13": 1
+  },
+  "SLCO1B1|EAS|first": {
+   "*37": 96,
+   "*1": 32,
+   "*15": 16
+  },
+  "TPMT|EAS|first": {
+   "*1": 141,
+   "*3C": 5
+  },
+  "TPMT|EAS|unambiguous": {
+   "*1": 141,
+   "*3C": 5
+  },
+  "NUDT15|EAS|first": {
+   "*1": 131,
+   "*3": 15
+  },
+  "NUDT15|EAS|unambiguous": {
+   "*1": 131,
+   "*3": 15
+  },
+  "SLCO1B1|EAS|unambiguous": {
+   "*1": 5,
+   "*15": 5
+  },
+  "CYP2C19|AMR|first": {
+   "*1": 83,
+   "*2": 15,
+   "*9": 1,
+   "*13": 1,
+   "*17": 16,
+   "*38": 5,
+   "*4": 1
+  },
+  "CYP2C19|AMR|unambiguous": {
+   "*1": 83,
+   "*2": 15,
+   "*9": 1,
+   "*13": 1,
+   "*17": 16,
+   "*38": 5,
+   "*4": 1
+  },
+  "CYP2C9|AMR|first": {
+   "*1": 102,
+   "*2": 13,
+   "*8": 1,
+   "*3": 6
+  },
+  "SLCO1B1|AMR|first": {
+   "*1": 64,
+   "*14": 10,
+   "*37": 25,
+   "*15": 15,
+   "*20": 7,
+   "*5": 1
+  },
+  "SLCO1B1|AMR|unambiguous": {
+   "*1": 53,
+   "*14": 8,
+   "*20": 4,
+   "*15": 11
+  },
+  "TPMT|AMR|first": {
+   "*1": 114,
+   "*3C": 1,
+   "*2": 2,
+   "*3A": 5
+  },
+  "TPMT|AMR|unambiguous": {
+   "*1": 114,
+   "*3C": 1,
+   "*2": 2,
+   "*3A": 5
+  },
+  "NUDT15|AMR|first": {
+   "*1": 118,
+   "*4": 1,
+   "*3": 3
+  },
+  "NUDT15|AMR|unambiguous": {
+   "*1": 118,
+   "*4": 1,
+   "*3": 3
+  },
+  "CYP2C9|AMR|unambiguous": {
+   "*1": 85,
+   "*8": 1
+  },
+  "CYP2C19|SAS|first": {
+   "*1": 59,
+   "*17": 25,
+   "*38": 14,
+   "*2": 47,
+   "*3": 2,
+   "*40": 3
+  },
+  "CYP2C19|SAS|unambiguous": {
+   "*1": 59,
+   "*17": 25,
+   "*38": 14,
+   "*2": 47,
+   "*3": 2,
+   "*40": 3
+  },
+  "CYP2C9|SAS|first": {
+   "*1": 127,
+   "*3": 15,
+   "*2": 3,
+   "*14": 5
+  },
+  "CYP2C9|SAS|unambiguous": {
+   "*1": 113,
+   "*14": 3
+  },
+  "SLCO1B1|SAS|first": {
+   "*1": 72,
+   "*37": 57,
+   "*15": 5,
+   "*14": 8,
+   "*54": 7,
+   "*20": 1
+  },
+  "TPMT|SAS|first": {
+   "*1": 147,
+   "*3C": 3
+  },
+  "TPMT|SAS|unambiguous": {
+   "*1": 147,
+   "*3C": 3
+  },
+  "NUDT15|SAS|first": {
+   "*1": 140,
+   "*3": 10
+  },
+  "NUDT15|SAS|unambiguous": {
+   "*1": 140,
+   "*3": 10
+  },
+  "CYP2C19|AFR|first": {
+   "*1": 123,
+   "*17": 48,
+   "*2": 36,
+   "*13": 7,
+   "*35": 7,
+   "*39": 2,
+   "*9": 1
+  },
+  "CYP2C19|AFR|unambiguous": {
+   "*1": 123,
+   "*17": 48,
+   "*2": 36,
+   "*13": 7,
+   "*35": 7,
+   "*39": 2,
+   "*9": 1
+  },
+  "CYP2C9|AFR|first": {
+   "*1": 177,
+   "*9": 22,
+   "*8": 12,
+   "*11": 7,
+   "*5": 4,
+   "*6": 2
+  },
+  "CYP2C9|AFR|unambiguous": {
+   "*1": 174,
+   "*9": 22,
+   "*8": 11,
+   "*11": 7,
+   "*6": 2
+  },
+  "SLCO1B1|AFR|first": {
+   "*20": 19,
+   "*37": 134,
+   "*15": 2,
+   "*1": 24,
+   "*27": 10,
+   "*14": 6,
+   "*31": 9,
+   "*24": 1,
+   "*43": 4,
+   "*53": 1,
+   "*41": 9,
+   "*30": 2,
+   "*55": 1
+  },
+  "TPMT|AFR|first": {
+   "*1": 203,
+   "*24": 1,
+   "*8": 5,
+   "*3C": 14,
+   "*3A": 1
+  },
+  "TPMT|AFR|unambiguous": {
+   "*1": 203,
+   "*24": 1,
+   "*8": 5,
+   "*3C": 14,
+   "*3A": 1
+  },
+  "NUDT15|AFR|first": {
+   "*1": 224
+  },
+  "NUDT15|AFR|unambiguous": {
+   "*1": 224
+  },
+  "SLCO1B1|AFR|unambiguous": {
+   "*20": 6,
+   "*27": 4,
+   "*14": 3,
+   "*31": 7,
+   "*1": 11,
+   "*43": 2,
+   "*41": 3,
+   "*30": 1,
+   "*55": 1
+  },
+  "SLCO1B1|SAS|unambiguous": {
+   "*1": 43,
+   "*14": 4,
+   "*54": 6,
+   "*15": 2,
+   "*20": 1
+  }
+ },
+ "our_chromosomes": {
+  "CYP2C19|EUR|first": 158,
+  "CYP2C19|ALL|first": 800,
+  "CYP2C19|EUR|unambiguous": 158,
+  "CYP2C19|ALL|unambiguous": 800,
+  "CYP2C9|EUR|first": 158,
+  "CYP2C9|ALL|first": 800,
+  "CYP2C9|EUR|unambiguous": 98,
+  "CYP2C9|ALL|unambiguous": 658,
+  "SLCO1B1|EUR|first": 158,
+  "SLCO1B1|ALL|first": 796,
+  "SLCO1B1|EUR|unambiguous": 142,
+  "SLCO1B1|ALL|unambiguous": 322,
+  "TPMT|EUR|first": 158,
+  "TPMT|ALL|first": 800,
+  "TPMT|EUR|unambiguous": 158,
+  "TPMT|ALL|unambiguous": 800,
+  "NUDT15|EUR|first": 158,
+  "NUDT15|ALL|first": 800,
+  "NUDT15|EUR|unambiguous": 158,
+  "NUDT15|ALL|unambiguous": 800,
+  "CYP2C19|EAS|first": 146,
+  "CYP2C19|EAS|unambiguous": 146,
+  "CYP2C9|EAS|first": 146,
+  "CYP2C9|EAS|unambiguous": 142,
+  "SLCO1B1|EAS|first": 144,
+  "TPMT|EAS|first": 146,
+  "TPMT|EAS|unambiguous": 146,
+  "NUDT15|EAS|first": 146,
+  "NUDT15|EAS|unambiguous": 146,
+  "SLCO1B1|EAS|unambiguous": 10,
+  "CYP2C19|AMR|first": 122,
+  "CYP2C19|AMR|unambiguous": 122,
+  "CYP2C9|AMR|first": 122,
+  "SLCO1B1|AMR|first": 122,
+  "SLCO1B1|AMR|unambiguous": 76,
+  "TPMT|AMR|first": 122,
+  "TPMT|AMR|unambiguous": 122,
+  "NUDT15|AMR|first": 122,
+  "NUDT15|AMR|unambiguous": 122,
+  "CYP2C9|AMR|unambiguous": 86,
+  "CYP2C19|SAS|first": 150,
+  "CYP2C19|SAS|unambiguous": 150,
+  "CYP2C9|SAS|first": 150,
+  "CYP2C9|SAS|unambiguous": 116,
+  "SLCO1B1|SAS|first": 150,
+  "TPMT|SAS|first": 150,
+  "TPMT|SAS|unambiguous": 150,
+  "NUDT15|SAS|first": 150,
+  "NUDT15|SAS|unambiguous": 150,
+  "CYP2C19|AFR|first": 224,
+  "CYP2C19|AFR|unambiguous": 224,
+  "CYP2C9|AFR|first": 224,
+  "CYP2C9|AFR|unambiguous": 216,
+  "SLCO1B1|AFR|first": 222,
+  "TPMT|AFR|first": 224,
+  "TPMT|AFR|unambiguous": 224,
+  "NUDT15|AFR|first": 224,
+  "NUDT15|AFR|unambiguous": 224,
+  "SLCO1B1|AFR|unambiguous": 38,
+  "SLCO1B1|SAS|unambiguous": 56
+ },
+ "undecodable_diplotypes": {
+  "SLCO1B1": 2
+ },
+ "ambiguous_excluded": {
+  "CYP2C9": 71,
+  "SLCO1B1": 237
+ },
+ "ambiguity_note": "Only unambiguous calls (exactly one candidate diplotype) are counted. Taking the first of several would bias each population differently, since ambiguity is population-structured.",
+ "deviations_over_10pp": [
+  {
+   "gene": "CYP2C19",
+   "allele": "*1",
+   "superpopulation": "SAS",
+   "cpic_group": "Central/South Asian",
+   "ours": 0.3933333333333333,
+   "cpic": 0.543626,
+   "delta": -0.15029266666666674,
+   "chromosomes": 150
+  },
+  {
+   "gene": "SLCO1B1",
+   "allele": "*37",
+   "superpopulation": "EUR",
+   "cpic_group": "European",
+   "ours": 0.056962025316455694,
+   "cpic": 0.25273752,
+   "delta": -0.1957754946835443,
+   "chromosomes": 158
+  },
+  {
+   "gene": "SLCO1B1",
+   "allele": "*37",
+   "superpopulation": "AFR",
+   "cpic_group": "Sub-Saharan African",
+   "ours": 0.6036036036036037,
+   "cpic": 0.80076206,
+   "delta": -0.1971584563963964,
+   "chromosomes": 222
+  },
+  {
+   "gene": "SLCO1B1",
+   "allele": "*1",
+   "superpopulation": "EUR",
+   "cpic_group": "European",
+   "ours": 0.6329113924050633,
+   "cpic": 0.4027496,
+   "delta": 0.23016179240506335,
+   "chromosomes": 158
+  }
+ ],
+ "estimator_conflicts_over_5pp": [
+  {
+   "gene": "CYP2C9",
+   "allele": "*1",
+   "first": 0.84375,
+   "unambiguous": 0.9285714285714286,
+   "spread": 0.0848214285714286
+  },
+  {
+   "gene": "SLCO1B1",
+   "allele": "*37",
+   "first": 0.40326633165829145,
+   "unambiguous": 0.0,
+   "spread": 0.40326633165829145
+  },
+  {
+   "gene": "SLCO1B1",
+   "allele": "*1",
+   "first": 0.36683417085427134,
+   "unambiguous": 0.639751552795031,
+   "spread": 0.2729173819407597
+  },
+  {
+   "gene": "SLCO1B1",
+   "allele": "*14",
+   "first": 0.05527638190954774,
+   "unambiguous": 0.10869565217391304,
+   "spread": 0.0534192702643653
+  }
+ ],
+ "estimators": {
+  "first": "sourceDiplotypes[0]; arbitrary among equals but canonical-first",
+  "unambiguous": "single-candidate calls only; biased toward the reference allele because variant carriers are more often ambiguous"
+ }
+}

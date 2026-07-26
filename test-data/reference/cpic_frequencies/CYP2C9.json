@@ -1,0 +1,6756 @@
+{
+ "source": "https://api.cpicpgx.org/v1/population_frequency_view?genesymbol=eq.CYP2C9",
+ "accessed": "2026-07-26",
+ "rows": [
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*49",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.040156696,
+   "freq_avg": 0.04704782608695652,
+   "freq_max": 0.1176,
+   "freq_min": 0.012
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.030054513,
+   "freq_avg": 0.02592439024390244,
+   "freq_max": 0.104,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.07554484,
+   "freq_avg": 0.08048426966292135,
+   "freq_max": 0.195,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": 0.015575971,
+   "freq_avg": 0.012,
+   "freq_max": 0.016,
+   "freq_min": 0.008
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.037616692,
+   "freq_avg": 0.04349811320754717,
+   "freq_max": 0.362,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.08251466,
+   "freq_avg": 0.08493333333333333,
+   "freq_max": 0.191,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.10985958,
+   "freq_avg": 0.1064909090909091,
+   "freq_max": 0.326,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.011155454,
+   "freq_avg": 0.0116,
+   "freq_max": 0.0506,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*3",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.01350592,
+   "freq_avg": 0.013785714285714287,
+   "freq_max": 0.036,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0002119417,
+   "freq_avg": 0.0002,
+   "freq_max": 0.0004,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*23",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.00065227173,
+   "freq_avg": 0.002033333333333333,
+   "freq_max": 0.0052,
+   "freq_min": 0.0004
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.001,
+   "freq_avg": 0.001,
+   "freq_max": 0.001,
+   "freq_min": 0.001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*33",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0002,
+   "freq_avg": 0.0002,
+   "freq_max": 0.0002,
+   "freq_min": 0.0002
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*67",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*56",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0016176943,
+   "freq_avg": 0.0021,
+   "freq_max": 0.004,
+   "freq_min": 0.001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*27",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*74",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*35",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*70",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*71",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.1295592,
+   "freq_avg": 0.1085,
+   "freq_max": 0.157,
+   "freq_min": 0.06
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*9",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.01,
+   "freq_avg": 0.01,
+   "freq_max": 0.01,
+   "freq_min": 0.01
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.00054534996,
+   "freq_avg": 0.00055,
+   "freq_max": 0.001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*42",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0005,
+   "freq_avg": 0.0005,
+   "freq_max": 0.0005,
+   "freq_min": 0.0005
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0002,
+   "freq_avg": 0.0002,
+   "freq_max": 0.0002,
+   "freq_min": 0.0002
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0002,
+   "freq_avg": 0.0002,
+   "freq_max": 0.0002,
+   "freq_min": 0.0002
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*45",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*43",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*47",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*50",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*51",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.00047686882,
+   "freq_avg": 0.00045,
+   "freq_max": 0.0009,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*19",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*48",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.00041809047,
+   "freq_avg": 0.0013,
+   "freq_max": 0.0052,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.001,
+   "freq_avg": 0.001,
+   "freq_max": 0.001,
+   "freq_min": 0.001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*12",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*15",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*32",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*46",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*52",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*62",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.002,
+   "freq_avg": 0.002,
+   "freq_max": 0.002,
+   "freq_min": 0.002
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*28",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*24",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*38",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*41",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*10",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.001877621,
+   "freq_avg": 0.0018,
+   "freq_max": 0.0031,
+   "freq_min": 0.0005
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*16",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.002,
+   "freq_avg": 0.002,
+   "freq_max": 0.002,
+   "freq_min": 0.002
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*26",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*53",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0016030075,
+   "freq_avg": 0.006066666666666666,
+   "freq_max": 0.03,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*31",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*22",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*75",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*17",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0011754684,
+   "freq_avg": 0.015,
+   "freq_max": 0.03,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*4",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*59",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*64",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*68",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*65",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0005,
+   "freq_avg": 0.0005,
+   "freq_max": 0.0005,
+   "freq_min": 0.0005
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*63",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0008,
+   "freq_avg": 0.0008,
+   "freq_max": 0.0008,
+   "freq_min": 0.0008
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*66",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.002901849,
+   "freq_avg": 0.0028333333333333335,
+   "freq_max": 0.01,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.0028040742,
+   "freq_avg": 0.0012,
+   "freq_max": 0.006,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0016443896,
+   "freq_avg": 0.0022615384615384615,
+   "freq_max": 0.0104,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.00029316536,
+   "freq_avg": 0.0006611111111111111,
+   "freq_max": 0.006,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0010429447,
+   "freq_avg": 0.001,
+   "freq_max": 0.005,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.025685642,
+   "freq_avg": 0.0263,
+   "freq_max": 0.051,
+   "freq_min": 0.01
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*11",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.013860963,
+   "freq_avg": 0.013653846153846154,
+   "freq_max": 0.019,
+   "freq_min": 0.008
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*69",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*61",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*54",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*58",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*60",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0004,
+   "freq_avg": 0.0004,
+   "freq_max": 0.0004,
+   "freq_min": 0.0004
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*73",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0003,
+   "freq_avg": 0.0003,
+   "freq_max": 0.0003,
+   "freq_min": 0.0003
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*21",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0015598785,
+   "freq_avg": 0.0017,
+   "freq_max": 0.002,
+   "freq_min": 0.0014
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*30",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*36",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.86221933,
+   "freq_avg": 0.9286085106382979,
+   "freq_max": 1,
+   "freq_min": 0.6863
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.9118648,
+   "freq_avg": 0.9523780487804878,
+   "freq_max": 1,
+   "freq_min": 0.778
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.79275,
+   "freq_avg": 0.85001,
+   "freq_max": 1,
+   "freq_min": 0.671
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": 0.95511305,
+   "freq_avg": 0.9645,
+   "freq_max": 0.975,
+   "freq_min": 0.954
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.91534376,
+   "freq_avg": 0.9538018018018019,
+   "freq_max": 1,
+   "freq_min": 0.638
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.7818267,
+   "freq_avg": 0.8355444444444444,
+   "freq_max": 1,
+   "freq_min": 0.64
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.7721189,
+   "freq_avg": 0.8518384615384615,
+   "freq_max": 1,
+   "freq_min": 0.5762
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.7255106,
+   "freq_avg": 0.9281583333333333,
+   "freq_max": 1,
+   "freq_min": 0.685
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*1",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.8710129,
+   "freq_avg": 0.92125,
+   "freq_max": 0.9906,
+   "freq_min": 0.8
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*7",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.00871987,
+   "freq_avg": 0.008155555555555555,
+   "freq_max": 0.04,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.0014913112,
+   "freq_avg": 0.0007777777777777777,
+   "freq_max": 0.004,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.00017448276,
+   "freq_avg": 0.0006875,
+   "freq_max": 0.011,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.00052266667,
+   "freq_avg": 0.0023333333333333335,
+   "freq_max": 0.01,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.010325842,
+   "freq_avg": 0.011242857142857143,
+   "freq_max": 0.028,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*5",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.011626912,
+   "freq_avg": 0.013664285714285714,
+   "freq_max": 0.033,
+   "freq_min": 0.0047
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0033167014,
+   "freq_avg": 0.0035083333333333334,
+   "freq_max": 0.0061,
+   "freq_min": 0.0005
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*13",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.002,
+   "freq_avg": 0.002,
+   "freq_max": 0.002,
+   "freq_min": 0.002
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*25",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0002119417,
+   "freq_avg": 0.0002,
+   "freq_max": 0.0004,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*34",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*37",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0003,
+   "freq_avg": 0.0003,
+   "freq_max": 0.0003,
+   "freq_min": 0.0003
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*44",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0104,
+   "freq_avg": 0.0104,
+   "freq_max": 0.0104,
+   "freq_min": 0.0104
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*55",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*20",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.07625658,
+   "freq_avg": 0.088575,
+   "freq_max": 0.2624,
+   "freq_min": 0.005
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.033402413,
+   "freq_avg": 0.018404878048780486,
+   "freq_max": 0.124,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.1273007,
+   "freq_avg": 0.12831785714285715,
+   "freq_max": 0.223,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": 0.029310955,
+   "freq_avg": 0.0235,
+   "freq_max": 0.03,
+   "freq_min": 0.017
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0021256818,
+   "freq_avg": 0.0038093333333333334,
+   "freq_max": 0.1146,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.12977302,
+   "freq_avg": 0.12493571428571429,
+   "freq_max": 0.27,
+   "freq_min": 0.0505
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.11379695,
+   "freq_avg": 0.06833181818181819,
+   "freq_max": 0.26,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.013114594,
+   "freq_avg": 0.019011764705882353,
+   "freq_max": 0.085,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*2",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.02243724,
+   "freq_avg": 0.023422727272727272,
+   "freq_max": 0.042,
+   "freq_min": 0.01
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*39",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*57",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*18",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0009750473,
+   "freq_avg": 0.0010777777777777778,
+   "freq_max": 0.005,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.00028025627,
+   "freq_avg": 0.00016153846153846155,
+   "freq_max": 0.0018,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.008801762,
+   "freq_avg": 0.009375,
+   "freq_max": 0.027,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*6",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.008521383,
+   "freq_avg": 0.008522222222222223,
+   "freq_max": 0.017,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.00033588216,
+   "freq_avg": 0.00036666666666666667,
+   "freq_max": 0.0007,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.001,
+   "freq_avg": 0.001,
+   "freq_max": 0.001,
+   "freq_min": 0.001
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*14",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*40",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*72",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": 0.0073706377,
+   "freq_avg": 0.006571428571428572,
+   "freq_max": 0.02,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": 0.020382864,
+   "freq_avg": 0.0244,
+   "freq_max": 0.044,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": 0.0018053303,
+   "freq_avg": 0.00175,
+   "freq_max": 0.005,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0037306643,
+   "freq_avg": 0.0053076923076923075,
+   "freq_max": 0.039,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": 0.00064213155,
+   "freq_avg": 0.0045,
+   "freq_max": 0.01,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": 0.0009815951,
+   "freq_avg": 0.001,
+   "freq_max": 0.005,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": 0.075846866,
+   "freq_avg": 0.062875,
+   "freq_max": 0.146,
+   "freq_min": 0.018
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*8",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": 0.059034664,
+   "freq_avg": 0.05815454545454545,
+   "freq_max": 0.117,
+   "freq_min": 0.019
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "Latino",
+   "subjectcount": 406460,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "American",
+   "subjectcount": 6791,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "European",
+   "subjectcount": 1387026,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "Oceanian",
+   "subjectcount": 1132,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "East Asian",
+   "subjectcount": 26906,
+   "freq_weighted_avg": 0.0022081658,
+   "freq_avg": 0.00405,
+   "freq_max": 0.0104,
+   "freq_min": 0.0013
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "Near Eastern",
+   "subjectcount": 72975,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "Central/South Asian",
+   "subjectcount": 90049,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 3870,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "CYP2C9",
+   "name": "*29",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 4277,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  }
+ ]
+}

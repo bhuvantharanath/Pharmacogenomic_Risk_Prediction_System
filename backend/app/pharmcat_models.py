@@ -67,7 +67,14 @@ class PharmcatGeneCall(BaseModel):
     phenotype_raw: str | None = None
     activity_score: float | None = None
     # The key CPIC recommendations are looked up by, e.g. ["Poor Metabolizer"].
+    # From PharmCAT's `recommendationDiplotypes`, not from the called diplotype:
+    # for a compound genotype those differ, and only this one finds a CPIC row.
     lookup_keys: list[str] = Field(default_factory=list)
+    # PharmCAT's reduced diplotype that the CPIC row was found by. Differs from
+    # `diplotype` only when a compound allele had to be split to assign an
+    # activity score (DPYD in practice). Present so a reviewer can see why a
+    # recommendation applies without re-deriving PharmCAT's reduction.
+    recommendation_diplotype: str | None = None
     # Per-allele function text, e.g. "No function".
     allele_functions: list[str] = Field(default_factory=list)
     variants: list[PharmcatVariant] = Field(default_factory=list)

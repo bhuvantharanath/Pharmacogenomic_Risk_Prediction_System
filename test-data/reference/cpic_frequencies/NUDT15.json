@@ -1,0 +1,326 @@
+{
+ "source": "https://api.cpicpgx.org/v1/population_frequency_view?genesymbol=eq.NUDT15",
+ "accessed": "2026-07-26",
+ "rows": [
+  {
+   "genesymbol": "NUDT15",
+   "name": "*7",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*8",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*5",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*9",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*6",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": 0.0015,
+   "freq_avg": 0.0015,
+   "freq_max": 0.0015,
+   "freq_min": 0.0015
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*4",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": 3.285361e-05,
+   "freq_avg": 1.9775e-05,
+   "freq_max": 3.955e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*8",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*7",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*9",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": 0.000259413,
+   "freq_avg": 0.000259413,
+   "freq_max": 0.000259413,
+   "freq_min": 0.000259413
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*5",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": 0.0004482,
+   "freq_avg": 0.0004482,
+   "freq_max": 0.0004482,
+   "freq_min": 0.0004482
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*4",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": 3.269e-05,
+   "freq_avg": 3.269e-05,
+   "freq_max": 3.269e-05,
+   "freq_min": 3.269e-05
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*3",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": 0.0075,
+   "freq_avg": 0.0075,
+   "freq_max": 0.0075,
+   "freq_min": 0.0075
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*5",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": 0.01108,
+   "freq_avg": 0.01108,
+   "freq_max": 0.01108,
+   "freq_min": 0.01108
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*6",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": 0.013,
+   "freq_avg": 0.013,
+   "freq_max": 0.013,
+   "freq_min": 0.013
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*5",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": 7.794928e-06,
+   "freq_avg": 4.7125e-06,
+   "freq_max": 9.425e-06,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*9",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": 0.000494936,
+   "freq_avg": 0.000494936,
+   "freq_max": 0.000494936,
+   "freq_min": 0.000494936
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*3",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": 0.067,
+   "freq_avg": 0.067,
+   "freq_max": 0.067,
+   "freq_min": 0.067
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*8",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*7",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": 0.0005654,
+   "freq_avg": 0.0005654,
+   "freq_max": 0.0005654,
+   "freq_min": 0.0005654
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*8",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*4",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": 0.0011128682,
+   "freq_avg": 0.0035345,
+   "freq_max": 0.006,
+   "freq_min": 0.001069
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*1",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": 0.9931303,
+   "freq_avg": 0.9991056666666667,
+   "freq_max": 1,
+   "freq_min": 0.995
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*6",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": 0.003,
+   "freq_avg": 0.003,
+   "freq_max": 0.003,
+   "freq_min": 0.003
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*3",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": 0.002,
+   "freq_avg": 0.002,
+   "freq_max": 0.002,
+   "freq_min": 0.002
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*1",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": 0.9137417,
+   "freq_avg": 0.984631,
+   "freq_max": 1,
+   "freq_min": 0.9265
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*3",
+   "population_group": "East Asian",
+   "subjectcount": 32727,
+   "freq_weighted_avg": 0.0605,
+   "freq_avg": 0.0605,
+   "freq_max": 0.0605,
+   "freq_min": 0.0605
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*9",
+   "population_group": "European",
+   "subjectcount": 253219,
+   "freq_weighted_avg": 0.0018290388,
+   "freq_avg": 0.0015,
+   "freq_max": 0.002,
+   "freq_min": 0.001
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*4",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": 0.01786,
+   "freq_avg": 0.01786,
+   "freq_max": 0.01786,
+   "freq_min": 0.01786
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*1",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": 0.93002415,
+   "freq_avg": 0.9860048,
+   "freq_max": 1,
+   "freq_min": 0.931
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*1",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": 0.9728806,
+   "freq_avg": 0.9945762,
+   "freq_max": 1,
+   "freq_min": 0.98214
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*6",
+   "population_group": "Central/South Asian",
+   "subjectcount": 69438,
+   "freq_weighted_avg": 0.002,
+   "freq_avg": 0.002,
+   "freq_max": 0.002,
+   "freq_min": 0.002
+  },
+  {
+   "genesymbol": "NUDT15",
+   "name": "*7",
+   "population_group": "Latino",
+   "subjectcount": 60324,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  }
+ ]
+}

@@ -1,0 +1,112 @@
+{
+ "generated_at": "2026-07-26T02:25:17Z",
+ "source": "PharmGKB/PharmCAT @ v3.4.0 src/test/resources/.../haplotype",
+ "files_available": 74,
+ "files_compared": 74,
+ "per_gene": {
+  "CYP2C19": 27,
+  "CYP2C9": 9,
+  "DPYD": 7,
+  "NUDT15": 3,
+  "SLCO1B1": 17,
+  "TPMT": 11
+ },
+ "integration_fidelity": {
+  "field_comparisons": 148,
+  "mismatches": 0,
+  "match_rate": 1.0,
+  "mismatch_detail": [],
+  "errors": {}
+ },
+ "filename_expectation": {
+  "note": "tests PharmCAT + the filename decoder, NOT our integration",
+  "decodable": 29,
+  "agree": 23,
+  "differ": 6,
+  "differ_detail": [
+   {
+    "file": "s1s4b.vcf",
+    "gene": "CYP2C19",
+    "filename_encodes": "*1/*4B",
+    "pharmcat_called": "*1/*4"
+   },
+   {
+    "file": "s4as4b.vcf",
+    "gene": "CYP2C19",
+    "filename_encodes": "*4A/*4B",
+    "pharmcat_called": "*4/*4"
+   },
+   {
+    "file": "s4bs17.vcf",
+    "gene": "CYP2C19",
+    "filename_encodes": "*4B/*17",
+    "pharmcat_called": "*4/*17"
+   },
+   {
+    "file": "s1s2b.vcf",
+    "gene": "DPYD",
+    "filename_encodes": "*1/*2B",
+    "pharmcat_called": "c.1627A>G (*5)"
+   },
+   {
+    "file": "s1s1s.vcf",
+    "gene": "TPMT",
+    "filename_encodes": "*1/*1S",
+    "pharmcat_called": "*1/*1"
+   },
+   {
+    "file": "s3bs3c.vcf",
+    "gene": "TPMT",
+    "filename_encodes": "*3B/*3C",
+    "pharmcat_called": "*1/*3A"
+   }
+  ],
+  "not_decoded": [
+   "noCall.vcf",
+   "rs12769205call.vcf",
+   "rs12769205missingrs4244285het.vcf",
+   "rs12769205only.vcf",
+   "rs12769205ref.vcf",
+   "s1s17s1s4bmissing.vcf",
+   "s1s17s1s4bmissingmore.vcf",
+   "s1s1rs12248560missing.vcf",
+   "s1s2rs3758581missing.vcf",
+   "s1s2rs3758581missingRs58973490het.vcf",
+   "s1s2rs58973490het.vcf",
+   "s1s4s17.vcf",
+   "s4bs17rs28399504missing.vcf",
+   "s4s17het.vcf",
+   "s4s17missingS1.vcf",
+   "sUnks17.vcf",
+   "s24s2pluss24.vcf",
+   "s2s24only.vcf",
+   "s3s18m94981296.vcf",
+   "c1129-5923c2846.vcf",
+   "c1156het.vcf",
+   "c1679c1156.vcf",
+   "c2846het.vcf",
+   "c557c703.vcf",
+   "novariant.vcf",
+   "refref.vcf",
+   "s2ref.vcf",
+   "s3ref.vcf",
+   "SLCO1B1_s14_s19_t1.vcf",
+   "SLCO1B1_s15_s45_t1.vcf",
+   "SLCO1B1_s19_s37_t1.vcf",
+   "SLCO1B1_s1_s14_t1.vcf",
+   "SLCO1B1_s1_s15_t1.vcf",
+   "SLCO1B1_s1_s25_t1.vcf",
+   "SLCO1B1_s37_s40_t1.vcf",
+   "SLCO1B1_s5_s14_t1.vcf",
+   "multi.vcf",
+   "s1as15s1bs5missing.vcf",
+   "s1as15s1bs5twomissing.vcf",
+   "het3a.vcf",
+   "hom1s_het3a.vcf",
+   "s15offdata.vcf",
+   "s1ss1ss3.vcf",
+   "unexpected.allele.vcf",
+   "unexpected.allele.with.s9.vcf"
+  ]
+ }
+}

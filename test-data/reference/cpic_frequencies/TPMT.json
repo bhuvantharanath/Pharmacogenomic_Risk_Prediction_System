@@ -1,0 +1,3016 @@
+{
+ "source": "https://api.cpicpgx.org/v1/population_frequency_view?genesymbol=eq.TPMT",
+ "accessed": "2026-07-26",
+ "rows": [
+  {
+   "genesymbol": "TPMT",
+   "name": "*2",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0034579393,
+   "freq_avg": 0.0035575,
+   "freq_max": 0.014,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*2",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0020584913,
+   "freq_avg": 0.004576462352941176,
+   "freq_max": 0.0319,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*2",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 8.490133e-05,
+   "freq_avg": 0.00035135135135135135,
+   "freq_max": 0.01,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*2",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": 0.007194246,
+   "freq_avg": 0.00393,
+   "freq_max": 0.056,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*2",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.00022537795,
+   "freq_avg": 0.0024375,
+   "freq_max": 0.021,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*2",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*2",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0053066667,
+   "freq_avg": 0.0061,
+   "freq_max": 0.0082,
+   "freq_min": 0.004
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*8",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.001191,
+   "freq_avg": 0.001191,
+   "freq_max": 0.001191,
+   "freq_min": 0.001191
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*8",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.000104547704,
+   "freq_avg": 4.21e-05,
+   "freq_max": 0.0001263,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*8",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*8",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*8",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 9.375629e-05,
+   "freq_avg": 1.9492e-05,
+   "freq_max": 9.746e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*8",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.024,
+   "freq_avg": 0.024,
+   "freq_max": 0.024,
+   "freq_min": 0.024
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*8",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.00648,
+   "freq_avg": 0.0092,
+   "freq_max": 0.0164,
+   "freq_min": 0.002
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*10",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*10",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*10",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*10",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*10",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*10",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*10",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*20",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*20",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 5.133778e-05,
+   "freq_avg": 2.0903333333333334e-05,
+   "freq_max": 6.271e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*20",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*20",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*20",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*20",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*20",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*24",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.001137,
+   "freq_avg": 0.001137,
+   "freq_max": 0.001137,
+   "freq_min": 0.001137
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*24",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 2.6354577e-05,
+   "freq_avg": 1.5805e-05,
+   "freq_max": 3.161e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*24",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*24",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*24",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*24",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*24",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0328,
+   "freq_avg": 0.0328,
+   "freq_max": 0.0328,
+   "freq_min": 0.0328
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*26",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*26",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*26",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0003479,
+   "freq_avg": 0.0003479,
+   "freq_max": 0.0003479,
+   "freq_min": 0.0003479
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*26",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*26",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*26",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*26",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*31",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*31",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 7.4631716e-06,
+   "freq_avg": 4.4765e-06,
+   "freq_max": 8.953e-06,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*31",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*31",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*31",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*31",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*31",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*39",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*39",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 6.562125e-06,
+   "freq_avg": 3.9485e-06,
+   "freq_max": 7.897e-06,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*39",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.000106,
+   "freq_avg": 0.000106,
+   "freq_max": 0.000106,
+   "freq_min": 0.000106
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*39",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*39",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*39",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*39",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*5",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*5",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*5",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*5",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*5",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*5",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*5",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*40",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0002034,
+   "freq_avg": 0.0002034,
+   "freq_max": 0.0002034,
+   "freq_min": 0.0002034
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*40",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 5.903421e-05,
+   "freq_avg": 5.0965e-05,
+   "freq_max": 6.316e-05,
+   "freq_min": 3.877e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*40",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*40",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*40",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*40",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*40",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*25",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*25",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0001,
+   "freq_avg": 0.0001,
+   "freq_max": 0.0001,
+   "freq_min": 0.0001
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*25",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*25",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*25",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*25",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*25",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*14",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*14",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*14",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*14",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*14",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*14",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*14",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*28",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*28",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*28",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*28",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*28",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*28",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*28",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*37",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 8.934e-05,
+   "freq_avg": 8.934e-05,
+   "freq_max": 8.934e-05,
+   "freq_min": 8.934e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*37",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 3.731825e-05,
+   "freq_avg": 2.2385e-05,
+   "freq_max": 4.477e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*37",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*37",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*37",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*37",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*37",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*41",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*41",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*41",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*41",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*41",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*41",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*41",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*33",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 8.729e-05,
+   "freq_avg": 8.729e-05,
+   "freq_max": 8.729e-05,
+   "freq_min": 8.729e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*33",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 3.9384588e-05,
+   "freq_avg": 2.3705e-05,
+   "freq_max": 4.741e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*33",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*33",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*33",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 3.256e-05,
+   "freq_avg": 3.256e-05,
+   "freq_max": 3.256e-05,
+   "freq_min": 3.256e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*33",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*33",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3A",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.041727107,
+   "freq_avg": 0.04165,
+   "freq_max": 0.0652,
+   "freq_min": 0.03
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3A",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.033840433,
+   "freq_avg": 0.03570681818181818,
+   "freq_max": 0.094,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3A",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.00030599828,
+   "freq_avg": 0.0019,
+   "freq_max": 0.063,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3A",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": 0.0130693065,
+   "freq_avg": 0.034320833333333335,
+   "freq_max": 0.44,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3A",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0042245653,
+   "freq_avg": 0.0047875,
+   "freq_max": 0.016,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3A",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.0016235898,
+   "freq_avg": 0.0021666666666666666,
+   "freq_max": 0.009,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3A",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.008,
+   "freq_avg": 0.008,
+   "freq_max": 0.008,
+   "freq_min": 0.008
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*7",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*7",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 1.5974565e-05,
+   "freq_avg": 0.0010029853333333332,
+   "freq_max": 0.003,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*7",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*7",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*7",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*7",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*7",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*27",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*27",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*27",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*27",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*27",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*27",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*27",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*11",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*11",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.00024325753,
+   "freq_avg": 0.0001464,
+   "freq_max": 0.0002928,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*11",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*11",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*11",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*11",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*11",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*22",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*22",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*22",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*22",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*22",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*22",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*22",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*1",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.94345534,
+   "freq_avg": 0.9864604242424242,
+   "freq_max": 1,
+   "freq_min": 0.908
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*1",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.9534313,
+   "freq_avg": 0.978483797979798,
+   "freq_max": 1,
+   "freq_min": 0.882
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*1",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.979625,
+   "freq_avg": 0.9880955875,
+   "freq_max": 1,
+   "freq_min": 0.937
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*1",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": 0.96561086,
+   "freq_avg": 0.9530074074074074,
+   "freq_max": 1,
+   "freq_min": 0.44
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*1",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.9813701,
+   "freq_avg": 0.992189619047619,
+   "freq_max": 1,
+   "freq_min": 0.951
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*1",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.9214915,
+   "freq_avg": 0.949,
+   "freq_max": 1,
+   "freq_min": 0.92
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*1",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.92341334,
+   "freq_avg": 0.9682,
+   "freq_max": 1,
+   "freq_min": 0.9426
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*13",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*13",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*13",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*13",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*13",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*13",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*13",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*17",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*17",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0004,
+   "freq_avg": 0.0004,
+   "freq_max": 0.0004,
+   "freq_min": 0.0004
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*17",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*17",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*17",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*17",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*17",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*23",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*23",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 2.6239319e-05,
+   "freq_avg": 1.579e-05,
+   "freq_max": 3.158e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*23",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*23",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*23",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*23",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*23",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3B",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.002382896,
+   "freq_avg": 0.003285714285714286,
+   "freq_max": 0.017,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3B",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0028341785,
+   "freq_avg": 0.005072727272727273,
+   "freq_max": 0.0478,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3B",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3B",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": 0.004721087,
+   "freq_avg": 0.004385714285714285,
+   "freq_max": 0.04,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3B",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0017308706,
+   "freq_avg": 0.00138,
+   "freq_max": 0.0067,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3B",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3B",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*36",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*36",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*36",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*36",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*36",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*36",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*36",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*38",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*38",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*38",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0004059,
+   "freq_avg": 0.0004059,
+   "freq_max": 0.0004059,
+   "freq_min": 0.0004059
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*38",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*38",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*38",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*38",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*29",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*29",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*29",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0002899,
+   "freq_avg": 0.0002899,
+   "freq_max": 0.0002899,
+   "freq_min": 0.0002899
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*29",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*29",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*29",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*29",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*9",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0001163,
+   "freq_avg": 0.0001163,
+   "freq_max": 0.0001163,
+   "freq_min": 0.0001163
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*9",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0005553769,
+   "freq_avg": 0.000442925,
+   "freq_max": 0.0008,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*9",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*9",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*9",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*9",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*9",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*16",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 5.819e-05,
+   "freq_avg": 5.819e-05,
+   "freq_max": 5.819e-05,
+   "freq_min": 5.819e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*16",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0010142878,
+   "freq_avg": 0.001985133333333333,
+   "freq_max": 0.005429,
+   "freq_min": 0.0001264
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*16",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.00020803267,
+   "freq_avg": 0.001602,
+   "freq_max": 0.004,
+   "freq_min": 0.000106
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*16",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*16",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0005212,
+   "freq_avg": 0.0005212,
+   "freq_max": 0.0005212,
+   "freq_min": 0.0005212
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*16",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*16",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*19",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*19",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*19",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*19",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*19",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*19",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*19",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*18",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*18",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 1.1514104e-05,
+   "freq_avg": 0.00014229,
+   "freq_max": 0.0004,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*18",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*18",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*18",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*18",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*18",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3C",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.005828808,
+   "freq_avg": 0.007375,
+   "freq_max": 0.02,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3C",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0049218307,
+   "freq_avg": 0.006762682926829269,
+   "freq_max": 0.04,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3C",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.01636903,
+   "freq_avg": 0.016198039215686275,
+   "freq_max": 0.053,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3C",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": 0.009404483,
+   "freq_avg": 0.0127125,
+   "freq_max": 0.08,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3C",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.011216759,
+   "freq_avg": 0.0123375,
+   "freq_max": 0.026,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3C",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": 0.052884888,
+   "freq_avg": 0.05227272727272727,
+   "freq_max": 0.08,
+   "freq_min": 0.009
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*3C",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.024,
+   "freq_avg": 0.024,
+   "freq_max": 0.024,
+   "freq_min": 0.024
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*4",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*4",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 5.8889815e-05,
+   "freq_avg": 2.3686666666666668e-05,
+   "freq_max": 7.106e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*4",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*4",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*4",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*4",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*4",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*6",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 2.916e-05,
+   "freq_avg": 2.916e-05,
+   "freq_max": 2.916e-05,
+   "freq_min": 2.916e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*6",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*6",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0022042317,
+   "freq_avg": 0.0014201818181818183,
+   "freq_max": 0.007,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*6",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*6",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*6",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*6",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*30",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0001489,
+   "freq_avg": 0.0001489,
+   "freq_max": 0.0001489,
+   "freq_min": 0.0001489
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*30",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 1.4929322e-05,
+   "freq_avg": 8.955e-06,
+   "freq_max": 1.791e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*30",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*30",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*30",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*30",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*30",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*35",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*35",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*35",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*35",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*35",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*35",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*35",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*12",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 8.733e-05,
+   "freq_avg": 8.733e-05,
+   "freq_max": 8.733e-05,
+   "freq_min": 8.733e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*12",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*12",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 5.31e-05,
+   "freq_avg": 5.31e-05,
+   "freq_max": 5.31e-05,
+   "freq_min": 5.31e-05
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*12",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*12",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*12",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*12",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*15",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*15",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 4.5666697e-05,
+   "freq_avg": 0.00061579,
+   "freq_max": 0.0018,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*15",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*15",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*15",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*15",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*15",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*32",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*32",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 2.9890569e-05,
+   "freq_avg": 1.793e-05,
+   "freq_max": 3.586e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*32",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*32",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*32",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*32",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*32",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*34",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*34",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 7.4709346e-06,
+   "freq_avg": 4.480365e-06,
+   "freq_max": 8.96073e-06,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*34",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*34",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*34",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0005848,
+   "freq_avg": 0.0005848,
+   "freq_max": 0.0005848,
+   "freq_min": 0.0005848
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*34",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*34",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*21",
+   "population_group": "Latino",
+   "subjectcount": 427495,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*21",
+   "population_group": "European",
+   "subjectcount": 1823221,
+   "freq_weighted_avg": 5.822823e-05,
+   "freq_avg": 4.4403333333333336e-05,
+   "freq_max": 7.785e-05,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*21",
+   "population_group": "East Asian",
+   "subjectcount": 237600,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*21",
+   "population_group": "Near Eastern",
+   "subjectcount": 4816,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*21",
+   "population_group": "Central/South Asian",
+   "subjectcount": 386969,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*21",
+   "population_group": "Sub-Saharan African",
+   "subjectcount": 1752,
+   "freq_weighted_avg": null,
+   "freq_avg": null,
+   "freq_max": null,
+   "freq_min": null
+  },
+  {
+   "genesymbol": "TPMT",
+   "name": "*21",
+   "population_group": "African American/Afro-Caribbean",
+   "subjectcount": 2563,
+   "freq_weighted_avg": 0.0,
+   "freq_avg": 0.0,
+   "freq_max": 0,
+   "freq_min": 0
+  }
+ ]
+}

@@ -407,14 +407,49 @@ def _parse_gene(symbol: str, block: dict) -> PharmcatGeneCall:
       exactly one                   -> DEFINITE
     """
     warnings = _message_texts(block.get("messages"))
-    diplotypes = block.get("recommendationDiplotypes") or []
+
+    # TWO DIPLOTYPE LISTS, AND THEY ARE NOT INTERCHANGEABLE
+    #
+    # PharmCAT reports both, meaning different things:
+    #
+    #   sourceDiplotypes          what the matcher actually CALLED. Compound
+    #                             alleles stay intact as "[a + b]", and the
+    #                             phenotype may be "Indeterminate".
+    #   recommendationDiplotypes  PharmCAT's own reduction for LOOKING UP a CPIC
+    #                             recommendation: compound alleles are split and
+    #                             an activity score is assigned so a guideline row
+    #                             can be found.
+    #
+    # This code used to read `recommendationDiplotypes` for everything, which is
+    # right for the lookup and wrong for the display. Measured over 1000 Genomes
+    # samples, that surfaced as DPYD reporting `Normal Metabolizer` where PharmCAT
+    # had called `Indeterminate`, and showing a diplotype with a real variant
+    # dropped from it ("[c.1896T>C + c.2336C>A]" displayed as "c.1896T>C"). The
+    # patient's genotype is not the lookup key, and presenting certainty PharmCAT
+    # explicitly withheld is the over-claiming this project guards against
+    # everywhere else.
+    #
+    # So: SOURCE drives what we report about the patient, RECOMMENDATION drives
+    # what CPIC row we find. `select_annotation` matches on `lookup_keys`, which
+    # still comes from the recommendation entry, so guidance selection is
+    # unchanged by this split.
+    source = block.get("sourceDiplotypes") or []
+    recommendation = block.get("recommendationDiplotypes") or []
+    # Fall back so a gene reporting only one of the two still parses.
+    display_list = source or recommendation
+    lookup_list = recommendation or source
 
     labels = [
         d.get("label")
-        for d in diplotypes
+        for d in display_list
         if isinstance(d, dict) and isinstance(d.get("label"), str)
     ]
-    primary = diplotypes[0] if diplotypes and isinstance(diplotypes[0], dict) else {}
+    primary = (
+        display_list[0] if display_list and isinstance(display_list[0], dict) else {}
+    )
+    lookup_primary = (
+        lookup_list[0] if lookup_list and isinstance(lookup_list[0], dict) else {}
+    )
 
     phenotypes = primary.get("phenotypes") or []
     phenotype_raw = phenotypes[0] if phenotypes else None
@@ -470,7 +505,16 @@ def _parse_gene(symbol: str, block: dict) -> PharmcatGeneCall:
         if isinstance(v, dict)
     ]
 
-    lookup_keys = [k for k in (primary.get("lookupKey") or []) if isinstance(k, str)]
+    # From the recommendation entry, deliberately: this is what CPIC rows are
+    # keyed by, and `select_annotation` matches on it. The source entry carries
+    # lookupKey ["n/a"] for an indeterminate call, which would match nothing.
+    lookup_keys = [
+        k for k in (lookup_primary.get("lookupKey") or []) if isinstance(k, str)
+    ]
+    #: The reduced diplotype CPIC guidance was actually found by. Kept alongside
+    #: the called one so a reviewer can see WHY a given recommendation applies to
+    #: a compound genotype, rather than having to re-derive it.
+    recommendation_diplotype = lookup_primary.get("label")
 
     return PharmcatGeneCall(
         gene=symbol,
@@ -478,8 +522,11 @@ def _parse_gene(symbol: str, block: dict) -> PharmcatGeneCall:
         diplotype=None if uncalled else label,
         candidate_diplotypes=[lbl for lbl in labels if lbl],
         phenotype_raw=phenotype_raw,
-        activity_score=_as_float(primary.get("activityScore")),
+        activity_score=_as_float(
+            lookup_primary.get("activityScore") or primary.get("activityScore")
+        ),
         lookup_keys=lookup_keys,
+        recommendation_diplotype=recommendation_diplotype,
         allele_functions=[f for f in allele_functions if f],
         variants=variants,
         warnings=warnings,
