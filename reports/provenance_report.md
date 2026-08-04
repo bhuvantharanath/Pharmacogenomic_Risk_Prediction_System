@@ -1,6 +1,6 @@
 # Provenance verification
 
-**Generated:** 2026-08-04T06:22:17.481896+00:00  
+**Generated:** 2026-08-04T07:02:59.140432+00:00  
 **Verifier:** `verify_provenance.py v1.0.0`  
 **Store:** `backend/app/data/explanations.json`  
 **Entries:** 20

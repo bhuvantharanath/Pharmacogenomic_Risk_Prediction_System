@@ -362,7 +362,12 @@ def main(argv: list[str] | None = None) -> int:
                 json.dumps(result.body, indent=1) + "\n"
             )
         if args.slow and s is not chosen[-1]:
-            input(f"{DIM}  [enter to continue]{RESET}")
+            try:
+                input(f"{DIM}  [enter to continue]{RESET}")
+            except EOFError:
+                # Piped or redirected stdin: carry on rather than crashing
+                # mid-sequence. --slow is a presentation aid, not a requirement.
+                print(f"{DIM}  (no tty — continuing){RESET}")
 
     if "S1_confident" in results and "S2_variants_only" in results:
         show_contrast(results["S1_confident"], results["S2_variants_only"])

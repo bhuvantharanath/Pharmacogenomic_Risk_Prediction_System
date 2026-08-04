@@ -1,711 +1,455 @@
-# 🧬 PharmaGuard
+# Pharmacogenomic Risk Prediction System (PharmaGuard)
 
-**Predict pharmacogenomic drug risk from a patient's VCF — genotypes called by
-PharmCAT, clinical guidance quoted verbatim from CPIC, explanations grounded and
-machine-checked.**
+Analyses a patient's genetic data (VCF) against a prescribed drug and returns a pharmacogenomic risk assessment, a CPIC-aligned clinical recommendation, and a plain-language explanation.
 
-It is also a **study of how such a system silently produces false reassurance.**
-Building it surfaced eight defects in its own honesty layer, in different components
-and by different mechanisms — and every one of them erred in the same direction:
-sounding more confident, and lower-risk, than the evidence supported. That is not
-eight coincidences. In variant-based genomics the reference allele *is* the low-risk
-state, so missing data does not read as uncertainty — it reads as normal. The
-verification architecture described below exists because each layer of it was added
-after a defect proved it necessary. → [The primary result](reports/provenance_finding.md)
-
-> ## ⚠️ Research/educational decision support only
-> **Not a medical device. Not for clinical use.**
->
-> This is a final-year student project. It has not been clinically validated and
-> must not be used to make decisions about anyone's medication. Risk labels,
-> phenotype calls and explanations may be wrong. Always consult a qualified
-> healthcare professional.
+> **⚠️ Research and educational use only. This is not a medical device and is not for clinical use.** No output from this system should be used to make a prescribing decision. Consult a qualified clinician or genetic counsellor.
 
 ---
 
-## 🔗 Links
+## Table of contents
 
-| | |
-| --- | --- |
-| 🌐 **Live demo** | `https://pharmaguard.pages.dev` — *placeholder, see [Deploying](#-deploying)* |
-| ⚙️ **Backend API** | `https://YOURNAME-pharmaguard.hf.space` — *placeholder* |
-| 📄 **API docs** | `<backend>/docs` (interactive OpenAPI) |
-| 📱 **Android APK** | [Releases](https://github.com/YOURNAME/pharmaguard/releases) |
-| 🎥 **Demo video** | *`<LinkedIn post URL — to be added>`* |
-
-> **The links above are placeholders.** Deploying needs accounts only the project
-> owner can create. Every step is written and verified against vendor docs in
-> [`infra/DEPLOY_NOTES.md`](infra/DEPLOY_NOTES.md) — fill these in once you have
-> run them.
-
----
-
-## What it does
-
-Upload a VCF, list the drugs you care about, get a per-drug risk card:
-
-| Drug | Result | Why |
-| --- | --- | --- |
-| `clopidogrel` | 🔴 **Ineffective** (critical) | `CYP2C19 *2/*2` → poor metaboliser; the prodrug is never activated |
-| `fluorouracil` | 🟠 **Adjust Dosage** (moderate) | `DPYD` variant carrier → reduced clearance |
-| `simvastatin` | 🟢 **Safe** | `SLCO1B1 *1/*1` → normal transporter function |
-| `codeine` | ⚪ **Unknown** | CYP2D6 is not callable from a VCF — and we say so rather than guessing |
-
-Each card expands to show the diplotype, the detected variants, CPIC's own
-recommendation text, and a plain-language explanation.
+- [What this project is](#what-this-project-is)
+- [Key results](#key-results)
+- [Architecture](#architecture)
+- [Field authorship](#field-authorship)
+- [The verification model](#the-verification-model)
+- [Tech stack](#tech-stack)
+- [Method](#method)
+- [Validation results](#validation-results)
+- [Input requirements](#input-requirements)
+- [Quickstart](#quickstart)
+- [Running the demo](#running-the-demo)
+- [Repository map](#repository-map)
+- [Testing and release gates](#testing-and-release-gates)
+- [Current status](#current-status)
+- [Limitations](#limitations)
+- [Team](#team)
 
 ---
 
-## 🏗 Architecture
+## What this project is
+
+Adverse drug reactions are a major cause of preventable harm, and a significant fraction are attributable to genetic variation in drug-metabolising enzymes. Pharmacogenomics maps that variation to prescribing guidance. The Clinical Pharmacogenetics Implementation Consortium (CPIC) publishes the guidelines; the problem is getting from a patient's raw genomic file to a recommendation a person can act on.
+
+This system does that end to end for **7 pharmacogenes** and **6 drugs**:
+
+| Gene | Drug |
+|---|---|
+| CYP2C19 | clopidogrel |
+| CYP2C9 | warfarin |
+| CYP2D6 | codeine |
+| SLCO1B1 | simvastatin |
+| TPMT (+ NUDT15) | azathioprine |
+| DPYD | fluorouracil |
+
+Risk labels: `Safe` · `Adjust Dosage` · `Toxic` · `Ineffective` · `Unknown`
+
+### What makes it different
+
+The project became two things. The first is the system above. The second — and the stronger contribution — is what happened when we measured it.
+
+We built the system, then validated it exhaustively, and found **eight distinct ways that a pharmacogenomic pipeline silently produces false reassurance**: telling a user they are safe when the system does not actually know. Every defect found ran in the same direction. None ran the other way.
+
+There is a structural reason, and it is the project's central claim:
+
+> **In variant-based genomics, the reference allele is the low-risk state. Missing data is therefore not neutral — it reads as normal. Incomplete input produces false *confidence*, not uncertainty.**
+
+The system's design is a response to that finding. It is built to decline rather than guess, and the verification architecture exists to enforce that.
+
+---
+
+## Key results
+
+| Result | Value |
+|---|---|
+| CPIC label-mapping validation | **92/105** combinations, exhaustive (not sampled); 13 documented divergences, all erring toward caution |
+| Integration fidelity | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches |
+| PharmCAT adversarial test VCFs | **0 mismatches** across all 74 files |
+| CYP2D6 negative control | **400/400** declined — never fabricated |
+| Confident-label rate, complete-coverage input | **100%**, 0% wrong |
+| Usable rate, polymorphic-filtered research slices | **12.58%** — a property of that input format, not a pipeline failure rate |
+| External diplotype concordance | **n=1** (2/2 exact) — bounded, see [Limitations](#limitations) |
+| South Asian (SAS) subgroup, n=75 | CYP2C19 reduced-function **53.3%**, second only to EAS |
+| Backend tests | 560 passing |
+| Client tests | 37 passing |
+
+### The eight findings
+
+1. **Lexical provenance checking is unsound *and* incomplete.** A term-overlap matcher passed a polarity-*reversed* claim ("Do NOT consider dose reduction" against a source saying "Consider dose reduction") while rejecting 15 of 16 faithful paraphrases.
+2. **Assertion-marker rules are structurally blind to fabricated mechanisms.** A planted fabrication ("inhibited by grapefruit juice") contains no number, duration, or polarity marker, so no rule fires.
+3. **Closed-vocabulary checking penalises plain language.** Applied to explanation text it produced a 57% false-positive rate (30% after POS narrowing) — flagging *genetic*, *properly*, *effectively*.
+4. **Label/prose divergence.** Explanation→CPIC and label→CPIC were both verified, yet the two artifacts contradicted each other — because they trace to *different parts* of the same source. Pairwise verification against a common source does not guarantee mutual consistency.
+5. **A category error between two PharmCAT structures.** `recommendationDiplotypes` is a lossy reduction for CPIC table lookup; `sourceDiplotypes` is what was actually called. Reading the former for both displayed "Normal Metabolizer" where PharmCAT said "Indeterminate" — manufacturing certainty the source explicitly withheld.
+6. **A missing phenotype→label edge.** A phenotype PharmCAT declined to assert still found a CPIC table row, rendering a green *Safe* badge on fluorouracil. Fixing it as a general invariant changed **294 of 2,400** results, every one removing an unsupported confident label. A DPYD-specific patch would have left **293 of the 294** live.
+7. **No-data vs indeterminate conflation, in three separate layers.** One instance silently collapsed `{Normal Function, Indeterminate}` to `{NM}`, asserted Safe, and *measured as a fix* while leaving 195 samples broken. Framing adopted: **n/a is silence; Indeterminate is testimony.**
+8. **Reduced position coverage produces confident wrong calls, not declines.** A variant whose defining position is absent is invisible, and every observed position reads reference. Measured confidently-wrong rates at 20% coverage: CYP2C9 47.8%, SLCO1B1 42.9%, NUDT15 37.5%, CYP2C19 30.0%, TPMT 20.8%, DPYD 0%. Every wrong call replaced a reduced-function phenotype with a normal one, at status `DEFINITE`, with nothing signalling doubt.
+
+A ninth, methodological: **validation tooling is itself unvalidated code.** Four separate checks in this project produced false results before being corrected. In a verification-heavy architecture, every check needs its own validation before its output carries weight.
+
+Full write-ups: `reports/provenance_finding.md`, `reports/validation_report.md`, `reports/guard_experiment.md`, `reports/detector_sensitivity.md`.
+
+---
+
+## Architecture
 
 ```mermaid
-flowchart TB
-    subgraph client["Client — Flutter (one codebase)"]
-        web["🌐 Web<br/>Cloudflare Pages"]
-        android["📱 Android APK<br/>GitHub Releases"]
-        ios["🍎 iOS<br/>Simulator only"]
-    end
-
-    subgraph backend["Backend — FastAPI (Docker)"]
-        direction TB
-        val["1 · VCF validation<br/><i>GRCh38, ≤5 MB, sample column</i>"]
-        cov["2 · Coverage gate<br/><i>required positions present?<br/>runs BEFORE PharmCAT</i>"]
-        pc["3 · PharmCAT 3.4.0<br/><i>diplotype + phenotype</i>"]
-        eng["4 · CPIC label engine<br/><i>ordered rules, as data</i>"]
-        exp["5 · Explanation layer<br/><i>pre-generated, guard-checked,<br/>slot-verified at runtime</i>"]
-        val --> cov --> pc --> eng --> exp
-    end
-
-    subgraph data["Data sources"]
-        cpic[("CPIC guidelines<br/><i>via PharmCAT, verbatim</i>")]
-        corpus[("rag-corpus/<br/><i>mechanism background</i>")]
-    end
-
-    client -->|"HTTPS multipart<br/>POST /analyze"| backend
-    backend -->|"JSON contract"| client
-    pc -.-> cpic
-    exp -.-> corpus
-
-    style client fill:#e3f2fd,stroke:#1976d2
-    style backend fill:#f3e5f5,stroke:#7b1fa2
-    style data fill:#e8f5e9,stroke:#388e3c
+flowchart TD
+    A[VCF upload + drug names] --> B[Validation<br/>format, size, build]
+    B --> C{Position coverage gate}
+    C -->|below threshold| Z[Unknown<br/>+ coverage warning]
+    C -->|passes| D[PharmCAT 3.4.0<br/>direct JAR invocation]
+    D --> E[Diplotype + phenotype<br/>sourceDiplotypes]
+    E --> F{Phenotype asserted?}
+    F -->|no| Z
+    F -->|yes| G[Deterministic CPIC<br/>label mapping]
+    G --> H[Risk label + severity<br/>+ verbatim CPIC recommendation]
+    H --> I[Pre-generated explanation<br/>keyed by drug + phenotype]
+    I --> J[Runtime slot verification<br/>+ label/prose cross-check]
+    J --> K[JSON response]
+    K --> L[Flutter client<br/>web + Android/iOS]
 ```
 
-### Request flow
+**Design principles**
 
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant A as Flutter app
-    participant API as FastAPI
-    participant P as PharmCAT (JVM)
-
-    A->>API: GET /health (on load — wakes a sleeping server)
-    API-->>A: {"status":"ok"}
-    Note over A: Shows an honest "waking up" state<br/>while the container cold-starts
-
-    U->>A: Pick VCF + drugs → Analyze
-    A->>API: POST /analyze (multipart)
-    API->>API: Validate: build, size, sample column
-    API->>API: Coverage gate — required positions present?
-    Note over API: Genes below their measured minimum<br/>are declined here, before any call is made
-    API->>P: java -jar pharmcat (temp dir)
-    P-->>API: report.json — diplotypes + CPIC text
-    API->>API: Map to risk label (rules as data)
-    API->>API: Look up explanation, fill slots
-    API->>API: Verify slots match the called profile
-    API->>API: 🗑 delete temp dir (finally)
-    API-->>A: JSON — one result per drug
-    A-->>U: Colour-coded cards
-```
-
-**Design decision worth knowing:** explanations are **pre-generated offline**,
-checked by a deterministic faithfulness guard, and served from a static file.
-The explanation space is enumerable (6 drugs × ~6 phenotypes), so every string a
-user can see is reviewable by a human *before* it ships — and the deployed path
-needs **no API key and makes no outbound calls**.
-
-Because that guard runs at build time, the patient-specific values filled in at
-request time are cross-checked separately against the response's own profile —
-see [How explanations are checked](#how-explanations-are-checked--precisely).
+- **Decline over guess.** `Unknown` is a first-class, correct output — not a failure.
+- **No clinical content originates in the system.** Every dosing statement is verbatim CPIC, obtained via PharmCAT.
+- **No patient data reaches a third-party LLM.** Explanations are pre-generated offline from generic `(gene, phenotype, drug)` cases plus published CPIC text, then shipped static. This is an architectural guarantee, not a policy promise.
+- **Stateless.** Uploaded VCFs are written to a temp directory and deleted in a `finally` block. No genomic data is retained server-side.
 
 ---
 
-## 🛠 Tech stack
+## Field authorship
 
-| Layer | Choice | Why |
-| --- | --- | --- |
-| **Backend** | Python 3.11, FastAPI, Pydantic v2 | Typed contract, free OpenAPI docs |
-| **Genotyping** | PharmCAT 3.4.0 (pinned) | The reference open-source PGx caller |
-| **Clinical source** | CPIC via PharmCAT, verbatim | We never write dosing text ourselves |
-| **Explanations** | Pre-generated + guard; Gemini optional | Reviewable, and free to run |
-| **Client** | Flutter 3.38 (web + Android + iOS) | One codebase, three targets |
-| **Backend host** | Docker → Cloud Run / HF Spaces / Render | Same image runs on all three |
-| **Web host** | Cloudflare Pages | Free, unlimited bandwidth |
-| **CI/CD** | GitHub Actions | Free for public repos |
+Which layer authors which field is the core of the safety design:
+
+| Field | Authored by | Guarantee |
+|---|---|---|
+| `clinical_recommendation.*` | **Verbatim CPIC**, via PharmCAT | Never model-authored. Exact-match verified. |
+| `variant_rationale` | **Code**, composed at request time from the PharmCAT profile | Correct by construction — cannot disagree with the reported genotype |
+| `summary`, `mechanism`, `patient_friendly` | **LLM** (`meta/llama-3.1-8b-instruct`), genotype-agnostic | Pre-generated, guard-checked, and human-adjudicated — adjudication is **in progress**, 55 sentences outstanding |
+| `recommendation_diplotype` | PharmCAT's `recommendationDiplotypes` | Provenance only — deliberately not rendered to the user |
+
+The LLM never decides anything. It rephrases sourced text.
 
 ---
 
-## 🚀 Run it locally
+## The verification model
 
-### Prerequisites
+Five checked edges. **Each was added after a defect proved it necessary** — none was designed up front.
 
-- Python 3.11, Flutter 3.38+
-- **JDK 17** — one JDK serves both: PharmCAT needs a JRE 17+, and the Android
-  Gradle build **rejects JDK 25**. Installing 17 satisfies both. The backend and
-  every validation script run fine on any JRE 17+; only `flutter build apk` fails
-  on 25. See [DEPLOY_NOTES](infra/DEPLOY_NOTES.md)
-- `bcftools` + `bgzip` for PharmCAT (`brew install bcftools htslib`)
+| Edge | Catches | Added after |
+|---|---|---|
+| `input → required positions` | Incomplete VCFs that would produce confident reference calls | Finding 8 |
+| `explanation → CPIC` | Fabricated clinical claims in generated prose | Faithfulness guard design |
+| `label → CPIC` | Mapping rules that disagree with the guideline | Finding of the substring collision |
+| `explanation → label` | Prose and badge contradicting each other | Finding 4 |
+| `phenotype → label` | Confident labels derived from unasserted phenotypes | Finding 6 |
 
-### Backend
+Plus a **contradiction guard**: the mapping reads CPIC recommendation *text*, and is cross-checked against CPIC's *structured* booleans. Different inputs, so agreement is evidence rather than tautology.
 
-**With Docker** (brings PharmCAT with it — easiest):
+**Automated checks are triage. Human adjudication is the release gate.** That is not a preference — it is the direct consequence of findings 1–3, which measured the structural limits of automated faithfulness checking.
+
+---
+
+## Tech stack
+
+**Backend**
+- Python 3.11 · FastAPI · Uvicorn · Pydantic v2
+- PharmCAT 3.4.0, invoked **directly via JAR** (not the `pharmcat_pipeline` wrapper, which can be silently absent)
+- JDK 17 (satisfies both PharmCAT and the Android Gradle build)
+- `bcftools` / `tabix` for remote region slicing of reference genomes
+- spaCy — build-time only, POS tagging for the (retired) vocabulary check
+
+**LLM layer**
+- NVIDIA NIM (`integrate.api.nvidia.com/v1`), OpenAI-compatible
+- Model: `meta/llama-3.1-8b-instruct`, selected by measured benchmark
+- Provider abstraction supports NVIDIA / Gemini / Ollama / deterministic template
+- **API key is build-time only.** The deployed path serves pre-generated explanations and requires no key.
+
+**Client**
+- Flutter (Dart) — single codebase → web + Android + iOS
+- Android release APK builds under JDK 17 (49 MB). Installation on a physical device is untested
+
+**Testing / CI**
+- pytest (560 backend tests) · flutter test (37) · GitHub Actions
+
+**Deployment (planned, Phase 8)**
+- Docker · Render or Google Cloud Run (backend) · Cloudflare Pages (web)
+
+---
+
+## Method
+
+### Building
+
+Built in phases, each closed by a report-back and review before the next began. Explanations were pre-generated offline rather than at request time, because the case space is enumerable — 28 `(drug, phenotype)` combinations, of which **20 are reachable**. The 8 unreachable ones were *not* authored, because authoring them would mean inventing coverage the system cannot produce.
+
+### Validating
+
+Where the space is enumerable, validation is **exhaustive rather than sampled**. The label mapping is a pure function of `(gene, phenotype, drug)`, so all 105 CPIC combinations were checked — complete coverage, no sampling error.
+
+Methodological practices that materially changed outcomes:
+
+- **Pre-committed acceptance thresholds.** Written down *before* tuning. This retired the vocabulary check at 30% false positives rather than letting it be tuned to pass, and its zero-regression condition caught two over-broad fixes before they shipped.
+- **Sabotage tests.** Every safety check has a test that fails if the check is disabled or weakened.
+- **Independent expectation tables.** The mapping reads CPIC recommendation *text*; the expectation table derives from CPIC *structured booleans*. Different inputs keep the validation non-tautological.
+- **Directive vs descriptive.** A documented principle after three defects shared one shape — matching text that *describes* dosing rather than *directs* it. It immediately predicted its own next instance.
+
+### Adjudicating
+
+Every clinical claim in the shipped explanation set is read against its source by a human, who records accept / edit / reject with a rationale. This is under way, not finished — 55 sentences remain, and the release gate stays red until they are decided. This verifies **provenance** — that generated text faithfully represents its source. It is explicitly *not* clinical approval; no qualified clinical reviewer was available, and that is a declared limitation rather than a concealed one.
+
+---
+
+## Validation results
+
+### Label mapping — exhaustive
+
+105 combinations. Three defects found and fixed, taking agreement from 60 → 92 with **zero regressions**:
+
+1. A substring collision returned `Safe` for 16 azathioprine rows where CPIC requires a 30–80% dose reduction.
+2. Two clopidogrel rows were labelled where CPIC says "No recommendation" — a provenance violation.
+3. Three simvastatin rows returned `Unknown` where CPIC says prescribe an alternative — losing a warning.
+
+13 remaining divergences are documented and accepted, all erring toward caution.
+
+**Toxic vs Ineffective policy:** *Toxic* = harm from drug **exposure**; *Ineffective* = therapeutic **failure**. The test is whether harm comes from the drug acting or from it failing to act.
+
+### Integration fidelity
+
+Comparing our pipeline's output against PharmCAT's direct output is self-referential, so it needs no truth labels and can run at scale.
+
+- 400 samples · 2,800 gene-pairs · 5,600 field comparisons · **0 mismatches**
+- PharmCAT's own 74 adversarial test VCFs · **0 mismatches**
+
+This demonstrates *integration fidelity* — that the pipeline does not corrupt PharmCAT's calls. It is not independent validation of PharmCAT's science, which is established in its own literature.
+
+### Coverage sensitivity
+
+Confidently-wrong rate (asserted a phenotype disagreeing with complete-coverage truth), 120 samples, 12 subsets per level:
+
+| Gene | 100% | 80% | 60% | 40% | 20% |
+|---|---|---|---|---|---|
+| CYP2C9 | 0.0% | 17.4% | 28.6% | 33.3% | 47.8% |
+| NUDT15 | 0.0% | 0.0% | 25.0% | 29.2% | 37.5% |
+| SLCO1B1 | 0.0% | 0.0% | 15.0% | 19.0% | 42.9% |
+| TPMT | 0.0% | 0.0% | 8.3% | 20.8% | 20.8% |
+| CYP2C19 | 0.0% | 0.0% | 4.3% | 12.5% | 30.0% |
+| DPYD | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
+
+These are an **upper bound**: the sweep dropped positions at random, whereas real filtering (e.g. 1000 Genomes) drops *monomorphic* positions, where reference is the correct call.
+
+**A monomorphic-aware relaxation of the gate was considered and rejected.** It would assert "this position is usually reference, therefore this patient is reference" — the exact bias the gate exists to prevent, with a probability attached. It fails worst for rare severe variants: DPYD deficiency alleles are rare (hence monomorphic in a panel), and missing one causes fatal fluorouracil toxicity.
+
+### External concordance
+
+GeT-RM PGx consensus (107 samples) ∩ 1000 Genomes (3,202) = **1 sample**. 98 of 107 GeT-RM IDs are `NA17xxxx` Coriell PGx lines never whole-genome sequenced into public panels. External concordance is therefore bounded at **n=1** (NA12273: CYP2C19 `*1/*2` exact, CYP2C9 `*1/*2` exact) and is reported as n=1, never as a percentage.
+
+**The CYP2D6 negative control is externally verified.** GeT-RM records NA12273 as a real `*1/*1`, confirmed by other assays. Our pipeline declines to call it — demonstrating refusal to guess something genuinely *present* but undeterminable from a VCF, not merely failure to call something absent.
+
+---
+
+## Input requirements
+
+**This section is the most important operational content in this README.**
+
+A conforming VCF must contain **all 306 defining positions with explicit genotypes, including homozygous-reference calls.**
+
+A **variants-only VCF** — which most pipelines emit by default — is indistinguishable from one where those positions were never assayed. This is the single most likely way a user gets a wrong answer, and the system detects and warns about it specifically.
+
+Minimum coverage per gene, derived from the sensitivity measurement:
+
+| Gene | Minimum coverage |
+|---|---|
+| CYP2C19 | 100% |
+| CYP2C9 | 100% |
+| SLCO1B1 | 100% |
+| TPMT | 80% |
+| NUDT15 | 80% |
+| DPYD | 20% |
+
+Below threshold, the system returns `Unknown` with the coverage achieved versus required — it does not guess.
+
+**File size:** a conforming PGx VCF is around 25 KB (463 rows, all seven genes). A real 1000 Genomes slice restricted to the same positions is larger — roughly 194 KB for 169 rows — because research-format records carry long INFO fields. Either way the 5 MB upload cap leaves ample headroom, and only rejects whole-region research files (~28 MB raw slices).
+
+Full detail: `docs/input_requirements.md`.
+
+---
+
+## Quickstart
+
+**Prerequisites:** Python 3.11, JDK 17, Flutter SDK, `bcftools`, PharmCAT 3.4.0 JAR.
+
+> JDK 17 is required. Gradle rejects JDK 25, and JDK 17 also runs PharmCAT — one version serves both.
 
 ```bash
-docker compose -f infra/docker-compose.yml up --build
-```
-
-**Without Docker:**
-
-```bash
+# Backend
 cd backend
 python3.11 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-# PharmCAT is a Java app, not a pip package. The JAR is all you need — the
-# shell wrapper is optional, and depending on it once caused /analyze to 503 on a
-# machine that had a perfectly good install. Needs a JRE 17+.
-python ../scripts/fetch_reference_data.py --fetch-tools   # -> test-data/reference/tools/
-# ...or point at your own copy:
-export PHARMCAT_JAR=/path/to/pharmcat-3.4.0-all.jar
+# PharmCAT is a Java app, not a pip package — fetch the pinned 3.4.0 JAR:
+python ../scripts/fetch_reference_data.py --fetch-tools
+# ...or point at your own copy: export PHARMCAT_JAR=/path/to/pharmcat-3.4.0-all.jar
 
-# Refuse to start if PharmCAT is unreachable, instead of failing at first upload:
-export STRICT_PHARMCAT=1
-
+cp ../infra/local-dev.env.example ../infra/local-dev.env   # then edit
+set -a && source ../infra/local-dev.env && set +a          # the app reads env, not the file
 uvicorn app.main:app --reload --port 8000
 ```
 
-Check it: <http://localhost:8000/ready> — per-dependency status.
+The backend prints the URL it actually bound, plus which PharmCAT strategy resolved:
 
-### Flutter app
+```
+[startup] pharmcat=jar via java -jar .../pharmcat-3.4.0-all.jar
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+```
+
+> Local config lives in `infra/local-dev.env`, **not** `backend/.env` — a dotfile inside the deployable directory is a leak risk and startup refuses it.
+>
+> `CORS_ALLOWED_ORIGINS` must be set. An empty allowlist with hosting markers present is a deliberate hard failure.
 
 ```bash
+# Client
 cd app
 flutter pub get
-flutter run -d chrome                      # web
-flutter run                                # connected Android/iOS device
-
-# Point at a deployed backend instead of localhost:
-flutter run -d chrome --dart-define=API_BASE_URL=https://YOURNAME-pharmaguard.hf.space
+flutter run -d chrome        # web
+flutter build apk --release  # Android
 ```
 
-> **Android emulator:** `localhost` means the emulator. Use
-> `--dart-define=API_BASE_URL=http://10.0.2.2:8000`.
+**No API key is required to run the system.** Explanations are pre-generated and shipped. A key is only needed to *regenerate* them.
 
 ---
 
-## 📡 API
-
-### `GET /health` — liveness
-
-Deliberately trivial: no PharmCAT, no disk. This is the **wake-up ping** for a
-sleeping free-tier container.
+## Running the demo
 
 ```bash
-curl https://YOUR-BACKEND/health
-```
-```json
-{ "status": "ok" }
-```
-
-### `GET /ready` — readiness
-
-Verifies what `/analyze` actually needs. `200` when an analysis would work,
-`503` otherwise, with a per-dependency breakdown.
-
-```json
-{
-  "status": "ready",
-  "checks": {
-    "pharmcat":         { "ok": true, "detail": "jar: java -jar pharmcat-3.4.0-all.jar" },
-    "mechanism_corpus": { "ok": true, "detail": "6 mechanism document(s) loaded" },
-    "explanations":     { "ok": true, "detail": "20 pre-generated (0 reviewed)" },
-    "label_mapping":    { "ok": true, "detail": "label_mapping.yaml parsed" }
-  },
-  "explanation_mode": "static"
-}
+python scripts/run_demo.py            # all scenarios
+python scripts/run_demo.py --slow     # pause between scenarios for narration
+python scripts/run_demo.py --scenario 1
 ```
 
-### `POST /analyze` — the analysis
+Six scenarios, ~7 seconds of compute. The centrepiece is **S1 vs S2**:
 
-`multipart/form-data`:
+```
+                       complete coverage         variants-only
+  PharmCAT called      *2/*2                     *2/*2            (identical)
+  phenotype            PM                        Unknown
+  RISK LABEL           Ineffective               Unknown
+  severity             critical                  none
+  confidence           0.95                      0.00
+  coverage             35/35 = 100.0%            4/35 = 11.4%
+```
 
-| Field | Type | Notes |
-| --- | --- | --- |
-| `file` | file | `.vcf` or gzip/bgzip `.vcf.gz`. **GRCh38 only**, ≤ 5 MB, ≥ 1 sample column |
-| `drugs` | string | Comma-separated, e.g. `clopidogrel,fluorouracil` |
+Same patient. Same genotype call from PharmCAT. Different file *shape*.
+
+The system declines an answer that happens to be **correct** — because the file cannot demonstrate that it is correct. Accepting it would mean also accepting the 47.8% of CYP2C9 cases at low coverage where the same reference-fill produces a confidently *wrong* normal-metaboliser call. At the input, the two are indistinguishable.
+
+Presenter runbook: `docs/DEMO_SCRIPT.md`.
+
+---
+
+## Repository map
+
+| Path | Contents |
+|---|---|
+| `backend/` | FastAPI service, CPIC mapping, coverage gate, explanation serving |
+| `backend/app/data/` | `label_mapping.yaml`, `explanations.json`, `case_matrix.json` |
+| `app/` | Flutter client (web + mobile) |
+| `rag-corpus/` | Mechanism corpus — biological background, cited and dated |
+| `scripts/` | CLI tooling: demo, validation, generation, adjudication, gates |
+| `reports/` | **Primary results.** Validation, provenance findings, guard experiment, benchmarks |
+| `docs/` | Input requirements, demo script, onboarding |
+| `test-data/` | Synthetic and reference VCFs, demo files |
+| `infra/` | Dockerfile, deploy notes, PharmCAT notes, local config |
+| `PROJECT_STATUS.md` | Live status, open items, limitations register |
+
+**Start with `reports/` if you want the findings, `docs/ONBOARDING.md` if you want to contribute.**
+
+---
+
+## Testing and release gates
 
 ```bash
-curl -F "file=@test-data/cyp2c19_poor_metabolizer.vcf" \
-     -F "drugs=clopidogrel,codeine,aspirin" \
-     https://YOUR-BACKEND/analyze
+cd backend && pytest          # 560 tests
+cd app && flutter test        # 37 tests
 ```
 
-<details>
-<summary><b>Response (abridged — click to expand)</b></summary>
+Release gates, each exiting non-zero on failure:
 
-```json
-{
-  "patient_id": "CYP2C19_POOR_METABOLIZER",
-  "timestamp": "2026-07-23T04:12:07.481Z",
-  "analyses": [
-    {
-      "drug": "clopidogrel",
-      "risk_assessment": {
-        "risk_label": "Ineffective",
-        "confidence_score": 0.95,
-        "severity": "critical"
-      },
-      "pharmacogenomic_profile": {
-        "primary_gene": "CYP2C19",
-        "diplotype": "*2/*2",
-        "recommendation_diplotype": null,
-        "phenotype": "PM",
-        "activity_score": null,
-        "detected_variants": [
-          {
-            "rsid": "rs4244285",
-            "gene": "CYP2C19",
-            "genotype": "A/A",
-            "star_allele": null,
-            "function": "Contributes to named allele(s): *1, *2"
-          }
-        ]
-      },
-      "clinical_recommendation": {
-        "action": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
-        "dosing_guidance": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
-        "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Significantly reduced clopidogrel active metabolite formation…",
-        "cpic_evidence_level": "Unknown",
-        "alternatives": ["CPIC indicates an alternative drug is available — see the recommendation text above."],
-        "source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]"
-      },
-      "llm_generated_explanation": {
-        "summary": "clopidogrel: CYP2C19 *2/*2 (Poor Metabolizer) — Ineffective.",
-        "mechanism": "CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver…",
-        "variant_rationale": "PharmCAT called CYP2C19 as *2/*2, which corresponds to a Poor Metabolizer result…",
-        "patient_friendly": "Your genetic results suggest this medicine may not work as well for you as intended…",
-        "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use."
-      }
-    }
-  ],
-  "quality_metrics": {
-    "vcf_parsing_success": true,
-    "variants_detected_count": 4,
-    "processing_time_ms": 1531,
-    "warnings": [
-      "explanation mode=static, source=static, guard=passed, reviewed=NO",
-      "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned"
-    ]
-  }
-}
-```
-</details>
+| Gate | Checks |
+|---|---|
+| Mapping validation | All 105 CPIC combinations |
+| Label/prose cross-check | Every shipped entry |
+| Detector sensitivity | Planted violations still caught |
+| Coverage gate tests | 31 tests incl. sabotage cases |
+| Provenance verification | Clinical sentences traceable |
+| Adjudication status | Every shipped sentence decided |
 
-**Every label is traceable.** `clinical_recommendation.source` names the CPIC
-guideline *and* the mapping rule that produced the label.
+**Invariants contributors must not break:**
 
-### `diplotype` vs `recommendation_diplotype` — two different things
-
-PharmCAT publishes **two** diplotype lists, and conflating them was a real defect
-found by the 400-sample validation run. The response now carries both:
-
-| Field | PharmCAT source | Means |
-| --- | --- | --- |
-| `diplotype` | `sourceDiplotypes` | **What was called.** The patient's genotype. Compound alleles stay intact, e.g. `c.85T>C (*9A)/[c.85T>C (*9A) + c.1371C>T]` |
-| `recommendation_diplotype` | `recommendationDiplotypes` | **What CPIC guidance was found by.** PharmCAT's own reduction — compound alleles split so an activity score can be assigned, e.g. `c.85T>C (*9A)/c.85T>C (*9A)` |
-
-They are identical for almost every call, and `recommendation_diplotype` is
-**null** whenever they agree — the field is only populated when there is a real
-difference to disclose. In practice that means DPYD compound genotypes.
-
-**Why the distinction is load-bearing.** The pipeline originally read the
-*reduction* for everything. That is correct for finding a guideline row and wrong
-for describing a patient: in 4 of 302 called DPYD samples it dropped a variant the
-patient carries from the reported genotype, and reported `Normal Metabolizer`
-where PharmCAT had explicitly called `Indeterminate`. For fluorouracil, where DPYD
-deficiency causes fatal toxicity, a false `Normal Metabolizer` is the worst error
-available. See §2b of `reports/validation_report.md`.
-
-`recommendation_diplotype` is **provenance, not patient-facing.** The Flutter
-client parses it to stay in contract sync and deliberately never renders it —
-showing a patient two diplotypes would move the confusion from the parser into the
-UI. It exists so an auditor can see *why* a given recommendation applied.
-
-### Errors
-
-All failures return `detail` (human) and `error_code` (machine).
-
-| Status | `error_code` | When |
-| --- | --- | --- |
-| 400 | `UNSUPPORTED_REFERENCE_BUILD` | GRCh37/hg19 uploaded |
-| 400 | `NOT_VCF`, `EMPTY_FILE`, `NO_SAMPLE_COLUMN`, `NO_VARIANTS`, `CORRUPT_GZIP` | Not a usable VCF |
-| 413 | `FILE_TOO_LARGE` | Over 5 MB |
-| 422 | `NO_DRUGS`, `TOO_MANY_DRUGS` | Bad drug list |
-| 429 | `RATE_LIMITED` | 10 analyses / 5 min / client |
-| 503 | `PHARMCAT_UNAVAILABLE` | Backend dependency missing or timed out |
-
-An unrecognised **drug** is never an error — it returns a well-formed `Unknown`.
+1. Never assert a phenotype the caller withheld.
+2. Never emit clinical text not traceable to CPIC.
+3. Never tune a check until it stops firing — pre-commit the threshold instead.
 
 ---
 
-## 🧪 Sample data
+## Current status
 
-```
-test-data/
-├── cyp2c19_poor_metabolizer.vcf   CYP2C19 *2/*2  → clopidogrel Ineffective
-├── dpyd_variant_carrier.vcf       DPYD *2A het   → fluorouracil Adjust Dosage
-├── normal_metabolizer_control.vcf all reference  → everything Safe
-└── generate_synthetic_vcf.py      build your own
-```
+| Phase | State |
+|---|---|
+| 1 — Backend/client seam | ✅ Complete |
+| 2 — PharmCAT + CPIC mapping | ✅ Complete |
+| 3 — Grounded explanations + guard | ✅ Complete |
+| 4 — Deployment code | ⚠️ Written and audited; nothing deployed |
+| 5A — Real LLM generation | ⚠️ Generated; adjudication outstanding |
+| 5B — Warfarin regressor + SHAP | ⏳ Optional |
+| 6 — Validation | ✅ Complete |
+| 7 — Adjudication, docs, demo | 🔄 In progress |
+| 8 — Deployment | ⏳ Last |
 
-```bash
-python test-data/generate_synthetic_vcf.py --from-jar /pharmcat/pharmcat.jar --list CYP2C19
-
-python test-data/generate_synthetic_vcf.py --definitions-dir definitions/ \
-    --diplotype 'CYP2C19=*2/*2' \
-    --pad-genes CYP2C19,CYP2C9,SLCO1B1,TPMT,NUDT15,DPYD \
-    --sample MY_SAMPLE -o my_sample.vcf
-```
-
-> ⚠️ **A named allele is not one famous rsID.** Setting `rs4244285` to `1/1` and
-> leaving CYP2C19's other 34 positions at reference produces **no call at all** —
-> that combination matches no defined haplotype. The generator reads PharmCAT's
-> own allele definitions for exactly this reason. See
-> [`test-data/README.md`](test-data/README.md).
+**Adjudication is the one open release gate:** 179 claim sentences, 124 adjudicated, **55 outstanding**. The gate correctly exits non-zero until complete.
 
 ---
 
-## 🔒 Data privacy
+## Limitations
 
-**No genomic data is retained. Ever.**
+Stated plainly, because declared limitations cost less than concealed ones.
 
-- The uploaded VCF is held **in memory** and written to a **per-request temp
-  directory**, which is deleted in a `finally` block before the response is
-  returned — on the success path *and* the crash path.
-- Nothing genomic is logged, written to durable storage, or sent to any third
-  party. The deployed backend makes **no outbound network calls at all**.
-- No accounts, no cookies, no analytics, no tracking.
-- The backend is stateless: restart it and nothing persists, because nothing was
-  ever persisted.
-
-### No patient genome ever reaches an LLM provider
-
-The explanations are written by a language model, yet **no patient genomic data
-is ever transmitted to that model — at build time or run time.** This is a
-property of the architecture, not a promise:
-
-- **Build time.** Explanations are pre-generated from *generic* cases: a
-  `(gene, phenotype, drug)` triple plus the **published CPIC recommendation
-  text**. Patient-specific values are placeholders (`{diplotype}`,
-  `{detected_variants}`), because one reviewed sentence is reused for every
-  patient sharing a phenotype. There is no patient at build time at all.
-- **Run time.** The deployed service runs in **static mode**: it looks the
-  pre-generated explanation up by `(drug, phenotype)` and fills the slots
-  **locally**. It imports no provider SDK and opens no socket to any model. A
-  real diplotype is substituted on the server and sent nowhere.
-
-So the only text that ever leaves for a model is text that already exists in a
-public CPIC guideline. This is what lets the system explain a genome without
-becoming a way to leak one — and it is pinned by
-[`test_privacy.py`](backend/tests/test_privacy.py), which checks every case's
-actual model payload carries no diplotype, rsID, variant or activity score, and
-that the static path reaches no provider even with every provider poisoned to
-raise on contact.
-
-This is asserted by tests, not just by policy —
-[`test_deployment.py::TestNoDataRetention`](backend/tests/test_deployment.py)
-checks the temp directory is empty after a real request **and** after a simulated
-PharmCAT crash, and that no uploaded content is echoed back in the response.
-
-> Still: this is a student project with no access control. **Do not upload real
-> patient data.** Use the synthetic VCFs.
+- **No clinical expert review.** No qualified clinical reviewer was available. The system compensates by generating no clinical content of its own; every clinical statement is provenance-verified to a CPIC source. This is a declared limitation, not a solved problem.
+- **External concordance is n=1.** GeT-RM and 1000 Genomes overlap in a single sample. This is a structural property of the available reference materials, not a sampling choice.
+- **CYP2D6 is not called from VCF.** Copy-number and structural variation cannot be resolved from an unphased VCF. The system returns `Unknown` with an explicit warning and never fabricates a call.
+- **12.58% usable on research-format slices.** This characterises polymorphic-filtered input, not the system. On complete-coverage input the confident-label rate is 100% with 0% wrong. Both numbers should always be cited together.
+- **Coverage thresholds are a proxy.** DPYD passes at 37.3% coverage with 0% error while CYP2C9 fails at 19.3% — position *identity* matters, not count. The principled requirement is function-weighted coverage; percentage thresholds are an artifact of random position dropping, which no real pipeline performs. Recorded as future work.
+- **`Indeterminate` and `No Result` share an enum value.** The falsehood was removed from user-facing prose and the distinction is preserved in `quality_metrics.warnings`, but a client cannot machine-check it. Deferred deliberately: clinical action is identical in both states.
+- **No persistence or history.** Results are not stored; they vanish on reload. This follows from the no-retention privacy design.
+- **Not deployed.** Deployment is Phase 8, deliberately last.
+- **iOS App Store distribution out of scope** — requires the paid Apple Developer Program. Simulator and local device only.
 
 ---
 
+## Team
 
-## 🔍 The verification model
+Final-year project, Department of Computer Science & Engineering (Data Science)
+Sai Vidya Institute of Technology, Bengaluru · Visvesvaraya Technological University
 
-Five edges are checked. Four face the **output**; one faces the **input**, and that
-asymmetry is the finding — a system that only audits what it produced can be
-complete, self-consistent, and still confidently wrong, because the thing it never
-checks is whether it was given enough to answer at all.
-
-| Edge | Direction | Catches | Added after |
-| --- | --- | --- | --- |
-| **input → required positions** | input | confidently wrong calls from incomplete VCFs | measured: at 60% coverage, up to 28.6% of calls were confidently wrong, always reporting reduced function as normal |
-| **explanation → CPIC** | output | invented clinical claims | a faithfulness metric that passed a polarity-reversed claim and failed a faithful paraphrase |
-| **label → CPIC** | output | mapping errors | a substring collision labelling 16 azathioprine rows `Safe` where CPIC directs a reduced dose |
-| **explanation → label** | output | prose contradicting its own badge | a green `Safe` badge over prose reading "your doctor may need to start you on a lower dose" |
-| **phenotype → label** | output | confident labels over unasserted phenotypes | a green `Safe` badge on fluorouracil for a DPYD call PharmCAT declined to classify |
-
-Each check runs at build time over every reachable case, and the request-time ones
-degrade to `Unknown` with a warning rather than serving a contradiction.
-
-**A caveat that is itself a result:** validation tooling is unvalidated code. Four
-separate checks in this project produced false results before being corrected —
-including one that reported a defect the pipeline did not have, caught only by
-querying the pipeline directly instead of trusting the harness. Every check here has
-sabotage tests that fail when the thing it guards is reverted.
+- Bhuvan T
+- Anupam M Hegde
+- Gangadhar V
+- Niteesh Seetaram Naik
 
 ---
 
-## 📊 Validation results
+## Acknowledgements and licensing
 
-Each claim is scoped to its own evidence. Numbers are read off artifacts in
-`reports/`; none is projected.
+- **PharmCAT** (MPL-2.0) — diplotype calling and CPIC recommendation retrieval
+- **CPIC / ClinPGx** — clinical guidelines; all clinical content originates here
+- **PharmVar** — star allele definitions
+- **1000 Genomes Project** and **CDC GeT-RM** — reference genomic data
+- **NVIDIA NIM** — LLM inference
+- **Flutter**, **FastAPI**, and the wider open-source ecosystem
 
-| Measurement | Result | Scope |
-| --- | ---: | --- |
-| **Label-mapping correctness** | **92 / 105** | Exhaustive over every phenotype combination for all 6 drugs; 13 accepted divergences, individually justified |
-| **Integration fidelity** | **100.0000%** | 400 real 1000 Genomes samples · 2 800 (sample, gene) pairs · 5 600 field comparisons · 0 mismatches |
-| **Adversarial inputs** | **0 mismatches** | All 74 of PharmCAT's own unit-test VCFs for our genes |
-| **CYP2D6 negative control** | **400 / 400 declined** | Not one fabricated call across the cohort |
-| **Phenotype → label invariant** | **294 corrected** | Every change removed an unsupported confident label; none added one. A DPYD-only patch would have left 293 of them live |
-| **External genotype concordance** | **n = 1** | `NA12273`, 2/2 exact. Reported as n=1, never as a percentage — GeT-RM ∩ 1000 Genomes is one sample |
-| **South Asian subgroup** | **n = 75** | CYP2C19 reduced-function 53.3%; allele frequencies agree with CPIC's Central/South Asian figures. No per-population claim at n=8–23 |
-
-### Confident-label rate — both input classes, always together
-
-| Input class | Confident-label rate | Measured wrong rate |
-| --- | ---: | ---: |
-| **Complete coverage** (clinical PGx panel, all-sites WGS/WES) | **100%** | **0%** |
-| **Polymorphic-filtered slices** (1000 Genomes, 19–57% coverage) | **12.58%** | gate declines the remainder |
-
-**12.58% characterises the input, not the system.** The same pipeline reaches 100%
-with 0% error on input meeting the documented requirements. The gate is working when
-it declines — the measured alternative is a confident wrong call.
+See `LICENSE` for this project's terms and third-party attributions.
 
 ---
 
-## 📥 Input requirements
-
-**Supply a VCF covering all 306 positions in PharmCAT's positions file, with an
-explicit genotype at every one — including homozygous-reference.**
-
-| Gene | Minimum coverage of defining positions |
-| --- | --- |
-| CYP2C19, CYP2C9, SLCO1B1 | **100%** |
-| TPMT, NUDT15 | 80% |
-| DPYD | 20% |
-
-**Do not supply a variants-only VCF.** A file listing only non-reference sites is
-indistinguishable, to the matcher, from one where those positions were never
-assayed — and the consequence is not a missing result but a confident wrong one. It
-is detected and warned about specifically. → [Full spec](docs/input_requirements.md)
-
----
-
-## 🗂 Repository map
-
-| Path | What it is |
-| --- | --- |
-| `backend/app/` | FastAPI service. `coverage.py` is the input gate, `cpic_engine.py` the label mapping, `explanation/` the grounded-prose layer |
-| `backend/app/data/` | `label_mapping.yaml` (rules as data), `position_requirements.json` (thresholds + provenance), `explanations.json` (pre-generated prose) |
-| `app/` | Flutter client — web, Android, iOS simulator |
-| `scripts/` | Validation harnesses and one-shot measurement tools |
-| **`reports/provenance_finding.md`** | **The primary result** — twelve pieces of evidence and the unifying bias |
-| **`reports/validation_report.md`** | All validation numbers, scoped to evidence |
-| `docs/ONBOARDING.md` | Start here if you are joining |
-| `docs/input_requirements.md` | What a VCF must contain |
-| `PROJECT_STATUS.md` | Honest status and limitations register |
-
----
-
-## ⚠️ Known limitations
-
-| Limitation | Detail |
-| --- | --- |
-| **CYP2D6 is never called** | Its star alleles depend on copy-number variation a VCF cannot express. PharmCAT reports `callSource: NONE` even with all 157 positions present. Codeine returns `Unknown` with an explicit warning rather than a fabricated call. We deliberately do **not** enable PharmCAT's unvalidated `-research cyp2d6` mode |
-| **GRCh38 only** | GRCh37/hg19 is rejected with a clear message. Liftover is out of scope — use CrossMap or Picard first |
-| **Cold starts** | The backend sleeps when idle; the first request can take ~1 minute. The client shows an honest waking state with a progress bar |
-| **`cpic_evidence_level` is always `Unknown`** | PharmCAT's report carries CPIC's *strength of recommendation*, not the A/B/C/D *level of evidence*. Inventing one would fabricate a clinical claim |
-| **6 drugs** | clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine. Warfarin returns `Unknown` — CPIC's guidance there is a dosing algorithm, not per-phenotype text |
-| **Not clinically validated** | Synthetic VCFs prove the plumbing, not correctness. Validation against GeT-RM consensus genotypes is future work |
-| **No clinical reviewer — declared, not pending** | This project has **no qualified clinical expert**, and will not get one. Rather than shipping unchecked prose, the system asserts no clinical content of its own: every sentence making a clinical claim is machine-verified to trace, word for word, to a CPIC recommendation issued by PharmCAT or to a cited mechanism document. `scripts/verify_provenance.py` enforces this as a release gate and CI runs it on every push. **20/20 entries pass.** What that establishes is that nothing was invented — *not* that a clinician agrees the text is correct. See [`reports/provenance_report.md`](reports/provenance_report.md) |
-| **`Unknown` phenotype means two different things** | The contract has one value where the data has two states: **no result** (the gene was never called — coverage, missing data) and **indeterminate** (the gene *was* called, but the diplotype has no CPIC phenotype assignment). Clinically these are opposites — one is ignorance, the other is a finished assay CPIC's table cannot classify. A distinct enum value is the right fix; it is **deliberately deferred** because it changes the response contract, the Pydantic model, and the Dart client together. Until then `map_phenotype_noted()` surfaces PharmCAT's raw phenotype string in `quality_metrics.warnings`, so any reader can tell which state produced the `Unknown`. A warning is strictly weaker than a typed field — a client cannot branch on it — and that is exactly why this is listed as a limitation rather than a solution. `test_phenotype_table.py` pins the deferral: adding the enum value fails a test whose message names every doc that must change with it |
-| **Input coverage is a hard requirement, not a nicety** | Three of six genes (CYP2C19, CYP2C9, SLCO1B1) need **complete** coverage of PharmCAT's 306 defining positions. Below that the pipeline does not merely decline — it confidently calls the reference haplotype, because a variant whose defining position is absent is invisible. Measured confidently-wrong rate at 60% coverage: CYP2C9 28.6%, NUDT15 25.0%, SLCO1B1 15.0%, and **every** wrong call replaced a reduced-function phenotype with a normal one. **Do not supply a variants-only VCF** — it is indistinguishable from one where those positions were never assayed. See [docs/input_requirements.md](docs/input_requirements.md) |
-| **SLCO1B1 resolves to a single diplotype for only 39.8% of validation samples — floor, not ceiling** | Measured on 400 real 1000 Genomes samples. It is **not** a parsing failure — 398/400 produced *a* diplotype; PharmCAT could not narrow it to one (163 samples had 1 candidate, 153 had 4, 84 had 10). **And it is a floor, not a production estimate:** the 1000 Genomes panel is filtered to polymorphic sites, so our slices carry only 19–57% of the positions PharmCAT asks for, and the absent ones are those defining reference-like haplotypes — exactly what drives ambiguity. At **complete** coverage the measured single-diplotype rate is **100%**. Stating either half alone misleads in opposite directions. Of the ambiguous SLCO1B1 calls, 83% are genuinely phenotype-*discordant*, so `Unknown` is the correct answer for them; see limitation below for the 17% that are not |
-| **An ambiguous diplotype reports `Undetermined`, not one of the candidates** | When PharmCAT cannot narrow to a single diplotype, `diplotype` reads `"Undetermined (N equally likely)"` and `candidate_diplotypes` carries the list. Naming one co-equal candidate would assert a genotype the evidence does not support — which is exactly what rendered a confident `Safe` for 195 of 400 validation samples before Phase 6 closed. The **phenotype** is still reported confidently when every informative candidate agrees on the functional class (30 SLCO1B1 calls), because the function is genuinely known even when the star alleles are not |
-| **Rate limit is in-memory** | Resets on restart; keyed on a spoofable header. Abuse dampening, not a security boundary |
-
----
-
-
-### Field authorship — who writes what
-
-Not everything in an explanation has the same author, and conflating them was a
-real defect: a prose model asked to emit `{diplotype}` templating complied 4
-times in 14, leaving ten entries unable to show the patient's genotype.
-
-| Field | Author | Guarantee |
-| --- | --- | --- |
-| `clinical_recommendation` | **PharmCAT / CPIC, verbatim** | Byte-identical to the guideline text. Never model-authored. |
-| `variant_rationale` | **Composed by code** at request time from that response's own PharmCAT profile | Always present, always agrees with the reported genotype — structurally, not by instruction |
-| `summary`, `mechanism`, `patient_friendly` | LLM (`meta/llama-3.1-8b-instruct`), genotype-agnostic | May not name a diplotype or emit placeholders; every clinical assertion must trace to a cited source |
-
-### What the automated checks can and cannot do
-
-Measured, not asserted — see `reports/provenance_finding.md`:
-
-- Entity guard catches fabricated doses, genes, rsIDs, star alleles.
-- Assertion checking catches invented quantities and timelines, but is
-  **structurally blind to a fabricated mechanism** ("inhibited by grapefruit
-  juice" contains no number and no unknown concept).
-- Polarity checking catches negation reversal in both directions.
-- Closed-vocabulary checking on mechanism text detects foreign entities but had a
-  **57% false-positive rate** on real prose (30% after narrowing to concrete
-  nouns), so it is **retired from the gate** and reports only.
-
-**No combination of these certifies that a sentence is clinically correct.** They
-are triage. The release gate is human adjudication of every shipped sentence, and
-every mechanism sentence requires an individual decision. Adjudication is the
-project author checking prose against its cited source — **not clinical expert
-review**, which this project has never had and does not claim.
-
----
-
-## 🧭 Project phases
-
-| Phase | Scope | Status |
-| --- | --- | --- |
-| 1 | FastAPI ↔ Flutter seam, JSON contract, stub analyzer | ✅ |
-| 2 | VCF validation → PharmCAT → CPIC label mapping | ✅ |
-| 3 | Mechanism corpus, pre-generated explanations, faithfulness guard | ✅ |
-| 4 | Deployment, cold-start resilience, security hardening, APK | ✅ |
-| 5A | Provider abstraction, LLM prose, provenance policy, human adjudication | ✅ (adjudication in progress) |
-| 5B | Outside CYP2D6 diplotype input | 🔜 |
-| 6 | Validation: 400-sample integration fidelity, exhaustive label mapping, frequency concordance | ✅ **complete** |
-| 7 | Docs, demo, team review | 🔜 |
-| 8 | Deployment | 🔜 |
-
----
-
-## ✅ Tests
-
-```bash
-cd backend && pip install -r requirements-dev.txt && pytest   # 491 passed, 4 skipped
-cd app     && flutter test && flutter analyze                 # 21 tests
-```
-
-Backend tests need **no PharmCAT, Java, Docker or API key** — they run against
-checked-in PharmCAT fixtures. The static-mode test actively poisons the LLM
-generator, so a regression that reintroduced a network call in the default path
-fails the build rather than surfacing at deploy time.
-
-### How explanations are checked — precisely
-
-Two different checks run at two different times. Stating this accurately
-matters, because "guard-checked" is easy to read as more than it is.
-
-**1. Faithfulness guard — build time.**
-`backend/app/explanation/guard.py` rejects any number, dose, rsID, star allele,
-gene or drug name that is not present in the supplied context. In `static` mode
-it runs during `scripts/pregenerate_explanations.py`, over prose that still
-contains `{diplotype}`-style placeholders; the verdict is stored and replayed at
-request time. In `live` mode it runs per request, with one retry.
-
-It does **not** check semantics — it cannot tell that "reduced CYP2C19 function
-causes the drug to accumulate" is backwards, because every token in that
-sentence is in the context. It catches fabricated entities; wrong reasoning is
-what corpus review is for.
-
-**2. Slot verification — request time.**
-The build-time verdict says nothing about the patient-specific values injected
-into those placeholders, because they are filled per request, long after. So
-`backend/app/explanation/slot_verifier.py` re-derives what each slot should have
-become from the response's own `pharmacogenomic_profile` — the object rendered
-in the card directly above the explanation — and confirms the filled text
-contains it. On a mismatch the result is demoted to the deterministic template
-and a warning appears in `quality_metrics`; a mismatched explanation is never
-served.
-
-Every response reports both, e.g.
-`explanation mode=static, source=static, guard=passed, slots=verified,
-provenance=verified`.
-
-So: **static mode is build-time guarded, runtime slot-verified, and
-provenance-verified sentence by sentence.**
-
-None of the three makes any claim about clinical *correctness*. A sentence
-assembled entirely from source words can still describe a mechanism backwards,
-and no check here would notice. Catching that needs a clinician, and this
-project has none — so the guarantee is stated in the narrower terms that are
-actually true rather than in terms of a review that was never going to happen.
-
----
-
-## 📦 Deploying
-
-Everything is written and ready; deploying needs your own accounts. Full verified
-steps: **[`infra/DEPLOY_NOTES.md`](infra/DEPLOY_NOTES.md)**.
-
-> **⚠️ Hugging Face Docker Spaces are no longer free** — HF now requires a PRO
-> plan for Docker/Gradio Spaces (verified 2026-07-23). `infra/DEPLOY_NOTES.md`
-> compares genuinely-free alternatives; **Google Cloud Run** is recommended, and
-> the same image runs on all of them because the container honours `$PORT`.
-
-| Piece | Where | Workflow |
-| --- | --- | --- |
-| Backend | Cloud Run / HF Spaces / Render | `infra/Dockerfile` |
-| Web | Cloudflare Pages | `.github/workflows/deploy-web.yml` |
-| APK | GitHub Releases | `.github/workflows/build-apk.yml` |
-| Warm-up | GitHub Actions cron | `.github/workflows/keepalive.yml` |
-
----
-
-## 👥 Team
-
-| Role | Name |
-| --- | --- |
-| Developer | *`<your name>`* |
-| Developer | *`<team member>`* |
-| Project guide | *`<guide name>`* |
-| Institution | *`<institution>`* |
-
-> Fill these in before submission. The label mapping and all explanations also
-> need the project guide's sign-off — see
-> [`backend/app/data/label_mapping.yaml`](backend/app/data/label_mapping.yaml)
-> and [`scripts/README.md`](scripts/README.md).
-
----
-
-## 🙏 Attribution
-
-| Component | Licence | Use |
-| --- | --- | --- |
-| [PharmCAT](https://github.com/PharmGKB/PharmCAT) 3.4.0 | MPL-2.0 | Genotype calling. Invoked as an unmodified jar; not vendored or altered |
-| [CPIC](https://cpicpgx.org/) guidelines | CC BY-SA 4.0 | All clinical recommendation text, quoted verbatim via PharmCAT |
-| [PharmGKB](https://www.pharmgkb.org/) | CC BY-SA 4.0 | Allele definitions, via PharmCAT |
-| [1000 Genomes](https://www.internationalgenome.org/) | open | Validation cohort |
-| [Flutter](https://flutter.dev/) / Dart | BSD-3-Clause | Client |
-| FastAPI, Pydantic, pytest | MIT | Backend |
-
-PharmaGuard's own code is MIT (see `LICENSE`). It neither modifies nor redistributes
-PharmCAT; the jar is downloaded at setup time.
-
-## 📄 Licence
-
-[MIT](LICENSE), with an explicit not-a-medical-device notice.
-
-PharmaGuard invokes **PharmCAT** (MPL-2.0) as a separate process. Clinical text
-originates from **CPIC** and is reproduced via PharmCAT's output — consult
-<https://cpicpgx.org/> before redistributing it.
-
----
-
-<div align="center">
-
-**Research/educational decision support only. Not a medical device. Not for clinical use.**
-
-</div>
+*Built as a final-year engineering project. It is a working system and a study of how such systems fail. Both halves matter — but the second one more.*

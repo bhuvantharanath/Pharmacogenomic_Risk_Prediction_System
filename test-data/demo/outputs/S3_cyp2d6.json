@@ -1,6 +1,6 @@
 {
  "patient_id": "NA12273",
- "timestamp": "2026-08-04T06:47:58.527944Z",
+ "timestamp": "2026-08-04T07:06:13.009268Z",
  "analyses": [
   {
    "drug": "codeine",
@@ -38,7 +38,7 @@
  "quality_metrics": {
   "vcf_parsing_success": true,
   "variants_detected_count": 0,
-  "processing_time_ms": 1240,
+  "processing_time_ms": 1192,
   "warnings": [
    "The VCF header does not state a reference build; assuming GRCh38. If it is actually GRCh37/hg19, the results will be wrong.",
    "CYP2C19: only 16 of 35 required positions (46%) carry an explicit genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal.",
