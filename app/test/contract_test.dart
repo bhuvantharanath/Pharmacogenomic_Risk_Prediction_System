@@ -101,7 +101,16 @@ const String _fixture = '''
     "vcf_parsing_success": true,
     "variants_detected_count": 2,
     "processing_time_ms": 1,
-    "warnings": ["STUB: PharmCAT not integrated yet"]
+    "warnings": ["STUB: PharmCAT not integrated yet"],
+      "position_coverage": {
+        "CYP2D6": {
+          "positions_present": 157,
+          "positions_required": 157,
+          "percent": 100.0,
+          "minimum_percent": 100,
+          "sufficient": true
+        }
+      }
   }
 }
 ''';
@@ -182,6 +191,15 @@ void main() {
       expect(find.text('Toxic'), findsWidgets);
       expect(find.text('Unknown'), findsWidgets);
       expect(find.textContaining('Not a medical device'), findsWidgets);
+
+      // The export buttons sit below the coverage summary, so in a lazily-built
+      // list they are not constructed until scrolled to. Scroll rather than
+      // enlarging the surface: this asserts a user can actually reach them.
+      await tester.dragUntilVisible(
+        find.text('Copy JSON'),
+        find.byType(Scrollable).first,
+        const Offset(0, -200),
+      );
       expect(find.text('Copy JSON'), findsOneWidget);
       expect(find.text('Export JSON'), findsOneWidget);
     });

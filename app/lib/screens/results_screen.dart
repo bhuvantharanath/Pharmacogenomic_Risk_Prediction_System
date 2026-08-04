@@ -11,7 +11,18 @@ import '../models/enums.dart';
 import '../theme/risk_style.dart';
 import '../utils/json_export.dart';
 import '../widgets/disclaimer_banner.dart';
+import '../widgets/coverage_summary.dart';
 import '../widgets/result_card.dart';
+
+/// The backend's variants-only warning, if it fired. Matched on its opening
+/// phrase rather than the whole string so wording can be improved server-side
+/// without silently disabling the alert here.
+String? _variantsOnlyWarning(QualityMetrics metrics) {
+  for (final String w in metrics.warnings) {
+    if (w.contains('no homozygous-reference genotypes')) return w;
+  }
+  return null;
+}
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key, required this.response});
@@ -90,11 +101,23 @@ class ResultsScreen extends StatelessWidget {
               ),
               const SizedBox(height: 8),
 
+              // ABOVE the results, not below them. A variants-only file is the
+              // most likely way a real user gets a wrong answer, and burying the
+              // warning under the cards would let them read the results first.
+              if (_variantsOnlyWarning(response.qualityMetrics) != null)
+                VariantsOnlyAlert(
+                  message: _variantsOnlyWarning(response.qualityMetrics)!,
+                ),
+
+              // Shown on every analysis, pass or fail — see CoverageSummary.
+              CoverageSummary(coverage: response.qualityMetrics.positionCoverage),
+
               if (response.analyses.isEmpty)
                 const Text('The server returned no analyses.')
               else
                 ...response.analyses.map(
-                  (PerDrugResult r) => ResultCard(result: r),
+                  (PerDrugResult r) =>
+                      ResultCard(result: r, metrics: response.qualityMetrics),
                 ),
 
               const SizedBox(height: 8),

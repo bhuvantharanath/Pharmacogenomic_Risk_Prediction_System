@@ -276,12 +276,51 @@ class PerDrugResult {
 }
 
 /// Pipeline telemetry — lets the UI show how much to trust the result.
+/// Coverage of one gene's required defining positions in the uploaded VCF.
+///
+/// A position counts only when the file carries an EXPLICIT genotype for it,
+/// including homozygous-reference. `./.` and absent rows do not count — that
+/// distinction is the whole point, because a variants-only file looks exactly
+/// like one where those positions were never assayed.
+class GeneCoverage {
+  const GeneCoverage({
+    required this.positionsPresent,
+    required this.positionsRequired,
+    required this.percent,
+    required this.minimumPercent,
+    required this.sufficient,
+  });
+
+  final int positionsPresent;
+  final int positionsRequired;
+  final double percent;
+  final int minimumPercent;
+  final bool sufficient;
+
+  factory GeneCoverage.fromJson(Map<String, dynamic> json) => GeneCoverage(
+    positionsPresent: (json['positions_present'] as num?)?.toInt() ?? 0,
+    positionsRequired: (json['positions_required'] as num?)?.toInt() ?? 0,
+    percent: (json['percent'] as num?)?.toDouble() ?? 0,
+    minimumPercent: (json['minimum_percent'] as num?)?.toInt() ?? 100,
+    sufficient: json['sufficient'] == true,
+  );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'positions_present': positionsPresent,
+    'positions_required': positionsRequired,
+    'percent': percent,
+    'minimum_percent': minimumPercent,
+    'sufficient': sufficient,
+  };
+}
+
 class QualityMetrics {
   const QualityMetrics({
     required this.vcfParsingSuccess,
     required this.variantsDetectedCount,
     required this.processingTimeMs,
     required this.warnings,
+    required this.positionCoverage,
   });
 
   final bool vcfParsingSuccess;
@@ -289,11 +328,24 @@ class QualityMetrics {
   final int processingTimeMs;
   final List<String> warnings;
 
+  /// Per-gene coverage of PharmCAT's required defining positions, keyed by gene.
+  /// Present on every response, pass or fail — a confident result at low
+  /// coverage is the dangerous case, so the number is needed either way.
+  final Map<String, GeneCoverage> positionCoverage;
+
   factory QualityMetrics.fromJson(Map<String, dynamic> json) => QualityMetrics(
     vcfParsingSuccess: json['vcf_parsing_success'] == true,
     variantsDetectedCount: (json['variants_detected_count'] as num?)?.toInt() ?? 0,
     processingTimeMs: (json['processing_time_ms'] as num?)?.toInt() ?? 0,
     warnings: _strList(json['warnings']),
+    positionCoverage: <String, GeneCoverage>{
+      for (final MapEntry<String, dynamic> e
+          in ((json['position_coverage'] as Map<String, dynamic>?) ??
+                  const <String, dynamic>{})
+              .entries)
+        if (e.value is Map<String, dynamic>)
+          e.key: GeneCoverage.fromJson(e.value as Map<String, dynamic>),
+    },
   );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -301,6 +353,10 @@ class QualityMetrics {
     'variants_detected_count': variantsDetectedCount,
     'processing_time_ms': processingTimeMs,
     'warnings': warnings,
+    'position_coverage': <String, dynamic>{
+      for (final MapEntry<String, GeneCoverage> e in positionCoverage.entries)
+        e.key: e.value.toJson(),
+    },
   };
 }
 

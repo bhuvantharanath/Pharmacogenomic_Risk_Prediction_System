@@ -4,13 +4,19 @@ library;
 import 'package:flutter/material.dart';
 
 import '../models/analysis.dart';
+import '../models/unknown_reason.dart';
+import 'unknown_panel.dart';
 import '../models/enums.dart';
 import '../theme/risk_style.dart';
 
 class ResultCard extends StatelessWidget {
-  const ResultCard({super.key, required this.result});
+  const ResultCard({super.key, required this.result, required this.metrics});
 
   final PerDrugResult result;
+
+  /// Needed to explain WHY a result is Unknown: coverage is a typed field on
+  /// quality_metrics, and the reason cannot be derived from the drug result alone.
+  final QualityMetrics metrics;
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +59,20 @@ class ResultCard extends StatelessWidget {
               child: _MetaRow(risk: risk, profile: profile, style: style),
             ),
             children: <Widget>[
+              // FIRST, and unconditionally, when the result is Unknown. An
+              // Unknown that does not explain itself is the grey chip this
+              // redesign exists to remove: the user cannot tell whether the
+              // system failed, their file was inadequate, or the science simply
+              // does not reach. Those are different facts and only one is theirs
+              // to act on.
+              if (result.riskAssessment.riskLabel == RiskLabel.unknown) ...<Widget>[
+                UnknownPanel(
+                  reason: classifyUnknown(result, metrics),
+                  profile: profile,
+                  coverage: metrics.positionCoverage[profile.primaryGene],
+                ),
+                const SizedBox(height: 14),
+              ],
               _Section(
                 icon: Icons.medical_information_outlined,
                 title: 'Clinical recommendation',
@@ -160,10 +180,16 @@ class _MetaRow extends StatelessWidget {
       spacing: 6,
       runSpacing: 6,
       children: <Widget>[
+        // Ineffective and Toxic both render red by the spec, so severity is what
+        // separates them. `critical` is filled and bold; anything lower is
+        // outlined — rank has to survive the shared colour.
         _Pill(
-          icon: Icons.speed_outlined,
+          icon: severityRank(risk.severity) >= 4
+              ? Icons.priority_high
+              : Icons.speed_outlined,
           text: severityLabel(risk.severity),
           accent: style.accent,
+          filled: severityRank(risk.severity) >= 4,
         ),
         _Pill(
           icon: Icons.percent_outlined,
@@ -172,7 +198,13 @@ class _MetaRow extends StatelessWidget {
         ),
         if (profile.primaryGene != 'Unknown')
           _Pill(
-            icon: Icons.science_outlined,
+            icon: profile.candidateDiplotypes.length > 1
+                ? Icons.alt_route
+                : Icons.science_outlined,
+            // With several equally-likely candidates the backend sends
+            // "Undetermined (N equally likely)" rather than one of them. Render
+            // that verbatim: picking one here would re-assert the genotype the
+            // backend deliberately declined to claim.
             text: '${profile.primaryGene} ${profile.diplotype}',
             accent: style.accent,
           ),
@@ -189,27 +221,42 @@ class _MetaRow extends StatelessWidget {
 }
 
 class _Pill extends StatelessWidget {
-  const _Pill({required this.icon, required this.text, required this.accent});
+  const _Pill({
+    required this.icon,
+    required this.text,
+    required this.accent,
+    this.filled = false,
+  });
 
   final IconData icon;
   final String text;
   final Color accent;
+
+  /// Reserved for the top severity rank. Colour is shared between Ineffective
+  /// and Toxic, so weight is what makes `critical` outrank `high`.
+  final bool filled;
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface.withValues(alpha: 0.65),
+        color: filled
+            ? accent.withValues(alpha: 0.22)
+            : theme.colorScheme.surface.withValues(alpha: 0.65),
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: accent.withValues(alpha: 0.35)),
+        border: Border.all(
+          color: accent.withValues(alpha: filled ? 0.9 : 0.35),
+          width: filled ? 1.5 : 1,
+        ),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Icon(icon, size: 13, color: theme.colorScheme.onSurfaceVariant),
+            Icon(icon, size: 13,
+                color: filled ? accent : theme.colorScheme.onSurfaceVariant),
             const SizedBox(width: 5),
             Text(text, style: theme.textTheme.labelSmall),
           ],

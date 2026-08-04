@@ -128,3 +128,21 @@ version and data version — allele definitions change between releases, and a
 which is why they are usable here. Do not put anyone's clinical or personal
 genetic data through this project: it is a student prototype with no
 safeguards, no access control, and an explicit not-for-clinical-use disclaimer.
+
+
+## Demo pair — the contrast is real, not simulated
+
+Two files that differ only in whether homozygous-reference calls are present.
+There is no demo mode and no simulated state: the difference in output comes
+entirely from the input.
+
+| File | Shape | What the system does |
+| --- | --- | --- |
+| `demo_complete_coverage.vcf` | **Complete coverage, clinical-panel-equivalent.** All 306 PharmCAT positions carry an explicit genotype, including homozygous-reference | Confident results: clopidogrel **Ineffective**, simvastatin **Safe**. CYP2C19 coverage 100% |
+| `demo_variants_only.vcf` | **Variants-only — unsafe for pharmacogenomics.** The same sample with hom-ref rows removed, exactly as a variants-only caller would emit | Coverage gate declines: both drugs **Unknown**, variants-only alert raised, CYP2C19 coverage 11.4% |
+
+The second file is not corrupt or truncated — it is the shape most VCFs in the
+wild have, and that is the point. A file listing only non-reference sites is
+indistinguishable from one where those positions were never assayed, so the
+system declines rather than read absent positions as reference. See
+`docs/input_requirements.md`.
