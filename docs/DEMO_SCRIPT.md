@@ -1,171 +1,151 @@
-# Demo script — 5 minutes
+# Demo runbook — 5 minutes, one command
 
-The centrepiece is **one contrast**, not a feature tour: the same patient, two
-file shapes, two different and both-correct answers.
+The demo is a script, not a list of commands to type. Three earlier walkthroughs
+each died on a different environmental blocker — a CORS guard firing on an env
+marker, a rate limit exhausted by rehearsal, shell quoting mangling file paths.
+None was a product defect and all three would have happened live. Rehearsal and
+presentation now run the identical code path, and `test_demo_script.py` covers it.
 
-## Pre-flight (do before the audience is watching)
+---
 
-**JDK 17.** PharmCAT needs a JRE 17+, and the Android Gradle build rejects JDK 25 —
-so **JDK 17 satisfies both** and is the version to have installed. Check first:
+## Pre-flight
+
+**1 · JDK 17.** Satisfies both PharmCAT (needs 17+) and the Android Gradle build
+(rejects 25). One JDK for both.
 
 ```bash
 java -version
 ```
 
-Everything below is backend-only and works on any JRE 17+; only the APK build cares.
+If it is not 17, point at it for this shell — `infra/local-dev.env` records the path:
 
-**Start the backend and note the URL it prints.**
+```bash
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17 && export PATH="$JAVA_HOME/bin:$PATH"
+```
+
+**2 · Load local config.** This sets `CORS_ALLOWED_ORIGINS` for localhost.
+
+```bash
+set -a && source infra/local-dev.env && set +a
+```
+
+> **Why local config sets CORS at all.** The backend refuses to start when hosting
+> markers are present (`PORT`, `K_SERVICE`, `SPACE_ID`, `RENDER`) and the allowlist
+> is empty. That is a **deliberate hard failure**, not a bug: an unset allowlist
+> passes every health check while blocking every real browser request, which is
+> the Phase 4 defect the guard exists to catch. Configuring it locally means local
+> startup exercises the same path as production. Do not work around the guard.
+>
+> Note also that the config lives in `infra/local-dev.env`, **not** `backend/.env`
+> — a `.env` inside the backend makes `assert_no_baked_secrets` refuse to start,
+> because a dotfile inside a deployed image is a credential-leak risk.
+
+**3 · Start the backend** and note the URL it prints — do not assume it.
 
 ```bash
 cd backend && uvicorn app.main:app --port 8000
 ```
 
-It prints its own resolved address — do not assume it:
-
 ```
+[startup] pharmcat=jar via java -jar …/pharmcat-3.4.0-all.jar
 [startup] listening on http://127.0.0.1:8000  (docs at /docs)
 ```
 
-**Export that as `$API` so every command below follows it.** Nothing in this
-runbook hardcodes a port.
+If that port differs, export it:
 
 ```bash
-export API=<paste the URL from the startup line above>
+export PHARMAGUARD_API=http://127.0.0.1:<port>
 ```
 
-(On a default local run that is `http://127.0.0.1:8000`, but copy it rather than
-assume it — the whole point of the printed line is that `--port` may differ.)
+**4 · Rehearse freely.** Loopback is exempt from rate limiting, so running the
+demo repeatedly from this machine costs nothing. The deployed limit is unchanged.
 
-> Do **not** set `PORT` to make this line accurate. `PORT` is one of the markers
-> the CORS guard reads as "this instance looks hosted", and the backend will refuse
-> to start with an empty allowlist. Pass `--port` instead.
-
-```bash
-curl -s $API/ready | python3 -m json.tool
-```
-
-Confirm `"status": "ready"` and that the `pharmcat` check says `jar: java -jar …`.
-Then send one throwaway request to warm the JVM — the first call pays class-loading
-and runs ~2× slower, which looks like a stall on stage.
-
-```bash
-curl -s -X POST $API/analyze -F "file=@test-data/demo/demo_normal.vcf" -F "drugs=clopidogrel" -o /dev/null -w "warm-up %{time_total}s\n"
-```
-
-**Checklist:** `java -version` is 17 · backend up · **URL from the startup line
-exported as `$API`** · `/ready` green · warm-up sent · terminal font large ·
-`test-data/demo/` open in a second pane.
+**Checklist:** `java -version` is 17 · `infra/local-dev.env` sourced · backend up ·
+URL noted · terminal font large.
 
 ---
 
-## 0 · Framing (30s)
+## The demo
 
-> "This predicts drug risk from a patient's genome. But the interesting part isn't
-> that it answers — it's what it does when it *shouldn't*. Every defect we found
+```bash
+python scripts/run_demo.py
+```
+
+That runs pre-flight, a JVM warm-up, all six scenarios, and prints the S1/S2
+contrast table. **~7 seconds** of compute; the rest is you talking.
+
+For a paced walkthrough that waits for you between scenarios:
+
+```bash
+python scripts/run_demo.py --slow
+```
+
+---
+
+## What to say
+
+### 0 · Framing (30s)
+
+> "This predicts drug risk from a patient's genome. The interesting part isn't
+> that it answers — it's what it does when it shouldn't. Every defect we found
 > building it erred the same way: sounding more confident than the evidence
-> supported. So the system is built to decline."
+> supported. So it's built to decline."
 
----
+### 1 · It answers (45s) — S1
 
-## 1 · It answers when it can (45s) — S1
+**Expect:** `CYP2C19 *2/*2` → PM → **Ineffective**, critical, 7/7 genes at 100%.
 
-```bash
-curl -s -X POST $API/analyze -F "file=@test-data/demo/demo_confident.vcf" -F "drugs=clopidogrel" | python3 -m json.tool
-```
+> "Poor metaboliser. Clopidogrel is a prodrug this patient never activates. The
+> recommendation text is CPIC's own words — we don't write dosing guidance."
 
-**Expect:** `CYP2C19 *2/*2` → `PM` → **Ineffective**, severity `critical`,
-confidence 0.95, coverage 7/7 genes. ~1.2 s.
+### 2 · THE CENTREPIECE (90s) — S2 and the contrast table
 
-> "Poor metaboliser. Clopidogrel is a prodrug — this patient never activates it.
-> That's a real finding, and the recommendation text is CPIC's own words, not ours."
-
-**If it fails:** show `test-data/demo/outputs/S1_confident.json`, captured earlier.
-
----
-
-## 2 · THE CENTREPIECE — same patient, declined (90s) — S2
-
-```bash
-curl -s -X POST $API/analyze -F "file=@test-data/demo/demo_variants_only.vcf" -F "drugs=clopidogrel" | python3 -m json.tool
-```
-
-**Expect:** **Unknown**, confidence 0.00, `CYP2C19 4/35 positions = 11.4%`, and a
-variants-only warning.
+**Expect:** **Unknown**, confidence 0.00, CYP2C19 4/35 = 11.4%, variants-only alert.
 
 > "Same patient. Same genotype — PharmCAT still calls \*2/\*2 from this file. The
-> only difference is that this VCF lists variants only, with no homozygous-reference
-> rows. That's what most VCFs in the wild look like.
+> only difference is that it lists variants only, with no homozygous-reference
+> rows. That's the shape most VCFs in the wild have.
 >
-> And that's the problem: a position that's absent is indistinguishable from one
-> never tested. A variant whose defining position is missing is invisible — so the
-> genotype reads as *normal*. Missing data doesn't look like uncertainty here. It
-> looks like health.
+> An absent position is indistinguishable from one never tested. So a variant
+> whose defining position is missing is invisible, and the genotype reads as
+> *normal*. Missing data here doesn't look like uncertainty — it looks like health.
 >
-> We measured it: at 60% coverage up to 28.6% of calls were confidently wrong, and
-> every single wrong call reported reduced function as normal. So the system
-> refuses, and tells you exactly what to upload instead."
+> We measured it: up to 28.6% confidently-wrong calls at 60% coverage, and every
+> single wrong call reported reduced function as normal. So the system refuses,
+> and tells you what to upload instead."
 
-**This is the moment.** Pause here.
+**Pause on the contrast table.** This is the moment.
 
-**If it fails:** `test-data/demo/outputs/S2_variants_only.json`.
+### 3 · Declining the unknowable (45s) — S3
 
----
+> "Real 1000 Genomes sample, and it's in GeT-RM — which records its CYP2D6 as
+> \*1/\*1. A right answer exists, and we still decline, because CYP2D6 depends on
+> copy-number variation a VCF can't express. Not failing to find it. Refusing to
+> guess it."
 
-## 3 · Declining what cannot be known (45s) — S3
+### 4 · A different guard (45s) — S4
 
-```bash
-curl -s -X POST $API/analyze -F "file=@test-data/demo/demo_na12273_1000g.vcf" -F "drugs=codeine" | python3 -m json.tool
-```
+**Expect:** **Unknown**, DPYD coverage 37.3% against a 20% minimum — **passing**.
 
-**Expect:** codeine **Unknown**, CYP2D6 not called, structural-variation warning.
+> "Coverage is fine here, so this isn't the gate. PharmCAT called the genotype but
+> said Indeterminate. Our lookup table would still have found a row and rendered
+> **Safe**, on fluorouracil, where DPYD deficiency is fatal. Found at 400 samples.
+> Fixing it generally rather than patching DPYD changed 294 results — 293 of them
+> on other genes a targeted patch would have missed."
 
-> "Real 1000 Genomes sample. This one is in GeT-RM, the reference panel — which
-> records its CYP2D6 as \*1/\*1. So there *is* a right answer, and we still decline,
-> because CYP2D6 depends on copy-number variation a VCF cannot express. We're not
-> failing to find it. We're refusing to guess it."
+### 5 · It still answers (30s) — S5 and S6
 
----
+> "Not a system that says Unknown to everything. Five drugs in one request, and an
+> unsupported drug degrades to Unknown rather than erroring."
 
-## 4 · The invariant, isolated (45s) — S4
-
-```bash
-curl -s -X POST $API/analyze -F "file=@test-data/demo/demo_dpyd_indeterminate.vcf" -F "drugs=fluorouracil" | python3 -m json.tool
-```
-
-**Expect:** **Unknown**. DPYD coverage 31/83 = 37.3%, which **passes** its 20%
-minimum — so this is not the coverage gate.
-
-> "Coverage is fine here. This is a different guard. PharmCAT called the genotype
-> but said `Indeterminate` — it declined to assign a phenotype. Our lookup table
-> would still have found a row and rendered **Safe**, on fluorouracil, where DPYD
-> deficiency is fatal. We found that at 400 samples. Fixing it generally rather
-> than patching DPYD changed 294 results — and 293 of those were on other genes a
-> targeted patch would have missed."
-
----
-
-## 5 · It still answers (30s) — S5 + S6
-
-```bash
-curl -s -X POST $API/analyze -F "file=@test-data/demo/demo_confident.vcf" -F "drugs=clopidogrel,simvastatin,fluorouracil,codeine,ibuprofen" | python3 -m json.tool
-```
-
-**Expect:** Ineffective / Safe / Safe / Unknown (CYP2D6) / Unknown (ibuprofen —
-no CPIC guideline). Five drugs, one request.
-
-> "Not a system that says Unknown to everything. It answers where the evidence
-> supports it, and an unsupported drug degrades to Unknown rather than erroring."
-
----
-
-## 6 · The evidence (45s)
+### 6 · The evidence (45s)
 
 ```bash
 python scripts/validate_label_mapping.py
 ```
 
-> "92 of 105 — and that's exhaustive, every phenotype combination for all six
-> drugs, not a sample. The 13 are documented divergences, each justified."
+> "92 of 105 — exhaustive, every phenotype combination for all six drugs, not a
+> sample. The 13 are documented divergences."
 
 ```bash
 python scripts/adjudication_status.py
@@ -181,36 +161,25 @@ python scripts/adjudication_status.py
 | Step | Time |
 | --- | ---: |
 | Framing | 0:30 |
-| S1 confident | 0:45 |
-| **S2 contrast** | **1:30** |
-| S3 CYP2D6 | 0:45 |
-| S4 invariant | 0:45 |
-| S5/S6 breadth | 0:30 |
+| S1 | 0:45 |
+| **S2 + contrast** | **1:30** |
+| S3 | 0:45 |
+| S4 | 0:45 |
+| S5 / S6 | 0:30 |
 | Evidence | 0:45 |
 | **Total** | **5:30** |
 
-Cut S4 first if short; cut S3 second. **Never cut S2.**
+Cut S4 first if short, S3 second. **Never cut S2.**
 
-## ⚠️ The rate limit will bite you if you rehearse and then present
+---
 
-`/analyze` allows **10 requests per 5 minutes per IP**, in-memory. The demo makes
-**7** (warm-up plus six scenarios). Rehearsing and then presenting inside the same
-five-minute window exhausts it, and every further call returns **429** in about a
-millisecond — which on stage looks exactly like the backend crashing.
+## Fallbacks
 
-Measured: a full clean run is **7.6 s** for six scenarios, plus ~1.2 s warm-up.
-
-**Before presenting, restart the backend.** The limiter is in-memory, so a restart
-clears it instantly — faster and more certain than waiting out the window.
-
-```bash
-pkill -f "uvicorn app.main:app" && cd backend && uvicorn app.main:app --port 8000
-```
-
-Then re-export `$API` from the printed startup line and send one warm-up request.
-
-## If the backend dies mid-demo
-
-Every response is pre-captured in `test-data/demo/outputs/`. Say so plainly —
-"the server's gone, here's the response I captured this morning" — and continue.
-The files are real output, not mock-ups.
+| Failure | What to do |
+| --- | --- |
+| Pre-flight says UNREACHABLE | It prints the start command. Backend probably not running, or on another port — check the startup line and set `PHARMAGUARD_API`. |
+| Backend refuses to start, CORS error | `infra/local-dev.env` was not sourced. The guard is correct; source it and restart. |
+| Backend refuses to start, baked-secret error | A `backend/.env` exists. Delete it — config belongs in `infra/local-dev.env`. |
+| A scenario returns 429 | Should not happen from loopback. If presenting from another machine, wait the `Retry-After` seconds. |
+| Backend dies mid-demo | Every response is pre-captured in `test-data/demo/outputs/`. Say so plainly and read from those — they are real output, not mock-ups. |
+| Anything else | `python scripts/run_demo.py --scenario 2` runs the centrepiece alone in ~1 second. |

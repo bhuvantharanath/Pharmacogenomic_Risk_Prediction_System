@@ -85,6 +85,16 @@ class PharmaGuardApi {
 
     final int status = res.statusCode ?? 0;
     if (status != 200) {
+      // 429 is rendered distinctly. It arrives in ~1 ms, so a generic error
+      // message makes a working rate limiter look like a crashed backend —
+      // which is bad on stage and worse for a real user, who would retry
+      // immediately and stay limited.
+      if (status == 429) {
+        throw ApiException(
+          _describeRateLimit(res.data, res.headers.value('retry-after')),
+          statusCode: status,
+        );
+      }
       throw ApiException(_describeHttpError(status, res.data), statusCode: status);
     }
 
@@ -131,6 +141,21 @@ class PharmaGuardApi {
 
   /// FastAPI puts human-readable text in `detail`; surface it verbatim when it
   /// is a plain string, and summarise it when it is a validation-error list.
+  /// The 429 message. Says it is a rate limit and when to retry — never a bare
+  /// failure, because "try again in 42 seconds" and "the server is broken" call
+  /// for completely different responses from the user.
+  String _describeRateLimit(dynamic body, String? retryAfter) {
+    final int? seconds = int.tryParse(retryAfter ?? '');
+    final String when = seconds != null
+        ? 'Try again in $seconds second${seconds == 1 ? '' : 's'}.'
+        : 'Please wait a short while and try again.';
+    if (body is Map && body['detail'] is String) {
+      return '${body['detail']}';
+    }
+    return 'Too many requests — this demo limits how many analyses can run in '
+        'a short window. $when';
+  }
+
   String _describeHttpError(int status, dynamic body) {
     if (body is Map && body['detail'] != null) {
       final dynamic detail = body['detail'];

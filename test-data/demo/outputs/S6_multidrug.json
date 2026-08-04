@@ -1,1 +1,269 @@
-{"patient_id":"DEMO_CONFIDENT","timestamp":"2026-08-04T06:35:37.066006Z","analyses":[{"drug":"clopidogrel","risk_assessment":{"risk_label":"Ineffective","confidence_score":0.95,"severity":"critical"},"pharmacogenomic_profile":{"primary_gene":"CYP2C19","diplotype":"*2/*2","recommendation_diplotype":null,"candidate_diplotypes":[],"phenotype":"PM","activity_score":null,"detected_variants":[{"rsid":"rs12769205","gene":"CYP2C19","genotype":"G/G","star_allele":null,"function":"Contributes to named allele(s): *1, *2, *35"},{"rsid":"rs58973490","gene":"CYP2C19","genotype":"A/A","star_allele":null,"function":"Contributes to named allele(s): *1, *2, *11"},{"rsid":"rs4244285","gene":"CYP2C19","genotype":"A/A","star_allele":null,"function":"Contributes to named allele(s): *1, *2"},{"rsid":"rs3758581","gene":"CYP2C19","genotype":"G/G","star_allele":null,"function":"Contributes to named allele(s): *1, *2, *3, *4, *5, *6, *7, *8, *9, *10, *11, *12, *13, *14, *15, *17, *18, *19, *22, *23, *24, *25, *26, *28, *29, *31, *32, *33, *35, *39, *40, *41"}]},"clinical_recommendation":{"action":"Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.","dosing_guidance":"Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.","cpic_recommendation":"CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events","cpic_evidence_level":"Unknown","alternatives":["CPIC indicates an alternative drug is available — see the recommendation text above for the specific agents."],"source":"Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]"},"llm_generated_explanation":{"summary":"Your genetic result affects how well you respond to clopidogrel. People with this result are at increased risk for the drug not working as intended, which can lead to serious cardiac and cerebrovascular events.","mechanism":"Clopidogrel is a prodrug that needs to be converted into an active form by an enzyme. Your genetic result affects how well this enzyme works, which in turn affects how well the drug works. If the enzyme doesn't work well, less of the active form is produced, and the drug may not work as intended.","variant_rationale":"PharmCAT called CYP2C19 as *2/*2, which corresponds to a Poor Metabolizer result. The non-reference positions supporting this call were rs12769205 (G/G), rs58973490 (A/A), rs4244285 (A/A) and rs3758581 (G/G).","patient_friendly":"If you have this result, it's best to avoid clopidogrel if possible. If you can't avoid it, your doctor may recommend a different medication, such as prasugrel or ticagrelor, at the standard dose. Always talk to your doctor or pharmacist about your specific situation and any concerns you may have.","disclaimer":"Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."}},{"drug":"simvastatin","risk_assessment":{"risk_label":"Safe","confidence_score":0.95,"severity":"none"},"pharmacogenomic_profile":{"primary_gene":"SLCO1B1","diplotype":"*1/*1","recommendation_diplotype":null,"candidate_diplotypes":[],"phenotype":"NM","activity_score":null,"detected_variants":[]},"clinical_recommendation":{"action":"Prescribe desired starting dose and adjust doses based on disease-specific guidelines.","dosing_guidance":"Prescribe desired starting dose and adjust doses based on disease-specific guidelines.","cpic_recommendation":"CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure","cpic_evidence_level":"Unknown","alternatives":[],"source":"Annotation of CPIC Guideline for simvastatin and SLCO1B1 (via PharmCAT) [label rule: standard_dosing]"},"llm_generated_explanation":{"summary":"Your genetic result does not affect the typical risk of muscle toxicity from simvastatin. You can be prescribed the desired starting dose and adjust doses based on disease-specific guidelines.","mechanism":"Simvastatin is a statin that works by inhibiting an enzyme inside liver cells. The liver's ability to take up simvastatin is important for keeping systemic exposure low and reducing the risk of muscle toxicity. Your genetic result does not affect the liver's ability to take up simvastatin, so the typical risk of muscle toxicity remains.","variant_rationale":"PharmCAT called SLCO1B1 as *1/*1, which corresponds to a Normal Function result. The non-reference positions supporting this call were no non-reference variants were detected.","patient_friendly":"You don't have a genetic variation that affects how your body handles simvastatin. This means you can take the usual dose and adjust it based on your disease and how you're responding to the medication. It's always a good idea to talk to your doctor or pharmacist about your specific situation and any concerns you may have.","disclaimer":"Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."}},{"drug":"fluorouracil","risk_assessment":{"risk_label":"Safe","confidence_score":0.95,"severity":"none"},"pharmacogenomic_profile":{"primary_gene":"DPYD","diplotype":"Reference/Reference","recommendation_diplotype":null,"candidate_diplotypes":[],"phenotype":"NM","activity_score":2.0,"detected_variants":[]},"clinical_recommendation":{"action":"Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.","dosing_guidance":"Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.","cpic_recommendation":"CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity","cpic_evidence_level":"Unknown","alternatives":[],"source":"Annotation of CPIC Guideline for fluorouracil and DPYD (via PharmCAT) [label rule: standard_dosing]"},"llm_generated_explanation":{"summary":"Based on your genetic result, there is no indication to change the dose or therapy for fluorouracil. Use the label-recommended dosage and administration.","mechanism":"Fluorouracil is a type of chemotherapy that is broken down by an enzyme called dihydropyrimidine dehydrogenase (DPD). Your body's normal DPD activity helps to inactivate most of the drug, which reduces the risk of severe side effects. If you have normal DPD activity, the standard dose of fluorouracil is likely to be safe.","variant_rationale":"PharmCAT called DPYD as Reference/Reference, which corresponds to a Normal Metabolizer result. The reported activity score is 2.0. The non-reference positions supporting this call were no non-reference variants were detected.","patient_friendly":"Your genetic result shows that you are a normal metabolizer of fluorouracil. This means that your body is able to break down the drug in a normal way, which reduces the risk of severe side effects. You should be able to take the standard dose of fluorouracil without any problems. However, it's always best to speak with your doctor or pharmacist to confirm the best course of treatment for you.","disclaimer":"Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."}},{"drug":"codeine","risk_assessment":{"risk_label":"Unknown","confidence_score":0.1,"severity":"none"},"pharmacogenomic_profile":{"primary_gene":"CYP2D6","diplotype":"Unknown","recommendation_diplotype":"Unknown/Unknown","candidate_diplotypes":[],"phenotype":"Unknown","activity_score":null,"detected_variants":[]},"clinical_recommendation":{"action":"CYP2D6 could not be called from this VCF, so no pharmacogenomic recommendation can be made for codeine.","dosing_guidance":"No CPIC dosing guidance is available for this gene-drug-phenotype combination.","cpic_recommendation":"Annotation of CPIC Guideline for codeine and CYP2D6","cpic_evidence_level":"Unknown","alternatives":[],"source":"PharmCAT (no matching CPIC annotation)"},"llm_generated_explanation":{"summary":"Your genetic result for codeine is unknown, so we cannot explain how it will be handled by your body.","mechanism":"Codeine is a prodrug that is converted into morphine by the enzyme CYP2D6, which is responsible for metabolizing a large share of commonly used drugs. The amount of morphine produced depends on how much CYP2D6 activity a person has.","variant_rationale":"No genotype was called for codeine in this analysis, so there is no variant-level rationale to report.","patient_friendly":"We don't know how your body will handle codeine because we can't determine how active the enzyme that breaks it down is in your body. This enzyme, CYP2D6, helps turn codeine into a different medicine that actually helps with pain. If you're taking codeine, it's best to speak with your doctor or pharmacist to understand how it will affect you.","disclaimer":"Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."}},{"drug":"ibuprofen","risk_assessment":{"risk_label":"Unknown","confidence_score":0.95,"severity":"none"},"pharmacogenomic_profile":{"primary_gene":"CYP2C9","diplotype":"*1/*1","recommendation_diplotype":null,"candidate_diplotypes":[],"phenotype":"NM","activity_score":2.0,"detected_variants":[]},"clinical_recommendation":{"action":"Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.","dosing_guidance":"Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.","cpic_recommendation":"CPIC strength of recommendation: Strong. Population: general. Implications: CYP2C9: Normal metabolism","cpic_evidence_level":"Unknown","alternatives":[],"source":"Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9 (via PharmCAT) [label rule: fallback_unmatched]"},"llm_generated_explanation":{"summary":"ibuprofen: CYP2C9 *1/*1 (Normal Metabolizer) — Unknown.","mechanism":"No mechanism background is available in this build for ibuprofen. The clinical recommendation section above comes from CPIC via PharmCAT and is the authoritative part of this result.","variant_rationale":"PharmCAT called CYP2C9 as *1/*1, which corresponds to a Normal Metabolizer result. The reported activity score is 2.0. The non-reference positions supporting this call were no non-reference variants were detected.","patient_friendly":"This tool could not reach a conclusion about this medicine for you. Your CYP2C9 gene result shows activity in the usual range, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines.","disclaimer":"Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."}}],"quality_metrics":{"vcf_parsing_success":true,"variants_detected_count":4,"processing_time_ms":1228,"warnings":["CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). PharmaGuard shows the strongest one (CVI ACS PCI); review the population that matches the patient.","The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.","The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.","The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.","The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.","The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.","CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned","The CYP2C9 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.","No label-mapping rule matched CPIC's wording for ibuprofen; reported as Unknown. This is a gap in label_mapping.yaml, not a genotype finding.","No pre-generated explanation for (ibuprofen, NM); using the deterministic template.","explanation mode=static, source=static, guard=passed, slots=verified, provenance=verified","explanation mode=static, source=template, guard=n/a (deterministic), slots=verified","No qualified clinical expert has reviewed these explanations. This system writes no clinical content of its own: every clinical statement is machine-verified to trace to a CPIC recommendation issued by PharmCAT, or to a cited mechanism document. That checks provenance, not correctness.","No usable pharmacogenomic result for: codeine, ibuprofen."],"position_coverage":{"CYP2C19":{"positions_present":35,"positions_required":35,"percent":100.0,"minimum_percent":100,"sufficient":true},"CYP2C9":{"positions_present":88,"positions_required":88,"percent":100.0,"minimum_percent":100,"sufficient":true},"CYP2D6":{"positions_present":157,"positions_required":157,"percent":100.0,"minimum_percent":100,"sufficient":true},"DPYD":{"positions_present":83,"positions_required":83,"percent":100.0,"minimum_percent":20,"sufficient":true},"NUDT15":{"positions_present":20,"positions_required":20,"percent":100.0,"minimum_percent":80,"sufficient":true},"SLCO1B1":{"positions_present":35,"positions_required":35,"percent":100.0,"minimum_percent":100,"sufficient":true},"TPMT":{"positions_present":45,"positions_required":45,"percent":100.0,"minimum_percent":80,"sufficient":true}}}}
+{
+ "patient_id": "DEMO_CONFIDENT",
+ "timestamp": "2026-08-04T06:48:01.933837Z",
+ "analyses": [
+  {
+   "drug": "clopidogrel",
+   "risk_assessment": {
+    "risk_label": "Ineffective",
+    "confidence_score": 0.95,
+    "severity": "critical"
+   },
+   "pharmacogenomic_profile": {
+    "primary_gene": "CYP2C19",
+    "diplotype": "*2/*2",
+    "recommendation_diplotype": null,
+    "candidate_diplotypes": [],
+    "phenotype": "PM",
+    "activity_score": null,
+    "detected_variants": [
+     {
+      "rsid": "rs12769205",
+      "gene": "CYP2C19",
+      "genotype": "G/G",
+      "star_allele": null,
+      "function": "Contributes to named allele(s): *1, *2, *35"
+     },
+     {
+      "rsid": "rs58973490",
+      "gene": "CYP2C19",
+      "genotype": "A/A",
+      "star_allele": null,
+      "function": "Contributes to named allele(s): *1, *2, *11"
+     },
+     {
+      "rsid": "rs4244285",
+      "gene": "CYP2C19",
+      "genotype": "A/A",
+      "star_allele": null,
+      "function": "Contributes to named allele(s): *1, *2"
+     },
+     {
+      "rsid": "rs3758581",
+      "gene": "CYP2C19",
+      "genotype": "G/G",
+      "star_allele": null,
+      "function": "Contributes to named allele(s): *1, *2, *3, *4, *5, *6, *7, *8, *9, *10, *11, *12, *13, *14, *15, *17, *18, *19, *22, *23, *24, *25, *26, *28, *29, *31, *32, *33, *35, *39, *40, *41"
+     }
+    ]
+   },
+   "clinical_recommendation": {
+    "action": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+    "dosing_guidance": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+    "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events",
+    "cpic_evidence_level": "Unknown",
+    "alternatives": [
+     "CPIC indicates an alternative drug is available \u2014 see the recommendation text above for the specific agents."
+    ],
+    "source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]"
+   },
+   "llm_generated_explanation": {
+    "summary": "Your genetic result affects how well you respond to clopidogrel. People with this result are at increased risk for the drug not working as intended, which can lead to serious cardiac and cerebrovascular events.",
+    "mechanism": "Clopidogrel is a prodrug that needs to be converted into an active form by an enzyme. Your genetic result affects how well this enzyme works, which in turn affects how well the drug works. If the enzyme doesn't work well, less of the active form is produced, and the drug may not work as intended.",
+    "variant_rationale": "PharmCAT called CYP2C19 as *2/*2, which corresponds to a Poor Metabolizer result. The non-reference positions supporting this call were rs12769205 (G/G), rs58973490 (A/A), rs4244285 (A/A) and rs3758581 (G/G).",
+    "patient_friendly": "If you have this result, it's best to avoid clopidogrel if possible. If you can't avoid it, your doctor may recommend a different medication, such as prasugrel or ticagrelor, at the standard dose. Always talk to your doctor or pharmacist about your specific situation and any concerns you may have.",
+    "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."
+   }
+  },
+  {
+   "drug": "simvastatin",
+   "risk_assessment": {
+    "risk_label": "Safe",
+    "confidence_score": 0.95,
+    "severity": "none"
+   },
+   "pharmacogenomic_profile": {
+    "primary_gene": "SLCO1B1",
+    "diplotype": "*1/*1",
+    "recommendation_diplotype": null,
+    "candidate_diplotypes": [],
+    "phenotype": "NM",
+    "activity_score": null,
+    "detected_variants": []
+   },
+   "clinical_recommendation": {
+    "action": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+    "dosing_guidance": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+    "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure",
+    "cpic_evidence_level": "Unknown",
+    "alternatives": [],
+    "source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 (via PharmCAT) [label rule: standard_dosing]"
+   },
+   "llm_generated_explanation": {
+    "summary": "Your genetic result does not affect the typical risk of muscle toxicity from simvastatin. You can be prescribed the desired starting dose and adjust doses based on disease-specific guidelines.",
+    "mechanism": "Simvastatin is a statin that works by inhibiting an enzyme inside liver cells. The liver's ability to take up simvastatin is important for keeping systemic exposure low and reducing the risk of muscle toxicity. Your genetic result does not affect the liver's ability to take up simvastatin, so the typical risk of muscle toxicity remains.",
+    "variant_rationale": "PharmCAT called SLCO1B1 as *1/*1, which corresponds to a Normal Function result. The non-reference positions supporting this call were no non-reference variants were detected.",
+    "patient_friendly": "You don't have a genetic variation that affects how your body handles simvastatin. This means you can take the usual dose and adjust it based on your disease and how you're responding to the medication. It's always a good idea to talk to your doctor or pharmacist about your specific situation and any concerns you may have.",
+    "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."
+   }
+  },
+  {
+   "drug": "fluorouracil",
+   "risk_assessment": {
+    "risk_label": "Safe",
+    "confidence_score": 0.95,
+    "severity": "none"
+   },
+   "pharmacogenomic_profile": {
+    "primary_gene": "DPYD",
+    "diplotype": "Reference/Reference",
+    "recommendation_diplotype": null,
+    "candidate_diplotypes": [],
+    "phenotype": "NM",
+    "activity_score": 2.0,
+    "detected_variants": []
+   },
+   "clinical_recommendation": {
+    "action": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+    "dosing_guidance": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+    "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity",
+    "cpic_evidence_level": "Unknown",
+    "alternatives": [],
+    "source": "Annotation of CPIC Guideline for fluorouracil and DPYD (via PharmCAT) [label rule: standard_dosing]"
+   },
+   "llm_generated_explanation": {
+    "summary": "Based on your genetic result, there is no indication to change the dose or therapy for fluorouracil. Use the label-recommended dosage and administration.",
+    "mechanism": "Fluorouracil is a type of chemotherapy that is broken down by an enzyme called dihydropyrimidine dehydrogenase (DPD). Your body's normal DPD activity helps to inactivate most of the drug, which reduces the risk of severe side effects. If you have normal DPD activity, the standard dose of fluorouracil is likely to be safe.",
+    "variant_rationale": "PharmCAT called DPYD as Reference/Reference, which corresponds to a Normal Metabolizer result. The reported activity score is 2.0. The non-reference positions supporting this call were no non-reference variants were detected.",
+    "patient_friendly": "Your genetic result shows that you are a normal metabolizer of fluorouracil. This means that your body is able to break down the drug in a normal way, which reduces the risk of severe side effects. You should be able to take the standard dose of fluorouracil without any problems. However, it's always best to speak with your doctor or pharmacist to confirm the best course of treatment for you.",
+    "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."
+   }
+  },
+  {
+   "drug": "codeine",
+   "risk_assessment": {
+    "risk_label": "Unknown",
+    "confidence_score": 0.1,
+    "severity": "none"
+   },
+   "pharmacogenomic_profile": {
+    "primary_gene": "CYP2D6",
+    "diplotype": "Unknown",
+    "recommendation_diplotype": "Unknown/Unknown",
+    "candidate_diplotypes": [],
+    "phenotype": "Unknown",
+    "activity_score": null,
+    "detected_variants": []
+   },
+   "clinical_recommendation": {
+    "action": "CYP2D6 could not be called from this VCF, so no pharmacogenomic recommendation can be made for codeine.",
+    "dosing_guidance": "No CPIC dosing guidance is available for this gene-drug-phenotype combination.",
+    "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+    "cpic_evidence_level": "Unknown",
+    "alternatives": [],
+    "source": "PharmCAT (no matching CPIC annotation)"
+   },
+   "llm_generated_explanation": {
+    "summary": "Your genetic result for codeine is unknown, so we cannot explain how it will be handled by your body.",
+    "mechanism": "Codeine is a prodrug that is converted into morphine by the enzyme CYP2D6, which is responsible for metabolizing a large share of commonly used drugs. The amount of morphine produced depends on how much CYP2D6 activity a person has.",
+    "variant_rationale": "No genotype was called for codeine in this analysis, so there is no variant-level rationale to report.",
+    "patient_friendly": "We don't know how your body will handle codeine because we can't determine how active the enzyme that breaks it down is in your body. This enzyme, CYP2D6, helps turn codeine into a different medicine that actually helps with pain. If you're taking codeine, it's best to speak with your doctor or pharmacist to understand how it will affect you.",
+    "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."
+   }
+  },
+  {
+   "drug": "ibuprofen",
+   "risk_assessment": {
+    "risk_label": "Unknown",
+    "confidence_score": 0.95,
+    "severity": "none"
+   },
+   "pharmacogenomic_profile": {
+    "primary_gene": "CYP2C9",
+    "diplotype": "*1/*1",
+    "recommendation_diplotype": null,
+    "candidate_diplotypes": [],
+    "phenotype": "NM",
+    "activity_score": 2.0,
+    "detected_variants": []
+   },
+   "clinical_recommendation": {
+    "action": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+    "dosing_guidance": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+    "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: CYP2C9: Normal metabolism",
+    "cpic_evidence_level": "Unknown",
+    "alternatives": [],
+    "source": "Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9 (via PharmCAT) [label rule: fallback_unmatched]"
+   },
+   "llm_generated_explanation": {
+    "summary": "ibuprofen: CYP2C9 *1/*1 (Normal Metabolizer) \u2014 Unknown.",
+    "mechanism": "No mechanism background is available in this build for ibuprofen. The clinical recommendation section above comes from CPIC via PharmCAT and is the authoritative part of this result.",
+    "variant_rationale": "PharmCAT called CYP2C9 as *1/*1, which corresponds to a Normal Metabolizer result. The reported activity score is 2.0. The non-reference positions supporting this call were no non-reference variants were detected.",
+    "patient_friendly": "This tool could not reach a conclusion about this medicine for you. Your CYP2C9 gene result shows activity in the usual range, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines.",
+    "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text: every clinical statement is machine-verified to come from a published CPIC recommendation, which checks that nothing was invented, not that it is correct for you."
+   }
+  }
+ ],
+ "quality_metrics": {
+  "vcf_parsing_success": true,
+  "variants_detected_count": 4,
+  "processing_time_ms": 1128,
+  "warnings": [
+   "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). PharmaGuard shows the strongest one (CVI ACS PCI); review the population that matches the patient.",
+   "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+   "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+   "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+   "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+   "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+   "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+   "The CYP2C9 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+   "No label-mapping rule matched CPIC's wording for ibuprofen; reported as Unknown. This is a gap in label_mapping.yaml, not a genotype finding.",
+   "No pre-generated explanation for (ibuprofen, NM); using the deterministic template.",
+   "explanation mode=static, source=static, guard=passed, slots=verified, provenance=verified",
+   "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+   "No qualified clinical expert has reviewed these explanations. This system writes no clinical content of its own: every clinical statement is machine-verified to trace to a CPIC recommendation issued by PharmCAT, or to a cited mechanism document. That checks provenance, not correctness.",
+   "No usable pharmacogenomic result for: codeine, ibuprofen."
+  ],
+  "position_coverage": {
+   "CYP2C19": {
+    "positions_present": 35,
+    "positions_required": 35,
+    "percent": 100.0,
+    "minimum_percent": 100,
+    "sufficient": true
+   },
+   "CYP2C9": {
+    "positions_present": 88,
+    "positions_required": 88,
+    "percent": 100.0,
+    "minimum_percent": 100,
+    "sufficient": true
+   },
+   "CYP2D6": {
+    "positions_present": 157,
+    "positions_required": 157,
+    "percent": 100.0,
+    "minimum_percent": 100,
+    "sufficient": true
+   },
+   "DPYD": {
+    "positions_present": 83,
+    "positions_required": 83,
+    "percent": 100.0,
+    "minimum_percent": 20,
+    "sufficient": true
+   },
+   "NUDT15": {
+    "positions_present": 20,
+    "positions_required": 20,
+    "percent": 100.0,
+    "minimum_percent": 80,
+    "sufficient": true
+   },
+   "SLCO1B1": {
+    "positions_present": 35,
+    "positions_required": 35,
+    "percent": 100.0,
+    "minimum_percent": 100,
+    "sufficient": true
+   },
+   "TPMT": {
+    "positions_present": 45,
+    "positions_required": 45,
+    "percent": 100.0,
+    "minimum_percent": 80,
+    "sufficient": true
+   }
+  }
+ }
+}

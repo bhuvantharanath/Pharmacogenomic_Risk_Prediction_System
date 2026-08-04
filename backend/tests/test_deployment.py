@@ -579,3 +579,122 @@ class TestCorsFailsLoudWhenMisconfigured:
         ):
             rejected = client.get("/health", headers={"Origin": bad})
             assert rejected.headers.get("access-control-allow-origin") is None, bad
+
+
+class TestRateLimitScoping:
+    """
+    Loopback is exempt; everything else is limited exactly as before.
+
+    This is scoping, not loosening — the distinction matters because the obvious
+    alternative (raise the limit) would weaken the deployed endpoint to fix a
+    problem that only exists locally.
+    """
+
+    def _request(self, host: str):
+        from unittest.mock import Mock
+
+        request = Mock()
+        request.client = Mock(host=host)
+        request.headers = {}
+        return request
+
+    @pytest.mark.parametrize("host", ["127.0.0.1", "::1", "::ffff:127.0.0.1"])
+    def test_loopback_is_exempt(self, host: str) -> None:
+        from app import security
+
+        assert security.is_loopback(self._request(host)) is True
+        assert security.should_rate_limit(self._request(host)) is False
+
+    @pytest.mark.parametrize("host", ["203.0.113.7", "10.0.0.4", "198.51.100.2"])
+    def test_everything_else_is_still_limited(self, host: str) -> None:
+        from app import security
+
+        assert security.is_loopback(self._request(host)) is False
+        assert security.should_rate_limit(self._request(host)) is True
+
+    def test_a_spoofed_forwarded_header_cannot_buy_an_exemption(self) -> None:
+        """
+        X-Forwarded-For is caller-controlled. If the exemption trusted it, anyone
+        could claim 127.0.0.1 and skip the limit — turning a local convenience
+        into a hole in the deployed protection.
+        """
+        from unittest.mock import Mock
+
+        from app import security
+
+        request = Mock()
+        request.client = Mock(host="203.0.113.7")
+        request.headers = {"x-forwarded-for": "127.0.0.1"}
+        assert security.is_loopback(request) is False
+        assert security.should_rate_limit(request) is True
+
+    def test_the_limit_itself_was_not_raised(self) -> None:
+        from app import security
+
+        assert security.RATE_LIMIT_REQUESTS == 10
+        assert security.RATE_LIMIT_WINDOW_SECONDS == 300
+
+    def test_429_carries_retry_after_and_says_it_is_a_rate_limit(self) -> None:
+        from app import security
+
+        response = security.rate_limit_response(
+            security.RateLimitDecision(False, 0, 42)
+        )
+        assert response.status_code == 429
+        assert response.headers["Retry-After"] == "42"
+        body = response.body.decode()
+        assert "RATE_LIMITED" in body
+        assert "Rate limit reached" in body
+        assert "42 seconds" in body
+
+
+class TestCorsConvergence:
+    """
+    Local configuration must exercise the same path as deployed configuration.
+
+    An earlier fix read the port out of argv specifically so PORT would stay unset
+    and the hosted-instance guard would not fire. That made local startup take a
+    different branch from production — in the one area where a misconfiguration is
+    invisible until a real browser tries it.
+    """
+
+    def test_guard_still_fires_on_hosting_markers_with_empty_allowlist(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        from app import security
+
+        monkeypatch.setenv("PORT", "8080")
+        monkeypatch.setenv("CORS_ALLOWED_ORIGINS", "")
+        with pytest.raises(security.CorsMisconfiguredError):
+            security.assert_cors_configured()
+
+    def test_documented_local_config_starts_even_with_hosting_markers(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        from app import security
+
+        monkeypatch.setenv("PORT", "8000")
+        monkeypatch.setenv("CORS_ALLOWED_ORIGINS", "http://localhost:8080")
+        security.assert_cors_configured()   # must not raise
+        assert "http://localhost:8080" in security.allowed_origins()
+
+    def test_local_dev_env_file_documents_the_origins(self) -> None:
+        """The file the runbook sources must actually configure CORS."""
+        from pathlib import Path
+
+        env = Path(__file__).resolve().parents[2] / "infra" / "local-dev.env"
+        assert env.is_file(), "infra/local-dev.env is referenced by the runbook"
+        text = env.read_text()
+        assert "CORS_ALLOWED_ORIGINS=" in text
+        assert "localhost" in text
+
+    def test_no_dotenv_is_committed_under_backend(self) -> None:
+        """
+        `assert_no_baked_secrets` refuses to start if backend/.env exists, so the
+        local config deliberately lives elsewhere. Creating one breaks startup.
+        """
+        from pathlib import Path
+
+        assert not (Path(__file__).resolve().parents[1] / ".env").is_file(), (
+            "backend/.env exists — the secret guard will refuse to start"
+        )

@@ -222,6 +222,26 @@ class InMemoryRateLimiter:
 limiter = InMemoryRateLimiter()
 
 
+#: Loopback addresses. A request from one of these came from this machine, so the
+#: only possible caller is the operator.
+_LOOPBACK = frozenset({"127.0.0.1", "::1", "localhost", "::ffff:127.0.0.1"})
+
+
+def is_loopback(request: Request) -> bool:
+    """
+    True when the caller is this machine, using the DIRECT peer address only.
+
+    Deliberately ignores `X-Forwarded-For`: that header is caller-controlled, so
+    trusting it here would let anyone claim `127.0.0.1` and skip the limit
+    entirely. `request.client.host` is the actual TCP peer, which a remote caller
+    cannot forge. A proxy on the same host is the one false positive, and that is
+    a deployment shape this project does not use.
+    """
+    client = request.client
+    host = (client.host if client else "").strip().lower()
+    return host in _LOOPBACK
+
+
 def client_key(request: Request) -> str:
     """
     Identify the caller for rate-limiting purposes.
@@ -270,6 +290,23 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
             "Permissions-Policy", "geolocation=(), microphone=(), camera=()"
         )
         return response
+
+
+def should_rate_limit(request: Request) -> bool:
+    """
+    Whether this request is subject to the per-IP limit.
+
+    LOOPBACK IS EXEMPT, and this is scoping rather than loosening. Per-IP limiting
+    exists to stop a public endpoint being hammered by strangers. On 127.0.0.1
+    there are no strangers — the only client is the operator running the service,
+    so the limit protects nothing while reliably breaking rehearsal: the demo
+    makes 7 requests against a 10-per-5-minutes budget, so running it twice in a
+    window returns 429 in about a millisecond, which looks exactly like a crash.
+    The deployed limit for every non-loopback caller is unchanged.
+    """
+    if is_loopback(request):
+        return False
+    return True
 
 
 def rate_limit_response(decision: RateLimitDecision) -> JSONResponse:

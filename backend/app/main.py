@@ -70,29 +70,21 @@ MAX_DRUGS_PER_REQUEST = 25
 
 def _resolved_base_url() -> str:
     """
-    Where this process is actually reachable, for the startup banner.
+    Where this process is reachable, for the startup banner.
 
-    `--port` on the uvicorn command line wins, then UVICORN_PORT, then the
-    documented default. `PORT` is deliberately NOT consulted — see the call site.
+    Reads PORT/HOST like a deployed instance does. An earlier version parsed
+    `--port` out of argv specifically to avoid setting PORT, because PORT is one
+    of the markers `assert_cors_configured` uses to detect a hosted instance —
+    but that made local startup take a different code path from production,
+    which is exactly where a CORS misconfiguration must be caught. The fix is to
+    configure CORS locally (see .env.example), not to hide the marker.
     """
-    import sys
-
-    port = os.environ.get("UVICORN_PORT") or "8000"
-    host = os.environ.get("UVICORN_HOST") or "127.0.0.1"
-    argv = sys.argv
-    for flag, target in (("--port", "port"), ("--host", "host")):
-        if flag in argv:
-            index = argv.index(flag)
-            if index + 1 < len(argv):
-                value = argv[index + 1]
-                if target == "port":
-                    port = value
-                else:
-                    host = value
-    # A wildcard bind is reachable on loopback, which is what a presenter types.
+    port = os.environ.get("PORT") or os.environ.get("UVICORN_PORT") or "8000"
+    host = os.environ.get("HOST") or os.environ.get("UVICORN_HOST") or "127.0.0.1"
     if host in {"0.0.0.0", "::", "*"}:
         host = "127.0.0.1"
     return f"http://{host}:{port}"
+
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
@@ -650,7 +642,13 @@ async def analyze(
 
     # Rate limit before doing any work: /analyze spawns a JVM, so an unlimited
     # public endpoint would burn a free tier's whole compute budget.
-    decision = security.limiter.check(security.client_key(request))
+    # Loopback is exempt — see `security.should_rate_limit`. Checked before the
+    # limiter so a local run does not even consume budget.
+    decision = (
+        security.limiter.check(security.client_key(request))
+        if security.should_rate_limit(request)
+        else security.RateLimitDecision(True, security.RATE_LIMIT_REQUESTS, 0)
+    )
     if not decision.allowed:
         return security.rate_limit_response(decision)
 
