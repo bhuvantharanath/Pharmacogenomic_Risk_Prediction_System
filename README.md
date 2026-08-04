@@ -171,7 +171,7 @@ Plus a **contradiction guard**: the mapping reads CPIC recommendation *text*, an
 - Android release APK builds under JDK 17 (49 MB). Installation on a physical device is untested
 
 **Testing / CI**
-- pytest (560 backend tests) · flutter test (37) · GitHub Actions
+- pytest (backend) · flutter test (client) · GitHub Actions
 
 **Deployment (planned, Phase 8)**
 - Docker · Render or Google Cloud Run (backend) · Cloudflare Pages (web)
@@ -370,9 +370,12 @@ Presenter runbook: `docs/DEMO_SCRIPT.md`.
 ## Testing and release gates
 
 ```bash
-cd backend && pytest          # 560 tests
-cd app && flutter test        # 37 tests
+cd backend && pytest          # backend suite
+cd app && flutter test        # client suite
 ```
+
+Counts are in [Key results](#key-results); they are a snapshot of the last run,
+not a target.
 
 Release gates, each exiting non-zero on failure:
 

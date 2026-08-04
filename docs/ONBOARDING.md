@@ -63,7 +63,7 @@ has to decide what to do with absent information.
 ## Running things
 
 ```bash
-cd backend && python -m pytest                      # 534 passed, 4 skipped
+cd backend && python -m pytest                      # the whole backend suite
 cd app && flutter test && flutter analyze           # client
 python scripts/validate_label_mapping.py            # 92/105, exhaustive
 python scripts/verify_provenance.py                 # explanation -> CPIC
@@ -71,6 +71,9 @@ python scripts/adjudication_status.py               # release gate (exits 1 unti
 ```
 
 Nothing above needs an API key. The deployed path makes no outbound call.
+
+Exact test counts live in the README's Key results table and nowhere else — a
+number repeated in two documents drifts the moment either one is edited.
 
 Measurement scripts (slow, need the PharmCAT jar via
 `python scripts/fetch_reference_data.py --fetch-tools`):
