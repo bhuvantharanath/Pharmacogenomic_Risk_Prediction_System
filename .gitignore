@@ -96,3 +96,8 @@ test-data/reference/pharmcat_testvcfs/
 
 # PharmCAT writes a dated log beside the working directory on every run.
 pharmcat.*.log
+
+# Signing material — never commit
+*.p12
+*.pfx
+*.pem

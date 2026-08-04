@@ -4,6 +4,15 @@
 PharmCAT, clinical guidance quoted verbatim from CPIC, explanations grounded and
 machine-checked.**
 
+It is also a **study of how such a system silently produces false reassurance.**
+Building it surfaced eight defects in its own honesty layer, in different components
+and by different mechanisms — and every one of them erred in the same direction:
+sounding more confident, and lower-risk, than the evidence supported. That is not
+eight coincidences. In variant-based genomics the reference allele *is* the low-risk
+state, so missing data does not read as uncertainty — it reads as normal. The
+verification architecture described below exists because each layer of it was added
+after a defect proved it necessary. → [The primary result](reports/provenance_finding.md)
+
 > ## ⚠️ Research/educational decision support only
 > **Not a medical device. Not for clinical use.**
 >
@@ -60,10 +69,11 @@ flowchart TB
     subgraph backend["Backend — FastAPI (Docker)"]
         direction TB
         val["1 · VCF validation<br/><i>GRCh38, ≤5 MB, sample column</i>"]
-        pc["2 · PharmCAT 3.4.0<br/><i>diplotype + phenotype</i>"]
-        eng["3 · CPIC label engine<br/><i>ordered rules, as data</i>"]
-        exp["4 · Explanation layer<br/><i>pre-generated, guard-checked,<br/>slot-verified at runtime</i>"]
-        val --> pc --> eng --> exp
+        cov["2 · Coverage gate<br/><i>required positions present?<br/>runs BEFORE PharmCAT</i>"]
+        pc["3 · PharmCAT 3.4.0<br/><i>diplotype + phenotype</i>"]
+        eng["4 · CPIC label engine<br/><i>ordered rules, as data</i>"]
+        exp["5 · Explanation layer<br/><i>pre-generated, guard-checked,<br/>slot-verified at runtime</i>"]
+        val --> cov --> pc --> eng --> exp
     end
 
     subgraph data["Data sources"]
@@ -97,7 +107,9 @@ sequenceDiagram
     U->>A: Pick VCF + drugs → Analyze
     A->>API: POST /analyze (multipart)
     API->>API: Validate: build, size, sample column
-    API->>P: pharmcat_pipeline (temp dir)
+    API->>API: Coverage gate — required positions present?
+    Note over API: Genes below their measured minimum<br/>are declined here, before any call is made
+    API->>P: java -jar pharmcat (temp dir)
     P-->>API: report.json — diplotypes + CPIC text
     API->>API: Map to risk label (rules as data)
     API->>API: Look up explanation, fill slots
@@ -418,6 +430,95 @@ PharmCAT crash, and that no uploaded content is echoed back in the response.
 
 ---
 
+
+## 🔍 The verification model
+
+Five edges are checked. Four face the **output**; one faces the **input**, and that
+asymmetry is the finding — a system that only audits what it produced can be
+complete, self-consistent, and still confidently wrong, because the thing it never
+checks is whether it was given enough to answer at all.
+
+| Edge | Direction | Catches | Added after |
+| --- | --- | --- | --- |
+| **input → required positions** | input | confidently wrong calls from incomplete VCFs | measured: at 60% coverage, up to 28.6% of calls were confidently wrong, always reporting reduced function as normal |
+| **explanation → CPIC** | output | invented clinical claims | a faithfulness metric that passed a polarity-reversed claim and failed a faithful paraphrase |
+| **label → CPIC** | output | mapping errors | a substring collision labelling 16 azathioprine rows `Safe` where CPIC directs a reduced dose |
+| **explanation → label** | output | prose contradicting its own badge | a green `Safe` badge over prose reading "your doctor may need to start you on a lower dose" |
+| **phenotype → label** | output | confident labels over unasserted phenotypes | a green `Safe` badge on fluorouracil for a DPYD call PharmCAT declined to classify |
+
+Each check runs at build time over every reachable case, and the request-time ones
+degrade to `Unknown` with a warning rather than serving a contradiction.
+
+**A caveat that is itself a result:** validation tooling is unvalidated code. Four
+separate checks in this project produced false results before being corrected —
+including one that reported a defect the pipeline did not have, caught only by
+querying the pipeline directly instead of trusting the harness. Every check here has
+sabotage tests that fail when the thing it guards is reverted.
+
+---
+
+## 📊 Validation results
+
+Each claim is scoped to its own evidence. Numbers are read off artifacts in
+`reports/`; none is projected.
+
+| Measurement | Result | Scope |
+| --- | ---: | --- |
+| **Label-mapping correctness** | **92 / 105** | Exhaustive over every phenotype combination for all 6 drugs; 13 accepted divergences, individually justified |
+| **Integration fidelity** | **100.0000%** | 400 real 1000 Genomes samples · 2 800 (sample, gene) pairs · 5 600 field comparisons · 0 mismatches |
+| **Adversarial inputs** | **0 mismatches** | All 74 of PharmCAT's own unit-test VCFs for our genes |
+| **CYP2D6 negative control** | **400 / 400 declined** | Not one fabricated call across the cohort |
+| **Phenotype → label invariant** | **294 corrected** | Every change removed an unsupported confident label; none added one. A DPYD-only patch would have left 293 of them live |
+| **External genotype concordance** | **n = 1** | `NA12273`, 2/2 exact. Reported as n=1, never as a percentage — GeT-RM ∩ 1000 Genomes is one sample |
+| **South Asian subgroup** | **n = 75** | CYP2C19 reduced-function 53.3%; allele frequencies agree with CPIC's Central/South Asian figures. No per-population claim at n=8–23 |
+
+### Confident-label rate — both input classes, always together
+
+| Input class | Confident-label rate | Measured wrong rate |
+| --- | ---: | ---: |
+| **Complete coverage** (clinical PGx panel, all-sites WGS/WES) | **100%** | **0%** |
+| **Polymorphic-filtered slices** (1000 Genomes, 19–57% coverage) | **12.58%** | gate declines the remainder |
+
+**12.58% characterises the input, not the system.** The same pipeline reaches 100%
+with 0% error on input meeting the documented requirements. The gate is working when
+it declines — the measured alternative is a confident wrong call.
+
+---
+
+## 📥 Input requirements
+
+**Supply a VCF covering all 306 positions in PharmCAT's positions file, with an
+explicit genotype at every one — including homozygous-reference.**
+
+| Gene | Minimum coverage of defining positions |
+| --- | --- |
+| CYP2C19, CYP2C9, SLCO1B1 | **100%** |
+| TPMT, NUDT15 | 80% |
+| DPYD | 20% |
+
+**Do not supply a variants-only VCF.** A file listing only non-reference sites is
+indistinguishable, to the matcher, from one where those positions were never
+assayed — and the consequence is not a missing result but a confident wrong one. It
+is detected and warned about specifically. → [Full spec](docs/input_requirements.md)
+
+---
+
+## 🗂 Repository map
+
+| Path | What it is |
+| --- | --- |
+| `backend/app/` | FastAPI service. `coverage.py` is the input gate, `cpic_engine.py` the label mapping, `explanation/` the grounded-prose layer |
+| `backend/app/data/` | `label_mapping.yaml` (rules as data), `position_requirements.json` (thresholds + provenance), `explanations.json` (pre-generated prose) |
+| `app/` | Flutter client — web, Android, iOS simulator |
+| `scripts/` | Validation harnesses and one-shot measurement tools |
+| **`reports/provenance_finding.md`** | **The primary result** — twelve pieces of evidence and the unifying bias |
+| **`reports/validation_report.md`** | All validation numbers, scoped to evidence |
+| `docs/ONBOARDING.md` | Start here if you are joining |
+| `docs/input_requirements.md` | What a VCF must contain |
+| `PROJECT_STATUS.md` | Honest status and limitations register |
+
+---
+
 ## ⚠️ Known limitations
 
 | Limitation | Detail |
@@ -575,6 +676,20 @@ steps: **[`infra/DEPLOY_NOTES.md`](infra/DEPLOY_NOTES.md)**.
 > and [`scripts/README.md`](scripts/README.md).
 
 ---
+
+## 🙏 Attribution
+
+| Component | Licence | Use |
+| --- | --- | --- |
+| [PharmCAT](https://github.com/PharmGKB/PharmCAT) 3.4.0 | MPL-2.0 | Genotype calling. Invoked as an unmodified jar; not vendored or altered |
+| [CPIC](https://cpicpgx.org/) guidelines | CC BY-SA 4.0 | All clinical recommendation text, quoted verbatim via PharmCAT |
+| [PharmGKB](https://www.pharmgkb.org/) | CC BY-SA 4.0 | Allele definitions, via PharmCAT |
+| [1000 Genomes](https://www.internationalgenome.org/) | open | Validation cohort |
+| [Flutter](https://flutter.dev/) / Dart | BSD-3-Clause | Client |
+| FastAPI, Pydantic, pytest | MIT | Backend |
+
+PharmaGuard's own code is MIT (see `LICENSE`). It neither modifies nor redistributes
+PharmCAT; the jar is downloaded at setup time.
 
 ## 📄 Licence
 
