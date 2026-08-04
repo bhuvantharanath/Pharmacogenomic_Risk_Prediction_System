@@ -192,3 +192,50 @@ class TestRejects:
         bomb = gzip.compress(MINIMAL_HEADER.encode() + b"\0" * (100 * 1024 * 1024))
         assert len(bomb) < MAX_UPLOAD_BYTES, "test bomb must pass the upload check"
         _expect(bomb, VcfErrorCode.DECOMPRESSED_TOO_LARGE, "bomb.vcf.gz")
+
+
+class TestFileTooLargeIsActionable:
+    """
+    A rejection that does not say what a good file looks like invites the wrong
+    fix. The 5 MB cap has ~25x headroom for conforming input (a PGx-restricted
+    VCF is ~194 KB), so a rejection almost always means the file covers the wrong
+    REGION, not that the limit is too low.
+    """
+
+    def _message(self) -> str:
+        from app.vcf_validation import MAX_UPLOAD_BYTES, VcfValidationError, validate_vcf
+
+        try:
+            validate_vcf(b"x" * (MAX_UPLOAD_BYTES + 1024), "whole_genome.vcf")
+        except VcfValidationError as exc:
+            return exc.message
+        raise AssertionError("oversized upload was accepted")
+
+    def test_states_the_size_and_the_limit(self) -> None:
+        message = self._message()
+        assert "MB, over the" in message
+        assert "5 MB limit" in message
+
+    def test_says_what_a_conforming_file_looks_like(self) -> None:
+        """The number that reframes the error from 'too big' to 'wrong shape'."""
+        message = self._message()
+        assert "well under 1 MB" in message
+        assert "200 KB" in message
+
+    def test_gives_a_command_that_actually_fixes_it(self) -> None:
+        message = self._message()
+        assert "bcftools view -R" in message
+        assert "pharmcat_positions" in message
+
+    def test_warns_against_the_fix_that_would_make_it_worse(self) -> None:
+        """
+        Trimming to shrink the file is the intuitive move and produces a
+        variants-only VCF — small, accepted, and silently wrong. The message has
+        to head that off.
+        """
+        message = self._message()
+        assert "homozygous-reference" in message
+        assert "small but unusable" in message
+
+    def test_points_at_the_spec(self) -> None:
+        assert "docs/input_requirements.md" in self._message()

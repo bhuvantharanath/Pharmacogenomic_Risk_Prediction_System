@@ -89,6 +89,27 @@ phenotype→label invariant suppresses the *ambiguous* cases, which is why
 simvastatin returns `Unknown` for 54% of those samples. It cannot suppress a
 confident wrong call, because nothing in the data marks it as wrong.
 
+## File size — a spec detail, not a constraint to work around
+
+A VCF restricted to PharmCAT's required positions is **~194 KB** for all seven
+genes. The API accepts up to **5 MB**, so a conforming file has roughly **25×
+headroom**.
+
+That ratio is the useful part: a rejected upload is almost never a file that is
+genuinely too big for pharmacogenomics — it is a file covering the wrong *region*.
+A raw whole-chromosome 1000 Genomes slice is 28 MB because it carries millions of
+positions nobody here reads.
+
+Restrict by position, not by truncation:
+
+```bash
+bcftools view -R pharmcat_positions_3.4.0.vcf your.vcf.gz -Oz -o pgx.vcf.gz
+```
+
+Trimming the file some other way to get under the cap is the trap: dropping
+homozygous-reference rows produces a small file that is *accepted and silently
+wrong*, which is the failure this whole document exists to prevent.
+
 ## Scope of this measurement
 
 **Coverage sensitivity only.** Inputs are synthesised from PharmCAT's own allele

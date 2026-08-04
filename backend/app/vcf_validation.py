@@ -221,10 +221,27 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
     if len(raw) > MAX_UPLOAD_BYTES:
         raise VcfValidationError(
             VcfErrorCode.FILE_TOO_LARGE,
+            # Actionable, because this rejection is almost always a
+            # *shape* problem rather than a genuinely oversized file. A VCF
+            # restricted to PharmCAT's 306 required positions is ~194 KB —
+            # roughly 25x under the cap — so a 28 MB upload means a
+            # whole-chromosome or whole-genome file, not a PGx one. Saying
+            # only "too large" invites the wrong fix (raise the limit); saying
+            # what a conforming file looks like points at the right one.
             f"The file is {len(raw) / (1024 * 1024):.1f} MB, over the "
-            f"{MAX_UPLOAD_BYTES // (1024 * 1024)} MB limit. Upload a VCF "
-            "restricted to pharmacogenomic positions, or run PharmCAT's VCF "
-            "preprocessor first.",
+            f"{MAX_UPLOAD_BYTES // (1024 * 1024)} MB limit.\n\n"
+            "This is usually a sign the file covers far more of the genome "
+            "than pharmacogenomics needs. A VCF restricted to PharmCAT's "
+            "required positions is typically well under 1 MB — around 200 KB "
+            "for all seven genes — so there is ample headroom for conforming "
+            "input.\n\n"
+            "To fix it, restrict the file to the required positions rather "
+            "than trimming it arbitrarily:\n"
+            "  bcftools view -R pharmcat_positions_3.4.0.vcf your.vcf.gz "
+            "-Oz -o pgx.vcf.gz\n\n"
+            "Keep every required position with an explicit genotype, "
+            "including homozygous-reference calls — dropping those produces a "
+            "file that is small but unusable. See docs/input_requirements.md.",
         )
 
     warnings: list[str] = []

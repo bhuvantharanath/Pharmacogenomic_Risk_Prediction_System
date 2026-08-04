@@ -151,7 +151,10 @@ see [How explanations are checked](#how-explanations-are-checked--precisely).
 ### Prerequisites
 
 - Python 3.11, Flutter 3.38+
-- **JDK 17** (Gradle does not support JDK 25 — see [DEPLOY_NOTES](infra/DEPLOY_NOTES.md))
+- **JDK 17** — one JDK serves both: PharmCAT needs a JRE 17+, and the Android
+  Gradle build **rejects JDK 25**. Installing 17 satisfies both. The backend and
+  every validation script run fine on any JRE 17+; only `flutter build apk` fails
+  on 25. See [DEPLOY_NOTES](infra/DEPLOY_NOTES.md)
 - `bcftools` + `bgzip` for PharmCAT (`brew install bcftools htslib`)
 
 ### Backend

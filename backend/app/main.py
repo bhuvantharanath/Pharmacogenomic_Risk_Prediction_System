@@ -67,6 +67,33 @@ from .vcf_validation import (
 
 MAX_DRUGS_PER_REQUEST = 25
 
+
+def _resolved_base_url() -> str:
+    """
+    Where this process is actually reachable, for the startup banner.
+
+    `--port` on the uvicorn command line wins, then UVICORN_PORT, then the
+    documented default. `PORT` is deliberately NOT consulted — see the call site.
+    """
+    import sys
+
+    port = os.environ.get("UVICORN_PORT") or "8000"
+    host = os.environ.get("UVICORN_HOST") or "127.0.0.1"
+    argv = sys.argv
+    for flag, target in (("--port", "port"), ("--host", "host")):
+        if flag in argv:
+            index = argv.index(flag)
+            if index + 1 < len(argv):
+                value = argv[index + 1]
+                if target == "port":
+                    port = value
+                else:
+                    host = value
+    # A wildcard bind is reachable on loopback, which is what a presenter types.
+    if host in {"0.0.0.0", "::", "*"}:
+        host = "127.0.0.1"
+    return f"http://{host}:{port}"
+
 @asynccontextmanager
 async def lifespan(_: FastAPI):
     """
@@ -111,6 +138,15 @@ async def lifespan(_: FastAPI):
             f"[startup] pharmcat={invoker.kind} via {invoker.describe}",
             flush=True,
         )
+
+    # The resolved base URL, printed once. A presenter needs to know which port
+    # actually bound — guessing wrong mid-demo looks like the backend is down.
+    #
+    # Read from the command line first, NOT from PORT. Setting PORT is one of the
+    # markers `assert_cors_configured` uses to decide an instance looks hosted, so
+    # exporting it to make this line accurate would refuse to start with an empty
+    # CORS allowlist. Found that the hard way; the argv path avoids it entirely.
+    print(f"[startup] listening on {_resolved_base_url()}  (docs at /docs)", flush=True)
 
     print(
         f"[startup] explanation_mode={ExplanationMode.from_env().value} "
