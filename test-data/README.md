@@ -130,19 +130,15 @@ genetic data through this project: it is a student prototype with no
 safeguards, no access control, and an explicit not-for-clinical-use disclaimer.
 
 
-## Demo pair — the contrast is real, not simulated
+## Demo set — `demo/`
 
-Two files that differ only in whether homozygous-reference calls are present.
-There is no demo mode and no simulated state: the difference in output comes
-entirely from the input.
+Presentation files. The contrast is real: there is no demo mode and no simulated
+state, only different input shapes through the same pipeline. Full provenance in
+[`demo/README.md`](demo/README.md).
 
-| File | Shape | What the system does |
+| File | Shape | Demonstrates |
 | --- | --- | --- |
-| `demo_complete_coverage.vcf` | **Complete coverage, clinical-panel-equivalent.** All 306 PharmCAT positions carry an explicit genotype, including homozygous-reference | Confident results: clopidogrel **Ineffective**, simvastatin **Safe**. CYP2C19 coverage 100% |
-| `demo_variants_only.vcf` | **Variants-only — unsafe for pharmacogenomics.** The same sample with hom-ref rows removed, exactly as a variants-only caller would emit | Coverage gate declines: both drugs **Unknown**, variants-only alert raised, CYP2C19 coverage 11.4% |
-
-The second file is not corrupt or truncated — it is the shape most VCFs in the
-wild have, and that is the point. A file listing only non-reference sites is
-indistinguishable from one where those positions were never assayed, so the
-system declines rather than read absent positions as reference. See
-`docs/input_requirements.md`.
+| `demo/demo_confident.vcf` | Complete coverage, clinical-panel-equivalent | CYP2C19 \*2/\*2 → clopidogrel **Ineffective** |
+| `demo/demo_variants_only.vcf` | **Same genotype**, hom-ref rows removed | The coverage gate declines → **Unknown** |
+| `demo/demo_normal.vcf` | Complete coverage, all-reference | A confident **Safe** — the system does answer |
+| `demo/demo_na12273_1000g.vcf` | Real 1000 Genomes slice | CYP2D6 declined although GeT-RM records \*1/\*1 |

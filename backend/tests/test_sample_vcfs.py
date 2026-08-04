@@ -61,6 +61,40 @@ SAMPLE_EXPECTATIONS: dict[str, dict[str, object]] = {
     },
 }
 
+#: Presentation files under test-data/demo/. Declared separately because two of
+#: them are deliberately DEFICIENT input — their whole purpose is to be declined —
+#: so they cannot satisfy the callability floor the top-level samples must meet.
+#: They are still declared: an undeclared VCF is an undemonstrated claim wherever
+#: it ships.
+DEMO_EXPECTATIONS: dict[str, dict[str, object]] = {
+    "demo_confident.vcf": {
+        "drug": "clopidogrel",
+        "expected_label": "Ineffective",
+        "note": "complete coverage, CYP2C19 *2/*2 — the system answers",
+    },
+    "demo_variants_only.vcf": {
+        "drug": "clopidogrel",
+        "expected_label": "Unknown",
+        "note": "SAME genotype as demo_confident, hom-ref rows removed — declined",
+    },
+    "demo_normal.vcf": {
+        "drug": "clopidogrel",
+        "expected_label": "Safe",
+        "note": "complete coverage, all-reference control",
+    },
+    "demo_dpyd_indeterminate.vcf": {
+        "drug": "fluorouracil",
+        "expected_label": "Unknown",
+        "note": "NA19042 compound DPYD; PharmCAT says Indeterminate so we decline "
+                "- coverage PASSES here, isolating the phenotype->label invariant",
+    },
+    "demo_na12273_1000g.vcf": {
+        "drug": "codeine",
+        "expected_label": "Unknown",
+        "note": "real 1000G slice; GeT-RM records CYP2D6 *1/*1 and we still decline",
+    },
+}
+
 #: Minimum data rows for a VCF to be callable. Our panel needs 306; the Phase 1
 #: relics had 5 and 4. 50 is comfortably above the broken files and far below a
 #: legitimate one, so it catches the failure without being brittle.
@@ -97,6 +131,13 @@ class TestShippedSamplesAreUsable:
     def test_every_shipped_vcf_is_declared(self) -> None:
         """A sample with no stated expectation is how the relics survived."""
         undeclared = [p.name for p in shipped_vcfs() if p.name not in SAMPLE_EXPECTATIONS]
+        demo_dir = TEST_DATA / "demo"
+        if demo_dir.is_dir():
+            undeclared += [
+                f"demo/{p.name}"
+                for p in sorted(demo_dir.glob("*.vcf"))
+                if p.name not in DEMO_EXPECTATIONS
+            ]
         assert not undeclared, (
             f"{undeclared} ship in test-data/ but declare no expected result. "
             f"Add a row to SAMPLE_EXPECTATIONS stating the drug and label it "
@@ -189,6 +230,11 @@ class TestShippedSamplesAreUsable:
         this test; a `curl -F file=@…` line naming a deleted file must.
         """
         shipped = {p.name for p in shipped_vcfs()}
+        # Demo files ship too, just under test-data/demo/. A doc may reference
+        # them by bare name or by demo/ path; both must resolve.
+        demo_dir = TEST_DATA / "demo"
+        if demo_dir.is_dir():
+            shipped |= {p.name for p in demo_dir.glob("*.vcf")}
         # Generic placeholders that stand for "your file", not a shipped one.
         placeholders = {
             "my_sample.vcf", "input.vcf", "sample.vcf", "file.vcf",

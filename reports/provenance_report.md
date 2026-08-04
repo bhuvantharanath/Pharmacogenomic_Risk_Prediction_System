@@ -1,6 +1,6 @@
 # Provenance verification
 
-**Generated:** 2026-07-24T10:13:26.522393+00:00  
+**Generated:** 2026-08-04T06:22:17.481896+00:00  
 **Verifier:** `verify_provenance.py v1.0.0`  
 **Store:** `backend/app/data/explanations.json`  
 **Entries:** 20
@@ -128,11 +128,11 @@ it is printed in full rather than counted.
 - `simvastatin:NM` · *patient_friendly* — You don't have a genetic variation that affects how your body handles simvastatin.
 - `simvastatin:NM` · *patient_friendly* — This means you can take the usual dose and adjust it based on your disease and how you're responding to the medication.
 - `simvastatin:PM` · *patient_friendly* — This is because your body is not able to remove simvastatin from the bloodstream as well as it should be, which can cause muscle problems.
-- `simvastatin:Unknown` · *summary* — The recommendation for your genetic result and simvastatin is unknown because your genetic result was not available for this gene.
+- `simvastatin:Unknown` · *summary* — The recommendation for your genetic result and simvastatin is unknown because no usable result for this gene was established.
 - `simvastatin:Unknown` · *mechanism* — Simvastatin inhibits HMG-CoA reductase inside hepatocytes, so the liver is both its site of action and its route of elimination.
 - `simvastatin:Unknown` · *variant_rationale* — No genotype was called for simvastatin in this analysis, so there is no variant-level rationale to report.
 - `simvastatin:Unknown` · *patient_friendly* — We don't have enough information about your genetic result to make a recommendation about taking simvastatin.
-- `simvastatin:Unknown` · *patient_friendly* — This is because your genetic result was not available for this gene.
+- `simvastatin:Unknown` · *patient_friendly* — This is because no usable result for this gene was established.
 - `warfarin:Unknown` · *summary* — Your genetic result does not provide enough information to make a recommendation for warfarin dosing.
 - `warfarin:Unknown` · *variant_rationale* — No genotype was called for warfarin in this analysis, so there is no variant-level rationale to report.
 - `warfarin:Unknown` · *patient_friendly* — We don't have enough information about your genetic result to give you specific advice about taking warfarin.

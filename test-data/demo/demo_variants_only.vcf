@@ -1,5 +1,5 @@
 ##fileformat=VCFv4.2
-##PharmaGuard_sample=VARIANTS-ONLY (UNSAFE for pharmacogenomics): homozygous-reference calls omitted, so absent positions are indistinguishable from never-assayed ones. Expect the coverage gate to decline.
+##PharmaGuard_demo=VARIANTS-ONLY. Identical genotype to demo_confident.vcf; homozygous-reference rows removed, as a variants-only caller emits.
 ##source=PharmaGuardSyntheticGenerator
 ##pharmaguard_synthetic_CYP2C19=*2/*2 (definition CLINPGX 2026-07-13-11-40)
 ##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)
@@ -7,15 +7,19 @@
 ##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)
 ##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)
 ##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)
+##pharmaguard_synthetic_CYP2D6=*1/*1 (definition CLINPGX 2026-07-13-11-40)
 ##contig=<ID=chr1,assembly=GRCh38.p14,species="Homo sapiens">
 ##contig=<ID=chr6,assembly=GRCh38.p14,species="Homo sapiens">
 ##contig=<ID=chr10,assembly=GRCh38.p14,species="Homo sapiens">
 ##contig=<ID=chr12,assembly=GRCh38.p14,species="Homo sapiens">
 ##contig=<ID=chr13,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr22,assembly=GRCh38.p14,species="Homo sapiens">
 ##INFO=<ID=PX,Number=.,Type=String,Description="Gene">
 ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
-#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	CYP2C19_POOR_METABOLIZER
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	DEMO_CONFIDENT
 chr10	94775367	rs12769205	A	G	.	PASS	PX=CYP2C19	GT	1/1
 chr10	94775507	rs58973490	G	A	.	PASS	PX=CYP2C19	GT	1/1
 chr10	94781859	rs4244285	G	A	.	PASS	PX=CYP2C19	GT	1/1
 chr10	94842866	rs3758581	A	G	.	PASS	PX=CYP2C19	GT	1/1
+chr22	42128813	rs150163869	G	A	.	PASS	PX=CYP2D6	GT	1/1
+chr22	42129130	rs1058164	C	G	.	PASS	PX=CYP2D6	GT	1/1
