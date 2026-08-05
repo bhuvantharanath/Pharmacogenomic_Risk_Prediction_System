@@ -67,6 +67,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("-i", "--input", type=Path, default=EXPLANATIONS_PATH)
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--quiet", action="store_true", help="Exit code only.")
+    parser.add_argument(
+        "--require-human", action="store_true",
+        help="Exit non-zero unless EVERY sentence was decided by a person. The "
+             "stricter gate, kept available so the provisional state can never "
+             "quietly become the standard.",
+    )
     args = parser.parse_args(argv)
 
     vp = _load("verify_provenance")
@@ -87,6 +93,11 @@ def main(argv: list[str] | None = None) -> int:
     by_case = {f"{e['drug']}:{e['phenotype']}": e for e in entries}
 
     outstanding: list[dict] = []
+    # Who decided, kept separate. The whole point of a provisional state is that
+    # "decided" and "read by a person" must never collapse into one number.
+    by_human: list[dict] = []
+    by_automation: list[dict] = []
+    escalated_undecided: list[dict] = []
     rejected: list[dict] = []
     decided = 0
     per_drug: dict[str, dict[str, int]] = defaultdict(lambda: {"flagged": 0, "decided": 0})
@@ -97,6 +108,14 @@ def main(argv: list[str] | None = None) -> int:
         row = per_drug[item["drug"]]
         row["flagged"] += 1
         record = decisions.get(item["key"])
+        if record is not None:
+            if record.get("escalated") and not record.get("decision"):
+                # Automation looked and declined to rule. NOT a decision.
+                escalated_undecided.append(item)
+            elif record.get("adjudicated_by") == "automated":
+                by_automation.append(item)
+            elif record.get("decision"):
+                by_human.append(item)
         if record is None:
             outstanding.append(item)
             continue
@@ -107,18 +126,45 @@ def main(argv: list[str] | None = None) -> int:
 
     # A rejected sentence that is still present is a release blocker: the entry
     # must be regenerated or edited, not shipped with a known-bad claim.
+    # An escalated sentence is NOT decided, so it counts as outstanding.
+    outstanding = outstanding + escalated_undecided
     ok = not outstanding and not rejected
+    provisional = ok and bool(by_automation)
+
+    # One payload, used by every output mode, so the JSON and the human-readable
+    # report can never disagree about the counts.
+    payload = {
+        "entries": len(entries),
+        "flagged_sentences": len(flagged),
+        # `adjudicated` counts sentences carrying a DECISION. An escalated record
+        # has none, so it is excluded here and counted as outstanding.
+        "adjudicated": len(by_human) + len(by_automation),
+        "adjudicated_by_human": len(by_human),
+        "adjudicated_by_automation": len(by_automation),
+        "escalated_awaiting_human": len(escalated_undecided),
+        "outstanding": len(outstanding),
+        "rejected": len(rejected),
+        "clinical_expert_review": "NOT_OBTAINED",
+        "state": ("human-complete" if ok and not by_automation
+                  else "provisional" if ok else "not-ready"),
+        # Deliberately false in the provisional state. A gate that reports
+        # release-ready when a machine made the decisions would be exactly the
+        # false reassurance this project exists to document.
+        "release_ready": bool(ok and not by_automation),
+        "release_ready_provisional": bool(ok),
+    }
+
+    # The strict gate fails on any automated decision, regardless of output mode.
+    if args.require_human and by_automation:
+        if args.json:
+            print(json.dumps(payload, indent=1))
+        elif not args.quiet:
+            print(red(f"--require-human: {len(by_automation)} sentence(s) were "
+                      f"decided by automation, not a person."))
+        return 1
 
     if args.json:
-        print(json.dumps({
-            "entries": len(entries),
-            "flagged_sentences": len(flagged),
-            "adjudicated": decided,
-            "outstanding": len(outstanding),
-            "rejected": len(rejected),
-            "clinical_expert_review": "NOT_OBTAINED",
-            "release_ready": ok,
-        }, indent=1))
+        print(json.dumps(payload, indent=1))
         return 0 if ok else 1
 
     if args.quiet:
@@ -139,6 +185,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"\n  entries              {bold(str(len(entries)))}")
     print(f"  claim sentences      {len(flagged)}   {dim(f'({len(needs_individual)} flagged by the filter)')}")
     print(f"  adjudicated          {green(str(decided)) if not outstanding else yellow(str(decided))}")
+    print(f"    by a person        {green(str(len(by_human)))}")
+    print(f"    by automation      {yellow(str(len(by_automation)))}")
+    print(f"  escalated, awaiting  {red(str(len(escalated_undecided))) if escalated_undecided else green('0')}")
     print(f"  outstanding          {red(str(len(outstanding))) if outstanding else green('0')}")
     if rejected:
         print(f"  {red('rejected, still present')}  {len(rejected)}")
