@@ -264,6 +264,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--adjudicator", required=True,
                         help="Your name. Recorded per decision. Not a clinical sign-off.")
     parser.add_argument("--only", action="append", default=[], metavar="DRUG")
+    parser.add_argument(
+        "--escalated-only", action="store_true",
+        help="Walk ONLY the sentences auto_adjudicate.py escalated — exactly the "
+             "items in reports/escalation_list.md, in the same order.",
+    )
     parser.add_argument("--all", action="store_true",
                         help="Include sentences the automated check already sourced.")
     parser.add_argument("-i", "--input", type=Path, default=EXPLANATIONS_PATH)
@@ -275,7 +280,6 @@ def main(argv: list[str] | None = None) -> int:
                         help="Record a bulk decision for sentences the filter already sourced. "
                              "The record states it was a bulk decision, not an individual read.")
     args = parser.parse_args(argv)
-
     # An adjudication record names who made the judgement. A git placeholder is
     # not a person, and writing one would put a false attribution into a
     # clinical artifact — the precise failure mode this project exists to avoid.
@@ -288,7 +292,6 @@ def main(argv: list[str] | None = None) -> int:
 
     vp = _load("verify_provenance")
     store = load_json(args.input)
-
     # `all_entries` is EVERY entry and is what gets written back. `entries` is
     # only the subset this invocation examines.
     #
@@ -304,7 +307,6 @@ def main(argv: list[str] | None = None) -> int:
     if not entries:
         print(red("No entries match."), file=sys.stderr)
         return 2
-
     # Keyed over ALL entries: decisions mutate these dicts in place, so writing
     # `all_entries` back preserves both the edits and everything untouched.
     by_case = {f"{e['drug']}:{e['phenotype']}": e for e in all_entries}
@@ -319,12 +321,16 @@ def main(argv: list[str] | None = None) -> int:
         # inattention, which is the failure this gate exists to prevent.
         worksheet = _load("build_adjudication_worksheet")
         every = collect_flagged(vp, entries, include_all=True)
+        # Same rule as the sentence-level path: a record without a `decision` is
+        # not a decision. An escalation marker must stay visible here too.
+        def _undecided(item: dict) -> bool:
+            existing = (
+                by_case[item["case"]].get("provenance_adjudications") or {}
+            ).get(item["key"])
+            return existing is None or not existing.get("decision")
+
         outstanding = [
-            i for i in every
-            if i["field"] == "mechanism"
-            and i["key"] not in (
-                by_case[i["case"]].get("provenance_adjudications") or {}
-            )
+            i for i in every if i["field"] == "mechanism" and _undecided(i)
         ]
         if not outstanding:
             print(green("\nNo outstanding mechanism claims."))
@@ -421,13 +427,38 @@ def main(argv: list[str] | None = None) -> int:
         print(dim("\nNext:  python scripts/adjudication_status.py"))
         return 0
 
-    items = collect_flagged(vp, entries, args.all)
+    # --escalated-only must see EVERY escalated sentence, including ones the
+    # flagging filter does not surface (the rewritten simvastatin:Unknown prose,
+    # for instance). Otherwise the walker and the escalation list disagree, and
+    # the human clears 17 of 19 believing they are done.
+    items = collect_flagged(vp, entries, args.all or args.escalated_only)
+
+    if args.escalated_only:
+        # An escalated record has no `decision`: automation looked and declined.
+        # Same order as the escalation list, so the human can work top to bottom.
+        by_case = {f"{e['drug']}:{e['phenotype']}": e for e in all_entries}
+        def _escalated(item):
+            rec = (by_case[item["case"]].get("provenance_adjudications") or {}).get(item["key"])
+            return bool(rec) and rec.get("escalated") and not rec.get("decision")
+        items = [i for i in items if _escalated(i)]
+        if not items:
+            print(green("No escalated sentences outstanding."))
+            return 0
 
     if not args.redo:
         pending = []
         for item in items:
             decided = (by_case[item["case"]].get("provenance_adjudications") or {})
-            if item["key"] not in decided:
+            # NOT named `record` — that is the module-level function that writes
+            # decisions, and shadowing it here raised UnboundLocalError for the
+            # whole of main().
+            existing = decided.get(item["key"])
+            # A record WITHOUT a `decision` is not a decision. `auto_adjudicate.py`
+            # writes exactly such a marker when it escalates: it records that
+            # automation looked and declined to rule. Treating key presence as
+            # "decided" would hide every escalated sentence from the person whose
+            # job it is to decide them.
+            if existing is None or not existing.get("decision"):
                 pending.append(item)
         skipped = len(items) - len(pending)
         items = pending
@@ -439,7 +470,6 @@ def main(argv: list[str] | None = None) -> int:
               + (f"   already decided={skipped}" if skipped else "")))
     print(yellow("  This records provenance judgement, NOT clinical approval."))
     print(dim("  a=accept  r=reject  e=edit  s=skip  q=quit (saves as you go)"))
-
     if not items:
         print(green("\nNothing to adjudicate — every flagged sentence has a decision."))
         print(dim("Use --redo to revisit, or --all to review passing sentences too."))

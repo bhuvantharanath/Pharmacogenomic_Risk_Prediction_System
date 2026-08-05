@@ -418,6 +418,7 @@ Release gates, each exiting non-zero on failure:
 
 Stated plainly, because declared limitations cost less than concealed ones.
 
+- **36 of 179 clinical sentences were adjudicated by automated alignment, not by a person.** Each was matched to a quoted passage in the mechanism corpus and accepted only where it added no causal step, quantity, timeline, comparative or scope claim. A further 19 were escalated for human review and remain outstanding; 124 were previously decided by a person. Full human adjudication of the remainder is outstanding. This is disclosed because the project's own findings show automated verification of clinical faithfulness has structural limits — automation is used here as triage under time constraint, not as a substitute for human review. The release gate reports `provisional` and never `release_ready` while any automated decision stands; `--require-human` fails on them.
 - **No clinical expert review.** No qualified clinical reviewer was available. The system compensates by generating no clinical content of its own; every clinical statement is provenance-verified to a CPIC source. This is a declared limitation, not a solved problem.
 - **External concordance is n=1.** GeT-RM and 1000 Genomes overlap in a single sample. This is a structural property of the available reference materials, not a sampling choice.
 - **CYP2D6 is not called from VCF.** Copy-number and structural variation cannot be resolved from an unphased VCF. The system returns `Unknown` with an explicit warning and never fabricates a call.
