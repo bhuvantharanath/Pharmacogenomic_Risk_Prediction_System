@@ -15,7 +15,8 @@ from app.pharmcat_models import PharmcatReport  # noqa: E402
 from app.pharmcat_runner import parse_report  # noqa: E402
 
 FIXTURES = Path(__file__).parent / "fixtures"
-TEST_DATA = Path(__file__).resolve().parents[2] / "test-data"
+REPO_ROOT = Path(__file__).resolve().parents[2]
+TEST_DATA = REPO_ROOT / "test-data"
 
 
 @pytest.fixture(autouse=True)

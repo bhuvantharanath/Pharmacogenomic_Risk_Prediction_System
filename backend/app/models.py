@@ -203,6 +203,74 @@ class PerDrugResult(BaseModel):
     llm_generated_explanation: LlmGeneratedExplanation
 
 
+class GuidelineProvenance(BaseModel):
+    """
+    When this guidance was captured. CPIC revises its guidelines, so a frozen
+    explanation store carries an implicit "as of" that would otherwise be
+    invisible.
+
+    Deliberately NOT a staleness check. Claiming to detect guideline changes
+    would require monitoring CPIC; date-stamping is honest, an unverifiable
+    freshness claim is not.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    pharmcat_version: str
+    #: PharmCAT's own data-bundle stamp (its `dataVersion`) — the allele
+    #: definitions and CPIC annotations it shipped with, and the closest thing
+    #: to a CPIC guideline date this pipeline actually observes. Empty on
+    #: /coverage, which does not run PharmCAT and so has not observed one.
+    cpic_data_version: str = ""
+    explanations_generated_at: str = ""
+    cpic_source: str = "CPIC guidelines, retrieved via PharmCAT"
+    note: str = (
+        "Guidance reflects what CPIC published when this data was captured. "
+        "CPIC revises its guidelines; this build does not monitor for changes."
+    )
+
+
+class GeneReadiness(BaseModel):
+    """One gene's input coverage, as reported by POST /coverage."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    gene: str
+    positions_found: int = Field(ge=0)
+    positions_required: int = Field(ge=0)
+    threshold_percent: int = Field(ge=0, le=100)
+    percent: float = Field(ge=0)
+    passes: bool
+    #: Set when no VCF can resolve this gene, whatever its coverage. The client
+    #: must show a reason rather than a zero bar — zero would blame the file for
+    #: a limit of the format.
+    not_readable_from_vcf: bool = False
+    reason: str = ""
+
+
+class CoverageResponse(BaseModel):
+    """
+    What a file can answer, without running PharmCAT.
+
+    Exists so a user learns the shape of their result BEFORE analysis. Four
+    Unknowns arriving unannounced read as failure; the same four announced in
+    advance read as the system knowing its own limits.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    genes: list[GeneReadiness] = Field(default_factory=list)
+    genes_passing: int = Field(ge=0)
+    genes_total: int = Field(ge=0)
+    #: Drugs whose primary gene passes — answerable without a second round trip.
+    answerable_drugs: list[str] = Field(default_factory=list)
+    #: Drugs whose gene did not pass. Not an error: the user may still proceed.
+    unanswerable_drugs: list[str] = Field(default_factory=list)
+    variants_only: bool = False
+    warnings: list[str] = Field(default_factory=list)
+    guideline_provenance: GuidelineProvenance | None = None
+
+
 class QualityMetrics(BaseModel):
     """Pipeline telemetry — lets the UI show *how much to trust* the result."""
 
@@ -217,6 +285,8 @@ class QualityMetrics(BaseModel):
     #: fail, because a confident result at low coverage is the dangerous case and
     #: the reader needs the number either way.
     position_coverage: dict[str, dict] = Field(default_factory=dict)
+    #: When the guidance behind this result was captured. See GuidelineProvenance.
+    guideline_provenance: GuidelineProvenance | None = None
 
 
 class AnalyzeResponse(BaseModel):

@@ -1,6 +1,6 @@
 {
  "patient_id": "DEMO_NORMAL",
- "timestamp": "2026-08-04T07:06:15.376924Z",
+ "timestamp": "2026-08-06T03:30:12.002754Z",
  "analyses": [
   {
    "drug": "simvastatin",
@@ -38,7 +38,7 @@
  "quality_metrics": {
   "vcf_parsing_success": true,
   "variants_detected_count": 0,
-  "processing_time_ms": 1153,
+  "processing_time_ms": 1176,
   "warnings": [
    "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
    "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",

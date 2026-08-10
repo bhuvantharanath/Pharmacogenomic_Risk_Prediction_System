@@ -37,6 +37,10 @@ dependencies:
   dio: ^5.10.0
   file_picker: ^11.0.2
   web: ^1.1.1
+  pdf: ^3.12.0
+  # Pinned below 6.0.0: the HTML->PDF converter this uses is deprecated
+  # upstream, so a major bump could remove it. See print_summary_io.dart.
+  printing: '>=5.14.3 <6.0.0'
 
 dev_dependencies:
   flutter_test:
@@ -54,6 +58,26 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+
+  fonts:
+    # Bundled, not fetched. A demo on a bad network must not lose its typography,
+    # and the three families carry meaning (see lib/theme/tokens.dart) rather
+    # than decoration — so they cannot be allowed to silently fall back.
+    - family: PublicSans
+      fonts:
+        - asset: assets/fonts/PublicSans-Variable.ttf
+    - family: Newsreader
+      fonts:
+        - asset: assets/fonts/Newsreader-Variable.ttf
+        - asset: assets/fonts/Newsreader-Italic-Variable.ttf
+          style: italic
+    - family: IBMPlexMono
+      fonts:
+        - asset: assets/fonts/IBMPlexMono-Regular.ttf
+        - asset: assets/fonts/IBMPlexMono-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexMono-SemiBold.ttf
+          weight: 600
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

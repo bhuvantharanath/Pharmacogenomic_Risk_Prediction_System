@@ -110,6 +110,60 @@ Trimming the file some other way to get under the cap is the trap: dropping
 homozygous-reference rows produces a small file that is *accepted and silently
 wrong*, which is the failure this whole document exists to prevent.
 
+## Fixing a file that was rejected
+
+The error messages the API returns say *what is wrong* and point here. They do
+not name tools, because the person who hit the error is usually not the person
+who built the file — and a message that answers only a bioinformatician reads as
+a dead end to everybody else. The commands live here instead.
+
+### "Every position must be reported" — a variants-only file
+
+The most common rejection, and the one with the most dangerous failure mode: a
+file listing only differences is indistinguishable from one where the missing
+positions were never tested, so a reduced-function result reads as normal.
+
+Re-call emitting **all** sites, not just variant ones:
+
+```bash
+# GATK
+gatk GenotypeGVCFs -R GRCh38.fa -V input.g.vcf.gz -O all-sites.vcf.gz \
+  --include-non-variant-sites
+
+# bcftools — note the ABSENCE of -v, which is what restricts output to variants
+bcftools mpileup -f GRCh38.fa input.bam | bcftools call -m -Oz -o all-sites.vcf.gz
+```
+
+Then restrict to the positions this analysis needs, using the command in the
+file-size section above. Do those in that order: restricting first and re-calling
+second loses the reference calls again.
+
+### "This file uses GRCh37 coordinates"
+
+The two builds number the same positions differently, so a GRCh37 file read as
+GRCh38 produces confident wrong calls rather than an error. Convert it:
+
+```bash
+# CrossMap
+CrossMap vcf hg19ToHg38.over.chain.gz input.vcf GRCh38.fa lifted.vcf
+
+# Picard
+picard LiftoverVcf I=input.vcf O=lifted.vcf CHAIN=hg19ToHg38.over.chain.gz \
+  REJECT=rejected.vcf R=GRCh38.fa
+```
+
+Check the reject file. Positions that fail to lift are silently absent from the
+output, which puts you straight back into the variants-only failure above.
+
+### "This file looks compressed but could not be opened"
+
+A `.vcf.gz` produced by plain `gzip` is not the same thing as one produced by
+`bgzip`, and only the second is readable here:
+
+```bash
+gunzip -c broken.vcf.gz | bgzip -c > fixed.vcf.gz
+```
+
 ## Scope of this measurement
 
 **Coverage sensitivity only.** Inputs are synthesised from PharmCAT's own allele

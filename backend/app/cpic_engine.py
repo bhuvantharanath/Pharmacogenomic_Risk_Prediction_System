@@ -86,7 +86,8 @@ def load_mapping(path: Path | None = None) -> dict:
     except FileNotFoundError as exc:
         raise MappingConfigError(f"Label mapping file not found: {target}") from exc
     except yaml.YAMLError as exc:
-        raise MappingConfigError(f"Label mapping file is not valid YAML: {exc}") from exc
+        raise MappingConfigError(
+            f"The label mapping file could not be read: {exc}") from exc
 
     if not isinstance(data, dict):
         raise MappingConfigError(f"{target} did not parse to a mapping.")
@@ -287,8 +288,8 @@ def check_phenotype_label(
     """
     if phenotype is Phenotype.UNKNOWN and label is not RiskLabel.UNKNOWN:
         return (
-            f"phenotype is Unknown but the label is {label.value!r}: a phenotype "
-            f"the caller declined to assert cannot support a confident label"
+            f"phenotype is Unknown but the label is {label.value!r}: a result the "
+            f"genotyping step declined to assert cannot support a confident label"
         )
     return None
 
@@ -500,9 +501,9 @@ def select_annotation(
             # e.g. warfarin, whose CPIC guidance is a dosing algorithm rather
             # than per-phenotype text.
             warnings.append(
-                f"PharmCAT returned CPIC annotations for {guideline.drug} but none "
-                "carry a phenotype-specific recommendation (this drug's guideline "
-                "may be algorithm-based rather than phenotype-based)."
+                f"CPIC has guidance for {guideline.drug}, but none of it applies to "
+                "this particular result (this drug's guidance may be based on a "
+                "dose calculation rather than on gene function)."
             )
         return None, warnings
 
@@ -523,8 +524,8 @@ def select_annotation(
     if len(candidates) > 1 and len(populations) > 1:
         warnings.append(
             f"CPIC gives {len(candidates)} population-specific recommendations for "
-            f"{guideline.drug} ({', '.join(sorted(populations))}). PharmaGuard shows "
-            f"the strongest one ({chosen.population or 'unspecified'}); review the "
+            f"{guideline.drug} ({', '.join(sorted(populations))}). The strongest one "
+            f"is shown ({chosen.population or 'unspecified'}); review the "
             "population that matches the patient."
         )
     return chosen, warnings
@@ -611,7 +612,7 @@ def build_clinical_recommendation(
             ),
             cpic_evidence_level=CpicEvidenceLevel.UNKNOWN,
             alternatives=[],
-            source="PharmCAT (no matching CPIC annotation)",
+            source="PharmCAT (no matching CPIC entry)",
         )
 
     recommendation = html.unescape(annotation.drug_recommendation or "").strip()
@@ -626,7 +627,7 @@ def build_clinical_recommendation(
     if implications:
         cpic_text += f" Implications: {implications}"
 
-    source = "PharmCAT CPIC Guideline Annotation"
+    source = "Entry in the CPIC Guideline, via PharmCAT"
     if guideline and guideline.guideline_name:
         source = f"{guideline.guideline_name} (via PharmCAT)"
 
@@ -827,8 +828,9 @@ def evaluate(
     if risk_label is RiskLabel.UNKNOWN and rule_id == "fallback_unmatched":
         # A visible gap in the table rather than a silent wrong answer.
         warnings.append(
-            f"No label-mapping rule matched CPIC's wording for {drug}; reported as "
-            "Unknown. This is a gap in label_mapping.yaml, not a genotype finding."
+            f"No rule in this build matched CPIC's wording for {drug}, so it is "
+            "reported as Unknown. That is a gap in how this system reads the "
+            "guideline, not a finding about the genotype."
         )
 
     recommendation = build_clinical_recommendation(
@@ -905,15 +907,13 @@ def check_label_contradiction(annotation: CpicAnnotation, label: RiskLabel) -> s
 
     if annotation.dosing_information:
         return (
-            f"label {label.value!r} asserts unchanged prescribing, but CPIC sets "
-            "dosingInformation=true for this recommendation (a dose change or "
-            "monitoring requirement applies)"
+            f"label {label.value!r} asserts unchanged prescribing, but CPIC records "
+            "a dose change or monitoring requirement for this recommendation"
         )
     if annotation.alternate_drug_available:
         return (
-            f"label {label.value!r} asserts no action needed, but CPIC sets "
-            "alternateDrugAvailable=true for this recommendation (another drug "
-            "should be considered instead)"
+            f"label {label.value!r} asserts no action needed, but CPIC records that "
+            "another drug should be considered instead"
         )
     return None
 

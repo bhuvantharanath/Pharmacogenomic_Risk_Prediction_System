@@ -110,6 +110,13 @@ const String _fixture = '''
           "minimum_percent": 100,
           "sufficient": true
         }
+      },
+      "guideline_provenance": {
+        "pharmcat_version": "3.4.0",
+        "cpic_data_version": "2026-07-13-11-40",
+        "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+        "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+        "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
       }
   }
 }
@@ -186,8 +193,19 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('Codeine'), findsOneWidget);
-      expect(find.text('Aspirin'), findsOneWidget);
+      // The redesign renders the drug as a mono IDENTIFIER (lowercase), not a
+      // title — it is the string the request carried, so it reads as machine
+      // output like the diplotype beside it.
+      expect(find.text('codeine'), findsOneWidget);
+      // The verdict card is taller than the old one, so the second drug now
+      // starts below the fold in a lazily-built list. Scrolling to it asserts
+      // a user can actually reach it.
+      await tester.dragUntilVisible(
+        find.text('aspirin'),
+        find.byType(Scrollable).first,
+        const Offset(0, -200),
+      );
+      expect(find.text('aspirin'), findsOneWidget);
       expect(find.text('Toxic'), findsWidgets);
       expect(find.text('Unknown'), findsWidgets);
       expect(find.textContaining('Not a medical device'), findsWidgets);
@@ -212,13 +230,25 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      await tester.tap(find.text('Codeine'));
+      // CPIC's text sits under a mono label that names it as quoted, which is
+      // the point: the reader can see which words are the guideline's own.
+      // Feature Set B gave it its own disclosure row — in patient view (the
+      // default) the prose is already surfaced, so only the quote is behind a
+      // tap. Target the first card's row explicitly, and scroll to it.
+      final Finder cpicRow = find.text("The guideline in CPIC's own words");
+      await tester.ensureVisible(cpicRow.first);
+      await tester.pumpAndSettle();
+      await tester.tap(cpicRow.first);
       await tester.pumpAndSettle();
 
-      expect(find.text('CLINICAL RECOMMENDATION'), findsOneWidget);
-      expect(find.text('IN PLAIN LANGUAGE'), findsOneWidget);
+      expect(find.text('CPIC GUIDELINE — QUOTED EXACTLY'), findsWidgets);
       expect(find.textContaining('Avoid codeine'), findsOneWidget);
-      expect(find.textContaining('STUB plain-language text'), findsOneWidget);
+
+      await tester.ensureVisible(find.text('What was found in your file').first);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('What was found in your file').first);
+      await tester.pumpAndSettle();
+      expect(find.text('diplotype'), findsWidgets);
     });
   });
 }

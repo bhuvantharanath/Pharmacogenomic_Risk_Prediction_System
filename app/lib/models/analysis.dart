@@ -314,6 +314,203 @@ class GeneCoverage {
   };
 }
 
+/// One gene's readiness, as reported by `POST /coverage` before any analysis.
+///
+/// Mirrors the backend's `GeneReadiness`. Distinct from [GeneCoverage], which
+/// describes the same gene *after* a run: this one also carries whether the gene
+/// is readable from a VCF at all, and the sentence to show when it is not.
+class GeneReadiness {
+  const GeneReadiness({
+    required this.gene,
+    required this.positionsFound,
+    required this.positionsRequired,
+    required this.thresholdPercent,
+    required this.percent,
+    required this.passes,
+    required this.notReadableFromVcf,
+    required this.reason,
+  });
+
+  final String gene;
+  final int positionsFound;
+  final int positionsRequired;
+  final int thresholdPercent;
+  final double percent;
+  final bool passes;
+
+  /// True for genes no VCF can resolve, whatever the coverage — CYP2D6 is
+  /// defined by copy number. The UI must show [reason] rather than a zero bar:
+  /// zero says "your file is deficient", when the limit is the file format.
+  final bool notReadableFromVcf;
+
+  /// Empty when the gene passes. There is nothing to explain about a pass.
+  final String reason;
+
+  /// The shape [CoverageCensus] draws, so the readiness screen and the results
+  /// screen render identical tick rows from the two different endpoints.
+  GeneCoverage get asCoverage => GeneCoverage(
+    positionsPresent: positionsFound,
+    positionsRequired: positionsRequired,
+    percent: percent,
+    minimumPercent: thresholdPercent,
+    sufficient: passes,
+  );
+
+  factory GeneReadiness.fromJson(Map<String, dynamic> json) => GeneReadiness(
+    gene: _str(json['gene']),
+    positionsFound: (json['positions_found'] as num?)?.toInt() ?? 0,
+    positionsRequired: (json['positions_required'] as num?)?.toInt() ?? 0,
+    thresholdPercent: (json['threshold_percent'] as num?)?.toInt() ?? 100,
+    percent: (json['percent'] as num?)?.toDouble() ?? 0,
+    passes: json['passes'] == true,
+    notReadableFromVcf: json['not_readable_from_vcf'] == true,
+    reason: _str(json['reason']),
+  );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'gene': gene,
+    'positions_found': positionsFound,
+    'positions_required': positionsRequired,
+    'threshold_percent': thresholdPercent,
+    'percent': percent,
+    'passes': passes,
+    'not_readable_from_vcf': notReadableFromVcf,
+    'reason': reason,
+  };
+}
+
+/// When the guidance behind a result was captured.
+///
+/// A frozen explanation store carries an implicit "as of" that would otherwise
+/// be invisible. This is a date stamp, NOT a staleness check — the backend does
+/// not monitor CPIC, and the UI must not imply that it does.
+class GuidelineProvenance {
+  const GuidelineProvenance({
+    required this.pharmcatVersion,
+    required this.cpicDataVersion,
+    required this.explanationsGeneratedAt,
+    required this.cpicSource,
+    required this.note,
+  });
+
+  final String pharmcatVersion;
+
+  /// PharmCAT's own data-bundle stamp. Empty on `/coverage`, which does not run
+  /// PharmCAT and so has not observed one.
+  final String cpicDataVersion;
+  final String explanationsGeneratedAt;
+  final String cpicSource;
+  final String note;
+
+  /// `2026-07-24T09:53:53Z` -> `24 Jul 2026`. Returns the raw string when it is
+  /// not parseable, rather than hiding a value the backend did send.
+  String get explanationsDate => _formatDate(explanationsGeneratedAt);
+
+  /// The one-line form for a results footer: versions, comma separated, with
+  /// empty parts dropped so `/coverage` does not render a dangling separator.
+  String get summaryLine => <String>[
+    if (pharmcatVersion.isNotEmpty) 'PharmCAT $pharmcatVersion',
+    if (cpicDataVersion.isNotEmpty) 'CPIC data $cpicDataVersion',
+    if (explanationsDate.isNotEmpty) 'explanations $explanationsDate',
+  ].join(' · ');
+
+  factory GuidelineProvenance.fromJson(Map<String, dynamic> json) =>
+      GuidelineProvenance(
+        pharmcatVersion: _str(json['pharmcat_version']),
+        cpicDataVersion: _str(json['cpic_data_version']),
+        explanationsGeneratedAt: _str(json['explanations_generated_at']),
+        cpicSource: _str(json['cpic_source']),
+        note: _str(json['note']),
+      );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'pharmcat_version': pharmcatVersion,
+    'cpic_data_version': cpicDataVersion,
+    'explanations_generated_at': explanationsGeneratedAt,
+    'cpic_source': cpicSource,
+    'note': note,
+  };
+}
+
+const List<String> _months = <String>[
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+];
+
+String _formatDate(String iso) {
+  if (iso.isEmpty) return '';
+  final DateTime? at = DateTime.tryParse(iso);
+  if (at == null) return iso;
+  return '${at.day} ${_months[at.month - 1]} ${at.year}';
+}
+
+/// The 200 body of `POST /coverage` — what a file can answer, before analysis.
+class CoverageResponse {
+  const CoverageResponse({
+    required this.genes,
+    required this.genesPassing,
+    required this.genesTotal,
+    required this.answerableDrugs,
+    required this.unanswerableDrugs,
+    required this.variantsOnly,
+    required this.warnings,
+    this.guidelineProvenance,
+  });
+
+  final List<GeneReadiness> genes;
+  final int genesPassing;
+  final int genesTotal;
+  final List<String> answerableDrugs;
+  final List<String> unanswerableDrugs;
+  final bool variantsOnly;
+  final List<String> warnings;
+  final GuidelineProvenance? guidelineProvenance;
+
+  /// Genes held back by the file format rather than by its coverage. Separated
+  /// because the remedy differs: re-calling helps one group and never the other.
+  List<GeneReadiness> get blockedByFormat =>
+      genes.where((GeneReadiness g) => g.notReadableFromVcf).toList();
+
+  List<GeneReadiness> get shortOnCoverage => genes
+      .where((GeneReadiness g) => !g.passes && !g.notReadableFromVcf)
+      .toList();
+
+  factory CoverageResponse.fromJson(Map<String, dynamic> json) {
+    final Object? raw = json['genes'];
+    final Object? provenance = json['guideline_provenance'];
+    return CoverageResponse(
+      genes: raw is List
+          ? raw
+                .whereType<Map<String, dynamic>>()
+                .map(GeneReadiness.fromJson)
+                .toList()
+          : const <GeneReadiness>[],
+      genesPassing: (json['genes_passing'] as num?)?.toInt() ?? 0,
+      genesTotal: (json['genes_total'] as num?)?.toInt() ?? 0,
+      answerableDrugs: _strList(json['answerable_drugs']),
+      unanswerableDrugs: _strList(json['unanswerable_drugs']),
+      variantsOnly: json['variants_only'] == true,
+      warnings: _strList(json['warnings']),
+      guidelineProvenance: provenance is Map<String, dynamic>
+          ? GuidelineProvenance.fromJson(provenance)
+          : null,
+    );
+  }
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'genes': <Map<String, dynamic>>[
+      for (final GeneReadiness g in genes) g.toJson(),
+    ],
+    'genes_passing': genesPassing,
+    'genes_total': genesTotal,
+    'answerable_drugs': answerableDrugs,
+    'unanswerable_drugs': unanswerableDrugs,
+    'variants_only': variantsOnly,
+    'warnings': warnings,
+    'guideline_provenance': guidelineProvenance?.toJson(),
+  };
+}
+
 class QualityMetrics {
   const QualityMetrics({
     required this.vcfParsingSuccess,
@@ -321,12 +518,17 @@ class QualityMetrics {
     required this.processingTimeMs,
     required this.warnings,
     required this.positionCoverage,
+    this.guidelineProvenance,
   });
 
   final bool vcfParsingSuccess;
   final int variantsDetectedCount;
   final int processingTimeMs;
   final List<String> warnings;
+
+  /// When the guidance behind this result was captured. Nullable because it was
+  /// added after Phase 1 and an older backend will not send it.
+  final GuidelineProvenance? guidelineProvenance;
 
   /// Per-gene coverage of PharmCAT's required defining positions, keyed by gene.
   /// Present on every response, pass or fail — a confident result at low
@@ -346,6 +548,11 @@ class QualityMetrics {
         if (e.value is Map<String, dynamic>)
           e.key: GeneCoverage.fromJson(e.value as Map<String, dynamic>),
     },
+    guidelineProvenance: json['guideline_provenance'] is Map<String, dynamic>
+        ? GuidelineProvenance.fromJson(
+            json['guideline_provenance'] as Map<String, dynamic>,
+          )
+        : null,
   );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -357,6 +564,7 @@ class QualityMetrics {
       for (final MapEntry<String, GeneCoverage> e in positionCoverage.entries)
         e.key: e.value.toJson(),
     },
+    'guideline_provenance': guidelineProvenance?.toJson(),
   };
 }
 

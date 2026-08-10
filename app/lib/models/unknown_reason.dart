@@ -58,13 +58,13 @@ enum UnknownReason {
 
   String get explanation => switch (this) {
     UnknownReason.notCallable =>
-      'This gene is defined by structural and copy-number variation, which a VCF '
+      'This gene is defined by structural and copy-number changes, which a VCF '
       'file cannot represent. No amount of extra sequencing depth in a VCF will '
-      'resolve it — it needs a different assay. The system declines to guess '
+      'resolve it — it needs a different kind of genetic test. The system declines to guess '
       'rather than report a genotype it cannot support.',
     UnknownReason.lowCoverage =>
       'Some of the positions needed to identify this gene carry no genotype in '
-      'your file. That is not a small gap: a variant whose defining position is '
+      'your file. That is not a small gap: a change whose key position is '
       'absent is invisible, so the genotype would read as normal and a '
       'reduced-function result could be reported as safe. The system declines '
       'rather than risk that.',
@@ -85,8 +85,9 @@ enum UnknownReason {
   String? get callToAction => switch (this) {
     UnknownReason.lowCoverage =>
       'Upload a VCF that reports ALL positions, including those matching the '
-      'reference — a clinical pharmacogenomic panel, or whole-genome/exome data '
-      'called with all sites emitted. A variants-only file cannot work here.',
+      'reference — a clinical pharmacogenomic panel, or data covering all your '
+      'genes, produced with every position reported. A variants-only file '
+      'cannot work here.',
     _ => null,
   };
 }

@@ -18,6 +18,28 @@ enum RiskLabel {
   /// The exact string used on the wire — do not derive this from `name`.
   final String wireValue;
 
+  /// Ordering by CONSEQUENCE, for any list a user scans rather than reads.
+  ///
+  /// Alphabetical order is the wrong default here: it puts "azathioprine —
+  /// Safe" above "clopidogrel — Ineffective", so the row that changes what
+  /// someone should do arrives after two rows that do not.
+  ///
+  /// Toxic and Ineffective share rank 0 deliberately. They are different
+  /// mechanisms — harm from exposure versus therapeutic failure — but both mean
+  /// "do not proceed as written", and ranking one above the other would assert
+  /// a clinical priority this project has no basis for. Severity breaks the tie.
+  ///
+  /// Unknown sits LAST, not because it is unimportant — it is frequently the
+  /// hard-won correct answer — but because it is the one row where nothing about
+  /// the prescription changes on the strength of this result alone.
+  int get consequenceRank => switch (this) {
+    RiskLabel.toxic => 0,
+    RiskLabel.ineffective => 0,
+    RiskLabel.adjustDosage => 1,
+    RiskLabel.safe => 2,
+    RiskLabel.unknown => 3,
+  };
+
   static RiskLabel fromJson(Object? value) => values.firstWhere(
     (RiskLabel e) => e.wireValue == value,
     orElse: () => RiskLabel.unknown,

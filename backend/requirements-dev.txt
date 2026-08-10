@@ -9,3 +9,7 @@ httpx==0.28.1                 # required by fastapi.testclient.TestClient
 # the deployed service never needs it — verified by a test that blocks the
 # import and still boots the app.
 spacy>=3.7,<4
+# Ordinary-English word frequencies for the glossary candidate extractor.
+# A frequency table, not a model: it decides what is RARE, never what is
+# biomedical. See reports/glossary_precommitment.md.
+wordfreq>=3.1,<4

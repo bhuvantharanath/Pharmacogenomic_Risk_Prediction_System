@@ -1,6 +1,6 @@
 {
  "patient_id": "DEMO_CONFIDENT",
- "timestamp": "2026-08-04T07:06:10.583334Z",
+ "timestamp": "2026-08-06T03:30:07.375165Z",
  "analyses": [
   {
    "drug": "clopidogrel",
@@ -69,7 +69,7 @@
  "quality_metrics": {
   "vcf_parsing_success": true,
   "variants_detected_count": 4,
-  "processing_time_ms": 1333,
+  "processing_time_ms": 1157,
   "warnings": [
    "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). PharmaGuard shows the strongest one (CVI ACS PCI); review the population that matches the patient.",
    "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",

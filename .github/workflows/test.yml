@@ -49,6 +49,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt -r backend/requirements-dev.txt
+          # The English model, not just the spaCy library. Without it the
+          # mechanism vocabulary check returns NO foreign terms rather than
+          # erroring — it degrades to a silent no-op, which is how two of its
+          # tests had been failing on `main` unnoticed. The glossary audit's
+          # tests skip themselves entirely when it is absent, so they had never
+          # run in CI at all.
+          python -m spacy download en_core_web_sm
 
       # Deliberately unset. If any of the steps below start needing a key, that
       # is a defect in the deployed path, and it should fail here.
@@ -77,7 +84,18 @@ jobs:
         # checks every phenotype combination against the mapping rules.
         run: python scripts/validate_label_mapping.py || true
 
+      # Re-run of two suites the `pytest` step already covers, kept as a named
+      # step so a failure in the safety gate is legible in the checks list
+      # rather than buried in a 600-line log.
+      #
+      # `working-directory` was missing, so the paths resolved at the repo root
+      # and pytest exited 4 — "file or directory not found". It had never been
+      # seen because the job always died at the `pytest` step first; fixing that
+      # is what let this one finally run.
       - name: Coverage gate + phenotype invariant tests
+        working-directory: backend
+        env:
+          EXPLANATION_MODE: static
         run: python -m pytest tests/test_coverage_gate.py tests/test_phenotype_label_invariant.py -q
 
       # THE RELEASE GATE. Fails if any flagged claim is unadjudicated, or if a
@@ -87,6 +105,22 @@ jobs:
 
       - name: Review status
         run: python scripts/review_status.py
+
+      # Glossary coverage: does every domain term a user meets have an answer?
+      #
+      # REPORTING, NOT GATING, and deliberately so. The extractor's
+      # false-positive rate on ordinary English measured 41.5%, above the 25%
+      # recorded in reports/glossary_precommitment.md before it was run. The
+      # pre-commitment named that branch in advance, so the check reports the
+      # count instead of failing the build — the same branch the mechanism
+      # vocabulary check took at 30%.
+      #
+      # It is NOT non-blocking because it was inconvenient. Once the candidate
+      # list has been sorted once by a person, every false positive is recorded
+      # as ordinary English and never returns; add --gate then and the number
+      # stops being advisory.
+      - name: Glossary coverage (reported — see glossary_precommitment.md)
+        run: python scripts/glossary_status.py
 
       - name: Upload provenance report
         if: always()
