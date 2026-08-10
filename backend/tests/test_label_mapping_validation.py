@@ -141,7 +141,10 @@ class TestContradictionGuard:
         )
         problem = check_label_contradiction(annotation, RiskLabel.SAFE)
         assert problem is not None
-        assert "dosingInformation=true" in problem
+        # The warning used to quote CPIC's field name at the reader. It now
+        # says what the flag means, because `dosingInformation=true` is a
+        # schema detail and the person seeing this warning cannot act on one.
+        assert "dose change or monitoring requirement" in problem
 
     def test_alternate_drug_versus_no_action_is_a_contradiction(self) -> None:
         from app.cpic_engine import check_label_contradiction

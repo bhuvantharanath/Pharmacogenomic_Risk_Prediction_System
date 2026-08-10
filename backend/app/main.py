@@ -22,9 +22,11 @@ is written to durable storage, logged, or returned to any third party.
 
 from __future__ import annotations
 
+import json
 import os
 import time
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, File, Form, HTTPException, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -38,7 +40,10 @@ from .explanation.context import ExplanationContext
 from .models import (
     AnalyzeResponse,
     ClinicalRecommendation,
+    CoverageResponse,
     DetectedVariant,
+    GeneReadiness,
+    GuidelineProvenance,
     HealthResponse,
     PerDrugResult,
     PharmacogenomicProfile,
@@ -51,6 +56,7 @@ from .retrieval import all_documents, retrieve_mechanism
 from .pharmcat_models import PharmcatGeneCall, PharmcatReport
 from .pharmcat_runner import (
     CYP2D6_WARNING,
+    PINNED_VERSION,
     PharmcatExecutionError,
     pharmcat_available,
     resolve_invoker,
@@ -150,14 +156,28 @@ async def lifespan(_: FastAPI):
     yield
 
 
+def _app_metadata() -> dict[str, str]:
+    """
+    Title and blurb for the OpenAPI page.
+
+    Kept in its own function because /docs is an API reference read by a
+    developer, not the product's voice. The glossary audit excludes it by name
+    (see `OPERATOR_ONLY` in scripts/glossary_lib.py) — the boundary is a real
+    one, so it is drawn in the code rather than asserted in a comment.
+    """
+    return {
+        "title": "PharmaGuard API",
+        "description": (
+            "Pharmacogenomic risk prediction. Genotypes from PharmCAT, clinical "
+            "guidance from CPIC (verbatim), explanations pre-generated and "
+            "guard-checked. Research/educational use only; not a medical device."
+        ),
+    }
+
+
 app = FastAPI(
-    title="PharmaGuard API",
+    **_app_metadata(),
     version="0.4.0",
-    description=(
-        "Pharmacogenomic risk prediction. Genotypes from PharmCAT, clinical "
-        "guidance from CPIC (verbatim), explanations pre-generated and "
-        "guard-checked. Research/educational use only; not a medical device."
-    ),
     lifespan=lifespan,
 )
 
@@ -280,6 +300,19 @@ async def ready() -> JSONResponse:
             "explanation_mode": ExplanationMode.from_env().value,
         },
     )
+
+
+@app.get("/provenance", response_model=GuidelineProvenance, tags=["meta"])
+async def provenance() -> GuidelineProvenance:
+    """
+    When the guidance this build ships was captured.
+
+    A GET because the About screen must be able to state it without an analysis
+    having been run — the version behind an answer is not a property of the
+    upload. Reports the pinned PharmCAT release; the data-bundle stamp comes
+    from a real run and so is only present on /analyze.
+    """
+    return guideline_provenance()
 
 
 @app.get("/", tags=["meta"])
@@ -612,6 +645,7 @@ def build_response(
             position_coverage=(
                 cov.as_metrics() if cov is not None else {}
             ),
+            guideline_provenance=guideline_provenance(report),
         ),
     )
 
@@ -619,6 +653,95 @@ def build_response(
 # --------------------------------------------------------------------------- #
 # Endpoint
 # --------------------------------------------------------------------------- #
+
+
+def _read_and_validate(contents: bytes, filename: str) -> VcfMetadata:
+    """
+    Upload gate shared by /analyze and /coverage.
+
+    Extracted rather than copied: two endpoints applying subtly different size or
+    build checks would be a silent divergence, and the coverage preview is only
+    useful if it accepts exactly what the analysis would.
+    """
+    if len(contents) > MAX_UPLOAD_BYTES:
+        raise ApiError(
+            413,
+            "FILE_TOO_LARGE",
+            f"The file is {len(contents) / (1024 * 1024):.1f} MB, over the "
+            f"{MAX_UPLOAD_BYTES // (1024 * 1024)} MB limit.",
+        )
+    try:
+        return validate_vcf(contents, filename=filename or "upload.vcf")
+    except VcfValidationError as exc:
+        raise ApiError(400, exc.code.value, exc.message) from exc
+
+
+def guideline_provenance(report: PharmcatReport | None = None) -> GuidelineProvenance:
+    """
+    When the guidance behind a result was captured.
+
+    Reads the explanation store's own generation stamp and, when a run is in
+    hand, PharmCAT's self-reported versions — rather than constants, so it
+    cannot claim a currency the shipped data does not have. `/coverage` has no
+    run, so it names the pinned release and leaves the data-bundle stamp empty
+    instead of guessing at one.
+
+    Deliberately NOT a staleness check; see `GuidelineProvenance`.
+    """
+    generated = ""
+    try:
+        raw = json.loads(
+            (Path(__file__).parent / "data" / "explanations.json").read_text()
+        )
+        generated = str(raw.get("generated_at") or "")
+    except Exception:  # noqa: BLE001 — provenance must never break a response
+        generated = ""
+    return GuidelineProvenance(
+        pharmcat_version=(report.pharmcat_version if report else PINNED_VERSION),
+        cpic_data_version=((report.data_version or "") if report else ""),
+        explanations_generated_at=generated,
+    )
+
+
+@app.post("/coverage", response_model=CoverageResponse, tags=["analysis"])
+async def coverage_preview(
+    file: UploadFile = File(..., description="VCF upload (.vcf or .vcf.gz, GRCh38)"),
+) -> CoverageResponse:
+    """
+    What this file can answer — WITHOUT running PharmCAT.
+
+    Exists so a user sees the shape of their result before committing to an
+    analysis. Four Unknowns arriving unannounced read as failure; the same four
+    announced in advance read as the system knowing its own limits.
+
+    **No JVM is started here**, which is why it is not rate limited: it reads the
+    upload, counts positions against the requirements table, and returns. It also
+    writes no temp files at all — the coverage check works on the in-memory text —
+    so the retention guarantee is satisfied by construction rather than by a
+    cleanup block.
+    """
+    contents = await file.read()
+    await file.close()
+    metadata = _read_and_validate(contents, file.filename or "upload.vcf")
+
+    cov = coverage_mod.assess(metadata.text)
+    cfg = cpic_engine.load_mapping()
+    data = coverage_mod.readiness(cov, cfg.get("drug_primary_gene", {}) or {})
+
+    warnings = list(metadata.warnings)
+    if cov.variants_only:
+        warnings.append(coverage_mod.variants_only_warning())
+
+    return CoverageResponse(
+        genes=[GeneReadiness(**g) for g in data["genes"]],
+        genes_passing=data["genes_passing"],
+        genes_total=data["genes_total"],
+        answerable_drugs=data["answerable_drugs"],
+        unanswerable_drugs=data["unanswerable_drugs"],
+        variants_only=data["variants_only"],
+        warnings=warnings,
+        guideline_provenance=guideline_provenance(),
+    )
 
 
 @app.post("/analyze", response_model=AnalyzeResponse, tags=["analysis"])
@@ -670,19 +793,9 @@ async def analyze(
     contents = await file.read()
     await file.close()
 
-    # Cheap guard before the (more expensive) full validation.
-    if len(contents) > MAX_UPLOAD_BYTES:
-        raise ApiError(
-            413,
-            "FILE_TOO_LARGE",
-            f"The file is {len(contents) / (1024 * 1024):.1f} MB, over the "
-            f"{MAX_UPLOAD_BYTES // (1024 * 1024)} MB limit.",
-        )
-
-    try:
-        metadata = validate_vcf(contents, filename=file.filename or "upload.vcf")
-    except VcfValidationError as exc:
-        raise ApiError(400, exc.code.value, exc.message) from exc
+    # Size cap + format validation, shared with /coverage so the preview cannot
+    # accept a file the analysis would reject.
+    metadata = _read_and_validate(contents, file.filename or "upload.vcf")
 
     # A missing/ambiguous reference build is not fatal — validate_vcf has already
     # recorded a warning in metadata.warnings, which flows into quality_metrics.

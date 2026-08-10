@@ -14,7 +14,7 @@ Every other check in this project reasons about PharmCAT's *output*:
 None of those can see the defect this one catches, because from the output's point
 of view nothing is wrong. Measured over 120 synthetic samples: when defining
 positions are missing from a VCF, PharmCAT does **not** decline. It confidently
-calls the reference haplotype, because a variant whose defining position is absent
+calls the reference haplotype, because a change whose key position is missing
 is invisible and every observed position then reads reference. Status `DEFINITE`,
 one candidate, phenotype asserted.
 
@@ -175,13 +175,14 @@ def variants_only_warning() -> str:
         "required positions, which means it is almost certainly a variants-only "
         "file. Such a file is indistinguishable from one where those positions "
         "were never tested, and the consequence is NOT a missing result — it is a "
-        "confident WRONG result: a variant whose defining position is absent is "
+        "confident WRONG result: a change whose key position is missing is "
         "invisible, so the genotype reads as reference and a reduced-function "
         "patient is reported as normal. Measured rate of confidently-wrong calls "
-        "at 60% position coverage: up to 28.6%. Re-call the VCF emitting ALL "
-        "sites (e.g. GATK GenotypeGVCFs with --include-non-variant-sites, or "
-        "bcftools call without -v) so every required position carries an explicit "
-        "genotype. See docs/input_requirements.md."
+        "at 60% position coverage: up to 28.6%. Produce the file again with "
+        "EVERY position reported — including the ones that match the reference "
+        "— so each required position carries an explicit genotype. The input "
+        "requirements page gives the exact commands. "
+        "See docs/input_requirements.md."
     )
 
 
@@ -194,3 +195,61 @@ def insufficient_warning(cov: GeneCoverage) -> str:
         f"one direction: missing positions read as reference, so the error would be "
         f"to report reduced function as normal."
     )
+
+
+# --------------------------------------------------------------------------- #
+# Readiness — the shared view both /coverage and the client consume
+# --------------------------------------------------------------------------- #
+
+#: Genes no VCF can resolve, whatever the coverage, with the reason to show in
+#: place of a tick bar. A zero bar would blame the user's file for a limit of the
+#: file format.
+NOT_READABLE_FROM_VCF: dict[str, str] = {
+    "CYP2D6": (
+        "Defined by copy-number and structural variation, which a VCF cannot "
+        "express. A different kind of genetic test is needed; no VCF will resolve it."
+    ),
+}
+
+
+def readiness(report: CoverageReport, drug_gene: dict[str, str]) -> dict:
+    """
+    Turn a `CoverageReport` into the per-gene + per-drug view the API returns.
+
+    Kept here rather than in `main` so /coverage and /analyze cannot drift: both
+    read the same thresholds from the same file through the same function.
+    `drug_gene` maps drug -> primary gene, from label_mapping.yaml.
+    """
+    genes: list[dict] = []
+    for gene, cov in sorted(report.genes.items()):
+        blocked = NOT_READABLE_FROM_VCF.get(gene.upper())
+        genes.append({
+            "gene": gene,
+            "positions_found": cov.present,
+            "positions_required": cov.required,
+            "threshold_percent": cov.min_percent,
+            "percent": round(cov.percent, 1),
+            # A gene that no VCF can read never "passes", but it is not a
+            # coverage failure either — the reason field carries the difference.
+            "passes": bool(cov.sufficient and not blocked),
+            "not_readable_from_vcf": bool(blocked),
+            "reason": blocked or (
+                "" if cov.sufficient else
+                f"{cov.present} of {cov.required} required positions were "
+                f"reported; this gene needs {cov.min_percent}%."
+            ),
+        })
+
+    passing = {g["gene"].upper() for g in genes if g["passes"]}
+    answerable, unanswerable = [], []
+    for drug, gene in sorted(drug_gene.items()):
+        (answerable if gene.upper() in passing else unanswerable).append(drug)
+
+    return {
+        "genes": genes,
+        "genes_passing": len(passing),
+        "genes_total": len(genes),
+        "answerable_drugs": answerable,
+        "unanswerable_drugs": unanswerable,
+        "variants_only": report.variants_only,
+    }

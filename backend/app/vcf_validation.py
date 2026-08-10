@@ -194,8 +194,9 @@ def _decompress(raw: bytes) -> bytes:
     except zlib.error as exc:
         raise VcfValidationError(
             VcfErrorCode.CORRUPT_GZIP,
-            f"The file looks gzip-compressed but could not be decompressed ({exc}). "
-            "Re-create it with bgzip, or upload the plain .vcf.",
+            f"This file looks compressed, but it could not be opened ({exc}). "
+            "Re-create the compressed copy, or upload the plain .vcf "
+            "instead.",
         ) from exc
     return bytes(out)
 
@@ -230,15 +231,14 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
             # what a conforming file looks like points at the right one.
             f"The file is {len(raw) / (1024 * 1024):.1f} MB, over the "
             f"{MAX_UPLOAD_BYTES // (1024 * 1024)} MB limit.\n\n"
-            "This is usually a sign the file covers far more of the genome "
-            "than pharmacogenomics needs. A VCF restricted to PharmCAT's "
+            "This is usually a sign the file covers far more of your DNA "
+            "than this analysis needs. A VCF restricted to PharmCAT's "
             "required positions is typically well under 1 MB — around 200 KB "
-            "for all seven genes — so there is ample headroom for conforming "
-            "input.\n\n"
-            "To fix it, restrict the file to the required positions rather "
-            "than trimming it arbitrarily:\n"
-            "  bcftools view -R pharmcat_positions_3.4.0.vcf your.vcf.gz "
-            "-Oz -o pgx.vcf.gz\n\n"
+            "for all seven genes — so there is plenty of room to spare for a "
+            "conforming file.\n\n"
+            "To fix it, restrict the file to the positions this analysis "
+            "needs rather than trimming it arbitrarily. The input "
+            "requirements page gives the exact command.\n\n"
             "Keep every required position with an explicit genotype, "
             "including homozygous-reference calls — dropping those produces a "
             "file that is small but unusable. See docs/input_requirements.md.",
@@ -255,8 +255,9 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
     except UnicodeDecodeError as exc:
         raise VcfValidationError(
             VcfErrorCode.NOT_VCF,
-            f"'{filename}' is not a text VCF file (it contains binary data). "
-            "Upload a .vcf or a bgzip-compressed .vcf.gz.",
+            f"'{filename}' is not a text VCF file — it contains data this "
+            "analysis cannot read. Upload a .vcf file, or a compressed "
+            ".vcf.gz.",
         ) from exc
 
     # --- header ------------------------------------------------------------
@@ -278,7 +279,7 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
     if version_match is None:
         raise VcfValidationError(
             VcfErrorCode.UNSUPPORTED_VCF_VERSION,
-            f"Unrecognised VCF version '{fileformat}'. PharmaGuard expects VCFv4.x "
+            f"Unrecognised VCF version '{fileformat}'. This analysis expects VCFv4.x "
             "(v4.2 is what PharmCAT is built around).",
         )
     major, minor = int(version_match.group(1)), int(version_match.group(2))
@@ -301,10 +302,13 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
     if build is ReferenceBuild.GRCH37:
         raise VcfValidationError(
             VcfErrorCode.UNSUPPORTED_REFERENCE_BUILD,
-            "This file appears to be aligned to GRCh37/hg19, but PharmCAT requires "
-            "GRCh38/hg38. Coordinate liftover is out of scope for PharmaGuard — "
-            "please lift the file over to GRCh38 (e.g. with CrossMap or Picard "
-            "LiftoverVcf) and upload it again.",
+            "This file uses an older map of the genome (GRCh37/hg19), and this analysis "
+            "needs GRCh38/hg38. The two number the same positions differently, "
+            "so the file cannot be read as it stands.\n\n"
+            "Converting between them is outside what this analysis does. "
+            "Convert the file to GRCh38 and upload it again — the input "
+            "requirements page lists the tools that do this. "
+            "See docs/input_requirements.md.",
         )
     if build is ReferenceBuild.UNKNOWN:
         warnings.append(
@@ -335,7 +339,7 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
         raise VcfValidationError(
             VcfErrorCode.NO_SAMPLE_COLUMN,
             "The VCF contains no sample column, so there are no genotypes to "
-            "analyse. PharmaGuard needs a VCF with at least one sample.",
+            "analyse. This analysis needs a VCF with at least one sample.",
         )
 
     sample_ids = [c.strip() for c in columns[9:] if c.strip()]
@@ -349,7 +353,7 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
         warnings.append(
             f"The VCF contains {len(sample_ids)} samples "
             f"({', '.join(sample_ids[:3])}{'…' if len(sample_ids) > 3 else ''}); "
-            f"PharmaGuard analyses the first one ({sample_ids[0]})."
+            f"only the first one is analysed ({sample_ids[0]})."
         )
 
     # --- data rows ---------------------------------------------------------

@@ -115,6 +115,10 @@ class TestContractCompatibility:
             # computed from the input before PharmCAT runs. Present pass or fail,
             # because a confident result at low coverage is the dangerous case.
             "position_coverage",
+            # Added Feature Set A: which PharmCAT and CPIC data this result came
+            # from, and when the explanation store was generated. A frozen store
+            # carries an implicit "as of" that was previously invisible.
+            "guideline_provenance",
         }
 
     def test_enum_values_stay_within_the_contract(
@@ -393,7 +397,11 @@ class TestErrorResponses:
         )
         response = post(client, text.encode(), "clopidogrel", "grch37.vcf")
         self._assert_error(response, 400, "UNSUPPORTED_REFERENCE_BUILD")
-        assert "liftover" in response.json()["detail"].lower()
+        # The remedy in words, not the tool that performs it — the commands
+        # moved to docs/input_requirements.md, which the message points at.
+        detail = response.json()["detail"].lower()
+        assert "convert" in detail
+        assert "input_requirements" in detail
 
     def test_oversized_vcf(self, client: TestClient) -> None:
         response = post(client, b"x" * (MAX_UPLOAD_BYTES + 1), "clopidogrel", "big.vcf")

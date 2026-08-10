@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import gzip
 
+from pathlib import Path
+
 import pytest
 
 from app.vcf_validation import (
@@ -127,7 +129,12 @@ class TestRejects:
         )
         message = _expect(vcf.encode(), VcfErrorCode.UNSUPPORTED_REFERENCE_BUILD)
         assert "GRCh38" in message
-        assert "liftover" in message.lower()
+        # The remedy, not the tool. Naming CrossMap and Picard here answered a
+        # bioinformatician and read as a dead end to everybody else, so the
+        # commands moved to docs/input_requirements.md and the message points
+        # there. The obligation is unchanged: say what has to happen.
+        assert "convert" in message.lower()
+        assert "input_requirements" in message
 
     def test_conflicting_build_declarations_fail_closed(self) -> None:
         """
@@ -222,10 +229,23 @@ class TestFileTooLargeIsActionable:
         assert "well under 1 MB" in message
         assert "200 KB" in message
 
-    def test_gives_a_command_that_actually_fixes_it(self) -> None:
+    def test_points_at_a_remedy_that_actually_exists(self) -> None:
+        """
+        The message used to carry the `bcftools` command inline. It now names
+        the fix in words and points at the page holding the command, because a
+        user who cannot run bcftools was being handed one anyway.
+
+        The page is asserted to actually contain it — moving a remedy to a
+        document that does not have it would be worse than the original.
+        """
         message = self._message()
-        assert "bcftools view -R" in message
-        assert "pharmcat_positions" in message
+        assert "restrict the file" in message.lower()
+        assert "input_requirements" in message
+
+        docs = (Path(__file__).resolve().parents[2]
+                / "docs" / "input_requirements.md").read_text()
+        assert "bcftools view -R" in docs
+        assert "pharmcat_positions" in docs
 
     def test_warns_against_the_fix_that_would_make_it_worse(self) -> None:
         """

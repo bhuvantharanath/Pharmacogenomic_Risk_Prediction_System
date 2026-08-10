@@ -97,6 +97,24 @@ TARGET_GENES: tuple[str, ...] = (
 # depend on structural/copy-number variation that a VCF does not express. It
 # signals this with callSource == "NONE" even when every CYP2D6 position is
 # present (verified — see infra/PHARMCAT_NOTES.md).
+#: The PharmCAT release this project is pinned to and tested against.
+#: Reported when a version must be named without having run PharmCAT
+#: (POST /coverage); a real run reports the version it actually saw.
+PINNED_VERSION = "3.4.0"
+
+#: What a USER is told when the analysis engine cannot run.
+#:
+#: Deliberately says nothing about jars, Java runtimes or environment
+#: variables. Someone who uploaded a VCF cannot act on any of that, and a wall
+#: of deployment detail reads as though they did something wrong. The operator
+#: detail is not deleted — it travels in `PharmcatExecutionError.detail`, which
+#: reaches the log and never the response body.
+UNAVAILABLE_USER_MESSAGE = (
+    "The analysis service is temporarily unavailable, so this file could not "
+    "be processed. Nothing was wrong with your upload. Please try again "
+    "shortly."
+)
+
 CYP2D6_WARNING = (
     "CYP2D6 structural/copy-number variation cannot be resolved from unphased "
     "VCF; outside diplotype input planned"
@@ -299,7 +317,12 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
         invoker = resolve_invoker()
         if invoker is None:
             raise PharmcatExecutionError(
-                f"PharmCAT cannot be invoked on this server: {unavailable_reason()}.",
+                UNAVAILABLE_USER_MESSAGE,
+                # The operator detail — jar paths, JRE discovery, the
+                # environment variables to set — stays here. `detail` is not
+                # returned to the client; it goes to the log, which is where
+                # the person who can fix it is looking.
+                detail=unavailable_reason(),
             )
         invocation = await _exec(invoker.build(vcf_path, output_dir))
 
@@ -308,7 +331,9 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
             # A non-zero exit with no report is the normal failure mode; surface
             # PharmCAT's own stderr because it is usually specific and useful.
             raise PharmcatExecutionError(
-                "PharmCAT did not produce a report for this file.",
+                "The analysis did not produce a result for this file. Check "
+                "that it is a GRCh38 VCF with genotypes for the required "
+                "positions.",
                 detail=(invocation.stderr or invocation.stdout or "")[-2000:],
             )
 
@@ -316,7 +341,8 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
             raw = json.loads(report_path.read_text())
         except json.JSONDecodeError as exc:
             raise PharmcatExecutionError(
-                "PharmCAT produced a report that could not be parsed as JSON.",
+                "The analysis produced a result this server could not read. "
+                "This is a fault on our side, not a problem with your file.",
                 detail=str(exc),
             ) from exc
 
@@ -339,8 +365,9 @@ async def _exec(command: list[str]) -> PharmcatInvocation:
         # here means it vanished between resolution and exec — rare, but the
         # message should still say what to do rather than just what failed.
         raise PharmcatExecutionError(
-            f"PharmCAT could not be executed ({command[0]!r}): {unavailable_reason()}.",
-            detail=str(exc),
+            UNAVAILABLE_USER_MESSAGE,
+            detail=f"{command[0]!r} vanished between resolution and exec: "
+                   f"{exc}. {unavailable_reason()}",
         ) from exc
 
     try:
@@ -352,8 +379,9 @@ async def _exec(command: list[str]) -> PharmcatInvocation:
         # Reap it so we do not leave a zombie behind.
         await process.wait()
         raise PharmcatExecutionError(
-            f"PharmCAT did not finish within {PHARMCAT_TIMEOUT_SECONDS:.0f} seconds "
-            "and was stopped. Try a VCF restricted to pharmacogenomic positions.",
+            f"The analysis did not finish within {PHARMCAT_TIMEOUT_SECONDS:.0f} "
+            "seconds and was stopped. Try a file restricted to the positions "
+            "this analysis needs — see the input requirements.",
         ) from exc
 
     return PharmcatInvocation(
