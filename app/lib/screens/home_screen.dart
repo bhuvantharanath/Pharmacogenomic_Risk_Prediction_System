@@ -10,6 +10,7 @@ import '../config.dart';
 import '../models/analysis.dart';
 import '../widgets/backend_status_banner.dart';
 import '../widgets/disclaimer_banner.dart';
+import 'about_screen.dart';
 import 'results_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -154,6 +155,13 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('PharmaGuard'),
         actions: <Widget>[
           IconButton(
+            icon: const Icon(Icons.info_outline),
+            tooltip: 'About PharmaGuard',
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const AboutScreen()),
+            ),
+          ),
+          IconButton(
             tooltip: 'Re-check backend connection',
             onPressed: _backend.wake,
             icon: const Icon(Icons.refresh),
@@ -175,9 +183,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               const SizedBox(height: 6),
               Text(
+                // The old copy called the explanations "placeholders". They are
+                // pre-generated, guard-checked and provenance-verified — the line
+                // undersold the work and contradicted the README.
                 'Upload a GRCh38 VCF and list the drugs to check. Genotypes are '
-                'called by PharmCAT and guidance comes from CPIC; the narrative '
-                'explanations are still placeholders.',
+                'called by PharmCAT, dosing guidance is quoted from CPIC, and the '
+                'explanations are pre-generated and checked against their source.',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.onSurfaceVariant,
                 ),

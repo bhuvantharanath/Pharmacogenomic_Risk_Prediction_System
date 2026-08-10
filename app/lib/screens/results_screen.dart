@@ -12,7 +12,7 @@ import '../theme/risk_style.dart';
 import '../utils/json_export.dart';
 import '../widgets/disclaimer_banner.dart';
 import '../widgets/coverage_summary.dart';
-import '../widgets/result_card.dart';
+import '../widgets/verdict_card.dart';
 
 /// The backend's variants-only warning, if it fired. Matched on its opening
 /// phrase rather than the whole string so wording can be improved server-side
@@ -117,7 +117,7 @@ class ResultsScreen extends StatelessWidget {
               else
                 ...response.analyses.map(
                   (PerDrugResult r) =>
-                      ResultCard(result: r, metrics: response.qualityMetrics),
+                      VerdictCard(result: r, metrics: response.qualityMetrics),
                 ),
 
               const SizedBox(height: 8),
