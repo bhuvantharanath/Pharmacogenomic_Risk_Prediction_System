@@ -679,14 +679,32 @@ class TestCorsConvergence:
         assert "http://localhost:8080" in security.allowed_origins()
 
     def test_local_dev_env_file_documents_the_origins(self) -> None:
-        """The file the runbook sources must actually configure CORS."""
+        """
+        The file the runbook tells you to copy must actually configure CORS.
+
+        Asserts the **example**, not `infra/local-dev.env` itself. The real file
+        matches `*.env` in .gitignore, so it exists on a developer's machine and
+        never in CI — an earlier version of this test asserted the real file and
+        so could only ever pass locally. It had been failing on `main` since the
+        workflow was added, which is how a test that cannot pass survives: it
+        goes red somewhere nobody is looking.
+
+        The example is what a new contributor copies, so it is the thing whose
+        contents actually have to be right.
+        """
         from pathlib import Path
 
-        env = Path(__file__).resolve().parents[2] / "infra" / "local-dev.env"
-        assert env.is_file(), "infra/local-dev.env is referenced by the runbook"
-        text = env.read_text()
+        infra = Path(__file__).resolve().parents[2] / "infra"
+        example = infra / "local-dev.env.example"
+        assert example.is_file(), "infra/local-dev.env.example is in the runbook"
+        text = example.read_text()
         assert "CORS_ALLOWED_ORIGINS=" in text
         assert "localhost" in text
+
+        # And if a developer has made the real file, it must agree.
+        real = infra / "local-dev.env"
+        if real.is_file():
+            assert "CORS_ALLOWED_ORIGINS=" in real.read_text()
 
     def test_no_dotenv_is_committed_under_backend(self) -> None:
         """

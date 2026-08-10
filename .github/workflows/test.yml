@@ -49,6 +49,13 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt -r backend/requirements-dev.txt
+          # The English model, not just the spaCy library. Without it the
+          # mechanism vocabulary check returns NO foreign terms rather than
+          # erroring — it degrades to a silent no-op, which is how two of its
+          # tests had been failing on `main` unnoticed. The glossary audit's
+          # tests skip themselves entirely when it is absent, so they had never
+          # run in CI at all.
+          python -m spacy download en_core_web_sm
 
       # Deliberately unset. If any of the steps below start needing a key, that
       # is a defect in the deployed path, and it should fail here.
@@ -102,9 +109,7 @@ jobs:
       # as ordinary English and never returns; add --gate then and the number
       # stops being advisory.
       - name: Glossary coverage (reported — see glossary_precommitment.md)
-        run: |
-          python -m spacy download en_core_web_sm
-          python scripts/glossary_status.py
+        run: python scripts/glossary_status.py
 
       - name: Upload provenance report
         if: always()
