@@ -88,6 +88,24 @@ jobs:
       - name: Review status
         run: python scripts/review_status.py
 
+      # Glossary coverage: does every domain term a user meets have an answer?
+      #
+      # REPORTING, NOT GATING, and deliberately so. The extractor's
+      # false-positive rate on ordinary English measured 41.5%, above the 25%
+      # recorded in reports/glossary_precommitment.md before it was run. The
+      # pre-commitment named that branch in advance, so the check reports the
+      # count instead of failing the build — the same branch the mechanism
+      # vocabulary check took at 30%.
+      #
+      # It is NOT non-blocking because it was inconvenient. Once the candidate
+      # list has been sorted once by a person, every false positive is recorded
+      # as ordinary English and never returns; add --gate then and the number
+      # stops being advisory.
+      - name: Glossary coverage (reported — see glossary_precommitment.md)
+        run: |
+          python -m spacy download en_core_web_sm
+          python scripts/glossary_status.py
+
       - name: Upload provenance report
         if: always()
         uses: actions/upload-artifact@v4

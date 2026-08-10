@@ -670,3 +670,103 @@ alleles being claimed, and require exactly their defining positions.** If a resp
 asserts `*1/*2`, the input must cover every position defining `*1` and `*2` — no
 percentage, no reference panel, no external frequency data. That is strictly stronger
 than a threshold and needs nothing this project does not already have.
+
+---
+
+## Evidence 9 — (g) the same pattern in the documentation layer
+
+The seventh instance, and the first outside the clinical path. Found by
+accident, during a demo, by reading the screen.
+
+The shipped explanation for clopidogrel says:
+
+> "Clopidogrel is a prodrug that needs to be converted into an active form by
+> an enzyme."
+
+Both **prodrug** and **enzyme** are domain vocabulary, and neither had a
+definition in the glossary that the interface offers a reader for exactly that
+purpose.
+
+### Direction: identical to all eight prior instances
+
+Two artifacts, each verified against its own source, never checked against each
+other:
+
+| artifact | verified against | verified? |
+| --- | --- | --- |
+| glossary | the response schema — `diplotype`, `phenotype`, `activity score` | yes |
+| explanation prose | CPIC — every clinical sentence traces to a recommendation | yes |
+| **glossary → prose** | **each other** | **no** |
+
+The glossary was written by reading the API contract, because that is where the
+labels on screen come from. The prose was generated separately and checked for
+fabrication, because that is where the clinical risk was. Each pass was
+competent. The edge between them was nobody's.
+
+That is the same shape as the phenotype→label edge, the input→positions edge and
+the sourceDiplotype/recommendationDiplotype confusion: **a defect that lives
+between two correct components, invisible from inside either one.**
+
+### What is different: the layer, and therefore the cost
+
+Every earlier instance sat in the clinical path, where the failure mode was a
+wrong or unsupported assertion. This one sits in the documentation layer. Nobody
+is mis-dosed because "prodrug" is unexplained.
+
+That is not a reason to discount it — it is the reason it survived. The clinical
+path has four verification edges and a mandatory adjudication step precisely
+because that is where attention went. The explanatory layer had none, so a gap
+there could persist through a redesign, a demo rehearsal and a written report
+without anyone noticing. **The pattern does not care which layer it is in; it
+appears wherever two artifacts are each checked against a source and never
+against each other.**
+
+It also has a compounding property the clinical defects did not. The prose is
+regenerated when a model changes. Each regeneration can introduce vocabulary the
+glossary has never seen, and nothing would have said so.
+
+### The fix is the edge, not the two terms
+
+Adding `prodrug` and `enzyme` would close the two gaps that happened to be
+visible on one screen during one demo — and leave the mechanism intact for the
+next regeneration. That is the same trap as the DPYD Indeterminate fix, where
+patching one gene would have left 293 other broken labels standing.
+
+So the edge is built instead: `scripts/glossary_lib.py` reads every string the
+project shows a user, extracts rare nouns with a POS tagger and an ordinary-
+English frequency table, and reports everything that has no definition and no
+recorded human decision. It knows nothing about biology; it knows what is rare.
+
+### What it found, and the honest limit
+
+**134 undefined candidate terms** across 416 user-facing strings — from
+`prodrug` and `myelosuppression` through to `pharmcat` and `mb`. The two the
+demo happened to surface were not special; they were the two that appeared in
+the one paragraph someone read closely.
+
+The extractor's false-positive rate on ordinary English, measured against a
+vendored corpus containing no domain vocabulary, is **41.5%** — it flags
+`squirrel`, `apron`, `teapot` and `vegetable` alongside `pyrimidine`. A
+threshold of 25% was recorded in `glossary_precommitment.md` before the
+extractor was run, with the branch named in advance:
+
+> FP ≥ 25% → report the rate, do NOT gate, and say so.
+
+**Branch taken: report, do not gate.** The same branch the mechanism vocabulary
+check took at 30%, for the same reason. The threshold was not moved after seeing
+the number, and the check was not narrowed to make the number smaller.
+
+This is worth stating plainly: **the edge is now built and measured, and it is
+not yet enforced.** Enforcement waits on a person sorting the candidate list
+once — after which every false positive is recorded as ordinary English and
+never returns, and the rate stops mattering. Until then the count is reported on
+every CI run, so a regeneration that introduces new vocabulary shows up as a
+rising number rather than as silence.
+
+### Count of instances
+
+This is the **seventh** occurrence of the pattern, and the first found by
+reading the product rather than by running a check. That is itself a data point
+about the pattern's reach: the verification graph now covers five edges in the
+clinical path, and this one was still open — in the layer that exists to make
+the other four legible to a human.
