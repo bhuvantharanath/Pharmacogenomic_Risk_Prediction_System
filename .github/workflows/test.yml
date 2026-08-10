@@ -84,7 +84,18 @@ jobs:
         # checks every phenotype combination against the mapping rules.
         run: python scripts/validate_label_mapping.py || true
 
+      # Re-run of two suites the `pytest` step already covers, kept as a named
+      # step so a failure in the safety gate is legible in the checks list
+      # rather than buried in a 600-line log.
+      #
+      # `working-directory` was missing, so the paths resolved at the repo root
+      # and pytest exited 4 — "file or directory not found". It had never been
+      # seen because the job always died at the `pytest` step first; fixing that
+      # is what let this one finally run.
       - name: Coverage gate + phenotype invariant tests
+        working-directory: backend
+        env:
+          EXPLANATION_MODE: static
         run: python -m pytest tests/test_coverage_gate.py tests/test_phenotype_label_invariant.py -q
 
       # THE RELEASE GATE. Fails if any flagged claim is unadjudicated, or if a
