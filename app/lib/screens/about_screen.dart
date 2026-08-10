@@ -11,10 +11,36 @@ library;
 
 import 'package:flutter/material.dart';
 
+import '../api/pharmaguard_api.dart';
+import '../models/analysis.dart';
 import '../theme/tokens.dart';
 
-class AboutScreen extends StatelessWidget {
-  const AboutScreen({super.key});
+class AboutScreen extends StatefulWidget {
+  const AboutScreen({super.key, this.provenance});
+
+  /// Passed in when this screen is opened from a result, so the page states the
+  /// versions that produced THAT answer rather than re-fetching the build's.
+  /// Fetched from the backend when absent.
+  final GuidelineProvenance? provenance;
+
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen> {
+  GuidelineProvenance? _provenance;
+
+  @override
+  void initState() {
+    super.initState();
+    _provenance = widget.provenance;
+    if (_provenance == null) _fetch();
+  }
+
+  Future<void> _fetch() async {
+    final GuidelineProvenance? p = await PharmaGuardApi().provenance();
+    if (mounted && p != null) setState(() => _provenance = p);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +70,7 @@ class AboutScreen extends StatelessWidget {
 
                   _h('Who it helps'),
                   _p('Anyone prescribed one of the medicines below who already '
-                      'has genomic data — and the clinician deciding their dose. '
+                      'has genomic data — and the doctor or pharmacist deciding their dose. '
                       'It is a research and teaching tool, not a clinical '
                       'service: it shows what the guidelines say, so a '
                       'conversation can start from evidence rather than from a '
@@ -54,18 +80,18 @@ class AboutScreen extends StatelessWidget {
                   _table(
                     <String>['Medicine', 'Used for', 'Why genetics matters'],
                     const <List<String>>[
-                      ['clopidogrel', 'preventing clots after a stent or stroke',
+                      ['clopidogrel', 'preventing clots after a heart procedure or stroke',
                         'a prodrug — it must be switched on by CYP2C19. Poor '
                             'metabolisers may get little or no protection'],
                       ['simvastatin', 'lowering cholesterol',
                         'reduced SLCO1B1 transport leaves more drug in the '
                             'bloodstream, raising the risk of muscle injury'],
                       ['fluorouracil', 'chemotherapy',
-                        'DPYD clears the drug. Deficiency causes severe, '
-                            'sometimes fatal toxicity at a standard dose'],
+                        'DPYD clears the drug. Having too little of it causes '
+                            'severe, sometimes fatal harm at a standard dose'],
                       ['azathioprine', 'suppressing an overactive immune system',
                         'TPMT and NUDT15 limit active metabolites. Low function '
-                            'risks bone-marrow suppression'],
+                            'risks the bone marrow making fewer blood cells'],
                       ['warfarin', 'preventing clots',
                         'CYP2C9 affects clearance, which shifts the dose needed '
                             'to stay in range'],
@@ -90,9 +116,9 @@ class AboutScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   _note('CYP2D6 is read but never called. It is defined by '
-                      'copy-number and structural variation that a VCF cannot '
+                      'copy-number and structural changes that a VCF cannot '
                       'express, so the system reports it as not determinable '
-                      'rather than guessing. Across 400 validation samples it '
+                      'rather than guessing. Across 400 test samples it '
                       'declined every single time.'),
 
                   _h('What a usable file needs'),
@@ -103,13 +129,44 @@ class AboutScreen extends StatelessWidget {
                       'the common default from most pipelines. It cannot be used '
                       'here. A position that is absent is indistinguishable from '
                       'a position that was never tested, so a variant whose '
-                      'defining position is missing becomes invisible — and the '
+                      'key position is missing becomes invisible — and the '
                       'genotype reads as normal. Measured on synthetic files at '
                       '60% position coverage, up to 28.6% of calls came back '
                       'confidently wrong, and every wrong call reported reduced '
                       'function as normal.'),
                   _p('So the system counts what your file actually reported, '
                       'shows you the count, and declines when it is not enough.'),
+
+                  if (_provenance != null) ...<Widget>[
+                    _h('Where this guidance comes from, and when'),
+                    _p('CPIC revises its guidelines. The guidance in this build '
+                        'was captured on the date below and has been frozen '
+                        'since, so a recommendation here reflects what CPIC '
+                        'published then — not necessarily what it publishes '
+                        'today. This build does not watch for changes, and says '
+                        'so rather than implying it is current.'),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: Tokens.paper,
+                        borderRadius: Tokens.radius,
+                        border: Border.all(
+                            color: Tokens.rule, width: Tokens.hairline),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          _stamp('PharmCAT', _provenance!.pharmcatVersion),
+                          if (_provenance!.cpicDataVersion.isNotEmpty)
+                            _stamp('CPIC data bundle',
+                                _provenance!.cpicDataVersion),
+                          _stamp('Explanations generated',
+                              _provenance!.explanationsDate),
+                          _stamp('Source', _provenance!.cpicSource),
+                        ],
+                      ),
+                    ),
+                  ],
 
                   const SizedBox(height: 22),
                   Container(
@@ -148,6 +205,22 @@ class AboutScreen extends StatelessWidget {
       ),
     );
   }
+
+  /// One provenance row: a label in chrome type, a value in mono because it is
+  /// a version string a machine reported, not a phrase we composed.
+  Widget _stamp(String label, String value) => Padding(
+        padding: const EdgeInsets.only(bottom: 5),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(
+              width: 150,
+              child: Text(label, style: Tokens.uiSm),
+            ),
+            Expanded(child: Text(value, style: Tokens.monoSm)),
+          ],
+        ),
+      );
 
   Widget _h(String s) => Padding(
         padding: const EdgeInsets.only(top: 26, bottom: 9),

@@ -12,32 +12,48 @@ library;
 
 import 'package:flutter/material.dart';
 
+import '../glossary/glossary_text.dart';
 import '../models/analysis.dart';
 import '../models/enums.dart';
 import '../models/unknown_reason.dart';
 import '../theme/tokens.dart';
 import 'coverage_census.dart';
+import 'disclosure_row.dart';
 import 'unknown_reason_panel.dart';
+import 'view_mode.dart';
 
 /// Genes that no VCF can resolve, with the reason shown in place of ticks.
 const Map<String, String> _notCallableFromVcf = <String, String>{
   'CYP2D6': 'Defined by copy-number and structural variation, which a VCF '
-      'cannot represent. A targeted assay is required.',
+      'cannot represent. A different kind of genetic test is required.',
 };
 
 class VerdictCard extends StatefulWidget {
-  const VerdictCard({super.key, required this.result, required this.metrics});
+  const VerdictCard({
+    super.key,
+    required this.result,
+    required this.metrics,
+    this.inGrid = false,
+    this.mode = ViewMode.patient,
+  });
 
   final PerDrugResult result;
   final QualityMetrics metrics;
+
+  /// True when this card is opening inside a `SummaryGrid` row. The row already
+  /// carries the drug, verdict and severity, so repeating them would say the
+  /// same thing twice and push the actual detail further down the screen.
+  final bool inGrid;
+
+  /// Which register to render in. Reorders this card's body; changes nothing
+  /// about what it contains. See `view_mode.dart`.
+  final ViewMode mode;
 
   @override
   State<VerdictCard> createState() => _VerdictCardState();
 }
 
 class _VerdictCardState extends State<VerdictCard> {
-  bool _why = false;
-  bool _found = false;
 
   @override
   Widget build(BuildContext context) {
@@ -48,16 +64,18 @@ class _VerdictCardState extends State<VerdictCard> {
     final String? na = _notCallableFromVcf[p.primaryGene.toUpperCase()];
 
     return Container(
-      margin: const EdgeInsets.only(bottom: 14),
+      margin: EdgeInsets.only(bottom: widget.inGrid ? 0 : 14),
       decoration: BoxDecoration(
         color: Tokens.card,
         borderRadius: Tokens.radiusLg,
-        border: Border.all(color: Tokens.rule, width: Tokens.hairline),
+        border: widget.inGrid
+            ? null
+            : Border.all(color: Tokens.rule, width: Tokens.hairline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          _verdictPanel(r, fg, bg),
+          if (!widget.inGrid) _verdictPanel(r, fg, bg),
           Padding(
             padding: const EdgeInsets.fromLTRB(14, 13, 14, 4),
             child: CoverageCensus(
@@ -76,14 +94,52 @@ class _VerdictCardState extends State<VerdictCard> {
               ),
             ),
           const SizedBox(height: 8),
-          _row('Why this result', _why, () => setState(() => _why = !_why),
-              _whyBody(r)),
-          _row('What was found in your file', _found,
-              () => setState(() => _found = !_found), _foundBody(p, r)),
+          // The census above and the disclaimer on the screen are outside this
+          // switch on purpose: neither view may hide what was not checked.
+          ...switch (widget.mode) {
+            ViewMode.patient => _patientBody(r, p),
+            ViewMode.clinician => _clinicianBody(r, p),
+          },
         ],
       ),
     );
   }
+
+  /// Prose surfaced; genotype and CPIC's own text one tap away.
+  List<Widget> _patientBody(PerDrugResult r, PharmacogenomicProfile p) =>
+      <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(14, 2, 14, 14),
+          child: _prose(r),
+        ),
+        Container(height: Tokens.hairline, color: Tokens.rule),
+        DisclosureRow(
+            title: "The guideline in CPIC's own words", child: _cpicBody(r)),
+        DisclosureRow(
+            title: 'What was found in your file', child: _foundBody(p, r)),
+      ];
+
+  /// Genotype and guideline surfaced; the plain-language reading demoted.
+  ///
+  /// Demoted, not dropped. A clinician explaining a result to the person it is
+  /// about needs the sentence that person will understand, and making them
+  /// switch views to find it would put it out of reach at the moment it matters.
+  List<Widget> _clinicianBody(PerDrugResult r, PharmacogenomicProfile p) =>
+      <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(14, 2, 14, 12),
+          child: _facts(p, r),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
+          child: _cpicBody(r),
+        ),
+        Container(height: Tokens.hairline, color: Tokens.rule),
+        DisclosureRow(title: 'In plain language', child: _prose(r)),
+        if (p.detectedVariants.isNotEmpty)
+          DisclosureRow(
+              title: 'Positions reported in your file', child: _variants(p)),
+      ];
 
   Widget _verdictPanel(PerDrugResult r, Color fg, Color bg) {
     final sev = r.riskAssessment.severity;
@@ -131,51 +187,29 @@ class _VerdictCardState extends State<VerdictCard> {
     );
   }
 
-  Widget _row(String title, bool open, VoidCallback toggle, Widget body) =>
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+  /// The prose. Serif, because it was written to be read by a person.
+  Widget _prose(PerDrugResult r) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Semantics(
-            button: true,
-            expanded: open,
-            label: title,
-            child: InkWell(
-              onTap: toggle,
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                        child: Text(title,
-                            style: Tokens.uiMd
-                                .copyWith(fontWeight: FontWeight.w600))),
-                    Icon(open ? Icons.remove : Icons.add,
-                        size: 17, color: Tokens.ink3),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          if (open)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(14, 0, 14, 14),
-              child: body,
-            ),
-          Container(height: Tokens.hairline, color: Tokens.rule),
+          GlossaryText(r.llmGeneratedExplanation.summary, style: Tokens.prose),
+          if (r.llmGeneratedExplanation.mechanism.isNotEmpty) ...<Widget>[
+            const SizedBox(height: 10),
+            GlossaryText(r.llmGeneratedExplanation.mechanism,
+                style: Tokens.proseSm),
+          ],
         ],
       );
 
-  Widget _whyBody(PerDrugResult r) => Column(
+  /// CPIC's text, under a label that names it as quoted.
+  ///
+  /// `action` carries CPIC's DIRECTIVE ("Avoid clopidogrel if possible...").
+  /// `cpic_recommendation` carries the surrounding metadata — strength,
+  /// population, implications. The directive is what a reader needs first; an
+  /// earlier version showed the metadata under this label, which quoted CPIC
+  /// accurately but answered a question nobody asked.
+  Widget _cpicBody(PerDrugResult r) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          // Serif: written to be read.
-          Text(r.llmGeneratedExplanation.summary, style: Tokens.prose),
-          if (r.llmGeneratedExplanation.mechanism.isNotEmpty) ...<Widget>[
-            const SizedBox(height: 10),
-            Text(r.llmGeneratedExplanation.mechanism, style: Tokens.proseSm),
-          ],
-          const SizedBox(height: 14),
-          // Mono, under a mono label: CPIC's words, not ours.
           Text('CPIC GUIDELINE — QUOTED EXACTLY', style: Tokens.monoLabel),
           const SizedBox(height: 6),
           Container(
@@ -185,39 +219,41 @@ class _VerdictCardState extends State<VerdictCard> {
               border: Border.all(color: Tokens.rule2, width: Tokens.hairline),
               borderRadius: Tokens.radius,
             ),
-            // `action` carries CPIC's DIRECTIVE ("Avoid clopidogrel if
-            // possible..."). `cpic_recommendation` carries the surrounding
-            // metadata — strength, population, implications. The directive is
-            // what a reader needs first; an earlier version showed the metadata
-            // under this label, which quoted CPIC accurately but answered a
-            // question nobody asked.
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(r.clinicalRecommendation.action, style: Tokens.monoMd),
                 if (r.clinicalRecommendation.cpicRecommendation.isNotEmpty &&
-                    r.clinicalRecommendation.cpicRecommendation != 'STUB') ...<Widget>[
+                    r.clinicalRecommendation.cpicRecommendation !=
+                        'STUB') ...<Widget>[
                   const SizedBox(height: 9),
                   Container(height: Tokens.hairline, color: Tokens.rule),
                   const SizedBox(height: 9),
                   Text(r.clinicalRecommendation.cpicRecommendation,
                       style: Tokens.monoSm),
                 ],
+                const SizedBox(height: 9),
+                // Attribution, always attached to the quote rather than to the
+                // screen. A quoted paragraph that travels without its source —
+                // into a screenshot, a printout — stops being a quotation.
+                Text('— ${r.clinicalRecommendation.source}',
+                    style: Tokens.monoSm.copyWith(color: Tokens.ink3)),
               ],
             ),
           ),
         ],
       );
 
-  Widget _foundBody(PharmacogenomicProfile p, PerDrugResult r) {
+  /// The genotype facts, in mono. Machine output, labelled as such.
+  Widget _facts(PharmacogenomicProfile p, PerDrugResult r) {
     final rows = <(String, String)>[
       ('gene', p.primaryGene),
       ('diplotype', p.diplotype),
       ('phenotype', p.phenotype.wireValue),
       if (p.activityScore != null)
         ('activity score', p.activityScore!.toStringAsFixed(1)),
-      ('variants reported', '${p.detectedVariants.length}'),
       ('evidence level', r.clinicalRecommendation.cpicEvidenceLevel.wireValue),
+      ('variants reported', '${p.detectedVariants.length}'),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,19 +264,37 @@ class _VerdictCardState extends State<VerdictCard> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(width: 116, child: Text(k, style: Tokens.monoSm)),
+                SizedBox(
+                    width: 116, child: GlossaryText(k, style: Tokens.monoSm)),
                 Expanded(child: Text(v, style: Tokens.monoMd)),
               ],
             ),
           ),
-        if (p.detectedVariants.isNotEmpty) ...<Widget>[
-          const SizedBox(height: 8),
+      ],
+    );
+  }
+
+  Widget _variants(PharmacogenomicProfile p) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
           Text('NON-REFERENCE POSITIONS', style: Tokens.monoLabel),
           const SizedBox(height: 5),
           for (final DetectedVariant v in p.detectedVariants.take(8))
             Text('${v.rsid ?? v.gene}  ${v.genotype}', style: Tokens.monoSm),
         ],
-      ],
-    );
-  }
+      );
+
+  /// Patient view keeps genotype and variants together behind one row: for a
+  /// reader who did not come looking for them, two separate rows of machine
+  /// output would read as two separate things to worry about.
+  Widget _foundBody(PharmacogenomicProfile p, PerDrugResult r) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          _facts(p, r),
+          if (p.detectedVariants.isNotEmpty) ...<Widget>[
+            const SizedBox(height: 8),
+            _variants(p),
+          ],
+        ],
+      );
 }

@@ -114,6 +114,12 @@ class Tokens {
     fontFamily: serif, fontSize: 30, height: 1.15,
     fontWeight: FontWeight.w600, letterSpacing: -0.4);
 
+  /// The verdict at row scale, for the summary grid. Same serif and weight as
+  /// `verdictText` so a scanned row and an opened card read as the same object.
+  static const TextStyle verdictRow = TextStyle(
+    fontFamily: serif, fontSize: 19, height: 1.2,
+    fontWeight: FontWeight.w600, letterSpacing: -0.2);
+
   /// Interface chrome.
   static const TextStyle uiLg = TextStyle(
     fontFamily: sans, fontSize: 19, height: 1.3,

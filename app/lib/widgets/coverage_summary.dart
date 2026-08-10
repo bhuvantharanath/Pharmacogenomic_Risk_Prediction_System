@@ -10,6 +10,8 @@ library;
 import 'package:flutter/material.dart';
 
 import '../models/analysis.dart';
+import '../theme/tokens.dart';
+import 'disclosure_row.dart';
 
 /// The prominent alert for a variants-only file — the single most likely way a
 /// real user gets a wrong answer, so it is not a footnote.
@@ -72,32 +74,29 @@ class CoverageSummary extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
-      child: ExpansionTile(
+      child: DisclosureRow(
+        title: 'Input coverage',
+        subtitle: '$ok of ${coverage.length} genes have enough positions to '
+            'call',
+        rule: false,
         leading: Icon(
           ok == coverage.length ? Icons.verified_outlined : Icons.rule,
           color: theme.colorScheme.primary,
         ),
-        title: const Text('Input coverage'),
-        subtitle: Text(
-          '$ok of ${coverage.length} genes have enough positions to call',
-        ),
-        childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-        children: <Widget>[
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
               'How much of the data each gene needs was present in your file. '
               'Genes below their minimum are reported as Unknown rather than '
               'guessed at.',
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
+              style: Tokens.uiSm,
             ),
-          ),
-          const SizedBox(height: 10),
-          for (final String gene in genes)
-            _CoverageRow(gene: gene, coverage: coverage[gene]!),
-        ],
+            const SizedBox(height: 10),
+            for (final String gene in genes)
+              _CoverageRow(gene: gene, coverage: coverage[gene]!),
+          ],
+        ),
       ),
     );
   }

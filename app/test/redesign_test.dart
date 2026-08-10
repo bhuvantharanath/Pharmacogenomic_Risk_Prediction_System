@@ -222,7 +222,9 @@ void main() {
         result: _result(),
         metrics: _metrics(<String, GeneCoverage>{'CYP2C19': _full}),
       ));
-      await t.tap(find.text('Why this result'));
+      // Feature Set B split the old "Why this result" row in two: the prose is
+      // surfaced in patient view, and CPIC's own text moved to its own row.
+      await t.tap(find.text("The guideline in CPIC's own words"));
       await t.pumpAndSettle();
       expect(find.text('CPIC GUIDELINE — QUOTED EXACTLY'), findsOneWidget);
       expect(find.text('CPIC says: avoid clopidogrel.'), findsOneWidget);

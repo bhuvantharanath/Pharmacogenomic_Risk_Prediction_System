@@ -14,6 +14,7 @@ library;
 
 import 'package:flutter/material.dart';
 
+import '../glossary/glossary_text.dart';
 import '../models/analysis.dart';
 import '../models/unknown_reason.dart';
 import '../theme/tokens.dart';
@@ -51,7 +52,7 @@ class UnknownReasonPanel extends StatelessWidget {
               'stretches duplicated, deleted or rearranged. A VCF records single '
               'positions, so it has no way to express that. This is a limit of '
               'the file format, not of your sample.',
-          'A targeted assay for this gene can resolve it. No VCF, however '
+          'A different kind of genetic test can resolve it. No VCF, however '
               'complete, will.',
         ),
         UnknownReason.ambiguous => (
@@ -115,7 +116,7 @@ class UnknownReasonPanel extends StatelessWidget {
           ),
           const SizedBox(height: 9),
           // Prose, because a person reads it.
-          Text(body, style: Tokens.proseSm),
+          GlossaryText(body, style: Tokens.proseSm),
 
           // The census carries the argument for the coverage case, so it is
           // shown here rather than left further down the card.
@@ -166,7 +167,8 @@ class UnknownReasonPanel extends StatelessWidget {
                     style: Tokens.monoLabel,
                   ),
                   const SizedBox(height: 5),
-                  Text(remedy, style: Tokens.proseSm.copyWith(color: Tokens.ink)),
+                  GlossaryText(remedy,
+                      style: Tokens.proseSm.copyWith(color: Tokens.ink)),
                 ],
               ),
             ),

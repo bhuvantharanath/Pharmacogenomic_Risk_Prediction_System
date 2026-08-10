@@ -110,6 +110,67 @@ class PharmaGuardApi {
     }
   }
 
+  /// GET /provenance — when the shipped guidance was captured.
+  ///
+  /// A GET, and separate from an analysis, because the About screen has to be
+  /// able to state the version without anyone having uploaded anything. Returns
+  /// null on any failure: a missing date stamp is a missing line of context, not
+  /// a reason to show an error.
+  Future<GuidelineProvenance?> provenance() async {
+    try {
+      final Response<dynamic> res = await _dio.get<dynamic>('/provenance');
+      final dynamic body = res.data;
+      if (res.statusCode != 200 || body is! Map) return null;
+      return GuidelineProvenance.fromJson(body.cast<String, dynamic>());
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// POST /coverage — what this file can answer, without running PharmCAT.
+  ///
+  /// Called after the user picks a file and before they commit to an analysis.
+  /// It is cheap by construction (measured at ~2 ms against ~1250 ms for
+  /// /analyze on the same file), so it costs the user nothing to be told the
+  /// shape of their result in advance — and four Unknowns announced up front
+  /// read as the system knowing its limits, where the same four arriving
+  /// unannounced read as failure.
+  ///
+  /// Never blocks the analysis: a failure here is reported and stepped over,
+  /// which is why this returns null rather than throwing.
+  Future<CoverageResponse?> coverage({
+    required Uint8List fileBytes,
+    required String fileName,
+  }) async {
+    final FormData form = FormData.fromMap(<String, dynamic>{
+      'file': MultipartFile.fromBytes(fileBytes, filename: fileName),
+    });
+
+    final Response<dynamic> res;
+    try {
+      res = await _dio.post<dynamic>('/coverage', data: form);
+    } on DioException catch (e) {
+      throw ApiException(_describeDioError(e));
+    }
+
+    final int status = res.statusCode ?? 0;
+    if (status != 200) {
+      // A file /coverage rejects is a file /analyze would reject too — both go
+      // through the same validation — so surfacing the error here saves the
+      // user a round trip through a JVM to learn the same thing.
+      throw ApiException(_describeHttpError(status, res.data), statusCode: status);
+    }
+
+    final dynamic body = res.data;
+    if (body is! Map) return null;
+    try {
+      return CoverageResponse.fromJson(body.cast<String, dynamic>());
+    } catch (_) {
+      // A preview that cannot be parsed is not worth failing an upload over.
+      return null;
+    }
+  }
+
   /// Turns transport-level failures into something a user can act on.
   String _describeDioError(DioException e) {
     switch (e.type) {

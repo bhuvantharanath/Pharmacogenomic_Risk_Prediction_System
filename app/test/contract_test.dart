@@ -110,6 +110,13 @@ const String _fixture = '''
           "minimum_percent": 100,
           "sufficient": true
         }
+      },
+      "guideline_provenance": {
+        "pharmcat_version": "3.4.0",
+        "cpic_data_version": "2026-07-13-11-40",
+        "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+        "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+        "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
       }
   }
 }
@@ -223,14 +230,15 @@ void main() {
       );
       await tester.pumpAndSettle();
 
-      // The redesign replaced the old section headers with two disclosure rows.
-      // CPIC's text now sits under a mono label that names it as quoted, which
-      // is the point: the reader can see which words are the guideline's own.
-      // Every card has these rows, so target the first card's explicitly — and
-      // scroll to it, since the taller verdict card pushes it past the fold.
-      await tester.ensureVisible(find.text('Why this result').first);
+      // CPIC's text sits under a mono label that names it as quoted, which is
+      // the point: the reader can see which words are the guideline's own.
+      // Feature Set B gave it its own disclosure row — in patient view (the
+      // default) the prose is already surfaced, so only the quote is behind a
+      // tap. Target the first card's row explicitly, and scroll to it.
+      final Finder cpicRow = find.text("The guideline in CPIC's own words");
+      await tester.ensureVisible(cpicRow.first);
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Why this result').first);
+      await tester.tap(cpicRow.first);
       await tester.pumpAndSettle();
 
       expect(find.text('CPIC GUIDELINE — QUOTED EXACTLY'), findsWidgets);

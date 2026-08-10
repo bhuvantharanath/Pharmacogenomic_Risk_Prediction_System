@@ -37,6 +37,10 @@ dependencies:
   dio: ^5.10.0
   file_picker: ^11.0.2
   web: ^1.1.1
+  pdf: ^3.12.0
+  # Pinned below 6.0.0: the HTML->PDF converter this uses is deprecated
+  # upstream, so a major bump could remove it. See print_summary_io.dart.
+  printing: '>=5.14.3 <6.0.0'
 
 dev_dependencies:
   flutter_test:
