@@ -770,3 +770,75 @@ reading the product rather than by running a check. That is itself a data point
 about the pattern's reach: the verification graph now covers five edges in the
 clinical path, and this one was still open — in the layer that exists to make
 the other four legible to a human.
+
+---
+
+## Evidence 10 — a rare-variant sweep cannot validate a threshold meant to catch that variant
+
+DPYD's 20% coverage threshold was justified by a measured **0% wrong-call rate**
+in a synthetic sweep. That measurement was real. It could not support the
+conclusion drawn from it.
+
+### The method error
+
+The sweep dropped positions at random across a cohort in which DPYD's
+reduced-function alleles are rare. Almost every sample was genuinely
+`Reference/Reference`, so calling it Normal Metabolizer was correct almost every
+time — **whichever positions survived the drop**. A sweep constructed that way
+measures how often the answer happens to be right, not whether the threshold
+detects the absence of the evidence the answer depends on.
+
+> **Absence of observed error is not absence of possible error.** A validation
+> sweep over a population where the target variant is rare cannot establish that
+> a threshold detects that variant's absence.
+
+The same shape as every other finding here: the check and the thing it was meant
+to check were never actually brought into contact.
+
+### What the arithmetic says
+
+DPYD has 83 required positions; 28 are **decision-critical** — they define an
+allele whose CPIC function assignment is not `Normal function`. At 20% a file
+needs 17 of 83, so it may omit 66. **All 28 decision-critical positions fit
+inside that 66.**
+
+A file can therefore clear the percentage while carrying not one position
+capable of showing a reduced-function allele. Every such file reads as
+`Reference/Reference` → Normal Metabolizer → a confident `Safe` on fluorouracil,
+the drug that is fatal at a standard dose in DPYD deficiency.
+
+This is not hypothetical. On NA12273 — the only externally truth-labelled sample
+available — DPYD carried 8 of 28 decision-critical positions and returned `Safe`
+at **0.95 confidence** with CPIC's "no indication to change dose or therapy"
+attached, while six other genes on the same file were declined for thin coverage.
+
+### Percentage is a proxy; position identity is the requirement
+
+The percentage asks *how much* of a gene was reported. The real question is
+*which* positions — specifically, whether the ones that could change the answer
+were among them. Those are different questions, and only the second is safe to
+answer with.
+
+The threshold was **not moved**. A requirement was added beside it: DPYD may
+produce a confident label only when every decision-critical position carries an
+explicit genotype. The positions are derived mechanically from PharmCAT's own
+`functionValue` assignments (`scripts/derive_decision_critical.py`) rather than
+hand-picked, because replacing one hand-reasoned answer with another would
+repeat the original error.
+
+### Exposure across the other six genes
+
+| gene | positions | threshold | may omit | decision-critical | **could omit** |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| DPYD | 83 | 20% | 66 | 28 | **28 — all of them** |
+| TPMT | 45 | 80% | 9 | 45 | 9 |
+| NUDT15 | 20 | 80% | 4 | 20 | 4 |
+| CYP2C19 | 35 | 100% | 0 | 31 | 0 |
+| CYP2C9 | 88 | 100% | 0 | 69 | 0 |
+| SLCO1B1 | 35 | 100% | 0 | 26 | 0 |
+| CYP2D6 | 157 | 100% | 0 | 140 | 0 |
+
+Only the three genes whose thresholds are below 100% carry any exposure, which
+is the expected shape — and it is the argument for why a percentage threshold
+below 100% needs an identity requirement beside it rather than instead of it.
+TPMT and NUDT15 are reported and **not** enforced; that is a separate decision.

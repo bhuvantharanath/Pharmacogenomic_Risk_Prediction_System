@@ -569,7 +569,16 @@ def build_response(
             warnings.append(coverage_mod.variants_only_warning())
         for gene_cov in cov.insufficient():
             starved.add(gene_cov.gene)
-            warnings.append(coverage_mod.insufficient_warning(gene_cov))
+            # Two different refusals, two different sentences. A gene that met
+            # its percentage but lacks the positions that could show a variant
+            # needs the second one, or "37% was enough and you refused anyway"
+            # reads as a bug rather than as the point.
+            if (gene_cov.percent >= gene_cov.min_percent
+                    and gene_cov.critical_enforced
+                    and not gene_cov.critical_satisfied):
+                warnings.append(coverage_mod.critical_positions_warning(gene_cov))
+            else:
+                warnings.append(coverage_mod.insufficient_warning(gene_cov))
 
     for drug in drugs:
         result, drug_warnings, provenance = build_result(

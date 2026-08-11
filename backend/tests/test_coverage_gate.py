@@ -57,7 +57,13 @@ ALL_GENES = ("CYP2C19", "CYP2C9", "SLCO1B1", "TPMT", "NUDT15", "DPYD")
 @pytest.mark.parametrize("gene", ALL_GENES)
 def test_exactly_at_the_threshold_passes(gene: str) -> None:
     """The bar is inclusive: meeting it is sufficient, not merely exceeding it."""
-    minimum = coverage.load_requirements()["genes"][gene]["min_coverage_percent"]
+    spec = coverage.load_requirements()["genes"][gene]
+    minimum = spec["min_coverage_percent"]
+    if spec.get("decision_critical_enforced"):
+        pytest.skip(
+            f"{gene} additionally requires every decision-critical position; "
+            f"percentage alone is deliberately no longer sufficient — see "
+            f"tests/test_decision_critical_positions.py")
     report = coverage.assess(_at_coverage(gene, minimum / 100))
     got = report.genes[gene]
     assert got.percent >= minimum - 1e-9
@@ -213,6 +219,11 @@ def test_coverage_is_reported_pass_or_fail() -> None:
         assert set(entry) == {
             "positions_present", "positions_required", "percent",
             "minimum_percent", "sufficient",
+            # Added with the position-identity requirement. Reported for EVERY
+            # gene, not only the enforced one, so the exposure the other six
+            # carry is visible rather than inferable.
+            "decision_critical_present", "decision_critical_required",
+            "decision_critical_enforced",
         }, f"{gene} metrics shape changed"
 
 

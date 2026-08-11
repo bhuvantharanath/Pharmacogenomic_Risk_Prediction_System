@@ -66,7 +66,12 @@ GATED_GENES = ("CYP2C19", "CYP2C9", "SLCO1B1", "TPMT", "NUDT15", "DPYD")
 
 @pytest.mark.parametrize("gene", GATED_GENES)
 def test_at_the_threshold_the_gene_passes(gene: str) -> None:
-    minimum = coverage.load_requirements()["genes"][gene]["min_coverage_percent"]
+    spec = coverage.load_requirements()["genes"][gene]
+    if spec.get("decision_critical_enforced"):
+        pytest.skip(
+            f"{gene} additionally requires every decision-critical position, so "
+            f"meeting the percentage is deliberately not sufficient")
+    minimum = spec["min_coverage_percent"]
     body = _post(_at_coverage(gene, minimum / 100)).json()
     reported = _gene(body, gene)
     assert reported["passes"] is True, reported
