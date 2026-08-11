@@ -79,10 +79,16 @@ jobs:
       - name: Provenance filter (field-level policy)
         run: python scripts/verify_provenance.py
 
+      # BLOCKING as of the CI-gate pass. It was `|| true`, which made the
+      # exhaustive 105-combination check unable to fail a build — and it is the
+      # only guard for the match-field scoping fix (F1b), which produces no
+      # observable payload change on any fixture.
+      #
+      # The 13 known divergences are pinned in
+      # reports/label_mapping_accepted_divergences.json. Exit 0 when only those
+      # are present; non-zero on anything new.
       - name: Label-mapping validation (exhaustive, 105 combinations)
-        # Needs no secrets. Reads CPIC recommendations from the PharmCAT jar and
-        # checks every phenotype combination against the mapping rules.
-        run: python scripts/validate_label_mapping.py || true
+        run: python scripts/validate_label_mapping.py
 
       # Re-run of two suites the `pytest` step already covers, kept as a named
       # step so a failure in the safety gate is legible in the checks list

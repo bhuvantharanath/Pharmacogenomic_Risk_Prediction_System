@@ -316,8 +316,67 @@ def evaluate(rows: list[Expectation]) -> list[dict]:
     return results
 
 
+DEFAULT_BASELINE = (
+    Path(__file__).resolve().parents[1]
+    / "reports" / "label_mapping_accepted_divergences.json"
+)
+
+
+def divergence_key(d: dict) -> str:
+    """
+    Stable identity for one divergence: drug, phenotypes, population.
+
+    Deliberately NOT including the expected/actual labels. If a baselined
+    combination starts diverging DIFFERENTLY — Safe->Unknown becoming
+    Safe->Toxic — that is a change worth looking at, and keying on the outcome
+    would hide it behind the same accepted entry.
+    """
+    return f"{d['drug']} · {d['phenotypes']}" + (
+        f" · {d['population']}" if d.get("population") else "")
+
+
+def load_baseline(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    data = json.loads(path.read_text())
+    return {entry["key"] for entry in data.get("accepted", [])}
+
+
+def write_baseline(path: Path, disagreements: list[dict]) -> None:
+    path.write_text(json.dumps({
+        "_comment": (
+            "Divergences between label_mapping.yaml and the expectation derived "
+            "from CPIC's own flags, that have been looked at and accepted. "
+            "validate_label_mapping.py exits 0 when only these are present and "
+            "non-zero on anything new. Adding an entry is a deliberate act: run "
+            "--write-baseline and explain it in the commit."
+        ),
+        "accepted": [
+            {
+                "key": divergence_key(d),
+                "expected": d["expected"],
+                "actual": d["actual"],
+                "rule": d["rule_id"],
+            }
+            for d in sorted(disagreements, key=divergence_key)
+        ],
+    }, indent=2) + "\n")
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument(
+        "--baseline", type=Path, default=DEFAULT_BASELINE,
+        help="accepted-divergence file. Exit 0 when only these are present; "
+             "non-zero on anything new.")
+    parser.add_argument(
+        "--write-baseline", action="store_true",
+        help="record the CURRENT divergences as the accepted set. A deliberate "
+             "act — it is how an accepted divergence gets added, and it should "
+             "show up in a diff.")
+    parser.add_argument(
+        "--strict", action="store_true",
+        help="ignore the baseline; any divergence at all fails.")
     parser.add_argument("--build-table", action="store_true", help="Re-extract from the PharmCAT jar.")
     parser.add_argument("--json", action="store_true")
     parser.add_argument("--drug", default="", help="Limit to one drug.")
@@ -367,6 +426,14 @@ def main(argv: list[str] | None = None) -> int:
     print(dim("  coverage: EXHAUSTIVE over every CPIC recommendation PharmCAT ships"))
     print(dim("            for these drugs — not a sample."))
 
+    baseline = load_baseline(args.baseline)
+
+    if args.write_baseline:
+        write_baseline(args.baseline, disagreements)
+        print(green(f"\n  recorded {len(disagreements)} accepted divergence(s) "
+                    f"in {args.baseline.name}"))
+        return 0
+
     if disagreements:
         print(red(f"\n{len(disagreements)} disagreement(s):\n"))
         for d in disagreements[:40]:
@@ -380,7 +447,32 @@ def main(argv: list[str] | None = None) -> int:
     else:
         print(green("\n  Every CPIC recommendation maps to the expected risk label."))
     print(yellow("  label_mapping.yaml was NOT modified by this script."))
-    return 0 if not disagreements else 1
+
+    if args.strict:
+        return 0 if not disagreements else 1
+
+    current = {divergence_key(d) for d in disagreements}
+    unexpected = sorted(current - baseline)
+    resolved = sorted(baseline - current)
+
+    if resolved:
+        print(green(f"\n  {len(resolved)} baselined divergence(s) no longer "
+                    f"diverge — re-run with --write-baseline to shrink the "
+                    f"accepted set:"))
+        for key in resolved:
+            print(green(f"    {key}"))
+
+    if unexpected:
+        print(red(f"\n  {len(unexpected)} NEW divergence(s) not in "
+                  f"{args.baseline.name}:"))
+        for key in unexpected:
+            print(red(f"    {key}"))
+        print(red("\n  FAIL: the mapping diverged somewhere it did not before."))
+        return 1
+
+    print(green(f"\n  PASS: {len(current)} divergence(s), all of them in the "
+                f"accepted baseline ({args.baseline.name})."))
+    return 0
 
 
 if __name__ == "__main__":
