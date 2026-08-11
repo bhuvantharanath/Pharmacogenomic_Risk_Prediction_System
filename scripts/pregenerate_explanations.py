@@ -70,7 +70,7 @@ from _common import (
     yellow,
 )
 
-from app.cpic_engine import classify_annotation, map_phenotype, select_annotation
+from app.cpic_engine import derive_label, map_phenotype, select_annotation
 from app.explanation import generator_template
 from app.explanation.context import Explanation, ExplanationContext
 from app.explanation.guard import check as guard_check
@@ -159,9 +159,10 @@ def build_context(case: Case) -> tuple[ExplanationContext, CpicAnnotation | None
     annotation, matched_gene = find_annotation(case.drug, phenotype)
     gene = matched_gene or case.gene
 
-    label = RiskLabel.UNKNOWN
-    if annotation is not None:
-        label, _rule, _hint = classify_annotation(annotation)
+    # The SAME derivation the runtime uses — see `cpic_engine.derive_label`.
+    # This used to call `classify_annotation` directly with no phenotype gate,
+    # which is why the two paths disagreed on an unasserted phenotype.
+    label, _rule, _hint = derive_label(phenotype, annotation)
 
     called = phenotype is not Phenotype.UNKNOWN
     context = ExplanationContext(
