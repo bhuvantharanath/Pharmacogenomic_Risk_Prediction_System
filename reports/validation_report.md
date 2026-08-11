@@ -132,6 +132,22 @@ multi-sample VCF, so the whole cohort costs one JVM start. Total wall clock for
 
 ### Result: 100.0000%
 
+> **What this figure cannot show.** Integration fidelity compares two systems
+> reading the *same* input, so it is blind to input adequacy by construction.
+> Across these 400 samples the slice carried **8 of 28** DPYD decision-critical
+> positions; PharmCAT read those 8 and returned Normal Metabolizer, PharmaGuard
+> rendered Normal Metabolizer, and they agreed perfectly — on an answer neither
+> was in a position to justify. Agreement measures whether the second system
+> reproduces the first faithfully. It is silent on whether the first had enough
+> evidence to be asked. See Evidence 11 in `provenance_finding.md`.
+>
+> The cohort is also `HG*`-keyed while GeT-RM is `NA*`-keyed, so it could never
+> have been external validation: **external truth in this project is n=1**
+> (NA12273), and GeT-RM covers only **two** of our seven genes — there is no
+> external consensus for SLCO1B1, TPMT, NUDT15 or DPYD. On NA12273 our CYP2C9
+> call diverges from consensus by **refusing** (`Undetermined`) where GeT-RM
+> says `*1/*2` — a conservative discordance, not a wrong call.
+
 | | |
 | --- | ---: |
 | Samples requested | 400 |

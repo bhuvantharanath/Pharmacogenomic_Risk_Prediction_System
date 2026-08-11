@@ -1559,7 +1559,7 @@
         ]
       ],
       "decision_critical_count": 45,
-      "decision_critical_enforced": false
+      "decision_critical_enforced": true
     },
     "NUDT15": {
       "required_positions": 20,
@@ -1734,7 +1734,7 @@
         ]
       ],
       "decision_critical_count": 20,
-      "decision_critical_enforced": false
+      "decision_critical_enforced": true
     },
     "DPYD": {
       "required_positions": 83,

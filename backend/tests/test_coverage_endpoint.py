@@ -79,8 +79,12 @@ def test_at_the_threshold_the_gene_passes(gene: str) -> None:
         full = _post(_vcf([(c, p, "0/0") for c, p in critical + others])).json()
         assert _gene(full, gene)["passes"] is True
 
+        # For an entirely-critical gene (TPMT, NUDT15) there is no
+        # percentage-only file to build — reaching the bar necessarily uses
+        # critical positions. Assert the stronger form in that case.
         need = max(0, round(len(spec["positions"]) * minimum / 100))
-        thin = _post(_vcf([(c, p, "0/0") for c, p in others[:need]])).json()
+        pool = others or critical
+        thin = _post(_vcf([(c, p, "0/0") for c, p in pool[:need]])).json()
         reported = _gene(thin, gene)
         assert reported["percent"] >= minimum, "test premise: it clears the bar"
         assert reported["passes"] is False

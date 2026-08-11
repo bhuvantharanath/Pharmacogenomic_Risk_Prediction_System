@@ -76,12 +76,26 @@ def test_exactly_at_the_threshold_passes(gene: str) -> None:
         assert at_threshold.sufficient is True
 
         # And the half that is new: the percentage alone must NOT suffice.
+        #
+        # For TPMT and NUDT15 every position is decision-critical, so there is
+        # no such thing as a percentage-only file — you cannot reach 80%
+        # without critical positions. The property still holds, vacuously, and
+        # is asserted as the stronger statement instead: any file at the
+        # threshold is short of critical positions.
         need = max(0, round(len(spec["positions"]) * minimum / 100))
-        percentage_only = coverage.assess(
-            _vcf([(c, p, "0/0") for c, p in others[:need]])
-        ).genes[gene]
-        assert percentage_only.percent >= minimum, "test premise"
-        assert percentage_only.sufficient is False
+        if others:
+            percentage_only = coverage.assess(
+                _vcf([(c, p, "0/0") for c, p in others[:need]])
+            ).genes[gene]
+            assert percentage_only.percent >= minimum, "test premise"
+            assert percentage_only.sufficient is False
+        else:
+            at_bar = coverage.assess(
+                _vcf([(c, p, "0/0") for c, p in critical[:need]])
+            ).genes[gene]
+            assert at_bar.percent >= minimum, "test premise"
+            assert at_bar.critical_satisfied is False
+            assert at_bar.sufficient is False
         return
     report = coverage.assess(_at_coverage(gene, minimum / 100))
     got = report.genes[gene]

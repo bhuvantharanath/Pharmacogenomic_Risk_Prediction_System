@@ -273,9 +273,20 @@ def emit_requirements() -> int:
             [e["chromosome"], e["position"]] for e in r["critical_positions"]
         ]
         spec["decision_critical_count"] = r["critical_count"]
-        # Enforced for DPYD only. See reports/decision_critical_positions.md
-        # for the exposure the other six carry.
-        spec["decision_critical_enforced"] = gene == "DPYD"
+        # Enforced for every gene whose percentage threshold is below 100%.
+        #
+        # NOT because their exposure matches DPYD's — it does not; DPYD can omit
+        # all 28 of its critical positions, TPMT caps at 9 and NUDT15 at 4. The
+        # reason is that all three sub-100% thresholds rest on the SAME
+        # synthetic sweep, and that sweep is now known to be incapable of
+        # detecting the failure it was meant to exclude (see Evidence 10 in
+        # reports/provenance_finding.md). The justification is common to all
+        # three, so its collapse is too.
+        #
+        # The four 100% genes need no flag: requiring every position already
+        # implies requiring every critical one.
+        spec["decision_critical_enforced"] = (
+            spec.get("min_coverage_percent", 100) < 100)
 
     data["decision_critical_provenance"] = {
         "rule": "a position is decision-critical if it defines any named allele "

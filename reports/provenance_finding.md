@@ -842,3 +842,68 @@ Only the three genes whose thresholds are below 100% carry any exposure, which
 is the expected shape — and it is the argument for why a percentage threshold
 below 100% needs an identity requirement beside it rather than instead of it.
 TPMT and NUDT15 are reported and **not** enforced; that is a separate decision.
+
+### Follow-on: percentage now does no independent work anywhere
+
+With identity enforced on all three sub-100% genes, the percentage threshold
+never decides anything on its own:
+
+| gene | critical | total | critical share | threshold | does percentage decide? |
+| --- | ---: | ---: | ---: | ---: | --- |
+| DPYD | 28 | 83 | 33.7% | 20% | **no** — identity implies it |
+| TPMT | 45 | 45 | 100% | 80% | **no** — every position is critical |
+| NUDT15 | 20 | 20 | 100% | 80% | **no** — every position is critical |
+| CYP2C19 / CYP2C9 / SLCO1B1 / CYP2D6 | — | — | — | 100% | n/a — 100% already implies identity |
+
+For TPMT and NUDT15 *every* position defines a non-normal allele, so requiring
+identity is requiring 100% — the `80` written beside them is now inert. For DPYD
+the 28 critical positions are 33.7% of 83, comfortably above the 20% bar, so
+satisfying identity satisfies the percentage automatically.
+
+**Percentage was the proxy; position identity is the requirement.** The
+percentage is deliberately NOT removed here — this is recorded so that removing
+it later is an informed decision rather than a guess, and a test pins the
+relationship so it cannot drift back unnoticed.
+
+Why all three and not DPYD alone: not because the exposure is comparable — it is
+not, DPYD could omit all 28 of its critical positions while TPMT caps at 9 and
+NUDT15 at 4 — but because all three thresholds rest on the **same** synthetic
+sweep. When a justification collapses it collapses for everything that leaned on
+it, regardless of how much each one was exposed.
+
+---
+
+## Evidence 11 — integration fidelity is blind to input adequacy by construction
+
+The 400-sample run reported **100.0000%** agreement between PharmCAT's calls and
+PharmaGuard's rendering of them. That figure is correct and stays.
+
+It also could not have detected the DPYD defect, and the reason is structural
+rather than a shortcoming of the run.
+
+Across those 400 samples the slice carried **8 of 28** DPYD decision-critical
+positions. PharmCAT read those 8 and returned Normal Metabolizer. PharmaGuard
+read the same 8 and rendered Normal Metabolizer. They agreed perfectly — on an
+answer neither of them was in a position to justify.
+
+> **Any metric comparing two systems reading the same input cannot detect that
+> the input was insufficient.** Agreement measures whether the second system
+> faithfully reproduces the first. It is silent on whether the first had enough
+> evidence to be asked.
+
+That is the same shape as every other finding in this document — two components,
+each correct against its own reference, and the edge between them and the
+*input* unexamined — but it is worth stating separately because the 100.0000%
+figure is the most quotable number this project has produced, and it is the one
+most likely to be read as meaning more than it does.
+
+### What the figure does and does not support
+
+| | |
+| --- | --- |
+| **Supports** | PharmaGuard renders PharmCAT's output without distortion, across 400 real samples and every gene. |
+| **Does not support** | that the calls were correct; that the input was adequate; that a reduced-function variant would have been seen. |
+
+The coverage gate is the check that faces the input, and until this pass it
+asked the wrong question of DPYD — how much of the gene was reported, not
+whether the positions capable of changing the answer were among it.
