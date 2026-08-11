@@ -59,11 +59,30 @@ def test_exactly_at_the_threshold_passes(gene: str) -> None:
     """The bar is inclusive: meeting it is sufficient, not merely exceeding it."""
     spec = coverage.load_requirements()["genes"][gene]
     minimum = spec["min_coverage_percent"]
+
+    # An enforced gene needs its decision-critical positions TOO, so a file
+    # built purely to hit the percentage no longer passes. The percentage
+    # arithmetic is still asserted — it is just asserted as one half of the
+    # combined rule rather than as the whole of it. A skip here would rot; this
+    # keeps testing the same property under the rule that now applies.
     if spec.get("decision_critical_enforced"):
-        pytest.skip(
-            f"{gene} additionally requires every decision-critical position; "
-            f"percentage alone is deliberately no longer sufficient — see "
-            f"tests/test_decision_critical_positions.py")
+        critical = [tuple(p) for p in spec["decision_critical_positions"]]
+        others = [tuple(p) for p in spec["positions"] if tuple(p) not in set(critical)]
+        at_threshold = coverage.assess(
+            _vcf([(c, p, "0/0") for c, p in critical + others])
+        ).genes[gene]
+        assert at_threshold.percent >= minimum
+        assert at_threshold.critical_satisfied is True
+        assert at_threshold.sufficient is True
+
+        # And the half that is new: the percentage alone must NOT suffice.
+        need = max(0, round(len(spec["positions"]) * minimum / 100))
+        percentage_only = coverage.assess(
+            _vcf([(c, p, "0/0") for c, p in others[:need]])
+        ).genes[gene]
+        assert percentage_only.percent >= minimum, "test premise"
+        assert percentage_only.sufficient is False
+        return
     report = coverage.assess(_at_coverage(gene, minimum / 100))
     got = report.genes[gene]
     assert got.percent >= minimum - 1e-9
