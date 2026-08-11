@@ -459,14 +459,14 @@ def main(argv: list[str] | None = None) -> int:
         print(green(f"\n  {len(resolved)} baselined divergence(s) no longer "
                     f"diverge — re-run with --write-baseline to shrink the "
                     f"accepted set:"))
-        for key in resolved:
-            print(green(f"    {key}"))
+        for divergence in resolved:
+            print(green(f"    {divergence}"))
 
     if unexpected:
         print(red(f"\n  {len(unexpected)} NEW divergence(s) not in "
                   f"{args.baseline.name}:"))
-        for key in unexpected:
-            print(red(f"    {key}"))
+        for divergence in unexpected:
+            print(red(f"    {divergence}"))
         print(red("\n  FAIL: the mapping diverged somewhere it did not before."))
         return 1
 
