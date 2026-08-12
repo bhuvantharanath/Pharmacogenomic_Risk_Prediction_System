@@ -659,6 +659,10 @@ dropped at random, which no real pipeline does. The evidence that count is the w
 unit is already in the data:
 
 > **DPYD passes at 37.3% coverage with a 0% wrong rate. CYP2C9 fails at 19.3%.**
+>
+> *(Quoted as it stood on 2026-07-24. The argument it supports was accepted:
+> position identity is now enforced and DPYD is gated at 8 of 28 critical
+> positions. The 0% itself was also unsound — see Evidence 10.)*
 
 The difference is not how many positions are present but **which**. DPYD's actionable
 variants are each defined by a single position, and CPIC scores it by activity; CYP2C9

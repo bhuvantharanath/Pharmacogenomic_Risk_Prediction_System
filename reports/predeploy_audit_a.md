@@ -6,6 +6,26 @@ where a mutation was applied to source it was reverted with `git checkout --`
 before the next one (the harness refuses to start on a dirty tree).
 
 Date of audit: 2026-08-11.
+
+> **Resolution note, 2026-08-12.** Findings below have since been repaired; the
+> text is left exactly as written because the record of what was wrong is the
+> deliverable. Two things it says are no longer true of the system:
+>
+> * **"DPYD alone passes"** — every gene now additionally requires each
+>   decision-critical position, derived from PharmCAT's `functionValue`. DPYD
+>   carries 8 of 28 and is gated. See `reports/decision_critical_positions.md`.
+> * **The §4 finding recorded "output does not change"** for the compound-DPYD
+>   revert. That was measured as the risk *label* alone and is **wrong** —
+>   confidence moved 0.1 → 0.95 and the action text became a real CPIC
+>   recommendation. The correction is in `tests/test_diplotype_source.py`.
+>
+> **Method hazard, recorded here because this audit recommends the technique.**
+> Reverting a planted mutation with `git checkout -- <file>` discards *all*
+> uncommitted work in that file, not just the plant. Doing this to `README.md`
+> during a later session destroyed a turn's worth of edits. Snapshot the file
+> and write the snapshot back instead; `git checkout` is only safe when the
+> file is otherwise clean, which the harness's dirty-tree check does not
+> guarantee per-file.
 Baseline: 630 backend tests passing, 144 Flutter tests passing, `flutter analyze`
 clean, on `feat/client-features-and-glossary-audit` @ `59e1ea2`.
 
