@@ -15,11 +15,14 @@ positions are biologically sensible. That is PharmCAT's job.
 
 from __future__ import annotations
 
+import functools
+import json
 import gzip
 import re
 import zlib
 from dataclasses import dataclass, field
 from enum import Enum
+from pathlib import Path
 
 # --------------------------------------------------------------------------- #
 # Limits
@@ -52,6 +55,7 @@ class VcfErrorCode(str, Enum):
     NO_SAMPLE_COLUMN = "NO_SAMPLE_COLUMN"
     NO_VARIANTS = "NO_VARIANTS"
     UNSUPPORTED_REFERENCE_BUILD = "UNSUPPORTED_REFERENCE_BUILD"
+    NON_HUMAN_GENOME = "NON_HUMAN_GENOME"
 
 
 class ReferenceBuild(str, Enum):
@@ -123,6 +127,71 @@ _GRCH37_PATTERNS = (
 )
 
 
+@functools.lru_cache(maxsize=1)
+def _build_evidence() -> dict:
+    """
+    PharmCAT's own build-to-RefSeq-accession mapping, vendored.
+
+    NOT contig lengths — PharmCAT ships none. Checked: `chr_build_mapping.tsv`
+    carries accessions, the positions VCF header carries assembly and species
+    but no `length=`, and there is no .fai/.dict/chrom.sizes in the jar. A
+    length table could only have come from memory, which is what a derived
+    check is supposed to avoid. An accession is stronger anyway:
+    `NC_000001.11` IS GRCh38 chr1, with nothing to match against.
+
+    See `scripts/derive_build_evidence.py`.
+    """
+    path = Path(__file__).parent / "data" / "build_evidence.json"
+    if not path.exists():
+        return {"accession_to_build": {}, "required_build": "GRCh38"}
+    return json.loads(path.read_text())
+
+
+#: `species="Mus musculus"` and friends. A VCF that names a non-human species
+#: cannot carry human star alleles, so every position lookup misses and the
+#: result is a screen of confident Unknowns — wasted work presented as an
+#: answer.
+_SPECIES = re.compile(r'species\s*=\s*"?([^",>]+)', re.IGNORECASE)
+_HUMAN = ("homo sapiens", "human", "h. sapiens", "hsapiens")
+
+#: `ID=NC_000001.11` — a RefSeq accession pins the build exactly.
+_ACCESSION = re.compile(r"\b(NC_0000\d{2}\.\d+)\b")
+
+
+def detect_species(header_lines: list[str]) -> str | None:
+    """The species a `##contig` line declares, or None if it declares none."""
+    for line in header_lines:
+        if not line.startswith(("##contig", "##reference", "##assembly")):
+            continue
+        found = _SPECIES.search(line)
+        if found:
+            return found.group(1).strip()
+    return None
+
+
+def detect_build_from_accessions(header_lines: list[str]) -> str | None:
+    """
+    Build inferred from RefSeq accessions, using PharmCAT's own mapping.
+
+    The strongest signal available: an accession names a build outright, where a
+    `##reference=` string is a claim the file makes about itself and can be
+    stale or simply wrong.
+    """
+    table = _build_evidence().get("accession_to_build", {})
+    seen = set()
+    for line in header_lines:
+        if not line.startswith(("##contig", "##reference", "##assembly")):
+            continue
+        for accession in _ACCESSION.findall(line):
+            build = table.get(accession)
+            if build:
+                seen.add(build)
+    if len(seen) == 1:
+        return seen.pop()
+    # Two builds' accessions in one file is a broken file, not a build.
+    return None
+
+
 def _detect_reference_build(header_lines: list[str]) -> ReferenceBuild:
     """
     Infer the reference build from the header's *declaration* lines.
@@ -146,6 +215,14 @@ def _detect_reference_build(header_lines: list[str]) -> ReferenceBuild:
         if line.startswith(("##reference", "##contig", "##assembly"))
     ]
     blob = "\n".join(relevant)
+
+    # Accessions first: PharmCAT-sourced and unambiguous, where a declared
+    # build is only what the file claims about itself.
+    from_accession = detect_build_from_accessions(header_lines)
+    if from_accession == "GRCh38":
+        return ReferenceBuild.GRCH38
+    if from_accession in ("GRCh37", "GRCh36"):
+        return ReferenceBuild.GRCH37
 
     if any(p.search(blob) for p in _GRCH37_PATTERNS):
         return ReferenceBuild.GRCH37
@@ -260,6 +337,23 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
             ".vcf.gz.",
         ) from exc
 
+    # NUL anywhere, not just in the header.
+    #
+    # The decode above catches most binary uploads, but a NUL byte is valid
+    # UTF-8 and sails through it — so a file that is text at the top and binary
+    # further down was being accepted, with the corrupt rows silently failing to
+    # parse as genotypes. The whole file is scanned because "is this text?"
+    # cannot be answered from a prefix.
+    nul_at = data.find(b"\x00")
+    if nul_at >= 0:
+        line_no = data.count(b"\n", 0, nul_at) + 1
+        raise VcfValidationError(
+            VcfErrorCode.NOT_VCF,
+            f"'{filename}' contains a NUL byte on line {line_no}, so it is not "
+            f"a text VCF file. This usually means the file was truncated mid-"
+            f"write or corrupted in transfer. Re-export it and upload again.",
+        )
+
     # --- header ------------------------------------------------------------
     head = text[:_HEADER_SCAN_BYTES]
     header_lines = [ln for ln in head.splitlines() if ln.startswith("##")]
@@ -295,6 +389,19 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
         warnings.append(
             f"VCF is {fileformat}; PharmCAT targets VCFv4.2. Processing anyway, "
             "but check results carefully."
+        )
+
+    # --- species -----------------------------------------------------------
+    # Before the build check: a mouse genome is not a GRCh37-vs-GRCh38 problem,
+    # and telling someone to lift it over would be useless advice.
+    species = detect_species(header_lines)
+    if species and species.strip().lower() not in _HUMAN:
+        raise VcfValidationError(
+            VcfErrorCode.NON_HUMAN_GENOME,
+            f"This file declares the species '{species}', and this analysis "
+            f"only works on human data (Homo sapiens, GRCh38). Star alleles "
+            f"are defined for the human genome, so no result could be produced "
+            f"from this file.",
         )
 
     # --- reference build ---------------------------------------------------

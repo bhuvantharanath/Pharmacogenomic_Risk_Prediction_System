@@ -66,7 +66,29 @@ GATED_GENES = ("CYP2C19", "CYP2C9", "SLCO1B1", "TPMT", "NUDT15", "DPYD")
 
 @pytest.mark.parametrize("gene", GATED_GENES)
 def test_at_the_threshold_the_gene_passes(gene: str) -> None:
-    minimum = coverage.load_requirements()["genes"][gene]["min_coverage_percent"]
+    spec = coverage.load_requirements()["genes"][gene]
+    minimum = spec["min_coverage_percent"]
+
+    # For an enforced gene the preview must report the COMBINED rule, or it
+    # promises an answer the analysis then declines to give — the exact drift
+    # this file exists to catch.
+    if spec.get("decision_critical_enforced"):
+        critical = [(c, p) for c, p in spec["decision_critical_positions"]]
+        others = [(c, p) for c, p in spec["positions"]
+                  if (c, p) not in set(critical)]
+        full = _post(_vcf([(c, p, "0/0") for c, p in critical + others])).json()
+        assert _gene(full, gene)["passes"] is True
+
+        # For an entirely-critical gene (TPMT, NUDT15) there is no
+        # percentage-only file to build — reaching the bar necessarily uses
+        # critical positions. Assert the stronger form in that case.
+        need = max(0, round(len(spec["positions"]) * minimum / 100))
+        pool = others or critical
+        thin = _post(_vcf([(c, p, "0/0") for c, p in pool[:need]])).json()
+        reported = _gene(thin, gene)
+        assert reported["percent"] >= minimum, "test premise: it clears the bar"
+        assert reported["passes"] is False
+        return
     body = _post(_at_coverage(gene, minimum / 100)).json()
     reported = _gene(body, gene)
     assert reported["passes"] is True, reported

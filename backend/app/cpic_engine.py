@@ -816,7 +816,10 @@ def evaluate(
                 f"{phenotype.value}, so the functional result is reported with "
                 f"confidence while the exact diplotype remains undetermined."
             )
-    risk_label, rule_id, severity_hint = classify_annotation(annotation, cfg)
+    # Routed through the shared derivation so runtime and build time cannot
+    # disagree. The early gate above already handles the unasserted case;
+    # this is the second layer, and it is deliberate.
+    risk_label, rule_id, severity_hint = derive_label(phenotype, annotation, cfg)
     severity = derive_severity(risk_label, phenotype, severity_hint, cfg)
     confidence = derive_confidence(
         gene_call.status if gene_call else CallStatus.NO_CALL,
@@ -916,6 +919,48 @@ def check_label_contradiction(annotation: CpicAnnotation, label: RiskLabel) -> s
             "another drug should be considered instead"
         )
     return None
+
+
+def derive_label(
+    phenotype: Phenotype,
+    annotation: CpicAnnotation | None,
+    mapping: dict | None = None,
+) -> tuple[RiskLabel, str, str]:
+    """
+    THE ONE PLACE A RISK LABEL IS DERIVED. Both callers go through here.
+
+    WHY THIS EXISTS
+
+    There were two derivations. The runtime gated on the phenotype before ever
+    selecting an annotation; the build-time enumeration in
+    `scripts/pregenerate_explanations.py` called `classify_annotation` directly
+    and had no gate at all. They disagreed on `fluorouracil` with an unasserted
+    phenotype: runtime refused, build-time derived `Safe`.
+
+    Nobody noticed because no fixture made that case reachable for the
+    build-time check. Adding one real Indeterminate DPYD report did, and the
+    invariant test went red — correctly.
+
+    The fix is not to teach the enumeration the same rule. Two implementations
+    of one rule is how they drifted in the first place. This is the rule, and
+    both call it.
+
+    Returns `(label, rule_id, severity_hint)`. `rule_id` names WHY, including
+    when the answer is a refusal, so a caller can tell "no guidance exists"
+    from "guidance exists but may not be applied here".
+    """
+    if annotation is None:
+        return RiskLabel.UNKNOWN, "no_annotation", ""
+
+    label, rule_id, hint = classify_annotation(annotation, mapping)
+
+    # THE INVARIANT, applied at the single derivation point rather than at each
+    # call site. A phenotype nobody asserted cannot support a confident label,
+    # whether the caller is a live request or a build-time enumeration.
+    if check_phenotype_label(phenotype, label) is not None:
+        return RiskLabel.UNKNOWN, "unasserted_phenotype", ""
+
+    return label, rule_id, hint
 
 
 def classify_annotation_checked(

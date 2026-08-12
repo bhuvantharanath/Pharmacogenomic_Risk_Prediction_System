@@ -1,0 +1,83 @@
+{
+  "_comment": "Divergences between label_mapping.yaml and the expectation derived from CPIC's own flags, that have been looked at and accepted. validate_label_mapping.py exits 0 when only these are present and non-zero on anything new. Adding an entry is a deliberate act: run --write-baseline and explain it in the commit.",
+  "accepted": [
+    {
+      "key": "azathioprine \u00b7 NUDT15:Indeterminate, TPMT:Indeterminate",
+      "expected": "Safe",
+      "actual": "Adjust Dosage",
+      "rule": "dose_change_or_monitoring"
+    },
+    {
+      "key": "azathioprine \u00b7 NUDT15:Indeterminate, TPMT:No Result",
+      "expected": "Safe",
+      "actual": "Adjust Dosage",
+      "rule": "dose_change_or_monitoring"
+    },
+    {
+      "key": "azathioprine \u00b7 NUDT15:No Result, TPMT:Indeterminate",
+      "expected": "Safe",
+      "actual": "Adjust Dosage",
+      "rule": "dose_change_or_monitoring"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:0.25 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Adjust Dosage",
+      "rule": "dose_change_or_monitoring"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:0.5 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Adjust Dosage",
+      "rule": "dose_change_or_monitoring"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:0.75 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Adjust Dosage",
+      "rule": "dose_change_or_monitoring"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:1.0 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Adjust Dosage",
+      "rule": "dose_change_or_monitoring"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:1.25 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Unknown",
+      "rule": "fallback_unmatched"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:1.5 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Unknown",
+      "rule": "fallback_unmatched"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:1.75 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Unknown",
+      "rule": "fallback_unmatched"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:2.0 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Unknown",
+      "rule": "fallback_unmatched"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:2.25 \u00b7 general",
+      "expected": "Safe",
+      "actual": "Unknown",
+      "rule": "fallback_unmatched"
+    },
+    {
+      "key": "codeine \u00b7 CYP2D6:xN combinations",
+      "expected": "Safe",
+      "actual": "Unknown",
+      "rule": "fallback_unmatched"
+    }
+  ]
+}

@@ -72,14 +72,51 @@ class GeneCoverage:
     present: int
     hom_ref_present: int
     min_percent: int
+    #: Positions that DEFINE a non-normal allele, derived from PharmCAT's own
+    #: function assignments — see `scripts/derive_decision_critical.py`.
+    critical_required: int = 0
+    critical_present: int = 0
+    #: Whether the identity requirement is enforced for this gene. True only
+    #: for DPYD today; the other six carry measured exposure and turning them
+    #: on is a separate decision.
+    critical_enforced: bool = False
 
     @property
     def percent(self) -> float:
         return (self.present / self.required * 100) if self.required else 0.0
 
     @property
+    def critical_missing(self) -> int:
+        return max(0, self.critical_required - self.critical_present)
+
+    @property
+    def critical_satisfied(self) -> bool:
+        """Every decision-critical position carries an explicit genotype."""
+        return self.critical_missing == 0
+
+    @property
     def sufficient(self) -> bool:
-        return self.percent >= self.min_percent
+        """
+        Percentage AND position identity.
+
+        The percentage is unchanged and is still checked — this ADDS a
+        requirement, it does not move a bar. The two answer different
+        questions: the percentage asks how much of the gene was reported, and
+        the identity requirement asks whether the specific positions that could
+        change the answer were among it.
+
+        DPYD is why. At its 20% threshold a file may omit 66 of 83 positions,
+        and all 28 decision-critical ones can be inside that 66 — so a file can
+        pass on percentage while carrying not one position capable of showing a
+        reduced-function allele. Every such file reads as Reference/Reference,
+        which is Normal Metabolizer, which is a confident `Safe` on
+        fluorouracil.
+        """
+        if self.percent < self.min_percent:
+            return False
+        if self.critical_enforced and not self.critical_satisfied:
+            return False
+        return True
 
 
 @dataclass
@@ -102,6 +139,9 @@ class CoverageReport:
                 "percent": round(c.percent, 1),
                 "minimum_percent": c.min_percent,
                 "sufficient": c.sufficient,
+                "decision_critical_present": c.critical_present,
+                "decision_critical_required": c.critical_required,
+                "decision_critical_enforced": c.critical_enforced,
             }
             for gene, c in sorted(self.genes.items())
         }
@@ -152,12 +192,18 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
         present = wanted & called
         hr = wanted & hom_ref
         total_hom_ref += len(hr)
+
+        critical = {(_norm_chrom(c), p)
+                    for c, p in spec.get("decision_critical_positions", [])}
         report.genes[gene] = GeneCoverage(
             gene=gene,
             required=len(wanted),
             present=len(present),
             hom_ref_present=len(hr),
             min_percent=int(spec.get("min_coverage_percent", 100)),
+            critical_required=len(critical),
+            critical_present=len(critical & called),
+            critical_enforced=bool(spec.get("decision_critical_enforced")),
         )
 
     # THE COMMON CASE, not an edge case. Most VCFs in the wild omit
@@ -183,6 +229,25 @@ def variants_only_warning() -> str:
         "— so each required position carries an explicit genotype. The input "
         "requirements page gives the exact commands. "
         "See docs/input_requirements.md."
+    )
+
+
+def critical_positions_warning(cov: GeneCoverage) -> str:
+    """
+    Why a gene that met its percentage was still declined.
+
+    Says which requirement failed and why the percentage did not settle it —
+    otherwise "37% is enough but you were refused" reads as a bug.
+    """
+    return (
+        f"{cov.gene}: {cov.critical_present} of {cov.critical_required} "
+        f"positions that could indicate reduced function carry an explicit "
+        f"genotype in this VCF. The gene met its {cov.min_percent}% coverage "
+        f"minimum ({cov.percent:.0f}%), but percentage is a proxy: a file can "
+        f"clear it while omitting every position capable of showing a variant. "
+        f"Reported as Unknown rather than assuming the missing positions match "
+        f"the reference — which is what would make a reduced-function result "
+        f"read as normal."
     )
 
 

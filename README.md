@@ -63,15 +63,16 @@ The system's design is a response to that finding. It is built to decline rather
 | Result | Value |
 |---|---|
 | CPIC label-mapping validation | **92/105** combinations, exhaustive (not sampled); 13 documented divergences, all erring toward caution |
-| Integration fidelity | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches |
+| Integration fidelity (self-consistency, **not** external validation) | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches. Blind to input adequacy by construction — see below |
+| External genotype truth | **n = 1** (NA12273). GeT-RM covers only 2 of our 7 genes |
 | PharmCAT adversarial test VCFs | **0 mismatches** across all 74 files |
 | CYP2D6 negative control | **400/400** declined — never fabricated |
 | Confident-label rate, complete-coverage input | **100%**, 0% wrong |
 | Usable rate, polymorphic-filtered research slices | **12.58%** — a property of that input format, not a pipeline failure rate |
-| External diplotype concordance | **n=1** (2/2 exact) — bounded, see [Limitations](#limitations) |
+| External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
 | South Asian (SAS) subgroup, n=75 | CYP2C19 reduced-function **53.3%**, second only to EAS |
-| Backend tests | 560 passing |
-| Client tests | 37 passing |
+| Backend tests | 755 passing |
+| Client tests | 144 passing |
 
 ### The eight findings
 
@@ -224,6 +225,10 @@ Comparing our pipeline's output against PharmCAT's direct output is self-referen
 
 This demonstrates *integration fidelity* — that the pipeline does not corrupt PharmCAT's calls. It is not independent validation of PharmCAT's science, which is established in its own literature.
 
+**And it is blind to input adequacy by construction.** Two systems reading the same input can agree perfectly on an answer neither was in a position to give. Across these 400 samples the slice carried 8 of DPYD's 28 decision-critical positions; PharmCAT read those 8 and returned Normal Metabolizer, and so did we. Agreement measures whether the second system reproduces the first — it says nothing about whether the first had enough evidence to be asked.
+
+**External truth here is n = 1.** The cohort is `HG*`-keyed and GeT-RM is `NA*`-keyed, so it could never have overlapped: of 107 GeT-RM Coriell samples, exactly one (`NA12273`) is in the 1000 Genomes phase-3 panel. GeT-RM also covers only **two** of our seven genes (CYP2C19, CYP2C9) — there is **no external consensus** for SLCO1B1, TPMT, NUDT15 or DPYD. On NA12273, CYP2C19 matched consensus exactly; CYP2C9 diverged **conservatively**, our pipeline reporting `Undetermined` where consensus says `*1/*2` — a refusal, not a wrong call.
+
 ### Coverage sensitivity
 
 Confidently-wrong rate (asserted a phenotype disagreeing with complete-coverage truth), 120 samples, 12 subsets per level:
@@ -243,7 +248,11 @@ These are an **upper bound**: the sweep dropped positions at random, whereas rea
 
 ### External concordance
 
-GeT-RM PGx consensus (107 samples) ∩ 1000 Genomes (3,202) = **1 sample**. 98 of 107 GeT-RM IDs are `NA17xxxx` Coriell PGx lines never whole-genome sequenced into public panels. External concordance is therefore bounded at **n=1** (NA12273: CYP2C19 `*1/*2` exact, CYP2C9 `*1/*2` exact) and is reported as n=1, never as a percentage.
+GeT-RM PGx consensus (107 samples) ∩ 1000 Genomes (3,202) = **1 sample**. 98 of 107 GeT-RM IDs are `NA17xxxx` Coriell PGx lines never whole-genome sequenced into public panels. External concordance is therefore bounded at **n=1** and is reported as n=1, never as a percentage.
+
+On NA12273, CYP2C19 is **concordant** (`*1/*2`). CYP2C9 is **divergent in the conservative direction**: consensus asserts `*1/*2`, and we report `Undetermined (2 equally likely)` because that gene reaches only 19.3% position coverage in this slice. That is a **refusal, not an error** — the pipeline declining to pick between two candidates rather than asserting the wrong one.
+
+That line previously read "CYP2C9 exact". It went stale when ambiguous-diplotype representation changed: the pipeline stopped collapsing co-equal candidates to the first one, which is the fix that removed 294 unsupported confident labels. The documentation was not re-derived at the same time.
 
 **The CYP2D6 negative control is externally verified.** GeT-RM records NA12273 as a real `*1/*1`, confirmed by other assays. Our pipeline declines to call it — demonstrating refusal to guess something genuinely *present* but undeterminable from a VCF, not merely failure to call something absent.
 
@@ -423,7 +432,7 @@ Stated plainly, because declared limitations cost less than concealed ones.
 - **External concordance is n=1.** GeT-RM and 1000 Genomes overlap in a single sample. This is a structural property of the available reference materials, not a sampling choice.
 - **CYP2D6 is not called from VCF.** Copy-number and structural variation cannot be resolved from an unphased VCF. The system returns `Unknown` with an explicit warning and never fabricates a call.
 - **12.58% usable on research-format slices.** This characterises polymorphic-filtered input, not the system. On complete-coverage input the confident-label rate is 100% with 0% wrong. Both numbers should always be cited together.
-- **Coverage thresholds are a proxy.** DPYD passes at 37.3% coverage with 0% error while CYP2C9 fails at 19.3% — position *identity* matters, not count. The principled requirement is function-weighted coverage; percentage thresholds are an artifact of random position dropping, which no real pipeline performs. Recorded as future work.
+- **A coverage percentage is a proxy, and DPYD is no longer exempt from identity.** Position *identity* matters, not count: DPYD used to clear a 20% threshold at 37.3% coverage with 0% measured error while CYP2C9 failed at 19.3%. That 0% came from a sweep over a cohort where DPYD's reduced-function variants are rare, so it could not detect the failure the threshold exists to exclude — absence of observed error is not absence of possible error. Every gene now additionally requires each **decision-critical position**, derived mechanically from PharmCAT's own function assignments; DPYD carries 8 of 28 and is **gated**. Percentages remain in place as a second, weaker condition; replacing them entirely with function-weighted coverage is still future work.
 - **`Indeterminate` and `No Result` share an enum value.** The falsehood was removed from user-facing prose and the distinction is preserved in `quality_metrics.warnings`, but a client cannot machine-check it. Deferred deliberately: clinical action is identical in both states.
 - **No persistence or history.** Results are not stored; they vanish on reload. This follows from the no-retention privacy design.
 - **Not deployed.** Deployment is Phase 8, deliberately last.
