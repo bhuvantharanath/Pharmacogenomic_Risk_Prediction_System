@@ -170,7 +170,8 @@ def test_non_utf8_bytes(client: TestClient) -> None:
 
 def test_nul_bytes(client: TestClient) -> None:
     body = VALID_HEADER.encode() + b"chr10\t100\t.\tA\x00\tG\t.\tPASS\t.\tGT\t0/1\n"
-    run_case(client, "nul-bytes", body)
+    r = run_case(client, "nul-bytes", body)
+    assert r.status_code == 400, "NUL is now a refusal, not an acceptance"
 
 
 @pytest.mark.parametrize("ending,label", [
@@ -192,7 +193,8 @@ def test_wrong_species(client: TestClient) -> None:
         "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE\n"
         "chr10\t94842866\t.\tA\tG\t.\tPASS\t.\tGT\t0/1\n"
     ).encode()
-    run_case(client, "wrong-species", mouse)
+    r = run_case(client, "wrong-species", mouse)
+    assert r.status_code == 400, "a non-human genome is now refused"
 
 
 def test_wrong_contig_naming(client: TestClient) -> None:
@@ -349,18 +351,10 @@ def test_coverage_preview_survives_the_same_inputs(client: TestClient) -> None:
 # arguably be refused. Reported for a decision, not fixed here.
 # --------------------------------------------------------------------------- #
 
-def test_GAP_a_mouse_genome_is_currently_accepted(client: TestClient) -> None:
+def test_a_mouse_genome_is_refused(client: TestClient) -> None:
     """
-    FINDING: a GRCm39 / `Mus musculus` VCF returns 200, not 4xx.
-
-    Build detection looks for GRCh37-vs-GRCh38 signals; anything else falls to
-    UNKNOWN, which is a warning rather than a rejection. A mouse genome cannot
-    carry human star alleles, so every position lookup misses and the result is
-    a confident set of Unknowns — the failure mode is wasted work rather than a
-    wrong call, which is why it has survived.
-
-    Pinned so that if someone adds species validation this test fails and gets
-    updated deliberately.
+    CLOSED. This suite found it returning 200; species validation now refuses
+    it. Detail in tests/test_build_and_binary_detection.py.
     """
     mouse = (
         "##fileformat=VCFv4.2\n##reference=GRCm39\n"
@@ -368,23 +362,19 @@ def test_GAP_a_mouse_genome_is_currently_accepted(client: TestClient) -> None:
         "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE\n"
         "chr10\t94842866\t.\tA\tG\t.\tPASS\t.\tGT\t0/1\n"
     ).encode()
-    assert post(client, mouse).status_code == 200, (
-        "species validation was added — good; update this test to assert the "
-        "rejection and remove it from the audit's open-findings list"
-    )
+    r = run_case(client, "mouse", mouse)
+    assert r.status_code == 400
+    assert "Mus musculus" in r.json()["detail"]
 
 
-def test_GAP_nul_bytes_in_a_data_row_are_currently_accepted(
-    client: TestClient,
-) -> None:
+def test_nul_bytes_in_a_data_row_are_refused(client: TestClient) -> None:
     """
-    FINDING: a NUL byte inside a data row returns 200.
-
-    The binary-content check samples the header region, so a NUL further into
-    the file is not seen. Harmless in practice — the row fails to parse as a
-    genotype and is ignored — but it means "is this a text file?" is answered
-    from a prefix rather than from the whole upload.
+    CLOSED. The check was a UTF-8 decode and NUL is valid UTF-8, so a file that
+    was text at the top and corrupt further down passed. The whole file is now
+    scanned.
     """
     body = (VALID_HEADER.encode()
             + b"chr10\t100\t.\tA\x00\tG\t.\tPASS\t.\tGT\t0/1\n")
-    assert post(client, body).status_code == 200
+    r = run_case(client, "nul-in-row", body)
+    assert r.status_code == 400
+    assert "NUL byte" in r.json()["detail"]

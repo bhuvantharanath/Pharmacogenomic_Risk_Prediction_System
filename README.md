@@ -63,7 +63,8 @@ The system's design is a response to that finding. It is built to decline rather
 | Result | Value |
 |---|---|
 | CPIC label-mapping validation | **92/105** combinations, exhaustive (not sampled); 13 documented divergences, all erring toward caution |
-| Integration fidelity | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches |
+| Integration fidelity (self-consistency, **not** external validation) | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches. Blind to input adequacy by construction — see below |
+| External genotype truth | **n = 1** (NA12273). GeT-RM covers only 2 of our 7 genes |
 | PharmCAT adversarial test VCFs | **0 mismatches** across all 74 files |
 | CYP2D6 negative control | **400/400** declined — never fabricated |
 | Confident-label rate, complete-coverage input | **100%**, 0% wrong |
@@ -223,6 +224,10 @@ Comparing our pipeline's output against PharmCAT's direct output is self-referen
 - PharmCAT's own 74 adversarial test VCFs · **0 mismatches**
 
 This demonstrates *integration fidelity* — that the pipeline does not corrupt PharmCAT's calls. It is not independent validation of PharmCAT's science, which is established in its own literature.
+
+**And it is blind to input adequacy by construction.** Two systems reading the same input can agree perfectly on an answer neither was in a position to give. Across these 400 samples the slice carried 8 of DPYD's 28 decision-critical positions; PharmCAT read those 8 and returned Normal Metabolizer, and so did we. Agreement measures whether the second system reproduces the first — it says nothing about whether the first had enough evidence to be asked.
+
+**External truth here is n = 1.** The cohort is `HG*`-keyed and GeT-RM is `NA*`-keyed, so it could never have overlapped: of 107 GeT-RM Coriell samples, exactly one (`NA12273`) is in the 1000 Genomes phase-3 panel. GeT-RM also covers only **two** of our seven genes (CYP2C19, CYP2C9) — there is **no external consensus** for SLCO1B1, TPMT, NUDT15 or DPYD. On NA12273, CYP2C19 matched consensus exactly; CYP2C9 diverged **conservatively**, our pipeline reporting `Undetermined` where consensus says `*1/*2` — a refusal, not a wrong call.
 
 ### Coverage sensitivity
 

@@ -1081,13 +1081,13 @@ Validation. Every number below is measured and traceable to an artifact under
 | Measurement | Result | Scope |
 | --- | ---: | --- |
 | **Label-mapping correctness** | **92 / 105** | Exhaustive over every phenotype combination for all 6 drugs. 13 accepted divergences, individually justified |
-| **Integration fidelity — 1000 Genomes** | **100.0000%** | 400 samples · 2 800 (sample, gene) pairs · **5 600 field comparisons** · 0 mismatches · 0 parser errors |
+| **Integration fidelity — 1000 Genomes** | **100.0000%** | 400 samples · 2 800 (sample, gene) pairs · **5 600 field comparisons** · 0 mismatches · 0 parser errors. **Self-consistency, not external validation, and blind to input adequacy by construction**: two systems reading the same input agree on answers neither can justify. These samples carried 8 of DPYD's 28 decision-critical positions and both returned Normal Metabolizer |
 | **Integration fidelity — adversarial VCFs** | **0 mismatches** | All 74 of PharmCAT's own unit-test VCFs for our genes, 148 field comparisons |
 | **CYP2D6 negative control** | **400 / 400 declined** | Not one fabricated call across the whole cohort |
 | **Usable-result rate** | **82.79% floor / 100% ceiling** | Floor measured on 1000G filtered slices (19–57% position coverage); ceiling measured on complete-coverage synthetic input. Never quote one alone |
 | **Input coverage gate** | **live** | Computed from the VCF before PharmCAT runs; per-gene coverage in `quality_metrics.position_coverage` on every response. **Complete-coverage input: 100% confident-label rate, 0% wrong. Polymorphic-filtered slices: 12.58% usable**, the gate declining the rest as unsuitable — a property of the input, not a pipeline failure rate. 1 685 results moved confident → honest `Unknown`, **zero** the other way. Kept strict deliberately: the monomorphic-aware relaxation was considered and **rejected** because it would assert "usually reference, therefore this patient is reference" — worst exactly for the rare severe variants (DPYD deficiency) where a miss is fatal. 31 dedicated tests incl. sabotage |
 | **Input requirements** | **3 of 6 genes need 100% coverage** | CYP2C19, CYP2C9, SLCO1B1. Below that the pipeline answers confidently and *wrongly* (CYP2C9 17.4% wrong at 80% coverage), always replacing reduced function with normal. `docs/input_requirements.md` |
-| **External genotype concordance** | **n = 1** | `NA12273`, 2/2 exact. Reported as n=1 throughout, never as a percentage |
+| **External genotype concordance** | **n = 1** | `NA12273`. **CYP2C19 exact; CYP2C9 diverges conservatively** — we report `Undetermined`, consensus says `*1/*2`: a refusal, not a wrong call. The earlier "2/2 exact" was overstated and is corrected here. Of 107 GeT-RM Coriell samples only this one is in 1000G phase 3, and GeT-RM covers just **2 of our 7 genes** — **no external consensus exists for SLCO1B1, TPMT, NUDT15 or DPYD**. Reported as n=1 throughout, never as a percentage |
 | **Label/prose cross-check** | **0 divergences** | 20 / 20 reachable explanation entries |
 | **Phenotype/label invariant** | **294 labels corrected** | 400 samples × 6 drugs. Every change removed a confident label; none added one. Checked at build time over all reachable cases and at request time on every response |
 | **Invariant vs patch** | **293 of 294** | A DPYD-only patch would have left 293 of the 294 corrections live, including all 195 simvastatin cases |
@@ -1323,3 +1323,16 @@ Genomes for real validation; record + publish the demo video; verify report
 citations resolve; confirm whether the panel expects a trained ML model;
 supply real dates and team names.
 ```
+
+---
+
+## Open, not started
+
+Listed rather than begun, so they are not lost between sessions.
+
+| item | why it is open |
+| --- | --- |
+| **Constructed-allele systematic sweep** (audit A §5) | Real cohorts contain common alleles; rare ones are never exercised. Would build a complete-coverage VCF for every named allele of the seven genes from PharmVar/PharmCAT definitions and run each through the pipeline. Coverage testing, not external validation. |
+| **Contract and client-state coverage** (audit A §7) | Field-by-field Pydantic↔Dart parity, plus a widget test for every state the client can be asked to render: five risk labels, four Unknown reasons, ambiguous diplotype, coverage pass/fail, cold start, 429, 4xx, empty result — each at 360px. |
+| **Glossary review** | 105 candidate terms await a human. Until then `glossary_status.py` runs without `--gate` and reports rather than enforces. |
+| **Adjudication** | 19 escalated sentences have no decision, so the adjudication gate exits 1. |

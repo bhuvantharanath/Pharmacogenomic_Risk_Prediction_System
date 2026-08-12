@@ -125,7 +125,20 @@ jobs:
       # list has been sorted once by a person, every false positive is recorded
       # as ordinary English and never returns; add --gate then and the number
       # stops being advisory.
-      - name: Glossary coverage (reported — see glossary_precommitment.md)
+      # REPORTS A COUNT — DOES NOT ENFORCE. The step name says so because a
+      # blocking-looking step that cannot fail misleads whoever reads the
+      # workflow next.
+      #
+      # `glossary_status.py` is invoked WITHOUT `--gate`, so it exits 0 whatever
+      # it finds. That is the branch recorded in reports/glossary_precommitment.md
+      # before the extractor was ever run: the false-positive rate on ordinary
+      # English measured 41.5%, above the 25% threshold pinned in advance.
+      #
+      # DO NOT add `--gate` until the candidate terms have been sorted by a
+      # person (scripts/glossary_review.py). Enabling it first would fail the
+      # build on ~105 terms nobody has looked at, and the pressure would then be
+      # to weaken the extractor rather than to do the review.
+      - name: Glossary coverage report (advisory — does not fail the build)
         run: python scripts/glossary_status.py
 
       - name: Upload provenance report

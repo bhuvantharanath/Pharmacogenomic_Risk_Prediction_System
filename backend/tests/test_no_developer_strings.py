@@ -147,3 +147,40 @@ def test_the_actionable_content_survived_the_rewrite() -> None:
     assert "match the reference" in warning
     # The remedy moved to the docs rather than evaporating.
     assert "input_requirements" in warning
+
+
+# --------------------------------------------------------------------------- #
+# The guard, re-anchored
+#
+# Audit A could not confirm this guard because its mutation anchor had moved
+# during the glossary rewording — it reported ANCHOR-NOT-FOUND rather than a
+# result, and the guard was recorded as unverified. These plant one example of
+# each category the guard claims to catch, so it is verified against current
+# text rather than against a string that may drift again.
+# --------------------------------------------------------------------------- #
+
+@pytest.mark.parametrize("category,text,expect", [
+    ("tool name", "Re-create the file with bgzip and try again.", "bgzip"),
+    ("camelCase", "CPIC sets dosingInformation for this recommendation.",
+     "dosingInformation"),
+    ("env var", "Set PHARMCAT_JAR to the full path of the jar file.",
+     "PHARMCAT_JAR"),
+    ("CLI flag", "Re-run with --include-non-variant-sites enabled.",
+     "--include-non-variant-sites"),
+])
+def test_the_guard_detects_a_planted(category: str, text: str,
+                                     expect: str) -> None:
+    """
+    Each detector, exercised on text of the shape it exists to catch. If one
+    stops firing, the guard silently narrows and the next leak ships.
+    """
+    lowered = text.lower()
+    hits: list[str] = []
+    hits += [t for t in FORBIDDEN_TOOLS
+             if re.search(rf"\b{re.escape(t)}\b", lowered)]
+    hits += CAMEL_CASE.findall(text)
+    hits += [m for m in SHOUTY_ENV.findall(text) if "_" in m]
+    hits += [m.strip() for m in CLI_FLAG.findall(text)]
+
+    assert expect in hits, (
+        f"the {category} detector did not fire on {text!r} — it found {hits}")
