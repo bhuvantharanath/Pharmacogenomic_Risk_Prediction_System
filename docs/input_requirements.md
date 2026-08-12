@@ -199,7 +199,10 @@ Applied to our own 1000 Genomes validation slices, the effect is drastic:
 
 Usable-result rate over 2 400 (sample, gene) pairs: **82.79% → 12.58%**, with
 **1 685** results moving from confident to honest `Unknown` and **zero** moving the
-other way. Only DPYD clears its bar.
+other way. No gene clears its bar on these slices. DPYD was the sole exception until
+the decision-critical requirement was added: it meets the 20% percentage but carries
+only 8 of the 28 positions that define a non-normal-function allele, so it is now
+gated too.
 
 ### These thresholds are deliberately strict, and stay that way
 

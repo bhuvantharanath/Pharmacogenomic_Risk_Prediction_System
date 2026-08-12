@@ -84,6 +84,24 @@ def _asserts(phrase: str) -> list[str]:
     return hits
 
 
+def _asserts_matching(pattern: str) -> list[str]:
+    """
+    `_asserts` by regex. Needed because the stale claims were not one phrase
+    repeated — they were the same statement in three different wordings, and a
+    literal list only ever covers the spellings already found.
+    """
+    rx = re.compile(pattern, re.I)
+    hits = []
+    for name in DOCS:
+        for sentence in re.split(r"(?<=[.!?])\s+|\n", _text(name)):
+            if not rx.search(sentence):
+                continue
+            if any(marker in sentence.lower() for marker in _RETRACTION):
+                continue
+            hits.append(f"{name}: {sentence.strip()[:140]}")
+    return hits
+
+
 @pytest.fixture(scope="module")
 def na12273():
     if not NA12273.exists():  # pragma: no cover
@@ -144,11 +162,19 @@ def test_every_gene_is_gated_on_this_sample_and_the_docs_do_not_claim_otherwise(
     passing = [g for g, c in na12273.genes.items() if c.sufficient]
     assert not passing, f"{passing} now pass on NA12273 — the docs say gated"
 
-    for phrase in ("DPYD | 37.3% | 20% | passes",
-                   "DPYD passes at 37.3% coverage with 0% error"):
-        stated = _asserts(phrase)
-        assert not stated, (
-            f"{phrase!r} is stated as fact:\n  " + "\n  ".join(stated))
+    # BY PATTERN, not by literal phrase. The first version listed the two
+    # exact spellings it had seen; a third, "Only DPYD clears its bar", sat in
+    # docs/input_requirements.md and sailed past both. Any sentence asserting
+    # that DPYD passes has to fail, however it is worded.
+    claims = _asserts_matching(
+        r"(?:only\s+)?DPYD\b[^.\n]{0,60}\b(?:passes|passing|clears|clearing|"
+        r"meets its|above the|exceeds)\b"
+        r"|\bonly\s+DPYD\b"
+        r"|DPYD\s*\|[^|\n]*\|[^|\n]*\|\s*passes")
+    assert not claims, (
+        "a document still asserts that DPYD passes the gate. On NA12273 it "
+        "carries 8 of 28 decision-critical positions and is gated:\n  "
+        + "\n  ".join(claims))
 
 
 def test_dpyd_decision_critical_coverage_is_as_documented(na12273) -> None:
@@ -294,3 +320,72 @@ def test_generated_reports_are_excluded_and_that_is_deliberate() -> None:
     for name in generated:
         assert not any(name in doc for doc in DOCS), (
             f"{name} is generated; checking it here tests the generator twice")
+
+
+# --------------------------------------------------------------------------- #
+# About-screen copy — the only behaviour-derived numbers a PATIENT reads
+#
+# These were outside the guard until the sweep that produced it. They are the
+# highest-consequence instance of the class: every other number here is read by
+# a developer or an examiner who can go and check it.
+# --------------------------------------------------------------------------- #
+
+ABOUT = REPO / "app/lib/screens/about_screen.dart"
+
+
+def _about() -> str:
+    return ABOUT.read_text() if ABOUT.exists() else ""
+
+
+def test_the_about_screen_wrong_call_rate_matches_the_sweep() -> None:
+    """
+    "at 60% position coverage, up to 28.6% of calls came back confidently
+    wrong" — re-derived as the worst per-gene rate at that coverage level. If
+    the sweep is re-run and the maximum moves, this sentence has to move.
+    """
+    import json
+    data = json.loads((REPO / "reports/coverage_sensitivity.json").read_text())
+    at_60 = {k.split("|")[0]: v
+             for k, v in data["confidently_wrong_rate"].items()
+             if k.endswith("|60")}
+    assert at_60, "the sweep no longer reports a 60% coverage level"
+
+    worst = max(at_60.values())
+    quoted = re.search(r"up to (\d+\.?\d*)% of calls came back", _about())
+    assert quoted, "the About screen no longer quotes a wrong-call rate"
+    assert abs(float(quoted.group(1)) - worst * 100) < 0.1, (
+        f"About says up to {quoted.group(1)}% confidently wrong at 60% "
+        f"coverage; the sweep's worst gene is {worst * 100:.1f}% "
+        f"({max(at_60, key=at_60.get)})")
+
+
+def test_the_about_screen_cyp2d6_claim_matches_the_negative_control() -> None:
+    """
+    "Across 400 test samples it declined every single time." A single
+    fabricated CYP2D6 call makes this sentence false, and it is the strongest
+    safety claim the app makes to a patient.
+    """
+    quoted = re.search(r"Across (\d+) test samples", _about())
+    assert quoted, "the About screen no longer quotes the CYP2D6 control"
+    claimed = int(quoted.group(1))
+
+    import json
+    # SUBSCRIPT, not .get(key, default). The first version read
+    # `fidelity.get("samples", n)` — the key is `samples_with_report`, so the
+    # default won and the assertion reduced to `n <= n`. Planting 9999 left it
+    # green. A missing key must raise, not quietly satisfy the check.
+    fidelity = json.loads((REPO / "reports/integration_fidelity.json").read_text())
+    assert claimed == fidelity["samples_with_report"], (
+        f"About tells the user {claimed} samples; the cohort run covers "
+        f"{fidelity['samples_with_report']}")
+
+    # And "declined every single time" is a property of the CODE, not just of
+    # that one run: PharmCAT reports CYP2D6 with callSource NONE from an
+    # unphased VCF, which the runner maps to NOT_ATTEMPTED and attaches the
+    # caveat to. A cohort figure alone would go stale the moment the cohort did.
+    from app.pharmcat_runner import CYP2D6_WARNING
+    runner = (REPO / "backend/app/pharmcat_runner.py").read_text()
+    assert 'symbol == "CYP2D6" and status is CallStatus.NOT_ATTEMPTED' in runner, (
+        "the CYP2D6 no-call path moved; the About screen promises the user it "
+        "declines every time")
+    assert "cannot be resolved" in CYP2D6_WARNING
