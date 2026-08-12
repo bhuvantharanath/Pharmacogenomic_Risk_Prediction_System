@@ -192,7 +192,7 @@ Applied to our own 1000 Genomes validation slices, the effect is drastic:
 | --- | ---: | ---: | --- |
 | SLCO1B1 | 57.1% | 100% | gated |
 | CYP2C19 | 45.7% | 100% | gated |
-| DPYD | 37.3% | 20% | passes |
+| DPYD | 37.3% | 20% | **gated** — meets the percentage but carries only 8 of 28 decision-critical positions |
 | NUDT15 | 25.0% | 80% | gated |
 | TPMT | 20.0% | 80% | gated |
 | CYP2C9 | 19.3% | 100% | gated |
