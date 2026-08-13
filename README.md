@@ -71,7 +71,7 @@ The system's design is a response to that finding. It is built to decline rather
 | Usable rate, polymorphic-filtered research slices | **12.58%** — a property of that input format, not a pipeline failure rate |
 | External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
 | South Asian (SAS) subgroup, n=75 | CYP2C19 reduced-function **53.3%**, second only to EAS |
-| Backend tests | 785 passing |
+| Backend tests | 788 passing |
 | Client tests | 192 passing |
 
 ### The eight findings
@@ -127,7 +127,7 @@ Which layer authors which field is the core of the safety design:
 |---|---|---|
 | `clinical_recommendation.*` | **Verbatim CPIC**, via PharmCAT | Never model-authored. Exact-match verified. |
 | `variant_rationale` | **Code**, composed at request time from the PharmCAT profile | Correct by construction — cannot disagree with the reported genotype |
-| `summary`, `mechanism`, `patient_friendly` | **LLM** (`meta/llama-3.1-8b-instruct`), genotype-agnostic | Pre-generated, guard-checked, and human-adjudicated — adjudication is **in progress**, 55 sentences outstanding |
+| `summary`, `mechanism`, `patient_friendly` | **LLM** (`meta/llama-3.1-8b-instruct`), genotype-agnostic | Pre-generated, guard-checked, and human-adjudicated — adjudication is **in progress**, 19 sentences outstanding |
 | `recommendation_diplotype` | PharmCAT's `recommendationDiplotypes` | Provenance only — deliberately not rendered to the user |
 
 The LLM never decides anything. It rephrases sourced text.
@@ -417,7 +417,7 @@ Release gates, each exiting non-zero on failure:
 | Detector sensitivity | Planted violations still caught |
 | Coverage gate tests | 31 tests incl. sabotage cases |
 | Provenance verification | Clinical sentences traceable |
-| Adjudication status | Every shipped sentence decided |
+| Adjudication status | Every shipped sentence decided — **red by decision, see below** |
 
 **Invariants contributors must not break:**
 
@@ -435,13 +435,42 @@ Release gates, each exiting non-zero on failure:
 | 2 — PharmCAT + CPIC mapping | ✅ Complete |
 | 3 — Grounded explanations + guard | ✅ Complete |
 | 4 — Deployment code | ✅ Complete |
-| 5A — Real LLM generation | ⚠️ Generated; adjudication outstanding |
+| 5A — Real LLM generation | ⚠️ Generated; **19 sentences escalated to a human and not decided** |
 | 5B — Warfarin regressor + SHAP | ⏳ Optional |
 | 6 — Validation | ✅ Complete |
-| 7 — Adjudication, docs, demo | 🔄 In progress |
+| 7 — Adjudication, docs, demo | ⚠️ Docs and demo complete; adjudication deliberately left open |
 | 8 — Deployment | ✅ **Live** — backend on Render, web on Cloudflare Pages; S1–S6 verified against the deployed URLs |
 
-**Adjudication is the one open release gate:** 179 claim sentences, 124 adjudicated, **55 outstanding**. The gate correctly exits non-zero until complete.
+### The adjudication gate is red, and that is the honest state
+
+179 claim sentences. **179 adjudicated** — 124 by a person, 36 by automation
+against a quoted source passage. **19 escalated to a human and left undecided.**
+The gate exits non-zero, and CI is red because of it.
+
+**This is a decision, not an unfinished task.** The 19 are clinical assertions —
+whether a rapid metaboliser carries a higher bleeding risk, whether a normal
+SLCO1B1 result leaves the usual muscle-toxicity risk. `auto_adjudicate.py` looked
+at each and declined, because each asserts something its aligned passage does not
+plainly support. Deciding them requires clinical judgement, and this project
+records, in `scripts/adjudication_status.py`'s own output:
+
+```
+clinical expert      NOT_OBTAINED   (no qualified reviewer on this project)
+```
+
+Clearing the gate without that reviewer would mean signing a clinical review that
+did not happen. A green gate would then mean less than the red one does — it
+would assert review, where red asserts only that unreviewed prose exists and is
+marked as such. The 19 sentences are listed in
+[`reports/escalation_list.md`](reports/escalation_list.md), each with its source
+passage and the specific tension.
+
+Everything the gate can decide without a clinician, it has decided. What remains
+is what a clinician is for.
+
+```bash
+python scripts/adjudicate.py --escalated-only --adjudicator "<your real name>"
+```
 
 ---
 

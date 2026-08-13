@@ -389,3 +389,87 @@ def test_the_about_screen_cyp2d6_claim_matches_the_negative_control() -> None:
         "the CYP2D6 no-call path moved; the About screen promises the user it "
         "declines every time")
     assert "cannot be resolved" in CYP2D6_WARNING
+
+
+# --------------------------------------------------------------------------- #
+# The adjudication gate — the fourth stale derived value found
+#
+# README said "55 outstanding" long after it was 19. Same shape as the other
+# three: measured once, typed into prose, left behind when the work moved.
+#
+# This one matters more than a test count. The number quantifies how much
+# unreviewed clinical prose ships, so a stale one understates or overstates the
+# single most consequential open item in the project.
+# --------------------------------------------------------------------------- #
+
+def _adjudication_status() -> str:
+    result = subprocess.run(
+        [sys.executable, str(REPO / "scripts/adjudication_status.py")],
+        cwd=REPO, capture_output=True, text=True, timeout=300)
+    return result.stdout
+
+
+def test_the_documented_adjudication_counts_are_current() -> None:
+    """Re-derived from the gate itself, not from memory of a past run."""
+    output = _adjudication_status()
+    if "outstanding" not in output:
+        pytest.skip("adjudication_status.py produced no summary")
+
+    outstanding = re.search(r"outstanding\s+(\d+)", output)
+    sentences = re.search(r"claim sentences\s+(\d+)", output)
+    assert outstanding and sentences
+
+    docs = _all_docs()
+    n_out, n_sent = outstanding.group(1), sentences.group(1)
+
+    # ADJACENT, not merely nearby. A 60-character window reached across
+    # clauses and reported "124 adjudicated by a person" as an outstanding
+    # count, because the sentence went on to mention escalation. At most two
+    # words may sit between the number and the word it qualifies.
+    pattern = re.compile(
+        r"\b(\d+)\b(?:\s+\*{0,2}\w+\*{0,2}){0,2}\s+"
+        r"(?:escalat|outstanding|undecided)", re.I)
+
+    # Present at least once…
+    claimed = {m.group(1) for name in DOCS for m in pattern.finditer(_text(name))}
+    assert n_out in claimed, (
+        f"the gate reports {n_out} outstanding; no document says so. A stale "
+        f"count here misstates how much unreviewed clinical prose ships")
+
+    # …AND nowhere contradicted. Asserting only presence let a wrong number
+    # sit beside a right one and pass — the same weakness as checking the
+    # concatenation of all docs instead of each file. A guard that tolerates a
+    # contradiction is not checking the number, only that it appears.
+    wrong = claimed - {n_out}
+    assert not wrong, (
+        f"the gate reports {n_out} outstanding, but the documentation also "
+        f"claims {sorted(wrong)}. One of them is stale")
+
+    assert n_sent in docs, f"{n_sent} claim sentences is not documented"
+
+
+def test_no_document_claims_the_gate_is_green_or_the_review_complete() -> None:
+    """
+    The gate is red BY DECISION: there is no qualified clinical reviewer on the
+    project, so clearing it would assert a review that did not happen. Prose
+    must not quietly promote "escalated" into "done".
+    """
+    for phrase in ("adjudication complete", "fully adjudicated",
+                   "all sentences decided", "clinically reviewed",
+                   "reviewed by a clinician"):
+        stated = _asserts(phrase)
+        assert not stated, (
+            f"{phrase!r} is stated as fact. 19 sentences are escalated and "
+            f"undecided, and the gate records clinical expert NOT_OBTAINED:\n  "
+            + "\n  ".join(stated))
+
+
+def test_the_gate_still_reports_no_clinical_reviewer() -> None:
+    """
+    If this ever stops being true, the framing above needs rewriting rather
+    than the assertion deleting — a reviewer arriving is the good outcome, and
+    the docs should then say so.
+    """
+    assert "NOT_OBTAINED" in _adjudication_status(), (
+        "the gate no longer reports clinical expert NOT_OBTAINED — if a "
+        "reviewer has been obtained, update README's adjudication section")

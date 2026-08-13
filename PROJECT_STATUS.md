@@ -357,7 +357,7 @@ red, and the phase is not closed while it is.
 
 ### The one thing left
 
-The 53 outstanding sentences are mechanism prose, and they are outstanding *by
+The 19 outstanding sentences are mechanism prose, and they are outstanding *by
 design*. The closed-vocabulary check that would have screened them automatically
 was retired at a measured 30% false-positive rate under a threshold committed
 before tuning (see `reports/provenance_finding.md`, methods note). Mandatory
