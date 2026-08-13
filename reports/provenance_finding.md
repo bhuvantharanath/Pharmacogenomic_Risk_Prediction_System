@@ -1074,6 +1074,101 @@ notice is what keeps the belief checkable.
 
 ---
 
+## Evidence 14 — the fix that would have converted a constant fault into a race
+
+Recorded because it was **nearly shipped**, and because the version that was
+nearly shipped is *harder to detect* than the bug it replaced.
+
+The lockstep workflow deploys the backend by POSTing to Render. The obvious call
+omits `commitId`, and Render then documents its default as **"the latest commit
+on the service's connected branch"**.
+
+That reads as equivalent. It is not:
+
+| | |
+| --- | --- |
+| Without `commitId` | the deploy takes whatever is newest **when Render processes it** |
+| The client, meanwhile | is compiled against `GITHUB_SHA` — the commit *this run* is building |
+
+Two pushes close together and the second run's backend deploy can pick up the
+third commit while its client build carries the second. The halves diverge for
+reasons invisible in either log, because each did exactly what it was told.
+
+**The failure mode inverts.** The original bug — an inert `autoDeploy` — produced
+*consistent staleness*: the backend was always behind, reproducibly, and a single
+comparison exposed it. The `commitId`-less version produces *intermittent* skew,
+appearing only under close pushes, disappearing on the next deploy, and never
+reproducing on demand. It is the same defect with its detectability removed.
+
+So the pin is not a refinement. Deploying "latest" would have replaced a bug
+that announced itself under one comparison with one that hides behind timing —
+and the mitigation for the second is the same as for the first, which is the
+version notice, because prevention you cannot verify is not prevention.
+
+---
+
+## Evidence 15 — OUTLIVED ITS PREMISE, as a distinct sub-species
+
+`.github/workflows/deploy-web.yml` filtered on `paths: ["app/**"]`. That was
+**exactly right**: the workflow deployed the web client and nothing else, so a
+backend-only commit had no reason to trigger it.
+
+Then the backend deploy moved into the same workflow, and the filter — unchanged,
+unexamined, still passing every check — became the instruction *do not deploy the
+backend when only the backend changed.* A silent half-deploy, produced by a line
+nobody edited.
+
+### Why this is its own species
+
+It is not the familiar shape of "the check was too narrow", because at authoring
+time the scope was **correct and provably so**. Compare:
+
+| | at authoring | later | what would have caught it |
+| --- | --- | --- | --- |
+| An ordinary defect | wrong | wrong | a test, at authoring time |
+| **Outlived its premise** | **right** | wrong | **only re-derivation, or a gate** |
+
+The other members of this family in this document:
+
+* **"NA12273: 2/2 exact"** — true when written; falsified when ambiguous-diplotype
+  representation changed, and nothing re-derived it.
+* **"DPYD passes at 37.3% with 0% error"** — true of the measurement that
+  produced it; falsified when position identity was added.
+* **`PHARMCAT_QUEUE_TIMEOUT_SECONDS=25`** — correct against a 2.6 s local
+  analysis; wrong against Render's 52 s.
+* **The client's 60 s `receiveTimeout`** — generous locally, five seconds of
+  margin in production.
+* **`paths: ["app/**"]`** — correct for a client-only workflow, wrong the moment
+  the backend joined it.
+
+### The mitigation genuinely differs, and that is the point
+
+For an ordinary defect the answer is "write the test you should have written".
+**There is no test you could have written here.** A test authored alongside the
+`app/**` filter would have asserted that a client-only workflow triggers on
+client changes — and would have gone on passing, correctly, while the premise
+underneath it dissolved.
+
+Only two things work:
+
+1. **Re-derive** the value from its source at check time — what
+   `test_documented_numbers.py` does for prose figures, and what
+   `derive_decision_critical.py` does for positions.
+2. **Gate the invariant that outlives the premise** — assert *"every deployable
+   path triggers the deploy"*, which stays true regardless of what the workflow
+   deploys, rather than *"app/** triggers it"*, which was only true of one era.
+
+`test_build_identity.py::test_backend_changes_also_trigger_the_deploy` is the
+second kind. It asserts the property, not the list.
+
+**The general rule.** A correct decision is not permanently correct; it is
+correct *relative to conditions that are not recorded anywhere near it*. Every
+constant in this repository derived from a measurement, an environment, or a
+scope now carries the conditions that made it true — because the conditions, not
+the value, are what a reader needs in order to notice the value has expired.
+
+---
+
 ## Running tally — checks that passed while checking nothing
 
 Kept because the pattern outlived every individual instance of it. Each of
@@ -1097,8 +1192,10 @@ recognisable, rather than being rediscovered each time under a new name.
 | 12 | Deployed S1–S6 diff | Compared against captured artifacts predating the branch, reporting six "divergences" that were the branch's own work | Phase 8 §6 |
 | 13 | The About-screen sample-count guard | `fidelity.get("samples", n)` defaulted to `n`, reducing the assertion to `n <= n` | Sabotage of the new guard |
 | 14 | Render `autoDeploy: "yes"` | Webhook-driven, and no GitHub App was installed — enabled, reported, inert | Pushing a commit and asking what was running |
+| 15 | The constructed-allele sweep, on NUDT15 | Asked "what did you call NUDT15?" for a drug governed by TPMT **and** NUDT15; with a normal NUDT15, TPMT drives the recommendation and NUDT15 never appears. Nine correct results scored as `no_call` | Checking one by hand before believing the number |
+| 16 | `backend_status_test`'s give-up test | Named "emits a waking state before it gives up"; scripted a backend that WOKE, asserted `ready`, and never exercised giving up | Writing the bounded-wait test the brief asked for |
 
-**Three of #10–#13 are mine, from this phase, and all three are the same
+**Five of #10–#16 are mine, from these phases, and all three are the same
 error**: a harness that agreed with itself. #10 and #11 constructed a payload
 that did not contain the thing under test; #12 compared against a baseline that
 could not isolate the variable. In each case the *system* was correct and the

@@ -95,10 +95,25 @@ class BackendStatus {
 
 /// Drives the wake-up ping and publishes [BackendStatus] updates.
 class BackendStatusController extends ChangeNotifier {
-  BackendStatusController({PharmaGuardApi? api})
-    : _api = api ?? PharmaGuardApi();
+  BackendStatusController({
+    PharmaGuardApi? api,
+    Duration? budget,
+    List<Duration>? backoff,
+  })  : _api = api ?? PharmaGuardApi(),
+        _budget = budget ?? kWakeupBudget,
+        _backoff = backoff ?? kWakeupBackoff;
 
   final PharmaGuardApi _api;
+
+  /// Injectable ONLY so the give-up path can be tested.
+  ///
+  /// The real budget is 90 s, which no test can wait out — and the consequence
+  /// of that was a test literally named "emits a waking state before it gives
+  /// up" that scripted a backend which *woke*, asserted it reached `ready`,
+  /// and never exercised the give-up path at all. The bounded-wait behaviour
+  /// was therefore unverified while appearing covered.
+  final Duration _budget;
+  final List<Duration> _backoff;
 
   BackendStatus _status = const BackendStatus(phase: BackendPhase.checking);
   BackendStatus get status => _status;
@@ -142,7 +157,7 @@ class BackendStatusController extends ChangeNotifier {
     String? lastError;
 
     try {
-      while (clock.elapsed < kWakeupBudget) {
+      while (clock.elapsed < _budget) {
         attempt += 1;
         try {
           if (await _api.health()) {
@@ -173,11 +188,11 @@ class BackendStatusController extends ChangeNotifier {
         );
 
         // Backoff, clamped so we never sleep past the budget.
-        final Duration wait = kWakeupBackoff[
-            attempt - 1 < kWakeupBackoff.length
+        final Duration wait = _backoff[
+            attempt - 1 < _backoff.length
                 ? attempt - 1
-                : kWakeupBackoff.length - 1];
-        final Duration remaining = kWakeupBudget - clock.elapsed;
+                : _backoff.length - 1];
+        final Duration remaining = _budget - clock.elapsed;
         if (remaining <= Duration.zero) break;
         await Future<void>.delayed(wait < remaining ? wait : remaining);
       }

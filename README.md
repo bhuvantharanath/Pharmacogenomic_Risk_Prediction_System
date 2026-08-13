@@ -72,7 +72,7 @@ The system's design is a response to that finding. It is built to decline rather
 | External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
 | South Asian (SAS) subgroup, n=75 | CYP2C19 reduced-function **53.3%**, second only to EAS |
 | Backend tests | 785 passing |
-| Client tests | 163 passing |
+| Client tests | 192 passing |
 
 ### The eight findings
 

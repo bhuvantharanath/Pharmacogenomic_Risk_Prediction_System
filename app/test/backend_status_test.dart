@@ -111,7 +111,7 @@ void main() {
       controller.dispose();
     });
 
-    test('emits a waking state before it gives up', () async {
+    test('passes through waking on its way to ready', () async {
       final _ScriptedApi api = _ScriptedApi(<Object>[false, false, true]);
       final BackendStatusController controller =
           BackendStatusController(api: api);
@@ -189,6 +189,131 @@ void main() {
         kWakeupBackoff.last.inSeconds,
         greaterThan(kWakeupBackoff.first.inSeconds),
       );
+    });
+  });
+
+  // ------------------------------------------------------------------------ #
+  // THE GIVE-UP PATH. Previously untested.
+  //
+  // A test named "emits a waking state before it gives up" scripted a backend
+  // that WOKE, asserted it reached `ready`, and never exercised giving up at
+  // all. The bounded wait looked covered and was not — the same shape as every
+  // other check in this project that passed while checking something else.
+  //
+  // It matters beyond previews: a suspended service, a CORS allowlist broken by
+  // a domain change, or a backend that is simply down all present to the client
+  // as "no answer", and an unbounded "waking up…" would misdescribe every one
+  // of them as a cold start that is about to finish.
+  // ------------------------------------------------------------------------ #
+  group('a backend that never answers', () {
+    BackendStatusController never({bool throwing = false}) =>
+        BackendStatusController(
+          api: _ScriptedApi(<Object>[
+            throwing ? Exception('Connection refused') : false,
+          ]),
+          // Real budget is 90 s. Compressed here so the give-up path can be
+          // reached at all — the reason it went untested for so long.
+          budget: const Duration(milliseconds: 300),
+          backoff: const <Duration>[Duration(milliseconds: 50)],
+        );
+
+    test('gives up, rather than claiming to wake forever', () async {
+      final BackendStatusController controller = never();
+      await controller.wake();
+
+      expect(controller.status.phase, BackendPhase.unreachable,
+          reason: 'still "waking" after the budget would tell the user to keep '
+              'waiting for something that is never going to arrive');
+      controller.dispose();
+    });
+
+    test('gives up within the budget, not eventually', () async {
+      final Stopwatch clock = Stopwatch()..start();
+      final BackendStatusController controller = never();
+      await controller.wake();
+      clock.stop();
+
+      expect(clock.elapsed, lessThan(const Duration(seconds: 5)),
+          reason: 'the wait must be BOUNDED; an unbounded one is '
+              'indistinguishable from a hang');
+      controller.dispose();
+    });
+
+    test('names the origin it could not reach', () async {
+      final BackendStatusController controller = never();
+      await controller.wake();
+
+      // Without the URL the message is unactionable: the single most common
+      // cause is pointing at the wrong host, and that is invisible unless the
+      // host is named.
+      expect(controller.status.message, isNotNull);
+      expect(controller.status.message, contains(kApiBaseUrl));
+      expect(controller.status.detail, isNotEmpty);
+      controller.dispose();
+    });
+
+    test('reports how long it tried and how many times', () async {
+      final BackendStatusController controller = never();
+      await controller.wake();
+
+      expect(controller.status.attempts, greaterThan(0));
+      // "We tried N times over Ns" is what separates "unreachable" from
+      // "we did not really try".
+      expect(controller.status.message, anyOf(contains('attempt'),
+          contains('uvicorn')));
+      controller.dispose();
+    });
+
+    test('a transport exception also ends in unreachable, not a crash',
+        () async {
+      final BackendStatusController controller = never(throwing: true);
+      await controller.wake();
+
+      expect(controller.status.phase, BackendPhase.unreachable);
+      controller.dispose();
+    });
+
+    test('a backend that wakes on the last attempt still reaches ready',
+        () async {
+      // The other side of the bound: it must not give up on something that
+      // WOULD have answered. Cold start measured 12.85 s against a 90 s budget.
+      final BackendStatusController controller = BackendStatusController(
+        api: _ScriptedApi(<Object>[false, false, true]),
+        budget: const Duration(seconds: 5),
+        backoff: const <Duration>[Duration(milliseconds: 20)],
+      );
+      await controller.wake();
+
+      expect(controller.status.phase, BackendPhase.ready);
+      controller.dispose();
+    });
+  });
+
+  group('unreachable is distinguishable from the other three waits', () {
+    test('it is not busy, and says something the others do not', () {
+      const BackendStatus unreachable =
+          BackendStatus(phase: BackendPhase.unreachable);
+      const BackendStatus waking = BackendStatus(phase: BackendPhase.waking);
+
+      // `isBusy` drives spinners. Unreachable must not spin — there is nothing
+      // left in flight to spin for.
+      expect(unreachable.isBusy, isFalse);
+      expect(waking.isBusy, isTrue);
+
+      final Set<String> titles = <String>{
+        waking.title,
+        unreachable.title,
+        'The server is busy with another analysis',   // 503 SERVER_BUSY
+        'Rate limit reached',                          // 429
+      };
+      expect(titles.length, 4,
+          reason: 'two of the four waits read the same, so the user cannot '
+              'tell whether waiting, retrying, or giving up is the right move');
+
+      // And the direction differs: waking says keep waiting, unreachable does
+      // not pretend anything is coming.
+      expect(unreachable.title.toLowerCase(), contains('cannot reach'));
+      expect(waking.title.toLowerCase(), contains('waking'));
     });
   });
 }

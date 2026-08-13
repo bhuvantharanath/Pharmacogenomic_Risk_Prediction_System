@@ -1,0 +1,5064 @@
+{
+  "generated_at": "2026-08-13T16:09:21Z",
+  "elapsed_seconds": 681.8,
+  "api": "http://127.0.0.1:8993",
+  "nature": "coverage testing against PharmCAT's own definitions \u2014 NOT external validation",
+  "uncallable_by_design": [
+    "CYP2D6"
+  ],
+  "results": [
+    {
+      "gene": "CYP2C19",
+      "allele": "*38",
+      "http": 200,
+      "called": "*38/*38",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*1",
+      "http": 200,
+      "called": "*1/*1",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*2",
+      "http": 200,
+      "called": "*2/*2",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*3",
+      "http": 200,
+      "called": "*3/*3",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*4",
+      "http": 200,
+      "called": "*4/*4",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*5",
+      "http": 200,
+      "called": "*5/*5",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*6",
+      "http": 200,
+      "called": "*6/*6",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*7",
+      "http": 200,
+      "called": "*7/*7",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*8",
+      "http": 200,
+      "called": "*8/*8",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*9",
+      "http": 200,
+      "called": "*9/*9",
+      "phenotype": "IM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*10",
+      "http": 200,
+      "called": "*10/*10",
+      "phenotype": "IM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*11",
+      "http": 200,
+      "called": "*11/*11",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*12",
+      "http": 200,
+      "called": "*12/*12",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*13",
+      "http": 200,
+      "called": "*13/*13",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*14",
+      "http": 200,
+      "called": "*14/*14",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*15",
+      "http": 200,
+      "called": "*15/*15",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*16",
+      "http": 200,
+      "called": "*16/*16",
+      "phenotype": "IM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*17",
+      "http": 200,
+      "called": "*17/*17",
+      "phenotype": "URM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*18",
+      "http": 200,
+      "called": "*18/*18",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*19",
+      "http": 200,
+      "called": "*19/*19",
+      "phenotype": "IM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*22",
+      "http": 200,
+      "called": "*22/*22",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*23",
+      "http": 200,
+      "called": "*23/*23",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*24",
+      "http": 200,
+      "called": "*24/*24",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*25",
+      "http": 200,
+      "called": "*25/*25",
+      "phenotype": "IM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*26",
+      "http": 200,
+      "called": "*26/*26",
+      "phenotype": "IM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*28",
+      "http": 200,
+      "called": "*28/*28",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*29",
+      "http": 200,
+      "called": "*29/*29",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*30",
+      "http": 200,
+      "called": "*30/*30",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*31",
+      "http": 200,
+      "called": "*31/*31",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*32",
+      "http": 200,
+      "called": "*32/*32",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*33",
+      "http": 200,
+      "called": "*33/*33",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*34",
+      "http": 200,
+      "called": "*34/*34",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*35",
+      "http": 200,
+      "called": "*35/*35",
+      "phenotype": "PM",
+      "label": "Ineffective",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*39",
+      "http": 200,
+      "called": "*39/*39",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*40",
+      "http": 200,
+      "called": "*40/*40",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*41",
+      "http": 200,
+      "called": "*41/*41",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*1",
+      "http": 200,
+      "called": "*1/*1",
+      "phenotype": "NM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*2",
+      "http": 200,
+      "called": "*2/*2",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*3",
+      "http": 200,
+      "called": "*3/*3",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*4",
+      "http": 200,
+      "called": "*4/*4",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*5",
+      "http": 200,
+      "called": "*5/*5",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*6",
+      "http": 200,
+      "called": "*6/*6",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*7",
+      "http": 200,
+      "called": "*7/*7",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*8",
+      "http": 200,
+      "called": "*8/*8",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*9",
+      "http": 200,
+      "called": "*9/*9",
+      "phenotype": "NM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*10",
+      "http": 200,
+      "called": "*10/*10",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*11",
+      "http": 200,
+      "called": "*11/*11",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*12",
+      "http": 200,
+      "called": "*12/*12",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*13",
+      "http": 200,
+      "called": "*13/*13",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*14",
+      "http": 200,
+      "called": "*14/*14",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*15",
+      "http": 200,
+      "called": "*15/*15",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*16",
+      "http": 200,
+      "called": "*16/*16",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*17",
+      "http": 200,
+      "called": "*17/*17",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*18",
+      "http": 200,
+      "called": "*18/*18",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*19",
+      "http": 200,
+      "called": "*19/*19",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*20",
+      "http": 200,
+      "called": "*20/*20",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*21",
+      "http": 200,
+      "called": "*21/*21",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*22",
+      "http": 200,
+      "called": "*22/*22",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*23",
+      "http": 200,
+      "called": "*23/*23",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*24",
+      "http": 200,
+      "called": "*24/*24",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*25",
+      "http": 200,
+      "called": "*25/*25",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*26",
+      "http": 200,
+      "called": "*26/*26",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*27",
+      "http": 200,
+      "called": "*27/*27",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*28",
+      "http": 200,
+      "called": "*28/*28",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*29",
+      "http": 200,
+      "called": "*29/*29",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*30",
+      "http": 200,
+      "called": "*30/*30",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*31",
+      "http": 200,
+      "called": "*31/*31",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*32",
+      "http": 200,
+      "called": "*32/*32",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*33",
+      "http": 200,
+      "called": "*33/*33",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*34",
+      "http": 200,
+      "called": "*34/*34",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*35",
+      "http": 200,
+      "called": "*35/*35",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*36",
+      "http": 200,
+      "called": "*36/*36",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*37",
+      "http": 200,
+      "called": "*37/*37",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*38",
+      "http": 200,
+      "called": "*38/*38",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*39",
+      "http": 200,
+      "called": "*39/*39",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*40",
+      "http": 200,
+      "called": "*40/*40",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*41",
+      "http": 200,
+      "called": "*41/*41",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*42",
+      "http": 200,
+      "called": "*42/*42",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*43",
+      "http": 200,
+      "called": "*43/*43",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*44",
+      "http": 200,
+      "called": "*44/*44",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*45",
+      "http": 200,
+      "called": "*45/*45",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*46",
+      "http": 200,
+      "called": "*46/*46",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*47",
+      "http": 200,
+      "called": "*47/*47",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*48",
+      "http": 200,
+      "called": "*48/*48",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*49",
+      "http": 200,
+      "called": "*49/*49",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*50",
+      "http": 200,
+      "called": "*50/*50",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*51",
+      "http": 200,
+      "called": "*51/*51",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*52",
+      "http": 200,
+      "called": "*52/*52",
+      "phenotype": "PM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*53",
+      "http": 200,
+      "called": "*53/*53",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*54",
+      "http": 200,
+      "called": "*54/*54",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*55",
+      "http": 200,
+      "called": "*55/*55",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*56",
+      "http": 200,
+      "called": "*56/*56",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*57",
+      "http": 200,
+      "called": "*57/*57",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*58",
+      "http": 200,
+      "called": "*58/*58",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*59",
+      "http": 200,
+      "called": "*59/*59",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*60",
+      "http": 200,
+      "called": "*60/*60",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*61",
+      "http": 200,
+      "called": "*61/*61",
+      "phenotype": "IM",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*62",
+      "http": 200,
+      "called": "*62/*62",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*63",
+      "http": 200,
+      "called": "*63/*63",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*64",
+      "http": 200,
+      "called": "*64/*64",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*65",
+      "http": 200,
+      "called": "*65/*65",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*66",
+      "http": 200,
+      "called": "*66/*66",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*67",
+      "http": 200,
+      "called": "*67/*67",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*68",
+      "http": 200,
+      "called": "*68/*68",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*69",
+      "http": 200,
+      "called": "*69/*69",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*70",
+      "http": 200,
+      "called": "*70/*70",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*71",
+      "http": 200,
+      "called": "*71/*71",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*72",
+      "http": 200,
+      "called": "*72/*72",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*73",
+      "http": 200,
+      "called": "*73/*73",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*74",
+      "http": 200,
+      "called": "*74/*74",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*75",
+      "http": 200,
+      "called": "*75/*75",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*76",
+      "http": 200,
+      "called": "*76/*76",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*77",
+      "http": 200,
+      "called": "*77/*77",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*78",
+      "http": 200,
+      "called": "*78/*78",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*79",
+      "http": 200,
+      "called": "*79/*79",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*80",
+      "http": 200,
+      "called": "*80/*80",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*81",
+      "http": 200,
+      "called": "*81/*81",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*82",
+      "http": 200,
+      "called": "*82/*82",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*83",
+      "http": 200,
+      "called": "*83/*83",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*84",
+      "http": 200,
+      "called": "*84/*84",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*85",
+      "http": 200,
+      "called": "*85/*85",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*86",
+      "http": 200,
+      "called": "*86/*86",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*87",
+      "http": 200,
+      "called": "*87/*87",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*88",
+      "http": 200,
+      "called": "*88/*88",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*89",
+      "http": 200,
+      "called": "*89/*89",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*90",
+      "http": 200,
+      "called": "*90/*90",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*91",
+      "http": 200,
+      "called": "*91/*91",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*92",
+      "http": 200,
+      "called": "*92/*92",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*93",
+      "http": 200,
+      "called": "*93/*93",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*94",
+      "http": 200,
+      "called": "*94/*94",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*1",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*2",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*3",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*4",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*6",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*7",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*8",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*9",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*10",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*11",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*12",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*14",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*15",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*17",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*18",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*19",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*20",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*21",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*22",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*23",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*24",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*25",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*26",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*27",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*28",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*29",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*30",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*31",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*32",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*33",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*34",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*35",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*36",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*37",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*38",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*39",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*40",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*41",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*42",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*43",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*44",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*45",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*46",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*47",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*48",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*49",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*50",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*51",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*52",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*53",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*54",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*55",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*56",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*58",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*59",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*60",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*62",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*64",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*65",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*69",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*70",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*71",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*72",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*73",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*74",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*75",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*81",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*82",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*83",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*84",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*85",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*86",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*87",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*88",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*89",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*90",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*91",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*92",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*93",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*94",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*95",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*96",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*97",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*98",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*99",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*100",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*101",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*102",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*103",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*104",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*105",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*106",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*107",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*108",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*109",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*110",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*111",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*112",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*113",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*114",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*115",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*116",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*117",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*118",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*119",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*120",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*121",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*122",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*123",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*124",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*125",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*126",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*127",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*128",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*129",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*130",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*131",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*132",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*133",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*134",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*135",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*136",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*137",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*138",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*139",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*140",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*141",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*142",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*143",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*144",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*145",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*146",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*147",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*148",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*149",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*150",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*151",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*152",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*153",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*154",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*155",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*156",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*157",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*158",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*159",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*160",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*161",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*162",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*163",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*164",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*165",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*166",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*167",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*168",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*169",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*170",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*171",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*172",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*173",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*174",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*175",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*176",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*177",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*178",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*179",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*180",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*181",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*182",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*183",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*184",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*185",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "CYP2D6",
+      "allele": "*186",
+      "http": 200,
+      "called": "Unknown",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "Reference",
+      "http": 200,
+      "called": "Reference/Reference",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.46C>G",
+      "http": 200,
+      "called": "c.46C>G/c.46C>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.61C>T",
+      "http": 200,
+      "called": "c.61C>T/c.61C>T",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.62G>A",
+      "http": 200,
+      "called": "c.62G>A/c.62G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.85T>C (*9A)",
+      "http": 200,
+      "called": "c.85T>C (*9A)/c.85T>C (*9A)",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.295_298delTCAT (*7)",
+      "http": 200,
+      "called": "c.295_298delTCAT (*7)/c.295_298delTCAT (*7)",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.313G>A",
+      "http": 200,
+      "called": "c.313G>A/c.313G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.343A>G",
+      "http": 200,
+      "called": "c.343A>G/c.343A>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.451A>G",
+      "http": 200,
+      "called": "c.451A>G/c.451A>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.496A>G",
+      "http": 200,
+      "called": "c.496A>G/c.496A>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.498G>A",
+      "http": 200,
+      "called": "c.498G>A/c.498G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.525G>A",
+      "http": 200,
+      "called": "c.525G>A/c.525G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.557A>G",
+      "http": 200,
+      "called": "c.557A>G/c.557A>G",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.601A>C",
+      "http": 200,
+      "called": "c.601A>C/c.601A>C",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.632A>G",
+      "http": 200,
+      "called": "c.632A>G/c.632A>G",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.703C>T (*8)",
+      "http": 200,
+      "called": "c.703C>T (*8)/c.703C>T (*8)",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.775A>G",
+      "http": 200,
+      "called": "c.775A>G/c.775A>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.868A>G",
+      "http": 200,
+      "called": "c.868A>G/c.868A>G",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.929T>C",
+      "http": 200,
+      "called": "c.929T>C/c.929T>C",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.934C>T",
+      "http": 200,
+      "called": "c.934C>T/c.934C>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.967G>A",
+      "http": 200,
+      "called": "c.967G>A/c.967G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1003G>T (*11)",
+      "http": 200,
+      "called": "c.1003G>T (*11)/c.1003G>T (*11)",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1024G>A",
+      "http": 200,
+      "called": "c.1024G>A/c.1024G>A",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1057C>T",
+      "http": 200,
+      "called": "c.1057C>T/c.1057C>T",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1108A>G",
+      "http": 200,
+      "called": "c.1108A>G/c.1108A>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1129-5923C>G",
+      "http": 200,
+      "called": "c.1129-5923C>G/c.1129-5923C>G",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1129-5923C>G, c.1236G>A (HapB3)",
+      "http": 200,
+      "called": "c.1129-5923C>G, c.1236G>A (HapB3)/c.1129-5923C>G, c.1236G>A (HapB3)",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1156G>T (*12)",
+      "http": 200,
+      "called": "c.1156G>T (*12)/c.1156G>T (*12)",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1180C>T",
+      "http": 200,
+      "called": "c.1180C>T/c.1180C>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1181G>T",
+      "http": 200,
+      "called": "c.1181G>T/c.1181G>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1218G>A",
+      "http": 200,
+      "called": "c.1218G>A/c.1218G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1260T>A",
+      "http": 200,
+      "called": "c.1260T>A/c.1260T>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1278G>T",
+      "http": 200,
+      "called": "c.1278G>T/c.1278G>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1294G>A",
+      "http": 200,
+      "called": "c.1294G>A/c.1294G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1314T>G",
+      "http": 200,
+      "called": "c.1314T>G/c.1314T>G",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1349C>T",
+      "http": 200,
+      "called": "c.1349C>T/c.1349C>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1358C>G",
+      "http": 200,
+      "called": "c.1358C>G/c.1358C>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1371C>T",
+      "http": 200,
+      "called": "c.1371C>T/c.1371C>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1403C>A",
+      "http": 200,
+      "called": "c.1403C>A/c.1403C>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1475C>T",
+      "http": 200,
+      "called": "c.1475C>T/c.1475C>T",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1484A>G",
+      "http": 200,
+      "called": "c.1484A>G/c.1484A>G",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1519G>A",
+      "http": 200,
+      "called": "c.1519G>A/c.1519G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1543G>A",
+      "http": 200,
+      "called": "c.1543G>A/c.1543G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1577C>G",
+      "http": 200,
+      "called": "c.1577C>G/c.1577C>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1601G>A (*4)",
+      "http": 200,
+      "called": "c.1601G>A (*4)/c.1601G>A (*4)",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1615G>A",
+      "http": 200,
+      "called": "c.1615G>A/c.1615G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1627A>G (*5)",
+      "http": 200,
+      "called": "c.1627A>G (*5)/c.1627A>G (*5)",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1679T>G (*13)",
+      "http": 200,
+      "called": "c.1679T>G (*13)/c.1679T>G (*13)",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1682G>T",
+      "http": 200,
+      "called": "c.1682G>T/c.1682G>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1774C>T",
+      "http": 200,
+      "called": "c.1774C>T/c.1774C>T",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1775G>A",
+      "http": 200,
+      "called": "c.1775G>A/c.1775G>A",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1777G>A",
+      "http": 200,
+      "called": "c.1777G>A/c.1777G>A",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1796T>C",
+      "http": 200,
+      "called": "c.1796T>C/c.1796T>C",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1896T>C",
+      "http": 200,
+      "called": "c.1896T>C/c.1896T>C",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1898delC (*3)",
+      "http": 200,
+      "called": "c.1898delC (*3)/c.1898delC (*3)",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1905+1G>A (*2A)",
+      "http": 200,
+      "called": "c.1905+1G>A (*2A)/c.1905+1G>A (*2A)",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1905C>G",
+      "http": 200,
+      "called": "c.1905C>G/c.1905C>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1906A>C",
+      "http": 200,
+      "called": "c.1906A>C/c.1906A>C",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.1990G>T",
+      "http": 200,
+      "called": "c.1990G>T/c.1990G>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2021G>A",
+      "http": 200,
+      "called": "c.2021G>A/c.2021G>A",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2161G>A",
+      "http": 200,
+      "called": "c.2161G>A/c.2161G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2186C>T",
+      "http": 200,
+      "called": "c.2186C>T/c.2186C>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2194G>A (*6)",
+      "http": 200,
+      "called": "c.2194G>A (*6)/c.2194G>A (*6)",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2195T>G",
+      "http": 200,
+      "called": "c.2195T>G/c.2195T>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2279C>T",
+      "http": 200,
+      "called": "c.2279C>T/c.2279C>T",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2303C>A",
+      "http": 200,
+      "called": "c.2303C>A/c.2303C>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2336C>A",
+      "http": 200,
+      "called": "c.2336C>A/c.2336C>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2482G>A",
+      "http": 200,
+      "called": "c.2482G>A/c.2482G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2582A>G",
+      "http": 200,
+      "called": "c.2582A>G/c.2582A>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2623A>C",
+      "http": 200,
+      "called": "c.2623A>C/c.2623A>C",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2639G>T",
+      "http": 200,
+      "called": "c.2639G>T/c.2639G>T",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2656C>T",
+      "http": 200,
+      "called": "c.2656C>T/c.2656C>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2657G>A (*9B)",
+      "http": 200,
+      "called": "c.2657G>A (*9B)/c.2657G>A (*9B)",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2846A>T",
+      "http": 200,
+      "called": "c.2846A>T/c.2846A>T",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2872A>G",
+      "http": 200,
+      "called": "c.2872A>G/c.2872A>G",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2915A>G",
+      "http": 200,
+      "called": "c.2915A>G/c.2915A>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2921A>T",
+      "http": 200,
+      "called": "c.2921A>T/c.2921A>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2933A>G",
+      "http": 200,
+      "called": "c.2933A>G/c.2933A>G",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2977C>T",
+      "http": 200,
+      "called": "c.2977C>T/c.2977C>T",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2978T>G",
+      "http": 200,
+      "called": "c.2978T>G/c.2978T>G",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.2983G>T (*10)",
+      "http": 200,
+      "called": "c.2983G>T (*10)/c.2983G>T (*10)",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.3049G>A",
+      "http": 200,
+      "called": "c.3049G>A/c.3049G>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.3061G>C",
+      "http": 200,
+      "called": "c.3061G>C/c.3061G>C",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "DPYD",
+      "allele": "c.3067C>A",
+      "http": 200,
+      "called": "c.3067C>A/c.3067C>A",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*1",
+      "http": 200,
+      "called": "*1/*1",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*2",
+      "http": 200,
+      "called": "*2/*2",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*4",
+      "http": 200,
+      "called": "*4/*4",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*5",
+      "http": 200,
+      "called": "*5/*5",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*6",
+      "http": 200,
+      "called": "*6/*6",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*8",
+      "http": 200,
+      "called": "*8/*8",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*9",
+      "http": 200,
+      "called": "*9/*9",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*10",
+      "http": 200,
+      "called": "*10/*10",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*11",
+      "http": 200,
+      "called": "*11/*11",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*14",
+      "http": 200,
+      "called": "*14/*14",
+      "phenotype": "RM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*15",
+      "http": 200,
+      "called": "*15/*15",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*16",
+      "http": 200,
+      "called": "*16/*16",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*19",
+      "http": 200,
+      "called": "*19/*19",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*20",
+      "http": 200,
+      "called": "*20/*20",
+      "phenotype": "RM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*23",
+      "http": 200,
+      "called": "*23/*23",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*24",
+      "http": 200,
+      "called": "*24/*24",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*25",
+      "http": 200,
+      "called": "*25/*25",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*26",
+      "http": 200,
+      "called": "*26/*26",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*27",
+      "http": 200,
+      "called": "*27/*27",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*28",
+      "http": 200,
+      "called": "*28/*28",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*29",
+      "http": 200,
+      "called": "*29/*29",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*30",
+      "http": 200,
+      "called": "*30/*30",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*31",
+      "http": 200,
+      "called": "*31/*31",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*32",
+      "http": 200,
+      "called": "*32/*32",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*33",
+      "http": 200,
+      "called": "*33/*33",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*34",
+      "http": 200,
+      "called": "*34/*34",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*36",
+      "http": 200,
+      "called": "*36/*36",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*37",
+      "http": 200,
+      "called": "*37/*37",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*39",
+      "http": 200,
+      "called": "*39/*39",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*40",
+      "http": 200,
+      "called": "*40/*40",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*41",
+      "http": 200,
+      "called": "*41/*41",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*42",
+      "http": 200,
+      "called": "*42/*42",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*43",
+      "http": 200,
+      "called": "*43/*43",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*44",
+      "http": 200,
+      "called": "*44/*44",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*45.001",
+      "http": 200,
+      "called": "*45/*45",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*45.002",
+      "http": 200,
+      "called": "*45/*45",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "different_call"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*47",
+      "http": 200,
+      "called": "*47/*47",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*50",
+      "http": 200,
+      "called": "*50/*50",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*51",
+      "http": 200,
+      "called": "*51/*51",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*52",
+      "http": 200,
+      "called": "*52/*52",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*53",
+      "http": 200,
+      "called": "*53/*53",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*54",
+      "http": 200,
+      "called": "*54/*54",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*55",
+      "http": 200,
+      "called": "*55/*55",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*56",
+      "http": 200,
+      "called": "*56/*56",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*57",
+      "http": 200,
+      "called": "*57/*57",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*58",
+      "http": 200,
+      "called": "*58/*58",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*1",
+      "http": 200,
+      "called": "*1/*1",
+      "phenotype": "NM",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*2",
+      "http": 200,
+      "called": "*2/*2",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*3A",
+      "http": 200,
+      "called": "*3A/*3A",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*3B",
+      "http": 200,
+      "called": "*3B/*3B",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*3C",
+      "http": 200,
+      "called": "*3C/*3C",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*4",
+      "http": 200,
+      "called": "*4/*4",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*5",
+      "http": 200,
+      "called": "*5/*5",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*6",
+      "http": 200,
+      "called": "*6/*6",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*7",
+      "http": 200,
+      "called": "*7/*7",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*8",
+      "http": 200,
+      "called": "*8/*8",
+      "phenotype": "IM",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*9",
+      "http": 200,
+      "called": "*9/*9",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*10",
+      "http": 200,
+      "called": "*10/*10",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*11",
+      "http": 200,
+      "called": "*11/*11",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*12",
+      "http": 200,
+      "called": "*12/*12",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*13",
+      "http": 200,
+      "called": "*13/*13",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*14",
+      "http": 200,
+      "called": "*14/*14",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*15",
+      "http": 200,
+      "called": "*15/*15",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*16",
+      "http": 200,
+      "called": "*16/*16",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*17",
+      "http": 200,
+      "called": "*17/*17",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*18",
+      "http": 200,
+      "called": "*18/*18",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*19",
+      "http": 200,
+      "called": "*19/*19",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*20",
+      "http": 200,
+      "called": "*20/*20",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*21",
+      "http": 200,
+      "called": "*21/*21",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*22",
+      "http": 200,
+      "called": "*22/*22",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*23",
+      "http": 200,
+      "called": "*23/*23",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*24",
+      "http": 200,
+      "called": "*24/*24",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*25",
+      "http": 200,
+      "called": "*25/*25",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*26",
+      "http": 200,
+      "called": "*26/*26",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*27",
+      "http": 200,
+      "called": "*27/*27",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*28",
+      "http": 200,
+      "called": "*28/*28",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*29",
+      "http": 200,
+      "called": "*29/*29",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*30",
+      "http": 200,
+      "called": "*30/*30",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*31",
+      "http": 200,
+      "called": "*31/*31",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*32",
+      "http": 200,
+      "called": "*32/*32",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*33",
+      "http": 200,
+      "called": "*33/*33",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*34",
+      "http": 200,
+      "called": "*34/*34",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*35",
+      "http": 200,
+      "called": "*35/*35",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*36",
+      "http": 200,
+      "called": "*36/*36",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*37",
+      "http": 200,
+      "called": "*37/*37",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*38",
+      "http": 200,
+      "called": "*38/*38",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*39",
+      "http": 200,
+      "called": "*39/*39",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*40",
+      "http": 200,
+      "called": "*40/*40",
+      "phenotype": "Unknown",
+      "label": "Unknown",
+      "confidence": 0.1,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*41",
+      "http": 200,
+      "called": "*41/*41",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*42",
+      "http": 200,
+      "called": "*42/*42",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*43",
+      "http": 200,
+      "called": "*43/*43",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*44",
+      "http": 200,
+      "called": "*44/*44",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*45",
+      "http": 200,
+      "called": "*45/*45",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*46",
+      "http": 200,
+      "called": "*46/*46",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*47",
+      "http": 200,
+      "called": "*47/*47",
+      "phenotype": "PM",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*1",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*3",
+      "http": 200,
+      "called": "*3/*3",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*4",
+      "http": 200,
+      "called": "*4/*4",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*5",
+      "http": 200,
+      "called": "*5/*5",
+      "phenotype": "IM",
+      "primary_gene": "NUDT15",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*6",
+      "http": 200,
+      "called": "*6/*6",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*7",
+      "http": 200,
+      "called": "*7/*7",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*8",
+      "http": 200,
+      "called": "*8/*8",
+      "phenotype": "IM",
+      "primary_gene": "NUDT15",
+      "label": "Adjust Dosage",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*9",
+      "http": 200,
+      "called": "*9/*9",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*10",
+      "http": 200,
+      "called": "*10/*10",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*11",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*12",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*13",
+      "http": 200,
+      "called": "*13/*13",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*14",
+      "http": 200,
+      "called": "*14/*14",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*15",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*16",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*17",
+      "http": 200,
+      "called": "*17/*17",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*18",
+      "http": 200,
+      "called": "*18/*18",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*19",
+      "http": 200,
+      "called": "*19/*19",
+      "phenotype": "PM",
+      "primary_gene": "NUDT15",
+      "label": "Toxic",
+      "confidence": 0.95,
+      "outcome": "exact"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*20",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*21",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*22",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*23",
+      "http": 200,
+      "called": null,
+      "phenotype": null,
+      "primary_gene": "TPMT",
+      "label": "Safe",
+      "confidence": 0.95,
+      "outcome": "other_gene_primary"
+    }
+  ],
+  "harness_correction": "NUDT15 initially scored 9 alleles as no_call. Azathioprine is governed by TPMT and NUDT15 together, and the pipeline reports the gene DRIVING the recommendation; with a normal-function NUDT15 that is TPMT. Re-run with the primary gene recorded."
+}
