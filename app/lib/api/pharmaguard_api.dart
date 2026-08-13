@@ -177,6 +177,29 @@ class PharmaGuardApi {
     }
   }
 
+  /// GET /ready — the backend's own view of whether it can analyse, and
+  /// which commit it is running.
+  ///
+  /// Returns null on any failure. A version check must never be the reason the
+  /// app looks broken: not knowing the backend's commit is strictly less
+  /// informative than knowing it, and no worse than before the check existed.
+  Future<String?> backendCommit() async {
+    try {
+      final Response<dynamic> res = await _dio.get<dynamic>('/ready');
+      final dynamic body = res.data;
+      if (body is! Map) return null;
+      final dynamic build = body['build'];
+      if (build is! Map) return null;
+      final dynamic commit = build['commit'];
+      if (commit is! String || commit.isEmpty || commit == 'unknown') {
+        return null;
+      }
+      return commit;
+    } catch (_) {
+      return null;
+    }
+  }
+
   /// GET /provenance — when the shipped guidance was captured.
   ///
   /// A GET, and separate from an analysis, because the About screen has to be

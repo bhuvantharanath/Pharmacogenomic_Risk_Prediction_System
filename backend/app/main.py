@@ -218,6 +218,26 @@ app.add_middleware(
 app.add_middleware(security.SecurityHeadersMiddleware)
 
 
+#: How the running build identifies itself.
+#:
+#: `RENDER_GIT_COMMIT` is set automatically by Render at runtime (verified
+#: against render.com/docs/environment-variables, 2026-08-13). `GIT_COMMIT` is
+#: the generic fallback so the same code reports a real SHA under Docker
+#: Compose or any other host that passes one.
+#:
+#: WHY THIS IS EXPOSED AT ALL. The frontend and backend deploy through
+#: different systems — Pages via GitHub Actions, Render via an API call — and
+#: for one release they drifted silently, because `autoDeploy` reports enabled
+#: while doing nothing. A version the client can read is what turns "the site
+#: behaves oddly" into "these two halves are three commits apart".
+def build_commit() -> str:
+    for var in ("RENDER_GIT_COMMIT", "GIT_COMMIT", "SOURCE_COMMIT"):
+        value = os.environ.get(var, "").strip()
+        if value:
+            return value
+    return "unknown"
+
+
 def _configured_workers() -> int | None:
     """
     How many workers uvicorn was told to run, or None if it cannot be told.
@@ -374,12 +394,21 @@ async def ready() -> JSONResponse:
         checks["label_mapping"] = {"ok": False, "detail": str(exc)}
 
     ready_now = all(check["ok"] for check in checks.values())  # type: ignore[index]
+    commit = build_commit()
     return JSONResponse(
         status_code=200 if ready_now else 503,
         content={
             "status": "ready" if ready_now else "not_ready",
             "checks": checks,
             "explanation_mode": ExplanationMode.from_env().value,
+            # NOT a check — an unknown or mismatched commit does not make the
+            # service unready, and gating readiness on it would take a working
+            # backend offline over a label. It is reported so the client can
+            # say the two halves disagree, and let the user carry on.
+            "build": {
+                "commit": commit,
+                "commit_short": commit[:7] if commit != "unknown" else "unknown",
+            },
         },
     )
 

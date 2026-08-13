@@ -1004,6 +1004,76 @@ time.** That step existed in the deployment brief and had never been executed.
 
 ---
 
+## Evidence 13 — a control that reports enabled while doing nothing
+
+Render's service configuration reads `autoDeploy: "yes"`. The dashboard shows
+it enabled. The API returns it enabled. **It deploys nothing.**
+
+### How it was found
+
+Not by reading configuration, and not by any check. By pushing a commit
+(`c108c3e → 1afb949`), waiting ten minutes, and asking the service what it was
+running — which was still `c108c3e`. An environment-variable change earlier in
+the same session had likewise triggered no deploy; at the time that read as
+Render being slow.
+
+The cause is that the service was created from a **public repository URL via
+the REST API**, with no GitHub App installed on the repo. Render's auto-deploy
+is webhook-driven. No App, no webhook — so the flag is stored, reported, and
+inert.
+
+### Why it is the same finding again
+
+| | |
+| --- | --- |
+| A CI step under `\|\| true` | runs, reports success, gates nothing |
+| `fidelity.get("samples", n)` | compares `n <= n`, always passes |
+| A guard that `skip`s on a parse failure | reports success having checked nothing |
+| **`autoDeploy: "yes"` with no webhook** | **reports enabled, deploys nothing** |
+
+Each is a control whose *reported state* and *actual behaviour* are independent
+variables, where everyone reads the first and nobody measures the second. The
+reported state is not evidence — it is a claim by the thing being audited about
+itself, which is precisely the class of evidence this project has learned to
+distrust everywhere else.
+
+### The consequence was asymmetric, which made it worse
+
+The frontend **did** deploy on push, because that path runs through GitHub
+Actions rather than Render. So a push moved one half and not the other, leaving
+a **new client talking to an old server**. Nothing anywhere announced it. The
+site was healthy, responsive and wrong — it simply behaved like an older
+backend, which is the hardest possible symptom to attribute from the outside.
+
+Had *both* halves been inert, the failure would have been obvious within one
+release. It was the partial success that hid it.
+
+### The fix has two halves, and only one of them is prevention
+
+**Lockstep.** One workflow deploys both, backend first, pinned to the commit
+being built (`commitId`), waiting for `live`, then asserting the running
+process reports that same SHA at `/ready` before the client ships. Two
+independent triggers can drift; one ordered pipeline cannot.
+
+**Visibility.** The backend reports its commit; the client is compiled with the
+SHA it expects and compares on load, showing a non-blocking notice naming both
+if they differ. This does not prevent drift — it makes drift *say so*, which is
+the property that was missing when it happened.
+
+Prevention alone would have been the weaker choice. The whole lesson of this
+finding is that a control believed to be working is not evidence it is; the
+notice is what keeps the belief checkable.
+
+### Count of instances
+
+| | |
+| --- | --- |
+| Prior surfacings | 12 |
+| **With inert auto-deploy** | **13** |
+| Layers implicated | model output · retrieval · label mapping · coverage gate · documentation · execution environment · **deployment control plane** |
+
+---
+
 ## Running tally — checks that passed while checking nothing
 
 Kept because the pattern outlived every individual instance of it. Each of
@@ -1026,8 +1096,9 @@ recognisable, rather than being rediscovered each time under a new name.
 | 11 | Deployed mouse-genome refusal | Rewrote a `##reference` line the fixture does not contain, so the payload was unmodified human data | Phase 8 §6 |
 | 12 | Deployed S1–S6 diff | Compared against captured artifacts predating the branch, reporting six "divergences" that were the branch's own work | Phase 8 §6 |
 | 13 | The About-screen sample-count guard | `fidelity.get("samples", n)` defaulted to `n`, reducing the assertion to `n <= n` | Sabotage of the new guard |
+| 14 | Render `autoDeploy: "yes"` | Webhook-driven, and no GitHub App was installed — enabled, reported, inert | Pushing a commit and asking what was running |
 
-**Three of the last four are mine, from this phase, and all three are the same
+**Three of #10–#13 are mine, from this phase, and all three are the same
 error**: a harness that agreed with itself. #10 and #11 constructed a payload
 that did not contain the thing under test; #12 compared against a baseline that
 could not isolate the variable. In each case the *system* was correct and the

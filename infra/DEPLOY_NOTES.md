@@ -127,14 +127,51 @@ that runs through GitHub Actions (`deploy-web.yml`) rather than Render. The
 resulting failure mode is the dangerous one: **the web client updates and the
 backend does not**, leaving a new frontend talking to old server code.
 
-Either connect the GitHub App in the Render dashboard, or treat backend deploys
-as explicitly manual — and always confirm the commit afterwards:
+**FIXED by lockstep, not by connecting the App.** `.github/workflows/deploy-web.yml`
+now deploys **both** halves in one run: it POSTs to Render pinned to the commit
+being built, waits for `live`, asserts the running process reports that SHA at
+`/ready`, and only then builds and ships the web client. One ordered pipeline
+cannot drift; two independent triggers can. Connecting the GitHub App would
+have restored a *second* trigger racing the first — the failure mode this
+already produced once.
+
+The exact call, verified against
+[api-docs.render.com/reference/create-deploy](https://api-docs.render.com/reference/create-deploy)
+on 2026-08-13:
 
 ```bash
-curl -s -H "Authorization: Bearer $RENDER_API_KEY" \
-  "https://api.render.com/v1/services/<id>/deploys?limit=1" \
-  | python3 -c 'import json,sys; d=json.load(sys.stdin)[0]["deploy"]; print(d["status"], d["commit"]["id"])'
+# Trigger — 201/202 on success. `commitId` pins the deploy; without it Render
+# takes "latest on the connected branch", which under two quick pushes can
+# deploy a different commit from the one the client was compiled against.
+curl -X POST \
+  -H "Authorization: Bearer $RENDER_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d "{\"commitId\": \"$GITHUB_SHA\"}" \
+  "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys"
+
+# Poll a single deploy to a terminal status. NOTE: this endpoint works but is
+# absent from the "create deploy" doc page — verified live, HTTP 200.
+curl -H "Authorization: Bearer $RENDER_API_KEY" \
+  "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys/$DEPLOY_ID"
 ```
+
+Statuses: `created`, `queued`, `build_in_progress`, `update_in_progress`,
+`pre_deploy_in_progress` are in flight; `live` is success; `build_failed`,
+`update_failed`, `canceled`, `pre_deploy_failed`, `deactivated` are failure.
+
+To confirm what is actually **serving** — which is the check that would have
+caught the original drift, since every deploy *record* looked fine:
+
+```bash
+curl -s https://pharmaguard-api-baml.onrender.com/ready \
+  | python3 -c 'import json,sys; print(json.load(sys.stdin)["build"]["commit"])'
+```
+
+The web client is compiled with the SHA it expects
+(`--dart-define=EXPECTED_BACKEND_SHA`) and compares it against that field on
+load, showing a non-blocking notice naming both if they differ. Lockstep
+prevents the drift; the notice is what makes a future drift say so instead of
+being inferred from odd behaviour.
 
 ### Redeploying
 

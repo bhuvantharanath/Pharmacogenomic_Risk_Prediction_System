@@ -15,6 +15,7 @@ import '../theme/tokens.dart';
 import '../widgets/backend_status_banner.dart';
 import '../widgets/disclaimer_banner.dart';
 import '../widgets/file_readiness.dart';
+import '../widgets/version_notice.dart';
 import 'about_screen.dart';
 import 'results_screen.dart';
 
@@ -44,6 +45,10 @@ class _HomeScreenState extends State<HomeScreen> {
   int _elapsed = 0;
   Timer? _ticker;
 
+  /// What the backend says it is running, once asked. Null until then.
+  VersionSkew _skew = const VersionSkew(expected: kExpectedBackendSha,
+      actual: null);
+
   /// A 503 SERVER_BUSY, held separately from `_error`.
   ///
   /// Not an error: the upload is fine and the server is working — someone else
@@ -66,6 +71,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+
+    // Fire and forget. A version check must never delay or block the UI: it is
+    // strictly extra information, and a slow or missing answer leaves the app
+    // exactly as usable as it was before the check existed.
+    _api.backendCommit().then((String? commit) {
+      if (!mounted || commit == null) return;
+      setState(() => _skew =
+          VersionSkew(expected: kExpectedBackendSha, actual: commit));
+    });
     // Fire the wake-up ping immediately on load. On a free-tier backend that
     // has scaled to zero this starts the cold start now, in parallel with the
     // user picking a file, rather than at Analyze time.
@@ -401,7 +415,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: Tokens.uiSm,
                 ),
 
-                if (_loading) ...<Widget>[
+                if (_skew.isMismatch) ...<Widget>[
+              const SizedBox(height: 12),
+              VersionNotice(skew: _skew),
+            ],
+            if (_loading) ...<Widget>[
               const SizedBox(height: 14),
               _AnalysisProgress(elapsed: _elapsed),
             ],

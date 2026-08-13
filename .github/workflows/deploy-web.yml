@@ -19,14 +19,21 @@
 # If this workflow proves fiddly, the manual path is documented in
 # infra/DEPLOY_NOTES.md (wrangler CLI, or drag-and-drop of build/web).
 
-name: Deploy web
+name: Deploy
 
 on:
   push:
     branches: [main]
-    # Skip the build when only backend or docs changed.
+    # BOTH halves now deploy from this one workflow, so the path filter must
+    # include the backend and the image. It previously listed only `app/**`,
+    # which was correct when this deployed the client alone — and became a
+    # silent half-deploy the moment the backend joined.
     paths:
       - "app/**"
+      - "backend/**"
+      - "rag-corpus/**"
+      - "infra/Dockerfile"
+      - "infra/render.yaml"
       - ".github/workflows/deploy-web.yml"
   workflow_dispatch:
 
@@ -39,8 +46,128 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ------------------------------------------------------------------------ #
+  # BACKEND FIRST, AND IT MUST REACH HEALTHY BEFORE THE CLIENT SHIPS.
+  #
+  # Why this job exists at all: Render's `autoDeploy` reports enabled on this
+  # service and does nothing, because the service was created from a public
+  # repo URL via the REST API and there is no GitHub App to deliver a webhook.
+  # A push therefore moved the client and left the server on old code — the
+  # site looked healthy and behaved like an older backend.
+  #
+  # Why ORDER matters: if the client shipped first it would, for the length of
+  # a backend build, be strictly newer than the API it calls. Backend-first
+  # means the only transient state is a slightly OLD client against a new API,
+  # which is the direction a backwards-compatible API is built to survive.
+  # ------------------------------------------------------------------------ #
+  backend:
+    name: Deploy backend to Render
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      sha: ${{ github.sha }}
+    steps:
+      - name: Trigger a Render deploy of THIS commit, and wait for it
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          # The service id is not a secret — it appears in every dashboard URL —
+          # and hard-coding it keeps the workflow readable. Rotate the API key,
+          # not this.
+          RENDER_SERVICE_ID: srv-d9ulbovqj5pc73fsu7hg
+        run: |
+          set -euo pipefail
+
+          if [ -z "${RENDER_API_KEY:-}" ]; then
+            echo "::error::RENDER_API_KEY is not set. The backend cannot deploy,"
+            echo "and shipping the client alone is exactly the drift this"
+            echo "workflow exists to prevent."
+            exit 1
+          fi
+
+          # POST /v1/services/{id}/deploys — verified against
+          # api-docs.render.com/reference/create-deploy on 2026-08-13.
+          # `commitId` pins the deploy to the commit this run is building.
+          # Without it Render deploys "latest on the connected branch", which
+          # under two quick pushes can deploy a DIFFERENT commit from the one
+          # the client is compiled against — reintroducing the drift by race.
+          response=$(curl --silent --show-error --fail-with-body \
+            --request POST \
+            --header "Authorization: Bearer ${RENDER_API_KEY}" \
+            --header "Content-Type: application/json" \
+            --data "{\"commitId\": \"${GITHUB_SHA}\"}" \
+            "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys")
+
+          deploy_id=$(printf '%s' "$response" | python3 -c \
+            'import json,sys; print(json.load(sys.stdin)["id"])')
+          echo "Deploy ${deploy_id} triggered for ${GITHUB_SHA}"
+
+          # Poll to a terminal status. The full enum is from the same doc page:
+          #   created, queued, build_in_progress, update_in_progress,
+          #   pre_deploy_in_progress   -> still going
+          #   live                     -> success
+          #   build_failed, update_failed, canceled, pre_deploy_failed,
+          #   deactivated              -> failure
+          deadline=$(( $(date +%s) + 1500 ))
+          while :; do
+            if [ "$(date +%s)" -ge "$deadline" ]; then
+              echo "::error::Backend deploy ${deploy_id} did not finish within 25 minutes."
+              exit 1
+            fi
+
+            status=$(curl --silent --show-error --fail-with-body \
+              --header "Authorization: Bearer ${RENDER_API_KEY}" \
+              "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys/${deploy_id}" \
+              | python3 -c 'import json,sys; print(json.load(sys.stdin)["status"])')
+
+            case "$status" in
+              live)
+                echo "Backend deploy is live."
+                break ;;
+              build_failed|update_failed|canceled|pre_deploy_failed|deactivated)
+                echo "::error::Backend deploy ${deploy_id} ended as '${status}'."
+                echo "::error::The web client was NOT deployed, so the live site"
+                echo "::error::still matches the live backend. Fix and re-run."
+                exit 1 ;;
+              *)
+                echo "  ${status}…"
+                sleep 15 ;;
+            esac
+          done
+
+      - name: Confirm the running backend reports this commit
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+        run: |
+          set -euo pipefail
+
+          # `live` means Render finished, not that the new code is answering.
+          # This is the check that would have caught the original drift, so it
+          # is deliberately an assertion about the SERVING process rather than
+          # about the deploy record.
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
+            # One line on purpose: a multi-line inline script here ends the
+            # YAML block scalar at its first unindented line, and the workflow
+            # stops parsing.
+            running=$(curl --silent --max-time 60 "${API_BASE_URL}/ready" \
+              | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('build',{}).get('commit',''))" \
+              2>/dev/null || echo "")
+
+            if [ "$running" = "${GITHUB_SHA}" ]; then
+              echo "Backend is serving ${running}."
+              exit 0
+            fi
+            echo "  attempt ${attempt}: serving '${running:-unknown}', want ${GITHUB_SHA}"
+            sleep 15
+          done
+
+          echo "::error::The backend reports '${running:-unknown}' at /ready but"
+          echo "::error::this run built ${GITHUB_SHA}. Deploying the client now"
+          echo "::error::would ship the exact drift this workflow prevents."
+          exit 1
+
   deploy:
     name: Build and deploy to Cloudflare Pages
+    needs: backend
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -94,10 +221,14 @@ jobs:
           # domain root (pharmaguard-web.pages.dev/), not a subpath. If you ever
           # serve this under a path, change it here AND redeploy — Flutter bakes
           # the value into index.html at build time.
+          # EXPECTED_BACKEND_SHA is the same commit the backend job just
+          # deployed and verified. The client compares it against /ready on
+          # load and shows a non-blocking notice if they ever differ.
           flutter build web \
             --release \
             --base-href "/" \
-            --dart-define=API_BASE_URL="${API_BASE_URL}"
+            --dart-define=API_BASE_URL="${API_BASE_URL}" \
+            --dart-define=EXPECTED_BACKEND_SHA="${GITHUB_SHA}"
 
       - name: Verify the built bundle points at the backend
         working-directory: app

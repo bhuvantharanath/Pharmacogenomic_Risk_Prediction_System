@@ -102,3 +102,24 @@ const List<String> kDemoDrugs = <String>[
   'warfarin',
   'codeine',
 ];
+
+
+/// The backend commit this bundle was built to talk to.
+///
+/// Set by the deploy workflow as `--dart-define=EXPECTED_BACKEND_SHA=<sha>`,
+/// the same SHA it tells Render to deploy. Empty in a local `flutter run`,
+/// which is correct — there is nothing to compare against a backend you are
+/// editing.
+///
+/// WHY THIS EXISTS. The two halves deploy through different systems: the web
+/// client through GitHub Actions, the backend through a Render API call. For
+/// one release they drifted silently, because Render's `autoDeploy` flag
+/// reports enabled while doing nothing. Nothing anywhere said so — the site
+/// looked fine and simply behaved like an older server. Comparing a compiled-in
+/// SHA against the one the backend reports turns that into a visible fact.
+const String kExpectedBackendSha =
+    String.fromEnvironment('EXPECTED_BACKEND_SHA', defaultValue: '');
+
+/// Short form for display. Full SHAs are unreadable in a banner.
+String shortSha(String sha) =>
+    sha.length >= 7 ? sha.substring(0, 7) : sha;
