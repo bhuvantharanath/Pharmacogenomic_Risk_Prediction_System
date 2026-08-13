@@ -72,7 +72,7 @@ The system's design is a response to that finding. It is built to decline rather
 | External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
 | South Asian (SAS) subgroup, n=75 | CYP2C19 reduced-function **53.3%**, second only to EAS |
 | Backend tests | 771 passing |
-| Client tests | 150 passing |
+| Client tests | 155 passing |
 
 ### The eight findings
 
@@ -177,10 +177,27 @@ Plus a **contradiction guard**: the mapping reads CPIC recommendation *text*, an
 **Deployment (live)**
 - **Web app — <https://pharmaguard-web.pages.dev>** (Cloudflare Pages)
 - **API — <https://pharmaguard-api-baml.onrender.com>** (Render free, Docker)
-- Analyses take **~52 s** on Render's free CPU (p50 51.3 s, p95 53.6 s over 20
-  runs) against ~2.6 s locally, and the instance sleeps after ~15 minutes idle.
-  Both are free-tier properties, not pipeline cost — `/coverage` answers in
-  0.35 s. See [`reports/deployment_verification.md`](reports/deployment_verification.md).
+
+### Performance on the free tier
+
+Measured against the deployed service, not estimated:
+
+| | deployed | local | why |
+| --- | ---: | ---: | --- |
+| **Coverage check** (`/coverage`) | **0.35 s** | ~0.3 s | Pure Python over the VCF header and positions. No JVM. |
+| **Full analysis** (`/analyze`) | **~52 s** — p50 51.27 s, p95 53.56 s (n=20) | ~2.6 s | PharmCAT is a Java program on a shared free-tier CPU, ~20× slower than a laptop core |
+| **Cold start** | **12.85 s** | n/a | The instance sleeps after ~15 min idle |
+
+**The ~20× gap is the hosting, not the pipeline** — the same image, the same
+commit, the same inputs produce byte-identical results in 2.6 s locally. The
+client states the cost while you wait rather than hiding it behind a spinner,
+and the coverage census gives real computed feedback in under a second before
+the long call starts.
+
+One analysis runs at a time (two concurrent PharmCAT invocations measured 594 MB
+against a 512 MB instance), so a second visitor is queued and a third gets an
+honest `503`. Detail in
+[`reports/deployment_verification.md`](reports/deployment_verification.md).
 
 ---
 

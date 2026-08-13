@@ -8,6 +8,48 @@ presentation now run the identical code path, and `test_demo_script.py` covers i
 
 ---
 
+## Where to demo, and why — read this first
+
+**Demo locally. Show the deployed URL as proof it is live.**
+
+Both exist and both work. They are not interchangeable for a five-minute slot:
+
+| | local | deployed |
+| --- | ---: | ---: |
+| One analysis | **~2.6 s** | **~52 s** (p50 51.27 s, p95 53.56 s, n=20) |
+| Coverage check | ~0.3 s | **0.35 s** |
+| Cold start | n/a | **12.85 s** after ~15 min idle |
+| S1–S6 end to end | well under a minute | **~5 minutes of waiting** |
+
+S1–S6 against the deployed backend is **five minutes of standing in silence** —
+the entire slot, spent watching spinners. So:
+
+* **run the scenarios locally**, where the pipeline answers in seconds;
+* **have `https://pharmaguard-web.pages.dev` open in a second tab**, already
+  warmed, as evidence it is genuinely deployed and reachable;
+* **say the latency out loud** rather than hoping nobody asks.
+
+### Say it like this
+
+> "This is running locally so we are not watching a spinner. It is also
+> deployed — that tab — and there it takes about 50 seconds per analysis,
+> because the free tier gives a shared CPU and the genotype caller is a JVM.
+> The pipeline is the same; the CPU is not. The coverage check is 0.35 seconds
+> either way, which is the part you would actually wait for."
+
+That answer is stronger than avoiding the topic. It shows the number was
+measured, it names the cause, and it distinguishes the hosting from the work —
+which is exactly the distinction the project is about everywhere else.
+
+**Warm the deployed tab before you start.** It sleeps after ~15 minutes idle and
+the first request pays 12.85 s. Load it during the framing sentence.
+
+**Do not run S1–S6 against the deployed backend live.** Two concurrent analyses
+queue behind one another, and a third is refused with a 503 after 90 s. That is
+correct behaviour and a terrible demo.
+
+---
+
 ## Pre-flight
 
 **1 · JDK 17.** Satisfies both PharmCAT (needs 17+) and the Android Gradle build

@@ -911,3 +911,132 @@ most likely to be read as meaning more than it does.
 The coverage gate is the check that faces the input, and until this pass it
 asked the wrong question of DPYD — how much of the gene was reported, not
 whether the positions capable of changing the answer were among it.
+
+
+---
+
+## Evidence 12 — environment parity is a verification edge
+
+**The strongest instance yet of the project's recurring finding, because here
+the check did not merely miss something. It was passing, continuously, about a
+different program than the one in production.**
+
+### What happened
+
+`pharmcat_runner.resolve_invoker()` prefers a direct jar invocation and falls
+back to the `pharmcat_pipeline` wrapper. `find_jar()` locates the jar by glob:
+`pharmcat-*-all.jar`, across a fixed list of directories.
+
+The deployment base image, `pgkb/pharmcat:3.4.0`, installs the jar as
+**`/pharmcat/pharmcat.jar`** — a filename that glob does not match, in a
+directory not on the list. So in production, resolution fell through to the
+wrapper.
+
+The wrapper was not a neutral substitute. It runs PharmCAT's **VCF
+preprocessor** before the pipeline; the jar path does not. Every validation
+number in this repository — integration fidelity, the coverage sweep, the 294
+corrected labels, the 105-combination label map — was produced through
+`java -jar` with no preprocessing.
+
+**The container was running an invocation the test suite has never executed.**
+
+### Why nothing caught it
+
+Both paths work. `/ready` was green. `/analyze` returned 200 with well-formed
+results. 771 backend tests passed on every commit. The suite exercised the jar
+path because the developer machine happens to have a jar matching the glob, put
+there by `fetch_reference_data.py --fetch-tools`.
+
+The test environment and the production environment disagreed about which code
+would run, and **nothing in either was capable of noticing**, because each was
+internally consistent. This is the same shape as Evidence 1–11 — a check whose
+scope excludes the thing that can go wrong — but relocated: the gap is not
+inside the program, it is **between two environments that never meet**.
+
+### The sharper point: this specific dependency was removed once already
+
+`pharmcat_pipeline` was deliberately demoted to an optional fast path precisely
+because a wrapper script *can be silently absent*, and the jar is what every
+install actually has. That reasoning is recorded in `pharmcat_runner`'s own
+docstring.
+
+Production then quietly restored the dependency — not by anyone changing that
+decision, but because the environment supplied the wrapper and withheld the jar
+*under the name the code looked for*. **A fix verified in one environment can be
+silently undone by another.** The decision survived in the source and died in
+the image.
+
+### The edge, stated generally
+
+> Every verification result carries an unstated premise: *that the environment
+> running the check is the environment that will run the code.* Where that
+> premise fails, the result transfers nothing — however green, however
+> comprehensive, however often repeated.
+
+Percentage coverage asked *how much*, not *which* (Evidence 10). Entity
+provenance asked *do the words appear*, not *is the claim true* (Evidence 1–8).
+Documentation guards asked *is a number written down*, not *is it still true*
+(Evidence 9). This asks *does it pass here*, not *is "here" where it runs*.
+
+### The fix, and its shape
+
+Configuration, not code: `ENV PHARMCAT_JAR=/pharmcat/pharmcat.jar`, plus a
+build-time `sha256sum -c` against the digest of the jar the repository validated
+against (`9317ef63…`, byte-identical to
+`test-data/reference/tools/pharmcat-3.4.0-all.jar`) and a `-version` grep.
+
+The checksum is the load-bearing half. Pointing at a path fixes today's image;
+verifying the bytes fails the **build** if a future base image ships a different
+jar under the same name — which is the failure mode that produced this finding
+in the first place, one layer up.
+
+**Found by running the test suite inside the production image for the first
+time.** That step existed in the deployment brief and had never been executed.
+
+### Count of instances
+
+| | |
+| --- | --- |
+| Prior surfacings | 11 |
+| **With environment parity** | **12** |
+| Layers now implicated | model output · retrieval · label mapping · coverage gate · documentation · **execution environment** |
+
+
+---
+
+## Running tally — checks that passed while checking nothing
+
+Kept because the pattern outlived every individual instance of it. Each of
+these was **green**, and each was green for a reason unrelated to the property
+it claimed to establish. They are collected in one place so the shape stays
+recognisable, rather than being rediscovered each time under a new name.
+
+| # | The check | Why it passed without checking | Found by |
+| --- | --- | --- | --- |
+| 1 | Entity provenance over generated prose | Matched words, not claims | Adversarial arms |
+| 2 | Integration fidelity, 100.0000% | Faithful rendering of a call it could not evaluate | Evidence 11 |
+| 3 | DPYD 20% coverage threshold, 0% error | Swept a cohort where the variant is rare | Evidence 10 |
+| 4 | Sabotage tests measuring "output" | Compared the risk label alone, not confidence or action text | Audit A correction |
+| 5 | Documentation numbers | Nothing connected the sentence to the behaviour | Evidence 9 |
+| 6 | `test_documented_numbers` test count | Regexed for output `pytest -q` never prints, then **skipped** on the parse failure | Sabotage of the new guard |
+| 7 | Per-gene percentage pairing | Checked the concatenation of all docs, so one file's correct value covered another's wrong one | Same |
+| 8 | The conservative-direction check | Asked whether a word appeared *anywhere in the file*, not in the sentence making the claim | Same |
+| 9 | The whole backend suite, re: PharmCAT | Ran the jar path; production ran the wrapper | Evidence 12 |
+| 10 | Deployed S6 multidrug scenario | Sent five repeated form parts where the API takes one comma-separated field, so it tested **one** drug and matched | Phase 8 §6 |
+| 11 | Deployed mouse-genome refusal | Rewrote a `##reference` line the fixture does not contain, so the payload was unmodified human data | Phase 8 §6 |
+| 12 | Deployed S1–S6 diff | Compared against captured artifacts predating the branch, reporting six "divergences" that were the branch's own work | Phase 8 §6 |
+| 13 | The About-screen sample-count guard | `fidelity.get("samples", n)` defaulted to `n`, reducing the assertion to `n <= n` | Sabotage of the new guard |
+
+**Three of the last four are mine, from this phase, and all three are the same
+error**: a harness that agreed with itself. #10 and #11 constructed a payload
+that did not contain the thing under test; #12 compared against a baseline that
+could not isolate the variable. In each case the *system* was correct and the
+*check* was not — which is the exact inversion of the failure everyone expects,
+and the reason a green result is evidence about the check as much as about the
+code.
+
+**The generalisation.** Nine of thirteen were found by deliberately breaking
+something and confirming the check went red. Four were found by an audit looking
+for something else. **None was found by the check itself.** A check cannot
+report that its own scope is wrong, so the only reliable interrogation is
+adversarial: plant the defect, and see whether the guard notices.
