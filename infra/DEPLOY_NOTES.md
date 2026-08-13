@@ -173,6 +173,31 @@ load, showing a non-blocking notice naming both if they differ. Lockstep
 prevents the drift; the notice is what makes a future drift say so instead of
 being inferred from odd behaviour.
 
+### Pages PREVIEW deployments cannot reach the backend
+
+`CORS_ALLOWED_ORIGINS` is exactly `https://pharmaguard-web.pages.dev`. Every
+preview deployment gets its own origin — `<hash>.pharmaguard-web.pages.dev` or
+`<branch>.pharmaguard-web.pages.dev` — which is **not** on the allowlist, so the
+browser blocks every call:
+
+```
+Access to XMLHttpRequest at '…/health' from origin
+'https://skew-proof.pharmaguard-web.pages.dev' has been blocked by CORS policy
+```
+
+The app then sits in "Waking up the analysis server…" forever, because a blocked
+request and an asleep server look identical from the client's side.
+
+**This is correct behaviour, not a bug** — a wildcard allowlist would let any
+Pages project on any account call this backend. But it means a preview build is
+only good for *looking at the UI*: anything requiring the API must be tested
+against production, or against a local backend with the origin added to
+`infra/local-dev.env`.
+
+Discovered trying to demonstrate the version-mismatch notice from a preview
+deployment. The demonstration failed for a reason that had nothing to do with
+the notice.
+
 ### Redeploying
 
 ```bash
