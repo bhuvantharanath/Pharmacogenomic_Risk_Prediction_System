@@ -82,6 +82,8 @@ LLM; `requirements-llm.txt` is not installed in the image.
 | Container peak, 3 concurrent, 512 MB limit | **252.8 MiB (49%)** |
 | Idle | 40.2 MiB |
 | Container cold start (image local) | **1.19 s** to healthy `/health` |
+| **Render cold start after ~15 min idle** | **12.85 s** — much better than the ~1 min assumed; Render keeps the image on the host |
+| **Warm `/analyze` on Render** | **p50 51.3 s, p95 53.6 s** (n=20) vs ~2.6 s locally — free CPU is ~20× slower |
 | Analysis latency in-container | ~2.6 s |
 | In-container suite | 747 passed, 3 failed, 5 skipped — all 3 are the absent spaCy model, excluded from the production image by design |
 

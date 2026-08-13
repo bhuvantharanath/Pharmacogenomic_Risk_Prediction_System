@@ -159,8 +159,35 @@ in `pharmcat_runner` holds on both paths.
 
 ## Cold start
 
-See the end of this file — measured after a natural ~15-minute spin-down rather
-than by forcing a suspend/resume, so it describes what a visitor experiences.
+Measured after a natural 17-minute idle rather than by forcing a
+suspend/resume, so the number describes what a visitor actually experiences.
 
-Local container start (image already present) was **1.19 s**; the platform figure
-additionally includes scheduling and pulling a 6 GB image.
+| | |
+| --- | --- |
+| **Cold `/health` after spin-down** | **12.85 s** (first attempt, no retries) |
+| Warm `/health` immediately after | 0.82 s |
+| Local container start, image present | 1.19 s |
+
+12.85 s is much better than the ~1 minute `DEPLOY_NOTES` assumed for a ~2 GB
+image — Render keeps the image on the host rather than re-pulling it, so the
+cost is container start and app boot, not the 6 GB download.
+
+It still exceeds the client's `_wakingThreshold` of 2 s, so the "waking up"
+banner does appear, which is the behaviour it was built for.
+
+## The deployed client, in a real browser
+
+Loaded `https://pharmaguard-web.pages.dev` in a browser and confirmed:
+
+* the app renders — disclaimer banner, upload control, drug field, the
+  CPIC-covered drug chips;
+* **the backend-status indicator resolves to healthy**, which is the check that
+  matters here: it means the browser reached
+  `pharmaguard-api-baml.onrender.com` and the response passed CORS. Those are
+  the two things that can only be wrong in a deployment, and both are right.
+
+The remaining client states in §6 — the coverage census, the four `Unknown`
+reasons, the 429 rendering and the waking banner — are client logic already
+covered by the 150 client tests, including six added for the three 503/429
+states. Re-driving each through the UI costs ~52 s per analysis and exercises no
+deployment-specific path beyond what the healthy status already establishes.
