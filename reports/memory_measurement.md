@@ -11,10 +11,11 @@ goes through `POST /analyze`.
 
 ## The caveat that matters
 
-**This is a native measurement, not a containerised one.** No container runtime
-is installed on this host (`docker`, `podman`, `colima`, `nerdctl`, `lima`,
-`orbstack` — all absent), so the brief's `docker stats` step could not be run as
-written. Resident memory of the same processes is the same quantity either way;
+**These are native measurements, not containerised ones.** No container runtime
+was installed on this host when they were taken (`docker`, `podman`, `colima`,
+`nerdctl`, `lima`, `orbstack` — all absent), so the brief's `docker stats` step
+could not be run as written. colima was installed afterwards; the container
+figures are in `reports/container_parity.md`. Resident memory of the same processes is the same quantity either way;
 what is *not* captured is the container's own overhead and the base image's
 page cache. Treat these as a **lower bound** on container RSS.
 
@@ -149,16 +150,17 @@ a scenario that needs eight coordinated ones.
 * **Concurrent traffic does not.** Two overlapping analyses exceed the limit at
   every heap setting that works at all.
 
-Bounding PharmCAT to one concurrent invocation would fix it — an `asyncio.Semaphore(1)`
-around the subprocess call — but that is an application behaviour change, which
-Phase 8 excludes. It is recorded here as the decision, not taken.
+Bounding PharmCAT to one concurrent invocation fixes it. That is an application
+behaviour change, which Phase 8 excluded by default; it was put to the project
+owner with these measurements and **approved**, scoped to the subprocess only.
+Implemented in `pharmcat_runner._exec`; the result is the "with the gate"
+section above. **Render is therefore the host.**
 
-## Not measured
+## Not measured here
 
-* **Image size.** The Dockerfile's own comment estimates ~1.97 GB base
-  (`pgkb/pharmcat:3.4.0`) plus 60–80 MB of our layers. Unverified — no runtime
-  to build with.
-* **Container cold start.** Native uvicorn startup to first healthy `/health`
-  was **0.26–0.54 s**, which excludes image pull, container create and JVM
-  warm-up on the host's first request. Not comparable to a platform cold start.
-* **In-container test run** (Phase 8 §2) — blocked on the same missing runtime.
+Native uvicorn startup to first healthy `/health` was **0.26–0.54 s**, which
+excludes image pull, container create and JVM warm-up. It is not comparable to a
+platform cold start and should not be quoted as one.
+
+Image size, container cold start and the in-container test run are Phase 8 §2 —
+see `reports/container_parity.md`.
