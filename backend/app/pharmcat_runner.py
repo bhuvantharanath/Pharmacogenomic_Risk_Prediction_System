@@ -73,6 +73,56 @@ _JAR_GLOB = "pharmcat-*-all.jar"
 # a generous ceiling that still stops a wedged JVM from pinning a worker.
 PHARMCAT_TIMEOUT_SECONDS = float(os.environ.get("PHARMCAT_TIMEOUT_SECONDS", "120"))
 
+# --------------------------------------------------------------------------- #
+# Concurrency: how many JVMs may exist at once
+#
+# MEASURED, NOT GUESSED. `reports/memory_measurement.md`, 2026-08-13:
+# each in-flight /analyze spawns its own JVM, and peak resident memory across
+# the process tree scales with the number in flight —
+#
+#     1 request   322 MB      2 requests   594 MB      3 requests   910 MB
+#
+# against a 512 MB Render instance. The second concurrent analysis does not
+# return an error on a small host; the kernel OOM-kills the container and every
+# in-flight request dies with it, including the one that was nearly finished.
+#
+# One uvicorn worker was never a bound on this. A worker is an event loop, and
+# `asyncio.create_subprocess_exec` returns to the loop while the JVM runs, so a
+# single worker happily holds N subprocesses. This semaphore is the actual bound.
+#
+# RELAX THIS ON A LARGER INSTANCE. At 2 GiB the measured figures allow 3-4
+# concurrent invocations. The value is an environment variable precisely so that
+# moving hosts is a config change rather than a code change.
+MAX_CONCURRENT_PHARMCAT = int(os.environ.get("MAX_CONCURRENT_PHARMCAT", "1"))
+
+# How long a request may wait for a slot before giving up. Bounded on purpose:
+# an unbounded wait is indistinguishable from a hang at the client, and a client
+# that cannot tell "busy" from "broken" shows the user the wrong thing. 25s is
+# comfortably longer than a normal analysis (~1.5-3s measured) so a queued
+# request nearly always gets its turn, and short enough that a genuinely wedged
+# server says so while the user is still watching.
+PHARMCAT_QUEUE_TIMEOUT_SECONDS = float(
+    os.environ.get("PHARMCAT_QUEUE_TIMEOUT_SECONDS", "25"))
+
+#: What to tell a client to do about a 503-busy. Seconds.
+PHARMCAT_RETRY_AFTER_SECONDS = int(
+    os.environ.get("PHARMCAT_RETRY_AFTER_SECONDS", "30"))
+
+#: Created lazily: an asyncio primitive built at import time can bind to the
+#: wrong event loop when tests create their own.
+_pharmcat_slots: asyncio.Semaphore | None = None
+_slots_loop: object | None = None
+
+
+def _slots() -> asyncio.Semaphore:
+    """The concurrency gate, bound to the running loop."""
+    global _pharmcat_slots, _slots_loop
+    loop = asyncio.get_running_loop()
+    if _pharmcat_slots is None or _slots_loop is not loop:
+        _pharmcat_slots = asyncio.Semaphore(MAX_CONCURRENT_PHARMCAT)
+        _slots_loop = loop
+    return _pharmcat_slots
+
 # The key under `drugs` holding CPIC content. PharmCAT also emits DPWG and FDA
 # sections; PharmaGuard is CPIC-only by design, so we read just this one.
 CPIC_SECTION = "CPIC Guideline Annotation"
@@ -136,6 +186,24 @@ class PharmcatExecutionError(RuntimeError):
         super().__init__(message)
         self.message = message
         self.detail = detail
+
+
+class PharmcatBusyError(PharmcatExecutionError):
+    """
+    Every analysis slot was occupied and the wait ran out.
+
+    A SEPARATE TYPE, not a flag on the one above, because the two mean opposite
+    things to the person waiting. `PharmcatExecutionError` says something is
+    wrong — with the file, or with this deployment. This one says nothing is
+    wrong at all: the server is small, someone else is mid-analysis, and trying
+    again shortly will work. Collapsing them would make a queue look like a
+    fault.
+    """
+
+    def __init__(self, message: str, *, detail: str = "",
+                 retry_after: int = PHARMCAT_RETRY_AFTER_SECONDS) -> None:
+        super().__init__(message, detail=detail)
+        self.retry_after = retry_after
 
 
 @dataclass
@@ -353,6 +421,39 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
 
 
 async def _exec(command: list[str]) -> PharmcatInvocation:
+    """
+    Run `command` under the concurrency gate, enforcing the timeout.
+
+    THE GATE WRAPS THIS FUNCTION AND NOTHING ELSE. Coverage assessment, label
+    mapping, explanation lookup and response assembly are pure Python holding
+    tens of KB, and they stay fully concurrent — serialising them would cost
+    throughput to solve a problem they are not part of. The JVM is the whole of
+    the memory cost, so the JVM is the whole of what queues.
+    """
+    slots = _slots()
+    try:
+        await asyncio.wait_for(slots.acquire(),
+                               timeout=PHARMCAT_QUEUE_TIMEOUT_SECONDS)
+    except asyncio.TimeoutError as exc:
+        raise PharmcatBusyError(
+            "The server is busy with another analysis and could not start "
+            f"yours within {PHARMCAT_QUEUE_TIMEOUT_SECONDS:.0f} seconds. "
+            "Nothing is wrong with your file. Please try again in a moment.",
+            detail=(f"no slot within {PHARMCAT_QUEUE_TIMEOUT_SECONDS}s; "
+                    f"MAX_CONCURRENT_PHARMCAT={MAX_CONCURRENT_PHARMCAT}"),
+        ) from exc
+
+    try:
+        return await _exec_unguarded(command)
+    finally:
+        # `finally`, not a success path: a timeout, a kill or an unexpected
+        # exception must all give the slot back. A leaked permit is permanent —
+        # the next request waits the full queue timeout and then reports a busy
+        # server that is in fact completely idle.
+        slots.release()
+
+
+async def _exec_unguarded(command: list[str]) -> PharmcatInvocation:
     """Run `command`, enforcing the timeout and killing the process group."""
     try:
         process = await asyncio.create_subprocess_exec(

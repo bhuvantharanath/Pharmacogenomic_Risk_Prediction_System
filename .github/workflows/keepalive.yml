@@ -7,10 +7,9 @@
 #   leave before it finishes. Pinging /health every 10 minutes keeps the
 #   container resident so the demo is instant.
 #
-# TURN THIS OFF WHEN YOU ARE NOT DEMOING.
-#   It exists for the submission window and the video recording. Outside those,
-#   disable it (Actions tab -> Keepalive -> "..." -> Disable workflow), or
-#   delete the `schedule` trigger. Keeping a free container awake around the
+# IT IS OFF BY DEFAULT. Turn it ON only for a demo window.
+#   Uncomment the `schedule:` block below for the submission window or the
+#   video recording, and comment it back out afterwards. Keeping a free container awake around the
 #   clock burns quota that nobody is watching, and on hosts that meter runtime
 #   (Render bills 750 instance-hours/month) it will exhaust the month.
 #
@@ -29,10 +28,21 @@
 name: Keepalive
 
 on:
-  schedule:
-    # Every 10 minutes. Cron is UTC.
-    - cron: "*/10 * * * *"
-  # So you can warm the Space by hand right before recording.
+  # THE SCHEDULE IS COMMENTED OUT ON PURPOSE. Uncomment it for a demo window,
+  # and comment it back afterwards.
+  #
+  # Render's free tier allows 750 instance-hours against a month of ~730 hours.
+  # A permanent keepalive holds the container resident essentially all month,
+  # leaving almost no margin — and any second service, or a re-deploy that
+  # overlaps, tips it over. Bandwidth overages are billable on free accounts.
+  #
+  # Left as `workflow_dispatch` only, so warming is a deliberate act before a
+  # recording or a viva rather than a background cost nobody is watching.
+  #
+  # schedule:
+  #   - cron: "*/10 * * * *"     # every 10 minutes, UTC
+
+  # Warm the backend by hand right before presenting.
   workflow_dispatch:
 
 permissions:
@@ -53,7 +63,7 @@ jobs:
         env:
           # Repository variable (not a secret — it is a public URL).
           # Settings -> Secrets and variables -> Actions -> Variables:
-          #   BACKEND_URL = https://YOURNAME-pharmaguard.hf.space
+          #   BACKEND_URL = https://pharmaguard-api-baml.onrender.com
           BACKEND_URL: ${{ vars.BACKEND_URL }}
         run: |
           set -uo pipefail

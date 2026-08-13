@@ -71,8 +71,8 @@ The system's design is a response to that finding. It is built to decline rather
 | Usable rate, polymorphic-filtered research slices | **12.58%** — a property of that input format, not a pipeline failure rate |
 | External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
 | South Asian (SAS) subgroup, n=75 | CYP2C19 reduced-function **53.3%**, second only to EAS |
-| Backend tests | 755 passing |
-| Client tests | 144 passing |
+| Backend tests | 771 passing |
+| Client tests | 150 passing |
 
 ### The eight findings
 
@@ -174,8 +174,13 @@ Plus a **contradiction guard**: the mapping reads CPIC recommendation *text*, an
 **Testing / CI**
 - pytest (backend) · flutter test (client) · GitHub Actions
 
-**Deployment (planned, Phase 8)**
-- Docker · Render or Google Cloud Run (backend) · Cloudflare Pages (web)
+**Deployment (live)**
+- **Web app — <https://pharmaguard-web.pages.dev>** (Cloudflare Pages)
+- **API — <https://pharmaguard-api-baml.onrender.com>** (Render free, Docker)
+- Analyses take **~52 s** on Render's free CPU (p50 51.3 s, p95 53.6 s over 20
+  runs) against ~2.6 s locally, and the instance sleeps after ~15 minutes idle.
+  Both are free-tier properties, not pipeline cost — `/coverage` answers in
+  0.35 s. See [`reports/deployment_verification.md`](reports/deployment_verification.md).
 
 ---
 
@@ -412,12 +417,12 @@ Release gates, each exiting non-zero on failure:
 | 1 — Backend/client seam | ✅ Complete |
 | 2 — PharmCAT + CPIC mapping | ✅ Complete |
 | 3 — Grounded explanations + guard | ✅ Complete |
-| 4 — Deployment code | ⚠️ Written and audited; nothing deployed |
+| 4 — Deployment code | ✅ Complete |
 | 5A — Real LLM generation | ⚠️ Generated; adjudication outstanding |
 | 5B — Warfarin regressor + SHAP | ⏳ Optional |
 | 6 — Validation | ✅ Complete |
 | 7 — Adjudication, docs, demo | 🔄 In progress |
-| 8 — Deployment | ⏳ Last |
+| 8 — Deployment | ✅ **Live** — backend on Render, web on Cloudflare Pages; S1–S6 verified against the deployed URLs |
 
 **Adjudication is the one open release gate:** 179 claim sentences, 124 adjudicated, **55 outstanding**. The gate correctly exits non-zero until complete.
 
@@ -435,7 +440,14 @@ Stated plainly, because declared limitations cost less than concealed ones.
 - **A coverage percentage is a proxy, and DPYD is no longer exempt from identity.** Position *identity* matters, not count: DPYD used to clear a 20% threshold at 37.3% coverage with 0% measured error while CYP2C9 failed at 19.3%. That 0% came from a sweep over a cohort where DPYD's reduced-function variants are rare, so it could not detect the failure the threshold exists to exclude — absence of observed error is not absence of possible error. Every gene now additionally requires each **decision-critical position**, derived mechanically from PharmCAT's own function assignments; DPYD carries 8 of 28 and is **gated**. Percentages remain in place as a second, weaker condition; replacing them entirely with function-weighted coverage is still future work.
 - **`Indeterminate` and `No Result` share an enum value.** The falsehood was removed from user-facing prose and the distinction is preserved in `quality_metrics.warnings`, but a client cannot machine-check it. Deferred deliberately: clinical action is identical in both states.
 - **No persistence or history.** Results are not stored; they vanish on reload. This follows from the no-retention privacy design.
-- **Not deployed.** Deployment is Phase 8, deliberately last.
+- **Deployed on free tiers, with the costs that implies.** An analysis takes
+  ~52 s on Render's free CPU (~20× the local 2.6 s), and the instance sleeps
+  after ~15 minutes idle so the first visitor pays a cold start. Neither is a
+  property of the pipeline; both are what the hosting costs nothing.
+- **One analysis runs at a time.** Two concurrent PharmCAT invocations measured
+  594 MB against a 512 MB instance, so a second visitor is queued and a third
+  is refused with an honest `503 SERVER_BUSY` rather than the container being
+  OOM-killed for everyone.
 - **iOS App Store distribution out of scope** — requires the paid Apple Developer Program. Simulator and local device only.
 
 ---
