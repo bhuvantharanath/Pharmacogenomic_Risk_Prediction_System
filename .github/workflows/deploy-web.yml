@@ -10,7 +10,7 @@
 # REQUIRED REPOSITORY SECRETS
 #   CLOUDFLARE_API_TOKEN   Account -> Cloudflare Pages -> Edit
 #   CLOUDFLARE_ACCOUNT_ID  Cloudflare dashboard -> Workers & Pages -> Account ID
-#   API_BASE_URL           https://pharmaguard-api.onrender.com
+#   API_BASE_URL           https://pharmaguard-api-baml.onrender.com
 #
 #   API_BASE_URL is a secret only so it is easy to rotate — it is a public URL
 #   and appears in the shipped JavaScript regardless. Nothing sensitive is or

@@ -13,20 +13,48 @@ preference — see `reports/memory_measurement.md` and
 
 | | name | URL |
 | --- | --- | --- |
-| Backend | `pharmaguard-api` | `https://pharmaguard-api.onrender.com` |
+| Backend | `pharmaguard-api` | **`https://pharmaguard-api-baml.onrender.com`** |
 | Frontend | `pharmaguard-web` | `https://pharmaguard-web.pages.dev` |
 
-### Fix the names first — it breaks a circular dependency
+> ### ⚠️ Render does NOT guarantee `<service>.onrender.com`
+>
+> This was the plan's central assumption and **it is false**. `onrender.com`
+> subdomains are globally unique across all of Render, so when `pharmaguard-api`
+> turned out to be taken, Render silently appended a random suffix and returned
+> `pharmaguard-api-baml.onrender.com`. The service is still *named*
+> `pharmaguard-api`; only the hostname differs.
+>
+> **Consequences.** You cannot compile `API_BASE_URL` into the frontend before
+> the backend exists, because you do not know the hostname until Render answers.
+> The dependency is only half-broken: `CORS_ALLOWED_ORIGINS` can still be set in
+> advance (Pages *does* honour `<project>.pages.dev`), but the frontend build
+> must wait for the backend to be created.
+>
+> The suffix is assigned at creation. **Delete and recreate the service and you
+> may get a different one**, which silently breaks every already-built client.
+> Read the URL back from the API after creating the service — never assume it:
+>
+> ```bash
+> curl -s -H "Authorization: Bearer $RENDER_API_KEY" \
+>   https://api.render.com/v1/services/<id> | python3 -c \
+>   'import json,sys; print(json.load(sys.stdin)["serviceDetails"]["url"])'
+> ```
+
+### Fix the names first — it half-breaks a circular dependency
 
 The backend needs `CORS_ALLOWED_ORIGINS` set to the frontend's origin. The
 frontend needs `API_BASE_URL` baked in at compile time pointing at the backend.
 Deploy either one first and it is configured wrong.
 
-There is no ordering that solves this, because it is not an ordering problem.
-Both hosts derive the URL **deterministically from a name you choose**:
-Render serves `<service>.onrender.com`, Pages serves `<project>.pages.dev`. So
-pick both names up front, write both URLs down, and configure both services
-before either exists. Neither has to be deployed for the other to be correct.
+The idea was that both hosts derive the URL deterministically from a name you
+choose, so you could pick both names up front and configure each service before
+either existed. **That holds for Cloudflare Pages and not for Render** — see the
+warning above. In practice:
+
+* `CORS_ALLOWED_ORIGINS` **can** be set before the frontend exists, because
+  `pharmaguard-web.pages.dev` is predictable from the project name.
+* `API_BASE_URL` **cannot** be set before the backend exists. Create the Render
+  service first, read its assigned URL back, then build the frontend.
 
 The corollary: **renaming either service silently breaks the pair.** The
 frontend's URL is compiled into the bundle, so a renamed backend keeps serving a
@@ -90,8 +118,8 @@ window or a recording; comment it back afterwards.
 # Frontend: rebuild with the URL compiled in, then upload.
 cd app
 flutter build web --release --base-href "/" \
-  --dart-define=API_BASE_URL=https://pharmaguard-api.onrender.com
-grep -rqF "https://pharmaguard-api.onrender.com" build/web/ || echo "DEFINE DID NOT APPLY"
+  --dart-define=API_BASE_URL=https://pharmaguard-api-baml.onrender.com
+grep -rqF "https://pharmaguard-api-baml.onrender.com" build/web/ || echo "DEFINE DID NOT APPLY"
 npx wrangler pages deploy build/web --project-name=pharmaguard-web
 ```
 

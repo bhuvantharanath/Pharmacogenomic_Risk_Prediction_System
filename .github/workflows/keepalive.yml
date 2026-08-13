@@ -63,7 +63,7 @@ jobs:
         env:
           # Repository variable (not a secret — it is a public URL).
           # Settings -> Secrets and variables -> Actions -> Variables:
-          #   BACKEND_URL = https://pharmaguard-api.onrender.com
+          #   BACKEND_URL = https://pharmaguard-api-baml.onrender.com
           BACKEND_URL: ${{ vars.BACKEND_URL }}
         run: |
           set -uo pipefail

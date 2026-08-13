@@ -12,10 +12,15 @@
 #   Render reads `render.yaml` from the repository ROOT by default, so this file
 #   is symlinked/copied there, or you point the Blueprint at `infra/render.yaml`.
 #
-# THE NAME IS LOAD-BEARING
-#   `pharmaguard-api` fixes the URL at https://pharmaguard-api.onrender.com,
-#   which is compiled into the Flutter bundle as API_BASE_URL. Renaming the
-#   service silently breaks every deployed client until the frontend is rebuilt.
+# THE NAME DOES NOT FIX THE URL — VERIFIED THE HARD WAY
+#   `onrender.com` subdomains are globally unique, so a taken name gets a random
+#   suffix. This service is named `pharmaguard-api` and answers on
+#   https://pharmaguard-api-baml.onrender.com. The suffix is assigned at
+#   creation, so deleting and recreating the service can change it.
+#
+#   That URL is compiled into the Flutter bundle as API_BASE_URL, so read it
+#   back from the API after creating the service rather than predicting it.
+#   Renaming or recreating silently breaks every already-built client.
 #
 # Verified against https://render.com/docs/blueprint-spec on 2026-08-13.
 
@@ -71,12 +76,21 @@ services:
         value: "1"
 
       # How long a queued request waits before being told the server is busy.
-      # Bounded on purpose: an unbounded wait is indistinguishable from a hang
-      # at the client. Analyses take ~2.6 s in this container, so 25 s lets a
-      # queued request through comfortably while still answering if something
-      # is genuinely wedged.
+      # Bounded on purpose: an unbounded wait is indistinguishable from a hang.
+      #
+      # WAS 25, WHICH WAS WRONG ON THIS HOST. That value came from local
+      # measurement, where an analysis takes ~2.6 s. Render's free CPU is
+      # ~20x slower: measured p50 51.5 s, p95 54.5 s over 20 runs. A queued
+      # request therefore timed out at 25 s having never had a chance — three
+      # concurrent requests produced 503, 503, 200 with both failures landing
+      # at exactly 25.4 s.
+      #
+      # 90 s lets ONE request wait out the analysis ahead of it (52 s + margin)
+      # and sheds anything deeper: a queue of one, an honest refusal beyond.
+      # Raise it only alongside the client's receiveTimeout, which must exceed
+      # queue wait + its own analysis.
       - key: PHARMCAT_QUEUE_TIMEOUT_SECONDS
-        value: "25"
+        value: "90"
 
       # ------------------------------------------------------------------ #
       # Wiring

@@ -52,9 +52,22 @@ class PharmaGuardApi {
               // Short: this is the cold-start ping's timeout too, and the
               // wake-up loop wants to retry rather than block for a minute.
               connectTimeout: const Duration(seconds: 10),
-              // Generous: Phase 2 runs PharmCAT (a JVM process) inside this call.
-              receiveTimeout: const Duration(seconds: 60),
-              sendTimeout: const Duration(seconds: 60),
+              // Generous: this call runs PharmCAT (a JVM process) end to end.
+              //
+              // 60 s was NOT generous enough once deployed. On Render's free
+              // CPU an analysis measures p50 51.5 s / p95 54.5 s — against a
+              // 60 s budget that is ~5 s of margin, so ordinary variance made
+              // the client report a network error for work the server had
+              // already completed. Worse, the server runs one analysis at a
+              // time (MAX_CONCURRENT_PHARMCAT=1), so a queued caller waits up
+              // to 90 s for its slot and only then starts its own ~52 s.
+              //
+              // 180 s covers queue wait + analysis + margin. It is a ceiling
+              // for a genuinely wedged server, not an expected wait: the UI
+              // shows progress throughout, and a merely busy server answers
+              // 503 SERVER_BUSY long before this fires.
+              receiveTimeout: const Duration(seconds: 180),
+              sendTimeout: const Duration(seconds: 180),
               // We want to inspect error bodies ourselves rather than have Dio
               // throw before we can read FastAPI's `detail` field.
               //
