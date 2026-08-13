@@ -111,11 +111,39 @@ re-deploys, tips it over. Bandwidth overages are billable even on free accounts.
 **commented out** and `workflow_dispatch` only. Uncomment it for the submission
 window or a recording; comment it back afterwards.
 
+### ⚠️ `autoDeploy: yes` does NOT deploy on push here
+
+The service reports `autoDeploy: "yes"`, and **no deploy fires when you push to
+`main`.** Verified: pushed `c108c3e → 1afb949`, waited 10 minutes, the service
+was still serving `c108c3e`. An env-var change did not trigger one either.
+
+The cause is how the service was created: from a **public repo URL via the REST
+API**, with no GitHub App installation on the repository. Render's auto-deploy
+is webhook-driven, and without the App connection there is no webhook — so the
+flag is set, honoured in the UI, and inert.
+
+**So a push is not a deploy.** The frontend *does* redeploy on push, because
+that runs through GitHub Actions (`deploy-web.yml`) rather than Render. The
+resulting failure mode is the dangerous one: **the web client updates and the
+backend does not**, leaving a new frontend talking to old server code.
+
+Either connect the GitHub App in the Render dashboard, or treat backend deploys
+as explicitly manual — and always confirm the commit afterwards:
+
+```bash
+curl -s -H "Authorization: Bearer $RENDER_API_KEY" \
+  "https://api.render.com/v1/services/<id>/deploys?limit=1" \
+  | python3 -c 'import json,sys; d=json.load(sys.stdin)[0]["deploy"]; print(d["status"], d["commit"]["id"])'
+```
+
 ### Redeploying
 
 ```bash
-# Backend: Render rebuilds on push to the tracked branch. To force one:
-#   Render dashboard -> pharmaguard-api -> Manual Deploy -> Deploy latest commit
+# Backend: NOT automatic — see the warning above. Trigger it explicitly:
+curl -s -X POST -H "Authorization: Bearer $RENDER_API_KEY" \
+  -H "Content-Type: application/json" -d '{}' \
+  https://api.render.com/v1/services/srv-d9ulbovqj5pc73fsu7hg/deploys
+#   or: Render dashboard -> pharmaguard-api -> Manual Deploy -> Deploy latest commit
 
 # Frontend: rebuild with the URL compiled in, then upload.
 cd app
