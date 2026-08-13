@@ -10,7 +10,7 @@
 # REQUIRED REPOSITORY SECRETS
 #   CLOUDFLARE_API_TOKEN   Account -> Cloudflare Pages -> Edit
 #   CLOUDFLARE_ACCOUNT_ID  Cloudflare dashboard -> Workers & Pages -> Account ID
-#   API_BASE_URL           https://YOURNAME-pharmaguard.hf.space
+#   API_BASE_URL           https://pharmaguard-api.onrender.com
 #
 #   API_BASE_URL is a secret only so it is easy to rotate — it is a public URL
 #   and appears in the shipped JavaScript regardless. Nothing sensitive is or
@@ -91,7 +91,7 @@ jobs:
           API_BASE_URL: ${{ secrets.API_BASE_URL }}
         run: |
           # --base-href "/" because Cloudflare Pages serves the project at the
-          # domain root (pharmaguard.pages.dev/), not a subpath. If you ever
+          # domain root (pharmaguard-web.pages.dev/), not a subpath. If you ever
           # serve this under a path, change it here AND redeploy — Flutter bakes
           # the value into index.html at build time.
           flutter build web \
@@ -120,4 +120,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          command: pages deploy app/build/web --project-name=pharmaguard
+          command: pages deploy app/build/web --project-name=pharmaguard-web

@@ -1,0 +1,109 @@
+# Render Blueprint — the backend, reproducible from the repository.
+#
+# WHY A BLUEPRINT RATHER THAN DASHBOARD CLICKS
+#   Every value here decides whether the service survives contact with a 512 MB
+#   instance, and three of them were arrived at by measurement rather than by
+#   taste (see reports/memory_measurement.md and reports/container_parity.md).
+#   Set by hand in a web form they are undocumented, unreviewable and lost the
+#   next time the service is recreated. Here they are diffable.
+#
+# APPLY IT
+#   Render dashboard -> Blueprints -> New Blueprint Instance -> pick this repo.
+#   Render reads `render.yaml` from the repository ROOT by default, so this file
+#   is symlinked/copied there, or you point the Blueprint at `infra/render.yaml`.
+#
+# THE NAME IS LOAD-BEARING
+#   `pharmaguard-api` fixes the URL at https://pharmaguard-api.onrender.com,
+#   which is compiled into the Flutter bundle as API_BASE_URL. Renaming the
+#   service silently breaks every deployed client until the frontend is rebuilt.
+#
+# Verified against https://render.com/docs/blueprint-spec on 2026-08-13.
+
+services:
+  - type: web
+    name: pharmaguard-api
+    runtime: docker
+
+    # Build context is the repo ROOT, not infra/ — the Dockerfile copies
+    # backend/ and rag-corpus/, which are siblings of this directory.
+    dockerfilePath: ./infra/Dockerfile
+    dockerContext: .
+
+    plan: free
+    region: oregon
+
+    # /health is deliberately trivial: no PharmCAT, no disk, no subprocess.
+    # Pointing the health check at /ready instead would make a waking container
+    # look unhealthy and get it killed mid-start, because /ready resolves the
+    # PharmCAT invoker. Use /ready by hand when you want to know whether an
+    # analysis would actually succeed.
+    healthCheckPath: /health
+
+    # Render injects $PORT; the image's CMD reads ${PORT:-7860}. Do not add a
+    # PORT env var here — setting it by hand is how you end up binding one port
+    # and being health-checked on another.
+
+    envVars:
+      # ------------------------------------------------------------------ #
+      # MEASURED. Do not tune these by feel.
+      # ------------------------------------------------------------------ #
+
+      # The JVM sizes its default max heap from the HOST's RAM, not the
+      # cgroup's — measured at 727 MB of heap on a 16 GB machine, which is
+      # instant death on a 512 MB instance. Stating -Xmx removes the guess.
+      #
+      # 256m rather than the smaller settings that also work: PharmCAT OOMs at
+      # 160m and survives from 176m up, so this keeps 80 MB of margin over the
+      # cliff instead of 16 MB. It also measured LOWER in the container than
+      # -Xmx192m (252.8 MiB vs 289.2 MiB peak) — a bigger heap means less GC
+      # pressure and fewer pages touched.
+      - key: JAVA_TOOL_OPTIONS
+        value: "-Xmx256m -XX:MaxMetaspaceSize=80m"
+
+      # THE ONE THAT PREVENTS AN OOM KILL.
+      #
+      # Each in-flight /analyze spawns its own JVM. Measured peak, same image,
+      # same hard 512 MB limit, three concurrent requests:
+      #     MAX_CONCURRENT_PHARMCAT=1   252.8 MiB   survives
+      #     MAX_CONCURRENT_PHARMCAT=3   OOMKilled=true, two requests lost
+      # A larger instance can afford a larger number. This one cannot.
+      - key: MAX_CONCURRENT_PHARMCAT
+        value: "1"
+
+      # How long a queued request waits before being told the server is busy.
+      # Bounded on purpose: an unbounded wait is indistinguishable from a hang
+      # at the client. Analyses take ~2.6 s in this container, so 25 s lets a
+      # queued request through comfortably while still answering if something
+      # is genuinely wedged.
+      - key: PHARMCAT_QUEUE_TIMEOUT_SECONDS
+        value: "25"
+
+      # ------------------------------------------------------------------ #
+      # Wiring
+      # ------------------------------------------------------------------ #
+
+      # The Pages origin, fixed in advance so this can be set before the
+      # frontend exists. An empty value here makes the app REFUSE TO START on a
+      # hosted instance — deliberately, because a wrong or missing origin
+      # passes every health check while blocking every browser request.
+      #
+      # No trailing slash, and https — a browser origin has neither a path nor
+      # a scheme mismatch to spare.
+      - key: CORS_ALLOWED_ORIGINS
+        value: "https://pharmaguard-web.pages.dev"
+
+      # Pre-generated, guard-checked explanations. No outbound call, no API
+      # key, nothing to leak. `live` would need GEMINI_API_KEY as a runtime
+      # secret; the deployed path deliberately needs no credential at all.
+      - key: EXPLANATION_MODE
+        value: static
+
+      # Refuse to start if PharmCAT cannot be invoked, rather than starting
+      # healthy and returning 503 to the first real visitor. On a demo service
+      # a failed deploy is far cheaper than a silently broken one.
+      - key: STRICT_PHARMCAT
+        value: "1"
+
+    # NO API KEY OF ANY KIND IS SET HERE, and none is needed. `assert_no_baked_secrets`
+    # runs at startup and warns if one appears. The deployed path calls no LLM;
+    # requirements-llm.txt is not installed in the image.

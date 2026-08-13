@@ -5,6 +5,108 @@ Everything dated was checked against vendor documentation on **2026-07-23**.
 
 ---
 
+## THE DECISION, AND THE NAMES (Phase 8, 2026-08-13)
+
+**Backend: Render. Frontend: Cloudflare Pages.** Chosen on measurement, not
+preference — see `reports/memory_measurement.md` and
+`reports/container_parity.md`.
+
+| | name | URL |
+| --- | --- | --- |
+| Backend | `pharmaguard-api` | `https://pharmaguard-api.onrender.com` |
+| Frontend | `pharmaguard-web` | `https://pharmaguard-web.pages.dev` |
+
+### Fix the names first — it breaks a circular dependency
+
+The backend needs `CORS_ALLOWED_ORIGINS` set to the frontend's origin. The
+frontend needs `API_BASE_URL` baked in at compile time pointing at the backend.
+Deploy either one first and it is configured wrong.
+
+There is no ordering that solves this, because it is not an ordering problem.
+Both hosts derive the URL **deterministically from a name you choose**:
+Render serves `<service>.onrender.com`, Pages serves `<project>.pages.dev`. So
+pick both names up front, write both URLs down, and configure both services
+before either exists. Neither has to be deployed for the other to be correct.
+
+The corollary: **renaming either service silently breaks the pair.** The
+frontend's URL is compiled into the bundle, so a renamed backend keeps serving a
+client that points at the old hostname until someone rebuilds.
+
+### The configuration that was measured, not guessed
+
+| variable | value | why |
+| --- | --- | --- |
+| `JAVA_TOOL_OPTIONS` | `-Xmx256m -XX:MaxMetaspaceSize=80m` | The JVM's default max heap comes from HOST RAM — 727 MB measured on a 16 GB laptop, instant death on a 512 MB instance. PharmCAT OOMs at 160m, survives from 176m; 256m keeps 80 MB of margin and measured *lower* in-container than 192m (252.8 vs 289.2 MiB) because a bigger heap means less GC pressure. |
+| `MAX_CONCURRENT_PHARMCAT` | `1` | Each in-flight `/analyze` spawns its own JVM. Same image, same hard 512 MB limit, 3 concurrent requests: at `1`, 252.8 MiB and survives; at `3`, **OOMKilled=true** and two requests lost. |
+| `PHARMCAT_QUEUE_TIMEOUT_SECONDS` | `25` | Bounded wait. An unbounded one is indistinguishable from a hang at the client. Analyses take ~2.6 s in-container. |
+| `CORS_ALLOWED_ORIGINS` | `https://pharmaguard-web.pages.dev` | Empty + hosting markers = refuses to start, on purpose. |
+| `EXPLANATION_MODE` | `static` | No outbound call, no API key. |
+| `STRICT_PHARMCAT` | `1` | A failed deploy is cheaper than a silently broken one. |
+
+**No API key of any kind is set, and none is needed.** The deployed path calls no
+LLM; `requirements-llm.txt` is not installed in the image.
+
+### Measured facts worth keeping
+
+| | |
+| --- | --- |
+| Image size | **6.01 GB** uncompressed (base `pgkb/pharmcat:3.4.0` is 5.96 GB; our layers ~45 MB) |
+| Container peak, 3 concurrent, 512 MB limit | **252.8 MiB (49%)** |
+| Idle | 40.2 MiB |
+| Container cold start (image local) | **1.19 s** to healthy `/health` |
+| Analysis latency in-container | ~2.6 s |
+| In-container suite | 747 passed, 3 failed, 5 skipped — all 3 are the absent spaCy model, excluded from the production image by design |
+
+### Two traps this cost us
+
+**The jar the container ran was not the jar the tests validated.**
+`find_jar()` globs `pharmcat-*-all.jar`; the base image ships
+`/pharmcat/pharmcat.jar`. Resolution fell through to the `pharmcat_pipeline`
+wrapper, which runs a VCF preprocessor the test suite never exercises. Both
+paths return 200, so nothing caught it. Fixed with an explicit
+`ENV PHARMCAT_JAR` plus a build-time `sha256sum -c`.
+
+**Dio's `validateStatus` was `< 500`,** so every 503 threw before its body was
+read and reached the user as "Network error talking to …". Both of the
+backend's most user-visible states are 503s.
+
+### Free-tier limits, and the keepalive
+
+Render free gives **750 instance-hours** against a month of ~730 hours. A
+keepalive pinging every 10 minutes holds the container resident essentially all
+month, which leaves almost no margin — a second service, or overlapping
+re-deploys, tips it over. Bandwidth overages are billable even on free accounts.
+
+`.github/workflows/keepalive.yml` therefore ships with its `schedule:` block
+**commented out** and `workflow_dispatch` only. Uncomment it for the submission
+window or a recording; comment it back afterwards.
+
+### Redeploying
+
+```bash
+# Backend: Render rebuilds on push to the tracked branch. To force one:
+#   Render dashboard -> pharmaguard-api -> Manual Deploy -> Deploy latest commit
+
+# Frontend: rebuild with the URL compiled in, then upload.
+cd app
+flutter build web --release --base-href "/" \
+  --dart-define=API_BASE_URL=https://pharmaguard-api.onrender.com
+grep -rqF "https://pharmaguard-api.onrender.com" build/web/ || echo "DEFINE DID NOT APPLY"
+npx wrangler pages deploy build/web --project-name=pharmaguard-web
+```
+
+The `grep` is not paranoia: a `--dart-define` that silently failed to apply
+produces a bundle that looks healthy until someone clicks Analyze.
+
+### The Blueprint
+
+`infra/render.yaml`, symlinked to `render.yaml` at the repo root because that is
+where Render's Blueprint scanner looks. Every value above lives there with the
+measurement that produced it, so recreating the service does not mean
+rediscovering them.
+
+---
+
 ## ⚠️ Read this first: Hugging Face Docker Spaces are no longer free
 
 The Phase 1–3 plan assumed a free HF Docker Space. **That is no longer true.**
