@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import time
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -56,7 +57,10 @@ from .retrieval import all_documents, retrieve_mechanism
 from .pharmcat_models import PharmcatGeneCall, PharmcatReport
 from .pharmcat_runner import (
     CYP2D6_WARNING,
+    MAX_CONCURRENT_PHARMCAT,
+    PHARMCAT_QUEUE_TIMEOUT_SECONDS,
     PINNED_VERSION,
+    PharmcatBusyError,
     PharmcatExecutionError,
     pharmcat_available,
     resolve_invoker,
@@ -137,6 +141,17 @@ async def lifespan(_: FastAPI):
             flush=True,
         )
 
+    # The concurrency gate only works in ONE process.
+    #
+    # `asyncio.Semaphore` lives in a single interpreter's memory. Run uvicorn
+    # with --workers 4 and you get four independent semaphores, each cheerfully
+    # allowing one JVM, so the instance runs four — which is exactly the state
+    # the gate exists to prevent, now with the added charm of looking correct in
+    # the source. There is no shared-memory fallback here on purpose: the fix is
+    # one worker, and a cross-process lock would invite someone to raise the
+    # worker count and trust it.
+    _assert_single_worker()
+
     # The resolved base URL, printed once. A presenter needs to know which port
     # actually bound — guessing wrong mid-demo looks like the backend is down.
     #
@@ -203,6 +218,68 @@ app.add_middleware(
 app.add_middleware(security.SecurityHeadersMiddleware)
 
 
+def _configured_workers() -> int | None:
+    """
+    How many workers uvicorn was told to run, or None if it cannot be told.
+
+    Read from argv and the environment rather than from uvicorn internals: the
+    server object is not reachable from an app-level startup hook, and guessing
+    at a private attribute would break silently on an upgrade — which for a
+    safety check is worse than not checking.
+    """
+    for source, flag in ((sys.argv, "--workers"), (sys.argv, "-w")):
+        if flag in source:
+            index = source.index(flag)
+            if index + 1 < len(source):
+                try:
+                    return int(source[index + 1])
+                except ValueError:
+                    return None
+    for arg in sys.argv:
+        if arg.startswith("--workers="):
+            try:
+                return int(arg.split("=", 1)[1])
+            except ValueError:
+                return None
+    for var in ("WEB_CONCURRENCY", "UVICORN_WORKERS", "GUNICORN_WORKERS"):
+        raw = os.environ.get(var, "").strip()
+        if raw:
+            try:
+                return int(raw)
+            except ValueError:
+                return None
+    return None
+
+
+def _assert_single_worker() -> None:
+    """
+    Refuse to serve with a worker count that defeats the concurrency gate.
+
+    Fatal rather than a warning. The failure it prevents is an OOM kill of the
+    whole container under concurrent load — silent, total, and attributed to the
+    host rather than to the configuration that caused it. A warning printed once
+    at startup would scroll past and be discovered by whoever is presenting.
+    """
+    workers = _configured_workers()
+    if workers is not None and workers > 1:
+        raise RuntimeError(
+            f"[startup] FATAL: {workers} workers requested, but the PharmCAT "
+            f"concurrency gate (MAX_CONCURRENT_PHARMCAT="
+            f"{MAX_CONCURRENT_PHARMCAT}) is an asyncio.Semaphore and is "
+            f"PER PROCESS. {workers} workers would allow "
+            f"{workers * MAX_CONCURRENT_PHARMCAT} concurrent JVMs; two "
+            f"measured 594 MB against a 512 MB instance "
+            f"(reports/memory_measurement.md). Run with --workers 1, or raise "
+            f"the instance size and set MAX_CONCURRENT_PHARMCAT deliberately."
+        )
+    print(
+        f"[startup] pharmcat_concurrency={MAX_CONCURRENT_PHARMCAT} "
+        f"workers={workers if workers is not None else 1} "
+        f"queue_timeout={PHARMCAT_QUEUE_TIMEOUT_SECONDS:.0f}s",
+        flush=True,
+    )
+
+
 class ApiError(HTTPException):
     """
     An HTTPException that also carries a machine-readable code.
@@ -212,9 +289,13 @@ class ApiError(HTTPException):
     `error_code` is added alongside for clients that want to branch on it.
     """
 
-    def __init__(self, status_code: int, code: str, message: str) -> None:
+    def __init__(self, status_code: int, code: str, message: str,
+                 headers: dict[str, str] | None = None) -> None:
         super().__init__(status_code=status_code, detail=message)
         self.code = code
+        #: `Retry-After` for the busy case. A client told to wait needs to know
+        #: how long, and guessing produces either a stampede or a needless delay.
+        self.extra_headers = headers or {}
 
 
 @app.exception_handler(ApiError)
@@ -222,6 +303,7 @@ async def _api_error_handler(_: Request, exc: ApiError) -> JSONResponse:
     return JSONResponse(
         status_code=exc.status_code,
         content={"detail": exc.detail, "error_code": exc.code},
+        headers=exc.extra_headers or None,
     )
 
 
@@ -820,6 +902,15 @@ async def analyze(
             metadata.text,
             sample_hint=metadata.sample_ids[0] if metadata.sample_ids else "sample",
         )
+    except PharmcatBusyError as exc:
+        # ALSO 503, but a different error_code and a Retry-After, because this
+        # is a queue and not a fault. Checked BEFORE PharmcatExecutionError:
+        # PharmcatBusyError subclasses it, so the wider except would swallow it
+        # and every busy response would read as "the analysis backend is down".
+        raise ApiError(
+            503, "SERVER_BUSY", exc.message,
+            headers={"Retry-After": str(exc.retry_after)},
+        ) from exc
     except PharmcatExecutionError as exc:
         # 503, not 500: the request was fine, the server's analysis backend is not.
         raise ApiError(503, "PHARMCAT_UNAVAILABLE", exc.message) from exc

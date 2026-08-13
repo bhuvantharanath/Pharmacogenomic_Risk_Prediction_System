@@ -11,10 +11,28 @@ import '../models/analysis.dart';
 /// A failure worth showing the user, with a message written for a human rather
 /// than for a log file.
 class ApiException implements Exception {
-  const ApiException(this.message, {this.statusCode});
+  const ApiException(this.message, {this.statusCode, this.errorCode});
 
   final String message;
   final int? statusCode;
+
+  /// The backend's `error_code`, when it sent one.
+  ///
+  /// Needed because the status code alone is ambiguous: the backend returns 503
+  /// both when this deployment's analysis engine is unreachable
+  /// (`PHARMCAT_UNAVAILABLE` — broken, nothing the user can do) and when every
+  /// analysis slot is busy (`SERVER_BUSY` — fine, try again shortly). Those
+  /// deserve opposite messages, and only this field separates them.
+  final String? errorCode;
+
+  /// The server is small and someone else is mid-analysis. Not a fault.
+  bool get isBusy => errorCode == 'SERVER_BUSY';
+
+  /// This deployment cannot analyse anything at all.
+  bool get isBackendUnavailable => errorCode == 'PHARMCAT_UNAVAILABLE';
+
+  /// Too many requests from this client, within the rate-limit window.
+  bool get isRateLimited => statusCode == 429;
 
   @override
   String toString() => message;
@@ -37,9 +55,19 @@ class PharmaGuardApi {
               // Generous: Phase 2 runs PharmCAT (a JVM process) inside this call.
               receiveTimeout: const Duration(seconds: 60),
               sendTimeout: const Duration(seconds: 60),
-              // We want to inspect 4xx bodies ourselves rather than have Dio
+              // We want to inspect error bodies ourselves rather than have Dio
               // throw before we can read FastAPI's `detail` field.
-              validateStatus: (int? code) => code != null && code < 500,
+              //
+              // WAS `< 500`, WHICH SILENTLY SWALLOWED EVERY 503. The backend
+              // uses 503 for both of its most user-visible states —
+              // PHARMCAT_UNAVAILABLE and SERVER_BUSY — and under the old bound
+              // Dio raised a DioException before the body was parsed, so both
+              // reached the user as "Network error talking to <url>". The
+              // server's actual sentence, which says what happened and whether
+              // to retry, was discarded every time. Found while adding
+              // SERVER_BUSY; it had been true for PHARMCAT_UNAVAILABLE all
+              // along.
+              validateStatus: (int? code) => code != null && code < 600,
             ),
           );
 
@@ -93,9 +121,35 @@ class PharmaGuardApi {
         throw ApiException(
           _describeRateLimit(res.data, res.headers.value('retry-after')),
           statusCode: status,
+          errorCode: _errorCode(res.data),
         );
       }
-      throw ApiException(_describeHttpError(status, res.data), statusCode: status);
+
+      // 503 SERVER_BUSY is a QUEUE, not a failure. The instance runs one
+      // analysis at a time because two concurrent ones measured 594 MB against
+      // a 512 MB limit, so a second visitor is asked to wait rather than
+      // OOM-killing the container for both of them. Rendering that with the
+      // generic message ("Request failed (HTTP 503)") would tell a user their
+      // file was rejected when it has not even been read yet.
+      //
+      // Distinct from the other two waits on purpose:
+      //   cold start  — the container is starting; wait, no action, ~1 min
+      //   429         — YOU have made too many requests; wait, your fault
+      //   SERVER_BUSY — SOMEONE ELSE is analysing; wait, nobody's fault
+      final String? code = _errorCode(res.data);
+      if (status == 503 && code == 'SERVER_BUSY') {
+        throw ApiException(
+          _describeBusy(res.data, res.headers.value('retry-after')),
+          statusCode: status,
+          errorCode: code,
+        );
+      }
+
+      throw ApiException(
+        _describeHttpError(status, res.data),
+        statusCode: status,
+        errorCode: code,
+      );
     }
 
     final dynamic body = res.data;
@@ -215,6 +269,30 @@ class PharmaGuardApi {
     }
     return 'Too many requests — this demo limits how many analyses can run in '
         'a short window. $when';
+  }
+
+  /// The backend's machine-readable `error_code`, if it sent one.
+  String? _errorCode(dynamic body) {
+    if (body is Map && body['error_code'] is String) {
+      return body['error_code'] as String;
+    }
+    return null;
+  }
+
+  /// The SERVER_BUSY message. Leads with the fact that the upload is fine,
+  /// because the natural reading of any error after clicking Analyze is "my
+  /// file was wrong" — and that sends the user off to re-export a VCF that
+  /// never had anything wrong with it.
+  String _describeBusy(dynamic body, String? retryAfter) {
+    final int? seconds = int.tryParse(retryAfter ?? '');
+    final String when = seconds != null
+        ? 'Try again in $seconds second${seconds == 1 ? '' : 's'}.'
+        : 'Please try again in a moment.';
+    if (body is Map && body['detail'] is String) {
+      return '${body['detail']}';
+    }
+    return 'The server is busy with another analysis. Nothing is wrong with '
+        'your file — this demo runs one analysis at a time. $when';
   }
 
   String _describeHttpError(int status, dynamic body) {

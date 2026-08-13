@@ -115,7 +115,17 @@ OPERATOR_ONLY: dict[str, frozenset[str]] = {
     # The FastAPI app title and description render in /docs, which is an API
     # reference for a developer. Not the product's voice; not shown to anyone
     # who uploaded a file.
-    "backend/app/main.py": frozenset({"_app_metadata"}),
+    #
+    # `_assert_single_worker` raises at startup and its text reaches a deploy
+    # log, never a response body. It names `--workers` and
+    # MAX_CONCURRENT_PHARMCAT because those are precisely what the reader must
+    # change, and that reader has a shell — the same test this list serves
+    # (`test_the_operator_detail_was_moved_and_not_deleted`) exists to insist
+    # operator detail stays actionable rather than being softened into
+    # uselessness. The user-facing half of the same subsystem is the
+    # SERVER_BUSY message, which IS scanned and names none of this.
+    "backend/app/main.py": frozenset({"_app_metadata",
+                                      "_assert_single_worker"}),
 }
 
 EXPLANATIONS_JSON = "backend/app/data/explanations.json"

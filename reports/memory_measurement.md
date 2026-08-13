@@ -99,6 +99,49 @@ The rate limiter does not help: `security.limiter` is 10 requests per 300 s
 how many distinct clients are mid-analysis at once. Two browsers, or one
 demo audience, is enough.
 
+## With the gate: measured again, 2026-08-13
+
+`MAX_CONCURRENT_PHARMCAT=1`, `-Xmx192m -XX:MaxMetaspaceSize=64m`, same harness.
+Peak stops tracking concurrency, which was the whole objective:
+
+| in flight | before | after | wall clock |
+| ---: | ---: | ---: | ---: |
+| 1 | 321.6 MB | 336.3 MB | 1.53 s |
+| 2 | 593.8 MB | **338.1 MB** | 2.72 s |
+| 3 | 910.2 MB | **338.0 MB** | 4.10 s |
+| 5 | — | **347.4 MB** | 6.79 s |
+
+Every request returned 200. Wall time grows linearly because the analyses now
+queue, which is the trade being made: latency under contention in exchange for
+not being OOM-killed.
+
+**Headroom against 512 MB: ~165 MB (32%) at 5 concurrent demo-sized uploads.**
+
+### The residual, stated plainly
+
+The gate bounds the JVM. It does **not** bound the uploads, because only the
+subprocess is serialised — coverage checks, mapping and response assembly stay
+concurrent by design. Python therefore holds one 5 MB upload per in-flight
+request:
+
+| concurrent 5 MB uploads | peak | fits 512 MB? |
+| ---: | ---: | --- |
+| 1 | 386.9 MB | yes |
+| 3 | 416.6 MB | yes |
+| 6 | 455.7 MB | yes |
+| **10** | **521.9 MB** | **no** |
+
+At 10, one request also shed cleanly as 503 SERVER_BUSY when the 25 s queue
+bound expired — the intended behaviour, and evidence the bound works.
+
+So the safe envelope is roughly **eight simultaneous maximum-size uploads**.
+Reaching it needs eight distinct clients uploading 5 MB files within the same
+few seconds; the per-client rate limit (10 per 300 s) does not prevent it,
+because it is keyed per client. For a demo this is comfortable. It is recorded
+rather than fixed because bounding uploads too was not asked for, and would
+trade a real cost — refusing a legitimate second visitor at the door — against
+a scenario that needs eight coordinated ones.
+
 ## What this means for the host
 
 * **Serial traffic fits Render.** 322 MB typical, ~405 MB for a maximal upload,

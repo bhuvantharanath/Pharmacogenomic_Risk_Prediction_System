@@ -33,6 +33,15 @@ class _HomeScreenState extends State<HomeScreen> {
   bool _loading = false;
   String? _error;
 
+  /// A 503 SERVER_BUSY, held separately from `_error`.
+  ///
+  /// Not an error: the upload is fine and the server is working — someone else
+  /// is simply mid-analysis, because this instance runs one at a time (two
+  /// concurrent analyses measured 594 MB against a 512 MB limit). Rendering it
+  /// in the red error box would tell the user their file was rejected, and the
+  /// natural response to that is to go and re-export a VCF that was never wrong.
+  String? _busy;
+
   /// What the chosen file can answer, fetched before the user commits to an
   /// analysis. Null until a file is picked, or when the preview could not be
   /// obtained — which is never fatal, because it is only a preview.
@@ -147,6 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _loading = true;
       _error = null;
+      _busy = null;
     });
 
     try {
@@ -164,13 +174,24 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     } on ApiException catch (e) {
       if (!mounted) return;
+      final bool serverIsFine = e.isBusy || e.isRateLimited;
       setState(() {
         _loading = false;
-        _error = e.message;
+        if (e.isBusy) {
+          _busy = e.message;
+        } else {
+          _error = e.message;
+        }
       });
       // A failed call is the most likely moment for the backend to have gone
       // away; reflect that in the banner without starting a fresh ping storm.
-      _backend.markUnreachable(e.message);
+      //
+      // But NOT for busy or rate-limited. Both are answers from a healthy
+      // server — a queue and a limit, respectively — and marking it unreachable
+      // would flip the status banner to "backend down" at the exact moment the
+      // backend is demonstrably up and talking to us. That is the confusion
+      // these three states exist to prevent.
+      if (!serverIsFine) _backend.markUnreachable(e.message);
     } catch (e) {
       if (!mounted) return;
       setState(() {
@@ -359,7 +380,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: Tokens.uiSm,
                 ),
 
-                if (_error != null) ...<Widget>[
+                if (_busy != null) ...<Widget>[
+              const SizedBox(height: 14),
+              _BusyBox(message: _busy!, onRetry: _loading ? null : _analyze),
+            ],
+            if (_error != null) ...<Widget>[
                   const SizedBox(height: 16),
                   _ErrorBox(message: _error!),
                 ],
@@ -505,6 +530,70 @@ class _FileDropCard extends StatelessWidget {
     if (bytes < 1024) return '$bytes B';
     if (bytes < 1024 * 1024) return '${(bytes / 1024).toStringAsFixed(1)} KB';
     return '${(bytes / (1024 * 1024)).toStringAsFixed(1)} MB';
+  }
+}
+
+/// The 503 SERVER_BUSY panel.
+///
+/// Deliberately NOT the error colour. Three different waits reach this screen
+/// and each needs its own reading:
+///
+///   cold start   the container is booting        — wait, nothing to do
+///   429          you asked too many times        — wait, and it is your doing
+///   SERVER_BUSY  someone else is analysing now   — wait, and it is nobody's
+///
+/// Given the same red box, a user cannot tell which they are in, and the
+/// reasonable guess after clicking Analyze is always "my file is bad".
+class _BusyBox extends StatelessWidget {
+  const _BusyBox({required this.message, this.onRetry});
+
+  final String message;
+  final VoidCallback? onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(
+          color: theme.colorScheme.secondary.withValues(alpha: 0.5),
+        ),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Icon(Icons.hourglass_top,
+              color: theme.colorScheme.onSecondaryContainer),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                SelectableText(
+                  message,
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.onSecondaryContainer,
+                    height: 1.45,
+                  ),
+                ),
+                if (onRetry != null) ...<Widget>[
+                  const SizedBox(height: 8),
+                  FilledButton.tonalIcon(
+                    onPressed: onRetry,
+                    icon: const Icon(Icons.refresh, size: 18),
+                    label: const Text('Try again'),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
