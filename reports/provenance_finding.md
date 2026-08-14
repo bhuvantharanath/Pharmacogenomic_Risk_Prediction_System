@@ -1169,6 +1169,64 @@ the value, are what a reader needs in order to notice the value has expired.
 
 ---
 
+## Evidence 16 — the central claim, reproduced observationally
+
+Every previous demonstration that missing positions produce confidently wrong
+answers was **arranged**. The coverage sweep dropped positions at random. The
+constructed-allele sweep built inputs from definitions. The sabotage tests
+planted defects deliberately. Each is a controlled experiment, and each carries
+the standard objection: the effect was engineered, so its size says more about
+the design than about the world.
+
+The n=601 South Asian analysis is the first instance **nobody arranged**. A real
+cohort, a real file format that real pipelines emit, and the failure mode shows
+up unprompted.
+
+### What it shows
+
+All six alleles rejected by the coverage filter are **reference alleles** —
+`*1` in five genes, plus CYP2C19 `*38`. That is structural, not incidental:
+`*1` is defined by *every* position being reference, so it requires the complete
+position set. NUDT15 `*1` was called from **5 of its 20** defining positions.
+
+Which means the allele the pipeline falls back to when it cannot see is exactly
+the allele that means *nothing is wrong*:
+
+| gene | `*1` positions present | `*1` frequency reported |
+| --- | ---: | ---: |
+| NUDT15 | 5/20 | 0.9318 |
+| TPMT | 9/45 | 0.9834 |
+| CYP2C19 | 16/35 | 0.3677 |
+| CYP2C9 | 17/88 | 0.8353 |
+| SLCO1B1 | 20/35 | 0.4384 |
+
+**The error direction is the predicted one.** Not "an unpredictable result" —
+a systematically *normal-function* result, because normal function is the
+default that survives when the evidence for anything else is missing. This is
+the same asymmetry that made the coverage gate necessary, observed here in
+1202 chromosomes of real data that were not manipulated to produce it.
+
+### And the correction that came with it
+
+The first attempt to explain the largest deviation named a specific absent
+position, rs1799853, and was **wrong** — the position is present, and the check
+that "found" it absent had examined nothing (tally #17). The finding survived
+the correction because it never depended on that position: it rests on which
+alleles the filter rejects, and why.
+
+Worth recording that the mechanism was asserted before it was checked, and that
+checking it mechanically across all 30 alleles both refuted the specific claim
+and produced a stronger general one.
+
+### What it still is not
+
+Not external validation. There are no truth labels for these 601 samples;
+PharmCAT's call is the only call, and the argument is about which alleles are
+*observable* from the input, which is a property of the file rather than of any
+person's genome.
+
+---
+
 ## Running tally — checks that passed while checking nothing
 
 Kept because the pattern outlived every individual instance of it. Each of
@@ -1194,8 +1252,9 @@ recognisable, rather than being rediscovered each time under a new name.
 | 14 | Render `autoDeploy: "yes"` | Webhook-driven, and no GitHub App was installed — enabled, reported, inert | Pushing a commit and asking what was running |
 | 15 | The constructed-allele sweep, on NUDT15 | Asked "what did you call NUDT15?" for a drug governed by TPMT **and** NUDT15; with a normal NUDT15, TPMT drives the recommendation and NUDT15 never appears. Nine correct results scored as `no_call` | Checking one by hand before believing the number |
 | 16 | `backend_status_test`'s give-up test | Named "emits a waking state before it gives up"; scripted a backend that WOKE, asserted `ready`, and never exercised giving up | Writing the bounded-wait test the brief asked for |
+| 17 | "is rs1799853 present in the slice?" | `bcftools query -r` on an unindexed VCF fails to **stderr**, exits **0**, returns no rows. stderr was discarded, so the position set was empty and EVERY position tested as absent | Re-running the same question mechanically over all 30 alleles |
 
-**Five of #10–#16 are mine, from these phases, and all three are the same
+**Six of #10–#17 are mine, from these phases, and all three are the same
 error**: a harness that agreed with itself. #10 and #11 constructed a payload
 that did not contain the thing under test; #12 compared against a baseline that
 could not isolate the variable. In each case the *system* was correct and the

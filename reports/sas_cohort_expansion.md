@@ -65,6 +65,10 @@ roughly 400 per cohort, not 100.
 
 ## Against published CPIC frequencies
 
+> **SUPERSEDED — see .** This table mixes
+> genuine deviations with input and naming artifacts and does not distinguish
+> them. It is left in place because the correction below is about it.
+
 CPIC `population_frequency_view`, group **Central/South Asian** (n≈7100).
 "Outside" means the published value falls outside our 95% CI.
 
@@ -83,21 +87,29 @@ CPIC `population_frequency_view`, group **Central/South Asian** (n≈7100).
 | NUDT15 | *1 | 0.9318 | 0.9300 | agrees |
 | NUDT15 | *3 | 0.0674 | 0.0670 | agrees |
 
-### The deviations have one cause, and it is not population difference
+### CORRECTION (2026-08-14): the mechanism named here was wrong
 
-**CYP2C9 `*2` is defined by a single position — `rs1799853`, chr10:94942290 —
-and that position is ABSENT from the slice.** Every `*2` carrier in all 601
-samples is therefore invisible, and is called something else. That is the entire
-3× shortfall, and it is arithmetic rather than biology.
+**An earlier version of this section stated that CYP2C9 `*2`'s defining
+position, rs1799853 (chr10:94942290), was ABSENT from the slice and that its
+absence accounted for the entire threefold shortfall. That is false. The
+position is present.**
 
-The pattern holds across the table: genes where the calls agree with CPIC
-(TPMT 98% `*1`, NUDT15 93% `*1`) are ones where almost everything is reference,
-so a missing position costs little. Genes that are genuinely polymorphic —
-CYP2C19, CYP2C9, SLCO1B1 — are where the coverage deficit shows.
+The check that produced it ran `bcftools query -r chr10` against
+`cohort_n601.vcf` — an uncompressed, unindexed file. bcftools refuses that with
+*"not compressed with bgzip"*, writes the refusal to **stderr**, and exits **0**
+with no rows. The command's stderr was discarded, so the position set was built
+from empty output; every membership test then returned False and every position
+looked absent. Only the one being looked for was reported.
 
-**This is the project's central claim, reproduced at n=601 with a named
-position.** A missing position does not produce a missing answer; it produces a
-confident wrong one, biased toward normal function.
+An empty result set makes every "is X present?" question answer no. That is the
+same shape as the other entries in the running tally — a check that returns a
+confident answer while having examined nothing — and it is recorded there as
+**#17**.
+
+The corrected analysis, with per-chromosome position matching and a linear scan
+that needs no index, is in
+[`reports/sas_deviation_filtered.md`](sas_deviation_filtered.md). The deviation
+table below is superseded by it.
 
 ## The coverage gate declines every one of these samples
 
@@ -115,8 +127,7 @@ passes for any of the 601.**
 
 So the frequencies above are **PharmCAT's raw calls**, not what the deployed
 product would report. Uploaded to PharmaGuard, every one of these 601 samples
-returns `Unknown` with a coverage warning — including, correctly, the ones whose
-`*2` status is unknowable because rs1799853 was never in the file.
+returns `Unknown` with a coverage warning.
 
 The gate and the frequency table agree: the calls are not trustworthy enough to
 act on, and the gate is what stops them being acted on.
@@ -147,8 +158,10 @@ motivation for building this, where 75 split five ways was not.
    reachable by the script that already existed, and 41 seconds of slicing.
 2. **The old number survived.** 53.3% → 57.1%, with the old estimate inside the
    new interval. Eight-fold more data moved the point estimate by 3.8 points.
-3. **A single missing position explains the largest deviation**, and it is
-   nameable: rs1799853.
+3. **The "single missing position" explanation was wrong**, and wrong in the
+   most embarrassing way available: the tool reported nothing because the file
+   was unindexed, and nothing was read as absence. rs1799853 is present. See
+   the correction above and `reports/sas_deviation_filtered.md`.
 4. **CYP2C19 `*38`** at 10% has no CPIC row — it is the reference haplotype,
    which CPIC's table folds into `*1`. Comparing allele-by-allele against a
    source that uses a different nomenclature will always produce a "deviation"

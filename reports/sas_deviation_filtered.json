@@ -1,0 +1,1369 @@
+{
+  "slice_positions": 25729,
+  "counts": {
+    "input_artifacts": 6,
+    "naming_artifacts": 9,
+    "population_deviations": 6,
+    "agrees": 9
+  },
+  "input_artifacts": [
+    {
+      "gene": "CYP2C19",
+      "allele": "*1",
+      "ours": 0.36772046589018303,
+      "count": 442,
+      "ci95": [
+        0.34092309935113646,
+        0.3953606403781919
+      ],
+      "cpic": 0.543626,
+      "positions_required": 35,
+      "positions_present": 16,
+      "missing_positions": [
+        {
+          "chromosome": "chr10",
+          "position": 94762755,
+          "rsid": "rs55752064"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94762788,
+          "rsid": "rs1564656981"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94762856,
+          "rsid": "rs1564657013"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775106,
+          "rsid": "rs145328984"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775121,
+          "rsid": "rs1564660997"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775160,
+          "rsid": "rs118203756"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775185,
+          "rsid": "rs1288601658"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775453,
+          "rsid": "rs72552267"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94780544,
+          "rsid": "rs57700608"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94780579,
+          "rsid": "rs370803989"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94781944,
+          "rsid": "rs375781227"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94781999,
+          "rsid": "rs72558186"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94842861,
+          "rsid": "rs138142612"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94842879,
+          "rsid": "rs118203757"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94842995,
+          "rsid": "rs113934938"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852738,
+          "rsid": "rs56337013"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852765,
+          "rsid": "rs192154563"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852785,
+          "rsid": "rs118203759"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852914,
+          "rsid": "rs55640102"
+        }
+      ],
+      "classification": "input_artifact",
+      "why": "19 of 35 defining position(s) absent from the slice; carriers are invisible and are called something else"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*38",
+      "ours": 0.10066555740432612,
+      "count": 121,
+      "ci95": [
+        0.08490754337529594,
+        0.11896789731701612
+      ],
+      "cpic": null,
+      "positions_required": 35,
+      "positions_present": 16,
+      "missing_positions": [
+        {
+          "chromosome": "chr10",
+          "position": 94762755,
+          "rsid": "rs55752064"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94762788,
+          "rsid": "rs1564656981"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94762856,
+          "rsid": "rs1564657013"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775106,
+          "rsid": "rs145328984"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775121,
+          "rsid": "rs1564660997"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775160,
+          "rsid": "rs118203756"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775185,
+          "rsid": "rs1288601658"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94775453,
+          "rsid": "rs72552267"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94780544,
+          "rsid": "rs57700608"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94780579,
+          "rsid": "rs370803989"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94781944,
+          "rsid": "rs375781227"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94781999,
+          "rsid": "rs72558186"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94842861,
+          "rsid": "rs138142612"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94842879,
+          "rsid": "rs118203757"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94842995,
+          "rsid": "rs113934938"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852738,
+          "rsid": "rs56337013"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852765,
+          "rsid": "rs192154563"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852785,
+          "rsid": "rs118203759"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94852914,
+          "rsid": "rs55640102"
+        }
+      ],
+      "classification": "input_artifact",
+      "why": "19 of 35 defining position(s) absent from the slice; carriers are invisible and are called something else"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*1",
+      "ours": 0.8352745424292846,
+      "count": 1004,
+      "ci95": [
+        0.8132430230931408,
+        0.855169888158939
+      ],
+      "cpic": 0.7721189,
+      "positions_required": 88,
+      "positions_present": 17,
+      "missing_positions": [
+        {
+          "chromosome": "chr10",
+          "position": 94938683,
+          "rsid": "rs114071557"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94938719,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94938737,
+          "rsid": "rs67807361"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94938771,
+          "rsid": "rs142240658"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94938788,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94938800,
+          "rsid": "rs1364419386"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94938803,
+          "rsid": "rs2031308986"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94938828,
+          "rsid": "rs564813580"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94941897,
+          "rsid": "rs371055887"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94941915,
+          "rsid": "rs1216169538"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94941975,
+          "rsid": "rs2493006942"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94941976,
+          "rsid": "rs761033063"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94941982,
+          "rsid": "rs762239445"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942018,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942203,
+          "rsid": "rs771237265"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942205,
+          "rsid": "rs1304490498"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942216,
+          "rsid": "rs774607211"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942226,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942230,
+          "rsid": "rs767576260"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942233,
+          "rsid": "rs375805362"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942240,
+          "rsid": "rs530507053"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942243,
+          "rsid": "rs1375956433"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942254,
+          "rsid": "rs199523631"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942255,
+          "rsid": "rs200183364"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942291,
+          "rsid": "rs141489852"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942305,
+          "rsid": "rs754487195"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942306,
+          "rsid": "rs1289704600"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94942308,
+          "rsid": "rs17847037"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947782,
+          "rsid": "rs72558190"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947785,
+          "rsid": "rs774550549"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947817,
+          "rsid": "rs199539783"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947869,
+          "rsid": "rs2492587526"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947907,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947917,
+          "rsid": "rs1326630788"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947938,
+          "rsid": "rs2031531005"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94947939,
+          "rsid": "rs370100007"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94949129,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94949144,
+          "rsid": "rs2492591692"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94949145,
+          "rsid": "rs772782449"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94949161,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94949189,
+          "rsid": "rs1295294399"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94949278,
+          "rsid": "rs996190254"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94949280,
+          "rsid": "rs9332130"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94972123,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94972134,
+          "rsid": "rs2492634549"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94972179,
+          "rsid": "rs72558192"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94972180,
+          "rsid": "rs988617574"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94972183,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94972194,
+          "rsid": "rs546318684"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94972233,
+          "rsid": "rs1237225311"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981199,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981225,
+          "rsid": "rs367826293"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981230,
+          "rsid": "rs1274535931"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981250,
+          "rsid": "rs750820937"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981258,
+          "rsid": "rs1297714792"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981281,
+          "rsid": "rs749060448"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981297,
+          "rsid": "rs56165452"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981302,
+          "rsid": "rs1250577724"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981365,
+          "rsid": "rs2492650213"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94981371,
+          "rsid": "rs542577750"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94986042,
+          "rsid": "rs764211126"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94986073,
+          "rsid": "rs72558193"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94986136,
+          "rsid": "rs1254213342"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94986174,
+          "rsid": "rs1441296358"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94988852,
+          "rsid": "rs776908257"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94988855,
+          "rsid": "rs2492662738"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94988880,
+          "rsid": "rs2492662839"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94988917,
+          "rsid": "rs769942899"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94988955,
+          "rsid": "rs767284820"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94988984,
+          "rsid": "rs781583846"
+        },
+        {
+          "chromosome": "chr10",
+          "position": 94989023,
+          "rsid": "rs868182778"
+        }
+      ],
+      "classification": "input_artifact",
+      "why": "71 of 88 defining position(s) absent from the slice; carriers are invisible and are called something else"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*1",
+      "ours": 0.9317803660565723,
+      "count": 1120,
+      "ci95": [
+        0.9161082010133981,
+        0.9447014787380394
+      ],
+      "cpic": 0.93002415,
+      "positions_required": 20,
+      "positions_present": 5,
+      "missing_positions": [
+        {
+          "chromosome": "chr13",
+          "position": 48037748,
+          "rsid": "rs769369441"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037749,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037825,
+          "rsid": "rs777311140"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037834,
+          "rsid": "rs1202487323"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037845,
+          "rsid": "rs150241065"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037847,
+          "rsid": "rs766023281"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037849,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037852,
+          "rsid": "rs753319151"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037885,
+          "rsid": "rs1950545307"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48037902,
+          "rsid": "rs149436418"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48040977,
+          "rsid": "rs1457579126"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48041103,
+          "rsid": "rs761191455"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48041113,
+          "rsid": "rs1368252918"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48045690,
+          "rsid": "rs768324690"
+        },
+        {
+          "chromosome": "chr13",
+          "position": 48045714,
+          "rsid": "rs1185228044"
+        }
+      ],
+      "classification": "input_artifact",
+      "why": "15 of 20 defining position(s) absent from the slice; carriers are invisible and are called something else"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*1",
+      "ours": 0.4384359400998336,
+      "count": 527,
+      "ci95": [
+        0.41062508011292564,
+        0.46663905032713915
+      ],
+      "cpic": 0.46972018,
+      "positions_required": 35,
+      "positions_present": 20,
+      "missing_positions": [
+        {
+          "chromosome": "chr12",
+          "position": 21141575,
+          "rsid": "rs185905373"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21172734,
+          "rsid": "rs139257324"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21172735,
+          "rsid": "rs61760182"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21172776,
+          "rsid": "rs373327528"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21172782,
+          "rsid": "rs56101265"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21178612,
+          "rsid": "rs141467543"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21178653,
+          "rsid": "rs200331427"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21200595,
+          "rsid": "rs55901008"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21200673,
+          "rsid": "rs756393362"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21202553,
+          "rsid": "rs1228465562"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21202664,
+          "rsid": "rs142965323"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21205921,
+          "rsid": "rs72559748"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21239077,
+          "rsid": "rs56199088"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21239113,
+          "rsid": "rs55737008"
+        },
+        {
+          "chromosome": "chr12",
+          "position": 21239145,
+          "rsid": "rs200995543"
+        }
+      ],
+      "classification": "input_artifact",
+      "why": "15 of 35 defining position(s) absent from the slice; carriers are invisible and are called something else"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*1",
+      "ours": 0.9833610648918469,
+      "count": 1182,
+      "ci95": [
+        0.9744390809682022,
+        0.9892033543604783
+      ],
+      "cpic": 0.9813701,
+      "positions_required": 45,
+      "positions_present": 9,
+      "missing_positions": [
+        {
+          "chromosome": "chr6",
+          "position": 18130694,
+          "rsid": "rs150900439"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18130725,
+          "rsid": "rs72552736"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18130729,
+          "rsid": "rs139392616"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18130730,
+          "rsid": "rs761990479"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18130758,
+          "rsid": "rs398122996"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18130772,
+          "rsid": "rs377085266"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18130781,
+          "rsid": "rs1800584"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18132136,
+          "rsid": "rs72556347"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18132147,
+          "rsid": "rs79901429"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18132163,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18133845,
+          "rsid": "rs75543815"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18133870,
+          "rsid": "rs772832951"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18133884,
+          "rsid": "rs74423290"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18133887,
+          "rsid": "rs201695576"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18133890,
+          "rsid": "rs9333570"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18139027,
+          "rsid": "rs72552737"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18139689,
+          "rsid": "rs72552738"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18139710,
+          "rsid": "rs200220210"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18143597,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18143606,
+          "rsid": "rs151149760"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18143613,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18143643,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18143700,
+          "rsid": "rs753545734"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18143718,
+          "rsid": "rs111901354"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18143728,
+          "rsid": "rs1256618794"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18147838,
+          "rsid": "rs281874771"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18147845,
+          "rsid": "rs777686348"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18147856,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18147910,
+          "rsid": "rs72552740"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18149004,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18149022,
+          "rsid": "rs750424422"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18149032,
+          "rsid": "rs759836180"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18149045,
+          "rsid": "rs72552742"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18149103,
+          "rsid": null
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18149126,
+          "rsid": "rs267607275"
+        },
+        {
+          "chromosome": "chr6",
+          "position": 18149127,
+          "rsid": "rs9333569"
+        }
+      ],
+      "classification": "input_artifact",
+      "why": "36 of 45 defining position(s) absent from the slice; carriers are invisible and are called something else"
+    }
+  ],
+  "naming_artifacts": [
+    {
+      "gene": "CYP2C19",
+      "allele": "*40",
+      "ours": 0.012479201331114808,
+      "count": 15,
+      "ci95": [
+        0.00757698489521624,
+        0.02048761561664809
+      ],
+      "cpic": null,
+      "positions_required": 3,
+      "positions_present": 3,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC's Central/South Asian table has no row for this allele \u2014 it is folded into another name or not used. Absence of a row is not a frequency of zero"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "Unknown",
+      "ours": 0.0016638935108153079,
+      "count": 2,
+      "ci95": [
+        0.00045641826927569516,
+        0.00604647542800542
+      ],
+      "cpic": null,
+      "positions_required": 0,
+      "positions_present": 0,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC's Central/South Asian table has no row for this allele \u2014 it is folded into another name or not used. Absence of a row is not a frequency of zero"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*14",
+      "ours": 0.01913477537437604,
+      "count": 23,
+      "ci95": [
+        0.012783899249566697,
+        0.028549443917425768
+      ],
+      "cpic": null,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC names the allele but publishes no frequency"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "Unknown",
+      "ours": 0.0016638935108153079,
+      "count": 2,
+      "ci95": [
+        0.00045641826927569516,
+        0.00604647542800542
+      ],
+      "cpic": null,
+      "positions_required": 0,
+      "positions_present": 0,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC's Central/South Asian table has no row for this allele \u2014 it is folded into another name or not used. Absence of a row is not a frequency of zero"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*54",
+      "ours": 0.030782029950083195,
+      "count": 37,
+      "ci95": [
+        0.022413840268340025,
+        0.04213980254512667
+      ],
+      "cpic": null,
+      "positions_required": 4,
+      "positions_present": 4,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC's Central/South Asian table has no row for this allele \u2014 it is folded into another name or not used. Absence of a row is not a frequency of zero"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*14",
+      "ours": 0.029950083194675542,
+      "count": 36,
+      "ci95": [
+        0.021711152533649938,
+        0.041183897447925735
+      ],
+      "cpic": null,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC names the allele but publishes no frequency"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "Unknown",
+      "ours": 0.014975041597337771,
+      "count": 18,
+      "ci95": [
+        0.009493156603255051,
+        0.02354722240428233
+      ],
+      "cpic": null,
+      "positions_required": 0,
+      "positions_present": 0,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC's Central/South Asian table has no row for this allele \u2014 it is folded into another name or not used. Absence of a row is not a frequency of zero"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*20",
+      "ours": 0.004991680532445923,
+      "count": 6,
+      "ci95": [
+        0.0022896797862709114,
+        0.010847585238574268
+      ],
+      "cpic": null,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC names the allele but publishes no frequency"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*51",
+      "ours": 0.0008319467554076539,
+      "count": 1,
+      "ci95": [
+        0.0001468741294545499,
+        0.004697426735935548
+      ],
+      "cpic": null,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "naming_artifact",
+      "why": "CPIC's Central/South Asian table has no row for this allele \u2014 it is folded into another name or not used. Absence of a row is not a frequency of zero"
+    }
+  ],
+  "population_deviations": [
+    {
+      "gene": "CYP2C19",
+      "allele": "*2",
+      "ours": 0.3544093178036606,
+      "count": 426,
+      "ci95": [
+        0.32787098285525823,
+        0.3818752715638139
+      ],
+      "cpic": 0.269916,
+      "positions_required": 4,
+      "positions_present": 4,
+      "missing_positions": [],
+      "classification": "population_deviation",
+      "direction": "higher"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*17",
+      "ours": 0.1480865224625624,
+      "count": 178,
+      "ci95": [
+        0.12912887320494532,
+        0.16928635890515475
+      ],
+      "cpic": 0.17077276,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "population_deviation",
+      "direction": "lower"
+    },
+    {
+      "gene": "CYP2C19",
+      "allele": "*8",
+      "ours": 0.0008319467554076539,
+      "count": 1,
+      "ci95": [
+        0.0001468741294545499,
+        0.004697426735935548
+      ],
+      "cpic": 0.0,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "population_deviation",
+      "direction": "higher"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*2",
+      "ours": 0.03826955074875208,
+      "count": 46,
+      "ci95": [
+        0.02881283527512075,
+        0.050668143025365084
+      ],
+      "cpic": 0.11379695,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "population_deviation",
+      "direction": "lower"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*66",
+      "ours": 0.0033277870216306157,
+      "count": 4,
+      "ci95": [
+        0.0012948491925874588,
+        0.008525230168475688
+      ],
+      "cpic": 0.0008,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "population_deviation",
+      "direction": "higher"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*15",
+      "ours": 0.03494176372712146,
+      "count": 42,
+      "ci95": [
+        0.02595336074608561,
+        0.046893246226836154
+      ],
+      "cpic": 0.065170676,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "population_deviation",
+      "direction": "lower"
+    }
+  ],
+  "agrees": [
+    {
+      "gene": "CYP2C19",
+      "allele": "*3",
+      "ours": 0.014143094841930116,
+      "count": 17,
+      "ci95": [
+        0.008848801139736951,
+        0.02253298503590941
+      ],
+      "cpic": 0.015685236,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*3",
+      "ours": 0.10149750415973377,
+      "count": 122,
+      "ci95": [
+        0.08567506748537734,
+        0.11985896603882573
+      ],
+      "cpic": 0.10985958,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "CYP2C9",
+      "allele": "*8",
+      "ours": 0.0008319467554076539,
+      "count": 1,
+      "ci95": [
+        0.0001468741294545499,
+        0.004697426735935548
+      ],
+      "cpic": 0.0009815951,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*3",
+      "ours": 0.06738768718801996,
+      "count": 81,
+      "ci95": [
+        0.0545493153586497,
+        0.0829824120580217
+      ],
+      "cpic": 0.067,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "NUDT15",
+      "allele": "*5",
+      "ours": 0.0008319467554076539,
+      "count": 1,
+      "ci95": [
+        0.0001468741294545499,
+        0.004697426735935548
+      ],
+      "cpic": 0.0004482,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*37",
+      "ours": 0.43926788685524126,
+      "count": 528,
+      "ci95": [
+        0.4114486090295096,
+        0.46747411424244617
+      ],
+      "cpic": 0.46023798,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "SLCO1B1",
+      "allele": "*5",
+      "ours": 0.005823627287853577,
+      "count": 7,
+      "ci95": [
+        0.0028237885975682733,
+        0.011972069259167923
+      ],
+      "cpic": 0.004471154,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*3C",
+      "ours": 0.012479201331114808,
+      "count": 15,
+      "ci95": [
+        0.00757698489521624,
+        0.02048761561664809
+      ],
+      "cpic": 0.011216759,
+      "positions_required": 1,
+      "positions_present": 1,
+      "missing_positions": [],
+      "classification": "agrees"
+    },
+    {
+      "gene": "TPMT",
+      "allele": "*3A",
+      "ours": 0.004159733777038269,
+      "count": 5,
+      "ci95": [
+        0.0017780588699504857,
+        0.009700613323003678
+      ],
+      "cpic": 0.0042245653,
+      "positions_required": 2,
+      "positions_present": 2,
+      "missing_positions": [],
+      "classification": "agrees"
+    }
+  ]
+}
