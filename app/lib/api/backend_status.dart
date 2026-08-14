@@ -70,14 +70,16 @@ class BackendStatus {
     BackendPhase.waking => kIsLocalBackend
         // A local backend does not cold-start; if it is slow, it is not running.
         ? 'Still waiting on $kApiBaseUrl — is uvicorn running?'
-        : 'The server sleeps when idle to stay on the free tier. The first '
-              'request after a nap can take up to a minute. '
-              '(${elapsed.inSeconds}s elapsed)',
+        : 'The server sleeps when idle to stay on the free tier, so the '
+              'first request has to wake it — $kColdStartExpectation. '
+              'Nothing is stuck. (${elapsed.inSeconds}s elapsed)',
     BackendPhase.ready => kApiBaseUrl,
     BackendPhase.unreachable =>
       message ??
           'No response from $kApiBaseUrl after '
-              '${kWakeupBudget.inSeconds} seconds.',
+              '${kWakeupBudget.inSeconds} seconds and $attempts attempts. '
+              'This is no longer a cold start — the server is unreachable, '
+              'not waking.',
   };
 
   BackendStatus copyWith({

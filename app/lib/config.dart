@@ -67,10 +67,29 @@ const String kDisclaimer =
 
 /// How long to keep trying to wake the backend before calling it unreachable.
 ///
-/// Generous on purpose. A free-tier container that has scaled to zero can take
-/// the better part of a minute to serve its first request, and reporting a hard
-/// error at 10 seconds would make a working deployment look broken.
-const Duration kWakeupBudget = Duration(seconds: 90);
+/// MEASURED, AND RAISED ONCE. This was 90 s, chosen when a cold start measured
+/// 12.85 s — the image was still resident on the Render host from a recent
+/// deploy, so only the container had to start.
+///
+/// A day later, cold `/health` took **83 s**: Render had evicted the ~6 GB
+/// image and re-pulled it. That left 7 seconds of margin against the budget, so
+/// a slightly slower pull would have made the client give up on a server that
+/// was seconds from answering — and report "cannot be reached" about a backend
+/// that was fine. A false negative on availability is worse than a longer wait,
+/// because the wait is honest and the false negative is not.
+///
+/// 180 s is comfortably past the observed worst case. It is a CEILING, not an
+/// expectation: the banner shows elapsed seconds throughout, and a warm backend
+/// answers on the first ping without the waking state ever appearing.
+const Duration kWakeupBudget = Duration(seconds: 180);
+
+/// What to tell the user a cold start actually costs.
+///
+/// Kept beside the budget so the two cannot drift: the copy quoted "up to a
+/// minute" while the measured worst case was 83 s, which is precisely how a
+/// normal wait comes to read as a hang — the user was promised sixty seconds.
+const String kColdStartExpectation = 'usually 15–90 seconds, occasionally '
+    'longer if the server image has to be fetched again';
 
 /// Backoff schedule for the wake-up ping.
 ///

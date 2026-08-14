@@ -178,8 +178,42 @@ void main() {
       expect(kApiBaseUrl.endsWith('/'), isFalse);
     });
 
-    test('wake-up budget is generous enough for a cold start', () {
-      expect(kWakeupBudget.inSeconds, greaterThanOrEqualTo(60));
+    test('the budget clears the MEASURED cold start with real margin', () {
+      // Measured on the deployed service: 12.85 s when the image was still
+      // resident on the Render host, and 83 s a day later when the ~6 GB image
+      // had been evicted and was re-pulled. The budget was 90 s, leaving seven
+      // seconds — so a slightly slower pull would have reported "cannot be
+      // reached" about a server that was seconds from answering.
+      //
+      // A false negative on availability is worse than a longer wait: the wait
+      // is honest, and the false negative is not.
+      const int measuredWorstColdStart = 83;
+      expect(kWakeupBudget.inSeconds, greaterThan(measuredWorstColdStart * 2),
+          reason: 'the budget must clear the worst observed cold start by a '
+              'wide margin, not by seconds');
+    });
+
+    test('the promised duration does not undercut the budget', () {
+      // THE DEFECT THIS FIXES. The banner said "can take up to a minute" while
+      // the budget allowed 90 s and reality took 83 s. A wait that overruns
+      // what the user was promised reads as a hang, however honest the
+      // underlying behaviour is.
+      //
+      // The expectation string must not name a ceiling the budget would let
+      // pass — so it is checked for the numbers it quotes.
+      final Iterable<int> quoted = RegExp(r'(\d+)')
+          .allMatches(kColdStartExpectation)
+          .map((RegExpMatch m) => int.parse(m.group(1)!));
+      expect(quoted, isNotEmpty,
+          reason: 'the cold-start expectation quotes no duration at all');
+      for (final int seconds in quoted) {
+        expect(seconds, lessThanOrEqualTo(kWakeupBudget.inSeconds),
+            reason: 'the copy promises $seconds s but the client waits '
+                '${kWakeupBudget.inSeconds} s — the promise must not be '
+                'shorter than the wait');
+      }
+      // And it must admit the long case rather than quoting only the fast one.
+      expect(kColdStartExpectation.toLowerCase(), contains('longer'));
     });
 
     test('backoff is front-loaded then widens', () {
@@ -237,6 +271,16 @@ void main() {
           reason: 'the wait must be BOUNDED; an unbounded one is '
               'indistinguishable from a hang');
       controller.dispose();
+    });
+
+    test('says it is unreachable, NOT still waking', () {
+      const BackendStatus dead = BackendStatus(
+        phase: BackendPhase.unreachable, attempts: 12);
+      // The whole point of bounding the state: an unresolvable condition must
+      // stop being presented as a temporary one.
+      expect(dead.detail.toLowerCase(), contains('not waking'));
+      expect(dead.title.toLowerCase(), isNot(contains('waking')));
+      expect(dead.isBusy, isFalse);
     });
 
     test('names the origin it could not reach', () async {
