@@ -109,3 +109,7 @@ test-data/reference/cohort/cohort_n601.vcf
 test-data/reference/cohort/chr*_n601.vcf.gz*
 test-data/reference/cohort/samples_n601.txt
 test-data/reference/cohort/pharmcat_sas_n601/
+
+# Local scratch copies of demo VCFs. The canonical files are in
+# test-data/demo/ and app/assets/samples/; this directory is duplicates.
+test-data/vcf/
