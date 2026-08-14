@@ -1227,6 +1227,90 @@ person's genome.
 
 ---
 
+## Evidence 17 — four filters an apparent finding must pass
+
+The n=601 frequency comparison produced 30 allele rows. Reading them as findings
+would have been wrong four separate ways, and only two of the four were
+anticipated.
+
+| # | filter | what it removes | removed here |
+| --- | --- | --- | ---: |
+| 1 | **Coverage** | the input could not observe the allele | 6 |
+| 2 | **Nomenclature** | the comparison source does not name it | 9 |
+| 3 | **Population definition** | the two "populations" are not the same population | *uncounted* |
+| 4 | **Statistical power** | the rate rests on one or four observations | 2 |
+
+Filters 1 and 2 were designed in. **3 and 4 were not**, and they are the ones
+that reduce the survivor count to zero.
+
+### Filter 3 — mismatched population definition
+
+CPIC's group is **Central/South Asian**; 1000 Genomes SAS is five specific
+cohorts from the Indian subcontinent, Pakistan, Bangladesh and Sri Lanka. These
+are different populations wearing similar names. CYP2C9 `*2` is genuinely more
+common in Central Asian cohorts, which explains that row with no measurement
+error at all.
+
+The failure mode is a **label collision between two sources**, and it is
+invisible from either side alone: both are correct about their own population,
+and only comparing them creates the error. Nothing in either dataset flags it.
+
+### Filter 4 — statistical power
+
+`CYP2C19 *8` rests on **one** alternate chromosome in 1202; `CYP2C9 *66` on
+**four**. Both clear a 95% CI test, because the published value is near zero and
+the interval around a single observation excludes it. **Passing a significance
+test is not the same as having evidence**, and a filter that only asks "is the
+published value outside the interval" will keep answering yes to noise.
+
+This is the same error as the DPYD threshold (Evidence 10) inverted: there, a
+sweep over a population where the variant was rare produced a 0% error rate that
+meant nothing. Here, a variant that is rare produces a "deviation" that means
+nothing. Rarity breaks inference in both directions.
+
+### The general shape
+
+Each filter answers a different question, and a finding must survive all four:
+
+1. *could the instrument see it?*
+2. *is the comparison naming the same thing?*
+3. *is the comparison about the same population?*
+4. *is there enough of it to be a rate?*
+
+The count that survives all four, here, is **zero** — which is a result, not a
+failure of the analysis.
+
+## Evidence 18 — scope reveals what sampling hides
+
+Every defect in this phase was found by **widening the check**, never by the
+check itself.
+
+| defect | invisible at | obvious at |
+| --- | --- | --- |
+| rs1799853 "absent" | one allele | thirty alleles |
+| Positions pooled across contigs | one gene | seven genes |
+| Reference alleles unobservable | one gene | five genes at once |
+| DPYD 0% error (Evidence 10) | n=20 | n=400 |
+| NUDT15 harness bug (tally #15) | one gene | seven genes |
+
+The rs1799853 check *looked* correct because it was asked once, about one
+position, and returned the answer the asker expected. Asking the same question
+about thirty alleles made the failure immediate: **every** allele reported
+missing positions, including alleles that plainly cannot be — which is not a
+data pattern, it is a broken reader.
+
+**A single-instance check cannot distinguish "this instance is absent" from
+"the reader returns absent for everything".** Breadth supplies the contrast that
+a single case cannot. This is why the DPYD threshold survived n=20 and died at
+n=400, and it is the same reason the constructed-allele sweep runs all 503
+alleles rather than a sample.
+
+The practical rule now applied: **when a check reports absence, run it over the
+whole class and confirm the answer varies.** A uniform answer across a
+heterogeneous set is evidence about the check, not about the set.
+
+---
+
 ## Running tally — checks that passed while checking nothing
 
 Kept because the pattern outlived every individual instance of it. Each of
@@ -1252,9 +1336,10 @@ recognisable, rather than being rediscovered each time under a new name.
 | 14 | Render `autoDeploy: "yes"` | Webhook-driven, and no GitHub App was installed — enabled, reported, inert | Pushing a commit and asking what was running |
 | 15 | The constructed-allele sweep, on NUDT15 | Asked "what did you call NUDT15?" for a drug governed by TPMT **and** NUDT15; with a normal NUDT15, TPMT drives the recommendation and NUDT15 never appears. Nine correct results scored as `no_call` | Checking one by hand before believing the number |
 | 16 | `backend_status_test`'s give-up test | Named "emits a waking state before it gives up"; scripted a backend that WOKE, asserted `ready`, and never exercised giving up | Writing the bounded-wait test the brief asked for |
-| 17 | "is rs1799853 present in the slice?" | `bcftools query -r` on an unindexed VCF fails to **stderr**, exits **0**, returns no rows. stderr was discarded, so the position set was empty and EVERY position tested as absent | Re-running the same question mechanically over all 30 alleles |
+| 17 | "is rs1799853 present in the slice?" | `bcftools query -r` on an unindexed VCF refused, said so on stderr, and **exited 255** — but the call read neither. Empty stdout became an empty position set, so EVERY position tested as absent | Re-running the same question mechanically over all 30 alleles |
+| 18 | The write-up of #17 itself | Claimed bcftools "exits 0 while refusing", measured as `bcftools … \| head -5; echo $?` — which reports HEAD's status, not bcftools'. The tool was explicit; the diagnosis was not | A positive control asserting the exit code IS non-zero |
 
-**Six of #10–#17 are mine, from these phases, and all three are the same
+**Seven of #10–#18 are mine, from these phases, and all three are the same
 error**: a harness that agreed with itself. #10 and #11 constructed a payload
 that did not contain the thing under test; #12 compared against a baseline that
 could not isolate the variable. In each case the *system* was correct and the

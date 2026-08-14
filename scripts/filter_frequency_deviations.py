@@ -78,12 +78,14 @@ def sliced_positions() -> set[tuple[str, int]]:
     Every (chromosome, position) present in the sliced cohort VCF.
 
     READ BY LINEAR SCAN, NOT `bcftools -r`. The combined VCF is uncompressed and
-    unindexed, and `bcftools query -r` on such a file fails with "not compressed
-    with bgzip" — on stderr, returning exit 0 and NO rows. An earlier check
-    piped stderr away and built its position set from that empty output, so
-    every membership test returned False and every position looked absent. It
-    produced a confident, wrong finding: that rs1799853 was missing and
-    explained the CYP2C9 *2 shortfall. rs1799853 is present.
+    unindexed, and `bcftools query -r` on such a file refuses with "not
+    compressed with bgzip", writes that to stderr, and exits **255**. An earlier
+    check ignored the exit code and built its position set from the empty
+    stdout, so every membership test returned False and every position looked
+    absent. It produced a confident, wrong finding: that rs1799853 was missing
+    and explained the CYP2C9 *2 shortfall. rs1799853 is present.
+
+    The tool was not quiet about it. Nothing was listening.
     """
     out: set[tuple[str, int]] = set()
     with SLICE.open() as fh:

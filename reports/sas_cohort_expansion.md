@@ -94,12 +94,18 @@ position, rs1799853 (chr10:94942290), was ABSENT from the slice and that its
 absence accounted for the entire threefold shortfall. That is false. The
 position is present.**
 
-The check that produced it ran `bcftools query -r chr10` against
-`cohort_n601.vcf` — an uncompressed, unindexed file. bcftools refuses that with
-*"not compressed with bgzip"*, writes the refusal to **stderr**, and exits **0**
-with no rows. The command's stderr was discarded, so the position set was built
-from empty output; every membership test then returned False and every position
-looked absent. Only the one being looked for was reported.
+The check ran `bcftools query -r chr10` against `cohort_n601.vcf` — an
+uncompressed, unindexed file. bcftools refuses that with *"not compressed with
+bgzip"*, writes it to stderr, and **exits 255**. The call passed no `check=True`
+and never read `returncode`, so the empty stdout became an empty position set;
+every membership test then returned False and every position looked absent. Only
+the one being looked for was reported.
+
+**A second correction (2026-08-14):** this paragraph first said bcftools "exits
+0 while refusing". It does not. That claim came from measuring `$?` after a
+pipe — `bcftools … | head -5; echo $?` reports HEAD's status, not bcftools'.
+The tool signalled failure clearly; the caller ignored it. Caught by a positive
+control written for exactly this class of check.
 
 An empty result set makes every "is X present?" question answer no. That is the
 same shape as the other entries in the running tally — a check that returns a

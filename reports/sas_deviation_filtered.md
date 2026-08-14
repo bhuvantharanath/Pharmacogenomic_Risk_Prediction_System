@@ -26,10 +26,16 @@ entire threefold shortfall.
 
 The check ran `bcftools query -r chr10` against `cohort_n601.vcf`, which is
 uncompressed and unindexed. bcftools refuses that input with *"not compressed
-with bgzip"* — on **stderr**, with **exit code 0** and no rows. stderr was
-discarded, so the position set was built from empty output. Every `in` test then
-returned False, so **every position looked absent**; only the one being looked
-for got reported.
+with bgzip"*, on stderr, **exiting 255**. The call passed no `check=True` and
+never read `returncode`, so the empty stdout became an empty position set. Every
+`in` test then returned False, so **every position looked absent**; only the one
+being looked for got reported.
+
+> **Corrected again 2026-08-14.** This paragraph first claimed bcftools "exits 0
+> while refusing". It does not — that reading came from `$?` after a pipe, which
+> reports the last command in the pipeline. The tool was explicit; the caller
+> was not listening. The correct lesson is the ordinary one: **check the exit
+> code**, and never let an empty result stand in for an answer.
 
 An empty result set answers "no" to every membership question. Recorded as **#17**
 in the running tally of checks that returned a confident answer having examined
