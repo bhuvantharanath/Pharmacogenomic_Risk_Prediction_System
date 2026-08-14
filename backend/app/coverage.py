@@ -251,6 +251,42 @@ def critical_positions_warning(cov: GeneCoverage) -> str:
     )
 
 
+def all_genes_gated_warning(assessment: "CoverageReport") -> str:
+    """
+    One diagnosis, in place of seven near-identical refusals.
+
+    When EVERY gene is declined, the per-gene messages say the same thing seven
+    times and none of them says the useful part: this is almost certainly a
+    whole-file property, not seven independent coincidences. A visitor who
+    downloads a public research VCF or a consumer SNP export hits exactly this,
+    and the generic wall of text reads as the site being broken.
+
+    Naming the two likely sources is the difference between "try again" and
+    "this class of file cannot work, here is what can".
+    """
+    total = len(assessment.genes)
+    worst = min((c.percent for c in assessment.genes.values()), default=0.0)
+    best = max((c.percent for c in assessment.genes.values()), default=0.0)
+    return (
+        f"Every gene ({total} of {total}) was declined, at {worst:.0f}–{best:.0f}% "
+        f"position coverage. That pattern is a property of the FILE, not of "
+        f"{total} separate genes — and it has two common causes.\n\n"
+        f"This looks like a research-format or SNP-array export.\n\n"
+        f"• A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is "
+        f"POLYMORPHIC-FILTERED: it lists only positions where someone differed "
+        f"from the reference. The positions that matched are simply absent, and "
+        f"absent is indistinguishable from never-tested.\n"
+        f"• A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not "
+        f"sequencing. It reports a few hundred thousand chosen positions across "
+        f"the whole genome, which is not the same as reporting every position "
+        f"one gene needs.\n\n"
+        f"Neither is a bad file. Both are the wrong shape for this question. "
+        f"What works is a clinical pharmacogenomic panel, or a sequencing "
+        f"pipeline re-run to emit every position including the reference "
+        f"matches. The input requirements page lists the specific sources."
+    )
+
+
 def insufficient_warning(cov: GeneCoverage) -> str:
     return (
         f"{cov.gene}: only {cov.present} of {cov.required} required positions "

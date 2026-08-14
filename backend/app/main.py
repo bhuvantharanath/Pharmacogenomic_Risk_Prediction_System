@@ -678,7 +678,17 @@ def build_response(
     if cov is not None:
         if cov.variants_only:
             warnings.append(coverage_mod.variants_only_warning())
-        for gene_cov in cov.insufficient():
+        insufficient = cov.insufficient()
+        # EVERY gene declined is one diagnosis, not seven. Repeating a generic
+        # coverage message per gene buries the useful part — that this is a
+        # property of the file, and which kinds of file behave this way. It is
+        # also the most likely first experience for a visitor who downloads a
+        # public research VCF or a consumer SNP export.
+        all_gated = bool(cov.genes) and len(insufficient) == len(cov.genes)
+        if all_gated:
+            warnings.append(coverage_mod.all_genes_gated_warning(cov))
+
+        for gene_cov in insufficient:
             starved.add(gene_cov.gene)
             # Two different refusals, two different sentences. A gene that met
             # its percentage but lacks the positions that could show a variant
@@ -687,8 +697,10 @@ def build_response(
             if (gene_cov.percent >= gene_cov.min_percent
                     and gene_cov.critical_enforced
                     and not gene_cov.critical_satisfied):
+                # Kept even when everything is gated: this one says something
+                # the summary does not, and it is the project's sharpest point.
                 warnings.append(coverage_mod.critical_positions_warning(gene_cov))
-            else:
+            elif not all_gated:
                 warnings.append(coverage_mod.insufficient_warning(gene_cov))
 
     for drug in drugs:

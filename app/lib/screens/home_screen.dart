@@ -2,6 +2,8 @@
 library;
 
 import 'dart:async';
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +17,9 @@ import '../theme/tokens.dart';
 import '../widgets/backend_status_banner.dart';
 import '../widgets/disclaimer_banner.dart';
 import '../widgets/file_readiness.dart';
+import '../widgets/sample_files.dart';
 import '../widgets/version_notice.dart';
+import '../utils/text_export.dart';
 import 'about_screen.dart';
 import 'results_screen.dart';
 
@@ -133,6 +137,52 @@ class _HomeScreenState extends State<HomeScreen> {
   /// Failures are swallowed on purpose. This is advisory: a user whose preview
   /// did not load must still be able to run the analysis, and an error box for
   /// a feature they did not ask for would read as though their file were bad.
+  /// Load a bundled sample as though the user had picked it.
+  ///
+  /// Goes through the SAME `PlatformFile` the file picker produces, so the
+  /// sample takes the identical path: readiness check, then /analyze. A
+  /// shortcut that bypassed either would demo a code path nobody else runs.
+  Future<void> _useSample(SampleFile sample) async {
+    try {
+      final String contents = await sample.load();
+      final Uint8List bytes = Uint8List.fromList(utf8.encode(contents));
+      if (!mounted) return;
+      setState(() {
+        _file = PlatformFile(
+          name: sample.fileName,
+          size: bytes.length,
+          bytes: bytes,
+        );
+        _readiness = null;
+        _error = null;
+        _busy = null;
+      });
+      await _checkReadiness();
+      if (!mounted) return;
+      await _analyze();
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _error = 'Could not load the sample file: $e');
+    }
+  }
+
+  /// Hand the sample over as a real file the visitor can re-upload.
+  Future<void> _downloadSample(SampleFile sample) async {
+    try {
+      final String contents = await sample.load();
+      final String message = await exportText(sample.fileName, contents);
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(message)),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Could not save the sample: $e')),
+      );
+    }
+  }
+
   Future<void> _checkReadiness() async {
     final PlatformFile? file = _file;
     if (file?.bytes == null) return;
@@ -318,6 +368,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 _StepHeader(number: 1, title: 'Choose a VCF file'),
                 const SizedBox(height: 8),
                 _FileDropCard(file: _file, onPick: _loading ? null : _pickFile),
+                const SizedBox(height: 12),
+                SampleFilesCard(
+                  onTry: _useSample,
+                  onDownload: _downloadSample,
+                  busy: _loading,
+                ),
                 if (_checkingReadiness) ...<Widget>[
                   const SizedBox(height: 10),
                   const _ReadinessPending(),
@@ -553,8 +609,7 @@ class _FileDropCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     f == null
-                        ? 'Tap to browse — try '
-                              'test-data/cyp2c19_poor_metabolizer.vcf'
+                        ? 'Tap to browse — or use a sample below'
                         : '${_humanSize(f.size)} · tap to change',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,

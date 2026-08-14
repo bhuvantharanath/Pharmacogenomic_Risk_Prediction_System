@@ -40,6 +40,38 @@ DPYD is immune across the whole range because its clinically actionable variants
 are each defined by a single position, and CPIC scores it by activity rather than
 by matching a full reference haplotype.
 
+## Where usable files come from — and where they do not
+
+**The most likely first experience is disappointment**, and it is worth
+pre-empting: someone downloads a public genome file, uploads it, and gets seven
+Unknowns. Nothing is broken. Almost every freely available genome file is the
+wrong *shape* for this question, for one of two reasons.
+
+| source | usable? | why |
+| --- | --- | --- |
+| **Clinical PGx panel** (targeted sequencing) | **Yes** | Built to report every position in the genes it covers, reference matches included |
+| **Whole-genome / exome, re-emitted with all sites** | **Yes** | Same property, if the pipeline is asked for it — see the commands below |
+| **1000 Genomes, gnomAD, most public research VCFs** | **No** | **Polymorphic-filtered.** They list only positions where someone differed from the reference. Positions that matched are absent, and absent is indistinguishable from never-tested |
+| **23andMe, AncestryDNA, MyHeritage exports** | **No** | **A genotyping array, not sequencing.** It reports a few hundred thousand chosen positions across the whole genome — not every position that one gene needs |
+| **A VCF from a variant-calling pipeline's default output** | **Usually no** | Defaults emit variants only. The fix is a flag, not a different assay — see below |
+
+### Why a consumer export cannot work, even though it mentions your genes
+
+A 23andMe file may well contain `rs4244285` — a CYP2C19 `*2` marker — and that
+makes it tempting to think the file is enough. It is not. An array reports the
+positions it was designed to interrogate; PharmCAT needs **every** position that
+defines any allele of the gene, because an allele is a *combination* across
+positions. Having some of them determines nothing, and the missing ones are
+silently read as reference.
+
+This is the same failure as a variants-only file, arriving by a different route.
+
+### The one honest thing to do with an unusable file
+
+Nothing. There is no post-processing that recovers a position that was never
+measured — imputation would invent the very data the gate exists to require.
+The file is not broken; it answers a different question.
+
 ## The requirement
 
 | Gene | Minimum coverage of PharmCAT's defining positions |

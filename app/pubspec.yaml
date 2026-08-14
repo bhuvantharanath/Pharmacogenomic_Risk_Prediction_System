@@ -59,6 +59,12 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+  # Sample VCFs, bundled so a visitor with no genome file of their own can
+  # still use the site. Without these the deployed app is unusable to almost
+  # everyone who reaches it.
+  assets:
+    - assets/samples/
+
   fonts:
     # Bundled, not fetched. A demo on a bad network must not lose its typography,
     # and the three families carry meaning (see lib/theme/tokens.dart) rather
