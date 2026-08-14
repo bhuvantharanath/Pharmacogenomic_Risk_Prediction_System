@@ -1338,8 +1338,11 @@ recognisable, rather than being rediscovered each time under a new name.
 | 16 | `backend_status_test`'s give-up test | Named "emits a waking state before it gives up"; scripted a backend that WOKE, asserted `ready`, and never exercised giving up | Writing the bounded-wait test the brief asked for |
 | 17 | "is rs1799853 present in the slice?" | `bcftools query -r` on an unindexed VCF refused, said so on stderr, and **exited 255** — but the call read neither. Empty stdout became an empty position set, so EVERY position tested as absent | Re-running the same question mechanically over all 30 alleles |
 | 18 | The write-up of #17 itself | Claimed bcftools "exits 0 while refusing", measured as `bcftools … \| head -5; echo $?` — which reports HEAD's status, not bcftools'. The tool was explicit; the diagnosis was not | A positive control asserting the exit code IS non-zero |
+| 19 | CI's "no doc promises faculty sign-off" | `grep` over a path list with `2>/dev/null`; a renamed directory yields "no match", so the check prints its reassuring message having scanned nothing. The repo's central honesty claim | Auditing every shell pipeline for exit codes read after a pipe |
+| 20 | The adjudication-count guard | Skipped when its subprocess produced no summary — so a crashed gate script read as a passing one. The SAME defect this file had already fixed for the test-count check, reintroduced two sections later | Classifying every unchecked subprocess call by what it does with stdout |
+| 21 | `preflight.check_git_clean` | Unchecked `git status --porcelain`; a git failure gives empty stdout, which reads as **a clean tree** | Same audit |
 
-**Seven of #10–#18 are mine, from these phases, and all three are the same
+**Ten of #10–#21 are mine, from these phases, and all three are the same
 error**: a harness that agreed with itself. #10 and #11 constructed a payload
 that did not contain the thing under test; #12 compared against a baseline that
 could not isolate the variable. In each case the *system* was correct and the

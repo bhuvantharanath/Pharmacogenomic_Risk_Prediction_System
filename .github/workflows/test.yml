@@ -215,10 +215,52 @@ jobs:
 
       - name: No doc promises faculty sign-off
         run: |
-          if grep -rniE "faculty (review|sign-?off|guide)|awaiting (clinical )?review|pending (clinical )?sign-?off" \
-               --include="*.md" --include="*.dart" --include="*.json" \
-               README.md app/lib backend/app/data scripts/ 2>/dev/null; then
-            echo "::error::An artifact implies a clinical reviewer that this project does not have."
+          set -euo pipefail
+
+          PATTERN='faculty (review|sign-?off|guide)|awaiting (clinical )?review|pending (clinical )?sign-?off'
+          INCLUDES=(--include=*.md --include=*.dart --include=*.json)
+          TARGETS=(README.md app/lib backend/app/data scripts)
+
+          # 1. THE PATHS MUST EXIST. grep over a missing path reports "no
+          #    match", which is indistinguishable from a clean result, so a
+          #    renamed directory turns this into a no-op that still prints its
+          #    reassuring message. Verified: a bad path yields exit 1, not 2.
+          for target in "${TARGETS[@]}"; do
+            if [ ! -e "$target" ]; then
+              echo "::error::$target does not exist; this check would scan nothing and pass."
+              exit 1
+            fi
+          done
+
+          # 2. POSITIVE CONTROL. Plant a string the pattern MUST match, inside
+          #    the tree being scanned, and confirm grep finds it. If the control
+          #    does not fire the search is broken, and its silence proves
+          #    nothing. This is the guard tally #17 lacked.
+          CONTROL="scripts/.honesty_control_$$.md"
+          printf 'awaiting clinical review\n' > "$CONTROL"
+          if ! grep -rniE "$PATTERN" "${INCLUDES[@]}" "${TARGETS[@]}" >/dev/null; then
+            rm -f "$CONTROL"
+            echo "::error::Positive control did not match. The search is broken,"
+            echo "::error::so a clean result would prove nothing."
             exit 1
           fi
-          echo "No artifact implies clinical expert approval."
+          rm -f "$CONTROL"
+
+          # 3. The real scan. stderr is NOT discarded: an unreadable file is a
+          #    reason to stop, not to conclude the repository is clean.
+          set +e
+          hits=$(grep -rniE "$PATTERN" "${INCLUDES[@]}" "${TARGETS[@]}")
+          status=$?
+          set -e
+
+          # grep: 0 = matched, 1 = clean, 2+ = error. Only 1 is a pass.
+          if [ "$status" -eq 0 ]; then
+            echo "$hits"
+            echo "::error::An artifact implies a clinical reviewer that this project does not have."
+            exit 1
+          elif [ "$status" -ne 1 ]; then
+            echo "::error::grep exited $status — the scan did not complete, so"
+            echo "::error::'no matches' is not a result."
+            exit 1
+          fi
+          echo "No artifact implies clinical expert approval (positive control passed)."

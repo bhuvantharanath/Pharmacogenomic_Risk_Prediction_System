@@ -71,7 +71,7 @@ The system's design is a response to that finding. It is built to decline rather
 | Usable rate, polymorphic-filtered research slices | **12.58%** — a property of that input format, not a pipeline failure rate |
 | External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
 | South Asian subgroup, **n=601** | CYP2C19 reduced-function **57.1%** [53.1–61.0]. All five subcohorts n≥103; diaspora/regional samples, **not** a representative Indian sample |
-| Backend tests | 801 passing |
+| Backend tests | 803 passing |
 | Client tests | 192 passing |
 
 ### The eight findings

@@ -403,18 +403,32 @@ def test_the_about_screen_cyp2d6_claim_matches_the_negative_control() -> None:
 # --------------------------------------------------------------------------- #
 
 def _adjudication_status() -> str:
+    """
+    The gate's own output.
+
+    The exit code is DELIBERATELY not asserted: this gate exits non-zero by
+    design while sentences remain escalated, so a non-zero status is the
+    expected state, not a failure. What must be checked is that it produced a
+    summary at all — an earlier version returned `result.stdout` unconditionally
+    and the caller skipped when the text was missing, so a crashed script made
+    the guard silently not run. That is the same "skip on parse failure"
+    defect this file already fixed once for the test-count check.
+    """
     result = subprocess.run(
         [sys.executable, str(REPO / "scripts/adjudication_status.py")],
         cwd=REPO, capture_output=True, text=True, timeout=300)
+    if "outstanding" not in result.stdout:
+        raise AssertionError(
+            "adjudication_status.py produced no summary — this check must fail "
+            "loudly rather than skip, or a broken gate reads as a passing one.\n"
+            f"exit={result.returncode}\nstdout={result.stdout[-400:]!r}\n"
+            f"stderr={result.stderr[-400:]!r}")
     return result.stdout
 
 
 def test_the_documented_adjudication_counts_are_current() -> None:
     """Re-derived from the gate itself, not from memory of a past run."""
     output = _adjudication_status()
-    if "outstanding" not in output:
-        pytest.skip("adjudication_status.py produced no summary")
-
     outstanding = re.search(r"outstanding\s+(\d+)", output)
     sentences = re.search(r"claim sentences\s+(\d+)", output)
     assert outstanding and sentences

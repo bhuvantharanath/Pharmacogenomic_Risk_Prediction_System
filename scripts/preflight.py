@@ -259,6 +259,15 @@ def check_git_clean() -> CheckResult:
     except (OSError, subprocess.SubprocessError) as exc:
         return CheckResult("git tree clean", False, f"could not run git: {scrub(exc)}", fatal=False)
 
+    # A failed `git status` produces EMPTY stdout, which reads as a clean tree —
+    # the check would then reassure you about a repository it never inspected.
+    if status.returncode != 0:
+        return CheckResult(
+            "git tree clean", False,
+            f"git status exited {status.returncode}: "
+            f"{scrub(status.stderr.strip()[:120])} — tree state unknown, "
+            f"not clean", fatal=False)
+
     dirty = [ln for ln in status.stdout.splitlines() if ln.strip()]
     if dirty:
         return CheckResult(

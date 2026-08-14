@@ -286,3 +286,57 @@ def test_no_absence_check_trusts_an_empty_subprocess_result() -> None:
     assert "if not out:" in source and "refusing to" in source, (
         "sliced_positions no longer refuses an empty result — an empty "
         "position set silently classifies every allele as an input artifact")
+
+
+# --------------------------------------------------------------------------- #
+# 6. Structural — the "skip on parse failure" pattern must not come back
+# --------------------------------------------------------------------------- #
+
+def test_no_guard_skips_when_its_subprocess_produced_nothing() -> None:
+    """
+    Fixed twice now, in the same file.
+
+    The test-count check regexed for output `pytest -q` never prints and
+    skipped on the parse failure. The adjudication check then did the same
+    thing — a crashed gate script produced empty stdout, the summary text was
+    missing, and the guard skipped. Both reported success having checked
+    nothing.
+
+    A guard may skip when a PRECONDITION is genuinely absent (no jar, no
+    slice). It must not skip because the thing it was supposed to read failed
+    to arrive.
+    """
+    source = (REPO / "backend/tests/test_documented_numbers.py").read_text()
+
+    # The specific regression: skipping right after reading a subprocess.
+    assert "pytest.skip(\"adjudication_status.py produced no summary\")" not in source, (
+        "the adjudication guard skips when its subprocess produces nothing — "
+        "a broken gate then reads as a passing one")
+    assert "must fail\n            loudly rather than skip" in source or \
+           "loudly rather than skip" in source, (
+        "the loud-failure rationale was removed from _adjudication_status")
+
+
+def test_pipelines_do_not_read_an_exit_code_after_a_pipe() -> None:
+    """
+    `cmd | head; echo $?` reports HEAD's status, not cmd's. That is how the
+    write-up of #17 came to claim bcftools "exits 0 while refusing" when it
+    exits 255 (tally #18).
+
+    Committed shell must either avoid the pattern or set pipefail.
+    """
+    import re
+    offenders = []
+    for path in list((REPO / ".github/workflows").glob("*.yml")):
+        text = path.read_text()
+        for block in re.findall(r"run: \|\n((?:[ \t]+.*\n)+)", text):
+            if "$?" not in block:
+                continue
+            if "pipefail" in block:
+                continue
+            # `$?` read where a pipe appears earlier in the same block.
+            if "|" in block.split("$?")[0]:
+                offenders.append(f"{path.name}: {block.strip()[:80]}")
+    assert not offenders, (
+        "an exit code is read after a pipe without pipefail:\n  "
+        + "\n  ".join(offenders))
