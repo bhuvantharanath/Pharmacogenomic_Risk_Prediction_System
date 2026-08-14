@@ -70,7 +70,7 @@ The system's design is a response to that finding. It is built to decline rather
 | Confident-label rate, complete-coverage input | **100%**, 0% wrong |
 | Usable rate, polymorphic-filtered research slices | **12.58%** — a property of that input format, not a pipeline failure rate |
 | External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
-| South Asian (SAS) subgroup, n=75 | CYP2C19 reduced-function **53.3%**, second only to EAS |
+| South Asian subgroup, **n=601** | CYP2C19 reduced-function **57.1%** [53.1–61.0]. All five subcohorts n≥103; diaspora/regional samples, **not** a representative Indian sample |
 | Backend tests | 788 passing |
 | Client tests | 192 passing |
 

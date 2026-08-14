@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-08-14T04:44:58Z",
+  "panel_source": "1000G_3202_populations.txt (3202 samples)",
+  "sas_total": 601,
+  "by_subpopulation": {
+    "BEB": 131,
+    "GIH": 103,
+    "ITU": 107,
+    "PJL": 146,
+    "STU": 114
+  },
+  "collected_where": {
+    "GIH": "Gujarati Indian, Houston, USA",
+    "ITU": "Indian Telugu, UK",
+    "STU": "Sri Lankan Tamil, UK",
+    "PJL": "Punjabi, Lahore, Pakistan",
+    "BEB": "Bengali, Bangladesh"
+  },
+  "slice_seconds": 0.0,
+  "slice_megabytes": 98.3,
+  "pharmcat_seconds": 0.1,
+  "reports": 601,
+  "report_dir": "test-data/reference/cohort/pharmcat_sas_n601",
+  "combined_vcf": "test-data/reference/cohort/cohort_n601.vcf",
+  "nature": "1000 Genomes SAS cohorts are diaspora and regional samples, not a representative Indian national sample. Input remains polymorphic-filtered research format and the coverage gate is active."
+}

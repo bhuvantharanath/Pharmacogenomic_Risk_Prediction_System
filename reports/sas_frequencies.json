@@ -1,0 +1,4325 @@
+{
+  "n_reports": 601,
+  "genes": {
+    "ABCG2": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "CACNA1S": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "CFTR": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "CYP2B6": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "CYP2C19": {
+      "cpic_central_south_asian": {
+        "*8": 0.0,
+        "*1": 0.543626,
+        "*4": 0.0,
+        "*6": 0.0,
+        "*5": 0.0,
+        "*17": 0.17077276,
+        "*7": 0.0,
+        "*3": 0.015685236,
+        "*2": 0.269916
+      },
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 97,
+              "freq": 0.3702290076335878,
+              "ci95": [
+                0.3140291447708615,
+                0.43017930073949895
+              ]
+            },
+            "*2": {
+              "count": 92,
+              "freq": 0.3511450381679389,
+              "ci95": [
+                0.29587660581073694,
+                0.4107154346276177
+              ]
+            },
+            "*17": {
+              "count": 33,
+              "freq": 0.12595419847328243,
+              "ci95": [
+                0.09110961305936038,
+                0.17160884752932587
+              ]
+            },
+            "*38": {
+              "count": 28,
+              "freq": 0.10687022900763359,
+              "ci95": [
+                0.07498073176683911,
+                0.15012132374984138
+              ]
+            },
+            "*40": {
+              "count": 6,
+              "freq": 0.022900763358778626,
+              "ci95": [
+                0.010536909379661126,
+                0.04905296382019388
+              ]
+            },
+            "*3": {
+              "count": 6,
+              "freq": 0.022900763358778626,
+              "ci95": [
+                0.010536909379661126,
+                0.04905296382019388
+              ]
+            }
+          },
+          "phenotypes": {
+            "Poor Metabolizer": 21,
+            "Normal Metabolizer": 32,
+            "Intermediate Metabolizer": 54,
+            "Rapid Metabolizer": 17,
+            "n/a": 6,
+            "Ultrarapid Metabolizer": 1
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 79,
+              "freq": 0.38349514563106796,
+              "ci95": [
+                0.3198047797164839,
+                0.45145109951087725
+              ]
+            },
+            "*2": {
+              "count": 67,
+              "freq": 0.32524271844660196,
+              "ci95": [
+                0.2649771686100658,
+                0.39190665023097593
+              ]
+            },
+            "*17": {
+              "count": 28,
+              "freq": 0.13592233009708737,
+              "ci95": [
+                0.09574212400849363,
+                0.18943249857700983
+              ]
+            },
+            "*38": {
+              "count": 26,
+              "freq": 0.1262135922330097,
+              "ci95": [
+                0.08760600746559519,
+                0.1785066050555217
+              ]
+            },
+            "*40": {
+              "count": 3,
+              "freq": 0.014563106796116505,
+              "ci95": [
+                0.004964913164323553,
+                0.04193458361634779
+              ]
+            },
+            "Unknown": {
+              "count": 2,
+              "freq": 0.009708737864077669,
+              "ci95": [
+                0.002666536473383725,
+                0.034701955275094336
+              ]
+            },
+            "*3": {
+              "count": 1,
+              "freq": 0.0048543689320388345,
+              "ci95": [
+                0.0008574298977686422,
+                0.026980056818516125
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 28,
+            "Intermediate Metabolizer": 35,
+            "Poor Metabolizer": 16,
+            "No Result": 1,
+            "Rapid Metabolizer": 18,
+            "Ultrarapid Metabolizer": 2,
+            "n/a": 3
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*2": {
+              "count": 79,
+              "freq": 0.3691588785046729,
+              "ci95": [
+                0.30734139110992575,
+                0.4355909216706718
+              ]
+            },
+            "*1": {
+              "count": 78,
+              "freq": 0.3644859813084112,
+              "ci95": [
+                0.302919238058595,
+                0.43083208589273825
+              ]
+            },
+            "*17": {
+              "count": 31,
+              "freq": 0.14485981308411214,
+              "ci95": [
+                0.10396668110253282,
+                0.198278167873375
+              ]
+            },
+            "*38": {
+              "count": 21,
+              "freq": 0.09813084112149532,
+              "ci95": [
+                0.06508186610760426,
+                0.14535309457565992
+              ]
+            },
+            "*40": {
+              "count": 3,
+              "freq": 0.014018691588785047,
+              "ci95": [
+                0.004778869769504836,
+                0.04039829198700065
+              ]
+            },
+            "*3": {
+              "count": 1,
+              "freq": 0.004672897196261682,
+              "ci95": [
+                0.0008253579042704108,
+                0.025989826193706336
+              ]
+            },
+            "*8": {
+              "count": 1,
+              "freq": 0.004672897196261682,
+              "ci95": [
+                0.0008253579042704108,
+                0.025989826193706336
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 21,
+            "Intermediate Metabolizer": 50,
+            "Rapid Metabolizer": 15,
+            "n/a": 3,
+            "Ultrarapid Metabolizer": 3,
+            "Poor Metabolizer": 15
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 118,
+              "freq": 0.4041095890410959,
+              "ci95": [
+                0.34942288745512906,
+                0.46128653703564315
+              ]
+            },
+            "*2": {
+              "count": 95,
+              "freq": 0.3253424657534247,
+              "ci95": [
+                0.27417581895458626,
+                0.3810449185107488
+              ]
+            },
+            "*17": {
+              "count": 49,
+              "freq": 0.1678082191780822,
+              "ci95": [
+                0.12932070942561014,
+                0.21492265398885063
+              ]
+            },
+            "*38": {
+              "count": 25,
+              "freq": 0.08561643835616438,
+              "ci95": [
+                0.058663143487186584,
+                0.12333115520507885
+              ]
+            },
+            "*3": {
+              "count": 5,
+              "freq": 0.017123287671232876,
+              "ci95": [
+                0.007335659556604118,
+                0.03945108520049858
+              ]
+            }
+          },
+          "phenotypes": {
+            "Poor Metabolizer": 21,
+            "Intermediate Metabolizer": 58,
+            "Normal Metabolizer": 35,
+            "Rapid Metabolizer": 26,
+            "Ultrarapid Metabolizer": 6
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*2": {
+              "count": 93,
+              "freq": 0.40789473684210525,
+              "ci95": [
+                0.346142910494838,
+                0.4726988091297953
+              ]
+            },
+            "*1": {
+              "count": 70,
+              "freq": 0.30701754385964913,
+              "ci95": [
+                0.2507552374152463,
+                0.3696750322744613
+              ]
+            },
+            "*17": {
+              "count": 37,
+              "freq": 0.16228070175438597,
+              "ci95": [
+                0.12008692377008998,
+                0.2156660481868982
+              ]
+            },
+            "*38": {
+              "count": 21,
+              "freq": 0.09210526315789473,
+              "ci95": [
+                0.0610321155060953,
+                0.13669549997442282
+              ]
+            },
+            "*3": {
+              "count": 4,
+              "freq": 0.017543859649122806,
+              "ci95": [
+                0.0068430801169099865,
+                0.044232594107358775
+              ]
+            },
+            "*40": {
+              "count": 3,
+              "freq": 0.013157894736842105,
+              "ci95": [
+                0.0044847789843261016,
+                0.03796431046016328
+              ]
+            }
+          },
+          "phenotypes": {
+            "Poor Metabolizer": 22,
+            "Rapid Metabolizer": 14,
+            "Intermediate Metabolizer": 51,
+            "Normal Metabolizer": 19,
+            "Ultrarapid Metabolizer": 5,
+            "n/a": 3
+          }
+        }
+      }
+    },
+    "CYP2C9": {
+      "cpic_central_south_asian": {
+        "*3": 0.10985958,
+        "*67": 0.0002,
+        "*56": 0.0,
+        "*9": 0.0,
+        "*42": 0.0,
+        "*45": 0.0002,
+        "*43": 0.0001,
+        "*47": 0.0,
+        "*48": 0.0,
+        "*12": 0.0,
+        "*46": 0.0,
+        "*52": 0.0,
+        "*62": 0.0,
+        "*24": 0.0,
+        "*41": 0.0,
+        "*75": 0.0,
+        "*4": 0.0,
+        "*63": 0.0005,
+        "*66": 0.0008,
+        "*11": 0.0010429447,
+        "*58": 0.0,
+        "*60": 0.0,
+        "*73": 0.0004,
+        "*21": 0.0,
+        "*1": 0.7721189,
+        "*5": 0.0,
+        "*37": 0.0,
+        "*44": 0.0,
+        "*55": 0.0,
+        "*20": 0.0,
+        "*2": 0.11379695,
+        "*39": 0.0,
+        "*6": 0.0,
+        "*72": 0.0,
+        "*8": 0.0009815951
+      },
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 220,
+              "freq": 0.8396946564885496,
+              "ci95": [
+                0.7904103473650288,
+                0.8791616629166743
+              ]
+            },
+            "*3": {
+              "count": 28,
+              "freq": 0.10687022900763359,
+              "ci95": [
+                0.07498073176683911,
+                0.15012132374984138
+              ]
+            },
+            "*14": {
+              "count": 8,
+              "freq": 0.030534351145038167,
+              "ci95": [
+                0.015551836452447516,
+                0.059084598776209814
+              ]
+            },
+            "*2": {
+              "count": 5,
+              "freq": 0.019083969465648856,
+              "ci95": [
+                0.008178399213977595,
+                0.04388819297147625
+              ]
+            },
+            "*66": {
+              "count": 1,
+              "freq": 0.003816793893129771,
+              "ci95": [
+                0.0006740758772411874,
+                0.021299392250608028
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 93,
+            "Intermediate Metabolizer": 33,
+            "Indeterminate": 1,
+            "Poor Metabolizer": 4
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 165,
+              "freq": 0.8009708737864077,
+              "ci95": [
+                0.7411591041579848,
+                0.8497632078379989
+              ]
+            },
+            "*3": {
+              "count": 27,
+              "freq": 0.13106796116504854,
+              "ci95": [
+                0.09166420800220954,
+                0.18397940955110065
+              ]
+            },
+            "*2": {
+              "count": 10,
+              "freq": 0.04854368932038835,
+              "ci95": [
+                0.026578672054370638,
+                0.0870378599516537
+              ]
+            },
+            "*14": {
+              "count": 4,
+              "freq": 0.019417475728155338,
+              "ci95": [
+                0.00757634914403588,
+                0.04885415266882874
+              ]
+            }
+          },
+          "phenotypes": {
+            "Poor Metabolizer": 3,
+            "Intermediate Metabolizer": 34,
+            "Normal Metabolizer": 66
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 183,
+              "freq": 0.8551401869158879,
+              "ci95": [
+                0.8017218321266251,
+                0.8960333188974672
+              ]
+            },
+            "*3": {
+              "count": 21,
+              "freq": 0.09813084112149532,
+              "ci95": [
+                0.06508186610760426,
+                0.14535309457565992
+              ]
+            },
+            "*2": {
+              "count": 5,
+              "freq": 0.02336448598130841,
+              "ci95": [
+                0.010020251386911112,
+                0.053518888028123116
+              ]
+            },
+            "*14": {
+              "count": 3,
+              "freq": 0.014018691588785047,
+              "ci95": [
+                0.004778869769504836,
+                0.04039829198700065
+              ]
+            },
+            "Unknown": {
+              "count": 2,
+              "freq": 0.009345794392523364,
+              "ci95": [
+                0.002566706666803845,
+                0.033429466260437274
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 80,
+            "Intermediate Metabolizer": 23,
+            "Poor Metabolizer": 3,
+            "No Result": 1
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 245,
+              "freq": 0.839041095890411,
+              "ci95": [
+                0.7925316810600409,
+                0.8767457109190147
+              ]
+            },
+            "*3": {
+              "count": 24,
+              "freq": 0.0821917808219178,
+              "ci95": [
+                0.05585279855758895,
+                0.11938112243791835
+              ]
+            },
+            "*2": {
+              "count": 19,
+              "freq": 0.06506849315068493,
+              "ci95": [
+                0.04204856343123346,
+                0.09938346908048316
+              ]
+            },
+            "*14": {
+              "count": 3,
+              "freq": 0.010273972602739725,
+              "ci95": [
+                0.003500111935664598,
+                0.02976587742792183
+              ]
+            },
+            "*8": {
+              "count": 1,
+              "freq": 0.003424657534246575,
+              "ci95": [
+                0.0006047921632969452,
+                0.01914044180677321
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 102,
+            "Intermediate Metabolizer": 41,
+            "Poor Metabolizer": 3
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 191,
+              "freq": 0.8377192982456141,
+              "ci95": [
+                0.7843339518131018,
+                0.8799130762299101
+              ]
+            },
+            "*3": {
+              "count": 22,
+              "freq": 0.09649122807017543,
+              "ci95": [
+                0.06458660081632298,
+                0.14176759944397452
+              ]
+            },
+            "*2": {
+              "count": 7,
+              "freq": 0.03070175438596491,
+              "ci95": [
+                0.014949964888642458,
+                0.062005463674964414
+              ]
+            },
+            "*14": {
+              "count": 5,
+              "freq": 0.021929824561403508,
+              "ci95": [
+                0.009402628197893656,
+                0.050299630806154474
+              ]
+            },
+            "*66": {
+              "count": 3,
+              "freq": 0.013157894736842105,
+              "ci95": [
+                0.0044847789843261016,
+                0.03796431046016328
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 80,
+            "Indeterminate": 3,
+            "Intermediate Metabolizer": 28,
+            "Poor Metabolizer": 3
+          }
+        }
+      }
+    },
+    "CYP2D6": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "CYP3A4": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "CYP3A5": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "CYP4F2": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        }
+      }
+    },
+    "DPYD": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Reference": {
+              "count": 165,
+              "freq": 0.6297709923664122,
+              "ci95": [
+                0.5698206992605009,
+                0.6859708552291385
+              ]
+            },
+            "c.85T>C (*9A)": {
+              "count": 35,
+              "freq": 0.13358778625954199,
+              "ci95": [
+                0.09764504090519774,
+                0.1801199817122909
+              ]
+            },
+            "c.1627A>G (*5)": {
+              "count": 18,
+              "freq": 0.06870229007633588,
+              "ci95": [
+                0.04389596991356254,
+                0.10597327545910637
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G]": {
+              "count": 9,
+              "freq": 0.03435114503816794,
+              "ci95": [
+                0.018175604903266057,
+                0.06398411133979244
+              ]
+            },
+            "c.1896T>C": {
+              "count": 9,
+              "freq": 0.03435114503816794,
+              "ci95": [
+                0.018175604903266057,
+                0.06398411133979244
+              ]
+            },
+            "c.2194G>A (*6)": {
+              "count": 8,
+              "freq": 0.030534351145038167,
+              "ci95": [
+                0.015551836452447516,
+                0.059084598776209814
+              ]
+            },
+            "[c.85T>C (*9A) + c.1896T>C]": {
+              "count": 5,
+              "freq": 0.019083969465648856,
+              "ci95": [
+                0.008178399213977595,
+                0.04388819297147625
+              ]
+            },
+            "c.496A>G": {
+              "count": 4,
+              "freq": 0.015267175572519083,
+              "ci95": [
+                0.005952705304831728,
+                0.03859060586622097
+              ]
+            },
+            "[c.85T>C (*9A) + c.1627A>G (*5)]": {
+              "count": 2,
+              "freq": 0.007633587786259542,
+              "ci95": [
+                0.0020959073640512606,
+                0.02740084177819911
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G + c.1896T>C]": {
+              "count": 2,
+              "freq": 0.007633587786259542,
+              "ci95": [
+                0.0020959073640512606,
+                0.02740084177819911
+              ]
+            },
+            "[c.1627A>G (*5) + c.1896T>C]": {
+              "count": 1,
+              "freq": 0.003816793893129771,
+              "ci95": [
+                0.0006740758772411874,
+                0.021299392250608028
+              ]
+            },
+            "[c.85T>C (*9A) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.003816793893129771,
+              "ci95": [
+                0.0006740758772411874,
+                0.021299392250608028
+              ]
+            },
+            "[c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.003816793893129771,
+              "ci95": [
+                0.0006740758772411874,
+                0.021299392250608028
+              ]
+            },
+            "c.2279C>T": {
+              "count": 1,
+              "freq": 0.003816793893129771,
+              "ci95": [
+                0.0006740758772411874,
+                0.021299392250608028
+              ]
+            },
+            "[c.85T>C (*9A) + c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.003816793893129771,
+              "ci95": [
+                0.0006740758772411874,
+                0.021299392250608028
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 108,
+            "Indeterminate": 22,
+            "Intermediate Metabolizer": 1
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Reference": {
+              "count": 105,
+              "freq": 0.5097087378640777,
+              "ci95": [
+                0.44189280245031065,
+                0.577169207614076
+              ]
+            },
+            "c.85T>C (*9A)": {
+              "count": 36,
+              "freq": 0.17475728155339806,
+              "ci95": [
+                0.12898551807868025,
+                0.23243714476436955
+              ]
+            },
+            "c.1627A>G (*5)": {
+              "count": 13,
+              "freq": 0.06310679611650485,
+              "ci95": [
+                0.03724733599330123,
+                0.10496221110930298
+              ]
+            },
+            "[c.85T>C (*9A) + c.1129-5923C>G, c.1236G>A (HapB3)]": {
+              "count": 10,
+              "freq": 0.04854368932038835,
+              "ci95": [
+                0.026578672054370638,
+                0.0870378599516537
+              ]
+            },
+            "c.2194G>A (*6)": {
+              "count": 9,
+              "freq": 0.043689320388349516,
+              "ci95": [
+                0.023152710956330882,
+                0.08093281601750019
+              ]
+            },
+            "[c.85T>C (*9A) + c.1627A>G (*5)]": {
+              "count": 7,
+              "freq": 0.03398058252427184,
+              "ci95": [
+                0.016555877689706417,
+                0.06846763921973807
+              ]
+            },
+            "[c.85T>C (*9A) + c.2194G>A (*6)]": {
+              "count": 5,
+              "freq": 0.024271844660194174,
+              "ci95": [
+                0.010411030067437859,
+                0.05555047677762005
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G]": {
+              "count": 4,
+              "freq": 0.019417475728155338,
+              "ci95": [
+                0.00757634914403588,
+                0.04885415266882874
+              ]
+            },
+            "c.1601G>A (*4)": {
+              "count": 3,
+              "freq": 0.014563106796116505,
+              "ci95": [
+                0.004964913164323553,
+                0.04193458361634779
+              ]
+            },
+            "c.1896T>C": {
+              "count": 3,
+              "freq": 0.014563106796116505,
+              "ci95": [
+                0.004964913164323553,
+                0.04193458361634779
+              ]
+            },
+            "[c.85T>C (*9A) + c.775A>G]": {
+              "count": 3,
+              "freq": 0.014563106796116505,
+              "ci95": [
+                0.004964913164323553,
+                0.04193458361634779
+              ]
+            },
+            "c.1905+1G>A (*2A)": {
+              "count": 3,
+              "freq": 0.014563106796116505,
+              "ci95": [
+                0.004964913164323553,
+                0.04193458361634779
+              ]
+            },
+            "c.496A>G": {
+              "count": 3,
+              "freq": 0.014563106796116505,
+              "ci95": [
+                0.004964913164323553,
+                0.04193458361634779
+              ]
+            },
+            "[c.85T>C (*9A) + c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.0048543689320388345,
+              "ci95": [
+                0.0008574298977686422,
+                0.026980056818516125
+              ]
+            },
+            "[c.85T>C (*9A) + c.2279C>T]": {
+              "count": 1,
+              "freq": 0.0048543689320388345,
+              "ci95": [
+                0.0008574298977686422,
+                0.026980056818516125
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 71,
+            "Indeterminate": 29,
+            "Intermediate Metabolizer": 3
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Reference": {
+              "count": 120,
+              "freq": 0.5607476635514018,
+              "ci95": [
+                0.49376268625692016,
+                0.6255901685235167
+              ]
+            },
+            "c.85T>C (*9A)": {
+              "count": 44,
+              "freq": 0.205607476635514,
+              "ci95": [
+                0.15688042147937384,
+                0.26471728227697083
+              ]
+            },
+            "c.2194G>A (*6)": {
+              "count": 15,
+              "freq": 0.07009345794392523,
+              "ci95": [
+                0.04293439735255835,
+                0.11241463035511959
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G]": {
+              "count": 11,
+              "freq": 0.0514018691588785,
+              "ci95": [
+                0.02894121709505319,
+                0.08968385529556726
+              ]
+            },
+            "c.1627A>G (*5)": {
+              "count": 6,
+              "freq": 0.028037383177570093,
+              "ci95": [
+                0.012911790034242927,
+                0.05980833821005566
+              ]
+            },
+            "c.1896T>C": {
+              "count": 3,
+              "freq": 0.014018691588785047,
+              "ci95": [
+                0.004778869769504836,
+                0.04039829198700065
+              ]
+            },
+            "[c.85T>C (*9A) + c.1627A>G (*5)]": {
+              "count": 3,
+              "freq": 0.014018691588785047,
+              "ci95": [
+                0.004778869769504836,
+                0.04039829198700065
+              ]
+            },
+            "c.1129-5923C>G, c.1236G>A (HapB3)": {
+              "count": 2,
+              "freq": 0.009345794392523364,
+              "ci95": [
+                0.002566706666803845,
+                0.033429466260437274
+              ]
+            },
+            "[c.85T>C (*9A) + c.2279C>T]": {
+              "count": 2,
+              "freq": 0.009345794392523364,
+              "ci95": [
+                0.002566706666803845,
+                0.033429466260437274
+              ]
+            },
+            "[c.85T>C (*9A) + c.2194G>A (*6)]": {
+              "count": 2,
+              "freq": 0.009345794392523364,
+              "ci95": [
+                0.002566706666803845,
+                0.033429466260437274
+              ]
+            },
+            "[c.85T>C (*9A) + c.1129-5923C>G, c.1236G>A (HapB3)]": {
+              "count": 2,
+              "freq": 0.009345794392523364,
+              "ci95": [
+                0.002566706666803845,
+                0.033429466260437274
+              ]
+            },
+            "[c.85T>C (*9A) + c.1896T>C]": {
+              "count": 1,
+              "freq": 0.004672897196261682,
+              "ci95": [
+                0.0008253579042704108,
+                0.025989826193706336
+              ]
+            },
+            "[c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.004672897196261682,
+              "ci95": [
+                0.0008253579042704108,
+                0.025989826193706336
+              ]
+            },
+            "c.1601G>A (*4)": {
+              "count": 1,
+              "freq": 0.004672897196261682,
+              "ci95": [
+                0.0008253579042704108,
+                0.025989826193706336
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G + c.1627A>G (*5) + c.1896T>C]": {
+              "count": 1,
+              "freq": 0.004672897196261682,
+              "ci95": [
+                0.0008253579042704108,
+                0.025989826193706336
+              ]
+            }
+          },
+          "phenotypes": {
+            "Intermediate Metabolizer": 2,
+            "Normal Metabolizer": 84,
+            "Indeterminate": 21
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Reference": {
+              "count": 144,
+              "freq": 0.4931506849315068,
+              "ci95": [
+                0.4362693421731273,
+                0.5502099024333563
+              ]
+            },
+            "c.85T>C (*9A)": {
+              "count": 47,
+              "freq": 0.16095890410958905,
+              "ci95": [
+                0.12325428908098539,
+                0.2074683189399591
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G]": {
+              "count": 25,
+              "freq": 0.08561643835616438,
+              "ci95": [
+                0.058663143487186584,
+                0.12333115520507885
+              ]
+            },
+            "c.1627A>G (*5)": {
+              "count": 22,
+              "freq": 0.07534246575342465,
+              "ci95": [
+                0.05027867891315732,
+                0.11143448668883371
+              ]
+            },
+            "c.2194G>A (*6)": {
+              "count": 19,
+              "freq": 0.06506849315068493,
+              "ci95": [
+                0.04204856343123346,
+                0.09938346908048316
+              ]
+            },
+            "[c.85T>C (*9A) + c.1129-5923C>G, c.1236G>A (HapB3)]": {
+              "count": 5,
+              "freq": 0.017123287671232876,
+              "ci95": [
+                0.007335659556604118,
+                0.03945108520049858
+              ]
+            },
+            "c.496A>G": {
+              "count": 5,
+              "freq": 0.017123287671232876,
+              "ci95": [
+                0.007335659556604118,
+                0.03945108520049858
+              ]
+            },
+            "[c.85T>C (*9A) + c.2194G>A (*6)]": {
+              "count": 4,
+              "freq": 0.0136986301369863,
+              "ci95": [
+                0.00533968061832751,
+                0.034686686442017056
+              ]
+            },
+            "c.1896T>C": {
+              "count": 4,
+              "freq": 0.0136986301369863,
+              "ci95": [
+                0.00533968061832751,
+                0.034686686442017056
+              ]
+            },
+            "c.1905+1G>A (*2A)": {
+              "count": 3,
+              "freq": 0.010273972602739725,
+              "ci95": [
+                0.003500111935664598,
+                0.02976587742792183
+              ]
+            },
+            "[c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 3,
+              "freq": 0.010273972602739725,
+              "ci95": [
+                0.003500111935664598,
+                0.02976587742792183
+              ]
+            },
+            "c.1601G>A (*4)": {
+              "count": 2,
+              "freq": 0.00684931506849315,
+              "ci95": [
+                0.0018803432315382656,
+                0.024625268435290025
+              ]
+            },
+            "[c.1627A>G (*5) + c.1896T>C]": {
+              "count": 2,
+              "freq": 0.00684931506849315,
+              "ci95": [
+                0.0018803432315382656,
+                0.024625268435290025
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G + c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 2,
+              "freq": 0.00684931506849315,
+              "ci95": [
+                0.0018803432315382656,
+                0.024625268435290025
+              ]
+            },
+            "[c.85T>C (*9A) + c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.003424657534246575,
+              "ci95": [
+                0.0006047921632969452,
+                0.01914044180677321
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G + c.1896T>C]": {
+              "count": 1,
+              "freq": 0.003424657534246575,
+              "ci95": [
+                0.0006047921632969452,
+                0.01914044180677321
+              ]
+            },
+            "[c.85T>C (*9A) + c.775A>G + c.1896T>C]": {
+              "count": 1,
+              "freq": 0.003424657534246575,
+              "ci95": [
+                0.0006047921632969452,
+                0.01914044180677321
+              ]
+            },
+            "[c.85T>C (*9A) + c.1896T>C + c.2846A>T]": {
+              "count": 1,
+              "freq": 0.003424657534246575,
+              "ci95": [
+                0.0006047921632969452,
+                0.01914044180677321
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.003424657534246575,
+              "ci95": [
+                0.0006047921632969452,
+                0.01914044180677321
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 103,
+            "Indeterminate": 41,
+            "Poor Metabolizer": 1,
+            "Intermediate Metabolizer": 1
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Reference": {
+              "count": 132,
+              "freq": 0.5789473684210527,
+              "ci95": [
+                0.5140721847711259,
+                0.6412063412649028
+              ]
+            },
+            "c.85T>C (*9A)": {
+              "count": 30,
+              "freq": 0.13157894736842105,
+              "ci95": [
+                0.09374512711863017,
+                0.18162175137990236
+              ]
+            },
+            "c.2194G>A (*6)": {
+              "count": 22,
+              "freq": 0.09649122807017543,
+              "ci95": [
+                0.06458660081632298,
+                0.14176759944397452
+              ]
+            },
+            "c.1896T>C": {
+              "count": 10,
+              "freq": 0.043859649122807015,
+              "ci95": [
+                0.023995450710381845,
+                0.07883973219256316
+              ]
+            },
+            "c.496A>G": {
+              "count": 6,
+              "freq": 0.02631578947368421,
+              "ci95": [
+                0.012115350338127454,
+                0.05621349344570005
+              ]
+            },
+            "c.1627A>G (*5)": {
+              "count": 6,
+              "freq": 0.02631578947368421,
+              "ci95": [
+                0.012115350338127454,
+                0.05621349344570005
+              ]
+            },
+            "[c.85T>C (*9A) + c.1627A>G (*5)]": {
+              "count": 5,
+              "freq": 0.021929824561403508,
+              "ci95": [
+                0.009402628197893656,
+                0.050299630806154474
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G]": {
+              "count": 3,
+              "freq": 0.013157894736842105,
+              "ci95": [
+                0.0044847789843261016,
+                0.03796431046016328
+              ]
+            },
+            "c.1905+1G>A (*2A)": {
+              "count": 3,
+              "freq": 0.013157894736842105,
+              "ci95": [
+                0.0044847789843261016,
+                0.03796431046016328
+              ]
+            },
+            "c.2279C>T": {
+              "count": 2,
+              "freq": 0.008771929824561403,
+              "ci95": [
+                0.0024088849692405125,
+                0.03141361969546949
+              ]
+            },
+            "[c.85T>C (*9A) + c.775A>G]": {
+              "count": 2,
+              "freq": 0.008771929824561403,
+              "ci95": [
+                0.0024088849692405125,
+                0.03141361969546949
+              ]
+            },
+            "[c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 2,
+              "freq": 0.008771929824561403,
+              "ci95": [
+                0.0024088849692405125,
+                0.03141361969546949
+              ]
+            },
+            "[c.85T>C (*9A) + c.1129-5923C>G, c.1236G>A (HapB3)]": {
+              "count": 1,
+              "freq": 0.0043859649122807015,
+              "ci95": [
+                0.0007746505227851728,
+                0.024421269362145455
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G + c.1627A>G (*5) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.0043859649122807015,
+              "ci95": [
+                0.0007746505227851728,
+                0.024421269362145455
+              ]
+            },
+            "[c.85T>C (*9A) + c.496A>G + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.0043859649122807015,
+              "ci95": [
+                0.0007746505227851728,
+                0.024421269362145455
+              ]
+            },
+            "[c.85T>C (*9A) + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.0043859649122807015,
+              "ci95": [
+                0.0007746505227851728,
+                0.024421269362145455
+              ]
+            },
+            "[c.496A>G + c.2194G>A (*6)]": {
+              "count": 1,
+              "freq": 0.0043859649122807015,
+              "ci95": [
+                0.0007746505227851728,
+                0.024421269362145455
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 93,
+            "Indeterminate": 16,
+            "Intermediate Metabolizer": 5
+          }
+        }
+      }
+    },
+    "G6PD": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "HLA-A": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        }
+      }
+    },
+    "HLA-B": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        }
+      }
+    },
+    "IFNL3": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        }
+      }
+    },
+    "MT-RNR1": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 0,
+          "chromosomes": 0,
+          "sufficient_n": false,
+          "allele_freq": {},
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "NAT2": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "NUDT15": {
+      "cpic_central_south_asian": {
+        "*7": 0.0,
+        "*5": 0.0004482,
+        "*4": 3.269e-05,
+        "*9": 0.000494936,
+        "*3": 0.067,
+        "*1": 0.93002415,
+        "*6": 0.002
+      },
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 245,
+              "freq": 0.9351145038167938,
+              "ci95": [
+                0.8985565221338467,
+                0.9590975135078852
+              ]
+            },
+            "*3": {
+              "count": 16,
+              "freq": 0.061068702290076333,
+              "ci95": [
+                0.037936048324695035,
+                0.09688663501917157
+              ]
+            },
+            "*5": {
+              "count": 1,
+              "freq": 0.003816793893129771,
+              "ci95": [
+                0.0006740758772411874,
+                0.021299392250608028
+              ]
+            }
+          },
+          "phenotypes": {
+            "Intermediate Metabolizer": 16,
+            "Normal Metabolizer": 115
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 198,
+              "freq": 0.9611650485436893,
+              "ci95": [
+                0.9252528476227231,
+                0.9801926304356392
+              ]
+            },
+            "*3": {
+              "count": 8,
+              "freq": 0.038834951456310676,
+              "ci95": [
+                0.01980736956436082,
+                0.07474715237727694
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 95,
+            "Intermediate Metabolizer": 8
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 197,
+              "freq": 0.9205607476635514,
+              "ci95": [
+                0.8764761758972686,
+                0.9498128187365249
+              ]
+            },
+            "*3": {
+              "count": 17,
+              "freq": 0.0794392523364486,
+              "ci95": [
+                0.05018718126347517,
+                0.12352382410273151
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 91,
+            "Intermediate Metabolizer": 15,
+            "Poor Metabolizer": 1
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 271,
+              "freq": 0.928082191780822,
+              "ci95": [
+                0.8925639601931334,
+                0.9524832519016337
+              ]
+            },
+            "*3": {
+              "count": 21,
+              "freq": 0.07191780821917808,
+              "ci95": [
+                0.047516748098366327,
+                0.10743603980686657
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 126,
+            "Intermediate Metabolizer": 19,
+            "Poor Metabolizer": 1
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 209,
+              "freq": 0.9166666666666666,
+              "ci95": [
+                0.8735222363386148,
+                0.9460033177404257
+              ]
+            },
+            "*3": {
+              "count": 19,
+              "freq": 0.08333333333333333,
+              "ci95": [
+                0.053996682259574234,
+                0.12647776366138513
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 96,
+            "Poor Metabolizer": 1,
+            "Intermediate Metabolizer": 17
+          }
+        }
+      }
+    },
+    "RYR1": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "SLCO1B1": {
+      "cpic_central_south_asian": {
+        "*6": 0.0,
+        "*23": 0.0001,
+        "*37": 0.46023798,
+        "*5": 0.004471154,
+        "*16": 0.0,
+        "*26": 0.0003,
+        "*36": 0.0,
+        "*34": 0.0,
+        "*8": 0.0,
+        "*1": 0.46972018,
+        "*41": 0.0,
+        "*15": 0.065170676
+      },
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*37": {
+              "count": 124,
+              "freq": 0.4732824427480916,
+              "ci95": [
+                0.4136486790202792,
+                0.5336883538789127
+              ]
+            },
+            "*1": {
+              "count": 109,
+              "freq": 0.41603053435114506,
+              "ci95": [
+                0.3579806601251889,
+                0.47650715755798556
+              ]
+            },
+            "*14": {
+              "count": 8,
+              "freq": 0.030534351145038167,
+              "ci95": [
+                0.015551836452447516,
+                0.059084598776209814
+              ]
+            },
+            "*15": {
+              "count": 7,
+              "freq": 0.026717557251908396,
+              "ci95": [
+                0.013001019516514584,
+                0.05411213469774158
+              ]
+            },
+            "*54": {
+              "count": 4,
+              "freq": 0.015267175572519083,
+              "ci95": [
+                0.005952705304831728,
+                0.03859060586622097
+              ]
+            },
+            "*5": {
+              "count": 4,
+              "freq": 0.015267175572519083,
+              "ci95": [
+                0.005952705304831728,
+                0.03859060586622097
+              ]
+            },
+            "Unknown": {
+              "count": 4,
+              "freq": 0.015267175572519083,
+              "ci95": [
+                0.005952705304831728,
+                0.03859060586622097
+              ]
+            },
+            "*20": {
+              "count": 2,
+              "freq": 0.007633587786259542,
+              "ci95": [
+                0.0020959073640512606,
+                0.02740084177819911
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Function": 114,
+            "n/a": 4,
+            "Decreased Function": 11,
+            "No Result": 2
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 89,
+              "freq": 0.4320388349514563,
+              "ci95": [
+                0.3662485275965506,
+                0.5003174019527433
+              ]
+            },
+            "*37": {
+              "count": 88,
+              "freq": 0.42718446601941745,
+              "ci95": [
+                0.3615746921705875,
+                0.4954602323465131
+              ]
+            },
+            "*54": {
+              "count": 11,
+              "freq": 0.05339805825242718,
+              "ci95": [
+                0.030074965698652124,
+                0.09307257133956551
+              ]
+            },
+            "*14": {
+              "count": 6,
+              "freq": 0.02912621359223301,
+              "ci95": [
+                0.013415748906603013,
+                0.06207676297064819
+              ]
+            },
+            "Unknown": {
+              "count": 6,
+              "freq": 0.02912621359223301,
+              "ci95": [
+                0.013415748906603013,
+                0.06207676297064819
+              ]
+            },
+            "*15": {
+              "count": 3,
+              "freq": 0.014563106796116505,
+              "ci95": [
+                0.004964913164323553,
+                0.04193458361634779
+              ]
+            },
+            "*20": {
+              "count": 2,
+              "freq": 0.009708737864077669,
+              "ci95": [
+                0.002666536473383725,
+                0.034701955275094336
+              ]
+            },
+            "*5": {
+              "count": 1,
+              "freq": 0.0048543689320388345,
+              "ci95": [
+                0.0008574298977686422,
+                0.026980056818516125
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Function": 86,
+            "n/a": 10,
+            "No Result": 3,
+            "Decreased Function": 4
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*37": {
+              "count": 99,
+              "freq": 0.46261682242990654,
+              "ci95": [
+                0.3970616990423369,
+                0.5294903903235482
+              ]
+            },
+            "*1": {
+              "count": 79,
+              "freq": 0.3691588785046729,
+              "ci95": [
+                0.30734139110992575,
+                0.4355909216706718
+              ]
+            },
+            "*15": {
+              "count": 12,
+              "freq": 0.056074766355140186,
+              "ci95": [
+                0.03236469679101142,
+                0.09544136442887341
+              ]
+            },
+            "*14": {
+              "count": 8,
+              "freq": 0.037383177570093455,
+              "ci95": [
+                0.019062205521253,
+                0.07201990038157434
+              ]
+            },
+            "*54": {
+              "count": 8,
+              "freq": 0.037383177570093455,
+              "ci95": [
+                0.019062205521253,
+                0.07201990038157434
+              ]
+            },
+            "Unknown": {
+              "count": 4,
+              "freq": 0.018691588785046728,
+              "ci95": [
+                0.007292205300277403,
+                0.047065945285492454
+              ]
+            },
+            "*5": {
+              "count": 2,
+              "freq": 0.009345794392523364,
+              "ci95": [
+                0.002566706666803845,
+                0.033429466260437274
+              ]
+            },
+            "*20": {
+              "count": 2,
+              "freq": 0.009345794392523364,
+              "ci95": [
+                0.002566706666803845,
+                0.033429466260437274
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Function": 85,
+            "No Result": 2,
+            "Decreased Function": 11,
+            "n/a": 8,
+            "Poor Function": 1
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 155,
+              "freq": 0.5308219178082192,
+              "ci95": [
+                0.4735530900930093,
+                0.587290309177814
+              ]
+            },
+            "*37": {
+              "count": 103,
+              "freq": 0.3527397260273973,
+              "ci95": [
+                0.30016989945149813,
+                0.409133859587902
+              ]
+            },
+            "*14": {
+              "count": 14,
+              "freq": 0.04794520547945205,
+              "ci95": [
+                0.028771747727047617,
+                0.07885839630087832
+              ]
+            },
+            "*15": {
+              "count": 11,
+              "freq": 0.03767123287671233,
+              "ci95": [
+                0.021163003210504617,
+                0.0661860077271469
+              ]
+            },
+            "*54": {
+              "count": 9,
+              "freq": 0.030821917808219176,
+              "ci95": [
+                0.016298655344215138,
+                0.05752960019992011
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Function": 126,
+            "Decreased Function": 9,
+            "Poor Function": 1,
+            "n/a": 9,
+            "Increased Function": 1
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*37": {
+              "count": 114,
+              "freq": 0.5,
+              "ci95": [
+                0.4356390353064234,
+                0.5643609646935766
+              ]
+            },
+            "*1": {
+              "count": 95,
+              "freq": 0.4166666666666667,
+              "ci95": [
+                0.35457165789474143,
+                0.4815232312894506
+              ]
+            },
+            "*15": {
+              "count": 9,
+              "freq": 0.039473684210526314,
+              "ci95": [
+                0.020903896111866858,
+                0.07330470201129878
+              ]
+            },
+            "*54": {
+              "count": 5,
+              "freq": 0.021929824561403508,
+              "ci95": [
+                0.009402628197893656,
+                0.050299630806154474
+              ]
+            },
+            "Unknown": {
+              "count": 4,
+              "freq": 0.017543859649122806,
+              "ci95": [
+                0.0068430801169099865,
+                0.044232594107358775
+              ]
+            },
+            "*51": {
+              "count": 1,
+              "freq": 0.0043859649122807015,
+              "ci95": [
+                0.0007746505227851728,
+                0.024421269362145455
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Function": 97,
+            "Decreased Function": 9,
+            "n/a": 6,
+            "No Result": 2
+          }
+        }
+      }
+    },
+    "TPMT": {
+      "cpic_central_south_asian": {
+        "*2": 0.00022537795,
+        "*8": 9.375629e-05,
+        "*20": 0.0,
+        "*24": 0.0,
+        "*26": 0.0,
+        "*31": 0.0,
+        "*39": 0.0,
+        "*40": 0.0,
+        "*37": 0.0,
+        "*33": 3.256e-05,
+        "*3A": 0.0042245653,
+        "*7": 0.0,
+        "*1": 0.9813701,
+        "*23": 0.0,
+        "*3B": 0.0017308706,
+        "*38": 0.0,
+        "*29": 0.0,
+        "*9": 0.0,
+        "*16": 0.0005212,
+        "*18": 0.0,
+        "*3C": 0.011216759,
+        "*4": 0.0,
+        "*6": 0.0,
+        "*30": 0.0,
+        "*12": 0.0,
+        "*15": 0.0,
+        "*32": 0.0,
+        "*34": 0.0005848,
+        "*21": 0.0
+      },
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 255,
+              "freq": 0.9732824427480916,
+              "ci95": [
+                0.9458878653022584,
+                0.9869989804834853
+              ]
+            },
+            "*3A": {
+              "count": 4,
+              "freq": 0.015267175572519083,
+              "ci95": [
+                0.005952705304831728,
+                0.03859060586622097
+              ]
+            },
+            "*3C": {
+              "count": 3,
+              "freq": 0.011450381679389313,
+              "ci95": [
+                0.0039016613190703264,
+                0.03311836883758121
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 124,
+            "Intermediate Metabolizer": 7
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 201,
+              "freq": 0.9757281553398058,
+              "ci95": [
+                0.94444952322238,
+                0.9895889699325622
+              ]
+            },
+            "*3C": {
+              "count": 5,
+              "freq": 0.024271844660194174,
+              "ci95": [
+                0.010411030067437859,
+                0.05555047677762005
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 98,
+            "Intermediate Metabolizer": 5
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 210,
+              "freq": 0.9813084112149533,
+              "ci95": [
+                0.9529340547145075,
+                0.9927077946997227
+              ]
+            },
+            "*3C": {
+              "count": 4,
+              "freq": 0.018691588785046728,
+              "ci95": [
+                0.007292205300277403,
+                0.047065945285492454
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 103,
+            "Intermediate Metabolizer": 4
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 289,
+              "freq": 0.9897260273972602,
+              "ci95": [
+                0.9702341225720781,
+                0.9964998880643354
+              ]
+            },
+            "*3C": {
+              "count": 3,
+              "freq": 0.010273972602739725,
+              "ci95": [
+                0.003500111935664598,
+                0.02976587742792183
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 143,
+            "Intermediate Metabolizer": 3
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "*1": {
+              "count": 227,
+              "freq": 0.9956140350877193,
+              "ci95": [
+                0.9755787306378547,
+                0.999225349477215
+              ]
+            },
+            "*3A": {
+              "count": 1,
+              "freq": 0.0043859649122807015,
+              "ci95": [
+                0.0007746505227851728,
+                0.024421269362145455
+              ]
+            }
+          },
+          "phenotypes": {
+            "Normal Metabolizer": 113,
+            "Intermediate Metabolizer": 1
+          }
+        }
+      }
+    },
+    "UGT1A1": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 131
+          }
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 103
+          }
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 107
+          }
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 146
+          }
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {
+            "No Result": 114
+          }
+        }
+      }
+    },
+    "VKORC1": {
+      "cpic_central_south_asian": {},
+      "populations": {
+        "BEB": {
+          "samples_called": 131,
+          "chromosomes": 262,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 262,
+              "freq": 1.0,
+              "ci95": [
+                0.9855498128865517,
+                0.9999999999999999
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "GIH": {
+          "samples_called": 103,
+          "chromosomes": 206,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 206,
+              "freq": 1.0,
+              "ci95": [
+                0.9816935183159087,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "ITU": {
+          "samples_called": 107,
+          "chromosomes": 214,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 214,
+              "freq": 1.0,
+              "ci95": [
+                0.9823658047312875,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "PJL": {
+          "samples_called": 146,
+          "chromosomes": 292,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 292,
+              "freq": 1.0,
+              "ci95": [
+                0.9870151437266882,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        },
+        "STU": {
+          "samples_called": 114,
+          "chromosomes": 228,
+          "sufficient_n": true,
+          "allele_freq": {
+            "Unknown": {
+              "count": 228,
+              "freq": 1.0,
+              "ci95": [
+                0.9834306648948488,
+                1.0
+              ]
+            }
+          },
+          "phenotypes": {}
+        }
+      }
+    }
+  },
+  "pooled_sas": {
+    "ABCG2": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "CACNA1S": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "CFTR": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "CYP2B6": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "CYP2C19": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "*1": {
+          "count": 442,
+          "freq": 0.36772046589018303,
+          "ci95": [
+            0.34092309935113646,
+            0.3953606403781919
+          ]
+        },
+        "*2": {
+          "count": 426,
+          "freq": 0.3544093178036606,
+          "ci95": [
+            0.32787098285525823,
+            0.3818752715638139
+          ]
+        },
+        "*17": {
+          "count": 178,
+          "freq": 0.1480865224625624,
+          "ci95": [
+            0.12912887320494532,
+            0.16928635890515475
+          ]
+        },
+        "*38": {
+          "count": 121,
+          "freq": 0.10066555740432612,
+          "ci95": [
+            0.08490754337529594,
+            0.11896789731701612
+          ]
+        },
+        "*3": {
+          "count": 17,
+          "freq": 0.014143094841930116,
+          "ci95": [
+            0.008848801139736951,
+            0.02253298503590941
+          ]
+        },
+        "*40": {
+          "count": 15,
+          "freq": 0.012479201331114808,
+          "ci95": [
+            0.00757698489521624,
+            0.02048761561664809
+          ]
+        },
+        "Unknown": {
+          "count": 2,
+          "freq": 0.0016638935108153079,
+          "ci95": [
+            0.00045641826927569516,
+            0.00604647542800542
+          ]
+        },
+        "*8": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        }
+      },
+      "phenotypes": {
+        "Poor Metabolizer": 95,
+        "Intermediate Metabolizer": 248,
+        "Normal Metabolizer": 135,
+        "Rapid Metabolizer": 90,
+        "Ultrarapid Metabolizer": 17,
+        "n/a": 15,
+        "No Result": 1
+      }
+    },
+    "CYP2C9": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "*1": {
+          "count": 1004,
+          "freq": 0.8352745424292846,
+          "ci95": [
+            0.8132430230931408,
+            0.855169888158939
+          ]
+        },
+        "*3": {
+          "count": 122,
+          "freq": 0.10149750415973377,
+          "ci95": [
+            0.08567506748537734,
+            0.11985896603882573
+          ]
+        },
+        "*2": {
+          "count": 46,
+          "freq": 0.03826955074875208,
+          "ci95": [
+            0.02881283527512075,
+            0.050668143025365084
+          ]
+        },
+        "*14": {
+          "count": 23,
+          "freq": 0.01913477537437604,
+          "ci95": [
+            0.012783899249566697,
+            0.028549443917425768
+          ]
+        },
+        "*66": {
+          "count": 4,
+          "freq": 0.0033277870216306157,
+          "ci95": [
+            0.0012948491925874588,
+            0.008525230168475688
+          ]
+        },
+        "Unknown": {
+          "count": 2,
+          "freq": 0.0016638935108153079,
+          "ci95": [
+            0.00045641826927569516,
+            0.00604647542800542
+          ]
+        },
+        "*8": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        }
+      },
+      "phenotypes": {
+        "Normal Metabolizer": 421,
+        "Intermediate Metabolizer": 159,
+        "Poor Metabolizer": 16,
+        "Indeterminate": 4,
+        "No Result": 1
+      }
+    },
+    "CYP2D6": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "CYP3A4": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "CYP3A5": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "CYP4F2": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {}
+    },
+    "DPYD": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Reference": {
+          "count": 666,
+          "freq": 0.5540765391014975,
+          "ci95": [
+            0.5258482372214973,
+            0.5819602968514187
+          ]
+        },
+        "c.85T>C (*9A)": {
+          "count": 192,
+          "freq": 0.15973377703826955,
+          "ci95": [
+            0.14011131152572825,
+            0.18152422023084602
+          ]
+        },
+        "c.2194G>A (*6)": {
+          "count": 73,
+          "freq": 0.06073211314475874,
+          "ci95": [
+            0.04857852552076411,
+            0.07568445924077918
+          ]
+        },
+        "c.1627A>G (*5)": {
+          "count": 65,
+          "freq": 0.054076539101497505,
+          "ci95": [
+            0.042652891179066045,
+            0.06834135092734911
+          ]
+        },
+        "[c.85T>C (*9A) + c.496A>G]": {
+          "count": 52,
+          "freq": 0.04326123128119801,
+          "ci95": [
+            0.03314161337310694,
+            0.056290921918725
+          ]
+        },
+        "c.1896T>C": {
+          "count": 29,
+          "freq": 0.024126455906821963,
+          "ci95": [
+            0.016850196267669086,
+            0.03443470389066947
+          ]
+        },
+        "[c.85T>C (*9A) + c.1129-5923C>G, c.1236G>A (HapB3)]": {
+          "count": 18,
+          "freq": 0.014975041597337771,
+          "ci95": [
+            0.009493156603255051,
+            0.02354722240428233
+          ]
+        },
+        "c.496A>G": {
+          "count": 18,
+          "freq": 0.014975041597337771,
+          "ci95": [
+            0.009493156603255051,
+            0.02354722240428233
+          ]
+        },
+        "[c.85T>C (*9A) + c.1627A>G (*5)]": {
+          "count": 17,
+          "freq": 0.014143094841930116,
+          "ci95": [
+            0.008848801139736951,
+            0.02253298503590941
+          ]
+        },
+        "[c.85T>C (*9A) + c.2194G>A (*6)]": {
+          "count": 13,
+          "freq": 0.010815307820299502,
+          "ci95": [
+            0.006331324843437075,
+            0.018416090004645225
+          ]
+        },
+        "c.1905+1G>A (*2A)": {
+          "count": 9,
+          "freq": 0.0074875207986688855,
+          "ci95": [
+            0.003944162331368689,
+            0.014168881189149543
+          ]
+        },
+        "[c.1627A>G (*5) + c.2194G>A (*6)]": {
+          "count": 7,
+          "freq": 0.005823627287853577,
+          "ci95": [
+            0.0028237885975682733,
+            0.011972069259167923
+          ]
+        },
+        "c.1601G>A (*4)": {
+          "count": 6,
+          "freq": 0.004991680532445923,
+          "ci95": [
+            0.0022896797862709114,
+            0.010847585238574268
+          ]
+        },
+        "[c.85T>C (*9A) + c.1896T>C]": {
+          "count": 6,
+          "freq": 0.004991680532445923,
+          "ci95": [
+            0.0022896797862709114,
+            0.010847585238574268
+          ]
+        },
+        "[c.85T>C (*9A) + c.775A>G]": {
+          "count": 5,
+          "freq": 0.004159733777038269,
+          "ci95": [
+            0.0017780588699504857,
+            0.009700613323003678
+          ]
+        },
+        "[c.85T>C (*9A) + c.1627A>G (*5) + c.2194G>A (*6)]": {
+          "count": 3,
+          "freq": 0.0024958402662229617,
+          "ci95": [
+            0.0008491660291155938,
+            0.0073123205000565385
+          ]
+        },
+        "[c.85T>C (*9A) + c.496A>G + c.1896T>C]": {
+          "count": 3,
+          "freq": 0.0024958402662229617,
+          "ci95": [
+            0.0008491660291155938,
+            0.0073123205000565385
+          ]
+        },
+        "[c.1627A>G (*5) + c.1896T>C]": {
+          "count": 3,
+          "freq": 0.0024958402662229617,
+          "ci95": [
+            0.0008491660291155938,
+            0.0073123205000565385
+          ]
+        },
+        "c.2279C>T": {
+          "count": 3,
+          "freq": 0.0024958402662229617,
+          "ci95": [
+            0.0008491660291155938,
+            0.0073123205000565385
+          ]
+        },
+        "[c.85T>C (*9A) + c.496A>G + c.1627A>G (*5) + c.2194G>A (*6)]": {
+          "count": 3,
+          "freq": 0.0024958402662229617,
+          "ci95": [
+            0.0008491660291155938,
+            0.0073123205000565385
+          ]
+        },
+        "[c.85T>C (*9A) + c.2279C>T]": {
+          "count": 3,
+          "freq": 0.0024958402662229617,
+          "ci95": [
+            0.0008491660291155938,
+            0.0073123205000565385
+          ]
+        },
+        "[c.85T>C (*9A) + c.496A>G + c.2194G>A (*6)]": {
+          "count": 2,
+          "freq": 0.0016638935108153079,
+          "ci95": [
+            0.00045641826927569516,
+            0.00604647542800542
+          ]
+        },
+        "c.1129-5923C>G, c.1236G>A (HapB3)": {
+          "count": 2,
+          "freq": 0.0016638935108153079,
+          "ci95": [
+            0.00045641826927569516,
+            0.00604647542800542
+          ]
+        },
+        "[c.85T>C (*9A) + c.775A>G + c.1896T>C]": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        },
+        "[c.85T>C (*9A) + c.1896T>C + c.2846A>T]": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        },
+        "[c.85T>C (*9A) + c.496A>G + c.1627A>G (*5) + c.1896T>C]": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        },
+        "[c.496A>G + c.2194G>A (*6)]": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        }
+      },
+      "phenotypes": {
+        "Normal Metabolizer": 459,
+        "Indeterminate": 129,
+        "Poor Metabolizer": 1,
+        "Intermediate Metabolizer": 12
+      }
+    },
+    "G6PD": {
+      "samples_called": 0,
+      "chromosomes": 0,
+      "allele_freq": {},
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "HLA-A": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {}
+    },
+    "HLA-B": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {}
+    },
+    "IFNL3": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {}
+    },
+    "MT-RNR1": {
+      "samples_called": 0,
+      "chromosomes": 0,
+      "allele_freq": {},
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "NAT2": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "NUDT15": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "*1": {
+          "count": 1120,
+          "freq": 0.9317803660565723,
+          "ci95": [
+            0.9161082010133981,
+            0.9447014787380394
+          ]
+        },
+        "*3": {
+          "count": 81,
+          "freq": 0.06738768718801996,
+          "ci95": [
+            0.0545493153586497,
+            0.0829824120580217
+          ]
+        },
+        "*5": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        }
+      },
+      "phenotypes": {
+        "Normal Metabolizer": 523,
+        "Intermediate Metabolizer": 75,
+        "Poor Metabolizer": 3
+      }
+    },
+    "RYR1": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "SLCO1B1": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "*37": {
+          "count": 528,
+          "freq": 0.43926788685524126,
+          "ci95": [
+            0.4114486090295096,
+            0.46747411424244617
+          ]
+        },
+        "*1": {
+          "count": 527,
+          "freq": 0.4384359400998336,
+          "ci95": [
+            0.41062508011292564,
+            0.46663905032713915
+          ]
+        },
+        "*15": {
+          "count": 42,
+          "freq": 0.03494176372712146,
+          "ci95": [
+            0.02595336074608561,
+            0.046893246226836154
+          ]
+        },
+        "*54": {
+          "count": 37,
+          "freq": 0.030782029950083195,
+          "ci95": [
+            0.022413840268340025,
+            0.04213980254512667
+          ]
+        },
+        "*14": {
+          "count": 36,
+          "freq": 0.029950083194675542,
+          "ci95": [
+            0.021711152533649938,
+            0.041183897447925735
+          ]
+        },
+        "Unknown": {
+          "count": 18,
+          "freq": 0.014975041597337771,
+          "ci95": [
+            0.009493156603255051,
+            0.02354722240428233
+          ]
+        },
+        "*5": {
+          "count": 7,
+          "freq": 0.005823627287853577,
+          "ci95": [
+            0.0028237885975682733,
+            0.011972069259167923
+          ]
+        },
+        "*20": {
+          "count": 6,
+          "freq": 0.004991680532445923,
+          "ci95": [
+            0.0022896797862709114,
+            0.010847585238574268
+          ]
+        },
+        "*51": {
+          "count": 1,
+          "freq": 0.0008319467554076539,
+          "ci95": [
+            0.0001468741294545499,
+            0.004697426735935548
+          ]
+        }
+      },
+      "phenotypes": {
+        "Normal Function": 508,
+        "Decreased Function": 44,
+        "Poor Function": 2,
+        "n/a": 37,
+        "Increased Function": 1,
+        "No Result": 9
+      }
+    },
+    "TPMT": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "*1": {
+          "count": 1182,
+          "freq": 0.9833610648918469,
+          "ci95": [
+            0.9744390809682022,
+            0.9892033543604783
+          ]
+        },
+        "*3C": {
+          "count": 15,
+          "freq": 0.012479201331114808,
+          "ci95": [
+            0.00757698489521624,
+            0.02048761561664809
+          ]
+        },
+        "*3A": {
+          "count": 5,
+          "freq": 0.004159733777038269,
+          "ci95": [
+            0.0017780588699504857,
+            0.009700613323003678
+          ]
+        }
+      },
+      "phenotypes": {
+        "Normal Metabolizer": 581,
+        "Intermediate Metabolizer": 20
+      }
+    },
+    "UGT1A1": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {
+        "No Result": 601
+      }
+    },
+    "VKORC1": {
+      "samples_called": 601,
+      "chromosomes": 1202,
+      "allele_freq": {
+        "Unknown": {
+          "count": 1202,
+          "freq": 1.0,
+          "ci95": [
+            0.9968142919665008,
+            1.0
+          ]
+        }
+      },
+      "phenotypes": {}
+    }
+  },
+  "min_n_for_a_conclusion": 30
+}

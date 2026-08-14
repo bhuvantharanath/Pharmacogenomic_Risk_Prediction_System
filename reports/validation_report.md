@@ -525,6 +525,14 @@ of population-specific structure a coordinate or strand error would destroy.
 #### Deviations, reported rather than buried
 
 **CYP2C19 \*1 in SAS: ours 39.3% vs CPIC 54.4% (−15.0 pp).** Explained by
+
+> **Superseded in scope, confirmed in direction (2026-08-14).** The SAS arm here
+> is the 75 samples that fell out of proportional stratification at n=400. All
+> **601** SAS samples in the panel have since been analysed:
+> `reports/sas_cohort_expansion.md`. The `*1` shortfall reproduces (36.8% vs
+> 54.4%), and its cause is now named — `*38`, the reference haplotype, which
+> CPIC's table folds into `*1`. The larger CYP2C9 `*2` deviation is likewise
+> explained by a single absent position, rs1799853.
 nomenclature, not error. PharmCAT 3.4.0 calls \*38 where CPIC's frequency table
 still counts \*1, and CPIC publishes no \*38 row at all. Combining them:
 

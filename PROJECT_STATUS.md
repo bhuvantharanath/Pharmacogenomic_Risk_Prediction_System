@@ -1091,7 +1091,7 @@ Validation. Every number below is measured and traceable to an artifact under
 | **Label/prose cross-check** | **0 divergences** | 20 / 20 reachable explanation entries |
 | **Phenotype/label invariant** | **294 labels corrected** | 400 samples × 6 drugs. Every change removed a confident label; none added one. Checked at build time over all reachable cases and at request time on every response |
 | **Invariant vs patch** | **293 of 294** | A DPYD-only patch would have left 293 of the 294 corrections live, including all 195 simvastatin cases |
-| **SAS breakout** | **n = 75** | CYP2C19 reduced-function (IM+PM) **53.3%** (40/75), second only to EAS. No per-population claim: n=8–23 per population |
+| **SAS breakout** | **n = 601** | CYP2C19 reduced-function (IM+PM) **57.1%** (343/601), 95% CI [53.1, 61.0]. Every subcohort now n≥103 (BEB 131, PJL 146, STU 114, ITU 107, GIH 103), so each supports a rate — but they are **not distinguishable from each other**, GIH 49.5% and STU 64.0% still overlapping. The earlier 53.3% at n=75 sits inside the new interval: it was imprecise, not wrong. Four of five cohorts were collected outside India; the coverage gate declines all 601, so these are PharmCAT's raw calls, not product output. `reports/sas_cohort_expansion.md` |
 
 Both halves of the 82.79%: the 1000 Genomes panel is filtered to polymorphic
 sites, so slices carry only 19–57% of PharmCAT's required positions, and the absent

@@ -101,3 +101,11 @@ pharmcat.*.log
 *.p12
 *.pfx
 *.pem
+
+# Expanded SAS cohort: 98 MB of sliced VCF and 601 PharmCAT report sets.
+# Regenerate with `python scripts/expand_sas_cohort.py` (41s slice + ~20 min).
+# The analysis artifacts in reports/ ARE committed; the inputs are not.
+test-data/reference/cohort/cohort_n601.vcf
+test-data/reference/cohort/chr*_n601.vcf.gz*
+test-data/reference/cohort/samples_n601.txt
+test-data/reference/cohort/pharmcat_sas_n601/
