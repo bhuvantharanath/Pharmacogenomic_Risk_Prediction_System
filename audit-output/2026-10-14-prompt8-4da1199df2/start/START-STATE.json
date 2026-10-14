@@ -1,0 +1,15 @@
+{
+ "recorded_utc": "2026-10-14T11:13:27Z",
+ "repo": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+ "branch": "main",
+ "base_head": "1dc7557da49f38e831b382545044b00a481507b6",
+ "tracked_diff_sha256": "4fc44c3c697ee68b06420e32375622999ce738b2c3fafb03f88200cc61ce3800",
+ "prompt7_final_tracked_diff_sha256": "4fc44c3c697ee68b06420e32375622999ce738b2c3fafb03f88200cc61ce3800",
+ "staged_diff_bytes":        0,
+ "status_uall_lines":     4571,
+ "status_delta_vs_prompt7_final": "only the 14 files this task created under audit-output/2026-10-14-prompt8-4da1199df2/",
+ "frozen_candidate_inventory": "audit-output/2026-10-05-prompt7-5b236070c2/candidate-inventory.json (437 entries, sha256 9582a19acd61d841e6ecc9d98cdeef5796e654cdc790343d27b1dc0100af62da)",
+ "frozen_inventory_differences": 0,
+ "agents_md_present": false,
+ "claude_md_present": false
+}

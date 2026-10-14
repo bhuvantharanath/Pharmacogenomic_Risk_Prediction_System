@@ -63,13 +63,13 @@ class TestAccepts:
         # The decompressed text must be what gets handed to PharmCAT.
         assert "rs4244285" in meta.text
 
-    def test_multi_sample_warns_but_accepts(self) -> None:
+    def test_multi_sample_is_rejected_explicitly(self) -> None:
         vcf = MINIMAL_VCF.replace("SAMPLE_1\n", "SAMPLE_1\tSAMPLE_2\n").replace(
             "GT\t1/1", "GT\t1/1\t0/0"
         )
-        meta = validate_vcf(vcf.encode())
-        assert meta.sample_ids == ["SAMPLE_1", "SAMPLE_2"]
-        assert any("2 samples" in w for w in meta.warnings)
+        message = _expect(vcf.encode(), VcfErrorCode.UNSUPPORTED_MULTISAMPLE)
+        assert "2 samples" in message
+        assert "one sample at a time" in message
 
     def test_missing_build_warns_but_accepts(self) -> None:
         vcf = MINIMAL_VCF.replace(
@@ -145,7 +145,7 @@ class TestRejects:
             "##fileformat=VCFv4.2\n",
             "##fileformat=VCFv4.2\n##reference=file:///ref/human_g1k_v37.fasta\n",
         )
-        _expect(vcf.encode(), VcfErrorCode.UNSUPPORTED_REFERENCE_BUILD)
+        _expect(vcf.encode(), VcfErrorCode.CONFLICTING_REFERENCE_BUILD)
 
     def test_build_mention_outside_declaration_lines_is_ignored(self) -> None:
         """`##source`/`##commandline` often name a build for historical reasons."""

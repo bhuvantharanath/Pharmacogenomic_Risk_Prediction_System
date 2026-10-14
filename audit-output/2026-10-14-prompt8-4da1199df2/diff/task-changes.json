@@ -1,0 +1,96 @@
+{
+ "patch": "diff/task-changes.patch",
+ "patch_sha256": "58535e1f110349a3c7f5c8df2d937f788f6a51596759e533ae353657eeccff0a",
+ "modified_files": [
+  "app/lib/config.dart",
+  "app/lib/models/analysis.dart",
+  "app/lib/models/unknown_reason.dart",
+  "app/lib/print/summary_document.dart",
+  "app/lib/screens/about_screen.dart",
+  "app/lib/screens/home_screen.dart",
+  "app/lib/widgets/coverage_census.dart",
+  "app/lib/widgets/disclosure_row.dart",
+  "app/lib/widgets/file_readiness.dart",
+  "app/lib/widgets/summary_grid.dart",
+  "app/lib/widgets/unknown_panel.dart",
+  "app/lib/widgets/unknown_reason_panel.dart",
+  "app/lib/widgets/verdict_card.dart",
+  "app/test/print_summary_test.dart",
+  "app/test/readiness_test.dart",
+  "app/test/redesign_test.dart",
+  "app/test/state_census_test.dart",
+  "app/test/unknown_reason_test.dart",
+  "backend/app/coverage.py",
+  "backend/app/main.py",
+  "backend/app/models.py",
+  "backend/tests/test_analyze_api.py",
+  "backend/tests/test_coverage_endpoint.py",
+  "backend/app/data/compatible_bundle.json",
+  "backend/tests/test_current_candidate_evaluation.py",
+  "backend/tests/test_portable_scientific_hash.py",
+  "scripts/compatible_bundle.py",
+  "scripts/release_status.py"
+ ],
+ "new_files": [
+  "backend/tests/test_disclosure_wording.py",
+  "app/test/disclosure_wording_test.dart"
+ ],
+ "new_evidence_package": [
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/EVALUATION-REPORT.md",
+   "bytes": 2556,
+   "sha256": "a31cbf8804dfc2ac8ade32b2072c55f3ff6b9d55b208aa98a2bf2b4c60174194"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/discrepancies.tsv",
+   "bytes": 172478,
+   "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/evaluation-comparison.json",
+   "bytes": 4302,
+   "sha256": "125ce8958ba65303c62a6eab37dd1d92e9295c8770fa7d80758c62e525a90353"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json",
+   "bytes": 5542,
+   "sha256": "ef3202f4f159548b93f4353b00802bd5bf53c300f3633e3233d604988d879786"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/exclusions.tsv",
+   "bytes": 48960,
+   "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/external_benchmark_results.json",
+   "bytes": 33667,
+   "sha256": "d67349aa7186782d13d02d20fa853ace6ca0b0ffe0046fba2729de16af381727"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/f4-fresh-replay.json",
+   "bytes": 1767,
+   "sha256": "e35d07b5eddc19fc7ab9c14bc7e3a8add89e0e06f4464e6d2224d6289fa0de81"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/input_eligibility.tsv",
+   "bytes": 466620,
+   "sha256": "1799a9c4cb64b5249c8b6832c56db0e8e2a18ef95934ef6215f53951a95d6bfc"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/raw_benchmark_manifest.json",
+   "bytes": 7588,
+   "sha256": "8718e6e0d41cb781e3cc67a61b682bf1824fc3ff6397b3d75af950c19e28ad40"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/raw_scoring_report.md",
+   "bytes": 11481,
+   "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-14/stage-command-receipts.json",
+   "bytes": 4162,
+   "sha256": "fca2ba9b0eb705eea56bbb4e5ee90ae4e9a35c0796c95fb190d3cc6ea1535a45"
+  }
+ ],
+ "note": "Diff is against byte-verified start-state snapshots (Prompt 7 candidate inventory, or HEAD for files that were clean at start). The evidence package is listed by hash, not inlined."
+}

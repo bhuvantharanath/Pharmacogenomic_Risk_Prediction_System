@@ -60,12 +60,14 @@ from _common import REPO_ROOT, bold, dim, green, red, rel, rule, yellow
 
 sys.path.insert(0, str(REPO_ROOT / "backend"))
 
+from app.capabilities import presentation_capabilities  # noqa: E402
+
 TOOLS_DIR = REPO_ROOT / "test-data" / "reference" / "tools"
 PHARMCAT_JAR = TOOLS_DIR / "pharmcat-3.4.0-all.jar"
 GUIDANCE_MEMBER = "org/pharmgkb/pharmcat/reporter/prescribing_guidance.json"
 TABLE_PATH = REPO_ROOT / "test-data" / "reference" / "cpic_expectations.json"
 
-DRUGS = ("azathioprine", "clopidogrel", "codeine", "fluorouracil", "simvastatin", "warfarin")
+DRUGS = tuple(sorted(entry.drug for entry in presentation_capabilities()))
 
 #: The independent derivation rule. Stated once, applied uniformly, never
 #: adjusted to make a row agree.
@@ -82,7 +84,7 @@ that label_mapping.yaml matches on:
   alternateDrugAvailable = false
     dosingInformation = true      CPIC keeps the drug but changes the dose or
                                   adds monitoring                  -> Adjust Dosage
-    dosingInformation = false     CPIC changes nothing              -> Safe
+    dosingInformation = false     CPIC changes nothing              -> No PGx-guided adjustment identified
 """
 
 #: Implication categories, used ONLY to split Toxic from Ineffective when CPIC
@@ -190,7 +192,10 @@ def derive_expected(
         return "Toxic", "CPIC: alternative drug available; harm assumed as the safer reading"
     if dosing:
         return "Adjust Dosage", "CPIC: drug retained, dosing/monitoring information applies"
-    return "Safe", "CPIC: no alternative drug and no dosing change"
+    return (
+        "No PGx-guided adjustment identified",
+        "CPIC: no alternative drug and no dosing change",
+    )
 
 
 def build_table() -> list[Expectation]:

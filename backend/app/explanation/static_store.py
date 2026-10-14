@@ -19,13 +19,15 @@ WHY PRE-GENERATION IS THE DEPLOYED PATH
     next user gets.
 
     It also removes the API key, the rate limit, the latency and the network
-    failure mode from the deployed service. `EXPLANATION_MODE=live` exists for
-    the demo video; `static` is what runs.
+    failure mode from the deployed service. `EXPLANATION_MODE=live` remains a
+    compatibility value but cannot serve newly generated clinical prose;
+    `static` is what runs.
 
-KEY
-    (drug, phenotype) — lower-cased drug, contract phenotype code (PM/IM/NM/RM/
-    URM/Unknown). The gene is implied by the drug, so it is stored for audit but
-    not used for lookup.
+LOOKUP AND APPROVAL
+    The store lookup remains (drug, phenotype) for backward-compatible loading,
+    but lookup is not permission to serve.  The approval layer additionally
+    binds gene/relevant-gene context, bounded risk state, exact content, and
+    exact source before any stored prose reaches a response.
 
 MISSES DEGRADE
     An unknown key returns None and the caller falls back to the template
@@ -90,6 +92,9 @@ class StoredExplanation:
     generator: str = ""
     guard_passed: bool = False
     review: ReviewRecord = field(default_factory=ReviewRecord)
+    derived_risk_label: str = ""
+    cpic_recommendation_used: str = ""
+    mechanism_source: str = ""
 
     @property
     def is_provenance_verified(self) -> bool:
@@ -178,6 +183,9 @@ def _parse(payload: dict) -> ExplanationStore:
             generator=str(raw.get("generator") or ""),
             guard_passed=bool(guard.get("passed")) if isinstance(guard, dict) else False,
             review=_parse_review(raw),
+            derived_risk_label=str(raw.get("derived_risk_label") or ""),
+            cpic_recommendation_used=str(raw.get("cpic_recommendation_used") or ""),
+            mechanism_source=str(raw.get("mechanism_source") or ""),
         )
 
     return ExplanationStore(

@@ -1,0 +1,12 @@
+{
+  "compatible": false,
+  "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-04-v3",
+  "manifest_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+  "problems": [
+    "$.evaluation.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '790a9188a2f242b3f34470c77b7aa11547b72cecde8737608d2a0cf2b1200809'",
+    "$.evaluation_current.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '790a9188a2f242b3f34470c77b7aa11547b72cecde8737608d2a0cf2b1200809'",
+    "$.evaluation_current.evidence_matches: expected True, found False",
+    "$.evaluation_current.problems: expected 0 entries, found 2",
+    "$.evaluation_current.evidence_matches: new candidate evidence is missing or incompatible"
+  ]
+}

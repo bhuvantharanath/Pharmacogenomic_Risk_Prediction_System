@@ -31,14 +31,16 @@ from pydantic import BaseModel, ConfigDict, Field
 #:
 #: The second sentence is load-bearing. "Not a medical device" is a legal
 #: disclaimer that every such tool carries and every reader skims. Naming the
-#: specific gap -- that no clinician has read this text, and what was done
-#: instead -- is the part that actually informs.
+#: specific gap -- that no clinician has read this text, and what the automated
+#: checks can and cannot show -- is the part that actually informs. The checks
+#: are a filter, not a review: they never establish that nothing was invented.
 DISCLAIMER = (
     "Research/educational decision support only. "
     "Not a medical device. Not for clinical use. "
-    "No qualified clinical expert has reviewed this text: every clinical "
-    "statement is machine-verified to come from a published CPIC recommendation, "
-    "which checks that nothing was invented, not that it is correct for you."
+    "No qualified clinical expert has reviewed this text. Recommendation text "
+    "is quoted from CPIC via PharmCAT, and automated source checks are not human "
+    "review: they cannot show that every statement is supported or that it is "
+    "correct for you."
 )
 
 
@@ -50,7 +52,7 @@ DISCLAIMER = (
 class RiskLabel(str, Enum):
     """Top-line verdict for a single drug. Drives the card colour in the UI."""
 
-    SAFE = "Safe"
+    SAFE = "No PGx-guided adjustment identified"
     ADJUST_DOSAGE = "Adjust Dosage"
     TOXIC = "Toxic"
     INEFFECTIVE = "Ineffective"
@@ -124,8 +126,24 @@ class RiskAssessment(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     risk_label: RiskLabel
-    confidence_score: float = Field(ge=0.0, le=1.0)
-    severity: Severity
+    confidence_score: float = Field(
+        ge=0.0,
+        le=1.0,
+        json_schema_extra={"deprecated": True},
+        description=(
+            "Legacy deterministic pipeline-status score retained for API "
+            "compatibility. It is not a calibrated clinical probability or a "
+            "measure of recommendation correctness."
+        ),
+    )
+    severity: Severity = Field(
+        json_schema_extra={"deprecated": True},
+        description=(
+            "Legacy presentation category retained for API compatibility. It is "
+            "not a validated clinical severity assessment and must not be used "
+            "to prioritize care."
+        ),
+    )
 
 
 class PharmacogenomicProfile(BaseModel):
@@ -307,3 +325,29 @@ class HealthResponse(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     status: str = "ok"
+
+
+class CapabilityEntry(BaseModel):
+    """One application-audited drug/gene capability."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    drug: str
+    primary_gene: str
+    relevant_genes: list[str]
+    evidence_dependencies: list[str]
+    implementation_status: str
+    guidance_capable: bool
+    limitation: str
+    explanation_available: bool
+    ui_available: bool
+    export_available: bool
+
+
+class CapabilityResponse(BaseModel):
+    """Public view of the authoritative application capability registry."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    version: int = Field(ge=1)
+    capabilities: list[CapabilityEntry]

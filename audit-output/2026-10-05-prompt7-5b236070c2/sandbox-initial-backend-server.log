@@ -1,0 +1,10 @@
+INFO:     Started server process [25879]
+INFO:     Waiting for application startup.
+[startup] pharmcat=jar via /opt/homebrew/opt/openjdk/bin/java -jar /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar
+[startup] pharmcat_concurrency=1 workers=1 queue_timeout=90s
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+[startup] explanation_mode=static cors_origins=['http://127.0.0.1:3000'] rate_limit=10/300s proxy_trust={'forwarded_headers': 'ignored', 'trusted_proxy_cidrs': []}
+INFO:     Application startup complete.
+ERROR:    [Errno 1] error while attempting to bind on address ('127.0.0.1', 8000): operation not permitted
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.

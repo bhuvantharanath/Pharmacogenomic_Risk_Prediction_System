@@ -1,0 +1,220 @@
+{
+ "files": 43,
+ "inventory": [
+  {
+   "path": ".last_build_id",
+   "bytes": 32,
+   "sha256": "9d803cc0a33242e3b333ea246063aded8da3d7ae9d540f4d63676569768d6a97"
+  },
+  {
+   "path": "assets/AssetManifest.bin",
+   "bytes": 1109,
+   "sha256": "bb3f06b61cf20e2a1c8964c65523d13010b63c07c2c75276a54c649da75cc0ce"
+  },
+  {
+   "path": "assets/AssetManifest.bin.json",
+   "bytes": 1482,
+   "sha256": "e624f1c7510b06b27f4d5a112b4ba11fec7ef88abbf5a0999ac9997418685db4"
+  },
+  {
+   "path": "assets/FontManifest.json",
+   "bytes": 655,
+   "sha256": "b99701028ddce442ddaab8043c3cc1d32e8994b1e924ebbed2688d64df3395a0"
+  },
+  {
+   "path": "assets/NOTICES",
+   "bytes": 1366672,
+   "sha256": "84230cfc4ccb16f1a49b36ec5451e3f9afa82e77de77e456ca31207ec7ea07fb"
+  },
+  {
+   "path": "assets/assets/fonts/IBMPlexMono-Medium.ttf",
+   "bytes": 136704,
+   "sha256": "a9b4c49bb299e05b5f6c481e7fb5e78943d2793249a0c8874ab574a2d1ea6755"
+  },
+  {
+   "path": "assets/assets/fonts/IBMPlexMono-Regular.ttf",
+   "bytes": 135580,
+   "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+  },
+  {
+   "path": "assets/assets/fonts/IBMPlexMono-SemiBold.ttf",
+   "bytes": 140216,
+   "sha256": "d3c38e55c78f5b0f28009fddba4834ec503278936a5986032424c9bd2d23aa46"
+  },
+  {
+   "path": "assets/assets/fonts/Newsreader-Italic-Variable.ttf",
+   "bytes": 495684,
+   "sha256": "796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792"
+  },
+  {
+   "path": "assets/assets/fonts/Newsreader-Variable.ttf",
+   "bytes": 451664,
+   "sha256": "8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1"
+  },
+  {
+   "path": "assets/assets/fonts/PublicSans-Variable.ttf",
+   "bytes": 103316,
+   "sha256": "d75a7dc1a27eb9e336d5b33f55489d2ecb5621bf694d5c43b2415bce2ca830a8"
+  },
+  {
+   "path": "assets/assets/samples/pharmaguard_sample_1000genomes.vcf",
+   "bytes": 198701,
+   "sha256": "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef"
+  },
+  {
+   "path": "assets/assets/samples/pharmaguard_sample_normal.vcf",
+   "bytes": 25966,
+   "sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c"
+  },
+  {
+   "path": "assets/assets/samples/pharmaguard_sample_reduced_function.vcf",
+   "bytes": 25967,
+   "sha256": "d9ad8dab7dca48eb8cf337089d3ac8b6096d619a9d63dba7b71b1f9f87d7bfa7"
+  },
+  {
+   "path": "assets/assets/samples/pharmaguard_sample_variants_only.vcf",
+   "bytes": 1620,
+   "sha256": "fd17110ea604a41c6b1a28ce59efbc0ff50980c7d4429fe036d1e23e7a41b5ed"
+  },
+  {
+   "path": "assets/fonts/MaterialIcons-Regular.otf",
+   "bytes": 12588,
+   "sha256": "ae9eb9aace9b5cbc15bc8b3972d37e8fa6e6725b412543b92d1e4fd8861bcefd"
+  },
+  {
+   "path": "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf",
+   "bytes": 1472,
+   "sha256": "3d90c370aa4cf00dc57ee2b902f6652147c0f81e03e483df584a9c08b1687c9d"
+  },
+  {
+   "path": "assets/shaders/ink_sparkle.frag",
+   "bytes": 8867,
+   "sha256": "e01b61b394cf66a641bea87e3b4fe3787d372f636c8bc8a2a67438cdc29da6f6"
+  },
+  {
+   "path": "assets/shaders/stretch_effect.frag",
+   "bytes": 6714,
+   "sha256": "fa9ccf8e429631a461c7a7c644daba811a53463f78aa2ad023e0e9c81b815b4a"
+  },
+  {
+   "path": "canvaskit/canvaskit.js",
+   "bytes": 86619,
+   "sha256": "5b96deff653e229163d08bb51e5f17f0831397fd17d4ddbb3d872642738ef9ab"
+  },
+  {
+   "path": "canvaskit/canvaskit.js.symbols",
+   "bytes": 1341680,
+   "sha256": "8545246bd28d21239a76fd9046c1b5f0be616d557225fcb16e8fa012be2ab6e4"
+  },
+  {
+   "path": "canvaskit/canvaskit.wasm",
+   "bytes": 7083768,
+   "sha256": "98ff521224f8c66763d6772c94b9773d29c7fb8cd2e53342bf6e3c8203b84b4d"
+  },
+  {
+   "path": "canvaskit/chromium/canvaskit.js",
+   "bytes": 86256,
+   "sha256": "e97a3ac057e9d8c9e80b024f2d72c005d21a1f8d98e3e33f439f3744d544f88a"
+  },
+  {
+   "path": "canvaskit/chromium/canvaskit.js.symbols",
+   "bytes": 1263564,
+   "sha256": "ba2a7000fb5a791513802886a14551e15be98eb2b02161c0f56ca3d3a4799d0b"
+  },
+  {
+   "path": "canvaskit/chromium/canvaskit.wasm",
+   "bytes": 5708955,
+   "sha256": "de186b1791a7de02d9cafe60ab99ff9fe018e1ae53d9c0e190b7737464d49d17"
+  },
+  {
+   "path": "canvaskit/skwasm.js",
+   "bytes": 60657,
+   "sha256": "ca8a64f5a38c60a4632de39763da568abdf5f29c708d723dc559adb06522dc3d"
+  },
+  {
+   "path": "canvaskit/skwasm.js.symbols",
+   "bytes": 1519144,
+   "sha256": "c649cf709b19f088bcb1bdecdfbe1a574368179a55dd70f790b4a3c4f4de02ff"
+  },
+  {
+   "path": "canvaskit/skwasm.wasm",
+   "bytes": 3551820,
+   "sha256": "8cb52710d025bb70154843148f2f9b5f16c4719d95809908c285b20bc18bac64"
+  },
+  {
+   "path": "canvaskit/skwasm_heavy.js",
+   "bytes": 60770,
+   "sha256": "e3039d0a604a5e2ef146e49c837dd93e01d90f292d4969a73beb3000b63dbe8b"
+  },
+  {
+   "path": "canvaskit/skwasm_heavy.js.symbols",
+   "bytes": 1638235,
+   "sha256": "d7dd7fdc0e4161f27c404c1732f3512795628e07d0b3fab4c074a48d28168f2c"
+  },
+  {
+   "path": "canvaskit/skwasm_heavy.wasm",
+   "bytes": 5047312,
+   "sha256": "1c52f15388c3f192700ab780a941cac16a7999d0e32f7fae821fa4bf90536265"
+  },
+  {
+   "path": "favicon.png",
+   "bytes": 917,
+   "sha256": "7ab2525f4b86b65d3e4c70358a17e5a1aaf6f437f99cbcc046dad73d59bb9015"
+  },
+  {
+   "path": "flutter.js",
+   "bytes": 9412,
+   "sha256": "ed5d5920a9868a8b93d790a9aae4165a62962728d4abbec5a14f600d73c53bd3"
+  },
+  {
+   "path": "flutter_bootstrap.js",
+   "bytes": 9740,
+   "sha256": "a69c9e2a31acbd565c33dfa26b2767fa94b1969bab2d219ec21bd37976efc35b"
+  },
+  {
+   "path": "flutter_service_worker.js",
+   "bytes": 9184,
+   "sha256": "f9959a7e503135e74fabf23c3d3085dd2083f989062772211da7a488cbc9ddda"
+  },
+  {
+   "path": "icons/Icon-192.png",
+   "bytes": 5292,
+   "sha256": "3dce99077602f70421c1c6b2a240bc9b83d64d86681d45f2154143310c980be3"
+  },
+  {
+   "path": "icons/Icon-512.png",
+   "bytes": 8252,
+   "sha256": "baccb205ae45f0b421be1657259b4943ac40c95094ab877f3bcbe12cd544dcbe"
+  },
+  {
+   "path": "icons/Icon-maskable-192.png",
+   "bytes": 5594,
+   "sha256": "d2c842e22a9f4ec9d996b23373a905c88d9a203b220c5c151885ad621f974b5c"
+  },
+  {
+   "path": "icons/Icon-maskable-512.png",
+   "bytes": 20998,
+   "sha256": "6aee06cdcab6b2aef74b1734c4778f4421d2da100b0ff9e52b21b55240202929"
+  },
+  {
+   "path": "index.html",
+   "bytes": 1233,
+   "sha256": "d4d15d0af7880d6aad8957198420078ea34741db0308a8beb188af1b5b3f8d73"
+  },
+  {
+   "path": "main.dart.js",
+   "bytes": 2690700,
+   "sha256": "aef4ea31c830be93855ffdf7039a251ac48c620a2c52799d20e398178c5c4794"
+  },
+  {
+   "path": "manifest.json",
+   "bytes": 948,
+   "sha256": "9a23880fe9d67350f54295dce4dcba52cea5bee5bda2c6a81c9ca90b5f56df76"
+  },
+  {
+   "path": "version.json",
+   "bytes": 92,
+   "sha256": "cb0d06ffec28378c4f654f96f4231f001d7b5676ad753cc985dcdb06d211a440"
+  }
+ ]
+}

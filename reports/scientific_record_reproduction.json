@@ -1,0 +1,31 @@
+{
+  "phase": "Phase 5 — reproducible scientific record",
+  "rerun_date": "2026-09-24",
+  "bundle_id": "pharmaguard-scientific-baseline-2026-09-24",
+  "command": "backend/.venv/bin/python scripts/benchmark_external.py evaluate --resume",
+  "environment": {
+    "python": "3.11.14 (local rerun; declared CI/production baseline is 3.12)",
+    "java": "OpenJDK 25.0.1",
+    "bcftools": "1.24",
+    "bgzip": "1.24",
+    "pharmcat": "3.4.0"
+  },
+  "reproduced_metrics": {
+    "evidence_type": "independent CDC GeT-RM/PGx consensus truth plus 1000 Genomes genomic evidence",
+    "sample_unit": "208 individuals; 1456 sample-gene rows are repeated measures within individuals",
+    "truth_evaluable_denominator": 596,
+    "truth_status_counts": {
+      "evaluable": 596,
+      "truth_blank": 816,
+      "truth_nomenclature_not_safely_parseable": 42,
+      "truth_unresolved_or_discordant": 2
+    },
+    "pharmcat_reports": "208/208",
+    "application_eligible_sample_gene_rows": "0/1456"
+  },
+  "deviations": {
+    "semantic_results": "none",
+    "byte_identity": "Generated timestamps and application-artifact identity changed after Phase 5 files were added; affected generated hashes were refreshed in the compatible manifest. Truth table, exclusions, discrepancies, PharmCAT report manifest, and rendered analytical report remained byte-identical.",
+    "limitation": "The benchmark genomic evidence is polymorphic-only and does not satisfy the application evidence contract; Layer B abstains throughout. This rerun is analytical reproducibility evidence, not clinical validation or utility."
+  }
+}

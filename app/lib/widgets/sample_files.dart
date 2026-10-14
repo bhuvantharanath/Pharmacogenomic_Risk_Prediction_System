@@ -70,7 +70,8 @@ const List<SampleFile> kSampleFiles = <SampleFile>[
     title: 'Normal result',
     outcome: 'Answers confidently',
     detail: 'Complete coverage, all genes at reference. Shows the system is '
-        'not merely cautious — it will say Safe when the data supports it.',
+        'not merely cautious — it will state when no PGx-guided adjustment was '
+        'identified from the assessed evidence.',
     gated: false,
   ),
   SampleFile(

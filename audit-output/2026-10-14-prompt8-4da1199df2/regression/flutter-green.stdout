@@ -1,0 +1,18 @@
+00:00 +0: loading /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app/test/disclosure_wording_test.dart
+00:00 +0: DEF-1 automated provenance is not a guarantee the shared disclaimer bounds the automated check
+00:00 +1: DEF-1 automated provenance is not a guarantee the printed page bounds the automated check
+00:00 +2: DEF-1 automated provenance is not a guarantee the About page bounds the automated check
+00:00 +3: DEF-1 automated provenance is not a guarantee the home subtitle does not call served text pre-generated and source-checked
+00:00 +4: DEF-2 the CYP2D6 limit belongs to this application, not to VCF the Unknown reason used on the printed page
+00:00 +5: DEF-2 the CYP2D6 limit belongs to this application, not to VCF the Unknown panel on the result card
+00:00 +6: DEF-2 the CYP2D6 limit belongs to this application, not to VCF the census line on the codeine card
+00:00 +7: DEF-2 the CYP2D6 limit belongs to this application, not to VCF the readiness footnote before analysis
+00:00 +8: DEF-3 the missing-is-reference hazard belongs to callers the printed census note says this application withholds
+00:00 +9: DEF-4 an unusable genotype is not a missing position it is classified apart from absent positions
+00:00 +10: DEF-4 an unusable genotype is not a missing position a genuinely absent position keeps the absence explanation
+00:00 +11: DEF-4 an unusable genotype is not a missing position the census line counts the unusable row as unusable
+00:00 +12: DEF-4 an unusable genotype is not a missing position the panel does not ask for an all-sites file
+00:00 +13: DEF-4 an unusable genotype is not a missing position the printed page gives the same account
+00:00 +14: DEF-5 opened results stay open after a long scroll to the exports and back
+00:00 +15: DEF-6 the drug list does not promise guidance it never gives warfarin and codeine are not listed as drugs with CPIC guidance
+00:00 +16: All tests passed!

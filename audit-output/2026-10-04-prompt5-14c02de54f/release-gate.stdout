@@ -1,0 +1,97 @@
+{
+ "release_ready": false,
+ "state": "not-ready",
+ "declared_explanation_release_policy": "human_review_all_stored_generated_entries",
+ "effective_explanation_mode": "deterministic_template_only",
+ "approved_generated_entries": 0,
+ "unapproved_generated_entries": 20,
+ "releasable_generated_entries": 0,
+ "fallback_only_cases": 20,
+ "human_review_complete_for_releasable_set": null,
+ "clinical_expert_review": "NOT_OBTAINED",
+ "candidate_revision": "1dc7557da49f38e831b382545044b00a481507b6",
+ "tested_revision": "1dc7557da49f38e831b382545044b00a481507b6",
+ "candidate_artifact_hash": "9961033924dda2d4ab8e57d85450debeb98c4afdc392b3959d3d0ccf856f214c",
+ "tested_artifact_hash": "9961033924dda2d4ab8e57d85450debeb98c4afdc392b3959d3d0ccf856f214c",
+ "prerequisites": {
+  "required_checks_passed": false,
+  "human_adjudication_complete": false,
+  "no_rejected_or_outstanding_claims": false,
+  "provenance_complete": true,
+  "manifest_compatible": true,
+  "scientific_bundle_compatible": false,
+  "all_entries_approved": false,
+  "approved_entries_human_bound": false,
+  "artifact_hashes_match": true,
+  "candidate_revision_matches": true,
+  "no_clinical_expert_review_claim": true
+ },
+ "required_checks": [
+  {
+   "name": "compatible-bundle",
+   "passed": false,
+   "exit_code": 1,
+   "output_tail": "compatible scientific bundle: FAIL\n - $.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', found '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691'\n - $.evaluation.migration_identity_matches: expected True, found False\n - $.evaluation.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core"
+  }
+ ],
+ "adjudication": {
+  "entries": 20,
+  "flagged_sentences": 179,
+  "adjudicated": 160,
+  "adjudicated_by_human": 124,
+  "adjudicated_by_automation": 36,
+  "escalated_awaiting_human": 19,
+  "outstanding": 19,
+  "rejected": 0,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "state": "incomplete",
+  "adjudication_complete": false,
+  "human_adjudication_complete": false,
+  "exit_code": 1
+ },
+ "review": {
+  "total": 20,
+  "provenance_verified": 20,
+  "provenance_unverified": 0,
+  "read_by_author": 0,
+  "unread": 20,
+  "author_concerns": 0,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "fallback": 0,
+  "guard_failed": 0,
+  "provenance_complete": true,
+  "exit_code": 0
+ },
+ "manifest": {
+  "compatible": true,
+  "all_entries_approved": false,
+  "approved_entries_human_bound": false,
+  "stored_generated_entries": 20,
+  "approved_generated_entries": 0,
+  "unapproved_generated_entries": 20,
+  "releasable_generated_entries": 0,
+  "fallback_only_cases": 20,
+  "human_review_complete_for_releasable_set": null,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "counts": {
+   "approved": 0,
+   "unresolved": 20,
+   "rejected": 0
+  },
+  "store_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+  "manifest_store_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+  "problems": []
+ },
+ "compatible_bundle": {
+  "compatible": false,
+  "bundle_id": "pharmaguard-scientific-baseline-2026-09-24-portable-v2",
+  "manifest_sha256": "718dbcf0480d8d73a40ff1356ef65962440a43acae24c781eaeeba232e95c7a8",
+  "problems": [
+   "$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', found '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691'",
+   "$.evaluation.migration_identity_matches: expected True, found False",
+   "$.evaluation.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core"
+  ],
+  "exit_code": 1
+ },
+ "content_ready": false
+}

@@ -31,6 +31,7 @@ on:
     paths:
       - "app/**"
       - "backend/**"
+      - "scripts/**"
       - "rag-corpus/**"
       - "infra/Dockerfile"
       - "infra/render.yaml"
@@ -46,6 +47,44 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  release-gate:
+    name: Authoritative release gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: |
+            backend/requirements.txt
+            backend/requirements-dev.txt
+
+      - name: Install backend verification dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r backend/requirements.txt -r backend/requirements-dev.txt
+          python -m spacy download en_core_web_sm
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: "3.38.9"
+          channel: stable
+          cache: true
+
+      - name: Install Flutter dependencies
+        working-directory: app
+        run: flutter pub get
+
+      # This is the only final ready/not-ready decision. It runs every required
+      # test, checks human adjudication and the approval manifest, and proves
+      # that the tested source hash is the exact candidate this workflow would
+      # deploy. A failure makes both deploy jobs ineligible.
+      - name: Evaluate exact release candidate
+        run: python scripts/release_status.py --run-required --candidate-sha "${GITHUB_SHA}"
+
   # ------------------------------------------------------------------------ #
   # BACKEND FIRST, AND IT MUST REACH HEALTHY BEFORE THE CLIENT SHIPS.
   #
@@ -62,6 +101,7 @@ jobs:
   # ------------------------------------------------------------------------ #
   backend:
     name: Deploy backend to Render
+    needs: release-gate
     runs-on: ubuntu-latest
     timeout-minutes: 30
     outputs:

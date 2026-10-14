@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/homebrew/opt/openjdk/bin/java",
+    "-Xmx208m",
+    "-XX:MaxMetaspaceSize=68m",
+    "-jar",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+    "-vcf",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-01-f7/frozen-local/NA18861.1000G2022.vcf.gz",
+    "-o",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18861.pharmcat",
+    "-reporterJson"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 0,
+  "seconds": 2.3391764580010204,
+  "at": "2026-10-05T13:15:20.551951+00:00"
+}

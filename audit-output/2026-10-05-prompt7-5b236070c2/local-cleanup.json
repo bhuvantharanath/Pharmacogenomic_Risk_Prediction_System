@@ -1,0 +1,44 @@
+[
+  {
+    "pid": 29434,
+    "inspect_argv": [
+      "ps",
+      "-p",
+      "29434",
+      "-o",
+      "command="
+    ],
+    "inspect_exit": 0,
+    "command": "/opt/homebrew/Cellar/python@3.11/3.11.14_1/Frameworks/Python.framework/Versions/3.11/Resources/Python.app/Contents/MacOS/Python -m uvicorn capture_api:app --app-dir /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2 --host 127.0.0.1 --port 8000 --workers 1",
+    "signal": "SIGTERM",
+    "after_exit": 1,
+    "after": ""
+  },
+  {
+    "pid": 27078,
+    "inspect_argv": [
+      "ps",
+      "-p",
+      "27078",
+      "-o",
+      "command="
+    ],
+    "inspect_exit": 0,
+    "command": "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -m http.server 3000 --bind 127.0.0.1 --directory audit-output/2026-10-05-prompt7-5b236070c2/web-build",
+    "signal": "SIGTERM",
+    "after_exit": 1,
+    "after": ""
+  },
+  {
+    "port": 8000,
+    "exit": 1,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "port": 3000,
+    "exit": 1,
+    "stdout": "",
+    "stderr": ""
+  }
+]

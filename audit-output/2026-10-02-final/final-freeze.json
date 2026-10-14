@@ -1,0 +1,8 @@
+{
+  "candidate_files": 421,
+  "changed_candidate_files_during_verification": [],
+  "application_core_sha256": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+  "release_artifact_sha256": "9961033924dda2d4ab8e57d85450debeb98c4afdc392b3959d3d0ccf856f214c",
+  "git_tracked_diff_unchanged": true,
+  "head": "1dc7557da49f38e831b382545044b00a481507b6"
+}

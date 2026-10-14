@@ -1,0 +1,124 @@
+# branch.oid 1dc7557da49f38e831b382545044b00a481507b6
+# branch.head main
+# branch.upstream origin/main
+# branch.ab +0 -0
+1 .M N... 100644 100644 100644 545c8baa676b321cada0e98c81724e8267e11bac 545c8baa676b321cada0e98c81724e8267e11bac .github/workflows/deploy-web.yml
+1 .M N... 100644 100644 100644 25724085526fe1081bf65456420a739a09cfb406 25724085526fe1081bf65456420a739a09cfb406 .github/workflows/test.yml
+1 .M N... 100644 100644 100644 3cc1f229808ae6923308ce8f59a9925f5e015898 3cc1f229808ae6923308ce8f59a9925f5e015898 README.md
+1 .M N... 100644 100644 100644 89fe80bb7e617d2d5c5e2917f7c688dbcfc680de 89fe80bb7e617d2d5c5e2917f7c688dbcfc680de app/lib/api/pharmaguard_api.dart
+1 .M N... 100644 100644 100644 aef6457483569b206da2b7a41fa40a175253c026 aef6457483569b206da2b7a41fa40a175253c026 app/lib/config.dart
+1 .M N... 100644 100644 100644 4e19fdc5d7f1317469b152c9c1b568abe5c2b77f 4e19fdc5d7f1317469b152c9c1b568abe5c2b77f app/lib/models/analysis.dart
+1 .M N... 100644 100644 100644 ae936eeb129da9f39dac4ef8b9f84c1120f59b2c ae936eeb129da9f39dac4ef8b9f84c1120f59b2c app/lib/models/enums.dart
+1 .M N... 100644 100644 100644 a16527276137c9afa4d101d187f4b9e7dd4c24a8 a16527276137c9afa4d101d187f4b9e7dd4c24a8 app/lib/models/unknown_reason.dart
+1 .M N... 100644 100644 100644 436e04d52bbb123c4e343f232b0e8ee70369b601 436e04d52bbb123c4e343f232b0e8ee70369b601 app/lib/print/summary_document.dart
+1 .M N... 100644 100644 100644 826c1b19544d15fcdbccfd39db7b12fe9de50521 826c1b19544d15fcdbccfd39db7b12fe9de50521 app/lib/screens/about_screen.dart
+1 .M N... 100644 100644 100644 e4db970318a0980234c6f361d8cc695362228157 e4db970318a0980234c6f361d8cc695362228157 app/lib/screens/home_screen.dart
+1 .M N... 100644 100644 100644 3b6305d8c33974533178051c4d424a4970b9aba0 3b6305d8c33974533178051c4d424a4970b9aba0 app/lib/screens/results_screen.dart
+1 .M N... 100644 100644 100644 efd4bfea20513d4280a1b2a4f67c6c0187092752 efd4bfea20513d4280a1b2a4f67c6c0187092752 app/lib/widgets/sample_files.dart
+1 .M N... 100644 100644 100644 6e9a5340a47ff922628d7dd4b6fa20f72c682a1b 6e9a5340a47ff922628d7dd4b6fa20f72c682a1b app/lib/widgets/summary_grid.dart
+1 .M N... 100644 100644 100644 8858ae22035be5b385dc17e6c0de1302d924f261 8858ae22035be5b385dc17e6c0de1302d924f261 app/lib/widgets/unknown_reason_panel.dart
+1 .M N... 100644 100644 100644 5211ae0f85334e8a06d41570e4b369c91f7efaf6 5211ae0f85334e8a06d41570e4b369c91f7efaf6 app/lib/widgets/verdict_card.dart
+1 .M N... 100644 100644 100644 2a198f8eb6a68a5a56a9e2f8e79361cc52ccb005 2a198f8eb6a68a5a56a9e2f8e79361cc52ccb005 app/test/contract_test.dart
+1 .M N... 100644 100644 100644 348fb52fa2260962819c2580e2b65c041d5994d9 348fb52fa2260962819c2580e2b65c041d5994d9 app/test/print_summary_test.dart
+1 .M N... 100644 100644 100644 6cccd366b0d3202bc110d8b49379edb5534559cb 6cccd366b0d3202bc110d8b49379edb5534559cb app/test/redesign_test.dart
+1 .M N... 100644 100644 100644 92f0c478054cfe7786aa502efb56e490646212a4 92f0c478054cfe7786aa502efb56e490646212a4 app/test/server_busy_test.dart
+1 .M N... 100644 100644 100644 a5ea0137b2dd384954a64d2bd43b98617069cc90 a5ea0137b2dd384954a64d2bd43b98617069cc90 app/test/state_census_test.dart
+1 .M N... 100644 100644 100644 c0501de045206c8a13bdcab6d3e95da0f26dc678 c0501de045206c8a13bdcab6d3e95da0f26dc678 app/test/summary_grid_test.dart
+1 .M N... 100644 100644 100644 18534793fac6488ef06d75d35d3397f7567c9a7d 18534793fac6488ef06d75d35d3397f7567c9a7d app/test/unknown_reason_test.dart
+1 .M N... 100644 100644 100644 50f49358ae13dca753ccdd031774ec29fea1bac7 50f49358ae13dca753ccdd031774ec29fea1bac7 backend/.env.example
+1 .M N... 100644 100644 100644 63cd37ef16f95df2827933fa1af16c87c5914a74 63cd37ef16f95df2827933fa1af16c87c5914a74 backend/README.md
+1 .M N... 100644 100644 100644 67b8c7163b97a3f9f30e83d20e307d7678a22c8d 67b8c7163b97a3f9f30e83d20e307d7678a22c8d backend/app/coverage.py
+1 .M N... 100644 100644 100644 4238b0703c464b8cb1d0c31c256d40605bd8eb59 4238b0703c464b8cb1d0c31c256d40605bd8eb59 backend/app/cpic_engine.py
+1 .M N... 100644 100644 100644 f3dda6249e63fa2ce5d31de2d0343d3bafff03f5 f3dda6249e63fa2ce5d31de2d0343d3bafff03f5 backend/app/data/label_mapping.yaml
+1 .M N... 100644 100644 100644 655b7dfeb801855c107eaa62b45e44f8875db29d 655b7dfeb801855c107eaa62b45e44f8875db29d backend/app/explanation/__init__.py
+1 .M N... 100644 100644 100644 7430343556cb653024a9aff2f385f96bf80aabd1 7430343556cb653024a9aff2f385f96bf80aabd1 backend/app/explanation/generator_template.py
+1 .M N... 100644 100644 100644 4480c8c6da71f77b6b42e5794b57a328de09ca54 4480c8c6da71f77b6b42e5794b57a328de09ca54 backend/app/explanation/provenance.py
+1 .M N... 100644 100644 100644 34188de23e65cdfd0d79ce5d48184c3c95ddd1d3 34188de23e65cdfd0d79ce5d48184c3c95ddd1d3 backend/app/explanation/static_store.py
+1 .M N... 100644 100644 100644 c6a92ea8dd76f66f15bc6ff3fddbfdb14d0ab3b2 c6a92ea8dd76f66f15bc6ff3fddbfdb14d0ab3b2 backend/app/main.py
+1 .M N... 100644 100644 100644 72d7979fd10ebf8725c0baf1c4d301efc15989f2 72d7979fd10ebf8725c0baf1c4d301efc15989f2 backend/app/models.py
+1 .M N... 100644 100644 100644 0e0e277f8df363833fe9c0c9c5ec5de9441fc005 0e0e277f8df363833fe9c0c9c5ec5de9441fc005 backend/app/pharmcat_runner.py
+1 .M N... 100644 100644 100644 a8bb8d86ac23e5d6199f9475ae1b7d60bfd3c346 a8bb8d86ac23e5d6199f9475ae1b7d60bfd3c346 backend/app/security.py
+1 .M N... 100644 100644 100644 53187593761f2f2f77ff3b44e57d82a68642c746 53187593761f2f2f77ff3b44e57d82a68642c746 backend/app/vcf_validation.py
+1 .M N... 100644 100644 100644 3ccaa7c9377261bdae57b88abccd2653bb753c5e 3ccaa7c9377261bdae57b88abccd2653bb753c5e backend/tests/conftest.py
+1 .M N... 100644 100644 100644 9923b33f6101b281a49c88662877fea57ccf5531 9923b33f6101b281a49c88662877fea57ccf5531 backend/tests/test_analyze_api.py
+1 .M N... 100644 100644 100644 52de2339393008283733e4045d5e3c2f09e7ffe4 52de2339393008283733e4045d5e3c2f09e7ffe4 backend/tests/test_coverage_endpoint.py
+1 .M N... 100644 100644 100644 4656fcf67ed29870000c4e3e767ba968fa16a737 4656fcf67ed29870000c4e3e767ba968fa16a737 backend/tests/test_coverage_gate.py
+1 .M N... 100644 100644 100644 4fc86eb651c81433e88b6beee9fb1e7d70d40431 4fc86eb651c81433e88b6beee9fb1e7d70d40431 backend/tests/test_demo_script.py
+1 .M N... 100644 100644 100644 35e58206e3b0afc3d5fcd4697b96185272fcc674 35e58206e3b0afc3d5fcd4697b96185272fcc674 backend/tests/test_deployment.py
+1 .M N... 100644 100644 100644 5802165cc60c4163601010af91553fdb54afa78d 5802165cc60c4163601010af91553fdb54afa78d backend/tests/test_documented_numbers.py
+1 .M N... 100644 100644 100644 4a9c04ab3578fd262fe41e84f834dc3dc1ac197c 4a9c04ab3578fd262fe41e84f834dc3dc1ac197c backend/tests/test_explanation.py
+1 .M N... 100644 100644 100644 78870ddf09a39cd38461419cef1f6f51580b4f72 78870ddf09a39cd38461419cef1f6f51580b4f72 backend/tests/test_sample_vcfs.py
+1 .M N... 100644 100644 100644 7cb11650b3b249f658b60064aaeb51109757c0e1 7cb11650b3b249f658b60064aaeb51109757c0e1 backend/tests/test_slot_verifier.py
+1 .M N... 100644 100644 100644 5fc82073a484793b31391b53399f25f0670c57ec 5fc82073a484793b31391b53399f25f0670c57ec backend/tests/test_vcf_validation.py
+1 .M N... 100644 100644 100644 0f213666d991817aafda1a7efb70627ebc91a959 0f213666d991817aafda1a7efb70627ebc91a959 docs/DEMO_SCRIPT.md
+1 .M N... 100644 100644 100644 d14f7f2cf0390342ec61e4af1f371bdfa8cc8872 d14f7f2cf0390342ec61e4af1f371bdfa8cc8872 docs/ONBOARDING.md
+1 .M N... 100644 100644 100644 f580eb563399b1374036de651c7056d673f4d3bc f580eb563399b1374036de651c7056d673f4d3bc docs/input_requirements.md
+1 .M N... 100644 100644 100644 5fd37e8d1c2b96b2f97c91077f60c1daf1980e87 5fd37e8d1c2b96b2f97c91077f60c1daf1980e87 infra/DEPLOY_NOTES.md
+1 .M N... 100644 100644 100644 a3038fc7074028593275a04ba73b10463109f93d a3038fc7074028593275a04ba73b10463109f93d infra/Dockerfile
+1 .M N... 100644 100644 100644 24a5367ddd37978fae54d7012d5ad07f114dc5cd 24a5367ddd37978fae54d7012d5ad07f114dc5cd infra/PHARMCAT_NOTES.md
+1 .M N... 100644 100644 100644 f44fc3bf7f8082f53052d20b5def7c3ed387acf1 f44fc3bf7f8082f53052d20b5def7c3ed387acf1 infra/docker-compose.yml
+1 .M N... 100644 100644 100644 e139213278d11125ef70745e7a9fcbd8b99d6994 e139213278d11125ef70745e7a9fcbd8b99d6994 infra/hf-space/README.md
+1 .M N... 100644 100644 100644 c37f067cf125ec3f8f3a46ed2a55b6e5eb5a55fc c37f067cf125ec3f8f3a46ed2a55b6e5eb5a55fc infra/render.yaml
+1 .M N... 100644 100644 100644 94cd7e9b1a47348ef9323f5f30ac5351de3b2c6b 94cd7e9b1a47348ef9323f5f30ac5351de3b2c6b reports/constructed_allele_sweep.md
+1 .M N... 100644 100644 100644 d57957f505bb12419f8212514245aefdcf33285e d57957f505bb12419f8212514245aefdcf33285e reports/deployment_verification.md
+1 .M N... 100644 100644 100644 3965006877a6c9893eaea80e241521970c6a5b61 3965006877a6c9893eaea80e241521970c6a5b61 reports/sas_cohort_expansion.md
+1 .M N... 100644 100644 100644 219ad97f408ff293db40e2d592fd106194b772a6 219ad97f408ff293db40e2d592fd106194b772a6 reports/validation_report.md
+1 .M N... 100644 100644 100644 7f9e1a57268e5b68eab76669884f2ea9cbaf8e07 7f9e1a57268e5b68eab76669884f2ea9cbaf8e07 scripts/README.md
+1 .M N... 100644 100644 100644 825b99686017999a88a894e0819520f3c4cf0ba2 825b99686017999a88a894e0819520f3c4cf0ba2 scripts/adjudication_status.py
+1 .M N... 100755 100755 100755 e9a19692c85fd78565d2547ddc3d8519f70f1223 e9a19692c85fd78565d2547ddc3d8519f70f1223 scripts/preflight.py
+1 .M N... 100755 100755 100755 ce0fe8965de0ea64377635c401f10997336e3a2d ce0fe8965de0ea64377635c401f10997336e3a2d scripts/pregenerate_explanations.py
+1 .M N... 100755 100755 100755 818d31f79cb1e6ff126a7b750a5570de1c2e2688 818d31f79cb1e6ff126a7b750a5570de1c2e2688 scripts/review_status.py
+1 .M N... 100644 100644 100644 fc24e1715ef8369f416dbcc7f0c4ff0100a5ded6 fc24e1715ef8369f416dbcc7f0c4ff0100a5ded6 scripts/run_demo.py
+1 .M N... 100644 100644 100644 af043d7bc51659e4f61dc4390027cb9fecda9da7 af043d7bc51659e4f61dc4390027cb9fecda9da7 scripts/validate_label_mapping.py
+1 .M N... 100644 100644 100644 11e7ff7b430a5146a6ba7d72875abe9154e9a558 11e7ff7b430a5146a6ba7d72875abe9154e9a558 scripts/verify_provenance.py
+1 .M N... 100644 100644 100644 aee92a0c3d50e541e941a80abb0cdeba8dfffb74 aee92a0c3d50e541e941a80abb0cdeba8dfffb74 test-data/demo/README.md
+1 .M N... 100644 100644 100644 566e76557030a3d82fc6e4cf79a13fa5f207cbb0 566e76557030a3d82fc6e4cf79a13fa5f207cbb0 test-data/demo/outputs/S1_confident.json
+1 .M N... 100644 100644 100644 ace9cf0a18060436876fb69d55d67a3bce4c511b ace9cf0a18060436876fb69d55d67a3bce4c511b test-data/demo/outputs/S2_variants_only.json
+1 .M N... 100644 100644 100644 8e3862a6e7ca95db476d15ecfdb58051663a1a80 8e3862a6e7ca95db476d15ecfdb58051663a1a80 test-data/demo/outputs/S3_cyp2d6.json
+1 .M N... 100644 100644 100644 12a9e156590dd729c4cc50ba378d16aa21607e6f 12a9e156590dd729c4cc50ba378d16aa21607e6f test-data/demo/outputs/S4_dpyd.json
+1 .M N... 100644 100644 100644 c6da8d408e4a18fae3c25edcdf120eb321d47ae1 c6da8d408e4a18fae3c25edcdf120eb321d47ae1 test-data/demo/outputs/S5_normal.json
+1 .M N... 100644 100644 100644 a47199eb415dc05eef19913ed7a7a99fd5d234bc a47199eb415dc05eef19913ed7a7a99fd5d234bc test-data/demo/outputs/S6_multidrug.json
+1 .M N... 100644 100644 100644 f3ac2c72b50e937ae8486c3dc147473fa31f2c78 f3ac2c72b50e937ae8486c3dc147473fa31f2c78 test-data/reference/cpic_expectations.json
+? FINAL-REAL-WORLD-ACCEPTANCE-REPORT.md
+? Final-Scientific-Audit.md
+? PharmaGuard.pdf
+? PharmaGuard_IEEE_Research_Paper.docx
+? RELEASE-READINESS-REMEDIATION-PROMPTS.md
+? app/lib/generated/
+? app/test/capability_scope_test.dart
+? audit-output/
+? backend/app/capabilities.py
+? backend/app/data/capabilities.json
+? backend/app/data/compatible_bundle.json
+? backend/app/data/explanation_approvals.json
+? backend/app/explanation/approval.py
+? backend/tests/test_analysis_memory_admission.py
+? backend/tests/test_capability_scope.py
+? backend/tests/test_compatible_bundle.py
+? backend/tests/test_current_candidate_evaluation.py
+? backend/tests/test_evidence_validity.py
+? backend/tests/test_explanation_approval.py
+? backend/tests/test_external_benchmark.py
+? backend/tests/test_portable_scientific_hash.py
+? backend/tests/test_release_status.py
+? backend/tests/test_resource_ownership.py
+? docs/RELEASE-READINESS-REMEDIATION-PROMPTS.md
+? docs/scientific_record.md
+? output/
+? reports/cyp2c19_definition_delta.md
+? reports/external_analytical_benchmark.md
+? reports/release_content_review.md
+? reports/resource_ownership_privacy_audit.md
+? reports/scientific_record_reproduction.json
+? scripts/application_hash_migration.json
+? scripts/benchmark_external.py
+? scripts/build_compatible_bundle.py
+? scripts/build_explanation_approvals.py
+? scripts/build_release_review_packet.py
+? scripts/compatible_bundle.py
+? scripts/generate_capabilities.py
+? scripts/release_status.py
+? scripts/scientific_hash_policy.json
+? scripts/verify_compatible_bundle.py
+? test-data/benchmark/
+? tmp/

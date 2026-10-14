@@ -66,13 +66,17 @@ String buildSummaryHtml(AnalyzeResponse response, {DateTime? printedAt}) {
   final QualityMetrics m = response.qualityMetrics;
   final List<PerDrugResult> ordered = orderByConsequence(response.analyses);
   final List<PerDrugResult> unknowns = ordered
-      .where((PerDrugResult r) => r.riskAssessment.riskLabel == RiskLabel.unknown)
+      .where(
+        (PerDrugResult r) => r.riskAssessment.riskLabel == RiskLabel.unknown,
+      )
       .toList();
 
   final StringBuffer b = StringBuffer();
   b.writeln('<!doctype html><html lang="en"><head>');
   b.writeln('<meta charset="utf-8">');
-  b.writeln('<meta name="viewport" content="width=device-width,initial-scale=1">');
+  b.writeln(
+    '<meta name="viewport" content="width=device-width,initial-scale=1">',
+  );
   b.writeln('<title>PharmaGuard summary — ${esc(response.patientId)}</title>');
   b.writeln('<style>${_css()}</style>');
   b.writeln('</head><body>');
@@ -107,7 +111,8 @@ String buildSummaryHtml(AnalyzeResponse response, {DateTime? printedAt}) {
 
 String _intro(AnalyzeResponse response, DateTime? printedAt) {
   final DateTime when = (printedAt ?? DateTime.now()).toUtc();
-  final String stamp = '${when.year.toString().padLeft(4, '0')}-'
+  final String stamp =
+      '${when.year.toString().padLeft(4, '0')}-'
       '${when.month.toString().padLeft(2, '0')}-'
       '${when.day.toString().padLeft(2, '0')}';
   return '''
@@ -126,9 +131,10 @@ String _disclaimer() => '''
   final-year student project for research and education. It has not been
   clinically validated, and no qualified clinical expert has reviewed the
   explanatory text on this page.</p>
-  <p>Every clinical statement here is machine-checked to trace back to a
-  published CPIC recommendation. That verifies nothing was invented. It does not
-  verify that any of it is correct for the person this sample came from.</p>
+  <p>Recommendation text on this page is quoted from published CPIC guidance via
+  PharmCAT. Automated source checks are not human review: they cannot show that
+  every statement here is supported, or that any of it is correct for the person
+  this sample came from.</p>
   <p>Do not change a medicine on the strength of this page. Take it to a
   qualified healthcare professional.</p>
 </section>''';
@@ -136,36 +142,44 @@ String _disclaimer() => '''
 String _results(List<PerDrugResult> ordered) {
   final StringBuffer b = StringBuffer()
     ..writeln('<h2>Results</h2>')
-    ..writeln('<p class="note">Ordered by consequence, not alphabetically.</p>');
+    ..writeln(
+      '<p class="note">Ordered by consequence, not alphabetically.</p>',
+    );
 
   for (final PerDrugResult r in ordered) {
     final PharmacogenomicProfile p = r.pharmacogenomicProfile;
     final ClinicalRecommendation c = r.clinicalRecommendation;
     b.writeln('<article class="result">');
-    b.writeln('<div class="head">'
-        '<span class="drug mono">${esc(r.drug)}</span>'
-        '<span class="verdict">${esc(r.riskAssessment.riskLabel.wireValue)}'
-        '</span></div>');
-    b.writeln('<table class="kv">'
-        '<tr><td>gene</td><td class="mono">${esc(p.primaryGene)}</td></tr>'
-        '<tr><td>diplotype</td><td class="mono">${esc(p.diplotype)}</td></tr>'
-        '<tr><td>phenotype</td><td class="mono">'
-        '${esc(p.phenotype.wireValue)}</td></tr>'
-        '<tr><td>evidence level</td><td class="mono">'
-        '${esc(c.cpicEvidenceLevel.wireValue)}</td></tr>'
-        '<tr><td>severity</td><td class="mono">'
-        '${esc(r.riskAssessment.severity.wireValue)}</td></tr>'
-        '</table>');
+    b.writeln(
+      '<div class="head">'
+      '<span class="drug mono">${esc(r.drug)}</span>'
+      '<span class="verdict">${esc(r.riskAssessment.riskLabel.wireValue)}'
+      '</span></div>',
+    );
+    b.writeln(
+      '<table class="kv">'
+      '<tr><td>gene</td><td class="mono">${esc(p.primaryGene)}</td></tr>'
+      '<tr><td>diplotype</td><td class="mono">${esc(p.diplotype)}</td></tr>'
+      '<tr><td>phenotype</td><td class="mono">'
+      '${esc(p.phenotype.wireValue)}</td></tr>'
+      '<tr><td>evidence level</td><td class="mono">'
+      '${esc(c.cpicEvidenceLevel.wireValue)}</td></tr>'
+      '</table>',
+    );
 
     if (r.llmGeneratedExplanation.summary.isNotEmpty) {
-      b.writeln('<p class="prose">${esc(r.llmGeneratedExplanation.summary)}</p>');
+      b.writeln(
+        '<p class="prose">${esc(r.llmGeneratedExplanation.summary)}</p>',
+      );
     }
 
     // The quotation, with its attribution attached to it rather than to the
     // page. A quoted paragraph that travels without its source stops being a
     // quotation and starts being this project's own clinical claim.
     b.writeln('<div class="quote">');
-    b.writeln('<div class="qlabel">CPIC GUIDELINE — QUOTED EXACTLY</div>');
+    b.writeln(
+      '<div class="qlabel">${c.hasMatchedCpicEntry ? 'CPIC GUIDELINE — QUOTED EXACTLY' : 'APPLICATION LIMITATION — NOT A CPIC QUOTE'}</div>',
+    );
     b.writeln('<p class="mono">${esc(c.action)}</p>');
     if (c.cpicRecommendation.isNotEmpty && c.cpicRecommendation != 'STUB') {
       b.writeln('<p class="mono small">${esc(c.cpicRecommendation)}</p>');
@@ -191,24 +205,32 @@ String _unknownSection(List<PerDrugResult> unknowns, QualityMetrics m) {
 
   final StringBuffer b = StringBuffer()
     ..writeln('<h2>Unknown results (${unknowns.length})</h2>')
-    ..writeln('<p class="note">An Unknown is a declined answer, not a missing '
-        'one. Only one of these reasons is something the sample provider can '
-        'act on.</p>');
+    ..writeln(
+      '<p class="note">An Unknown is a declined answer, not a missing '
+      'one. Only the reasons about the file itself — missing positions or '
+      'unusable genotypes — are something the sample provider can act on.</p>',
+    );
 
   for (final PerDrugResult r in unknowns) {
     final UnknownReason reason = classifyUnknown(r, m);
     b.writeln('<article class="unknown">');
-    b.writeln('<div class="head">'
-        '<span class="drug mono">${esc(r.drug)}</span>'
-        '<span class="verdict">${esc(reason.headline)}</span></div>');
-    b.writeln('<p class="prose">${esc(reason.explanation)}</p>');
+    b.writeln(
+      '<div class="head">'
+      '<span class="drug mono">${esc(r.drug)}</span>'
+      '<span class="verdict">${esc(reason.headline)}</span></div>',
+    );
+    b.writeln('<p class="prose">${esc(unknownExplanation(r, reason))}</p>');
     final String? action = reason.callToAction;
     if (action != null) {
-      b.writeln('<p class="prose"><strong>What would fix it:</strong> '
-          '${esc(action)}</p>');
+      b.writeln(
+        '<p class="prose"><strong>What would fix it:</strong> '
+        '${esc(action)}</p>',
+      );
     } else {
-      b.writeln('<p class="note">Nothing about the uploaded file would change '
-          'this result.</p>');
+      b.writeln(
+        '<p class="note">Nothing about the uploaded file would change '
+        'this result.</p>',
+      );
     }
     b.writeln('</article>');
   }
@@ -225,33 +247,43 @@ String _census(QualityMetrics m) {
   final List<String> genes = m.positionCoverage.keys.toList()..sort();
   final StringBuffer b = StringBuffer()
     ..writeln('<h2>Input coverage</h2>')
-    ..writeln('<p class="note">How many of the positions each gene needs '
-        'carried an explicit genotype in the uploaded file. A position that is '
-        'absent reads as matching the reference, so missing data produces '
-        'confident results rather than uncertain ones — which is why the count '
-        'is printed whether or not it passed.</p>')
-    ..writeln('<table class="census"><thead><tr>'
-        '<th>gene</th><th>reported</th><th>required</th><th>minimum</th>'
-        '<th>sufficient</th></tr></thead><tbody>');
+    ..writeln(
+      '<p class="note">How many of the positions each gene needs '
+      'carried a usable genotype in the uploaded file. A genotype caller reads '
+      'an absent position as matching the reference, so missing data can '
+      'produce confident results rather than uncertain ones — which is why the '
+      'count is printed whether or not it passed, and why a gene below its '
+      'minimum is reported as Unknown.</p>',
+    )
+    ..writeln(
+      '<table class="census"><thead><tr>'
+      '<th>gene</th><th>usable</th><th>required</th><th>minimum</th>'
+      '<th>sufficient</th></tr></thead><tbody>',
+    );
 
   for (final String gene in genes) {
     final GeneCoverage c = m.positionCoverage[gene]!;
-    b.writeln('<tr>'
-        '<td class="mono">${esc(gene)}</td>'
-        '<td class="mono">${c.positionsPresent}</td>'
-        '<td class="mono">${c.positionsRequired}</td>'
-        '<td class="mono">${c.minimumPercent}%</td>'
-        '<td class="mono">${c.sufficient ? 'yes' : 'NO'}</td>'
-        '</tr>');
+    b.writeln(
+      '<tr>'
+      '<td class="mono">${esc(gene)}</td>'
+      '<td class="mono">${c.positionsPresent}</td>'
+      '<td class="mono">${c.positionsRequired}</td>'
+      '<td class="mono">${c.minimumPercent}%</td>'
+      '<td class="mono">${c.sufficient ? 'yes' : 'NO'}</td>'
+      '</tr>',
+    );
   }
   b.writeln('</tbody></table>');
 
   final Iterable<String> short = genes.where(
-      (String g) => !m.positionCoverage[g]!.sufficient);
+    (String g) => !m.positionCoverage[g]!.sufficient,
+  );
   if (short.isNotEmpty) {
-    b.writeln('<p class="note"><strong>Not resolved from this file:</strong> '
-        '${esc(short.join(', '))}. Any drug keyed to these genes was reported '
-        'as Unknown rather than assumed normal.</p>');
+    b.writeln(
+      '<p class="note"><strong>Not resolved from this file:</strong> '
+      '${esc(short.join(', '))}. Any drug keyed to these genes was reported '
+      'as Unknown rather than assumed normal.</p>',
+    );
   }
   return b.toString();
 }
@@ -264,7 +296,7 @@ String _provenance(QualityMetrics m) {
 <table class="kv">
   <tr><td>PharmCAT</td><td class="mono">${esc(g.pharmcatVersion)}</td></tr>
   ${g.cpicDataVersion.isEmpty ? '' : '<tr><td>CPIC data version</td>'
-      '<td class="mono">${esc(g.cpicDataVersion)}</td></tr>'}
+            '<td class="mono">${esc(g.cpicDataVersion)}</td></tr>'}
   <tr><td>explanations generated</td>
       <td class="mono">${esc(g.explanationsDate)}</td></tr>
   <tr><td>source</td><td class="mono">${esc(g.cpicSource)}</td></tr>

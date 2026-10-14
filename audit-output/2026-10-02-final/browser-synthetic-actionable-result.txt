@@ -1,0 +1,30 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container flt-semantic-node-494
+			3 container flt-semantic-node-522
+				4 button Back, ID: flt-semantic-node-523
+				5 heading Analysis results, Value: 2, ID: flt-semantic-node-524
+					6 text Analysis results
+				7 button Copy JSON, ID: flt-semantic-node-525
+				8 button Export JSON, ID: flt-semantic-node-526
+			9 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			10 container flt-semantic-node-521
+				11 button (collapsed) ID: flt-semantic-node-498, Secondary Actions: Expand, CYP2C19_POOR_METABOLIZER 2026-10-02T12:46:03Z VCF accepted 4 variants 1407 ms 18 pipeline warnings No PGx-guided change Adjust Dosage Toxic Ineffective Unknown
+				12 container ID: flt-semantic-node-500, Description: DRUGS CHECKED (6) — MOST SERIOUS FIRST Reading view. Both views show the same result; they differ only in what is shown first.
+					13 button For a patient. Plain language first., ID: flt-semantic-node-501
+					14 button For a clinician. Genotype and guideline first., ID: flt-semantic-node-502
+				15 button (collapsed) Input coverage. 6 of 7 genes have enough positions to call, ID: flt-semantic-node-505, Secondary Actions: Expand
+				16 container flt-semantic-node-506
+					17 button (collapsed) clopidogrel: Ineffective, ID: flt-semantic-node-507, Secondary Actions: Expand
+					18 button (collapsed) azathioprine: No PGx-guided change, ID: flt-semantic-node-508, Secondary Actions: Expand
+					19 button (collapsed) fluorouracil: No PGx-guided change, ID: flt-semantic-node-509, Secondary Actions: Expand
+					20 button (collapsed) simvastatin: No PGx-guided change, ID: flt-semantic-node-510, Secondary Actions: Expand
+					21 button (collapsed) codeine: Unknown, ID: flt-semantic-node-511, Secondary Actions: Expand
+					22 button (collapsed) warfarin: Unknown, ID: flt-semantic-node-512, Secondary Actions: Expand
+				23 container flt-semantic-node-514
+					24 button Copy JSON, ID: flt-semantic-node-515
+					25 button Export JSON, ID: flt-semantic-node-516
+				26 button Printable summary, ID: flt-semantic-node-519
+
+The focused UI element is 4 button Back, ID: flt-semantic-node-523

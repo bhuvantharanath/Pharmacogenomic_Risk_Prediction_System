@@ -1,0 +1,2059 @@
+{
+ "inspector": "inspect_fixtures.py (raw-text census; no application code imported)",
+ "position_contract": "backend/app/data/position_requirements.json",
+ "position_contract_sha256": "d0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3",
+ "upload_limit_bytes": 5242880,
+ "fixtures": [
+  {
+   "id": "C01-bundled-real-NA12273",
+   "path": "app/assets/samples/pharmaguard_sample_1000genomes.vcf",
+   "exists": true,
+   "bytes": 198701,
+   "sha256": "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [],
+   "synthetic_annotations": [
+    "##source=shapeit4.2.2"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "NA12273"
+   ],
+   "records": 169,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    ".": 169
+   },
+   "genotype_classes": {
+    "hom-ref": 165,
+    "het": 3,
+    "hom-alt": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 16,
+     "usable_full_diploid_pass_or_dot": 16,
+     "critical_required": 31,
+     "critical_usable": 15,
+     "nonref_required_positions": [
+      "chr10:94775367=1|0",
+      "chr10:94781859=1|0",
+      "chr10:94842866=1|1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 17,
+     "usable_full_diploid_pass_or_dot": 17,
+     "critical_required": 69,
+     "critical_usable": 15,
+     "nonref_required_positions": [
+      "chr10:94942290=0|1"
+     ],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 20,
+     "usable_full_diploid_pass_or_dot": 20,
+     "critical_required": 26,
+     "critical_usable": 15,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 9,
+     "usable_full_diploid_pass_or_dot": 9,
+     "critical_required": 45,
+     "critical_usable": 9,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 5,
+     "usable_full_diploid_pass_or_dot": 5,
+     "critical_required": 20,
+     "critical_usable": 5,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 31,
+     "usable_full_diploid_pass_or_dot": 31,
+     "critical_required": 28,
+     "critical_usable": 8,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 67,
+     "usable_full_diploid_pass_or_dot": 67,
+     "critical_required": 140,
+     "critical_usable": 63,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C02-tutorial-NA18526-preprocessed",
+   "path": "audit-output/2026-09-26/originals/NA18526.preprocessed.vcf",
+   "exists": true,
+   "bytes": 18287,
+   "sha256": "188f839e8177406a92c87a5931e63fc75a848ac5757555a889a082fae7dafcb7",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA18526"
+   ],
+   "records": 236,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 234,
+    "PCATxALT": 1,
+    "PCATxREF": 1
+   },
+   "genotype_classes": {
+    "hom-ref": 226,
+    "hom-alt": 2,
+    "het": 8
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 19,
+     "usable_full_diploid_pass_or_dot": 19,
+     "critical_required": 31,
+     "critical_usable": 18,
+     "nonref_required_positions": [
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 24,
+     "usable_full_diploid_pass_or_dot": 24,
+     "critical_required": 69,
+     "critical_usable": 23,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 17,
+     "usable_full_diploid_pass_or_dot": 17,
+     "critical_required": 26,
+     "critical_usable": 15,
+     "nonref_required_positions": [
+      "chr12:21176804=0/1",
+      "chr12:21178615=0/1"
+     ],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 12,
+     "usable_full_diploid_pass_or_dot": 12,
+     "critical_required": 45,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 5,
+     "usable_full_diploid_pass_or_dot": 5,
+     "critical_required": 20,
+     "critical_usable": 5,
+     "nonref_required_positions": [
+      "chr13:48037782=0/0",
+      "chr13:48045719=0/1"
+     ],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 46,
+     "usable_full_diploid_pass_or_dot": 46,
+     "critical_required": 28,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 65,
+     "usable_full_diploid_pass_or_dot": 63,
+     "critical_required": 140,
+     "critical_usable": 62,
+     "nonref_required_positions": [
+      "chr22:42126611=0/1",
+      "chr22:42129130=0/1",
+      "chr22:42130692=0/1"
+     ],
+     "problem_positions": [
+      "chr22:42128211 filter=PASS gt=0/0",
+      "chr22:42128248 filter=PCATxREF gt=0/0"
+     ]
+    }
+   }
+  },
+  {
+   "id": "C03-real-variant-only-NA12878",
+   "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-variant-only.vcf",
+   "exists": true,
+   "bytes": 172213,
+   "sha256": "af5558a206fac64d67908525830e749f74fe472e28f25b075a8aa05da0702019",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA12878"
+   ],
+   "records": 3,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 3
+   },
+   "genotype_classes": {
+    "het": 2,
+    "hom-alt": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 3,
+     "usable_full_diploid_pass_or_dot": 3,
+     "critical_required": 31,
+     "critical_usable": 3,
+     "nonref_required_positions": [
+      "chr10:94775367=0/1",
+      "chr10:94781859=0/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 69,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 26,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 28,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C04-synthetic-normal",
+   "path": "test-data/normal_metabolizer_control.vcf",
+   "exists": true,
+   "bytes": 17288,
+   "sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_CYP2C19=*38/*38 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "NORMAL_CONTROL"
+   ],
+   "records": 306,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 306
+   },
+   "genotype_classes": {
+    "hom-ref": 306
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 88,
+     "usable_full_diploid_pass_or_dot": 88,
+     "critical_required": 69,
+     "critical_usable": 69,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 26,
+     "critical_usable": 26,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 45,
+     "usable_full_diploid_pass_or_dot": 45,
+     "critical_required": 45,
+     "critical_usable": 45,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 20,
+     "usable_full_diploid_pass_or_dot": 20,
+     "critical_required": 20,
+     "critical_usable": 20,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 83,
+     "usable_full_diploid_pass_or_dot": 83,
+     "critical_required": 28,
+     "critical_usable": 28,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C05-synthetic-cyp2c19-pm",
+   "path": "test-data/cyp2c19_poor_metabolizer.vcf",
+   "exists": true,
+   "bytes": 17296,
+   "sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_CYP2C19=*2/*2 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "CYP2C19_POOR_METABOLIZER"
+   ],
+   "records": 306,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 306
+   },
+   "genotype_classes": {
+    "hom-ref": 302,
+    "hom-alt": 4
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [
+      "chr10:94775367=1/1",
+      "chr10:94775507=1/1",
+      "chr10:94781859=1/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 88,
+     "usable_full_diploid_pass_or_dot": 88,
+     "critical_required": 69,
+     "critical_usable": 69,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 26,
+     "critical_usable": 26,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 45,
+     "usable_full_diploid_pass_or_dot": 45,
+     "critical_required": 45,
+     "critical_usable": 45,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 20,
+     "usable_full_diploid_pass_or_dot": 20,
+     "critical_required": 20,
+     "critical_usable": 20,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 83,
+     "usable_full_diploid_pass_or_dot": 83,
+     "critical_required": 28,
+     "critical_usable": 28,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C06-synthetic-dpyd-carrier",
+   "path": "test-data/dpyd_variant_carrier.vcf",
+   "exists": true,
+   "bytes": 17302,
+   "sha256": "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_DPYD=c.1905+1G>A (*2A)/Reference (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C19=*38/*38 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "DPYD_VARIANT_CARRIER"
+   ],
+   "records": 306,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 306
+   },
+   "genotype_classes": {
+    "hom-ref": 305,
+    "het": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 88,
+     "usable_full_diploid_pass_or_dot": 88,
+     "critical_required": 69,
+     "critical_usable": 69,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 26,
+     "critical_usable": 26,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 45,
+     "usable_full_diploid_pass_or_dot": 45,
+     "critical_required": 45,
+     "critical_usable": 45,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 20,
+     "usable_full_diploid_pass_or_dot": 20,
+     "critical_required": 20,
+     "critical_usable": 20,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 83,
+     "usable_full_diploid_pass_or_dot": 83,
+     "critical_required": 28,
+     "critical_usable": 28,
+     "nonref_required_positions": [
+      "chr1:97450058=1/0"
+     ],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C07-f4-NA18526",
+   "path": "audit-output/2026-09-30-f4/NA18526.observed.vcf",
+   "exists": true,
+   "bytes": 174874,
+   "sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA18526"
+   ],
+   "records": 35,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 35
+   },
+   "genotype_classes": {
+    "hom-ref": 34,
+    "hom-alt": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 69,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 26,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 28,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C08-f4-NA12878",
+   "path": "audit-output/2026-09-30-f4/NA12878.observed.vcf",
+   "exists": true,
+   "bytes": 175087,
+   "sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA12878"
+   ],
+   "records": 35,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 35
+   },
+   "genotype_classes": {
+    "hom-ref": 32,
+    "het": 2,
+    "hom-alt": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [
+      "chr10:94775367=0/1",
+      "chr10:94781859=0/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 69,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 26,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 28,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C09-oversized-tutorial-NA18526",
+   "path": "audit-output/2026-09-26/originals/PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18526.vcf.bgz",
+   "exists": true,
+   "bytes": 11181875,
+   "sha256": "a3e4676b1825cd3723e6094565e8c0bad15905a879ad431dcd80106b8b9334c1",
+   "gzip": true,
+   "over_upload_limit": true,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA18526"
+   ],
+   "records": 1261306,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 1261306
+   },
+   "genotype_classes": {
+    "hom-ref": 1205921,
+    "het": 30822,
+    "hom-alt": 21864,
+    "no-call": 2699
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 19,
+     "usable_full_diploid_pass_or_dot": 19,
+     "critical_required": 31,
+     "critical_usable": 18,
+     "nonref_required_positions": [
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 28,
+     "usable_full_diploid_pass_or_dot": 28,
+     "critical_required": 69,
+     "critical_usable": 23,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 23,
+     "usable_full_diploid_pass_or_dot": 23,
+     "critical_required": 26,
+     "critical_usable": 15,
+     "nonref_required_positions": [
+      "chr12:21176804=0/1",
+      "chr12:21178615=0/1"
+     ],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 12,
+     "usable_full_diploid_pass_or_dot": 12,
+     "critical_required": 45,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 6,
+     "usable_full_diploid_pass_or_dot": 6,
+     "critical_required": 20,
+     "critical_usable": 6,
+     "nonref_required_positions": [
+      "chr13:48037782=0/1",
+      "chr13:48045719=0/1"
+     ],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 46,
+     "usable_full_diploid_pass_or_dot": 46,
+     "critical_required": 28,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 82,
+     "usable_full_diploid_pass_or_dot": 82,
+     "critical_required": 140,
+     "critical_usable": 76,
+     "nonref_required_positions": [
+      "chr22:42126611=0/1",
+      "chr22:42129130=0/1",
+      "chr22:42130692=0/1"
+     ],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C10-malformed-truncated-gzip",
+   "path": "audit-output/2026-09-26/derived/real-truncated.vcf.gz",
+   "exists": true,
+   "bytes": 22878,
+   "sha256": "729feae06ff4039de81d56a9f18a4210e22286baddad6f15706a83b4051b5c3f",
+   "gzip": true,
+   "over_upload_limit": false,
+   "decode_error": "gzip decode failed: EOFError: Compressed file ended before the end-of-stream marker was reached"
+  },
+  {
+   "id": "C10b-valid-gzip-source",
+   "path": "audit-output/2026-09-26/derived/real-valid-gzip.vcf.gz",
+   "exists": true,
+   "bytes": 22887,
+   "sha256": "2424e2cb442f5ccd0a50449535ec96aabd8ff1d7bba23c06e82bfb9d3f196645",
+   "gzip": true,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA18526"
+   ],
+   "records": 216,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 216
+   },
+   "genotype_classes": {
+    "hom-ref": 208,
+    "hom-alt": 1,
+    "het": 7
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 19,
+     "usable_full_diploid_pass_or_dot": 19,
+     "critical_required": 31,
+     "critical_usable": 18,
+     "nonref_required_positions": [
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 28,
+     "usable_full_diploid_pass_or_dot": 28,
+     "critical_required": 69,
+     "critical_usable": 23,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 23,
+     "usable_full_diploid_pass_or_dot": 23,
+     "critical_required": 26,
+     "critical_usable": 15,
+     "nonref_required_positions": [
+      "chr12:21176804=0/1",
+      "chr12:21178615=0/1"
+     ],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 12,
+     "usable_full_diploid_pass_or_dot": 12,
+     "critical_required": 45,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 6,
+     "usable_full_diploid_pass_or_dot": 6,
+     "critical_required": 20,
+     "critical_usable": 6,
+     "nonref_required_positions": [
+      "chr13:48037782=0/1",
+      "chr13:48045719=0/1"
+     ],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 46,
+     "usable_full_diploid_pass_or_dot": 46,
+     "critical_required": 28,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 82,
+     "usable_full_diploid_pass_or_dot": 82,
+     "critical_required": 140,
+     "critical_usable": 76,
+     "nonref_required_positions": [
+      "chr22:42126611=0/1",
+      "chr22:42129130=0/1",
+      "chr22:42130692=0/1"
+     ],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C11-failed-filter",
+   "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-failed-filter.vcf",
+   "exists": true,
+   "bytes": 175090,
+   "sha256": "e1460421f84c2e9ac96a113f25d6de0b7b96e44f54daa22ec40137f28d12f362",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA12878"
+   ],
+   "records": 35,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 34,
+    "LowQual": 1
+   },
+   "genotype_classes": {
+    "hom-ref": 32,
+    "het": 2,
+    "hom-alt": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 34,
+     "critical_required": 31,
+     "critical_usable": 30,
+     "nonref_required_positions": [
+      "chr10:94775367=0/1",
+      "chr10:94781859=0/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": [
+      "chr10:94781859 filter=LowQual gt=0/1"
+     ]
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 69,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 26,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 28,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C12-partial-gt",
+   "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-partial-gt.vcf",
+   "exists": true,
+   "bytes": 175087,
+   "sha256": "d8670fbe6c6036dde445931a7c8e2194e12930fe070e81ff066ff72198aaebe9",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA12878"
+   ],
+   "records": 35,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 35
+   },
+   "genotype_classes": {
+    "hom-ref": 32,
+    "het": 1,
+    "partial": 1,
+    "hom-alt": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 34,
+     "critical_required": 31,
+     "critical_usable": 30,
+     "nonref_required_positions": [
+      "chr10:94775367=0/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": [
+      "chr10:94781859 filter=PASS gt=0/."
+     ]
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 69,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 26,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 28,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C13-missing-required",
+   "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-missing-required.vcf",
+   "exists": true,
+   "bytes": 174892,
+   "sha256": "93c86eb50f87583096a0d0aeae06a1ce00581903d1c787ead24ccfb442628edc",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA12878"
+   ],
+   "records": 34,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 34
+   },
+   "genotype_classes": {
+    "hom-ref": 32,
+    "het": 1,
+    "hom-alt": 1
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 34,
+     "usable_full_diploid_pass_or_dot": 34,
+     "critical_required": 31,
+     "critical_usable": 30,
+     "nonref_required_positions": [
+      "chr10:94775367=0/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 69,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 26,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 28,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C14-missing-TPMT",
+   "path": "audit-output/2026-10-05-prompt7-5b236070c2/missing-TPMT.vcf",
+   "exists": true,
+   "bytes": 15032,
+   "sha256": "3893a2c75b590ef5a39449e4f6b3889fad059cf966c16bb76870502cc181e852",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_CYP2C19=*38/*38 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "NORMAL_CONTROL"
+   ],
+   "records": 261,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 261
+   },
+   "genotype_classes": {
+    "hom-ref": 261
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 88,
+     "usable_full_diploid_pass_or_dot": 88,
+     "critical_required": 69,
+     "critical_usable": 69,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 26,
+     "critical_usable": 26,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 20,
+     "usable_full_diploid_pass_or_dot": 20,
+     "critical_required": 20,
+     "critical_usable": 20,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 83,
+     "usable_full_diploid_pass_or_dot": 83,
+     "critical_required": 28,
+     "critical_usable": 28,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C15-missing-NUDT15",
+   "path": "audit-output/2026-10-05-prompt7-5b236070c2/missing-NUDT15.vcf",
+   "exists": true,
+   "bytes": 16177,
+   "sha256": "88e86f4cc93ad9212e65d264e82a6a0dbc688afdc0e2857edb5a5857644a44d7",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_CYP2C19=*38/*38 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "NORMAL_CONTROL"
+   ],
+   "records": 286,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 286
+   },
+   "genotype_classes": {
+    "hom-ref": 286
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 88,
+     "usable_full_diploid_pass_or_dot": 88,
+     "critical_required": 69,
+     "critical_usable": 69,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 26,
+     "critical_usable": 26,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 45,
+     "usable_full_diploid_pass_or_dot": 45,
+     "critical_required": 45,
+     "critical_usable": 45,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 83,
+     "usable_full_diploid_pass_or_dot": 83,
+     "critical_required": 28,
+     "critical_usable": 28,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 140,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C16-bundled-synthetic-reduced",
+   "path": "app/assets/samples/pharmaguard_sample_reduced_function.vcf",
+   "exists": true,
+   "bytes": 25967,
+   "sha256": "d9ad8dab7dca48eb8cf337089d3ac8b6096d619a9d63dba7b71b1f9f87d7bfa7",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_CYP2C19=*2/*2 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2D6=*1/*1 (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "DEMO_CONFIDENT"
+   ],
+   "records": 463,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 463
+   },
+   "genotype_classes": {
+    "hom-ref": 457,
+    "hom-alt": 6
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [
+      "chr10:94775367=1/1",
+      "chr10:94775507=1/1",
+      "chr10:94781859=1/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 88,
+     "usable_full_diploid_pass_or_dot": 88,
+     "critical_required": 69,
+     "critical_usable": 69,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 26,
+     "critical_usable": 26,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 45,
+     "usable_full_diploid_pass_or_dot": 45,
+     "critical_required": 45,
+     "critical_usable": 45,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 20,
+     "usable_full_diploid_pass_or_dot": 20,
+     "critical_required": 20,
+     "critical_usable": 20,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 83,
+     "usable_full_diploid_pass_or_dot": 83,
+     "critical_required": 28,
+     "critical_usable": 28,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 157,
+     "usable_full_diploid_pass_or_dot": 157,
+     "critical_required": 140,
+     "critical_usable": 140,
+     "nonref_required_positions": [
+      "chr22:42128813=1/1",
+      "chr22:42129130=1/1"
+     ],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C17-bundled-synthetic-normal",
+   "path": "app/assets/samples/pharmaguard_sample_normal.vcf",
+   "exists": true,
+   "bytes": 25966,
+   "sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_CYP2C19=*38/*38 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2D6=*1/*1 (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "DEMO_NORMAL"
+   ],
+   "records": 463,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 463
+   },
+   "genotype_classes": {
+    "hom-ref": 461,
+    "hom-alt": 2
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 31,
+     "critical_usable": 31,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 88,
+     "usable_full_diploid_pass_or_dot": 88,
+     "critical_required": 69,
+     "critical_usable": 69,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 35,
+     "usable_full_diploid_pass_or_dot": 35,
+     "critical_required": 26,
+     "critical_usable": 26,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 45,
+     "usable_full_diploid_pass_or_dot": 45,
+     "critical_required": 45,
+     "critical_usable": 45,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 20,
+     "usable_full_diploid_pass_or_dot": 20,
+     "critical_required": 20,
+     "critical_usable": 20,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 83,
+     "usable_full_diploid_pass_or_dot": 83,
+     "critical_required": 28,
+     "critical_usable": 28,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 157,
+     "usable_full_diploid_pass_or_dot": 157,
+     "critical_required": 140,
+     "critical_usable": 140,
+     "nonref_required_positions": [
+      "chr22:42128813=1/1",
+      "chr22:42129130=1/1"
+     ],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C18-bundled-variants-only",
+   "path": "app/assets/samples/pharmaguard_sample_variants_only.vcf",
+   "exists": true,
+   "bytes": 1620,
+   "sha256": "fd17110ea604a41c6b1a28ce59efbc0ff50980c7d4429fe036d1e23e7a41b5ed",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [
+    "##source=PharmaGuardSyntheticGenerator",
+    "##pharmaguard_synthetic_CYP2C19=*2/*2 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)",
+    "##pharmaguard_synthetic_CYP2D6=*1/*1 (definition CLINPGX 2026-07-13-11-40)"
+   ],
+   "chrom_header_present": true,
+   "samples": [
+    "DEMO_CONFIDENT"
+   ],
+   "records": 6,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 6
+   },
+   "genotype_classes": {
+    "hom-alt": 6
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 4,
+     "usable_full_diploid_pass_or_dot": 4,
+     "critical_required": 31,
+     "critical_usable": 4,
+     "nonref_required_positions": [
+      "chr10:94775367=1/1",
+      "chr10:94775507=1/1",
+      "chr10:94781859=1/1",
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 69,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 26,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 45,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 20,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 0,
+     "usable_full_diploid_pass_or_dot": 0,
+     "critical_required": 28,
+     "critical_usable": 0,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 2,
+     "usable_full_diploid_pass_or_dot": 2,
+     "critical_required": 140,
+     "critical_usable": 2,
+     "nonref_required_positions": [
+      "chr22:42128813=1/1",
+      "chr22:42129130=1/1"
+     ],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C19-real-missing-GT",
+   "path": "audit-output/2026-09-26/derived/real-missing-GT.vcf",
+   "exists": true,
+   "bytes": 180763,
+   "sha256": "7bd8b0ba8ffb7ce47778c4d0512b490c3c29649754ddb9db088b358993a65491",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA18526"
+   ],
+   "records": 216,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 216
+   },
+   "genotype_classes": {
+    "hom-ref": 207,
+    "missing-GT": 1,
+    "hom-alt": 1,
+    "het": 7
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 19,
+     "usable_full_diploid_pass_or_dot": 18,
+     "critical_required": 31,
+     "critical_usable": 17,
+     "nonref_required_positions": [
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": [
+      "chr10:94761900 filter=PASS gt=None"
+     ]
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 28,
+     "usable_full_diploid_pass_or_dot": 28,
+     "critical_required": 69,
+     "critical_usable": 23,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 23,
+     "usable_full_diploid_pass_or_dot": 23,
+     "critical_required": 26,
+     "critical_usable": 15,
+     "nonref_required_positions": [
+      "chr12:21176804=0/1",
+      "chr12:21178615=0/1"
+     ],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 12,
+     "usable_full_diploid_pass_or_dot": 12,
+     "critical_required": 45,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 6,
+     "usable_full_diploid_pass_or_dot": 6,
+     "critical_required": 20,
+     "critical_usable": 6,
+     "nonref_required_positions": [
+      "chr13:48037782=0/1",
+      "chr13:48045719=0/1"
+     ],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 46,
+     "usable_full_diploid_pass_or_dot": 46,
+     "critical_required": 28,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 82,
+     "usable_full_diploid_pass_or_dot": 82,
+     "critical_required": 140,
+     "critical_usable": 76,
+     "nonref_required_positions": [
+      "chr22:42126611=0/1",
+      "chr22:42129130=0/1",
+      "chr22:42130692=0/1"
+     ],
+     "problem_positions": []
+    }
+   }
+  },
+  {
+   "id": "C20-real-two-sample",
+   "path": "audit-output/2026-09-26/derived/real-two-sample.vcf",
+   "exists": true,
+   "bytes": 181647,
+   "sha256": "3eb2bc4dc4f17f94cf0c0131fe07a0e0e66aa2b63072bf2a83318efccbc2d5f0",
+   "gzip": false,
+   "over_upload_limit": false,
+   "fileformat": "##fileformat=VCFv4.2",
+   "build_declarations": [
+    "GRCh38"
+   ],
+   "synthetic_annotations": [],
+   "chrom_header_present": true,
+   "samples": [
+    "NA18526",
+    "DUPLICATE_CONTROL"
+   ],
+   "records": 216,
+   "malformed_data_lines": 0,
+   "filter_counts": {
+    "PASS": 216
+   },
+   "genotype_classes": {
+    "hom-ref": 208,
+    "hom-alt": 1,
+    "het": 7
+   },
+   "required_position_census": {
+    "CYP2C19": {
+     "required": 35,
+     "present": 19,
+     "usable_full_diploid_pass_or_dot": 19,
+     "critical_required": 31,
+     "critical_usable": 18,
+     "nonref_required_positions": [
+      "chr10:94842866=1/1"
+     ],
+     "problem_positions": []
+    },
+    "CYP2C9": {
+     "required": 88,
+     "present": 28,
+     "usable_full_diploid_pass_or_dot": 28,
+     "critical_required": 69,
+     "critical_usable": 23,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "SLCO1B1": {
+     "required": 35,
+     "present": 23,
+     "usable_full_diploid_pass_or_dot": 23,
+     "critical_required": 26,
+     "critical_usable": 15,
+     "nonref_required_positions": [
+      "chr12:21176804=0/1",
+      "chr12:21178615=0/1"
+     ],
+     "problem_positions": []
+    },
+    "TPMT": {
+     "required": 45,
+     "present": 12,
+     "usable_full_diploid_pass_or_dot": 12,
+     "critical_required": 45,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "NUDT15": {
+     "required": 20,
+     "present": 6,
+     "usable_full_diploid_pass_or_dot": 6,
+     "critical_required": 20,
+     "critical_usable": 6,
+     "nonref_required_positions": [
+      "chr13:48037782=0/1",
+      "chr13:48045719=0/1"
+     ],
+     "problem_positions": []
+    },
+    "DPYD": {
+     "required": 83,
+     "present": 46,
+     "usable_full_diploid_pass_or_dot": 46,
+     "critical_required": 28,
+     "critical_usable": 12,
+     "nonref_required_positions": [],
+     "problem_positions": []
+    },
+    "CYP2D6": {
+     "required": 157,
+     "present": 82,
+     "usable_full_diploid_pass_or_dot": 82,
+     "critical_required": 140,
+     "critical_usable": 76,
+     "nonref_required_positions": [
+      "chr22:42126611=0/1",
+      "chr22:42129130=0/1",
+      "chr22:42130692=0/1"
+     ],
+     "problem_positions": []
+    }
+   }
+  }
+ ]
+}

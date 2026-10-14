@@ -49,6 +49,7 @@ from .models import (
     RiskLabel,
     Severity,
 )
+from .capabilities import capability_for
 from .pharmcat_models import (
     CallStatus,
     CpicAnnotation,
@@ -659,15 +660,47 @@ def evaluate(
     warnings: list[str] = []
     key = drug.strip().lower()
 
+    capability = capability_for(key)
+    if capability is None:
+        reason = (
+            f"'{drug}' is outside this application's audited application scope. "
+            "PharmCAT may include an upstream annotation, but this application "
+            "does not interpret or present it as supported guidance."
+        )
+        return (
+            RiskAssessment(
+                risk_label=RiskLabel.UNKNOWN,
+                confidence_score=0.0,
+                severity=Severity.NONE,
+            ),
+            build_clinical_recommendation(None, None, fallback_reason=reason),
+            None,
+            warnings,
+        )
+
+    fallback_gene: str | None = capability.primary_gene
+    gene_call = report.gene(fallback_gene)
     guideline = report.drug(key)
 
-    # Which gene does this drug hang off? The YAML table is only a hint used for
-    # fallback and tie-breaking; the matched CPIC annotation is authoritative,
-    # so the final choice happens after annotation selection below.
-    fallback_gene: str | None = cfg.get("drug_primary_gene", {}).get(key)
-    if fallback_gene is None and guideline and guideline.genes:
-        fallback_gene = next((g for g in guideline.genes if report.gene(g)), None)
-    gene_call = report.gene(fallback_gene) if fallback_gene else None
+    if not capability.guidance_capable:
+        warnings.append(f"{key}: {capability.limitation}")
+        return (
+            RiskAssessment(
+                risk_label=RiskLabel.UNKNOWN,
+                confidence_score=0.0,
+                severity=Severity.NONE,
+            ),
+            build_clinical_recommendation(
+                None,
+                guideline,
+                fallback_reason=capability.limitation,
+            ),
+            gene_call,
+            warnings,
+        )
+
+    # The registry gene is used only for fallback and tie-breaking; the matched
+    # CPIC annotation remains authoritative within the audited drug boundary.
 
     # --- drug PharmCAT has no CPIC guideline for at all ---------------------
     if guideline is None:

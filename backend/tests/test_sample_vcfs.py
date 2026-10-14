@@ -20,7 +20,8 @@ THE ASSERTION THAT WOULD HAVE CAUGHT IT
 DEPENDENCY-FREE BY DESIGN
     These checks are structural, so they run in the normal suite with no
     PharmCAT, Java or Docker. `TestAgainstRealPharmcat` at the bottom performs
-    the true end-to-end assertion and is skipped unless a pipeline is on PATH.
+    the true end-to-end assertion and is skipped only when the same JAR-or-wrapper
+    invocation the application uses is unavailable.
 """
 
 from __future__ import annotations
@@ -31,6 +32,7 @@ from pathlib import Path
 import pytest
 
 from app.vcf_validation import ReferenceBuild, validate_vcf
+from app.pharmcat_runner import resolve_invoker
 
 TEST_DATA = Path(__file__).resolve().parents[2] / "test-data"
 
@@ -56,7 +58,7 @@ SAMPLE_EXPECTATIONS: dict[str, dict[str, object]] = {
     "normal_metabolizer_control.vcf": {
         "drug": "clopidogrel",
         "gene": "CYP2C19",
-        "expected_label": "Safe",
+        "expected_label": "No PGx-guided adjustment identified",
         "note": "all-reference control — the negative case",
     },
 }
@@ -79,7 +81,7 @@ DEMO_EXPECTATIONS: dict[str, dict[str, object]] = {
     },
     "demo_normal.vcf": {
         "drug": "clopidogrel",
-        "expected_label": "Safe",
+        "expected_label": "No PGx-guided adjustment identified",
         "note": "complete coverage, all-reference control",
     },
     "demo_dpyd_indeterminate.vcf": {
@@ -192,7 +194,10 @@ class TestShippedSamplesAreUsable:
 
     @pytest.mark.parametrize(
         "name",
-        [n for n, e in SAMPLE_EXPECTATIONS.items() if e["expected_label"] != "Safe"],
+        [
+            n for n, e in SAMPLE_EXPECTATIONS.items()
+            if e["expected_label"] != "No PGx-guided adjustment identified"
+        ],
     )
     def test_non_control_samples_carry_non_reference_calls(self, name: str) -> None:
         """
@@ -264,20 +269,25 @@ class TestShippedSamplesAreUsable:
             )
 
 
-@pytest.mark.skipif(
-    __import__("shutil").which(
-        __import__("os").environ.get("PHARMCAT_PIPELINE", "pharmcat_pipeline")
+def test_real_integration_skip_matches_application_discovery() -> None:
+    """The sample integrations must run whenever the application can run PharmCAT."""
+    marker = next(
+        mark for mark in TestAgainstRealPharmcat.pytestmark if mark.name == "skipif"
     )
-    is None,
-    reason="PharmCAT not on PATH; structural checks above cover the regression",
+    assert bool(marker.args[0]) is (resolve_invoker() is None)
+
+
+@pytest.mark.skipif(
+    resolve_invoker() is None,
+    reason="No supported PharmCAT invocation (JAR with Java or pipeline wrapper)",
 )
 class TestAgainstRealPharmcat:
     """
-    The true end-to-end assertion, when a pipeline is available.
+    The true end-to-end assertion, when a supported PharmCAT runtime is available.
 
     Opt-in rather than always-on: requiring PharmCAT would make the whole suite
-    undeployable in CI. The structural tests above are what actually guard the
-    regression day to day.
+    undeployable in CI environments without the JAR or wrapper. The structural
+    tests above still run in those environments.
     """
 
     @pytest.mark.parametrize("name", sorted(SAMPLE_EXPECTATIONS))

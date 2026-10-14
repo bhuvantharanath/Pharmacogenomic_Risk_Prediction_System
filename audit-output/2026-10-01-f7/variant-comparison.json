@@ -1,0 +1,512 @@
+[
+  {
+    "position_grch38": 21141575,
+    "rsid": "rs185905373",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21172675,
+    "rsid": "rs556524705",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "G",
+      "alt": "C",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21172734,
+    "rsid": "rs139257324",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21172735,
+    "rsid": "rs61760182",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21172776,
+    "rsid": "rs373327528",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21172782,
+    "rsid": "rs56101265",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21176804,
+    "rsid": "rs2306283",
+    "truth_expectation": "heterozygous defining variant; original study notes cis/trans caveat",
+    "observed_public_vcf": {
+      "ref": "A",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|1"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": "G",
+    "pinned_star43": "G",
+    "current_pharmvar_core": "*14 and *43"
+  },
+  {
+    "position_grch38": 21176868,
+    "rsid": "rs2306282",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "A",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21176871,
+    "rsid": "rs145144129",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "G",
+      "alt": "C",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21176879,
+    "rsid": "rs11045819",
+    "truth_expectation": "heterozygous defining variant; original study notes cis/trans caveat",
+    "observed_public_vcf": {
+      "ref": "C",
+      "alt": "A",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|1"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": "A",
+    "pinned_star43": "A",
+    "current_pharmvar_core": "*14 and *43"
+  },
+  {
+    "position_grch38": 21176898,
+    "rsid": "rs77271279",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "G",
+      "alt": "T",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21178612,
+    "rsid": "rs141467543",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21178615,
+    "rsid": "rs4149056",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "T",
+      "alt": "C",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21178653,
+    "rsid": "rs200331427",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21178926,
+    "rsid": "rs201722521",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "A",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21178957,
+    "rsid": "rs79135870",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "A",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21196951,
+    "rsid": "rs11045852",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "A",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|1"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": "G",
+    "current_pharmvar_core": "*43 only"
+  },
+  {
+    "position_grch38": 21196975,
+    "rsid": "rs183501729",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "C",
+      "alt": "T",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21196976,
+    "rsid": "rs11045853",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "G",
+      "alt": "A",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21200544,
+    "rsid": "rs72559747",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "C",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21200595,
+    "rsid": "rs55901008",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21200673,
+    "rsid": "rs756393362",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21202553,
+    "rsid": "rs1228465562",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21202555,
+    "rsid": "rs59113707",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "C",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21202664,
+    "rsid": "rs142965323",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21205921,
+    "rsid": "rs72559748",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21205999,
+    "rsid": "rs59502379",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "G",
+      "alt": "C",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21206031,
+    "rsid": "rs74064213",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "A",
+      "alt": "G",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|1"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": "G",
+    "current_pharmvar_core": "*43 only"
+  },
+  {
+    "position_grch38": 21222355,
+    "rsid": "rs71581941",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "C",
+      "alt": "T",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21224840,
+    "rsid": "rs200994482",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "G",
+      "alt": "A",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21239042,
+    "rsid": "rs34671512",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "A",
+      "alt": "C",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21239077,
+    "rsid": "rs56199088",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21239113,
+    "rsid": "rs55737008",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21239145,
+    "rsid": "rs200995543",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": null,
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  },
+  {
+    "position_grch38": 21239158,
+    "rsid": "rs140790673",
+    "truth_expectation": "not established by frozen star-label truth",
+    "observed_public_vcf": {
+      "ref": "C",
+      "alt": "T",
+      "qual": ".",
+      "filter": ".",
+      "format": {
+        "GT": "0|0"
+      }
+    },
+    "new_read_level_evidence": "not acquired",
+    "pinned_star14": null,
+    "pinned_star43": null,
+    "current_pharmvar_core": "not a core difference between *14 and *43"
+  }
+]

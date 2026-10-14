@@ -3,14 +3,14 @@ PharmaGuard — explanation layer.
 
 One entry point, `generate_explanation(context)`, behind three modes:
 
-    static    (default, deployed) look up a pre-generated, guard-checked,
-              human-reviewable explanation and fill slots. No API call.
-    live      call Gemini per request, then the guard. For the demo video.
+    static    (default, deployed) serve an approved, identity-matched stored
+              explanation; otherwise use the deterministic template. No API call.
+    live      compatibility mode; runtime clinical prose is not generated.
+              It follows the same approved-static-or-template rule.
     template  deterministic composition only. Always available.
 
-Every path is guarded and every path degrades downward — live falls back to
-static, static falls back to template — so a caller always receives a complete
-explanation. `generate_explanation` does not raise.
+Every path degrades to the deterministic template, so a caller always receives
+a complete explanation. `generate_explanation` does not raise.
 """
 
 from __future__ import annotations
@@ -25,7 +25,23 @@ from .consistency import check_consistency
 from .context import Explanation, ExplanationContext
 from .guard import GuardReport, check, log_violation
 from .slot_verifier import SlotVerification, verify as verify_slots
-from . import generator_template, static_store
+from . import approval, generator_template, static_store
+
+
+# Pre-generated prose predates the audited wording boundary. These phrases turn
+# a gene-specific finding into broad reassurance about taking a medicine. They
+# are not supported by the deterministic label or by a calibrated risk model,
+# so an affected entry falls back to the bounded deterministic template. This
+# does not rewrite or adjudicate the stored artifact; it prevents unsupported
+# certainty from reaching the result.
+_UNSUPPORTED_REASSURANCE = (
+    "safe risk",
+    "safe candidate",
+    "likely to be safe",
+    "without any problems",
+    "without concern",
+    "without worrying",
+)
 
 
 class ExplanationMode(str, Enum):
@@ -150,7 +166,29 @@ def _static_result(
             )
         return None
 
+    approval_decision = approval.evaluate(stored, context)
+    if not approval_decision.approved:
+        notes.append(
+            "Pre-generated explanation was not served because its approval or "
+            f"semantic identity did not match ({approval_decision.reason}) "
+            "Using the deterministic template."
+        )
+        return None
+
     filled = stored.explanation.fill_slots(context)
+
+    rendered = " ".join(filled.fields().values()).lower()
+    matched_reassurance = next(
+        (phrase for phrase in _UNSUPPORTED_REASSURANCE if phrase in rendered),
+        None,
+    )
+    if matched_reassurance:
+        notes.append(
+            "Pre-generated explanation used unsupported reassurance "
+            f"('{matched_reassurance}'); using the bounded deterministic "
+            "template instead."
+        )
+        return None
 
     # The stored guard verdict covers the PROSE, which has not changed since it
     # was checked. It does not cover the values injected just now, so those get
@@ -284,8 +322,8 @@ def generate_explanation(
     """
     Produce an explanation for one drug result. Never raises.
 
-    static -> pre-generated, else template.
-    live   -> LLM + guard (one retry), else static, else template.
+    static -> approved and context-compatible pre-generated prose, else template.
+    live   -> approved and context-compatible pre-generated prose, else template.
     template -> deterministic.
 
     `profile` is the `pharmacogenomic_profile` this response will carry. When
@@ -301,10 +339,13 @@ def generate_explanation(
         return _template_result(context, resolved, notes, profile)
 
     if resolved is ExplanationMode.LIVE:
-        live = _live_result(context, resolved, notes, profile)
-        if live is not None:
-            return live
-        # Live was unavailable — prefer reviewed static text over the template.
+        # Runtime-generated prose cannot have a pre-existing content/source
+        # approval hash. Keep the explicit mode for compatibility, but never
+        # use it to fill an approval gap.
+        notes.append(
+            "Runtime clinical prose is disabled by the explanation approval "
+            "policy; using approved static content or the deterministic template."
+        )
         static = _static_result(context, resolved, notes, profile)
         return (
             static

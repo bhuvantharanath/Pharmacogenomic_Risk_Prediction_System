@@ -1,0 +1,16 @@
+D01 200 200 {'clopidogrel': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'simvastatin': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D02 200 200 {'clopidogrel': 'Ineffective', 'fluorouracil': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'simvastatin': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D03 200 200 {'clopidogrel': 'No PGx-guided adjustment identified', 'fluorouracil': 'Adjust Dosage', 'azathioprine': 'No PGx-guided adjustment identified', 'simvastatin': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D04 200 200 {'clopidogrel': 'No PGx-guided adjustment identified', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D05 200 200 {'clopidogrel': 'Ineffective', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D06 200 200 {'clopidogrel': 'Unknown', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D07 200 200 {'clopidogrel': 'Unknown', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D08 413 413 {}
+D09 400 400 {}
+D10 200 200 {'clopidogrel': 'Unknown', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D11 200 200 {'clopidogrel': 'Unknown', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D12 200 200 {'clopidogrel': 'Unknown', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D13 200 200 {'clopidogrel': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified', 'azathioprine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D14 200 200 {'clopidogrel': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified', 'azathioprine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown'}
+D15 200 200 {'clopidogrel': 'No PGx-guided adjustment identified', 'ibuprofen': 'Unknown', 'codeine': 'Unknown', 'warfarin': 'Unknown'}
+D16 200 200 {'clopidogrel': 'Unknown', 'fluorouracil': 'Unknown', 'azathioprine': 'Unknown', 'simvastatin': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown'}

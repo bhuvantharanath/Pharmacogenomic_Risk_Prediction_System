@@ -135,22 +135,25 @@ def test_preview_and_analysis_thresholds_come_from_the_same_place() -> None:
 
 
 # --------------------------------------------------------------------------- #
-# CYP2D6 — a limit of the format, not a deficiency of the file
+# CYP2D6 — a limit of this application, not a deficiency of the file
 # --------------------------------------------------------------------------- #
 
 
 def test_cyp2d6_is_never_reported_as_a_coverage_failure() -> None:
     """
-    Even at 100% of its positions, CYP2D6 cannot be called from a VCF: it is
-    defined by copy number and structural variation. Reporting it as a coverage
-    shortfall would tell a user to re-call their file, which will never work.
+    Even at 100% of its positions, this application does not call CYP2D6 from a
+    VCF: its result depends on copy-number and structural variation that needs
+    specialised read-level calling. Reporting it as a coverage shortfall would
+    tell a user to re-call their file, which will never work here.
     """
     reported = _gene(_post(_at_coverage("CYP2D6", 1.0)).json(), "CYP2D6")
 
     assert reported["not_readable_from_vcf"] is True
     assert reported["passes"] is False
-    # The reason must point at the assay, not at the upload.
-    assert "no VCF will resolve it" in reported["reason"]
+    # The reason must point at this application's limit, not at the upload, and
+    # must not blame the VCF format (which can carry SV/CNV records).
+    assert "this application" in reported["reason"]
+    assert "Uploading a different VCF here will not resolve it" in reported["reason"]
     assert "required positions were reported" not in reported["reason"]
 
 
@@ -167,9 +170,9 @@ def test_every_drug_lands_on_exactly_one_side() -> None:
     assert answerable, "a fully-covered CYP2C19 must answer something"
     # Total: a drug silently missing from both lists is a drug the user is never
     # told about, which is the failure this endpoint exists to prevent.
-    from app import cpic_engine
+    from app.capabilities import presentation_capabilities
 
-    known = set(cpic_engine.load_mapping().get("drug_primary_gene", {}))
+    known = {entry.drug for entry in presentation_capabilities()}
     assert set(answerable) | set(unanswerable) == known
 
 

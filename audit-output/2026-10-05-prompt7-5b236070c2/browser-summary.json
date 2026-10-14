@@ -1,0 +1,94 @@
+{
+  "native_browser_version": "154.0.8037.98",
+  "version_basis": "installed native Google Chrome Info.plist; API request User-Agent also retained",
+  "API": "127.0.0.1:8000, production FastAPI app with passive audit-only ASGI response recorder",
+  "build": "fresh Flutter release web; source candidate-inventory.json; build artifact hashes in web-build-inventory.json",
+  "cases": [
+    {
+      "case": "real incomplete",
+      "input": "audit-output/2026-09-26/derived/NA18526.raw-required-sites.vcf",
+      "api": "0004-analyze.body",
+      "readiness": "0/7",
+      "result": "6 Unknown",
+      "input_sha256": "d6c200fba90c84d09594c3f0f82d812446811abbce12533ce997391314fdd397",
+      "api_sha256": "3e5157f9428f4d0878a2309d2c1fec87e1c63304e4dfa1a19f2a98e1e9f4e338"
+    },
+    {
+      "case": "synthetic normal and out-of-scope ibuprofen",
+      "input": "test-data/normal_metabolizer_control.vcf",
+      "api": "0006-analyze.body",
+      "readiness": "6/7",
+      "result": "4 qualified normal; codeine/warfarin Unknown; ibuprofen Unknown with scope warning",
+      "input_sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+      "api_sha256": "e21b5bf06cc4f156ac323f903e0459d58f172dd436639e4d09deafe86c5e9e96"
+    },
+    {
+      "case": "synthetic actionable",
+      "input": "test-data/cyp2c19_poor_metabolizer.vcf",
+      "api": "0008-analyze.body",
+      "readiness": "6/7",
+      "result": "CYP2C19 *2/*2 PM, clopidogrel Ineffective, ACS/PCI qualifier",
+      "input_sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+      "api_sha256": "146909022e600cbf6b38d438ba206f447032a7f3e3f4f861bf576503d795b573"
+    },
+    {
+      "case": "frozen real normal",
+      "input": "audit-output/2026-09-30-f4/NA18526.observed.vcf",
+      "api": "0010-analyze.body",
+      "readiness": "1/7",
+      "result": "CYP2C19 *1/*1 NM; qualified clopidogrel normal; 5 Unknown",
+      "input_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+      "api_sha256": "153385f6165ea7457ab08524a7539ece9b95212b64f9a9f0920c1c3b31461c86"
+    },
+    {
+      "case": "oversized public",
+      "input": "audit-output/2026-09-26/derived/NA18861.1000G2022.vcf",
+      "api": "0012-analyze.body",
+      "result": "HTTP 413; visible 5 MB limit; recovered with next upload",
+      "input_sha256": "5b37d4ba7dea7c26be7cafa37661142e0a4e3a407d8ccc0801395cc15b3fb7f6",
+      "api_sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f"
+    },
+    {
+      "case": "frozen real actionable",
+      "input": "audit-output/2026-09-30-f4/NA12878.observed.vcf",
+      "api": "0014-analyze.body",
+      "readiness": "1/7",
+      "result": "CYP2C19 *1/*2 IM, Ineffective; 5 Unknown; ACS/PCI qualifier",
+      "input_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+      "api_sha256": "6f432b83256fb4491faee25534aa4dc70e663baee9e09dc466e6969442e92b1a"
+    },
+    {
+      "case": "native Chrome actionable repeat",
+      "input": "audit-output/2026-09-30-f4/NA12878.observed.vcf",
+      "api": "0020-analyze.body",
+      "result": "same bounded scientific result, native saved JSON and PDF",
+      "input_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+      "api_sha256": "f2a0842de3be682e56989851d45be754b7b236dd3f3841191b95518359053183"
+    }
+  ],
+  "interaction_checks": {
+    "real_chooser_uploads": "PASS",
+    "readiness_loading_recovery": "PASS",
+    "expanded_details_qualifier_provenance": "PASS",
+    "scrolling": "PASS",
+    "responsive_sizes": [
+      "1280x720",
+      "360x640"
+    ],
+    "broad_Safe_verdict_seen": false,
+    "clinical_confidence_percent_seen": false,
+    "clipboard_after_UI_action": "PASS; raw bytes, exact JSON transform parity",
+    "native_saved_JSON": "PASS; actual disk bytes",
+    "native_UI_print_saved_PDF": "PASS; five pages inspected",
+    "IAB_download": "INCONCLUSIVE: actual transfer canceled, 0 received of 31861 bytes; waiter timeout. Native Chrome succeeded.",
+    "IAB_print": "INCONCLUSIVE: print iframe visible, automation call timeout; no saved PDF from IAB"
+  },
+  "limitations": [
+    "Full browser workflow set exercised in IAB; native Chrome repeated actionable upload and actual exports, not all fixture workflows.",
+    "Printed summary intentionally omits raw warning list and several expanded fields under existing implementation; not full API parity.",
+    "Printed unsupported source-checking assurance is a separate content defect; no candidate fix authorized by verification.",
+    "No permission/security bypass, extension installation or new clipboard permission grant.",
+    "No native Chrome window available at cleanup; no blind close action. IAB viewport reset."
+  ],
+  "UI_visual_changes": "NONE"
+}

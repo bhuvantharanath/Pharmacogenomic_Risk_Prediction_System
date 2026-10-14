@@ -1,0 +1,13 @@
+{
+  "individuals": 208,
+  "sample_gene_rows": 1456,
+  "evaluable_truth_rows": 596,
+  "all_metric_fields_equal_except_generation_time": true,
+  "differing_eligibility_fields": {
+    "vcf_sha256": 1456
+  },
+  "differing_eligibility_fields_vs_previous_evaluation": {
+    "vcf_sha256": 1456
+  },
+  "representative_biological_records_equal": true
+}

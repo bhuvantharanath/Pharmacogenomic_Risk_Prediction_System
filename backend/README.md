@@ -21,7 +21,8 @@ upload -> vcf_validation -> pharmcat_runner -> cpic_engine -> explanation -> Ana
 | `data/label_mapping.yaml` | Risk-label rules, as reviewable data |
 | `retrieval.py` | `(gene, drug)` → mechanism document. Exact lookup, no embeddings |
 | `explanation/` | The narrative layer — three modes, one guard |
-| `data/explanations.json` | Pre-generated explanations. **Requires faculty review** |
+| `data/explanations.json` | Pre-generated candidates; serving requires a matching approved manifest entry |
+| `data/explanation_approvals.json` | Exact content/source/context approval identities |
 
 ## Run it
 
@@ -59,6 +60,8 @@ default configuration.
 | `GUARD_LOG_PATH` | `logs/guard_violations.jsonl` | Guard violation log |
 | `PHARMCAT_PIPELINE` | `pharmcat_pipeline` | Pipeline executable |
 | `PHARMCAT_TIMEOUT_SECONDS` | `120` | Kill a wedged run |
+| `PHARMCAT_TERMINATION_GRACE_SECONDS` | `2` | SIGTERM grace before owned process-group escalation |
+| `TRUSTED_PROXY_CIDRS` | *(empty)* | Direct proxy peers allowed to supply sanitized `X-Forwarded-For`; headers are ignored otherwise |
 
 ## The explanation layer
 
@@ -71,12 +74,12 @@ result = generate_explanation(context)   # never raises
 
 | Mode | What it does | API call? |
 | --- | --- | --- |
-| `static` **(default)** | Look up `explanations.json` by `(drug, phenotype)`, fill slots | **No** |
-| `live` | Call Gemini, run the guard, retry once, else fall back | Yes |
+| `static` **(default)** | Serve only an approved, context-compatible stored entry; else deterministic fallback | **No** |
+| `live` | Compatibility mode with the same approved-static-or-template behavior | **No** |
 | `template` | Deterministic composition from fixed sentences | No |
 
-Every path degrades downward — live → static → template — so a caller always
-gets a complete explanation. The disclaimer is populated on every response by
+Every path degrades to the deterministic template, so a caller always gets a
+complete explanation. The disclaimer is populated on every response by
 `Explanation.to_contract()`, regardless of which generator ran.
 
 ### Why pre-generate
@@ -133,6 +136,7 @@ review; the API reports the unreviewed count on every response.
 | `GET` | `/health` | `{"status":"ok"}` |
 | `GET` | `/` | Metadata, `explanation_mode`, `requires_api_key` |
 | `POST` | `/analyze` | `AnalyzeResponse` |
+| `POST` | `/coverage` | Readiness preview under the same upload/decompression and public request budget |
 
 ```bash
 curl -F "file=@../test-data/cyp2c19_poor_metabolizer.vcf" \
@@ -141,7 +145,7 @@ curl -F "file=@../test-data/cyp2c19_poor_metabolizer.vcf" \
 ```
 
 `quality_metrics.warnings` carries a provenance line per distinct generation
-path, e.g. `explanation mode=static, source=static, guard=passed, reviewed=NO`.
+path, e.g. `explanation mode=static, source=template, guard=n/a (deterministic)`.
 
 ### Errors
 
@@ -155,6 +159,43 @@ path, e.g. `explanation mode=static, source=static, guard=passed, reviewed=NO`.
 | 503 | `PHARMCAT_UNAVAILABLE` | PharmCAT missing, timed out, or crashed |
 
 An unrecognised **drug** is never an error.
+
+## Resource ownership and privacy boundary
+
+Both upload endpoints reject a declared oversized file before reading it and
+otherwise read in 64 KiB chunks only through the 5 MiB cap. Decompression has a
+separate 100 MiB output cap. Validation and coverage parsing run off the event
+loop. The 5 MiB input limit comes from the measured PGx input shape: a complete
+seven-gene file is roughly 200 KiB, while whole-genome VCFs must be subset before
+upload. The decompression allowance preserves the existing 20× safety margin;
+it is not an assay-quality threshold.
+
+Each PharmCAT invocation owns a process group. Normal completion, timeout, and
+request cancellation all wait/reap that group; cancellation cleanup and removal
+of the per-request temporary tree finish before the JVM concurrency permit is
+returned. PharmCAT/logback runs with that directory as its working directory, so
+tool logs are removed with the synthetic/genomic working files rather than being
+written beside the application.
+
+The separate explanation guard log defaults to
+`backend/logs/guard_violations.jsonl` (or the explicit `GUARD_LOG_PATH`). It may
+contain drug, gene, phenotype, result label, and rejected explanation prose for
+review; it does not receive the uploaded VCF, sample identifier, diplotype, or
+detected-variant list. Reverse-proxy request logs are outside this application
+logger and must be configured by the host.
+
+The application does not persist uploaded VCFs or results. Static/default mode
+makes no outbound explanation request. This guarantee covers application-owned
+memory and temporary files; it does not claim control over reverse-proxy access
+logs, platform crash dumps, backups, or host-level retention. `live` remains
+disabled for runtime clinical prose by the approval policy and must not be used
+to make a blanket statement about data locality if its implementation changes.
+
+Forwarded client identity is ignored by default. Configure
+`TRUSTED_PROXY_CIDRS` only with direct proxy networks whose forwarding headers
+are sanitized, and configure the ASGI server's forwarded-header trust to the
+same boundary. Otherwise rate limiting intentionally groups traffic by the
+direct peer rather than trusting a caller-selected identity.
 
 ## Two honest gaps (unchanged from Phase 2)
 
@@ -180,9 +221,9 @@ No PharmCAT, Java, Docker or API key required.
 | `test_label_mapping.py` | Table-driven, against verbatim real CPIC text |
 | `test_pharmcat_parser.py` | Real output + malformed-input degradation |
 | `test_guard.py` | Adversarial: invented doses, rsIDs, alleles, drugs, genes |
-| `test_explanation.py` | Retrieval, slots, mode dispatch, mocked live mode |
+| `test_explanation.py` | Retrieval, slots, approval-aware mode dispatch |
 | `test_corpus.py` | The no-dosing-in-the-corpus rule, as a build gate |
 | `test_analyze_api.py` | `/analyze` end to end, incl. API-free static mode |
 
-The skipped test is live mode against the real Gemini API; it runs only when
-`GEMINI_API_KEY` is set.
+Runtime clinical prose is not generated; live mode is retained only as a
+configuration-compatible route to approved static content or the template.

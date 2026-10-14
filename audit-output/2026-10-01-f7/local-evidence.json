@@ -1,0 +1,135 @@
+[
+  {
+    "source": "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "snapshot": "frozen-local/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109",
+    "bytes": 162599
+  },
+  {
+    "source": "test-data/benchmark/external/sample_gene_truth.tsv",
+    "snapshot": "frozen-local/sample_gene_truth.tsv",
+    "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601",
+    "bytes": 287825
+  },
+  {
+    "source": "test-data/benchmark/external/discrepancies.tsv",
+    "snapshot": "frozen-local/discrepancies.tsv",
+    "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47",
+    "bytes": 172478
+  },
+  {
+    "source": "test-data/benchmark/external/protocol.json",
+    "snapshot": "frozen-local/protocol.json",
+    "sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e",
+    "bytes": 9677
+  },
+  {
+    "source": "test-data/benchmark/external/benchmark_manifest.json",
+    "snapshot": "frozen-local/benchmark_manifest.json",
+    "sha256": "e19f995579482b152271c2c4eadc7b4fbe4b89832299b3111b761985484d0e92",
+    "bytes": 7588
+  },
+  {
+    "source": "test-data/benchmark/external/pharmcat_report_manifest.json",
+    "snapshot": "frozen-local/pharmcat_report_manifest.json",
+    "sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8",
+    "bytes": 54176
+  },
+  {
+    "source": "audit-output/2026-09-26/derived/NA18861.1000G2022.vcf",
+    "snapshot": "frozen-local/NA18861.1000G2022.vcf",
+    "sha256": "5b37d4ba7dea7c26be7cafa37661142e0a4e3a407d8ccc0801395cc15b3fb7f6",
+    "bytes": 29474087
+  },
+  {
+    "source": "audit-output/2026-09-26/derived/NA18861.1000G2022.vcf.gz",
+    "snapshot": "frozen-local/NA18861.1000G2022.vcf.gz",
+    "sha256": "48696f0dc35a5cef9b5790a6c14bb76c361d0a2cc795b28042767ae9b24a075a",
+    "bytes": 2476688
+  },
+  {
+    "source": "audit-output/2026-09-26/derived/NA18861.raw-required-sites.vcf",
+    "snapshot": "frozen-local/NA18861.raw-required-sites.vcf",
+    "sha256": "c815a77ab9bbad1f0db7889bc80a07f505d24b57f588e00d40c86ea4eabaf66d",
+    "bytes": 180765
+  },
+  {
+    "source": "audit-output/2026-09-26/originals/NA18861.preprocessed.vcf",
+    "snapshot": "frozen-local/NA18861.preprocessed.vcf",
+    "sha256": "29423e1308c0c5335fe149ce78f54d475fbbf1c1a07679d655a004513ab45eee",
+    "bytes": 18227
+  },
+  {
+    "source": "audit-output/2026-09-26/originals/PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18861.vcf.bgz",
+    "snapshot": "frozen-local/PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18861.vcf.bgz",
+    "sha256": "9ce916c9e3a105baa24763575e8b472e4c9d8e3b032287c50320cf4474e00055",
+    "bytes": 11214584
+  },
+  {
+    "source": "audit-output/2026-09-26/api/NA18861-1000G2022.analyze.json",
+    "snapshot": "frozen-local/NA18861-1000G2022.analyze.json",
+    "sha256": "8fe63f299ff7b05da44eff8966fd760bdf3e610989da8f2dadbe2f52c5b2e809",
+    "bytes": 35953
+  },
+  {
+    "source": "audit-output/2026-09-26/api/NA18861-1000G2022.coverage.json",
+    "snapshot": "frozen-local/NA18861-1000G2022.coverage.json",
+    "sha256": "8b668e5d36ef48e53c9c0cf7f1dd6906a5b4cc38fdc354a3095492da4a783c18",
+    "bytes": 3746
+  },
+  {
+    "source": "audit-output/2026-09-26/acquisition.json",
+    "snapshot": "frozen-local/acquisition.json",
+    "sha256": "51dfb4be800f4b889b815bddef1b6b573f5f9a7997e50ff416a228b06914d8dc",
+    "bytes": 3518
+  },
+  {
+    "source": "audit-output/2026-09-26/derived-inputs.json",
+    "snapshot": "frozen-local/derived-inputs.json",
+    "sha256": "f246f478c72ab5d0026cd9ebff1dab7e898b71bdfc1cbe104f9ed01dec757d82",
+    "bytes": 2831
+  },
+  {
+    "source": "audit-output/2026-09-26/classified-comparisons.json",
+    "snapshot": "frozen-local/classified-comparisons.json",
+    "sha256": "e1fba7c3ef4d109621fd202119de1e397b5a95d8da9dc37072e75ded93a604ab",
+    "bytes": 48041
+  },
+  {
+    "source": "backend/app/data/position_requirements.json",
+    "snapshot": "frozen-local/position_requirements.json",
+    "sha256": "d0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3",
+    "bytes": 52050
+  },
+  {
+    "source": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18861.report.json",
+    "snapshot": "frozen-local/locked_cohort.NA18861.report.json",
+    "sha256": "3fc7e5eb5cd1c8a7e9ecd061393f15346ea744255c5b362a55ae23010f039ba1",
+    "bytes": 1250534
+  },
+  {
+    "source": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18861.match.json",
+    "snapshot": "frozen-local/locked_cohort.NA18861.match.json",
+    "sha256": "f714c5e12e2b857da381bef8ed768a6cab9953997b773edf3623fa39c941e379",
+    "bytes": 551677
+  },
+  {
+    "source": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18861.phenotype.json",
+    "snapshot": "frozen-local/locked_cohort.NA18861.phenotype.json",
+    "sha256": "61fd2bd3383ef83715320b0ee2d2a5e7bf849714e41469a3adb0c434bc527c57",
+    "bytes": 510522
+  },
+  {
+    "source": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18861.match_warnings.txt",
+    "snapshot": "frozen-local/locked_cohort.NA18861.match_warnings.txt",
+    "sha256": "f049c996b91870e9088b5a73c8116980dd39a93388dbdd39988cc7a20b6e065e",
+    "bytes": 522
+  },
+  {
+    "source": "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+    "jar_sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741",
+    "member": "org/pharmgkb/pharmcat/definition/alleles/SLCO1B1_translation.json",
+    "snapshot": "pinned-SLCO1B1_translation.json",
+    "sha256": "80b070ab59ff5a3d2927e9484881e55ea431eb796b47d42850dc566e3f72ffdb"
+  }
+]

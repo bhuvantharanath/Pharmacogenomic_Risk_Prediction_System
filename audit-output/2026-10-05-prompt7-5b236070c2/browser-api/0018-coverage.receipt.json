@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-06T10:53:27.555560+00:00",
+  "path": "/coverage",
+  "method": "POST",
+  "status": 200,
+  "bytes": 2331,
+  "sha256": "ce56c038c257a2a496f32424c13c77e9a1ff06ba1d11fee425d348d9110f0060",
+  "headers": {
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"154\", \"Google Chrome\";v=\"154\", \"Not A(Brand\";v=\"99\"",
+    "origin": "http://127.0.0.1:3000"
+  }
+}

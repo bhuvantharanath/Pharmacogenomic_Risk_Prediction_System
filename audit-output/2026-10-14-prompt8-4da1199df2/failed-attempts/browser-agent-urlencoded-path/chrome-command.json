@@ -1,0 +1,22 @@
+{
+ "binary": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+ "argv": [
+  "--user-data-dir=/Users/bhuvant/Projects/Pharmacogenomic%20Risk%20Prediction%20System/audit-output/2026-10-14-prompt8-4da1199df2/browser/baseline/profile",
+  "--remote-debugging-port=9333",
+  "--remote-allow-origins=http://127.0.0.1",
+  "--no-first-run",
+  "--no-default-browser-check",
+  "--window-size=1280,860",
+  "--kiosk-printing",
+  "about:blank"
+ ],
+ "pid": 67615,
+ "agent_pid": 67614,
+ "control_port": 9444,
+ "debug_port": 9333,
+ "profile": "/Users/bhuvant/Projects/Pharmacogenomic%20Risk%20Prediction%20System/audit-output/2026-10-14-prompt8-4da1199df2/browser/baseline/profile",
+ "downloads": "/Users/bhuvant/Projects/Pharmacogenomic%20Risk%20Prediction%20System/audit-output/2026-10-14-prompt8-4da1199df2/browser/baseline/downloads",
+ "print_dir": "/Users/bhuvant/Projects/Pharmacogenomic%20Risk%20Prediction%20System/audit-output/2026-10-14-prompt8-4da1199df2/browser/baseline/print",
+ "kiosk_printing": true,
+ "started": "2026-10-14T11:29:49.793Z"
+}

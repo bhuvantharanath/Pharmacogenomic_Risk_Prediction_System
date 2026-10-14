@@ -1,0 +1,15 @@
+usage: release_status.py [-h] [--run-required] [--content-only]
+                         [--candidate-sha CANDIDATE_SHA] [--json]
+
+The single authoritative release-readiness decision. Detail tools report
+provenance and adjudication facts. Only this command may combine those facts
+with the required test results and the exact candidate artifact identity and
+emit release_ready.
+
+options:
+  -h, --help            show this help message and exit
+  --run-required
+  --content-only        Check content prerequisites only; never reports final
+                        readiness.
+  --candidate-sha CANDIDATE_SHA
+  --json

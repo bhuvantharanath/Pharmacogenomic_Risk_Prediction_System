@@ -359,35 +359,25 @@ def test_the_about_screen_wrong_call_rate_matches_the_sweep() -> None:
         f"({max(at_60, key=at_60.get)})")
 
 
-def test_the_about_screen_cyp2d6_claim_matches_the_negative_control() -> None:
-    """
-    "Across 400 test samples it declined every single time." A single
-    fabricated CYP2D6 call makes this sentence false, and it is the strongest
-    safety claim the app makes to a patient.
-    """
-    quoted = re.search(r"Across (\d+) test samples", _about())
-    assert quoted, "the About screen no longer quotes the CYP2D6 control"
-    claimed = int(quoted.group(1))
+def test_the_about_screen_uses_the_cyp2d6_capability_limitation() -> None:
+    """The About screen must reuse, not restate, the audited limitation."""
+    from app.capabilities import capability_for
 
-    import json
-    # SUBSCRIPT, not .get(key, default). The first version read
-    # `fidelity.get("samples", n)` — the key is `samples_with_report`, so the
-    # default won and the assertion reduced to `n <= n`. Planting 9999 left it
-    # green. A missing key must raise, not quietly satisfy the check.
-    fidelity = json.loads((REPO / "reports/integration_fidelity.json").read_text())
-    assert claimed == fidelity["samples_with_report"], (
-        f"About tells the user {claimed} samples; the cohort run covers "
-        f"{fidelity['samples_with_report']}")
+    codeine = capability_for("codeine")
+    assert codeine is not None
+    assert codeine.guidance_capable is False
+    assert "CYP2D6" in codeine.limitation
+    assert "copy-number" in codeine.limitation
+    assert "capabilityForDrug('codeine')" in _about()
+    assert "${codeine.limitation}" in _about()
 
-    # And "declined every single time" is a property of the CODE, not just of
-    # that one run: PharmCAT reports CYP2D6 with callSource NONE from an
-    # unphased VCF, which the runner maps to NOT_ATTEMPTED and attaches the
-    # caveat to. A cohort figure alone would go stale the moment the cohort did.
+    # The underlying justified abstention remains intact.
     from app.pharmcat_runner import CYP2D6_WARNING
     runner = (REPO / "backend/app/pharmcat_runner.py").read_text()
     assert 'symbol == "CYP2D6" and status is CallStatus.NOT_ATTEMPTED' in runner, (
-        "the CYP2D6 no-call path moved; the About screen promises the user it "
-        "declines every time")
+        "the CYP2D6 no-call path moved; the capability registry still promises "
+        "that this application does not produce codeine guidance")
+    assert "structural" in CYP2D6_WARNING.lower()
     assert "cannot be resolved" in CYP2D6_WARNING
 
 

@@ -1,0 +1,87 @@
+[
+  {
+    "name": "prepare-evaluation-copy",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/refresh/prepare_evaluation_copy.py",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/6c5a09f8-c585-4984-85c4-7219381eef57/scratchpad/evaluation-copy-2026-10-14"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-14T18:06:46.625312+00:00",
+    "ended_at": "2026-10-14T18:06:47.545332+00:00",
+    "exit_code": 0,
+    "stdout": "prepare-evaluation-copy.stdout",
+    "stderr": "prepare-evaluation-copy.stderr"
+  },
+  {
+    "name": "cohort-prepare",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/6c5a09f8-c585-4984-85c4-7219381eef57/scratchpad/evaluation-copy-2026-10-14/scripts/benchmark_external.py",
+      "prepare"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-14T18:06:54.230053+00:00",
+    "ended_at": "2026-10-14T18:06:54.268622+00:00",
+    "exit_code": 0,
+    "stdout": "cohort-prepare.stdout",
+    "stderr": "cohort-prepare.stderr"
+  },
+  {
+    "name": "cohort-fetch-resume",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/6c5a09f8-c585-4984-85c4-7219381eef57/scratchpad/evaluation-copy-2026-10-14/scripts/benchmark_external.py",
+      "fetch",
+      "--resume"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-14T18:06:54.289985+00:00",
+    "ended_at": "2026-10-14T18:06:54.417003+00:00",
+    "exit_code": 0,
+    "stdout": "cohort-fetch-resume.stdout",
+    "stderr": "cohort-fetch-resume.stderr"
+  },
+  {
+    "name": "cohort-evaluate-resume",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/6c5a09f8-c585-4984-85c4-7219381eef57/scratchpad/evaluation-copy-2026-10-14/scripts/benchmark_external.py",
+      "evaluate",
+      "--resume"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-14T18:06:54.440550+00:00",
+    "ended_at": "2026-10-14T18:07:34.281303+00:00",
+    "exit_code": 0,
+    "stdout": "cohort-evaluate-resume.stdout",
+    "stderr": "cohort-evaluate-resume.stderr"
+  },
+  {
+    "name": "compare-evaluation",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/refresh/compare_evaluation.py",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/6c5a09f8-c585-4984-85c4-7219381eef57/scratchpad/evaluation-copy-2026-10-14"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-14T18:08:19.365459+00:00",
+    "ended_at": "2026-10-14T18:08:19.773054+00:00",
+    "exit_code": 0,
+    "stdout": "compare-evaluation.stdout",
+    "stderr": "compare-evaluation.stderr"
+  },
+  {
+    "name": "f4-fresh-replay",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/refresh/replay_f4.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-14T18:08:19.798485+00:00",
+    "ended_at": "2026-10-14T18:08:22.780940+00:00",
+    "exit_code": 0,
+    "stdout": "f4-fresh-replay.stdout",
+    "stderr": "f4-fresh-replay.stderr"
+  }
+]

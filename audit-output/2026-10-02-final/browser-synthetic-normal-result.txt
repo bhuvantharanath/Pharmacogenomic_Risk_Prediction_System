@@ -1,0 +1,31 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container flt-semantic-node-413
+			3 container flt-semantic-node-442
+				4 button Back, ID: flt-semantic-node-443
+				5 heading Analysis results, Value: 2, ID: flt-semantic-node-444
+					6 text Analysis results
+				7 button Copy JSON, ID: flt-semantic-node-445
+				8 button Export JSON, ID: flt-semantic-node-446
+			9 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			10 container flt-semantic-node-441
+				11 button (collapsed) ID: flt-semantic-node-417, Secondary Actions: Expand, NORMAL_CONTROL 2026-10-02T12:44:53Z VCF accepted 0 variants 1436 ms 19 pipeline warnings No PGx-guided change Adjust Dosage Toxic Ineffective Unknown
+				12 container ID: flt-semantic-node-419, Description: DRUGS CHECKED (6) — MOST SERIOUS FIRST Reading view. Both views show the same result; they differ only in what is shown first.
+					13 button For a patient. Plain language first., ID: flt-semantic-node-420
+					14 button For a clinician. Genotype and guideline first., ID: flt-semantic-node-421
+				15 button (collapsed) Input coverage. 6 of 7 genes have enough positions to call, ID: flt-semantic-node-424, Secondary Actions: Expand
+				16 container flt-semantic-node-425
+					17 button (collapsed) azathioprine: No PGx-guided change, ID: flt-semantic-node-426, Secondary Actions: Expand
+					18 button (collapsed) clopidogrel: No PGx-guided change, ID: flt-semantic-node-427, Secondary Actions: Expand
+					19 button (collapsed) fluorouracil: No PGx-guided change, ID: flt-semantic-node-428, Secondary Actions: Expand
+					20 button (collapsed) simvastatin: No PGx-guided change, ID: flt-semantic-node-429, Secondary Actions: Expand
+					21 button (collapsed) codeine: Unknown, ID: flt-semantic-node-430, Secondary Actions: Expand
+					22 button (collapsed) warfarin: Unknown, ID: flt-semantic-node-431, Secondary Actions: Expand
+				23 container flt-semantic-node-433
+					24 button Copy JSON, ID: flt-semantic-node-434
+					25 button Export JSON, ID: flt-semantic-node-435
+				26 button Printable summary, ID: flt-semantic-node-438
+				27 button ID: flt-semantic-node-440, Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes. PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 · explanations 24 Jul 2026
+
+The focused UI element is 4 button Back, ID: flt-semantic-node-443

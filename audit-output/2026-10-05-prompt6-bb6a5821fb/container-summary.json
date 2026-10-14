@@ -1,0 +1,936 @@
+{
+  "classification": "PASS Linux/arm64 only; native Linux/amd64 INCONCLUSIVE",
+  "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+  "image_platform": "linux/arm64",
+  "image_size_bytes_docker_inspect": 1917515189,
+  "base_digest": "sha256:bc498d55c33094002bd7e14221a6b3fcd7243a587675369bc1a5ecf6ac0e5319",
+  "candidate_scientific_core_sha256": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+  "compatible_manifest_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+  "in_image_verified_files": 50,
+  "in_image_checks": {
+    "copied_file_bytes_match": true,
+    "jar_matches": true,
+    "jar_data_version_matches": true,
+    "positions_match": true,
+    "positions_index_match": true,
+    "image_id_matches": true,
+    "memory_limit_matches": true,
+    "memory_swap_total_matches": true,
+    "container_running": true,
+    "cgroup_memory_max_matches": true,
+    "cgroup_swap_max_zero": true
+  },
+  "memory_limit_bytes": 536870912,
+  "swap_additional_bytes": 0,
+  "max_peak_bytes": 521707520,
+  "max_peak_mib": 497.539,
+  "min_margin_bytes": 15163392,
+  "min_margin_mib": 14.461,
+  "largest_sampled_jvm_rss_kib": 312660,
+  "largest_sampled_python_rss_kib": 196328,
+  "process_rss_peaks_nonadditive": true,
+  "max_sampled_simultaneous_jvms": 1,
+  "inputs": [
+    {
+      "path": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+      "bytes": 2475022,
+      "sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77"
+    },
+    {
+      "path": "test-data/normal_metabolizer_control.vcf",
+      "bytes": 17288,
+      "sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be"
+    },
+    {
+      "path": "test-data/cyp2c19_poor_metabolizer.vcf",
+      "bytes": 17296,
+      "sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489"
+    },
+    {
+      "path": "audit-output/2026-09-30-f4/NA18526.observed.vcf",
+      "bytes": 174874,
+      "sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548"
+    },
+    {
+      "path": "audit-output/2026-09-30-f4/NA12878.observed.vcf",
+      "bytes": 175087,
+      "sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7"
+    }
+  ],
+  "stages": {
+    "main": {
+      "peak_bytes": 507760640,
+      "peak_mib": 484.238,
+      "margin_bytes": 29110272,
+      "events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "rss_jvm_peak_kib": 310680,
+      "rss_python_peak_kib": 186924,
+      "max_sampled_simultaneous_jvms": 1,
+      "status_counts": {
+        "200": 10
+      },
+      "outcomes": [
+        {
+          "case": "health",
+          "status": 200,
+          "seconds": 0.052
+        },
+        {
+          "case": "ready",
+          "status": 200,
+          "seconds": 0.016
+        },
+        {
+          "case": "p6-coverage-real",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 0.164,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-analysis-real",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 14.664,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-synthetic-normal",
+          "endpoint": "analyze",
+          "input": "test-data/normal_metabolizer_control.vcf",
+          "input_sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+          "status": 200,
+          "seconds": 1.882,
+          "labels": {
+            "clopidogrel": "No PGx-guided adjustment identified"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-synthetic-actionable",
+          "endpoint": "analyze",
+          "input": "test-data/cyp2c19_poor_metabolizer.vcf",
+          "input_sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+          "status": 200,
+          "seconds": 1.798,
+          "labels": {
+            "clopidogrel": "Ineffective"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-f4-normal",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-30-f4/NA18526.observed.vcf",
+          "input_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+          "status": 200,
+          "seconds": 1.892,
+          "labels": {
+            "clopidogrel": "No PGx-guided adjustment identified"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-f4-actionable",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-30-f4/NA12878.observed.vcf",
+          "input_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+          "status": 200,
+          "seconds": 1.873,
+          "labels": {
+            "clopidogrel": "Ineffective"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-sequential-0",
+          "endpoint": "analyze",
+          "input": "test-data/normal_metabolizer_control.vcf",
+          "input_sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+          "status": 200,
+          "seconds": 1.814,
+          "labels": {
+            "clopidogrel": "No PGx-guided adjustment identified"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-sequential-1",
+          "endpoint": "analyze",
+          "input": "test-data/normal_metabolizer_control.vcf",
+          "input_sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+          "status": 200,
+          "seconds": 1.817,
+          "labels": {
+            "clopidogrel": "No PGx-guided adjustment identified"
+          },
+          "error_code": null
+        }
+      ],
+      "checks": {
+        "startup_healthy": true,
+        "large_coverage_200": true,
+        "real_incomplete_unknown": true,
+        "synthetic_normal": true,
+        "synthetic_actionable": true,
+        "f4_normal_frozen_scientific_fields": true,
+        "f4_actionable_frozen_scientific_fields": true,
+        "sequential_both_200": true
+      },
+      "container_id": "65e4c4182611c8516197caa04df137023316b3e9bab9581234a2290e78b16ba1",
+      "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+      "final_exit_code": 143,
+      "final_oom_killed": false,
+      "final_status": "exited",
+      "temp_receipt_empty": true
+    },
+    "triple": {
+      "peak_bytes": 515387392,
+      "peak_mib": 491.512,
+      "margin_bytes": 21483520,
+      "events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "rss_jvm_peak_kib": 312660,
+      "rss_python_peak_kib": 192444,
+      "max_sampled_simultaneous_jvms": 1,
+      "status_counts": {
+        "200": 3
+      },
+      "outcomes": [
+        {
+          "case": "p6-triple-0",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 29.871,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-triple-1",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 14.767,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-triple-2",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 45.033,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        }
+      ],
+      "checks": {
+        "count": true,
+        "expected_response_types": true,
+        "successful_analyses_scientifically_unknown": true,
+        "at_most_one_jvm": true
+      },
+      "container_id": "7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d",
+      "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+      "final_exit_code": 143,
+      "final_oom_killed": false,
+      "final_status": "exited",
+      "temp_receipt_empty": true
+    },
+    "burst": {
+      "peak_bytes": 521707520,
+      "peak_mib": 497.539,
+      "margin_bytes": 15163392,
+      "events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "rss_jvm_peak_kib": 312472,
+      "rss_python_peak_kib": 196328,
+      "max_sampled_simultaneous_jvms": 1,
+      "status_counts": {
+        "503": 4,
+        "200": 6
+      },
+      "outcomes": [
+        {
+          "case": "p6-burst-0",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 503,
+          "seconds": 90.073,
+          "labels": {},
+          "error_code": "SERVER_BUSY"
+        },
+        {
+          "case": "p6-burst-1",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 60.01,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-burst-2",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 75.063,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-burst-3",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 29.85,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-burst-4",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 503,
+          "seconds": 90.074,
+          "labels": {},
+          "error_code": "SERVER_BUSY"
+        },
+        {
+          "case": "p6-burst-5",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 44.911,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-burst-6",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 503,
+          "seconds": 90.071,
+          "labels": {},
+          "error_code": "SERVER_BUSY"
+        },
+        {
+          "case": "p6-burst-7",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 90.09,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-burst-8",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 503,
+          "seconds": 90.071,
+          "labels": {},
+          "error_code": "SERVER_BUSY"
+        },
+        {
+          "case": "p6-burst-9",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 14.778,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        }
+      ],
+      "checks": {
+        "count": true,
+        "expected_response_types": true,
+        "successful_analyses_scientifically_unknown": true,
+        "at_most_one_jvm": true
+      },
+      "container_id": "8c85f0a294d11dec1c902ebf34988f11faadef014cacc5e05fd0f3678222a4ce",
+      "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+      "final_exit_code": 143,
+      "final_oom_killed": false,
+      "final_status": "exited",
+      "temp_receipt_empty": true
+    },
+    "mixed": {
+      "peak_bytes": 512688128,
+      "peak_mib": 488.938,
+      "margin_bytes": 24182784,
+      "events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "rss_jvm_peak_kib": 309340,
+      "rss_python_peak_kib": 189176,
+      "max_sampled_simultaneous_jvms": 1,
+      "status_counts": {
+        "200": 10
+      },
+      "outcomes": [
+        {
+          "case": "p6-mixed-0",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 16.016,
+          "labels": {
+            "clopidogrel": "Unknown"
+          },
+          "error_code": null
+        },
+        {
+          "case": "p6-mixed-1",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 0.595,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-2",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 16.39,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-3",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 0.361,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-4",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 16.268,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-5",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 0.229,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-6",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 16.147,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-7",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 0.708,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-8",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 0.482,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        },
+        {
+          "case": "p6-mixed-9",
+          "endpoint": "coverage",
+          "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+          "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+          "status": 200,
+          "seconds": 0.829,
+          "answerable_drugs": [],
+          "genes_passing": 0
+        }
+      ],
+      "checks": {
+        "count": true,
+        "expected_response_types": true,
+        "successful_analyses_scientifically_unknown": true,
+        "at_most_one_jvm": true
+      },
+      "container_id": "70b27060c0aa7d58769b9960f2538783a06757639ff4ad3ebc810441a572c393",
+      "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+      "final_exit_code": 143,
+      "final_oom_killed": false,
+      "final_status": "exited",
+      "temp_receipt_empty": true
+    },
+    "timeout": {
+      "peak_bytes": 98566144,
+      "peak_mib": 94.0,
+      "margin_bytes": 438304768,
+      "events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "rss_jvm_peak_kib": 0,
+      "rss_python_peak_kib": 58456,
+      "max_sampled_simultaneous_jvms": 0,
+      "status_counts": {
+        "503": 1
+      },
+      "outcomes": [
+        {
+          "case": "p6-timeout-f4-normal",
+          "endpoint": "analyze",
+          "input": "audit-output/2026-09-30-f4/NA18526.observed.vcf",
+          "input_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+          "status": 503,
+          "seconds": 0.226,
+          "labels": {},
+          "error_code": "PHARMCAT_UNAVAILABLE"
+        }
+      ],
+      "checks": {
+        "controlled_503": true,
+        "caller_unavailable_code": true
+      },
+      "container_id": "88ce2e59bed52692066897c490329d508dde648b75e9ae5fbb739e7fb4cf1b41",
+      "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+      "final_exit_code": 143,
+      "final_oom_killed": false,
+      "final_status": "exited",
+      "temp_receipt_empty": true
+    }
+  },
+  "rate_exhaust": [
+    {
+      "at": "2026-10-05T12:01:29.141199+00:00",
+      "request_index": 0,
+      "status": 200,
+      "seconds": 0.036,
+      "retry_after": null,
+      "error_code": null,
+      "body": {
+        "genes": [
+          {
+            "gene": "CYP2C19",
+            "positions_found": 35,
+            "positions_required": 35,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "CYP2C9",
+            "positions_found": 88,
+            "positions_required": 88,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "CYP2D6",
+            "positions_found": 0,
+            "positions_required": 157,
+            "threshold_percent": 100,
+            "percent": 0.0,
+            "passes": false,
+            "not_readable_from_vcf": true,
+            "reason": "Defined by copy-number and structural variation, which a VCF cannot express. A different kind of genetic test is needed; no VCF will resolve it."
+          },
+          {
+            "gene": "DPYD",
+            "positions_found": 83,
+            "positions_required": 83,
+            "threshold_percent": 20,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "NUDT15",
+            "positions_found": 20,
+            "positions_required": 20,
+            "threshold_percent": 80,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "SLCO1B1",
+            "positions_found": 35,
+            "positions_required": 35,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "TPMT",
+            "positions_found": 45,
+            "positions_required": 45,
+            "threshold_percent": 80,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          }
+        ],
+        "genes_passing": 6,
+        "genes_total": 7,
+        "answerable_drugs": [
+          "clopidogrel",
+          "fluorouracil",
+          "azathioprine",
+          "simvastatin"
+        ],
+        "unanswerable_drugs": [
+          "warfarin",
+          "codeine"
+        ],
+        "variants_only": false,
+        "warnings": [],
+        "guideline_provenance": {
+          "pharmcat_version": "3.4.0",
+          "cpic_data_version": "",
+          "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+          "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+          "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+        }
+      }
+    },
+    {
+      "at": "2026-10-05T12:01:29.146837+00:00",
+      "request_index": 1,
+      "status": 200,
+      "seconds": 0.006,
+      "retry_after": null,
+      "error_code": null,
+      "body": {
+        "genes": [
+          {
+            "gene": "CYP2C19",
+            "positions_found": 35,
+            "positions_required": 35,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "CYP2C9",
+            "positions_found": 88,
+            "positions_required": 88,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "CYP2D6",
+            "positions_found": 0,
+            "positions_required": 157,
+            "threshold_percent": 100,
+            "percent": 0.0,
+            "passes": false,
+            "not_readable_from_vcf": true,
+            "reason": "Defined by copy-number and structural variation, which a VCF cannot express. A different kind of genetic test is needed; no VCF will resolve it."
+          },
+          {
+            "gene": "DPYD",
+            "positions_found": 83,
+            "positions_required": 83,
+            "threshold_percent": 20,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "NUDT15",
+            "positions_found": 20,
+            "positions_required": 20,
+            "threshold_percent": 80,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "SLCO1B1",
+            "positions_found": 35,
+            "positions_required": 35,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "TPMT",
+            "positions_found": 45,
+            "positions_required": 45,
+            "threshold_percent": 80,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          }
+        ],
+        "genes_passing": 6,
+        "genes_total": 7,
+        "answerable_drugs": [
+          "clopidogrel",
+          "fluorouracil",
+          "azathioprine",
+          "simvastatin"
+        ],
+        "unanswerable_drugs": [
+          "warfarin",
+          "codeine"
+        ],
+        "variants_only": false,
+        "warnings": [],
+        "guideline_provenance": {
+          "pharmcat_version": "3.4.0",
+          "cpic_data_version": "",
+          "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+          "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+          "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+        }
+      }
+    },
+    {
+      "at": "2026-10-05T12:01:29.150830+00:00",
+      "request_index": 2,
+      "status": 429,
+      "seconds": 0.004,
+      "retry_after": "210",
+      "error_code": "RATE_LIMITED",
+      "body": {
+        "detail": "Rate limit reached: 10 upload requests per 5 minutes per client. Please wait 210 seconds and try again. This is a free-tier academic demo, not a production service.",
+        "error_code": "RATE_LIMITED"
+      }
+    }
+  ],
+  "rate_recovery": [
+    {
+      "at": "2026-10-05T12:08:16.753522+00:00",
+      "request_index": 0,
+      "status": 200,
+      "seconds": 0.042,
+      "retry_after": null,
+      "error_code": null,
+      "body": {
+        "genes": [
+          {
+            "gene": "CYP2C19",
+            "positions_found": 35,
+            "positions_required": 35,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "CYP2C9",
+            "positions_found": 88,
+            "positions_required": 88,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "CYP2D6",
+            "positions_found": 0,
+            "positions_required": 157,
+            "threshold_percent": 100,
+            "percent": 0.0,
+            "passes": false,
+            "not_readable_from_vcf": true,
+            "reason": "Defined by copy-number and structural variation, which a VCF cannot express. A different kind of genetic test is needed; no VCF will resolve it."
+          },
+          {
+            "gene": "DPYD",
+            "positions_found": 83,
+            "positions_required": 83,
+            "threshold_percent": 20,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "NUDT15",
+            "positions_found": 20,
+            "positions_required": 20,
+            "threshold_percent": 80,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "SLCO1B1",
+            "positions_found": 35,
+            "positions_required": 35,
+            "threshold_percent": 100,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          },
+          {
+            "gene": "TPMT",
+            "positions_found": 45,
+            "positions_required": 45,
+            "threshold_percent": 80,
+            "percent": 100.0,
+            "passes": true,
+            "not_readable_from_vcf": false,
+            "reason": ""
+          }
+        ],
+        "genes_passing": 6,
+        "genes_total": 7,
+        "answerable_drugs": [
+          "clopidogrel",
+          "fluorouracil",
+          "azathioprine",
+          "simvastatin"
+        ],
+        "unanswerable_drugs": [
+          "warfarin",
+          "codeine"
+        ],
+        "variants_only": false,
+        "warnings": [],
+        "guideline_provenance": {
+          "pharmcat_version": "3.4.0",
+          "cpic_data_version": "",
+          "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+          "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+          "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+        }
+      }
+    }
+  ],
+  "cancellation": {
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "-i",
+      "pgx-p6-mixed-20261005",
+      "python3",
+      "-"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"cancelled\": true, \"observed_java_pids\": [881], \"java_after\": [], \"temp_before\": [], \"temp_after\": []}\n",
+    "stderr": ""
+  },
+  "owned_containers_removed": true,
+  "isolated_vm_stopped": true
+}

@@ -1,0 +1,28 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container flt-semantic-node-57
+			3 container flt-semantic-node-83
+				4 button Back, ID: flt-semantic-node-84
+				5 heading Analysis results, Value: 2, ID: flt-semantic-node-85
+					6 text Analysis results
+				7 button Copy JSON, ID: flt-semantic-node-86
+				8 button Export JSON, ID: flt-semantic-node-87
+			9 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			10 container flt-semantic-node-82
+				11 button (collapsed) ID: flt-semantic-node-61, Secondary Actions: Expand, NA12878 2026-10-02T10:36:37Z VCF accepted 3 variants 1787 ms 15 pipeline warnings No PGx-guided change Adjust Dosage Toxic Ineffective Unknown
+				12 container ID: flt-semantic-node-63, Description: DRUGS CHECKED (3) — MOST SERIOUS FIRST Reading view. Both views show the same result; they differ only in what is shown first.
+					13 button For a patient. Plain language first., ID: flt-semantic-node-64
+					14 button For a clinician. Genotype and guideline first., ID: flt-semantic-node-65
+				15 button (collapsed) Input coverage. 1 of 7 genes have enough positions to call, ID: flt-semantic-node-68, Secondary Actions: Expand
+				16 container flt-semantic-node-69
+					17 button (collapsed) clopidogrel: Ineffective, ID: flt-semantic-node-70, Secondary Actions: Expand
+					18 button (collapsed) codeine: Unknown, ID: flt-semantic-node-71, Secondary Actions: Expand
+					19 button (collapsed) warfarin: Unknown, ID: flt-semantic-node-72, Secondary Actions: Expand
+				20 container flt-semantic-node-74
+					21 button Copy JSON, ID: flt-semantic-node-75
+					22 button Export JSON, ID: flt-semantic-node-76
+				23 button Printable summary, ID: flt-semantic-node-79
+				24 button ID: flt-semantic-node-81, Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes. PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 · explanations 24 Jul 2026
+
+The focused UI element is 4 button Back, ID: flt-semantic-node-84

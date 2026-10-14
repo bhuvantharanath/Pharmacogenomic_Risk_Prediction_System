@@ -64,9 +64,9 @@ client that points at the old hostname until someone rebuilds.
 
 | variable | value | why |
 | --- | --- | --- |
-| `JAVA_TOOL_OPTIONS` | `-Xmx256m -XX:MaxMetaspaceSize=80m` | The JVM's default max heap comes from HOST RAM — 727 MB measured on a 16 GB laptop, instant death on a 512 MB instance. PharmCAT OOMs at 160m, survives from 176m; 256m keeps 80 MB of margin and measured *lower* in-container than 192m (252.8 vs 289.2 MiB) because a bigger heap means less GC pressure. |
-| `MAX_CONCURRENT_PHARMCAT` | `1` | Each in-flight `/analyze` spawns its own JVM. Same image, same hard 512 MB limit, 3 concurrent requests: at `1`, 252.8 MiB and survives; at `3`, **OOMKilled=true** and two requests lost. |
-| `PHARMCAT_QUEUE_TIMEOUT_SECONDS` | `25` | Bounded wait. An unbounded one is indistinguishable from a hang at the client. Analyses take ~2.6 s in-container. |
+| `JAVA_TOOL_OPTIONS` | `-Xmx208m -XX:MaxMetaspaceSize=68m` | Bounded JVM memory in the 512 MiB cgroup. The older 256m/80m setting OOM-killed the image under concurrent real-sized uploads; 192m/64m failed the real-sized PharmCAT run, while 224m/72m touched the cgroup ceiling in a ten-request burst. |
+| `MAX_CONCURRENT_PHARMCAT` | `1` | One JVM at a time. A shared `/analyze` and `/coverage` admission gate now queues before multipart parsing and VCF decompression, so waiters do not retain expanded genomic files. |
+| `PHARMCAT_QUEUE_TIMEOUT_SECONDS` | `90` | Bounds both the upload-admission wait and the inner JVM wait. It does not impose a fixed queue length. |
 | `CORS_ALLOWED_ORIGINS` | `https://pharmaguard-web.pages.dev` | Empty + hosting markers = refuses to start, on purpose. |
 | `EXPLANATION_MODE` | `static` | No outbound call, no API key. |
 | `STRICT_PHARMCAT` | `1` | A failed deploy is cheaper than a silently broken one. |
@@ -74,12 +74,21 @@ client that points at the old hostname until someone rebuilds.
 **No API key of any kind is set, and none is needed.** The deployed path calls no
 LLM; `requirements-llm.txt` is not installed in the image.
 
+The 2026-10-01 local Linux/arm64 constrained-image run at 208m/68m peaked at
+494.96 MiB for the representative workload. A fresh ten-analysis burst peaked
+at 496.13 MiB: six analyses returned 200, four timed out in the admission
+queue with `SERVER_BUSY`. One analysis plus nine coverage previews all returned
+200 at 454.58 MiB peak. Cgroup `max`, `oom`, and `oom_kill` stayed at zero.
+This is evidence for the local architecture and workload, not a measurement of
+Render's Linux/amd64 host. Reproduce the run from
+`audit-output/2026-09-30-f5/` before deployment.
+
 ### Measured facts worth keeping
 
 | | |
 | --- | --- |
 | Image size | **6.01 GB** uncompressed (base `pgkb/pharmcat:3.4.0` is 5.96 GB; our layers ~45 MB) |
-| Container peak, 3 concurrent, 512 MB limit | **252.8 MiB (49%)** |
+| Historical container peak, older workload | **252.8 MiB** (not representative of the later 2.4 MiB compressed real VCF workload) |
 | Idle | 40.2 MiB |
 | Container cold start (image local) | **1.19 s** to healthy `/health` |
 | **Render cold start after ~15 min idle** | **12.85 s** — much better than the ~1 min assumed; Render keeps the image on the host |
@@ -581,7 +590,7 @@ The single largest demo risk. Three mitigations, in order of importance:
 | Rate limit | 10 analyses / 5 min / client IP, in-memory, returns 429 + `Retry-After` |
 | Headers | `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy` |
 | Secrets | None required. Startup **fails** on a `.env` in the image; warns on an unused key |
-| Data retention | None. Temp dir deleted in a `finally`; asserted by test |
+| Application data handling | No application persistence. Owned child is reaped and its temp/log tree is deleted before the slot is released; host access logs, crash dumps, backups and platform retention are outside this guarantee |
 
 Phases 1–3 allowed any `*.pages.dev` origin by regex. On localhost that is
 harmless; on a public URL it lets an attacker deploy a Pages site and call this
@@ -590,12 +599,16 @@ API from a visitor's browser. Phase 4 names origins explicitly, and
 
 ### Rate limiter honesty
 
-It is in-memory and keyed on `X-Forwarded-For`, which is caller-controlled. That
-is abuse *dampening*, not a security boundary — it stops a casual scraper
-burning the free-tier budget. It resets on container restart, which on a
-scale-to-zero host is often. Real protection needs a shared store and a trusted
-proxy; both are out of scope here, and pretending otherwise would be worse than
-saying so.
+It is in-memory and resets on container restart, which on a scale-to-zero host
+is often. Forwarded identity is ignored unless the direct peer matches
+`TRUSTED_PROXY_CIDRS`; only list proxy networks that guarantee sanitization of
+incoming forwarding headers. With the safe empty default, callers behind one
+proxy share a budget. That is abuse *dampening*, not a security boundary. A
+multi-instance deployment would need a shared store, which remains out of scope.
+
+The ASGI server's forwarded-header trust must match the application allowlist.
+Do not configure either side to trust every address merely to recover per-user
+limits; that restores caller-controlled identity.
 
 ---
 

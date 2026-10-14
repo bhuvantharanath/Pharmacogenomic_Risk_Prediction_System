@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="0.322" timestamp="2026-10-04T09:29:45.958271+05:30" hostname="Bhuvans-MacBook-Air.local"><testcase classname="tests.test_compatible_bundle" name="test_checked_manifest_matches_declared_environment" time="0.176"><failure message="AssertionError: assert {'schema_vers...d file'}, ...} == {'schema_vers...d file'}, ...}&#10;  &#10;  Omitting 10 identical items, use -vv to show&#10;  Differing items:&#10;  {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}} != {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}}&#10;  Use -v to get more diff">def test_checked_manifest_matches_declared_environment() -&gt; None:
+&gt;       assert bundle.build_manifest() == CHECKED
+E       AssertionError: assert {'schema_vers...d file'}, ...} == {'schema_vers...d file'}, ...}
+E         
+E         Omitting 10 identical items, use -vv to show
+E         Differing items:
+E         {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}} != {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}}
+E         Use -v to get more diff
+
+backend/tests/test_compatible_bundle.py:35: AssertionError</failure></testcase><testcase classname="tests.test_portable_scientific_hash" name="test_clean_isolated_copy_passes_bundle_verification" time="0.101"><failure message="AssertionError: [&quot;$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', f...on.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core']&#10;assert False is True">tmp_path = PosixPath('/private/var/folders/86/x_h8qf3s0cl8_mf5m_j028qw0000gn/T/pytest-of-bhuvant/pytest-12/test_clean_isolated_copy_passe0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x109bfa710&gt;
+
+    def test_clean_isolated_copy_passes_bundle_verification(tmp_path: Path, monkeypatch) -&gt; None:
+        root = tmp_path / "clean-copy"
+        required = set(bundle.load_hash_policy()["core_paths"])
+        required.update(
+            {
+                "scripts/scientific_hash_policy.json",
+                "scripts/application_hash_migration.json",
+                "backend/app/data/compatible_bundle.json",
+                "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+                "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz",
+                "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz.csi",
+                "test-data/benchmark/external/protocol.json",
+                "test-data/benchmark/external/benchmark_manifest.json",
+                "test-data/benchmark/external/external_benchmark_results.json",
+                "test-data/benchmark/external/pharmcat_report_manifest.json",
+                "test-data/benchmark/external/sample_gene_truth.tsv",
+                "reports/external_analytical_benchmark.md",
+                "reports/scientific_record_reproduction.json",
+                "backend/requirements.txt",
+                "backend/requirements-dev.txt",
+                ".github/workflows/test.yml",
+            }
+        )
+        for relative in sorted(required):
+            _copy_file(root, relative)
+        assert not (root / "backend/app/.DS_Store").exists()
+        monkeypatch.setattr(bundle, "REPO_ROOT", root)
+        monkeypatch.setattr(bundle, "MANIFEST_PATH", root / "backend/app/data/compatible_bundle.json")
+        monkeypatch.setattr(bundle, "JAR_PATH", root / "test-data/reference/tools/pharmcat-3.4.0-all.jar")
+    
+        result = bundle.verify_manifest(root / "backend/app/data/compatible_bundle.json")
+&gt;       assert result["compatible"] is True, result["problems"]
+E       AssertionError: ["$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', f...on.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core']
+E       assert False is True
+
+backend/tests/test_portable_scientific_hash.py:153: AssertionError</failure></testcase></testsuite></testsuites>

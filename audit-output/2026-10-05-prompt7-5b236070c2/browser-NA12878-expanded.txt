@@ -1,0 +1,16 @@
+- button "Back"
+- heading "Analysis results" [level=2]
+- button "Copy JSON" [active]
+- button "Export JSON"
+- generic: Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+- group "DRUGS CHECKED (6) — MOST SERIOUS FIRST Reading view. Both views show the same result; they differ only in what is shown first.":
+  - button "For a patient. Plain language first."
+  - button "For a clinician. Genotype and guideline first."
+- button "Input coverage. 1 of 7 genes have enough positions to call"
+- 'button "clopidogrel: Ineffective" [expanded]'
+- button "The guideline in CPIC's own words"
+- button "What was found in your file"
+- 'button "azathioprine: Unknown" [expanded]'
+- button "position. Definition available."
+- button "reference. Definition available."
+- button "Upload a VCF. Definition available. that reports every position, including the ones that match the reference. A clinical pharmacogenomic panel does this, as does whole-genome or exome data called with all sites emitted. A variants-only file cannot work here."

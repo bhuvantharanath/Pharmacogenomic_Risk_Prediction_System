@@ -1,0 +1,17 @@
+{
+  "intended_file_count": 433,
+  "copied_file_count": 437,
+  "baseline": {
+    "core": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+    "release": "0c1aa418159cc7e4456b058d37cbabf751ff0f2bf9a7050566e798d6e24fa92c"
+  },
+  "junk_ignored": [
+    "backend/app/.DS_Store",
+    "backend/app/main.py~",
+    "backend/app/__pycache__/audit.cpython-311.pyc",
+    "backend/app/local.log",
+    "backend/app/temporary.tmp"
+  ],
+  "restored_exactly": true
+}
+mutations rejected: 6

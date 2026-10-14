@@ -1,0 +1,138 @@
+{
+  "benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "created_at": "2026-09-24T00:00:00+05:30",
+  "protocol_frozen_before_acquisition": true,
+  "protocol_path": "test-data/benchmark/external/protocol.json",
+  "protocol_sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e",
+  "git_revision": "1dc7557da49f38e831b382545044b00a481507b6",
+  "local_production_artifact_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
+  "capability_registry_sha256": "287a319b8ca1fdac9e765d7b6ec7de55ea8ee87cd3d142700be0b7601d2c1704",
+  "pharmcat_version": "3.4.0",
+  "truth": {
+    "url": "https://www.cdc.gov/lab-quality/media/files/2025/08/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "local_path": "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109",
+    "bytes": 162599,
+    "acquired_at": "2026-09-24T13:44:45.247307+00:00",
+    "sheet": "PGx HLA Genotypes",
+    "declared_sample_count": 363
+  },
+  "genomic": {
+    "version": "1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV",
+    "reference_build": "GRCh38",
+    "sample_manifest_path": "test-data/reference/1000G_3202_populations.txt",
+    "sample_manifest_sha256": "4e164b717433fc9bfc16e29b20e5b4659b4216185b3275322d421fe3d323c132",
+    "panel_sample_count_expected": 3202,
+    "slices": [
+      {
+        "chromosome": "chr1",
+        "source_url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr1.filtered.SNV_INDEL_SV_phased_panel.vcf.gz",
+        "regions": "chr1:97078987-97883368",
+        "local_path": "test-data/benchmark/external/genomic/chr1.locked_cohort.vcf.gz",
+        "sha256": "215cd0d88d3cb8cb4edacb60303ad32278cfa1a7d1e10d09d1cdaab420a8642a",
+        "bytes": 2251471,
+        "index_sha256": "3cff6d144bfc46337fbf3d6fd8cea7623b657941ae8516474dd6d5a5b85279d3",
+        "elapsed_seconds": 8.14
+      },
+      {
+        "chromosome": "chr6",
+        "source_url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr6.filtered.SNV_INDEL_SV_phased_panel.vcf.gz",
+        "regions": "chr6:18130687-18149127",
+        "local_path": "test-data/benchmark/external/genomic/chr6.locked_cohort.vcf.gz",
+        "sha256": "2f3bd7706077d8cf328933e625dc965f489b147d5fa706a41ee299427a6a8177",
+        "bytes": 63288,
+        "index_sha256": "6624a3b2928a5221a18f197e374815fd97dc2059dbf269c5af4a3da5c74b2cc0",
+        "elapsed_seconds": 6.79
+      },
+      {
+        "chromosome": "chr10",
+        "source_url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr10.filtered.SNV_INDEL_SV_phased_panel.vcf.gz",
+        "regions": "chr10:94761900-94852914,chr10:94938683-94989023",
+        "local_path": "test-data/benchmark/external/genomic/chr10.locked_cohort.vcf.gz",
+        "sha256": "f01f31d46386e6e1e75c696e5ad0725aacfa45ae2ab8c3b139aee2c564adddaf",
+        "bytes": 539416,
+        "index_sha256": "128745d3c3c3ec5c6b86344082b8f95d3b6722ca4e0eeca89532ec3dc79fbf1f",
+        "elapsed_seconds": 4.74
+      },
+      {
+        "chromosome": "chr12",
+        "source_url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr12.filtered.SNV_INDEL_SV_phased_panel.vcf.gz",
+        "regions": "chr12:21141575-21239158",
+        "local_path": "test-data/benchmark/external/genomic/chr12.locked_cohort.vcf.gz",
+        "sha256": "4443211d8ed4ad042379a785ecef8442cafdd9d68a9014a66252d4310d637de3",
+        "bytes": 369320,
+        "index_sha256": "c6d34aa2fb762f6cfb2936449f358ab4c485d14e6e3699a28ac5b3670e294309",
+        "elapsed_seconds": 6.32
+      },
+      {
+        "chromosome": "chr13",
+        "source_url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr13.filtered.SNV_INDEL_SV_phased_panel.vcf.gz",
+        "regions": "chr13:48037748-48045771",
+        "local_path": "test-data/benchmark/external/genomic/chr13.locked_cohort.vcf.gz",
+        "sha256": "e95b0d398a8eb3816343117c118be48542b67a72566220414839f03c185c7872",
+        "bytes": 27621,
+        "index_sha256": "9fe4cf0bcfac2987662f0bf9b0ccdfa1304a266bbcad8da198a8f64fb1eb174f",
+        "elapsed_seconds": 7.53
+      },
+      {
+        "chromosome": "chr22",
+        "source_url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr22.filtered.SNV_INDEL_SV_phased_panel.vcf.gz",
+        "regions": "chr22:42126578-42130782",
+        "local_path": "test-data/benchmark/external/genomic/chr22.locked_cohort.vcf.gz",
+        "sha256": "b5b0829c7aaf13d558839620c36270d35dc76e926e97a754a4f7fa963b88fdec",
+        "bytes": 31253,
+        "index_sha256": "da5fc46e4f6d31c070ec1fa1399660f4226bf4d2789f6807772e3c46d54c4470",
+        "elapsed_seconds": 3.48
+      }
+    ],
+    "panel_sample_count_observed": 3202,
+    "combined_path": "test-data/benchmark/external/genomic/locked_cohort.vcf.gz",
+    "combined_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+    "combined_bytes": 3266038,
+    "combined_index_sha256": "e2359937515abef5245e9b93b0a607f2aa5f0a602769c67b912d97964dc375f8",
+    "sample_count": 208,
+    "sample_extraction": "bcftools sample subset only; no genotype rewriting or reference filling"
+  },
+  "locks": {
+    "protocol": "FROZEN",
+    "cohort": "FROZEN",
+    "truth_actionability": "FROZEN_UNAVAILABLE",
+    "performance_evaluated": true,
+    "genomic_evidence": "ACQUIRED_AND_HASHED"
+  },
+  "cohort_lock_path": "test-data/benchmark/external/cohort_lock.json",
+  "cohort_lock_sha256": "88bc2da84b930493bd4db715b627a6b6fc61440969b1aecb2c287ebacecbb5dc",
+  "sample_gene_truth_sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601",
+  "evaluated_at": "2026-09-25T03:43:38.824531+00:00",
+  "outputs": {
+    "test-data/benchmark/external/sample_gene_truth.tsv": {
+      "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601",
+      "bytes": 287825
+    },
+    "test-data/benchmark/external/input_eligibility.tsv": {
+      "sha256": "9fbc9a51bbbb9a57322fc100fbb38ca59fec09a08cb5f57b751183b2d88b82af",
+      "bytes": 466620
+    },
+    "test-data/benchmark/external/exclusions.tsv": {
+      "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200",
+      "bytes": 48960
+    },
+    "test-data/benchmark/external/discrepancies.tsv": {
+      "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47",
+      "bytes": 172478
+    },
+    "test-data/benchmark/external/pharmcat_report_manifest.json": {
+      "sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8",
+      "bytes": 54176
+    },
+    "test-data/benchmark/external/external_benchmark_results.json": {
+      "sha256": "eca017e3a6e05b3db4c2640d86d9b84f1e271d00cb0f035a04fcce773f839ea8",
+      "bytes": 33667
+    },
+    "reports/external_analytical_benchmark.md": {
+      "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9",
+      "bytes": 11481
+    }
+  }
+}

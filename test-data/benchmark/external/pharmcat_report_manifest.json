@@ -1,0 +1,1256 @@
+{
+  "pharmcat_version": "3.4.0",
+  "source_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+  "report_count": 208,
+  "reports": [
+    {
+      "sample_id": "HG00111",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00111.report.json",
+      "sha256": "a0d26838bd8b95c588d6aeda1c3b44414e1b25fa954a737fca4fb1da9ce22580",
+      "bytes": 1251115
+    },
+    {
+      "sample_id": "HG00118",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00118.report.json",
+      "sha256": "e7482e54eceaff023f06e41121b14445560c60200032c96ea5c48ceb036db0a9",
+      "bytes": 1271821
+    },
+    {
+      "sample_id": "HG00122",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00122.report.json",
+      "sha256": "bd9e718bcf4e51f54126ba35fc693af646ee9bc1c9bb65600c76834ebb78ab80",
+      "bytes": 1253895
+    },
+    {
+      "sample_id": "HG00129",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00129.report.json",
+      "sha256": "6cdaee0d3fb7972884e22cf613776a58195931d0c100a71ee57ab34702f321e9",
+      "bytes": 1346849
+    },
+    {
+      "sample_id": "HG00133",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00133.report.json",
+      "sha256": "589ae9cf86c7bd66d254c797ccefbb0b37908fc19d9f38b83c37469f091bcd0f",
+      "bytes": 1315016
+    },
+    {
+      "sample_id": "HG00139",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00139.report.json",
+      "sha256": "4b73ca6ab1b03fa16799b2d67f54d7d74eef59be19d1b51ba09bb56aab4385c3",
+      "bytes": 1281387
+    },
+    {
+      "sample_id": "HG00185",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00185.report.json",
+      "sha256": "a4c6d25bc25458f1a9de1a32d14d60f6b5d81f8cbac496ea661c5a6db73cac35",
+      "bytes": 1481045
+    },
+    {
+      "sample_id": "HG00276",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00276.report.json",
+      "sha256": "8ebf708ca3a47e2e041cead2481b9e59801eb11b7d50805730bb19a9a092eee0",
+      "bytes": 1367599
+    },
+    {
+      "sample_id": "HG00277",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00277.report.json",
+      "sha256": "7a6a32f959c33e52bca0ab850eeb5ade8146a8651f7d2a1bd82fd62cefeb3915",
+      "bytes": 1368605
+    },
+    {
+      "sample_id": "HG00304",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00304.report.json",
+      "sha256": "03a0515973e7a291fb1d7f5785efa0fbc80f83b611b798b06f92e4854c7e644f",
+      "bytes": 1421319
+    },
+    {
+      "sample_id": "HG00315",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00315.report.json",
+      "sha256": "9552c68bc7d11e64685f8cbb152883fc1690d3c25fd32cd7dd2fda60a2390227",
+      "bytes": 1362654
+    },
+    {
+      "sample_id": "HG00325",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00325.report.json",
+      "sha256": "1e971c7e2ec350278ae7ef84bdd2ace8c7d24c8ff307e3ffe6382221556a71cc",
+      "bytes": 1278848
+    },
+    {
+      "sample_id": "HG00332",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00332.report.json",
+      "sha256": "d89edbf36d6e8282ad2a66ffd25608e34b746a3bf4721d3743abb81dd7b6aaa6",
+      "bytes": 1404080
+    },
+    {
+      "sample_id": "HG00334",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00334.report.json",
+      "sha256": "1200fe2ed4745978ddf04e135e1bfecd8dc7aeb5149faa9317d3974010397300",
+      "bytes": 1314406
+    },
+    {
+      "sample_id": "HG00337",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00337.report.json",
+      "sha256": "042f9115d93dd05ef175656ad2c83aa309e19ffcbd1888b4e527bf03b88d16ab",
+      "bytes": 1391532
+    },
+    {
+      "sample_id": "HG00368",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00368.report.json",
+      "sha256": "3cadd7a6a8e4dc376a8501282bba5a5de23660cd56da1ea32b9b0ee5306aaa91",
+      "bytes": 1330749
+    },
+    {
+      "sample_id": "HG00373",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00373.report.json",
+      "sha256": "91984afbe6f73e53bddc3ce40209d3f46ba432635791250aec5a3b3433063f07",
+      "bytes": 1319930
+    },
+    {
+      "sample_id": "HG00421",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00421.report.json",
+      "sha256": "eb6dad07128dbcaed74d6933bda89388a80feb5889d7ed249e81d819e76a8dc9",
+      "bytes": 1464568
+    },
+    {
+      "sample_id": "HG00423",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00423.report.json",
+      "sha256": "7dd5dd4baa078859aa68993a31756a36ddbc2e6ac2dca3f494ab8f4772ecbcfd",
+      "bytes": 1490828
+    },
+    {
+      "sample_id": "HG00436",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00436.report.json",
+      "sha256": "f2cb733e1ce3ad5e443f46a35cb489723aefc0edacf85b666e94262c4d26d506",
+      "bytes": 1315070
+    },
+    {
+      "sample_id": "HG00437",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00437.report.json",
+      "sha256": "393c422643d0a3d53feaa3294265cbf742e0a23c63bd1d97f2d8853c683c6a5e",
+      "bytes": 1423737
+    },
+    {
+      "sample_id": "HG00452",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00452.report.json",
+      "sha256": "b40caf0a08e46c0db0d6d7d134422e62603abdc0c2fd38c2d82b90aafda999ca",
+      "bytes": 1345840
+    },
+    {
+      "sample_id": "HG00463",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00463.report.json",
+      "sha256": "7111529872158aa340feb0f421607ea37d18274d593de9fc71d534e23efe7ba6",
+      "bytes": 1323297
+    },
+    {
+      "sample_id": "HG00524",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00524.report.json",
+      "sha256": "52c02cb4c728eada9ad22f80807f295dff7558e4e51d744755bbc93ce64dbc6d",
+      "bytes": 1356691
+    },
+    {
+      "sample_id": "HG00525",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00525.report.json",
+      "sha256": "57f70e5207c4aa6810e9bdc9fe4b11fb7f60f9135ceac353ebb9b0be6ca571ea",
+      "bytes": 1339616
+    },
+    {
+      "sample_id": "HG00537",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00537.report.json",
+      "sha256": "6de68692fb370a9a227b7221cb72e82918e8111fc2818548787c0ccf180b20d8",
+      "bytes": 1347553
+    },
+    {
+      "sample_id": "HG00538",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00538.report.json",
+      "sha256": "0b3c7d9c4dfb7dc94d02fe37c4c75579baf41a1a25485d9c2d9f9c6560a77d8e",
+      "bytes": 1347261
+    },
+    {
+      "sample_id": "HG00589",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00589.report.json",
+      "sha256": "50b472a100940ec67dcb919e91ed31bfce71ee1a2656eea8bc0dc7f841314a65",
+      "bytes": 1330472
+    },
+    {
+      "sample_id": "HG00599",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00599.report.json",
+      "sha256": "cd53f4fa75ab23e7202e559262a57bdd448a430aa4e8d82355be75b4ec2a786a",
+      "bytes": 1311434
+    },
+    {
+      "sample_id": "HG00613",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00613.report.json",
+      "sha256": "4f2238620a592b2df33bab53b3ce89662c1d58b5fcf24b2a697648f98dbf49ce",
+      "bytes": 1337179
+    },
+    {
+      "sample_id": "HG00704",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00704.report.json",
+      "sha256": "b856c4472936220bab7fef73e6e9bfd5a8905b866f6875d2627575f30b94c529",
+      "bytes": 1346254
+    },
+    {
+      "sample_id": "HG00734",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG00734.report.json",
+      "sha256": "e3e63c22bde2283d4162288d7f8977b8ea8c635c267806964ecd9f4a81cf8f7f",
+      "bytes": 1278314
+    },
+    {
+      "sample_id": "HG01083",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01083.report.json",
+      "sha256": "0b470b9b1b4556d189d6fb9a4653a119b6e60190ef0f8c6c20d93d04796a8127",
+      "bytes": 1310527
+    },
+    {
+      "sample_id": "HG01086",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01086.report.json",
+      "sha256": "a8f7b0055e0d066c1b2539aa29324769fdcb75a7c8589c3bd55627190cb00d6b",
+      "bytes": 1365124
+    },
+    {
+      "sample_id": "HG01094",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01094.report.json",
+      "sha256": "7049bef42db2297dc8045adcaa014330c422dc9de34cadcad6f9cec63d7c1353",
+      "bytes": 1307627
+    },
+    {
+      "sample_id": "HG01108",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01108.report.json",
+      "sha256": "76de3f22e209a521f01f03cc4986175855e23a6ae0f8fc6c9711f9750a43fd59",
+      "bytes": 1280546
+    },
+    {
+      "sample_id": "HG01190",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01190.report.json",
+      "sha256": "ba2bda1b98eae3877dd1f87d9465779d0c9ab0c608f24004ba16a14a16136c63",
+      "bytes": 1309651
+    },
+    {
+      "sample_id": "HG01253",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01253.report.json",
+      "sha256": "e41b233c6919a13f0c064674e4b3fe8b4f7543f96d7647467cdb8f36b7b2d601",
+      "bytes": 1295246
+    },
+    {
+      "sample_id": "HG01269",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01269.report.json",
+      "sha256": "756d5b51e8e703a65899b0fcf88211d2ebed5f806d860bd7d00b9cc2b98d17d4",
+      "bytes": 1251551
+    },
+    {
+      "sample_id": "HG01275",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01275.report.json",
+      "sha256": "6d205fe6ae8995953311ba93f6fed63e11aa14fb5b1e2b084101ead57ebe2698",
+      "bytes": 1340947
+    },
+    {
+      "sample_id": "HG01350",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01350.report.json",
+      "sha256": "f6aa82ea0884d217d1b50d9a4ce7e23c8d53403af0f4ddd0c5422f5f6e60720b",
+      "bytes": 1347050
+    },
+    {
+      "sample_id": "HG01359",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01359.report.json",
+      "sha256": "f873e9142c94a1843c6bdfc58b47df89100118858f6c60687662b13545b71e67",
+      "bytes": 1414178
+    },
+    {
+      "sample_id": "HG01374",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01374.report.json",
+      "sha256": "efecd3fabcb3520e789791181c75630fe1d03b35ef0a02073712aca5c60272cc",
+      "bytes": 1249121
+    },
+    {
+      "sample_id": "HG01456",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01456.report.json",
+      "sha256": "616f90f2a6c3f91c98b692df642b864e2ff20a0e392208705b5cece2dfc6411a",
+      "bytes": 1251826
+    },
+    {
+      "sample_id": "HG01465",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01465.report.json",
+      "sha256": "0510ff21392d9149e58dfcf31e4bc2282f30de6cdccca6a4f8bb39832402b6a7",
+      "bytes": 1416748
+    },
+    {
+      "sample_id": "HG01474",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01474.report.json",
+      "sha256": "5e695232c9a4a1800b36da7a7ce63a99073dd5cfa5c9f8a64fe83b9d2a74d95d",
+      "bytes": 1393585
+    },
+    {
+      "sample_id": "HG01631",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01631.report.json",
+      "sha256": "36f20b33459d7e4f10c575bbf90a647eaabd07781a2bdb0ad63875a758642c0e",
+      "bytes": 1253895
+    },
+    {
+      "sample_id": "HG01680",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01680.report.json",
+      "sha256": "a363da9d9dc1ed5da9321fe045d6f3f0622598b8bd10fa9ea24d19601c0fe1e8",
+      "bytes": 1335403
+    },
+    {
+      "sample_id": "HG01697",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01697.report.json",
+      "sha256": "2cec066e7acb4cb5187af29dc685a0deea31b6f2953643071ddf7f6baa81325b",
+      "bytes": 1259426
+    },
+    {
+      "sample_id": "HG01809",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01809.report.json",
+      "sha256": "5ce84abf43bcecc03f26f7b7ca7f999e6dd0ec58f7821b8f7146f15113039001",
+      "bytes": 1392379
+    },
+    {
+      "sample_id": "HG01816",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01816.report.json",
+      "sha256": "c38f63e7733810306b4e531547cddcee2b1bd3912525396e36a345343460f013",
+      "bytes": 1395799
+    },
+    {
+      "sample_id": "HG01865",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG01865.report.json",
+      "sha256": "b0c0136a82331a7db5d746ffdfa29dd0089db8c0f9886af1830a6608cc4c4b63",
+      "bytes": 1344236
+    },
+    {
+      "sample_id": "HG02029",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02029.report.json",
+      "sha256": "d7420c934cc62ff54450b1e9317c466e328b2bb4fd7427d1109280e352ae0cee",
+      "bytes": 1328093
+    },
+    {
+      "sample_id": "HG02054",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02054.report.json",
+      "sha256": "5229197c5a0d191c7ba80baa1bcb4fdc81f799957dba6ca536577e6a47ea36f2",
+      "bytes": 1387615
+    },
+    {
+      "sample_id": "HG02087",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02087.report.json",
+      "sha256": "d896bcbc1c1bcbfe6b668df6d358216cda69abb366bc54c411df9de529511b8f",
+      "bytes": 1344807
+    },
+    {
+      "sample_id": "HG02134",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02134.report.json",
+      "sha256": "e53b74c05cad82851eb31bb3bf174170b024a42d079b650f5cb07e6b64d18406",
+      "bytes": 1454498
+    },
+    {
+      "sample_id": "HG02146",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02146.report.json",
+      "sha256": "d89c1e09fdfe0ad36479393da809dad680402584b370bd7cd317cd136d08c3ac",
+      "bytes": 1287761
+    },
+    {
+      "sample_id": "HG02373",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02373.report.json",
+      "sha256": "f8cd58c4481e12b58553fd286713f33363ec4bf3a3905a0af083ac8fbe80a96b",
+      "bytes": 1344265
+    },
+    {
+      "sample_id": "HG02496",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02496.report.json",
+      "sha256": "63a756fcd1836f805b5c2e7226184f8316b12bb39c864f32684e04c5f9fa30ae",
+      "bytes": 1315021
+    },
+    {
+      "sample_id": "HG02645",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02645.report.json",
+      "sha256": "8192d9f3c359616f16b9a7da9e836c9873b07b76fcd10838c33b187856d2171a",
+      "bytes": 1297993
+    },
+    {
+      "sample_id": "HG02772",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02772.report.json",
+      "sha256": "338961a23ace0a15da35149758ad1aa32a50373cb50928bb5384581adac548a2",
+      "bytes": 1395596
+    },
+    {
+      "sample_id": "HG02852",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02852.report.json",
+      "sha256": "f34fa53359f19928de855df2fd5585db79a4f001463be7a8046f1a67c95c5106",
+      "bytes": 1425530
+    },
+    {
+      "sample_id": "HG02861",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02861.report.json",
+      "sha256": "29f15305eb58503ae707d784068038e82d2521a75e4639f1ee85eb3a04f6986e",
+      "bytes": 1425578
+    },
+    {
+      "sample_id": "HG02952",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG02952.report.json",
+      "sha256": "1fd6591ec08b3b5f312266373982467bb65f3c206a486d221dc5faa159b6ad32",
+      "bytes": 1285204
+    },
+    {
+      "sample_id": "HG03115",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03115.report.json",
+      "sha256": "f53e2af675cdfc4ae929fcf54aefb88df85e8903fdeeb7f3b10bd637c078bffa",
+      "bytes": 1289223
+    },
+    {
+      "sample_id": "HG03159",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03159.report.json",
+      "sha256": "46d4c1d509e72919aabe90b80ab7630f61c8cd6c4b1211d60036b4a7d92ed439",
+      "bytes": 1373532
+    },
+    {
+      "sample_id": "HG03225",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03225.report.json",
+      "sha256": "f82d258f65e04b7a0f6a7f6a51406d7ef98da1cc480de81276dc680a199f65ca",
+      "bytes": 1253808
+    },
+    {
+      "sample_id": "HG03246",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03246.report.json",
+      "sha256": "f7e293e53f0d1116991a9ff20d3f0379d976e56bc84805a6065cda7ceef93169",
+      "bytes": 1258690
+    },
+    {
+      "sample_id": "HG03259",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03259.report.json",
+      "sha256": "b7fa3d1ab7a22bbce400283af11c4754b554eec7e4fd13bb29c763826afe2a8f",
+      "bytes": 1328645
+    },
+    {
+      "sample_id": "HG03370",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03370.report.json",
+      "sha256": "25a6d988e42502ee5a5b8bce19b84ab12f91c9999736ddaa8f46a8aab48260b2",
+      "bytes": 1395945
+    },
+    {
+      "sample_id": "HG03521",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03521.report.json",
+      "sha256": "e2113953d59ba8a6edde03a8d1b7caea489174b643d04018488a2cd4ce849a8d",
+      "bytes": 1315966
+    },
+    {
+      "sample_id": "HG03619",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03619.report.json",
+      "sha256": "8002272066599db2b15494fe1cad3f8de3455bd775c831b0a950df8e430799ca",
+      "bytes": 1348898
+    },
+    {
+      "sample_id": "HG03643",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03643.report.json",
+      "sha256": "1b9d5359ecae92ad036f7d8eb8b206425f4b2046f7909a842952569172a79c60",
+      "bytes": 1287301
+    },
+    {
+      "sample_id": "HG03645",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03645.report.json",
+      "sha256": "991d523632cd59638e8cd9d73c0b7ecf0e8833703b2c6060a2e935fb61398934",
+      "bytes": 1361299
+    },
+    {
+      "sample_id": "HG03649",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03649.report.json",
+      "sha256": "2886c24d35602bedf481ac2259586a273a3d99aa1da7c691bfc6bc7c73a8cd33",
+      "bytes": 1224872
+    },
+    {
+      "sample_id": "HG03703",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03703.report.json",
+      "sha256": "197a2676bd92e4c32b6c9149533145c368fa7aca5bef78a380a2d1d1342719fa",
+      "bytes": 1257582
+    },
+    {
+      "sample_id": "HG03716",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03716.report.json",
+      "sha256": "e545f3e141f00c64a8fc1cebef9732a26a8d76f8f33f608fbb283fd7701eb2ac",
+      "bytes": 1460036
+    },
+    {
+      "sample_id": "HG03770",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03770.report.json",
+      "sha256": "ba02141c6b5d89c647edade33e9c46ce2f3da52f3935a204139134fa73571599",
+      "bytes": 1344236
+    },
+    {
+      "sample_id": "HG03780",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03780.report.json",
+      "sha256": "a3651987ba595966d32bfebb903d1838b063c06b386c7b0a918136fecd284934",
+      "bytes": 1278648
+    },
+    {
+      "sample_id": "HG03781",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03781.report.json",
+      "sha256": "700aa1ea84133f934ec4e05ecb8873baec52598a2c348f390cff291afd5c584d",
+      "bytes": 1359875
+    },
+    {
+      "sample_id": "HG03787",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03787.report.json",
+      "sha256": "5c8c46f08a8bc3620a72b1b9ca5446288abc04185339d96265ceb3380fb94390",
+      "bytes": 1393633
+    },
+    {
+      "sample_id": "HG03882",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03882.report.json",
+      "sha256": "4b91d84c6bd353a6aceecb98700a36064a58747791e7f320f5f93a7f2dd219f7",
+      "bytes": 1347186
+    },
+    {
+      "sample_id": "HG03885",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG03885.report.json",
+      "sha256": "ed26068a9fcdbeb07f5fef38ad6ea72364730ea26f2a7d6edb4f7da1202f1b78",
+      "bytes": 1393681
+    },
+    {
+      "sample_id": "HG04206",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.HG04206.report.json",
+      "sha256": "89569e6fbd759d7ed97ca6d56fabf70b79105eb99a8e13d20657a47c7179606f",
+      "bytes": 1314747
+    },
+    {
+      "sample_id": "NA06989",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA06989.report.json",
+      "sha256": "03fe0f28db0afeb863b0218f427c6bd01158ee18941e7926e2332162dff11e50",
+      "bytes": 1374124
+    },
+    {
+      "sample_id": "NA06991",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA06991.report.json",
+      "sha256": "fcf4ced65bf463404b8572a9a9a14fe4b2cf12a8bc82162009da8683186279ba",
+      "bytes": 1280622
+    },
+    {
+      "sample_id": "NA06993",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA06993.report.json",
+      "sha256": "8b4030d151a43e77c432dfdb2554966ca20849ad40296de89b1f1e2e5fbe5cc8",
+      "bytes": 1339468
+    },
+    {
+      "sample_id": "NA07000",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07000.report.json",
+      "sha256": "7629dc4b5740d143582a708d694f4a5dd0ae78047310b5bde8418eaf644f23a3",
+      "bytes": 1258519
+    },
+    {
+      "sample_id": "NA07019",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07019.report.json",
+      "sha256": "62d1f667c7647e18a0a4f8c906ec169f751fcb88208459ba67f85ca46b09a719",
+      "bytes": 1252051
+    },
+    {
+      "sample_id": "NA07029",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07029.report.json",
+      "sha256": "622946edb2e71bcf3ba40619dbd9b4344f9f923776bd4747467be76f2af1cd8d",
+      "bytes": 1360115
+    },
+    {
+      "sample_id": "NA07048",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07048.report.json",
+      "sha256": "63ed2c149991e176335a087ca40c018b8bcab4b991a9a1c6612508e9b3413a2e",
+      "bytes": 1268892
+    },
+    {
+      "sample_id": "NA07055",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07055.report.json",
+      "sha256": "2dfd8593a8ff7ab672ecba6c3ca099b80e8428876e6836b2121d4d787fc52554",
+      "bytes": 1269244
+    },
+    {
+      "sample_id": "NA07056",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07056.report.json",
+      "sha256": "48326be11886c936c8019bb147e86023b0a500d03e6d6b9ca951ad38fd66b955",
+      "bytes": 1249982
+    },
+    {
+      "sample_id": "NA07348",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07348.report.json",
+      "sha256": "40115e6649cb9aa5d12fdbcaeae652c6656c9eaae495eab4dc0f7d88df89c529",
+      "bytes": 1283116
+    },
+    {
+      "sample_id": "NA07357",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA07357.report.json",
+      "sha256": "232df9dab08ba055cf115b4972400d442185e9367f06f2ff1c6b81c24a50d46a",
+      "bytes": 1289873
+    },
+    {
+      "sample_id": "NA10831",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10831.report.json",
+      "sha256": "e114d89f48df415edc5cb467f6e993d31c7d583ce3615d3a1e6e67b292c09b3d",
+      "bytes": 1336128
+    },
+    {
+      "sample_id": "NA10838",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10838.report.json",
+      "sha256": "20eca3eb1de4e79141ca8fabae8e2459126357a37296f1d3ac180557e852175d",
+      "bytes": 1249982
+    },
+    {
+      "sample_id": "NA10846",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10846.report.json",
+      "sha256": "f9723d48c34be96bbd6dbc767a06a15a8dd6e6ac5ff71dcf14af3c0ae314b375",
+      "bytes": 1254528
+    },
+    {
+      "sample_id": "NA10847",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10847.report.json",
+      "sha256": "2e5fb5232ddb09267c4666f8fbf0bf245af6bd867ada200e87ab2f58006f1e06",
+      "bytes": 1266493
+    },
+    {
+      "sample_id": "NA10851",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10851.report.json",
+      "sha256": "2b1bc1fe0e8205576dede1c20a041968224992d27ed10709bf421da4ecc0003f",
+      "bytes": 1255001
+    },
+    {
+      "sample_id": "NA10854",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10854.report.json",
+      "sha256": "6870587523a91cba9954f780e12c8039ab1a88e9f567efbf0ee80d12260d59fd",
+      "bytes": 1412872
+    },
+    {
+      "sample_id": "NA10855",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10855.report.json",
+      "sha256": "0d6c78b40fae87b8293cb85a31abbc93529af1bf108c48e3819563ddb0889e47",
+      "bytes": 1525787
+    },
+    {
+      "sample_id": "NA10856",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10856.report.json",
+      "sha256": "8c4694daffa44ae6d3fb53cfce12c93eef912470a0ee94983735fdf8277cca66",
+      "bytes": 1362092
+    },
+    {
+      "sample_id": "NA10859",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10859.report.json",
+      "sha256": "b89d9f4f3a702c4b9ba537c18f7f1ed6acf93bc60ca4f8f932c0c5ebe72c5ebc",
+      "bytes": 1260507
+    },
+    {
+      "sample_id": "NA10860",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10860.report.json",
+      "sha256": "e1c07c24e9a254877d41a0c89e80bbf455a60fd79aa944b60244cfc9983adad9",
+      "bytes": 1260062
+    },
+    {
+      "sample_id": "NA10865",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA10865.report.json",
+      "sha256": "0a1569994030c874d8f50833c5842c969b0a41685db96e7b0dc63bd073fc511f",
+      "bytes": 1360659
+    },
+    {
+      "sample_id": "NA11832",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA11832.report.json",
+      "sha256": "0d7f3d8c9db25160307076892a3614e56cff19f36f27293c06627eae74f9dcd7",
+      "bytes": 1412773
+    },
+    {
+      "sample_id": "NA11839",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA11839.report.json",
+      "sha256": "58be2eac3a3011223bedf994820b0f7d2315d82781ef4d8815c97664541adcea",
+      "bytes": 1577602
+    },
+    {
+      "sample_id": "NA11881",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA11881.report.json",
+      "sha256": "cce202b3028a6eec5f2df9f23195c7364078503916ba1ac70f37ac4382a3f91a",
+      "bytes": 1260062
+    },
+    {
+      "sample_id": "NA11993",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA11993.report.json",
+      "sha256": "23830c8aceac83e952fba8b27209e410dbdd1c9bec3e271c32518b802dc917c4",
+      "bytes": 1258294
+    },
+    {
+      "sample_id": "NA12003",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12003.report.json",
+      "sha256": "21833a5ce7a65064abff66e6ae7e77e400fcb700732e551e609637427fb7d0ce",
+      "bytes": 1337835
+    },
+    {
+      "sample_id": "NA12006",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12006.report.json",
+      "sha256": "aa0173ead8b42d54dfe38f24004c230ab89dbdd5d45d57cf426dea21df056d27",
+      "bytes": 1315070
+    },
+    {
+      "sample_id": "NA12044",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12044.report.json",
+      "sha256": "bafb81e6ebb74b5abee8176ea18c50083054af6ba20e89df81edd0dc5a88ea7c",
+      "bytes": 1292012
+    },
+    {
+      "sample_id": "NA12145",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12145.report.json",
+      "sha256": "394b1f3d52d24967ca102e02928d8c061d25b37bb036d702db6efab292ec443c",
+      "bytes": 1280644
+    },
+    {
+      "sample_id": "NA12154",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12154.report.json",
+      "sha256": "833bba0ff64ddc33a4375259ae5f65e59f8c65edbb719013791966692acf01c5",
+      "bytes": 1252051
+    },
+    {
+      "sample_id": "NA12156",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12156.report.json",
+      "sha256": "473dc9ae6c7466c26d726336e08ca8970d34dc27fd5de11be884b22192dbab54",
+      "bytes": 1372153
+    },
+    {
+      "sample_id": "NA12236",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12236.report.json",
+      "sha256": "68d5571b0a0371759fa1d5216742de98f788716e0c093abc0a52b162d8dad252",
+      "bytes": 1252002
+    },
+    {
+      "sample_id": "NA12248",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12248.report.json",
+      "sha256": "27c4bc45d8da0a4b93036f144cea371fa20744fcaf184563fac9d404837c3df8",
+      "bytes": 1378572
+    },
+    {
+      "sample_id": "NA12273",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12273.report.json",
+      "sha256": "1515e27aa4b13c0629c66f1fde1847bacb21b512910b18613fb750c279a4a4d3",
+      "bytes": 1359915
+    },
+    {
+      "sample_id": "NA12336",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12336.report.json",
+      "sha256": "6646de2d1cefebb030c5e66da88fc3f355f346ee0ceacc3a26b0fc4c13a0f341",
+      "bytes": 1260532
+    },
+    {
+      "sample_id": "NA12717",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12717.report.json",
+      "sha256": "dbb6fdf079bea80988299016fd9f6e2a6e70a6bd2a93e93815dad3347c8641cf",
+      "bytes": 1326249
+    },
+    {
+      "sample_id": "NA12751",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12751.report.json",
+      "sha256": "00c7e2a389e2cb43c20efcd4b12b21c4b5004a05f4efe1b82674542cc72351fd",
+      "bytes": 1280644
+    },
+    {
+      "sample_id": "NA12753",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12753.report.json",
+      "sha256": "ab6cd701980680532f776a7cd91630c2381af64079c347c597b9d7b2b65cfeef",
+      "bytes": 1308435
+    },
+    {
+      "sample_id": "NA12813",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12813.report.json",
+      "sha256": "c867f1e1f26a4b6f6cf3965c9f0ac3374e2093fc20390cd9767d6e301abbc110",
+      "bytes": 1386313
+    },
+    {
+      "sample_id": "NA12815",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12815.report.json",
+      "sha256": "b49eb6fa38b70bea7ad5d02b30a1f2a4391862279d096bdac16e76d1362fc6e5",
+      "bytes": 1310721
+    },
+    {
+      "sample_id": "NA12873",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12873.report.json",
+      "sha256": "d660dc9c2b74a4f722896ca2f4d59cc3607c60779cdc83966c4a3ef5d6d0e49f",
+      "bytes": 1251551
+    },
+    {
+      "sample_id": "NA12878",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12878.report.json",
+      "sha256": "8ba7cce7edae4c4a24adf32766330357c38db24a20967d4aea50806b269e99c0",
+      "bytes": 1368634
+    },
+    {
+      "sample_id": "NA12892",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA12892.report.json",
+      "sha256": "802390e9b978c6dc8da5b25e6da9d6ce99d0842b215a6bcdb13b08d3be7574a2",
+      "bytes": 1339679
+    },
+    {
+      "sample_id": "NA18484",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18484.report.json",
+      "sha256": "39e955a2a3c049aa256d50d0d15a498ffbecad59aef9de05b2932d1b6488269f",
+      "bytes": 1326548
+    },
+    {
+      "sample_id": "NA18518",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18518.report.json",
+      "sha256": "0b48f07ef21654fbc19190b57c9fddcc426f7eb1ceeecb266cf8047d8ff658fd",
+      "bytes": 1314387
+    },
+    {
+      "sample_id": "NA18519",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18519.report.json",
+      "sha256": "531d74735c6efb98edec810f59b544f0fc1a59c90197eb77fca36379c5eaba82",
+      "bytes": 1403855
+    },
+    {
+      "sample_id": "NA18526",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18526.report.json",
+      "sha256": "3492575649517f9fefde842dbd0c7c81bb10e4503ef6589315e7fbfaea858fcf",
+      "bytes": 1287732
+    },
+    {
+      "sample_id": "NA18544",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18544.report.json",
+      "sha256": "90528d2ebe2fe9f81149be139b24befcff5c7341bdf0b92314f889940b35a80e",
+      "bytes": 1329874
+    },
+    {
+      "sample_id": "NA18545",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18545.report.json",
+      "sha256": "cc938b776d6946c4720bc26927e95117a2cd894ea8099a5ddb2154059b047db1",
+      "bytes": 1343875
+    },
+    {
+      "sample_id": "NA18552",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18552.report.json",
+      "sha256": "e017fa13359223ff71fbd3071a3c6801e9c447690d28b14dd59ad567ad12e70d",
+      "bytes": 1328693
+    },
+    {
+      "sample_id": "NA18561",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18561.report.json",
+      "sha256": "fce45ba9c2ea5d2ae43e69f5949e7fdb5674a63eea28a288276264bdfaea3513",
+      "bytes": 1346080
+    },
+    {
+      "sample_id": "NA18563",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18563.report.json",
+      "sha256": "f0986337d220b1dfd6e1f79987e3bf1e4aece73a89b79c0a1c150f5ab408c4b2",
+      "bytes": 1391869
+    },
+    {
+      "sample_id": "NA18564",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18564.report.json",
+      "sha256": "6e82afd645028729b30a74799e4cd014da278e5e533cd80245eb452030d7a8a6",
+      "bytes": 1396715
+    },
+    {
+      "sample_id": "NA18565",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18565.report.json",
+      "sha256": "ecf2cdcb982e6b60e390ce98c07c63c3e4150dcf7de8ef13c74b5be9e22058b8",
+      "bytes": 1249482
+    },
+    {
+      "sample_id": "NA18572",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18572.report.json",
+      "sha256": "985efcad550435c26d02f9ba2f96acb6399435114fb427a3e6776543d710747a",
+      "bytes": 1316914
+    },
+    {
+      "sample_id": "NA18603",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18603.report.json",
+      "sha256": "1f7933d9b484db9af761cc6980c8b1344042596ad48668ce9cebfb93ab70b87e",
+      "bytes": 1347461
+    },
+    {
+      "sample_id": "NA18617",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18617.report.json",
+      "sha256": "6467e8b7bd004b73dfdf5b77f8c755709fa19595ab2cf72a491c75ff06a81185",
+      "bytes": 1344236
+    },
+    {
+      "sample_id": "NA18632",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18632.report.json",
+      "sha256": "ea05c50367e1cf0b7b638918be37e2c854ea7efeaf1e40b78859b5de519fbbf9",
+      "bytes": 1344236
+    },
+    {
+      "sample_id": "NA18642",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18642.report.json",
+      "sha256": "8a6a255af41aca63dfaae93b4c8ba6cc072ceddfe94fad470e83d6b5462dc284",
+      "bytes": 1417877
+    },
+    {
+      "sample_id": "NA18855",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18855.report.json",
+      "sha256": "639f2bd6f9187a1c0e090e013b7ec64a50255d945999641ee406d60c12371273",
+      "bytes": 1373457
+    },
+    {
+      "sample_id": "NA18861",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18861.report.json",
+      "sha256": "3fc7e5eb5cd1c8a7e9ecd061393f15346ea744255c5b362a55ae23010f039ba1",
+      "bytes": 1250534
+    },
+    {
+      "sample_id": "NA18868",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18868.report.json",
+      "sha256": "d1a6f55d87ca8bd95afdbdbc80289b1385f910c41958560c73ea72fe027777ec",
+      "bytes": 1305858
+    },
+    {
+      "sample_id": "NA18873",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18873.report.json",
+      "sha256": "5f5bbc11de0e443f1f8196bf7d99898b43fb352dfa54f8dcd52832d99072a747",
+      "bytes": 1393813
+    },
+    {
+      "sample_id": "NA18877",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18877.report.json",
+      "sha256": "a14aabcc958bd87eac8e471039c3e5f7e34629ca156f279fb94fc28de288047e",
+      "bytes": 1252347
+    },
+    {
+      "sample_id": "NA18934",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18934.report.json",
+      "sha256": "405da185e697f48a750d71a0ae86e98d051f12cd50459bb208b740328c826254",
+      "bytes": 1274903
+    },
+    {
+      "sample_id": "NA18941",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18941.report.json",
+      "sha256": "ea46d5c771bea86232fc648eef317a34595848f58056d3ce6b9857d5f73dd61e",
+      "bytes": 1393681
+    },
+    {
+      "sample_id": "NA18942",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18942.report.json",
+      "sha256": "3c7fe601d8630a17a96b43c8a35ce2f6abbee4dbace2065733d639deb98cd5cf",
+      "bytes": 1315070
+    },
+    {
+      "sample_id": "NA18945",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18945.report.json",
+      "sha256": "67af0584f712680fa271be466ac4688612259ae4ba2b3a4b7db9f4f1ef28f064",
+      "bytes": 1345484
+    },
+    {
+      "sample_id": "NA18952",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18952.report.json",
+      "sha256": "656c87292a6fcfef334f482c052c31afa4da02ee4a64af2a08c596f0d45665bc",
+      "bytes": 1251039
+    },
+    {
+      "sample_id": "NA18956",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18956.report.json",
+      "sha256": "2483bad05fbe25786dd3aa4cca03c3d99a40090e69d5a08b45820e98539ec623",
+      "bytes": 1249482
+    },
+    {
+      "sample_id": "NA18959",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18959.report.json",
+      "sha256": "65cdf062811663f28000febdc5c3aa4735400d71edcc34a4a0f8f69f0f0f2e0c",
+      "bytes": 1462724
+    },
+    {
+      "sample_id": "NA18966",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18966.report.json",
+      "sha256": "a836d58d07e07be464ad3ec7b6aad1c5234afa6297d601f9f57e71123ebf7c67",
+      "bytes": 1280850
+    },
+    {
+      "sample_id": "NA18973",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18973.report.json",
+      "sha256": "29a2efef2868cbba90155eee0608aeeb224ffb54658ba1abb23b281ef99f1713",
+      "bytes": 1285454
+    },
+    {
+      "sample_id": "NA18978",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18978.report.json",
+      "sha256": "ee5d939bb0a427d007786a504fa91814b46149386ca6dc3ab05dd90ffff90309",
+      "bytes": 1377362
+    },
+    {
+      "sample_id": "NA18980",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18980.report.json",
+      "sha256": "4ec13695fa01ffe1fd0a68c162a3d9560baa6af6660e1da8b6f067d16f7443c0",
+      "bytes": 1285280
+    },
+    {
+      "sample_id": "NA18992",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA18992.report.json",
+      "sha256": "d9fd5db441dce0b0eeb33ea0b135ffd814c90140c784ff1ab5b61ea2fa38bf5f",
+      "bytes": 1289336
+    },
+    {
+      "sample_id": "NA19003",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19003.report.json",
+      "sha256": "b9bda52d1439faafd23daa5f0dfbe30a3d3c3732e797f550047d0720d977c13c",
+      "bytes": 1344236
+    },
+    {
+      "sample_id": "NA19007",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19007.report.json",
+      "sha256": "3b93a8615ff625e2305951211ee19f50e4f036180ed9d68d22c51ce92377db47",
+      "bytes": 1315070
+    },
+    {
+      "sample_id": "NA19026",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19026.report.json",
+      "sha256": "5ce52f8199c84658b50d5b612b389518fdd77f0be57eb8d9b8216832d0264af9",
+      "bytes": 1346043
+    },
+    {
+      "sample_id": "NA19035",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19035.report.json",
+      "sha256": "e9671eb91f3b170d4d58aee1a62eb3d08ae4a69d0a1b03118e9ff6c079291406",
+      "bytes": 1263990
+    },
+    {
+      "sample_id": "NA19075",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19075.report.json",
+      "sha256": "91c4850f0367dc6520ba6a7d58fad14272cdc3b0006782dd56354855fbda23fb",
+      "bytes": 1346382
+    },
+    {
+      "sample_id": "NA19079",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19079.report.json",
+      "sha256": "66034ca38e87cd2967f078be32614cb83a1eddc8bfb7847f2f1dc327c0b885f5",
+      "bytes": 1345260
+    },
+    {
+      "sample_id": "NA19093",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19093.report.json",
+      "sha256": "9092aa8177ae12a67553ea73ab63bd7dc99d424c16e5311cb4064e33e2caa5fb",
+      "bytes": 1307067
+    },
+    {
+      "sample_id": "NA19095",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19095.report.json",
+      "sha256": "2c703f2dc1a675aef494bf319721edd5318a43ceb11c6f9bcc4347f179e5d1df",
+      "bytes": 1284741
+    },
+    {
+      "sample_id": "NA19109",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19109.report.json",
+      "sha256": "8bc3dbdb7cafe4538d9d3056ced7b9c9230c54aff09d62761d230db3e3b21c7d",
+      "bytes": 1308760
+    },
+    {
+      "sample_id": "NA19122",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19122.report.json",
+      "sha256": "6ba5bdc283478668360bf1a30ad80ca92dee46701b098a12ad5e527b71613ccd",
+      "bytes": 1423734
+    },
+    {
+      "sample_id": "NA19143",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19143.report.json",
+      "sha256": "46d8f978da9cedc5416a5a9fe260f533f54610618b025953b0b04fdd6ac74519",
+      "bytes": 1341750
+    },
+    {
+      "sample_id": "NA19147",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19147.report.json",
+      "sha256": "a6d36c0a61b0ca3873384a8ecaf588686e4efea1330224a87837851413cedc2e",
+      "bytes": 1253501
+    },
+    {
+      "sample_id": "NA19160",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19160.report.json",
+      "sha256": "9d2976db0e6d621b2875e4d024c0268c0aafd00584bb105991bf10645380563f",
+      "bytes": 1316686
+    },
+    {
+      "sample_id": "NA19174",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19174.report.json",
+      "sha256": "e42ac52fd1ca6727555c46ec9c1d429b5c6bd2316103ad6d2ec7ea29d4bba746",
+      "bytes": 1277928
+    },
+    {
+      "sample_id": "NA19176",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19176.report.json",
+      "sha256": "eb0cf53e5c82d05cd2570e56883ca06bd1822600957524e7b958c97a38f24f50",
+      "bytes": 1313102
+    },
+    {
+      "sample_id": "NA19207",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19207.report.json",
+      "sha256": "5e87fd9b0ef73c985ff1220118745b1cd8fc33f7c2c3618b6bcdb9168f7ba5c7",
+      "bytes": 1345667
+    },
+    {
+      "sample_id": "NA19213",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19213.report.json",
+      "sha256": "618e8588f045a80b9543faf4378e4cb97a947487943d712672de9a871676b98a",
+      "bytes": 1309865
+    },
+    {
+      "sample_id": "NA19226",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19226.report.json",
+      "sha256": "a2b987a37ebc1901d62be565c1e91848fad76c2e8fb7c576794be852e97222d0",
+      "bytes": 1359080
+    },
+    {
+      "sample_id": "NA19238",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19238.report.json",
+      "sha256": "87f032a854ae626e85938df6e4591a86fbc6d3bd128b1915c0d76a2db695faba",
+      "bytes": 1283176
+    },
+    {
+      "sample_id": "NA19239",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19239.report.json",
+      "sha256": "ae448b4fcbd9b3ff00914b7bb23375ef52a4e742681be89ae5534c105a9e7248",
+      "bytes": 1320174
+    },
+    {
+      "sample_id": "NA19317",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19317.report.json",
+      "sha256": "bcbe84eb912afea401ce696ec0e7891c51c367185ca1b132909d1477850f594f",
+      "bytes": 1222939
+    },
+    {
+      "sample_id": "NA19327",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19327.report.json",
+      "sha256": "906c6cca91f250fcae1b11c25bab1a6a32409aa25cea43db00b6931ac12b3be3",
+      "bytes": 1366355
+    },
+    {
+      "sample_id": "NA19395",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19395.report.json",
+      "sha256": "d66d36d772b59b7b83a35bf10b1304593545fa79f292c0393fa8ff213f0a32c6",
+      "bytes": 1346080
+    },
+    {
+      "sample_id": "NA19466",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19466.report.json",
+      "sha256": "b332c47502af0d83b5e563f282db07e88c42d2f645cbca11740984bd4019d537",
+      "bytes": 1372523
+    },
+    {
+      "sample_id": "NA19700",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19700.report.json",
+      "sha256": "95105e06c29d232cf58ef7848f805d21e6f15ca2db6a1e4129ad869a16d3cd62",
+      "bytes": 1297075
+    },
+    {
+      "sample_id": "NA19711",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19711.report.json",
+      "sha256": "ffc0e439d3b2b726ce1e0048d5fd4fa20c625b5c3185bc827c65d155da7f813a",
+      "bytes": 1284828
+    },
+    {
+      "sample_id": "NA19777",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19777.report.json",
+      "sha256": "ae9796418139d72cc36b114ecd8880c32395a3e6e4dd208dc1eb899016abafa0",
+      "bytes": 1404036
+    },
+    {
+      "sample_id": "NA19785",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19785.report.json",
+      "sha256": "85a115c3bed143b8caf4596de733b0bbbe13942e5b0fffd846807a5219ce298b",
+      "bytes": 1283436
+    },
+    {
+      "sample_id": "NA19789",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19789.report.json",
+      "sha256": "a56fe30ca3896751f0a4e5c4bb1e2c20400fda61ba7a29b8850e8950c33fd5c1",
+      "bytes": 1370972
+    },
+    {
+      "sample_id": "NA19790",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19790.report.json",
+      "sha256": "fa7beea8430f00d0dea1ce46805503fe5396ffc125a47f5b32eed51956303761",
+      "bytes": 1400410
+    },
+    {
+      "sample_id": "NA19819",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19819.report.json",
+      "sha256": "fb4b5392cd20e694789690fd122ec88c2df4873bc41ba46f807de867bcf74e4d",
+      "bytes": 1321380
+    },
+    {
+      "sample_id": "NA19900",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19900.report.json",
+      "sha256": "c1acef540406aee6aa037b15c58586e7d82b618d016d99cc33467b0f5847921f",
+      "bytes": 1348283
+    },
+    {
+      "sample_id": "NA19902",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19902.report.json",
+      "sha256": "f4ed2234b00e4df3cc5c7a9495d1cb9d6889253ba2e46cdebe460bc10e86257f",
+      "bytes": 1277451
+    },
+    {
+      "sample_id": "NA19908",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19908.report.json",
+      "sha256": "34c91ec61011e7b33999397f0e64613fe98eae770e66f3ca487c23b116955ef1",
+      "bytes": 1408037
+    },
+    {
+      "sample_id": "NA19917",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19917.report.json",
+      "sha256": "c680b8be455e155aedc84afcc13111bc2812c00bfd5b2ebfc918c58cd0ef4320",
+      "bytes": 1389278
+    },
+    {
+      "sample_id": "NA19920",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA19920.report.json",
+      "sha256": "52bb188c9453d05ee295ffc2a41b57586e46e77ead3d9feae7d50754141afbfa",
+      "bytes": 1313151
+    },
+    {
+      "sample_id": "NA20289",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20289.report.json",
+      "sha256": "9a38563336794479936c8cee550605b260777405286e830b25a7a8dd2126dac0",
+      "bytes": 1411312
+    },
+    {
+      "sample_id": "NA20296",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20296.report.json",
+      "sha256": "74cadede38f5365a9edef1f426d5d827ea58f0da3db0b81f2a6f61fad6c2825b",
+      "bytes": 1306512
+    },
+    {
+      "sample_id": "NA20362",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20362.report.json",
+      "sha256": "c137799233f3af56a1129494bc537dbabdb649b33c02b2810272092373106ea5",
+      "bytes": 1364478
+    },
+    {
+      "sample_id": "NA20509",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20509.report.json",
+      "sha256": "9ca7fafe94ddf8777c9d88675e2f8cbef84ae7bd31de67866e8f682817aeb612",
+      "bytes": 1335013
+    },
+    {
+      "sample_id": "NA20786",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20786.report.json",
+      "sha256": "758ddc7c0b11fe2229b6b08a45e7332c8d6260b418d436e88bab7fe30cbe1142",
+      "bytes": 1333362
+    },
+    {
+      "sample_id": "NA20803",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20803.report.json",
+      "sha256": "2d560992b1c2f35bd21eab7017bb410a4a100e7244c8f68a86df62ac2d823ee1",
+      "bytes": 1260363
+    },
+    {
+      "sample_id": "NA20813",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20813.report.json",
+      "sha256": "5a4f50783b181721aa3657c7518823b6ff853640456dae2a5729560c9813ba94",
+      "bytes": 1260324
+    },
+    {
+      "sample_id": "NA20875",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20875.report.json",
+      "sha256": "6cbc649c34f1ee729328104d13c82d71f020332e5b4888dc847c96a30324c53a",
+      "bytes": 1299654
+    },
+    {
+      "sample_id": "NA20901",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA20901.report.json",
+      "sha256": "ce7fd973e856cdb2204aecc02d4ec9e254ca4d30e0dd1c7e6c55abeab0b55faa",
+      "bytes": 1303687
+    },
+    {
+      "sample_id": "NA21095",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA21095.report.json",
+      "sha256": "06f509aa039218584d2a59948b8bae528b28135204188fdcca308b20239d61eb",
+      "bytes": 1327805
+    },
+    {
+      "sample_id": "NA21105",
+      "local_cache_path": "test-data/benchmark/external/pharmcat_reports/locked_cohort.NA21105.report.json",
+      "sha256": "18c7dd09297364baa23e964609f77c22dd8ece10b21fb1eee40184afb376c796",
+      "bytes": 1378460
+    }
+  ],
+  "cache_note": "Raw reports are reproducible local benchmark cache files and are excluded from Git; their identities are frozen here."
+}

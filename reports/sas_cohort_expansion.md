@@ -1,5 +1,7 @@
 # South Asian cohort — 75 → 601
 
+> **Historical descriptive frequency analysis.** These are repeated gene observations in 1000 Genomes regional/diaspora samples, not an independent clinical-performance benchmark and not representative population prevalence. Current analytical claims are in `reports/external_analytical_benchmark.md`.
+
 Measured **2026-08-14**. Artifacts: `reports/sas_cohort_expanded.json`,
 `reports/sas_frequencies.json`. Scripts: `scripts/expand_sas_cohort.py`,
 `scripts/sas_frequencies.py`.

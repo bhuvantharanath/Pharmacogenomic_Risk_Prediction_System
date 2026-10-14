@@ -1,0 +1,67 @@
+[
+  {
+    "path": "PREFLIGHT.md",
+    "bytes": 2226,
+    "sha256": "863df2f394bbf458d6bda96d49a2aa2f05737e62b3a386fbf814336a7f18183d"
+  },
+  {
+    "path": "PROMPT-6-INCONCLUSIVE.md",
+    "bytes": 4077,
+    "sha256": "9c287da4a81f7173e82838b9b06626fca4f6ea1f24e9f67f975c43eadb28d2b8"
+  },
+  {
+    "path": "branch.txt",
+    "bytes": 5,
+    "sha256": "6403203dd5a0867eb14d104ee8a73730bd72dd9ad92e78d996a6dba0a5dcfc01"
+  },
+  {
+    "path": "build-context-inventory.json",
+    "bytes": 97390,
+    "sha256": "c8bf078d735e582479771714e8352adbe3863398d89be753e21701c593f9eed6"
+  },
+  {
+    "path": "candidate-preflight.json",
+    "bytes": 145568,
+    "sha256": "c95096d04d32540678e04843d2e80a0b5cc939af2641d967c9b6896f3db5c429"
+  },
+  {
+    "path": "final-preflight-verification.json",
+    "bytes": 194,
+    "sha256": "0d9423042f3f78aa57daf6f0f7a4ba40ec7f221365e3224ede2bfdd618ff77b0"
+  },
+  {
+    "path": "git-diff-start.txt",
+    "bytes": 388056,
+    "sha256": "4fc44c3c697ee68b06420e32375622999ce738b2c3fafb03f88200cc61ce3800"
+  },
+  {
+    "path": "git-staged-final.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "git-staged-start.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "git-status-final.txt",
+    "bytes": 4207,
+    "sha256": "016b4e299ee88abe79483c4abb169b96ed32a7c9e037ff3a4bd27d1da7f5357d"
+  },
+  {
+    "path": "git-status-start.txt",
+    "bytes": 4207,
+    "sha256": "016b4e299ee88abe79483c4abb169b96ed32a7c9e037ff3a4bd27d1da7f5357d"
+  },
+  {
+    "path": "head.txt",
+    "bytes": 41,
+    "sha256": "051ca094661bf614da28ebfde89b87d324b65aaa78a9bbb81b297d154ffd2148"
+  },
+  {
+    "path": "runtime-preflight.json",
+    "bytes": 2949,
+    "sha256": "15fe98beda80333bff75c7d3bd4001d0ed55a9e28898b2394e8466df6b65801a"
+  }
+]

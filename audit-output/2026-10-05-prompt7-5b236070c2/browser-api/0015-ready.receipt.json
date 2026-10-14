@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-06T10:53:01.551488+00:00",
+  "path": "/ready",
+  "method": "GET",
+  "status": 200,
+  "bytes": 520,
+  "sha256": "66dc3dbc3722d6ea08b08e597a20b4fccd2468ae832d56d3fda4e1891621b3e4",
+  "headers": {
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"154\", \"Google Chrome\";v=\"154\", \"Not A(Brand\";v=\"99\"",
+    "origin": "http://127.0.0.1:3000"
+  }
+}

@@ -1,0 +1,1191 @@
+{
+  "benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "generated_at": "2026-10-04T04:02:30.361553+00:00",
+  "cohort_samples": 208,
+  "sample_gene_truth_rows": 1456,
+  "truth_status_counts": {
+    "evaluable": 596,
+    "truth_blank": 816,
+    "truth_nomenclature_not_safely_parseable": 42,
+    "truth_unresolved_or_discordant": 2
+  },
+  "pharmcat_reports": 208,
+  "genes": {
+    "CYP2C19": {
+      "truth_evaluable": 101,
+      "layer_A_upstream": {
+        "exact_diplotype_concordance": {
+          "numerator": 93,
+          "denominator": 101,
+          "proportion": 0.9207920792079208,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.8514289441723368,
+            "upper": 0.9593190266792695
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 94,
+          "denominator": 101,
+          "proportion": 0.9306930693069307,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.8637997214654843,
+            "upper": 0.9660246722296894
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 100,
+          "denominator": 101,
+          "proportion": 0.9900990099009901,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9460328420055449,
+            "upper": 0.9982500887510318
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 101,
+          "denominator": 101,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9633593536001439,
+            "upper": 1.0
+          }
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 101,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03664064639985608
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 93,
+          "denominator": 100,
+          "proportion": 0.93,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.8625048526092651,
+            "upper": 0.9656807389327273
+          }
+        }
+      },
+      "layer_B_application": {
+        "input_eligible": {
+          "numerator": 0,
+          "denominator": 208,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.018133649768460082
+          }
+        },
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 101,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03664064639985608
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 101,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03664064639985608
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 101,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03664064639985608
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 101,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03664064639985608
+          }
+        },
+        "abstention": {
+          "numerator": 101,
+          "denominator": 101,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9633593536001439,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "discrepancy_classification": {
+        "evidence_gate": 101,
+        "upstream_caller_disagreement": 7,
+        "upstream_candidate_ambiguity": 1
+      },
+      "phenotype_concordance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_reassurance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_warning": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "not_estimable_reason": "independent source has no phenotype or drug-context actionability truth"
+    },
+    "CYP2C9": {
+      "truth_evaluable": 100,
+      "layer_A_upstream": {
+        "exact_diplotype_concordance": {
+          "numerator": 79,
+          "denominator": 100,
+          "proportion": 0.79,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.7002003116591013,
+            "upper": 0.858343459380847
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 100,
+          "denominator": 100,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9630065017930143,
+            "upper": 1.0
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 79,
+          "denominator": 100,
+          "proportion": 0.79,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.7002003116591013,
+            "upper": 0.858343459380847
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 100,
+          "denominator": 100,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9630065017930143,
+            "upper": 1.0
+          }
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 100,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03699349820698568
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 79,
+          "denominator": 79,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9536287883460772,
+            "upper": 1.0
+          }
+        }
+      },
+      "layer_B_application": {
+        "input_eligible": {
+          "numerator": 0,
+          "denominator": 208,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.018133649768460082
+          }
+        },
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 100,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03699349820698568
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 100,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03699349820698568
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 100,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03699349820698568
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 100,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03699349820698568
+          }
+        },
+        "abstention": {
+          "numerator": 100,
+          "denominator": 100,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9630065017930143,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "discrepancy_classification": {
+        "evidence_gate": 100,
+        "upstream_candidate_ambiguity": 21
+      },
+      "phenotype_concordance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_reassurance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_warning": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "not_estimable_reason": "independent source has no phenotype or drug-context actionability truth"
+    },
+    "DPYD": {
+      "truth_evaluable": 83,
+      "layer_A_upstream": {
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 83,
+          "denominator": 83,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9557646903580262,
+            "upper": 1.0
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 83,
+          "denominator": 83,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9557646903580262,
+            "upper": 1.0
+          }
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        }
+      },
+      "layer_B_application": {
+        "input_eligible": {
+          "numerator": 0,
+          "denominator": 208,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.018133649768460082
+          }
+        },
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 83,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04423530964197385
+          }
+        },
+        "abstention": {
+          "numerator": 83,
+          "denominator": 83,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9557646903580262,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "discrepancy_classification": {
+        "evidence_gate": 83,
+        "truth_output_nomenclature_mismatch": 83
+      },
+      "phenotype_concordance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_reassurance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_warning": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "not_estimable_reason": "independent source has no phenotype or drug-context actionability truth"
+    },
+    "NUDT15": {
+      "truth_evaluable": 11,
+      "layer_A_upstream": {
+        "exact_diplotype_concordance": {
+          "numerator": 6,
+          "denominator": 11,
+          "proportion": 0.5454545454545454,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.280091537409322,
+            "upper": 0.7872872837754024
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 6,
+          "denominator": 11,
+          "proportion": 0.5454545454545454,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.280091537409322,
+            "upper": 0.7872872837754024
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 11,
+          "denominator": 11,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.7411670330319684,
+            "upper": 1.0
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 11,
+          "denominator": 11,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.7411670330319684,
+            "upper": 1.0
+          }
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 11,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.2588329669680317
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 6,
+          "denominator": 11,
+          "proportion": 0.5454545454545454,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.280091537409322,
+            "upper": 0.7872872837754024
+          }
+        }
+      },
+      "layer_B_application": {
+        "input_eligible": {
+          "numerator": 0,
+          "denominator": 208,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.018133649768460082
+          }
+        },
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 11,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.2588329669680317
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 11,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.2588329669680317
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 11,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.2588329669680317
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 11,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.2588329669680317
+          }
+        },
+        "abstention": {
+          "numerator": 11,
+          "denominator": 11,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.7411670330319684,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "discrepancy_classification": {
+        "evidence_gate": 11,
+        "upstream_caller_disagreement": 5
+      },
+      "phenotype_concordance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_reassurance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_warning": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "not_estimable_reason": "independent source has no phenotype or drug-context actionability truth"
+    },
+    "SLCO1B1": {
+      "truth_evaluable": 87,
+      "layer_A_upstream": {
+        "exact_diplotype_concordance": {
+          "numerator": 29,
+          "denominator": 87,
+          "proportion": 0.3333333333333333,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.24318610255921488,
+            "upper": 0.4375763997554918
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 29,
+          "denominator": 87,
+          "proportion": 0.3333333333333333,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.24318610255921488,
+            "upper": 0.4375763997554918
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 44,
+          "denominator": 87,
+          "proportion": 0.5057471264367817,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.40269096786899555,
+            "upper": 0.6083172217063595
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 87,
+          "denominator": 87,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9577124930558795,
+            "upper": 1.0
+          }
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 87,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04228750694412034
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 29,
+          "denominator": 44,
+          "proportion": 0.6590909090909091,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.5113914121793823,
+            "upper": 0.7812418048065555
+          }
+        }
+      },
+      "layer_B_application": {
+        "input_eligible": {
+          "numerator": 0,
+          "denominator": 208,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.018133649768460082
+          }
+        },
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 87,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04228750694412034
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 87,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04228750694412034
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 87,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04228750694412034
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 87,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.04228750694412034
+          }
+        },
+        "abstention": {
+          "numerator": 87,
+          "denominator": 87,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9577124930558795,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "discrepancy_classification": {
+        "evidence_gate": 87,
+        "truth_output_nomenclature_or_definition_mismatch": 24,
+        "upstream_caller_disagreement": 34
+      },
+      "phenotype_concordance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_reassurance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_warning": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "not_estimable_reason": "independent source has no phenotype or drug-context actionability truth"
+    },
+    "TPMT": {
+      "truth_evaluable": 97,
+      "layer_A_upstream": {
+        "exact_diplotype_concordance": {
+          "numerator": 94,
+          "denominator": 97,
+          "proportion": 0.9690721649484536,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9129799648468901,
+            "upper": 0.9894266550514474
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 94,
+          "denominator": 97,
+          "proportion": 0.9690721649484536,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9129799648468901,
+            "upper": 0.9894266550514474
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 97,
+          "denominator": 97,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9619059574740523,
+            "upper": 1.0
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 97,
+          "denominator": 97,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9619059574740523,
+            "upper": 1.0
+          }
+        },
+        "abstention": {
+          "numerator": 0,
+          "denominator": 97,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03809404252594769
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 94,
+          "denominator": 97,
+          "proportion": 0.9690721649484536,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9129799648468901,
+            "upper": 0.9894266550514474
+          }
+        }
+      },
+      "layer_B_application": {
+        "input_eligible": {
+          "numerator": 0,
+          "denominator": 208,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.018133649768460082
+          }
+        },
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 97,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03809404252594769
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 97,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03809404252594769
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 97,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03809404252594769
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 97,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03809404252594769
+          }
+        },
+        "abstention": {
+          "numerator": 97,
+          "denominator": 97,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9619059574740523,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "discrepancy_classification": {
+        "evidence_gate": 97,
+        "upstream_caller_disagreement": 3
+      },
+      "phenotype_concordance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_reassurance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_warning": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "not_estimable_reason": "independent source has no phenotype or drug-context actionability truth"
+    },
+    "CYP2D6": {
+      "truth_evaluable": 117,
+      "layer_A_upstream": {
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "abstention": {
+          "numerator": 117,
+          "denominator": 117,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9682107543372667,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "layer_B_application": {
+        "input_eligible": {
+          "numerator": 0,
+          "denominator": 208,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.018133649768460082
+          }
+        },
+        "exact_diplotype_concordance": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "candidate_compatible_concordance": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "exact_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "candidate_set_assertion_coverage": {
+          "numerator": 0,
+          "denominator": 117,
+          "proportion": 0.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.0,
+            "upper": 0.03178924566273338
+          }
+        },
+        "abstention": {
+          "numerator": 117,
+          "denominator": 117,
+          "proportion": 1.0,
+          "confidence_interval": {
+            "level": 0.95,
+            "method": "Wilson",
+            "lower": 0.9682107543372667,
+            "upper": 1.0
+          }
+        },
+        "conditional_exact_accuracy": {
+          "numerator": 0,
+          "denominator": 0,
+          "proportion": null,
+          "confidence_interval": null
+        }
+      },
+      "discrepancy_classification": {
+        "intentional_cyp2d6_abstention": 117,
+        "upstream_caller_abstention": 117
+      },
+      "phenotype_concordance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_reassurance": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "false_warning": {
+        "numerator": null,
+        "denominator": 0,
+        "proportion": null,
+        "confidence_interval": null
+      },
+      "not_estimable_reason": "independent source has no phenotype or drug-context actionability truth"
+    }
+  },
+  "pooled_accuracy": null,
+  "pooled_accuracy_reason": "predeclared protocol forbids a pooled marketing-style accuracy number",
+  "clinical_utility_claim": false
+}

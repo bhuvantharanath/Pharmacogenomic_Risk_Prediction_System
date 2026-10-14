@@ -3,7 +3,7 @@
  "source": "CPIC guideline annotations bundled with PharmCAT 3.4.0 (org/pharmgkb/pharmcat/reporter/prescribing_guidance.json)",
  "source_note": "PharmCAT ships CPIC's own published recommendation rows. Text is verbatim (HTML stripped); nothing is paraphrased.",
  "accessed": "2026-07-24",
- "expectation_rule": "Derived ONLY from CPIC's structured fields, never from the recommendation text\nthat label_mapping.yaml matches on:\n\n  recommendation is \"No recommendation\" / phenotype unassignable / an algorithm\n                                  pointer                          -> Unknown\n  alternateDrugAvailable = true   CPIC says another drug should be used instead,\n                                  so this drug is not appropriate as-is:\n                                    implications indicate harm/toxicity -> Toxic\n                                    implications indicate lost efficacy -> Ineffective\n  alternateDrugAvailable = false\n    dosingInformation = true      CPIC keeps the drug but changes the dose or\n                                  adds monitoring                  -> Adjust Dosage\n    dosingInformation = false     CPIC changes nothing              -> Safe\n",
+ "expectation_rule": "Derived ONLY from CPIC's structured fields, never from the recommendation text\nthat label_mapping.yaml matches on:\n\n  recommendation is \"No recommendation\" / phenotype unassignable / an algorithm\n                                  pointer                          -> Unknown\n  alternateDrugAvailable = true   CPIC says another drug should be used instead,\n                                  so this drug is not appropriate as-is:\n                                    implications indicate harm/toxicity -> Toxic\n                                    implications indicate lost efficacy -> Ineffective\n  alternateDrugAvailable = false\n    dosingInformation = true      CPIC keeps the drug but changes the dose or\n                                  adds monitoring                  -> Adjust Dosage\n    dosingInformation = false     CPIC changes nothing              -> No PGx-guided adjustment identified\n",
  "independence": "Expected labels come from CPIC's structured booleans (alternateDrugAvailable, dosingInformation) and the implications category. label_mapping.yaml matches recommendation TEXT. Different inputs, so agreement is evidence rather than tautology.",
  "rows": [
   {
@@ -128,7 +128,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -267,7 +267,7 @@
    "implications": [],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -282,7 +282,7 @@
    "implications": [],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -405,7 +405,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -440,7 +440,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -476,7 +476,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -493,7 +493,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -560,7 +560,7 @@
    "implications": [],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -629,7 +629,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -645,7 +645,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -661,7 +661,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -773,7 +773,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -885,7 +885,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1043,7 +1043,7 @@
    "implications": [],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1075,7 +1075,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1107,7 +1107,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1155,7 +1155,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1187,7 +1187,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1235,7 +1235,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1251,7 +1251,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1267,7 +1267,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1315,7 +1315,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1331,7 +1331,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1395,7 +1395,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1459,7 +1459,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {
@@ -1475,7 +1475,7 @@
    ],
    "alternateDrugAvailable": false,
    "dosingInformation": false,
-   "expected_label": "Safe",
+   "expected_label": "No PGx-guided adjustment identified",
    "basis": "CPIC: no alternative drug and no dosing change"
   },
   {

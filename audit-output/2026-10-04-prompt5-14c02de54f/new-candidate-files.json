@@ -1,0 +1,62 @@
+[
+  {
+    "path": "backend/tests/test_current_candidate_evaluation.py",
+    "bytes": 3212,
+    "sha256": "024bcfea336fce39bd6276dbe9c49483f9e0886f21d16592f1ae8e6c78e915bf"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/EVALUATION-REPORT.md",
+    "bytes": 2237,
+    "sha256": "e85b41c741f09b8ee6792f1123fb1715ed0d83e09110c188df9e68f255c45c73"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/discrepancies.tsv",
+    "bytes": 172478,
+    "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/evaluation-comparison.json",
+    "bytes": 3911,
+    "sha256": "7694e4992cef7ee12ae1f4dc8be7eadd974708b06f5398c1d3cb55c40b91c012"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json",
+    "bytes": 5256,
+    "sha256": "23a46b1070cd82b578c4f518ab77a0b87af71a30573513d87139328d61b7898a"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/exclusions.tsv",
+    "bytes": 48960,
+    "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/external_benchmark_results.json",
+    "bytes": 33667,
+    "sha256": "debd692befa93ea41a6872036a2eccdea8e06c44d9f27af280348a0687c3961d"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/f4-fresh-replay.json",
+    "bytes": 1603,
+    "sha256": "e693302d3cbbe0c8e5a24099abc9c2eeec798ce2d5c480d02f13a67c31d9cf50"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/input_eligibility.tsv",
+    "bytes": 466620,
+    "sha256": "98de68b51fd4eebe01d152cfea7e3872dd5d8c4ce9a8e92cc3964166f8dc65bf"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/raw_benchmark_manifest.json",
+    "bytes": 7588,
+    "sha256": "0a5c408901fef191da4a8a720861affdf362afed8cac5bd6c4e8c3d4cb49d37c"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/raw_scoring_report.md",
+    "bytes": 11481,
+    "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+  },
+  {
+    "path": "test-data/benchmark/current-candidate-2026-10-04/stage-command-receipts.json",
+    "bytes": 2920,
+    "sha256": "420a4ce15f03e39f4240b7d7ff9611b31bc12cc8148e40a3fd8ec2e86b1759d0"
+  }
+]

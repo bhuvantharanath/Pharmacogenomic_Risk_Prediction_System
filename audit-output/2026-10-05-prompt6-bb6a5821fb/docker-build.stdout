@@ -1,0 +1,271 @@
+Sending build context to Docker daemon  48.21MB
+Step 1/21 : FROM pgkb/pharmcat:3.4.0
+3.4.0: Pulling from pgkb/pharmcat
+678672d48276: Pulling fs layer
+5a57ae497c93: Pulling fs layer
+abe059c57e3b: Pulling fs layer
+c9f8967f22e4: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+3e34b153fc4e: Pulling fs layer
+5cf605f6b62a: Pulling fs layer
+6646ad84cb24: Pulling fs layer
+881644662fed: Pulling fs layer
+3f595fbeb244: Pulling fs layer
+8ec8de18bd08: Pulling fs layer
+c8a311258fd1: Pulling fs layer
+1711de02d2ac: Pulling fs layer
+04829a883dee: Pulling fs layer
+be7bcc47d5cd: Pulling fs layer
+7128b4e805a8: Pulling fs layer
+bc72ee166510: Pulling fs layer
+f6c94402e2b7: Pulling fs layer
+81a333451d78: Pulling fs layer
+6adc5254c1e0: Pulling fs layer
+08bbe45acbbc: Pulling fs layer
+46f8a58c3bd7: Pulling fs layer
+4fb6a285a114: Pulling fs layer
+80dfed841ad5: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+2db01f162d5f: Pulling fs layer
+549eb7f7a602: Download complete
+678672d48276: Download complete
+c9f8967f22e4: Download complete
+08bbe45acbbc: Download complete
+04829a883dee: Download complete
+bc72ee166510: Download complete
+81a333451d78: Download complete
+881644662fed: Download complete
+7128b4e805a8: Download complete
+4f4fb700ef54: Download complete
+5a57ae497c93: Download complete
+8ec8de18bd08: Download complete
+abe059c57e3b: Download complete
+f6c94402e2b7: Download complete
+3f595fbeb244: Download complete
+be7bcc47d5cd: Download complete
+6adc5254c1e0: Download complete
+1711de02d2ac: Download complete
+80dfed841ad5: Download complete
+c8a311258fd1: Download complete
+c8a311258fd1: Pull complete
+abe059c57e3b: Pull complete
+5cf605f6b62a: Download complete
+5cf605f6b62a: Pull complete
+2db01f162d5f: Download complete
+4fb6a285a114: Download complete
+46f8a58c3bd7: Download complete
+6646ad84cb24: Download complete
+6646ad84cb24: Pull complete
+8ec8de18bd08: Pull complete
+bc72ee166510: Pull complete
+be7bcc47d5cd: Pull complete
+6adc5254c1e0: Pull complete
+46f8a58c3bd7: Pull complete
+4fb6a285a114: Pull complete
+80dfed841ad5: Pull complete
+5a57ae497c93: Pull complete
+f6c94402e2b7: Pull complete
+04829a883dee: Pull complete
+881644662fed: Pull complete
+4f4fb700ef54: Pull complete
+2db01f162d5f: Pull complete
+3e34b153fc4e: Download complete
+678672d48276: Pull complete
+3e34b153fc4e: Pull complete
+7128b4e805a8: Pull complete
+1711de02d2ac: Pull complete
+c9f8967f22e4: Pull complete
+08bbe45acbbc: Pull complete
+81a333451d78: Pull complete
+3f595fbeb244: Pull complete
+Digest: sha256:bc498d55c33094002bd7e14221a6b3fcd7243a587675369bc1a5ecf6ac0e5319
+Status: Downloaded newer image for pgkb/pharmcat:3.4.0
+ ---> bc498d55c330
+Step 2/21 : ENV PYTHONUNBUFFERED=1     PYTHONDONTWRITEBYTECODE=1     PIP_NO_CACHE_DIR=1     PHARMCAT_PIPELINE=pharmcat_pipeline     PHARMCAT_TIMEOUT_SECONDS=120
+ ---> Running in 1bdbb1417b7f
+ ---> Removed intermediate container 1bdbb1417b7f
+ ---> c9fcc672152b
+Step 3/21 : ENV PHARMCAT_JAR=/pharmcat/pharmcat.jar
+ ---> Running in c2c8953a0b4c
+ ---> Removed intermediate container c2c8953a0b4c
+ ---> bac0faafb6fc
+Step 4/21 : RUN echo "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741  /pharmcat/pharmcat.jar"       | sha256sum -c -  && java -jar /pharmcat/pharmcat.jar -version | grep -q "PharmCAT 3.4.0"
+ ---> Running in 011adff0c177
+/pharmcat/pharmcat.jar: OK
+ ---> Removed intermediate container 011adff0c177
+ ---> 1dd41c2d96a7
+Step 5/21 : ENV EXPLANATION_MODE=static     PHARMAGUARD_CORPUS_DIR=/home/user/app/rag-corpus/mechanisms
+ ---> Running in 20f02700598f
+ ---> Removed intermediate container 20f02700598f
+ ---> f9fcfcd83372
+Step 6/21 : ENV CORS_ALLOWED_ORIGINS=""
+ ---> Running in 4c1fecc4bf76
+ ---> Removed intermediate container 4c1fecc4bf76
+ ---> 193ed0257584
+Step 7/21 : USER root
+ ---> Running in a26a2183d5e7
+ ---> Removed intermediate container a26a2183d5e7
+ ---> 1c3b6d605133
+Step 8/21 : RUN apt-get update  && apt-get install -y --no-install-recommends tini  && rm -rf /var/lib/apt/lists/*
+ ---> Running in 163d8cf9da45
+Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 https://packages.cloud.google.com/apt cloud-sdk InRelease [1442 B]
+Get:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages.diff/Index [4995 B]
+Err:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages.diff/Index
+  Need 4751 compressed bytes, but limit is 4424 and original is 4424
+Get:6 http://deb.debian.org/debian trixie/main arm64 Packages [9614 kB]
+Get:7 https://packages.adoptium.net/artifactory/deb trixie InRelease [7503 B]
+Get:8 https://packages.cloud.google.com/apt cloud-sdk/main all Packages [296 kB]
+Get:9 https://packages.adoptium.net/artifactory/deb trixie/main arm64 Packages [14.5 kB]
+Get:10 https://packages.cloud.google.com/apt cloud-sdk/main arm64 Packages [709 kB]
+Get:11 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [265 kB]
+Get:11 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [265 kB]
+Ign:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages.diff/Index
+Get:12 http://deb.debian.org/debian trixie-updates/main arm64 Packages [4424 B]
+Fetched 11.1 MB in 5s (2095 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following NEW packages will be installed:
+  tini
+0 upgraded, 1 newly installed, 0 to remove and 107 not upgraded.
+Need to get 234 kB of archives.
+After this operation, 745 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian trixie/main arm64 tini arm64 0.19.0-3+b8 [234 kB]
+[91mdebconf: unable to initialize frontend: Dialog
+debconf: (TERM is not set, so the dialog frontend is not usable.)
+debconf: falling back to frontend: Readline
+[0m[91mdebconf: unable to initialize frontend: Readline
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Teletype
+[0m[91mdebconf: unable to initialize frontend: Teletype
+debconf: (This frontend requires a controlling tty.)
+debconf: falling back to frontend: Noninteractive
+[0mFetched 234 kB in 4s (52.3 kB/s)
+Selecting previously unselected package tini.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 62741 files and directories currently installed.)
+Preparing to unpack .../tini_0.19.0-3+b8_arm64.deb ...
+Unpacking tini (0.19.0-3+b8) ...
+Setting up tini (0.19.0-3+b8) ...
+ ---> Removed intermediate container 163d8cf9da45
+ ---> 51b20d7e7cb4
+Step 9/21 : RUN if ! id -u 1000 >/dev/null 2>&1; then         useradd -m -u 1000 user;     fi &&     mkdir -p /home/user/app &&     chown -R 1000:1000 /home/user
+ ---> Running in 14d2f53836e8
+ ---> Removed intermediate container 14d2f53836e8
+ ---> 250176edc6ef
+Step 10/21 : ENV HOME=/home/user     PATH=/home/user/.local/bin:$PATH
+ ---> Running in 6b14ee65159d
+ ---> Removed intermediate container 6b14ee65159d
+ ---> 88201f593694
+Step 11/21 : USER 1000
+ ---> Running in f48082a8b19e
+ ---> Removed intermediate container f48082a8b19e
+ ---> 865b88faf0f7
+Step 12/21 : WORKDIR /home/user/app
+ ---> Running in af78efd0bc28
+ ---> Removed intermediate container af78efd0bc28
+ ---> 8ba9ec0ed231
+Step 13/21 : COPY --chown=1000:1000 backend/requirements.txt ./requirements.txt
+ ---> ad29b2b4af28
+Step 14/21 : RUN pip3 install --no-cache-dir --break-system-packages --user -r requirements.txt
+ ---> Running in fd9d1317720b
+Collecting fastapi==0.121.2 (from -r requirements.txt (line 4))
+  Downloading fastapi-0.121.2-py3-none-any.whl.metadata (28 kB)
+Collecting uvicorn==0.40.0 (from uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading uvicorn-0.40.0-py3-none-any.whl.metadata (6.7 kB)
+Collecting pydantic==2.13.1 (from -r requirements.txt (line 6))
+  Downloading pydantic-2.13.1-py3-none-any.whl.metadata (108 kB)
+Collecting python-multipart==0.0.20 (from -r requirements.txt (line 7))
+  Downloading python_multipart-0.0.20-py3-none-any.whl.metadata (1.8 kB)
+Collecting PyYAML==6.0.3 (from -r requirements.txt (line 8))
+  Downloading pyyaml-6.0.3-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (2.4 kB)
+Collecting starlette<0.50.0,>=0.40.0 (from fastapi==0.121.2->-r requirements.txt (line 4))
+  Downloading starlette-0.49.3-py3-none-any.whl.metadata (6.4 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi==0.121.2->-r requirements.txt (line 4))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting annotated-doc>=0.0.2 (from fastapi==0.121.2->-r requirements.txt (line 4))
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting annotated-types>=0.6.0 (from pydantic==2.13.1->-r requirements.txt (line 6))
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.46.1 (from pydantic==2.13.1->-r requirements.txt (line 6))
+  Downloading pydantic_core-2.46.1-cp314-cp314-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (6.6 kB)
+Collecting typing-inspection>=0.4.2 (from pydantic==2.13.1->-r requirements.txt (line 6))
+  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting click>=7.0 (from uvicorn==0.40.0->uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting h11>=0.8 (from uvicorn==0.40.0->uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting httptools>=0.6.3 (from uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading httptools-0.8.0-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (3.5 kB)
+Collecting python-dotenv>=0.13 (from uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+Collecting uvloop>=0.15.1 (from uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading uvloop-0.23.0-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (5.1 kB)
+Collecting watchfiles>=0.13 (from uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl.metadata (4.9 kB)
+Collecting websockets>=10.4 (from uvicorn[standard]==0.40.0->-r requirements.txt (line 5))
+  Downloading websockets-17.2-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl.metadata (6.3 kB)
+Collecting anyio<5,>=3.6.2 (from starlette<0.50.0,>=0.40.0->fastapi==0.121.2->-r requirements.txt (line 4))
+  Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting idna>=2.8 (from anyio<5,>=3.6.2->starlette<0.50.0,>=0.40.0->fastapi==0.121.2->-r requirements.txt (line 4))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Downloading fastapi-0.121.2-py3-none-any.whl (109 kB)
+Downloading pydantic-2.13.1-py3-none-any.whl (471 kB)
+Downloading uvicorn-0.40.0-py3-none-any.whl (68 kB)
+Downloading python_multipart-0.0.20-py3-none-any.whl (24 kB)
+Downloading pyyaml-6.0.3-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (766 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 766.5/766.5 kB 2.1 MB/s  0:00:00
+Downloading pydantic_core-2.46.1-cp314-cp314-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 2.6 MB/s  0:00:00
+Downloading starlette-0.49.3-py3-none-any.whl (74 kB)
+Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading httptools-0.8.0-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (480 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Downloading uvloop-0.23.0-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (4.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 2.5 MB/s  0:00:01
+Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (454 kB)
+Downloading websockets-17.2-cp314-cp314-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (226 kB)
+Installing collected packages: websockets, uvloop, typing-extensions, PyYAML, python-multipart, python-dotenv, idna, httptools, h11, click, annotated-types, annotated-doc, uvicorn, typing-inspection, pydantic-core, anyio, watchfiles, starlette, pydantic, fastapi
+
+Successfully installed PyYAML-6.0.3 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 click-8.5.0 fastapi-0.121.2 h11-0.16.0 httptools-0.8.0 idna-3.20 pydantic-2.13.1 pydantic-core-2.46.1 python-dotenv-1.2.4 python-multipart-0.0.20 starlette-0.49.3 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.40.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.2
+[91m
+[notice] A new release of pip is available: 26.1.2 -> 26.2.1
+[notice] To update, run: pip install --upgrade pip
+[0m ---> Removed intermediate container fd9d1317720b
+ ---> e237b25e625a
+Step 15/21 : COPY --chown=1000:1000 backend/app ./app
+ ---> 1a8deea8715e
+Step 16/21 : COPY --chown=1000:1000 rag-corpus ./rag-corpus
+ ---> 9293760f9857
+Step 17/21 : ENV TMPDIR=/home/user/app/tmp
+ ---> Running in 188ee6c8832b
+ ---> Removed intermediate container 188ee6c8832b
+ ---> cb79dd486d05
+Step 18/21 : RUN mkdir -p "$TMPDIR"
+ ---> Running in d28810a63db5
+ ---> Removed intermediate container d28810a63db5
+ ---> fee40841182a
+Step 19/21 : EXPOSE 7860
+ ---> Running in da72dc841b96
+ ---> Removed intermediate container da72dc841b96
+ ---> d74d47e7b785
+Step 20/21 : ENTRYPOINT ["tini", "--"]
+ ---> Running in c67a97ac23fe
+ ---> Removed intermediate container c67a97ac23fe
+ ---> e82ef84460a2
+Step 21/21 : CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1"]
+ ---> Running in bb0588bbb56c
+ ---> Removed intermediate container bb0588bbb56c
+ ---> 82abce68aaaf
+Successfully built 82abce68aaaf
+Successfully tagged pgx-p6-candidate:20261005

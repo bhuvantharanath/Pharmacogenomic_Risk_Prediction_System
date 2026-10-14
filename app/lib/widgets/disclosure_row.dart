@@ -44,11 +44,27 @@ class DisclosureRow extends StatefulWidget {
   State<DisclosureRow> createState() => _DisclosureRowState();
 }
 
-class _DisclosureRowState extends State<DisclosureRow> {
+class _DisclosureRowState extends State<DisclosureRow>
+    with AutomaticKeepAliveClientMixin<DisclosureRow> {
   bool _open = false;
 
+  /// An open row in a lazily built list must not close itself when scrolled
+  /// far away and back (see SummaryGrid). Kept alive only while open.
   @override
-  Widget build(BuildContext context) => Column(
+  bool get wantKeepAlive => _open;
+
+  void _toggle() {
+    setState(() => _open = !_open);
+    updateKeepAlive();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return _build(context);
+  }
+
+  Widget _build(BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: <Widget>[
       Semantics(
@@ -59,7 +75,7 @@ class _DisclosureRowState extends State<DisclosureRow> {
             : '${widget.title}. ${widget.subtitle}',
         excludeSemantics: true,
         child: InkWell(
-          onTap: () => setState(() => _open = !_open),
+          onTap: _toggle,
           // Focus has to be visible: this is the control a keyboard user lands
           // on most often, and the default ripple is invisible on paper.
           focusColor: Tokens.accent.withValues(alpha: 0.28),

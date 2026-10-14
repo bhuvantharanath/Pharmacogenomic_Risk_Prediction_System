@@ -1,0 +1,4 @@
+{
+  "status": "INCONCLUSIVE",
+  "reason": "Colima stopped before final optional in-container byte comparison. Build receipt and measured image ID retained; no new runtime comparison claimed."
+}

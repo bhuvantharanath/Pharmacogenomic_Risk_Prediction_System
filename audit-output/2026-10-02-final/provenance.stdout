@@ -1,0 +1,30 @@
+── provenance verification ───────────────────────────────────────────────────
+  PASS  azathioprine:IM            clinical 8/8  mechanism 0  process 0  framing 2
+  PASS  azathioprine:NM            clinical 5/5  mechanism 0  process 0  framing 3
+  PASS  azathioprine:PM            clinical 5/5  mechanism 0  process 0  framing 2
+  PASS  azathioprine:Unknown       clinical 2/2  mechanism 0  process 0  framing 7
+  PASS  clopidogrel:IM             clinical 6/6  mechanism 0  process 0  framing 4
+  PASS  clopidogrel:NM             clinical 4/4  mechanism 0  process 0  framing 3
+  PASS  clopidogrel:PM             clinical 7/7  mechanism 0  process 0  framing 3
+  PASS  clopidogrel:RM             clinical 6/6  mechanism 0  process 0  framing 3
+  PASS  clopidogrel:URM            clinical 5/5  mechanism 0  process 0  framing 4
+  PASS  clopidogrel:Unknown        clinical 5/5  mechanism 0  process 0  framing 4
+  PASS  codeine:Unknown            clinical 4/4  mechanism 0  process 0  framing 3
+  PASS  fluorouracil:IM            clinical 8/8  mechanism 0  process 0  framing 2
+  PASS  fluorouracil:NM            clinical 6/6  mechanism 0  process 0  framing 5
+  PASS  fluorouracil:PM            clinical 5/5  mechanism 0  process 0  framing 2
+  PASS  fluorouracil:Unknown       clinical 6/6  mechanism 0  process 0  framing 4
+  PASS  simvastatin:IM             clinical 7/7  mechanism 0  process 0  framing 4
+  PASS  simvastatin:NM             clinical 5/5  mechanism 0  process 0  framing 5
+  PASS  simvastatin:PM             clinical 5/5  mechanism 0  process 0  framing 3
+  PASS  simvastatin:Unknown        clinical 5/5  mechanism 0  process 0  framing 5
+  PASS  warfarin:Unknown           clinical 2/2  mechanism 0  process 0  framing 5
+──────────────────────────────────────────────────────────────────────────────
+
+Clinical-claim provenance: 106/106 (100.0%)  target 100%
+MECHANISM: 0/0   FRAMING (exempt): 73
+
+All clinical assertions trace to a cited source.
+Verified means every clinical ASSERTION traces to a cited source.
+Wording may differ — paraphrase is allowed; invented claims are not.
+It does NOT mean a clinician has agreed the sentence is correct.

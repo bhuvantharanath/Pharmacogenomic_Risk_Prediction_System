@@ -1,0 +1,14 @@
+{
+ "argv": [
+  "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+  "-m",
+  "http.server",
+  "3000",
+  "--bind",
+  "127.0.0.1",
+  "--directory",
+  "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/builds/web-final2"
+ ],
+ "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2",
+ "started": "2026-10-14T12:39:59.941026+00:00"
+}

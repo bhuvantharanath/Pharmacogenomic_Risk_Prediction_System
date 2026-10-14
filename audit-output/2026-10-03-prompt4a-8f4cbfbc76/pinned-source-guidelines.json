@@ -1,0 +1,3620 @@
+{
+  "azathioprine": {
+    "guideline": {
+      "id": "PA166104933",
+      "name": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "objCls": "Guideline Annotation",
+      "source": "CPIC",
+      "version": 59,
+      "url": null,
+      "relatedChemicals": [
+        {
+          "id": "PA448515",
+          "name": "azathioprine",
+          "symbol": null
+        }
+      ],
+      "relatedGenes": [
+        {
+          "id": "PA134963132",
+          "name": "nudix hydrolase 15",
+          "symbol": "NUDT15"
+        },
+        {
+          "id": "PA356",
+          "name": "thiopurine S-methyltransferase",
+          "symbol": "TPMT"
+        }
+      ],
+      "relatedAlleles": [],
+      "recommendation": true
+    },
+    "recommendations": [
+      {
+        "id": "PA166297264",
+        "name": "Recommendation PA166297264",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565614,
+          "html": "<p>Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Possible Intermediate Metabolizer",
+            "NUDT15": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297262",
+        "name": "Recommendation PA166297262",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454567150,
+          "html": "<p>Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is ≥ 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Possible Intermediate Metabolizer",
+            "NUDT15": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297265",
+        "name": "Recommendation PA166297265",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565600,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Possible Intermediate Metabolizer",
+            "NUDT15": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297266",
+        "name": "Recommendation PA166297266",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454567182,
+          "html": "<p>Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is ≥ 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Possible Intermediate Metabolizer",
+            "NUDT15": "Possible Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297271",
+        "name": "Recommendation PA166297271",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565620,
+          "html": "<p>Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Intermediate Metabolizer",
+            "NUDT15": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297276",
+        "name": "Recommendation PA166297276",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565674,
+          "html": "<p>Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Normal Metabolizer",
+            "NUDT15": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297277",
+        "name": "Recommendation PA166297277",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565676,
+          "html": "<p>Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Normal Metabolizer",
+            "NUDT15": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297280",
+        "name": "Recommendation PA166297280",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565678,
+          "html": "<p>Initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Normal Metabolizer",
+            "NUDT15": "Possible Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297269",
+        "name": "Recommendation PA166297269",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565708,
+          "html": "<p>Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is ≥ 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Intermediate Metabolizer",
+            "NUDT15": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297272",
+        "name": "Recommendation PA166297272",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565626,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Intermediate Metabolizer",
+            "NUDT15": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297273",
+        "name": "Recommendation PA166297273",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565710,
+          "html": "<p>Initiate therapy with reduced starting doses (20%-50% of standard starting dose) if standard starting dose is ≥ 2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Higher risk of toxicity compared to single IM.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Intermediate Metabolizer",
+            "NUDT15": "Possible Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297279",
+        "name": "Recommendation PA166297279",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565638,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Normal Metabolizer",
+            "NUDT15": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297283",
+        "name": "Recommendation PA166297283",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565642,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+          "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Poor Metabolizer",
+            "NUDT15": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297284",
+        "name": "Recommendation PA166297284",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565644,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+          "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Poor Metabolizer",
+            "NUDT15": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429761",
+        "name": "Recommendation Annotation PA166429761",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657180,
+          "html": "<p>Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenotype. If thiopurines are required and either TPMT or NUDT15 status is unknown, monitor closely for toxicity.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "TPMT": "No Result",
+            "NUDT15": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": true
+      },
+      {
+        "id": "PA166429726",
+        "name": "Recommendation Annotation PA166429726",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657110,
+          "html": "<p>Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenotype. If thiopurines are required and either TPMT or NUDT15 status is unknown, monitor closely for toxicity.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "TPMT": "Indeterminate",
+            "NUDT15": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": true
+      },
+      {
+        "id": "PA166429462",
+        "name": "Recommendation Annotation PA166429462",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454649701,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+          "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Poor Metabolizer",
+            "NUDT15": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429742",
+        "name": "Recommendation Annotation PA166429742",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657162,
+          "html": "<p>Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "No Result",
+            "NUDT15": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429764",
+        "name": "Recommendation Annotation PA166429764",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657185,
+          "html": "<p>Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Possible Intermediate Metabolizer",
+            "NUDT15": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429743",
+        "name": "Recommendation Annotation PA166429743",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657164,
+          "html": "<p>Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "No Result",
+            "NUDT15": "Possible Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429461",
+        "name": "Recommendation Annotation PA166429461",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454649700,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Indeterminate",
+            "NUDT15": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429765",
+        "name": "Recommendation Annotation PA166429765",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657187,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+          "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs.Consider alternative nonthiopurine immunosuppressant therapy."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Poor Metabolizer",
+            "NUDT15": "No Result"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429762",
+        "name": "Recommendation Annotation PA166429762",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657181,
+          "html": "<p>Based on TPMT, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Normal Metabolizer",
+            "NUDT15": "No Result"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429721",
+        "name": "Recommendation Annotation PA166429721",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657100,
+          "html": "<p>Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Intermediate Metabolizer",
+            "NUDT15": "Indeterminate"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429741",
+        "name": "Recommendation Annotation PA166429741",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657160,
+          "html": "<p>Based on NUDT15, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "No Result",
+            "NUDT15": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429763",
+        "name": "Recommendation Annotation PA166429763",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657183,
+          "html": "<p>Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Intermediate Metabolizer",
+            "NUDT15": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429701",
+        "name": "Recommendation Annotation PA166429701",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657080,
+          "html": "<p>Based on TPMT, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Normal Metabolizer",
+            "NUDT15": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429723",
+        "name": "Recommendation Annotation PA166429723",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657104,
+          "html": "<p>Based on NUDT15, initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Indeterminate",
+            "NUDT15": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429722",
+        "name": "Recommendation Annotation PA166429722",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657102,
+          "html": "<p>Based on TPMT, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+          "TPMT IMs have moderate to high erythrocyte concentrations of TGN metabolites and low concentrations of MeMPNs compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Possible Intermediate Metabolizer",
+            "NUDT15": "Indeterminate"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429744",
+        "name": "Recommendation Annotation PA166429744",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657166,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "No Result",
+            "NUDT15": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429725",
+        "name": "Recommendation Annotation PA166429725",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657108,
+          "html": "<p>Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Indeterminate",
+            "NUDT15": "Possible Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166429766",
+        "name": "Recommendation Annotation PA166429766",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657188,
+          "html": "<p>Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenotype. If thiopurines are required and either TPMT or NUDT15 status is unknown, monitor closely for toxicity.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "TPMT": "Indeterminate",
+            "NUDT15": "No Result"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": true
+      },
+      {
+        "id": "PA166429724",
+        "name": "Recommendation Annotation PA166429724",
+        "population": null,
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454657106,
+          "html": "<p>Based on NUDT15, initiate therapy with reduced starting doses (30-80% of standard starting dose) if standard starting dose is ≥2 mg/kg/day. If starting dose is already below standard starting dose, dose reduction might not be necessary. During therapy, adjust the doses of azathioprine based on the degree of myelosuppression and disease-specific guidelines. It usually takes at least 2-4 weeks of stable dosing to reach steady state after each dose adjustment.</p>\n"
+        },
+        "implications": [
+          "Increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Indeterminate",
+            "NUDT15": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297286",
+        "name": "Recommendation PA166297286",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565646,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+          "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Poor Metabolizer",
+            "NUDT15": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297287",
+        "name": "Recommendation PA166297287",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA448515",
+            "name": "azathioprine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565648,
+          "html": "<p>Consider alternative nonthiopurine immunosuppressant therapy.</p>\n"
+        },
+        "implications": [
+          "Greatly increased risk of thiopurine-related leukopenia, neutropenia and myelosuppression. Fatal toxicity possible without dose decrease.",
+          "TPMT PMs have extremely high erythrocyte concentrations of TGN metabolites and no MeMPN compared to TPMT NMs."
+        ],
+        "lookupKey": [
+          {
+            "TPMT": "Poor Metabolizer",
+            "NUDT15": "Possible Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      }
+    ],
+    "citations": [
+      {
+        "pmid": "41618934",
+        "title": "Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2025 Update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2026,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pubmed/41618934"
+      },
+      {
+        "pmid": "30447069",
+        "title": "Clinical Pharmacogenetics Implementation Consortium Guideline for Thiopurine Dosing Based on TPMT and NUDT15 Genotypes: 2018 Update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2019,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6576267"
+      },
+      {
+        "pmid": "23422873",
+        "title": "Clinical pharmacogenetics implementation consortium guidelines for thiopurine methyltransferase genotype and thiopurine dosing: 2013 update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2013,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3604643"
+      },
+      {
+        "pmid": "21270794",
+        "title": "Clinical Pharmacogenetics Implementation Consortium guidelines for thiopurine methyltransferase genotype and thiopurine dosing.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2011,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3098761"
+      }
+    ],
+    "url": "https://www.clinpgx.org/guidelineAnnotation/PA166104933"
+  },
+  "clopidogrel": {
+    "guideline": {
+      "id": "PA166104948",
+      "name": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "objCls": "Guideline Annotation",
+      "source": "CPIC",
+      "version": 49,
+      "url": null,
+      "relatedChemicals": [
+        {
+          "id": "PA449053",
+          "name": "clopidogrel",
+          "symbol": null
+        }
+      ],
+      "relatedGenes": [
+        {
+          "id": "PA124",
+          "name": "cytochrome P450 family 2 subfamily C member 19",
+          "symbol": "CYP2C19"
+        }
+      ],
+      "relatedAlleles": [],
+      "recommendation": true
+    },
+    "recommendations": [
+      {
+        "id": "PA166297565",
+        "name": "Recommendation PA166297565",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565066,
+          "html": "<p>If considering clopidogrel, use at standard dose (75 mg/day)</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Increased clopidogrel active metabolite formation; lower on-treatment platelet reactivity; no association with higher bleeding risk"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Ultrarapid Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297566",
+        "name": "Recommendation PA166297566",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566072,
+          "html": "<p>If considering clopidogrel, use at standard dose (75 mg/day)</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Normal or increased clopidogrel active metabolite formation; normal or lower on-treatment platelet reactivity; no association with higher bleeding risk"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Rapid Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297567",
+        "name": "Recommendation PA166297567",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566074,
+          "html": "<p>If considering clopidogrel, use at standard dose (75 mg/day)</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297569",
+        "name": "Recommendation PA166297569",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566076,
+          "html": "<p>Avoid standard dose clopidogrel (75 mg) if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Likely Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297570",
+        "name": "Recommendation PA166297570",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566104,
+          "html": "<p>Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297571",
+        "name": "Recommendation PA166297571",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454564996,
+          "html": "<p>Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Likely Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297572",
+        "name": "Recommendation PA166297572",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454567184,
+          "html": "<p>Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297574",
+        "name": "Recommendation PA166297574",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566078,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Increased clopidogrel active metabolite formation; lower on-treatment platelet reactivity; no association with higher bleeding risk"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Ultrarapid Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297575",
+        "name": "Recommendation PA166297575",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566080,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Normal or increased clopidogrel active metabolite formation; normal or lower on-treatment platelet reactivity; no association with higher bleeding risk"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Rapid Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297576",
+        "name": "Recommendation PA166297576",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566082,
+          "html": "<p>If considering clopidogrel, use at standard dose (75 mg/day)</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297577",
+        "name": "Recommendation PA166297577",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454565068,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Likely Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297578",
+        "name": "Recommendation PA166297578",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566084,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297581",
+        "name": "Recommendation PA166297581",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566096,
+          "html": "<p>Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Likely Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297582",
+        "name": "Recommendation PA166297582",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454567186,
+          "html": "<p>Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297584",
+        "name": "Recommendation PA166297584",
+        "population": "NVI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566086,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Increased clopidogrel active metabolite formation; lower on-treatment platelet reactivity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Ultrarapid Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297585",
+        "name": "Recommendation PA166297585",
+        "population": "NVI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566088,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Normal or increased clopidogrel active metabolite formation; normal or lower on-treatment platelet reactivity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Rapid Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297586",
+        "name": "Recommendation PA166297586",
+        "population": "NVI",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566090,
+          "html": "<p>If considering clopidogrel, use at standard dose (75 mg/day)</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Normal Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297587",
+        "name": "Recommendation PA166297587",
+        "population": "NVI",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566064,
+          "html": "<p>Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Likely Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297588",
+        "name": "Recommendation PA166297588",
+        "population": "NVI",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566066,
+          "html": "<p>Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Intermediate Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297589",
+        "name": "Recommendation PA166297589",
+        "population": "NVI",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566068,
+          "html": "<p>Avoid clopidogrel if possible. Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Likely Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297590",
+        "name": "Recommendation PA166297590",
+        "population": "NVI",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566070,
+          "html": "<p>Avoid clopidogrel if possible. Consider an alternative P2Y12 inhibitor at standard dose if clinically indicated and no contraindication.</p>\n"
+        },
+        "implications": [
+          "CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Poor Metabolizer"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297573",
+        "name": "Recommendation PA166297573",
+        "population": "CVI ACS PCI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060175,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: n/a"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297591",
+        "name": "Recommendation PA166297591",
+        "population": "NVI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060193,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: n/a"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297583",
+        "name": "Recommendation PA166297583",
+        "population": "CVI non-ACS non-PCI",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449053",
+            "name": "clopidogrel",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060185,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2C19: n/a"
+        ],
+        "lookupKey": [
+          {
+            "CYP2C19": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      }
+    ],
+    "citations": [
+      {
+        "pmid": "35034351",
+        "title": "Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2022,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9287492"
+      },
+      {
+        "pmid": "23698643",
+        "title": "Clinical Pharmacogenetics Implementation Consortium guidelines for CYP2C19 genotype and clopidogrel therapy: 2013 update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2013,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3748366"
+      },
+      {
+        "pmid": "21716271",
+        "title": "Clinical Pharmacogenetics Implementation Consortium guidelines for cytochrome P450-2C19 (CYP2C19) genotype and clopidogrel therapy.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2011,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3234301"
+      }
+    ],
+    "url": "https://www.clinpgx.org/guidelineAnnotation/PA166104948"
+  },
+  "codeine": {
+    "guideline": {
+      "id": "PA166104996",
+      "name": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "objCls": "Guideline Annotation",
+      "source": "CPIC",
+      "version": 69,
+      "url": null,
+      "relatedChemicals": [
+        {
+          "id": "PA449088",
+          "name": "codeine",
+          "symbol": null
+        }
+      ],
+      "relatedGenes": [
+        {
+          "id": "PA128",
+          "name": "cytochrome P450 family 2 subfamily D member 6",
+          "symbol": "CYP2D6"
+        }
+      ],
+      "relatedAlleles": [],
+      "recommendation": true
+    },
+    "recommendations": [
+      {
+        "id": "PA166297557",
+        "name": "Recommendation PA166297557",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060159,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "≥3.75"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297592",
+        "name": "Recommendation PA166297592",
+        "population": "general",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060194,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "CYP2D6: n/a"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "n/a"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166301321",
+        "name": "Recommendation Annotation PA166301321",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452095640,
+          "html": "<p>xN is not a valid input for CYP2D6 copy number alleles. Please select a copy number representation as outlined below.</p>\n<table class=\"table\">\n<thead>\n<tr>\n<th>xN Allele</th>\n<th>Possible selection</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>*1xN</td>\n<td>*1x2 or *1x≥3</td>\n</tr>\n<tr>\n<td>*2xN</td>\n<td>*2x2 or *2x≥3</td>\n</tr>\n<tr>\n<td>*3xN</td>\n<td>*3x2</td>\n</tr>\n<tr>\n<td>*4xN</td>\n<td>*4x2 or *4x≥3</td>\n</tr>\n<tr>\n<td>*6xN</td>\n<td>*6x2</td>\n</tr>\n<tr>\n<td>*35xN</td>\n<td>*35x2</td>\n</tr>\n<tr>\n<td>*36xN</td>\n<td>*36x2</td>\n</tr>\n<tr>\n<td>*43xN</td>\n<td>*43x2</td>\n</tr>\n<tr>\n<td>*45xN</td>\n<td>*45x2</td>\n</tr>\n</tbody>\n</table>\n<ul>\n<li>For normal function alleles (*1 and *2) selecting <strong>*1x2 versus *1x≥3</strong> or <strong>*2x2 versus *2x≥3</strong> will affect the resulting CYP2D6 phenotype.</li>\n<li>CPIC CYP2D6 ultrarapid metabolizer phenotype is assigned an activity score (AS) of &gt;2.25.</li>\n<li>DPWG CYP2D6 ultrarapid metabolizer phenotype is assigned an AS of &gt;2.5.</li>\n</ul>\n<table class=\"table\">\n<thead>\n<tr>\n<th>Guideline</th>\n<th>CNV Allele</th>\n<th>Function</th>\n<th>Activity<br/>value</th>\n<th>Other Allele<br/>Function</th>\n<th>Activity<br/>value</th>\n<th>CYP2D6 AS</th>\n<th>Phenotype</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>CPIC or DPWG</td>\n<td>*1x2</td>\n<td>Increased</td>\n<td>2</td>\n<td>No function</td>\n<td>0</td>\n<td>2</td>\n<td>Normal metabolizer</td>\n</tr>\n<tr>\n<td>CPIC or DPWG</td>\n<td>*1x2</td>\n<td>Increased</td>\n<td>2</td>\n<td>Decreased function</td>\n<td>0.25</td>\n<td>2.25</td>\n<td>Normal metabolizer</td>\n</tr>\n<tr>\n<td>CPIC</td>\n<td>*1x2</td>\n<td>Increased</td>\n<td>2</td>\n<td>Decreased function</td>\n<td>0.5</td>\n<td>2.5</td>\n<td>Ultrarapid metabolizer</td>\n</tr>\n<tr>\n<td>DPWG</td>\n<td>*1x2</td>\n<td>Increased</td>\n<td>2</td>\n<td>Decreased function</td>\n<td>0.5</td>\n<td>2.5</td>\n<td>Normal metabolizer</td>\n</tr>\n<tr>\n<td>CPIC or DPWG</td>\n<td>*1x2</td>\n<td>Increased</td>\n<td>2</td>\n<td>Normal function</td>\n<td>1.0</td>\n<td>3.0</td>\n<td>Ultrarapid metabolizer</td>\n</tr>\n<tr>\n<td>CPIC or DPWG</td>\n<td>*1x≥3</td>\n<td>Increased</td>\n<td>≥3</td>\n<td></td>\n<td></td>\n<td>≥3</td>\n<td>Ultrarapid metabolizer</td>\n</tr>\n</tbody>\n</table>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2D6": "xN combinations"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297602",
+        "name": "Recommendation PA166297602",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060204,
+          "html": "<p>Avoid codeine use because of possibility of diminished analgesia. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Greatly reduced morphine formation leading to diminished analgesia."
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "0.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297593",
+        "name": "Recommendation PA166297593",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060195,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Reduced morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "0.25"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": true
+      },
+      {
+        "id": "PA166297606",
+        "name": "Recommendation PA166297606",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060208,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "4.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297597",
+        "name": "Recommendation PA166297597",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060199,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Expected morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "1.25"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297607",
+        "name": "Recommendation PA166297607",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060209,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "≥3.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297558",
+        "name": "Recommendation PA166297558",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060160,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "≥5.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297594",
+        "name": "Recommendation PA166297594",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060196,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Reduced morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "0.5"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": true
+      },
+      {
+        "id": "PA166297603",
+        "name": "Recommendation PA166297603",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060205,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "2.5"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297598",
+        "name": "Recommendation PA166297598",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060200,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Expected morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "1.5"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297568",
+        "name": "Recommendation PA166297568",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060170,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "≥6.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297608",
+        "name": "Recommendation PA166297608",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060210,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "≥3.25"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297600",
+        "name": "Recommendation PA166297600",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060202,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Expected morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "2.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297595",
+        "name": "Recommendation PA166297595",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060197,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Reduced morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "0.75"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": true
+      },
+      {
+        "id": "PA166297599",
+        "name": "Recommendation PA166297599",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060201,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Expected morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "1.75"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297604",
+        "name": "Recommendation PA166297604",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060206,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "3.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297609",
+        "name": "Recommendation PA166297609",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060211,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "≥3.5"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297601",
+        "name": "Recommendation PA166297601",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060203,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Expected morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "2.25"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297596",
+        "name": "Recommendation PA166297596",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060198,
+          "html": "<p>Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Reduced morphine formation"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "1.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": true
+      },
+      {
+        "id": "PA166297610",
+        "name": "Recommendation PA166297610",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060212,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "≥4.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297605",
+        "name": "Recommendation PA166297605",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA449088",
+            "name": "codeine",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060207,
+          "html": "<p>Avoid codeine use because of potential for serious toxicity. If opioid use is warranted, consider a non-tramadol opioid.</p>\n"
+        },
+        "implications": [
+          "CYP2D6: Increased formation of morphine leading to higher risk of toxicity"
+        ],
+        "lookupKey": [
+          {
+            "CYP2D6": "2.75"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      }
+    ],
+    "citations": [
+      {
+        "pmid": "33387367",
+        "title": "Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2021,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8249478"
+      },
+      {
+        "pmid": "24458010",
+        "title": "Clinical Pharmacogenetics Implementation Consortium guidelines for cytochrome P450 2D6 genotype and codeine therapy: 2014 update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2014,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3975212"
+      },
+      {
+        "pmid": "22205192",
+        "title": "Clinical Pharmacogenetics Implementation Consortium (CPIC) guidelines for codeine therapy in the context of cytochrome P450 2D6 (CYP2D6) genotype.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2012,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3289963"
+      }
+    ],
+    "url": "https://www.clinpgx.org/guidelineAnnotation/PA166104996"
+  },
+  "fluorouracil": {
+    "guideline": {
+      "id": "PA166122686",
+      "name": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "objCls": "Guideline Annotation",
+      "source": "CPIC",
+      "version": 53,
+      "url": null,
+      "relatedChemicals": [
+        {
+          "id": "PA128406956",
+          "name": "fluorouracil",
+          "symbol": null
+        }
+      ],
+      "relatedGenes": [
+        {
+          "id": "PA145",
+          "name": "dihydropyrimidine dehydrogenase",
+          "symbol": "DPYD"
+        }
+      ],
+      "relatedAlleles": [],
+      "recommendation": true
+    },
+    "recommendations": [
+      {
+        "id": "PA166297898",
+        "name": "Recommendation PA166297898",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA128406956",
+            "name": "fluorouracil",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566478,
+          "html": "<p>Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available). Patients with the c.2846A&gt;T/c.2846A&gt;T genotype may require &gt;50% reduction in starting dose.</p>\n"
+        },
+        "implications": [
+          "DPYD: Decreased DPD activity (leukocyte DPD activity at 30% to 70% that of the normal population) and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs"
+        ],
+        "lookupKey": [
+          {
+            "DPYD": "1.0"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297896",
+        "name": "Recommendation PA166297896",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA128406956",
+            "name": "fluorouracil",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060498,
+          "html": "<p>Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.</p>\n"
+        },
+        "implications": [
+          "DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity"
+        ],
+        "lookupKey": [
+          {
+            "DPYD": "2.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297897",
+        "name": "Recommendation PA166297897",
+        "population": "general",
+        "classification": {
+          "term": "Moderate",
+          "termId": "guidelineStrength:981501931"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA128406956",
+            "name": "fluorouracil",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566476,
+          "html": "<p>Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available).</p>\n"
+        },
+        "implications": [
+          "DPYD: Decreased DPD activity (leukocyte DPD activity at 30% to 70% that of the normal population) and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs"
+        ],
+        "lookupKey": [
+          {
+            "DPYD": "1.5"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297900",
+        "name": "Recommendation PA166297900",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA128406956",
+            "name": "fluorouracil",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452060502,
+          "html": "<p>Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens.</p>\n"
+        },
+        "implications": [
+          "DPYD: Complete DPD deficiency and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs."
+        ],
+        "lookupKey": [
+          {
+            "DPYD": "0.0"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166297899",
+        "name": "Recommendation PA166297899",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA128406956",
+            "name": "fluorouracil",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454566446,
+          "html": "<p>Avoid use of 5-fluorouracil or 5-fluorouracil prodrug-based regimens. In the event, based on clinical advice, alternative agents are not considered a suitable therapeutic option, 5-fluorouracil should be administered at a strongly reduced dose with early therapeutic drug monitoring.</p>\n"
+        },
+        "implications": [
+          "DPYD: Complete DPD deficiency and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs."
+        ],
+        "lookupKey": [
+          {
+            "DPYD": "0.5"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      }
+    ],
+    "citations": [
+      {
+        "pmid": "29152729",
+        "title": "Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2018,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5760397"
+      },
+      {
+        "pmid": "23988873",
+        "title": "Clinical Pharmacogenetics Implementation Consortium guidelines for dihydropyrimidine dehydrogenase genotype and fluoropyrimidine dosing.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2013,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3831181"
+      }
+    ],
+    "url": "https://www.clinpgx.org/guidelineAnnotation/PA166122686"
+  },
+  "simvastatin": {
+    "guideline": {
+      "id": "PA166105005",
+      "name": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "objCls": "Guideline Annotation",
+      "source": "CPIC",
+      "version": 57,
+      "url": null,
+      "relatedChemicals": [
+        {
+          "id": "PA451363",
+          "name": "simvastatin",
+          "symbol": null
+        }
+      ],
+      "relatedGenes": [
+        {
+          "id": "PA134865839",
+          "name": "solute carrier organic anion transporter family member 1B1",
+          "symbol": "SLCO1B1"
+        }
+      ],
+      "relatedAlleles": [
+        {
+          "id": "PA166154579",
+          "name": "rs4149056",
+          "symbol": "rs4149056"
+        }
+      ],
+      "recommendation": true
+    },
+    "recommendations": [
+      {
+        "id": "PA166298501",
+        "name": "Recommendation PA166298501",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA451363",
+            "name": "simvastatin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454564498,
+          "html": "<p>Prescribe desired starting dose and adjust doses based on disease-specific guidelines.</p>\n"
+        },
+        "implications": [
+          "SLCO1B1: Typical myopathy risk and statin exposure"
+        ],
+        "lookupKey": [
+          {
+            "SLCO1B1": "Increased Function"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166298502",
+        "name": "Recommendation PA166298502",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA451363",
+            "name": "simvastatin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454564500,
+          "html": "<p>Prescribe desired starting dose and adjust doses based on disease-specific guidelines.</p>\n"
+        },
+        "implications": [
+          "SLCO1B1: Typical myopathy risk and statin exposure"
+        ],
+        "lookupKey": [
+          {
+            "SLCO1B1": "Normal Function"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166298503",
+        "name": "Recommendation PA166298503",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA451363",
+            "name": "simvastatin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454564502,
+          "html": "<p>Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins). If simvastatin therapy is warranted, limit dose to &lt;20mg/day.</p>\n"
+        },
+        "implications": [
+          "SLCO1B1: Increased simvastatin acid exposure as compared to normal function; increased risk of myopathy"
+        ],
+        "lookupKey": [
+          {
+            "SLCO1B1": "Possible Decreased Function"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166298504",
+        "name": "Recommendation PA166298504",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA451363",
+            "name": "simvastatin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454564476,
+          "html": "<p>Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins). If simvastatin therapy is warranted, limit dose to &lt;20mg/day.</p>\n"
+        },
+        "implications": [
+          "SLCO1B1: Increased simvastatin acid exposure as compared to normal function; increased risk of myopathy"
+        ],
+        "lookupKey": [
+          {
+            "SLCO1B1": "Decreased Function"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166298505",
+        "name": "Recommendation PA166298505",
+        "population": "general",
+        "classification": {
+          "term": "Strong",
+          "termId": "guidelineStrength:981501930"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA451363",
+            "name": "simvastatin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454564480,
+          "html": "<p>Prescribe an alternative statin depending on the desired potency (see Figure 1 of PMID: 35152405 for recommendations for alternative statins).</p>\n"
+        },
+        "implications": [
+          "SLCO1B1: Increased simvastatin acid exposure compared to normal and decreased function; highly increased myopathy risk"
+        ],
+        "lookupKey": [
+          {
+            "SLCO1B1": "Poor Function"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": true,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166298506",
+        "name": "Recommendation PA166298506",
+        "population": "general",
+        "classification": {
+          "term": "No recommendation",
+          "termId": "guidelineStrength:1448526251"
+        },
+        "relatedChemicals": [
+          {
+            "id": "PA451363",
+            "name": "simvastatin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1452061108,
+          "html": "<p>No recommendation</p>\n"
+        },
+        "implications": [
+          "SLCO1B1: n/a"
+        ],
+        "lookupKey": [
+          {
+            "SLCO1B1": "Indeterminate"
+          }
+        ],
+        "dosingInformation": false,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      }
+    ],
+    "citations": [
+      {
+        "pmid": "35152405",
+        "title": "The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2022,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9035072"
+      },
+      {
+        "pmid": "24918167",
+        "title": "The clinical pharmacogenetics implementation consortium guideline for SLCO1B1 and simvastatin-induced myopathy: 2014 update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2014,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4169720"
+      },
+      {
+        "pmid": "22617227",
+        "title": "The clinical pharmacogenomics implementation consortium: CPIC guideline for SLCO1B1 and simvastatin-induced myopathy.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2012,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3384438"
+      }
+    ],
+    "url": "https://www.clinpgx.org/guidelineAnnotation/PA166105005"
+  },
+  "warfarin": {
+    "guideline": {
+      "id": "PA166104949",
+      "name": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "objCls": "Guideline Annotation",
+      "source": "CPIC",
+      "version": 48,
+      "url": null,
+      "relatedChemicals": [
+        {
+          "id": "PA451906",
+          "name": "warfarin",
+          "symbol": null
+        }
+      ],
+      "relatedGenes": [
+        {
+          "id": "PA126",
+          "name": "cytochrome P450 family 2 subfamily C member 9",
+          "symbol": "CYP2C9"
+        },
+        {
+          "id": "PA27121",
+          "name": "cytochrome P450 family 4 subfamily F member 2",
+          "symbol": "CYP4F2"
+        },
+        {
+          "id": "PA133787052",
+          "name": "vitamin K epoxide reductase complex subunit 1",
+          "symbol": "VKORC1"
+        }
+      ],
+      "relatedAlleles": [
+        {
+          "id": "PA166154157",
+          "name": "rs12777823",
+          "symbol": "rs12777823"
+        },
+        {
+          "id": "PA166155381",
+          "name": "rs2108622",
+          "symbol": "rs2108622"
+        },
+        {
+          "id": "PA166155091",
+          "name": "rs9923231",
+          "symbol": "rs9923231"
+        }
+      ],
+      "recommendation": true
+    },
+    "recommendations": [
+      {
+        "id": "PA166425006",
+        "name": "Recommendation Annotation PA166425006",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454486525,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "No Result",
+            "CYP4F2": "No Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166425001",
+        "name": "Recommendation Annotation PA166425001",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454486520,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "Any Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "Any Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426741",
+        "name": "Recommendation Annotation PA166426741",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454607400,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "No Result",
+            "CYP4F2": "Any Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166425002",
+        "name": "Recommendation Annotation PA166425002",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454486521,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "No Result",
+            "VKORC1": "No Result",
+            "rs12777823": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426722",
+        "name": "Recommendation Annotation PA166426722",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454607381,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "No Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426721",
+        "name": "Recommendation Annotation PA166426721",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454607380,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "Any Result",
+            "VKORC1": "No Result",
+            "rs12777823": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426845",
+        "name": "Recommendation Annotation PA166426845",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454609106,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "No Result",
+            "VKORC1": "No Result",
+            "rs12777823": "Any Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426844",
+        "name": "Recommendation Annotation PA166426844",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454609105,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "No Result",
+            "CYP4F2": "Any Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "Any Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426843",
+        "name": "Recommendation Annotation PA166426843",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454609104,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "Any Result",
+            "VKORC1": "No Result",
+            "rs12777823": "Any Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426842",
+        "name": "Recommendation Annotation PA166426842",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454609103,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "No Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "Any Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426841",
+        "name": "Recommendation Annotation PA166426841",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454609100,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "Any Result",
+            "CYP4F2": "Any Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "No Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      },
+      {
+        "id": "PA166426847",
+        "name": "Recommendation Annotation PA166426847",
+        "population": null,
+        "classification": null,
+        "relatedChemicals": [
+          {
+            "id": "PA451906",
+            "name": "warfarin",
+            "symbol": null
+          }
+        ],
+        "text": {
+          "id": 1454609108,
+          "html": "<p>CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article:<a href=\"/pmid/28198005\">28198005</a>] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See <a href=\"https://www.clinpgx.org/guidelineAnnotation/PA166104949\">CPIC guideline annotation</a> for details.</p>\n"
+        },
+        "implications": [],
+        "lookupKey": [
+          {
+            "CYP2C9": "No Result",
+            "CYP4F2": "No Result",
+            "VKORC1": "Any Result",
+            "rs12777823": "Any Result"
+          }
+        ],
+        "dosingInformation": true,
+        "alternateDrugAvailable": false,
+        "otherPrescribingGuidance": false
+      }
+    ],
+    "citations": [
+      {
+        "pmid": "28198005",
+        "title": "Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2017,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5546947"
+      },
+      {
+        "pmid": "21900891",
+        "title": "Clinical Pharmacogenetics Implementation Consortium Guidelines for CYP2C9 and VKORC1 genotypes and warfarin dosing.",
+        "journal": "Clinical pharmacology and therapeutics",
+        "year": 2011,
+        "_sameAs": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3187550"
+      }
+    ],
+    "url": "https://www.clinpgx.org/guidelineAnnotation/PA166104949"
+  }
+}

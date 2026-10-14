@@ -1,0 +1,152 @@
+INFO:     Started server process [66838]
+INFO:     Waiting for application startup.
+[startup] pharmcat=jar via /opt/homebrew/opt/openjdk@17/bin/java -jar /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar
+[startup] pharmcat_concurrency=1 workers=1 queue_timeout=25s
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+[startup] explanation_mode=static cors_origins=['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:3000', 'http://127.0.0.1:3000'] rate_limit=10/300s proxy_trust={'forwarded_headers': 'ignored', 'trusted_proxy_cidrs': []}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:53922 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53923 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53924 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53925 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54005 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54006 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54007 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54008 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54010 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54011 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54012 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54013 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54014 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54015 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54016 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54017 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54018 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54019 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54021 - "POST /coverage HTTP/1.1" 413 Request Entity Too Large
+INFO:     127.0.0.1:54022 - "POST /analyze HTTP/1.1" 413 Request Entity Too Large
+INFO:     127.0.0.1:54023 - "POST /coverage HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:54024 - "POST /analyze HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:54025 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54026 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54028 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54029 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54030 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54031 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54032 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54033 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54034 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54035 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54036 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54037 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54038 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54039 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54148 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54149 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54156 - "OPTIONS /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54156 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54173 - "OPTIONS /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54173 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54248 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54249 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54262 - "OPTIONS /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54262 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54263 - "OPTIONS /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54263 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54297 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54298 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54305 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54342 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54342 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54349 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54349 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54612 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54613 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54620 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54620 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55305 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55306 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55314 - "OPTIONS /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55314 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55314 - "OPTIONS /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55315 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55553 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55554 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55562 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55562 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55832 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55833 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55840 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55840 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56079 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56080 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56088 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56088 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56359 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56360 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56367 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56367 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56730 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56731 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56738 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56738 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57019 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57020 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57029 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57029 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57339 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57340 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57347 - "POST /coverage HTTP/1.1" 413 Request Entity Too Large
+INFO:     127.0.0.1:57371 - "POST /analyze HTTP/1.1" 413 Request Entity Too Large
+INFO:     127.0.0.1:57475 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57476 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57483 - "POST /coverage HTTP/1.1" 413 Request Entity Too Large
+INFO:     127.0.0.1:57506 - "POST /analyze HTTP/1.1" 413 Request Entity Too Large
+INFO:     127.0.0.1:57569 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57569 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57569 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57601 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57609 - "POST /coverage HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:57609 - "POST /analyze HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:57653 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57653 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57653 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57683 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57690 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57690 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58036 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58037 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58045 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58045 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58345 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58346 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58358 - "OPTIONS /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58358 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58358 - "OPTIONS /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58359 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58673 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58674 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58681 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58681 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58965 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58966 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58973 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58973 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59255 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59256 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59263 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59263 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59823 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59824 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59828 - "OPTIONS /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59828 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59828 - "OPTIONS /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59829 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59896 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59897 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59901 - "GET /provenance HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [66838]

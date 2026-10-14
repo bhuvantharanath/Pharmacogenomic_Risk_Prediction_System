@@ -1,0 +1,818 @@
+{
+ "summary": {
+  "cases": 15,
+  "all_uploads_bound": true,
+  "all_api_bytes_match_browser": true,
+  "export_parity_failures": {},
+  "clipboard_parity_failures": {}
+ },
+ "cases": [
+  {
+   "id": "D01",
+   "fixture_sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "e6b984d514070f85779fd3018645d16933287157403a0d3dd1c79616f9cf37a4",
+    "server_sent_match": true,
+    "server_receipts": [
+     71,
+     67,
+     31,
+     27,
+     93,
+     29,
+     99,
+     62
+    ],
+    "uploaded_file_sha256": [
+     "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+     "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+     "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "e667ecf4eb926b8acebd4fec7cea1377dd4f970fd4b62c27c85301d66de9a947",
+    "server_sent_match": true,
+    "server_receipts": [
+     64
+    ],
+    "uploaded_file_sha256": [
+     "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 29656,
+    "download_sha256": "69241924fcd24c280865662b12f373337bdeb10a0b4c37118ec1dc7c8cd785bb",
+    "clipboard_bytes": 29656,
+    "clipboard_sha256": "69241924fcd24c280865662b12f373337bdeb10a0b4c37118ec1dc7c8cd785bb",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D02",
+   "fixture_sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "e6b984d514070f85779fd3018645d16933287157403a0d3dd1c79616f9cf37a4",
+    "server_sent_match": true,
+    "server_receipts": [
+     71,
+     67,
+     31,
+     27,
+     93,
+     29,
+     99,
+     62
+    ],
+    "uploaded_file_sha256": [
+     "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+     "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+     "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "6001eb662dbd308ac5fc3646f6a0e6cdd029471c3f24695dd300815437b3ca9e",
+    "server_sent_match": true,
+    "server_receipts": [
+     68
+    ],
+    "uploaded_file_sha256": [
+     "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 30822,
+    "download_sha256": "1b64acc45639b248ebf91a731ce65de32a65fb6b4b08ec5eb24b6e838a54a7ea",
+    "clipboard_bytes": 30822,
+    "clipboard_sha256": "1b64acc45639b248ebf91a731ce65de32a65fb6b4b08ec5eb24b6e838a54a7ea",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D03",
+   "fixture_sha256": "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "e6b984d514070f85779fd3018645d16933287157403a0d3dd1c79616f9cf37a4",
+    "server_sent_match": true,
+    "server_receipts": [
+     71,
+     67,
+     31,
+     27,
+     93,
+     29,
+     99,
+     62
+    ],
+    "uploaded_file_sha256": [
+     "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+     "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+     "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "769a71c0d0c5bf22f9313ba8a8dd89dd8fa1785a6af75a097c8e3c645dce2e30",
+    "server_sent_match": true,
+    "server_receipts": [
+     72
+    ],
+    "uploaded_file_sha256": [
+     "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 30234,
+    "download_sha256": "df2f5f0c523cde24ad91f6b9133811289244bd607422241314455238ae9a2403",
+    "clipboard_bytes": 30234,
+    "clipboard_sha256": "df2f5f0c523cde24ad91f6b9133811289244bd607422241314455238ae9a2403",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D04",
+   "fixture_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "ab7ec7af4e04776c0f80281e7365c23f0211cb57250eda61a22d9c5985a2d488",
+    "server_sent_match": true,
+    "server_receipts": [
+     33,
+     79,
+     75,
+     35
+    ],
+    "uploaded_file_sha256": [
+     "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+     "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "1168f35fa19d45911201cba4dab2fb9ea366df8781708c433b4f74c8df6697f9",
+    "server_sent_match": true,
+    "server_receipts": [
+     76
+    ],
+    "uploaded_file_sha256": [
+     "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 29681,
+    "download_sha256": "49234c47619e06cff157c34947fda21f71845fd307b4c29a57eb9fe0bdacc3f9",
+    "clipboard_bytes": 29681,
+    "clipboard_sha256": "49234c47619e06cff157c34947fda21f71845fd307b4c29a57eb9fe0bdacc3f9",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D05",
+   "fixture_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "ab7ec7af4e04776c0f80281e7365c23f0211cb57250eda61a22d9c5985a2d488",
+    "server_sent_match": true,
+    "server_receipts": [
+     33,
+     79,
+     75,
+     35
+    ],
+    "uploaded_file_sha256": [
+     "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+     "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "3e1e830d0a50c5cfb2a4ff6d48c72aed038ef15d166f139fd0cf66406db2c983",
+    "server_sent_match": true,
+    "server_receipts": [
+     80
+    ],
+    "uploaded_file_sha256": [
+     "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 30466,
+    "download_sha256": "b40e6fe5895252af02beceb3cb450bc4350e11d5c34268fdd731a31bc1e69aac",
+    "clipboard_bytes": 30466,
+    "clipboard_sha256": "b40e6fe5895252af02beceb3cb450bc4350e11d5c34268fdd731a31bc1e69aac",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D06",
+   "fixture_sha256": "af5558a206fac64d67908525830e749f74fe472e28f25b075a8aa05da0702019",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "c092692eb7140d87055ce1ed90840457b2ef284193c7b69428ad4d16482e8e2c",
+    "server_sent_match": true,
+    "server_receipts": [
+     37,
+     83
+    ],
+    "uploaded_file_sha256": [
+     "af5558a206fac64d67908525830e749f74fe472e28f25b075a8aa05da0702019"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "c01d99ecf82c525b3bcc23327276b73188b5fb1f64734dec128cc8f3e7e0d51a",
+    "server_sent_match": true,
+    "server_receipts": [
+     84
+    ],
+    "uploaded_file_sha256": [
+     "af5558a206fac64d67908525830e749f74fe472e28f25b075a8aa05da0702019"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 28107,
+    "download_sha256": "7cecef520f07609e86b5939305ad17b7eeb1d950c55ba4a1f4769d3feadf5df8",
+    "clipboard_bytes": 28107,
+    "clipboard_sha256": "7cecef520f07609e86b5939305ad17b7eeb1d950c55ba4a1f4769d3feadf5df8",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D07",
+   "fixture_sha256": "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "9e69b5be492d71557941c67bedf7d702a9633c23d77441e7cbf51fa44ce880d9",
+    "server_sent_match": true,
+    "server_receipts": [
+     87,
+     39
+    ],
+    "uploaded_file_sha256": [
+     "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "7f9eac3668566da52c0debe9a4cfccf214bf294d46370868c51f728e3750331f",
+    "server_sent_match": true,
+    "server_receipts": [
+     88
+    ],
+    "uploaded_file_sha256": [
+     "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 29479,
+    "download_sha256": "9eec19efb74508b5e021fc70cbf4970fef5565ab69ff89209719f4ef4baa65e8",
+    "clipboard_bytes": 29479,
+    "clipboard_sha256": "9eec19efb74508b5e021fc70cbf4970fef5565ab69ff89209719f4ef4baa65e8",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D08",
+   "fixture_sha256": "a3e4676b1825cd3723e6094565e8c0bad15905a879ad431dcd80106b8b9334c1",
+   "coverage": {
+    "status": 413,
+    "browser_received_sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+    "server_sent_match": true,
+    "server_receipts": [
+     91,
+     92,
+     41,
+     42
+    ],
+    "uploaded_file_sha256": [
+     "a3e4676b1825cd3723e6094565e8c0bad15905a879ad431dcd80106b8b9334c1"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "analyze": {
+    "status": 413,
+    "browser_received_sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+    "server_sent_match": true,
+    "server_receipts": [
+     91,
+     92,
+     41,
+     42
+    ],
+    "uploaded_file_sha256": [
+     "a3e4676b1825cd3723e6094565e8c0bad15905a879ad431dcd80106b8b9334c1"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "recovery_analyze": {
+    "status": 200,
+    "browser_received_sha256": "067ff69003b59d57322b9b58d6837285c27e6f0d2e838a89a42c3b6277779858",
+    "server_sent_match": true,
+    "server_receipts": [
+     94
+    ],
+    "uploaded_file_sha256": [
+     "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   }
+  },
+  {
+   "id": "D09",
+   "fixture_sha256": "729feae06ff4039de81d56a9f18a4210e22286baddad6f15706a83b4051b5c3f",
+   "coverage": {
+    "status": 400,
+    "browser_received_sha256": "f8fb5d049ec3779bd8b42ef1ca92b878f1b71c4f1b0b776b63e89b98ad3d0bc5",
+    "server_sent_match": true,
+    "server_receipts": [
+     97,
+     43,
+     44,
+     98
+    ],
+    "uploaded_file_sha256": [
+     "729feae06ff4039de81d56a9f18a4210e22286baddad6f15706a83b4051b5c3f"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "analyze": {
+    "status": 400,
+    "browser_received_sha256": "f8fb5d049ec3779bd8b42ef1ca92b878f1b71c4f1b0b776b63e89b98ad3d0bc5",
+    "server_sent_match": true,
+    "server_receipts": [
+     97,
+     43,
+     44,
+     98
+    ],
+    "uploaded_file_sha256": [
+     "729feae06ff4039de81d56a9f18a4210e22286baddad6f15706a83b4051b5c3f"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "recovery_analyze": {
+    "status": 200,
+    "browser_received_sha256": "b90350617b8559ec0e8b3ca39443100264b91ec5abb33146412863f5348ffae4",
+    "server_sent_match": true,
+    "server_receipts": [
+     100
+    ],
+    "uploaded_file_sha256": [
+     "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   }
+  },
+  {
+   "id": "D10",
+   "fixture_sha256": "e1460421f84c2e9ac96a113f25d6de0b7b96e44f54daa22ec40137f28d12f362",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "79505eda1aa81af9910c13f1fbceae725cf73acdc992423e42da285b3107f8e5",
+    "server_sent_match": true,
+    "server_receipts": [
+     45,
+     103
+    ],
+    "uploaded_file_sha256": [
+     "e1460421f84c2e9ac96a113f25d6de0b7b96e44f54daa22ec40137f28d12f362"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "65d0f9943c1e7f9d5a71905232c4c99c0f0cb96c08ce4f6887dce004387a42c8",
+    "server_sent_match": true,
+    "server_receipts": [
+     104
+    ],
+    "uploaded_file_sha256": [
+     "e1460421f84c2e9ac96a113f25d6de0b7b96e44f54daa22ec40137f28d12f362"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 27187,
+    "download_sha256": "982ff6cb2b202dd05cc6357ae2ed8b38c96f7e647985c838f68bd4f32a3da9fe",
+    "clipboard_bytes": 27187,
+    "clipboard_sha256": "982ff6cb2b202dd05cc6357ae2ed8b38c96f7e647985c838f68bd4f32a3da9fe",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D11",
+   "fixture_sha256": "d8670fbe6c6036dde445931a7c8e2194e12930fe070e81ff066ff72198aaebe9",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "e7619b2c9e2305373759e5cdd2b07494ed89474d0bdcbd6edbaa05253cfd7710",
+    "server_sent_match": true,
+    "server_receipts": [
+     107,
+     47
+    ],
+    "uploaded_file_sha256": [
+     "d8670fbe6c6036dde445931a7c8e2194e12930fe070e81ff066ff72198aaebe9"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "3ca33670c9e19d38d9bab45af42b15ee5214d773afc95c2baf45c96601698ca6",
+    "server_sent_match": true,
+    "server_receipts": [
+     108
+    ],
+    "uploaded_file_sha256": [
+     "d8670fbe6c6036dde445931a7c8e2194e12930fe070e81ff066ff72198aaebe9"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 27326,
+    "download_sha256": "b8625f1ad23a20b0e117d77cf43b4bade61fe4d4005a6c0f93b300bc4372e74e",
+    "clipboard_bytes": 27326,
+    "clipboard_sha256": "b8625f1ad23a20b0e117d77cf43b4bade61fe4d4005a6c0f93b300bc4372e74e",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D12",
+   "fixture_sha256": "93c86eb50f87583096a0d0aeae06a1ce00581903d1c787ead24ccfb442628edc",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "b9430154a07bc0a03b07de8e5d1996d54ff32ba457049cfab5963a0b94ca4967",
+    "server_sent_match": true,
+    "server_receipts": [
+     49,
+     112
+    ],
+    "uploaded_file_sha256": [
+     "93c86eb50f87583096a0d0aeae06a1ce00581903d1c787ead24ccfb442628edc"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "eb96dff1ec1764602ee68cb340c85ea32bc9ab1843e073571a1fff303ae319bc",
+    "server_sent_match": true,
+    "server_receipts": [
+     114
+    ],
+    "uploaded_file_sha256": [
+     "93c86eb50f87583096a0d0aeae06a1ce00581903d1c787ead24ccfb442628edc"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 27326,
+    "download_sha256": "3a445099cf63688e0d1fd407c330b1acec7fce06fd55007d3eabc8a551de9959",
+    "clipboard_bytes": 27326,
+    "clipboard_sha256": "3a445099cf63688e0d1fd407c330b1acec7fce06fd55007d3eabc8a551de9959",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D13",
+   "fixture_sha256": "3893a2c75b590ef5a39449e4f6b3889fad059cf966c16bb76870502cc181e852",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "3d2ccc269548739cb6d730571a69ebb9b69bcce4505efab139f85d8f10d507ef",
+    "server_sent_match": true,
+    "server_receipts": [
+     117,
+     51
+    ],
+    "uploaded_file_sha256": [
+     "3893a2c75b590ef5a39449e4f6b3889fad059cf966c16bb76870502cc181e852"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "4fd8eb1a292538ca3d7b70034be939aacf2e9c0fa5f2e51dfdf92bf10f707dcc",
+    "server_sent_match": true,
+    "server_receipts": [
+     118
+    ],
+    "uploaded_file_sha256": [
+     "3893a2c75b590ef5a39449e4f6b3889fad059cf966c16bb76870502cc181e852"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 29231,
+    "download_sha256": "b5d557216533ae180d7f4d572f3b110c954409ceb9c0bab5da5d13f62e2296d2",
+    "clipboard_bytes": 29231,
+    "clipboard_sha256": "b5d557216533ae180d7f4d572f3b110c954409ceb9c0bab5da5d13f62e2296d2",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D14",
+   "fixture_sha256": "88e86f4cc93ad9212e65d264e82a6a0dbc688afdc0e2857edb5a5857644a44d7",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "d47c39f7a98b31e0d454d9632ac5ca8e669f2f5d6396ae6c59f8ae44e7aaec66",
+    "server_sent_match": true,
+    "server_receipts": [
+     53,
+     121
+    ],
+    "uploaded_file_sha256": [
+     "88e86f4cc93ad9212e65d264e82a6a0dbc688afdc0e2857edb5a5857644a44d7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "24fb4f90fa4331de56d13c27b88d1e236468d1b0e8ae53c663390eb12b3a5e2d",
+    "server_sent_match": true,
+    "server_receipts": [
+     122
+    ],
+    "uploaded_file_sha256": [
+     "88e86f4cc93ad9212e65d264e82a6a0dbc688afdc0e2857edb5a5857644a44d7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine"
+    ]
+   },
+   "export": {
+    "download_bytes": 29455,
+    "download_sha256": "624580943dad166b8af0e2cee6e34cfa669663cbac935f90541c864bb76ff1b5",
+    "clipboard_bytes": 29455,
+    "clipboard_sha256": "624580943dad166b8af0e2cee6e34cfa669663cbac935f90541c864bb76ff1b5",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  },
+  {
+   "id": "D15",
+   "fixture_sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c",
+   "coverage": {
+    "status": 200,
+    "browser_received_sha256": "c1f0172598a7b56300f0b5d2161c2cda4eaa0c7ed9a2fdf00c9ac25f09f541bd",
+    "server_sent_match": true,
+    "server_receipts": [
+     55,
+     125,
+     11
+    ],
+    "uploaded_file_sha256": [
+     "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c",
+     "d9ad8dab7dca48eb8cf337089d3ac8b6096d619a9d63dba7b71b1f9f87d7bfa7"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": []
+   },
+   "analyze": {
+    "status": 200,
+    "browser_received_sha256": "65c6819f724e2a8e556b8ac79e3db5593b496ba470fc1b0b8366ba301eebe778",
+    "server_sent_match": true,
+    "server_receipts": [
+     126
+    ],
+    "uploaded_file_sha256": [
+     "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c"
+    ],
+    "upload_bound_to_fixture": true,
+    "drugs_field": [
+     "clopidogrel,ibuprofen,codeine,warfarin"
+    ]
+   },
+   "export": {
+    "download_bytes": 19172,
+    "download_sha256": "1a90c633f0b99756b4d3c44190745e2e73cde9758fa8c6229fef3ed783e6bcf1",
+    "clipboard_bytes": 19172,
+    "clipboard_sha256": "1a90c633f0b99756b4d3c44190745e2e73cde9758fa8c6229fef3ed783e6bcf1",
+    "clipboard_equals_download_bytes": true,
+    "download_vs_api_after_documented_transform": [],
+    "clipboard_vs_api_after_documented_transform": [],
+    "transform_notes": [
+     "ibuprofen: not in registry; export uses the documented client fallback"
+    ],
+    "api_fields_removed": [
+     "analyses[].risk_assessment.confidence_score",
+     "analyses[].risk_assessment.severity"
+    ],
+    "fields_added": [
+     "analyses[].risk_assessment.assessment_scope",
+     "analyses[].application_capability"
+    ]
+   }
+  }
+ ]
+}

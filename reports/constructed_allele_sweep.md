@@ -1,5 +1,7 @@
 # Constructed-allele sweep — all 503 named alleles
 
+> **Historical synthetic/self-consistency evidence.** Inputs and truth were constructed from the same pinned PharmCAT definitions. This report tests round-trip behavior, not independent biological accuracy, and is superseded for current external-benchmark claims by `reports/external_analytical_benchmark.md`.
+
 Audit A carry-forward, closed **2026-08-13**. Raw results:
 `reports/constructed_allele_sweep.json`. Harness:
 `scripts/sweep_constructed_alleles.py`.

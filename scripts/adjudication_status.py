@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-Adjudication coverage — the release gate.
+Adjudication coverage — detailed input to the authoritative release gate.
 
     python scripts/adjudication_status.py
     python scripts/adjudication_status.py --json
     python scripts/adjudication_status.py --quiet     # exit code only
 
-WHY THIS REPLACED THE PROVENANCE GATE
+WHY THIS IS NOT THE FINAL RELEASE STATUS
 
 `verify_provenance.py` used to be the gate, and it was the wrong instrument for
 the job. `reports/provenance_diagnosis.md` shows why: it scored lexical overlap,
@@ -14,10 +14,10 @@ so it failed faithful paraphrase and passed a sentence that contradicted its
 source. A gate that can be satisfied by copying and defeated by rewording is not
 measuring what matters.
 
-The automated layer is now a **filter**: it narrows twenty entries to the
-sentences a person should actually look at. This script is the gate, and it
-checks something a machine genuinely can determine — whether a human has made a
-decision about every shipped claim, and whether any decision was "reject".
+The automated layer is a filter: it narrows twenty entries to the sentences a
+person should actually look at. This script reports adjudication detail.
+scripts/release_status.py is the only command allowed to combine this with
+tests and artifact hashes and report final release readiness.
 
 EXIT CODES
     0  every claim-bearing sentence is adjudicated and none was rejected
@@ -84,7 +84,7 @@ def main(argv: list[str] | None = None) -> int:
         print(red("No explanations at all."), file=sys.stderr)
         return 1
 
-    # The gate covers EVERY claim-bearing sentence, not only the flagged ones:
+    # Adjudication covers EVERY claim-bearing sentence, not only flagged ones:
     # the filter is triage, so "the filter sourced it" is not by itself a
     # decision. Unflagged sentences may be bulk-accepted, but the record must
     # exist and name who made it.
@@ -146,15 +146,13 @@ def main(argv: list[str] | None = None) -> int:
         "rejected": len(rejected),
         "clinical_expert_review": "NOT_OBTAINED",
         "state": ("human-complete" if ok and not by_automation
-                  else "provisional" if ok else "not-ready"),
-        # Deliberately false in the provisional state. A gate that reports
-        # release-ready when a machine made the decisions would be exactly the
-        # false reassurance this project exists to document.
-        "release_ready": bool(ok and not by_automation),
-        "release_ready_provisional": bool(ok),
+                  else "provisional" if ok else "incomplete"),
+        "adjudication_complete": bool(ok),
+        "human_adjudication_complete": bool(ok and not by_automation),
     }
 
-    # The strict gate fails on any automated decision, regardless of output mode.
+    # The strict prerequisite check fails on any automated decision, regardless
+    # of output mode. Final readiness belongs only to release_status.py.
     if args.require_human and by_automation:
         if args.json:
             print(json.dumps(payload, indent=1))
@@ -194,14 +192,14 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  clinical expert      {red('NOT_OBTAINED')}   {dim('(no qualified reviewer on this project)')}")
 
     if rejected:
-        print(red(f"\nNOT RELEASE READY: {len(rejected)} rejected sentence(s) are still in the store."))
+        print(red(f"\nADJUDICATION INCOMPLETE: {len(rejected)} rejected sentence(s) are still in the store."))
         for item in rejected[:6]:
             print(red(f"  · {item['case']} / {item['field']}: {item['rationale'][:60]}"))
         print(dim("  Regenerate or edit those entries, then re-adjudicate."))
         return 1
 
     if outstanding:
-        print(yellow(f"\nNOT RELEASE READY: {len(outstanding)} flagged sentence(s) have no decision."))
+        print(yellow(f"\nADJUDICATION INCOMPLETE: {len(outstanding)} flagged sentence(s) have no decision."))
         for item in outstanding[:6]:
             print(yellow(f"  · {item['case']} / {item['field']}: {item['text'][:58]}"))
         if len(outstanding) > 6:
@@ -209,7 +207,7 @@ def main(argv: list[str] | None = None) -> int:
         print(dim("\n  python scripts/adjudicate.py --adjudicator '<your name>'"))
         return 1
 
-    print(green("\nRELEASE READY: every flagged claim has been adjudicated, none rejected."))
+    print(green("\nADJUDICATION RECORD COMPLETE: every claim has a decision, none rejected."))
     print(dim("  Adjudicated means a person compared the sentence to its source."))
     print(dim("  It does NOT mean a clinician has agreed the sentence is correct."))
     return 0

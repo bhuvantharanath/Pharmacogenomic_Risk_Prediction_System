@@ -1,0 +1,14 @@
+{
+  "stored_entries": 20,
+  "current_claims": 179,
+  "current_recorded_human": 124,
+  "automated_only": 36,
+  "unresolved": 19,
+  "missing_author_read": 20,
+  "historical_unmatched_records": 2,
+  "current_human_records_with_source_or_content_or_context_hash": 0,
+  "current_human_exact_sentence_mismatches": 0,
+  "pending_human_claim_decisions": 55,
+  "flagged_for_owner_reassessment": 144
+}
+historical unmatched: [{"entry_id": "simvastatin:Unknown", "claim_key": "30677694ad44a8da", "record": {"version": 1, "field": "summary", "sentence": "The recommendation for your genetic result and simvastatin is unknown because your genetic result was not available for this gene.", "decision": "accepted", "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read", "adjudicated_by": "Bhuvan T", "adjudicated_at": "2026-07-24T10:13:25.848102+00:00", "note": "provenance adjudication by the project author; NOT clinical approval"}, "disposition": "Preserve historical record; no matching current claim; do not transfer to edited text."}, {"entry_id": "simvastatin:Unknown", "claim_key": "82991ae0bde1d7ce", "record": {"version": 1, "field": "patient_friendly", "sentence": "This is because your genetic result was not available for this gene.", "decision": "accepted", "rationale": "bulk: automated filter sourced every assertion in this sentence and found no polarity conflict; not individually read", "adjudicated_by": "Bhuvan T", "adjudicated_at": "2026-07-24T10:13:25.848105+00:00", "note": "provenance adjudication by the project author; NOT clinical approval"}, "disposition": "Preserve historical record; no matching current claim; do not transfer to edited text."}]

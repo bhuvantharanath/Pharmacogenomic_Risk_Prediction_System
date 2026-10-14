@@ -388,7 +388,7 @@ risk_label_rules:
     severity_hint: none
 
   - id: standard_dosing
-    label: Safe
+    label: No PGx-guided adjustment identified
     # Rationale: CPIC explicitly says to prescribe normally.
     #
     # Checked BEFORE the dose-change rule because CPIC's "normal" text routinely
@@ -472,7 +472,7 @@ risk_label_rules:
 # ---------------------------------------------------------------------------
 severity:
   base_by_label:
-    Safe: none
+    "No PGx-guided adjustment identified": none
     "Adjust Dosage": moderate
     Toxic: high
     Ineffective: high
@@ -482,7 +482,7 @@ severity:
   escalate_one_step_for_phenotypes: [PM, URM]
   # Never escalate these labels: "Safe" plus a PM phenotype is still safe, and
   # escalating Unknown would imply knowledge we do not have.
-  never_escalate_labels: [Safe, Unknown]
+  never_escalate_labels: [No PGx-guided adjustment identified, Unknown]
 
 # ---------------------------------------------------------------------------
 # Confidence score.
@@ -525,20 +525,3 @@ phenotype_abnormality_rank:
   RM: 2
   NM: 1
   Unknown: 0
-
-# ---------------------------------------------------------------------------
-# Drug -> primary gene, used to pick which gene call to attach to a drug when
-# the CPIC annotation's lookup key does not name one (rare). PharmCAT's
-# annotation lookup_key is authoritative; this is only a fallback.
-# ---------------------------------------------------------------------------
-drug_primary_gene:
-  clopidogrel: CYP2C19
-  warfarin: CYP2C9
-  simvastatin: SLCO1B1
-  azathioprine: TPMT
-  mercaptopurine: TPMT
-  thioguanine: TPMT
-  fluorouracil: DPYD
-  capecitabine: DPYD
-  codeine: CYP2D6
-  tramadol: CYP2D6

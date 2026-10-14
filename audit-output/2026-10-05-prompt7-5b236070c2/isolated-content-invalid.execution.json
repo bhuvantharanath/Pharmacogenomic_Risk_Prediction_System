@@ -1,0 +1,12 @@
+{
+  "command": [
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy/scripts/release_status.py",
+    "--content-only",
+    "--candidate-sha",
+    "1dc7557da49f38e831b382545044b00a481507b6",
+    "--json"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy",
+  "exit_code": 1
+}

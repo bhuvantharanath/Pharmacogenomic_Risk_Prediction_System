@@ -1,0 +1,24 @@
+{
+  "NA18526": {
+    "scientific_content_equal_after_declared_export_transform": true,
+    "intentional_differences": [
+      "omit legacy confidence_score",
+      "omit legacy severity",
+      "add assessment_scope disclaimer",
+      "add capability registry metadata, independently matched to authoritative registry"
+    ],
+    "export_sha256": "9384476cc1bd864b15425dc46171a04302fa53fd4e7cbfea150858d7a82033ac",
+    "download_file": "/Users/bhuvant/Downloads/pharmaguard_NA18526_2026-10-02T12-39-39-477099Z.json"
+  },
+  "NA12878": {
+    "scientific_content_equal_after_declared_export_transform": true,
+    "intentional_differences": [
+      "omit legacy confidence_score",
+      "omit legacy severity",
+      "add assessment_scope disclaimer",
+      "add capability registry metadata, independently matched to authoritative registry"
+    ],
+    "export_sha256": "dbf15d73d67f76d7afb63853b420ae4a2cb1e63729697f50b7115e502c091574",
+    "download_file": "/Users/bhuvant/Downloads/pharmaguard_NA12878_2026-10-02T10-36-37-986156Z.json"
+  }
+}

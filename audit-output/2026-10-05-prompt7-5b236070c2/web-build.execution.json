@@ -1,0 +1,15 @@
+{
+  "command": [
+    "flutter",
+    "build",
+    "web",
+    "--release",
+    "--no-pub",
+    "--output=/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/web-build",
+    "--dart-define=API_BASE_URL=http://127.0.0.1:8000"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app",
+  "exit_code": 0,
+  "seconds": 19.349488291991292,
+  "at": "2026-10-05T13:12:55.923698+00:00"
+}

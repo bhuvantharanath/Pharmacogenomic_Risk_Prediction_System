@@ -1,0 +1,28 @@
+{
+ "argv": [
+  "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+  "-m",
+  "uvicorn",
+  "capture_api:app",
+  "--app-dir",
+  "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2",
+  "--host",
+  "127.0.0.1",
+  "--port",
+  "8000",
+  "--workers",
+  "1"
+ ],
+ "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend",
+ "environment_overrides": {
+  "CORS_ALLOWED_ORIGINS": "http://localhost:8080,http://127.0.0.1:8080,http://localhost:3000,http://127.0.0.1:3000",
+  "EXPLANATION_MODE": "static",
+  "JAVA_HOME": "/opt/homebrew/opt/openjdk@17",
+  "PHARMCAT_JAR": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+  "PHARMCAT_JAVA": "/opt/homebrew/opt/openjdk@17/bin/java",
+  "STRICT_PHARMCAT": "1",
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "CAPTURE_DIR": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-captures-final3"
+ },
+ "started": "2026-10-14T18:05:58.535726+00:00"
+}

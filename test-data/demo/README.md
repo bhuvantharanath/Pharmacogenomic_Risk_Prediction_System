@@ -21,8 +21,10 @@ genuine 1000 Genomes data, not synthesised.
 ## The pair that matters
 
 `demo_confident.vcf` and `demo_variants_only.vcf` describe **the same patient with
-the same genotype.** PharmCAT still calls `*2/*2` from the variants-only file — the
-call is not lost. What changes is that the system can no longer verify the input
-supported it, so it declines. That is the whole thesis in two files.
+the same non-reference genotypes.** The pinned PharmCAT caller reports `*2/*2`
+from both files in diagnostic runs. The final API asserts that diplotype only
+for the complete file. It returns an Unknown profile for the variants-only file
+because the missing positions cannot verify the call. That is the whole thesis
+in two files.
 
 Captured responses are in `outputs/`, produced against the live HTTP API.

@@ -1,0 +1,34 @@
+........................................................................ [  7%]
+........................................................................ [ 15%]
+........................................................................ [ 23%]
+........................................................................ [ 31%]
+.............................................s.......................... [ 39%]
+........................................................................ [ 46%]
+.........................s.............................................. [ 54%]
+........................................................................ [ 62%]
+........................................................................ [ 70%]
+........................................................................ [ 78%]
+........................................................................ [ 85%]
+........................................................................ [ 93%]
+.........................................................                [100%]
+=============================== warnings summary ===============================
+tests/test_captured_outputs.py::TestProvenanceVerifierOnCapturedText::test_a_planted_unsourced_clinical_sentence_fails
+tests/test_guard_real_outputs.py::TestShippedExplanationsAreStillFaithful::test_every_shipped_entry_passes_the_current_guard
+tests/test_guard_real_outputs.py::TestAdversarialArmsCaughtRealFabrication::test_all_four_arms_produced_output
+tests/test_guard_real_outputs.py::TestGuardEventLog::test_events_are_well_formed
+tests/test_phase5a_tooling.py::TestReachability::test_matrix_has_the_expected_shape
+tests/test_phase5a_tooling.py::TestResumeIdempotency::test_resume_skips_exactly_what_is_already_present
+tests/test_phase5a_tooling.py::TestGuardExperimentIsolation::test_refuses_the_real_store_by_exact_path
+tests/test_phase5a_tooling.py::TestKeyHygiene::test_redact_never_reveals_the_middle
+tests/test_privacy.py::TestBuildTimePayloadCarriesNoPatientData::test_no_case_sends_a_concrete_diplotype
+  /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/lib/python3.11/site-packages/_pytest/fixtures.py:1313: PytestRemovedIn10Warning: Class-scoped fixture defined as instance method is deprecated.
+  Instance attributes set in this fixture will NOT be visible to test methods,
+  as each test gets a new instance while the fixture runs only once per class.
+  Use @classmethod decorator and set attributes on cls instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#class-scoped-fixture-as-instance-method
+    fixturefunc = resolve_fixture_function(fixturedef, request)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] backend/tests/test_documented_numbers.py:263: README no longer quotes a backend test count
+SKIPPED [1] backend/tests/test_glossary_audit.py:284: no decisions recorded yet

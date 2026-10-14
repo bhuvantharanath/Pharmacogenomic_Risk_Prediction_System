@@ -1,0 +1,14 @@
+{
+  "root": "/var/folders/86/x_h8qf3s0cl8_mf5m_j028qw0000gn/T/pgx-final-clean-7d47pdi7",
+  "application_core_sha256": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+  "release_artifact_sha256": "9961033924dda2d4ab8e57d85450debeb98c4afdc392b3959d3d0ccf856f214c",
+  "components": {
+    "backend/app/data/compatible_bundle.json": "718dbcf0480d8d73a40ff1356ef65962440a43acae24c781eaeeba232e95c7a8",
+    "backend/app/data/explanations.json": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+    "backend/app/data/explanation_approvals.json": "b18c7d1d18d014fd1b2edf8ac24e2339a0c1df3f4252590c77db264df799f8a7",
+    "backend/app/data/capabilities.json": "287a319b8ca1fdac9e765d7b6ec7de55ea8ee87cd3d142700be0b7601d2c1704",
+    "test-data/reference/tools/pharmcat-3.4.0-all.jar": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741"
+  },
+  "bundle_exit_code": 1,
+  "gate_exit_code": 1
+}

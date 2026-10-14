@@ -27,10 +27,11 @@ PharmacogenomicProfile _profile({
 
 PerDrugResult _result({
   required PharmacogenomicProfile profile,
+  String drug = 'clopidogrel',
   String action = 'See recommendation',
   String source = 'CPIC',
 }) => PerDrugResult(
-  drug: 'clopidogrel',
+  drug: drug,
   riskAssessment: const RiskAssessment(
     riskLabel: RiskLabel.unknown,
     confidenceScore: 0,
@@ -46,8 +47,11 @@ PerDrugResult _result({
     source: source,
   ),
   llmGeneratedExplanation: const LlmGeneratedExplanation(
-    summary: '', mechanism: '', variantRationale: '',
-    patientFriendly: '', disclaimer: '',
+    summary: '',
+    mechanism: '',
+    variantRationale: '',
+    patientFriendly: '',
+    disclaimer: '',
   ),
 );
 
@@ -82,14 +86,50 @@ void main() {
       expect(r.callToAction, isNotNull);
     });
 
+    test(
+      'an abstention with Unknown profile gene uses the drug capability',
+      () {
+        expect(
+          classifyUnknown(
+            _result(profile: _profile(gene: 'Unknown')),
+            _metrics(coverage: <String, GeneCoverage>{'CYP2C19': _short}),
+          ),
+          UnknownReason.lowCoverage,
+        );
+        expect(
+          classifyUnknown(
+            _result(
+              drug: 'codeine',
+              profile: _profile(gene: 'Unknown'),
+            ),
+            _metrics(coverage: <String, GeneCoverage>{'CYP2D6': _short}),
+          ),
+          UnknownReason.notCallable,
+        );
+        expect(
+          classifyUnknown(
+            _result(
+              drug: 'warfarin',
+              profile: _profile(gene: 'Unknown'),
+            ),
+            _metrics(coverage: <String, GeneCoverage>{'CYP2C9': _short}),
+          ),
+          UnknownReason.unspecified,
+          reason: 'a better VCF cannot enable unsupported warfarin dosing',
+        );
+      },
+    );
+
     test('CYP2D6 structural variation is not callable', () {
       expect(
         classifyUnknown(
           _result(profile: _profile(gene: 'CYP2D6')),
-          _metrics(warnings: <String>[
-            'CYP2D6 structural/copy-number variation cannot be resolved from '
-                'unphased VCF; outside diplotype input planned',
-          ]),
+          _metrics(
+            warnings: <String>[
+              'CYP2D6 structural/copy-number variation cannot be resolved from '
+                  'unphased VCF; outside diplotype input planned',
+            ],
+          ),
         ),
         UnknownReason.notCallable,
       );
@@ -102,12 +142,19 @@ void main() {
             profile: _profile(
               gene: 'SLCO1B1',
               diplotype: 'Undetermined (4 equally likely)',
-              candidates: const <String>['*1/*37', '*1/*42', '*1/*52', '*1/*56'],
+              candidates: const <String>[
+                '*1/*37',
+                '*1/*42',
+                '*1/*52',
+                '*1/*56',
+              ],
             ),
           ),
-          _metrics(warnings: <String>[
-            'SLCO1B1: candidate diplotypes disagree about function',
-          ]),
+          _metrics(
+            warnings: <String>[
+              'SLCO1B1: candidate diplotypes disagree about function',
+            ],
+          ),
         ),
         UnknownReason.ambiguous,
       );
@@ -135,75 +182,117 @@ void main() {
     });
 
     test('no two states share a headline or an explanation', () {
-      final Set<String> heads = UnknownReason.values.map((UnknownReason r) => r.headline).toSet();
-      final Set<String> texts = UnknownReason.values.map((UnknownReason r) => r.explanation).toSet();
+      final Set<String> heads = UnknownReason.values
+          .map((UnknownReason r) => r.headline)
+          .toSet();
+      final Set<String> texts = UnknownReason.values
+          .map((UnknownReason r) => r.explanation)
+          .toSet();
       expect(heads.length, UnknownReason.values.length);
       expect(texts.length, UnknownReason.values.length);
     });
 
-    test('only low coverage is actionable', () {
+    test('only the file-evidence reasons are actionable', () {
+      const Set<UnknownReason> actionable = <UnknownReason>{
+        UnknownReason.lowCoverage,
+        UnknownReason.unusableGenotypes,
+      };
       for (final UnknownReason r in UnknownReason.values) {
-        expect(r.isActionable, r == UnknownReason.lowCoverage, reason: '$r');
-        expect(r.callToAction != null, r == UnknownReason.lowCoverage, reason: '$r');
+        expect(r.isActionable, actionable.contains(r), reason: '$r');
+        expect(r.callToAction != null, actionable.contains(r), reason: '$r');
       }
     });
   });
 
   group('UnknownPanel renders each state distinctly', () {
     Future<void> pump(WidgetTester tester, UnknownPanel panel) =>
-        tester.pumpWidget(MaterialApp(home: Scaffold(body: SingleChildScrollView(child: panel))));
+        tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(body: SingleChildScrollView(child: panel)),
+          ),
+        );
 
-    testWidgets('low coverage shows the numbers and what to upload', (WidgetTester tester) async {
-      await pump(tester, UnknownPanel(
-        reason: UnknownReason.lowCoverage,
-        profile: _profile(),
-        coverage: _short,
-      ));
+    testWidgets('low coverage shows the numbers and what to upload', (
+      WidgetTester tester,
+    ) async {
+      await pump(
+        tester,
+        UnknownPanel(
+          reason: UnknownReason.lowCoverage,
+          profile: _profile(),
+          coverage: _short,
+        ),
+      );
       expect(find.textContaining('4 of 35'), findsOneWidget);
       expect(find.textContaining('needs 100%'), findsOneWidget);
       expect(find.textContaining('ALL positions'), findsOneWidget);
     });
 
-    testWidgets('ambiguous lists every candidate, never just one', (WidgetTester tester) async {
-      await pump(tester, UnknownPanel(
-        reason: UnknownReason.ambiguous,
-        profile: _profile(
-          gene: 'SLCO1B1',
-          candidates: const <String>['*1/*37', '*1/*42', '*1/*52', '*1/*56'],
+    testWidgets('ambiguous lists every candidate, never just one', (
+      WidgetTester tester,
+    ) async {
+      await pump(
+        tester,
+        UnknownPanel(
+          reason: UnknownReason.ambiguous,
+          profile: _profile(
+            gene: 'SLCO1B1',
+            candidates: const <String>['*1/*37', '*1/*42', '*1/*52', '*1/*56'],
+          ),
         ),
-      ));
+      );
       expect(find.text('4 equally likely genotypes'), findsOneWidget);
       for (final String d in <String>['*1/*37', '*1/*42', '*1/*52', '*1/*56']) {
         expect(find.text(d), findsOneWidget, reason: '$d must be visible');
       }
     });
 
-    testWidgets('not-callable offers no false hope of a fix', (WidgetTester tester) async {
-      await pump(tester, UnknownPanel(
-        reason: UnknownReason.notCallable,
-        profile: _profile(gene: 'CYP2D6'),
-      ));
-      expect(find.textContaining('cannot represent'), findsOneWidget);
-      expect(find.byIcon(Icons.lightbulb_outline), findsNothing,
-          reason: 'no call to action when the user cannot act');
+    testWidgets('not-callable offers no false hope of a fix', (
+      WidgetTester tester,
+    ) async {
+      await pump(
+        tester,
+        UnknownPanel(
+          reason: UnknownReason.notCallable,
+          profile: _profile(gene: 'CYP2D6'),
+        ),
+      );
+      expect(find.textContaining('this application does not perform'), findsOneWidget);
+      expect(
+        find.byIcon(Icons.lightbulb_outline),
+        findsNothing,
+        reason: 'no call to action when the user cannot act',
+      );
     });
 
-    testWidgets('no-guidance says the genotype WAS determined', (WidgetTester tester) async {
-      await pump(tester, UnknownPanel(
-        reason: UnknownReason.noGuidance,
-        profile: _profile(diplotype: '*1/*1'),
-      ));
+    testWidgets('no-guidance says the genotype WAS determined', (
+      WidgetTester tester,
+    ) async {
+      await pump(
+        tester,
+        UnknownPanel(
+          reason: UnknownReason.noGuidance,
+          profile: _profile(diplotype: '*1/*1'),
+        ),
+      );
       expect(find.textContaining('determined successfully'), findsOneWidget);
     });
   });
 
   group('severity ranking survives the shared colour', () {
     test('critical outranks high', () {
-      expect(severityRank(Severity.critical), greaterThan(severityRank(Severity.high)));
+      expect(
+        severityRank(Severity.critical),
+        greaterThan(severityRank(Severity.high)),
+      );
     });
     test('the ranking is strictly ordered', () {
       const List<Severity> order = <Severity>[
-        Severity.none, Severity.low, Severity.moderate, Severity.high, Severity.critical,
+        Severity.none,
+        Severity.low,
+        Severity.moderate,
+        Severity.high,
+        Severity.critical,
       ];
       for (int i = 1; i < order.length; i++) {
         expect(severityRank(order[i]), greaterThan(severityRank(order[i - 1])));

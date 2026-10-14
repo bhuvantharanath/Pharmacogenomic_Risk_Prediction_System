@@ -184,6 +184,13 @@ Docker image ships the reference data, so this should not happen in the
 container — **verify on first deploy**, because a surprise ~900 MB download
 inside a request would blow the timeout.
 
+The backend launches PharmCAT with its owned per-request directory as the child
+working directory. PharmCAT/logback files therefore land beside the temporary
+VCF and report and are removed by the same unconditional cleanup. Older
+`backend/pharmcat*.log` files may exist in a development checkout from runs made
+before this ownership boundary; they are historical local artifacts, not the
+current runtime destination.
+
 ---
 
 ## 3. `report.json` structure (as parsed by `pharmcat_models.py`)

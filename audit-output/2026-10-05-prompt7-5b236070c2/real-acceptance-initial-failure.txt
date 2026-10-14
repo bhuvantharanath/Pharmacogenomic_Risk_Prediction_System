@@ -1,0 +1,2 @@
+Command: backend/.venv/bin/python audit-output/2026-10-05-prompt7-5b236070c2/real_acceptance.py
+Exit 1 before API stages: historical F4 protocol hash assertion for backend/app/data/compatible_bundle.json differs after authorized Prompt 5 versioned manifest regeneration. Original harness preserved as real_acceptance_original.py.

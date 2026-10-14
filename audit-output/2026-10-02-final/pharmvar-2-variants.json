@@ -1,0 +1,172 @@
+{
+  "_embedded" : {
+    "varPosWithRefSeqNames" : [ {
+      "isKeyVar" : 0,
+      "rsId" : "rs4244285",
+      "startPos" : 96541616,
+      "stopPos" : 96541616,
+      "hgvs" : "NC_000010.10:g.96541616G>A",
+      "effect" : "splice defect",
+      "variantGroupId" : null,
+      "variantId" : 128,
+      "position" : "NC_000010.10:g.96541616G>A",
+      "collectionIdentifier" : "GRCh37",
+      "refSeqName" : "GRCh37",
+      "refLocation" : "BASE",
+      "refSeqLabel" : "NC_000010.10",
+      "unique" : false,
+      "functionAltered" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/508"
+        },
+        "varPosWithRefSeqName" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/508"
+        },
+        "variantGroups" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/508/variantGroups"
+        }
+      }
+    }, {
+      "isKeyVar" : 0,
+      "rsId" : "rs4244285",
+      "startPos" : 94781859,
+      "stopPos" : 94781859,
+      "hgvs" : "NC_000010.11:g.94781859G>A",
+      "effect" : "splice defect",
+      "variantGroupId" : null,
+      "variantId" : 128,
+      "position" : "NC_000010.11:g.94781859G>A",
+      "collectionIdentifier" : "GRCh38",
+      "refSeqName" : "GRCh38",
+      "refLocation" : "BASE",
+      "refSeqLabel" : "NC_000010.11",
+      "unique" : false,
+      "functionAltered" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/505"
+        },
+        "varPosWithRefSeqName" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/505"
+        },
+        "variantGroups" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/505/variantGroups"
+        }
+      }
+    }, {
+      "isKeyVar" : 0,
+      "rsId" : "rs4244285",
+      "startPos" : 24179,
+      "stopPos" : 24179,
+      "hgvs" : "NG_008384.3:g.24179G>A",
+      "effect" : "splice defect",
+      "variantGroupId" : null,
+      "variantId" : 128,
+      "position" : "NG_008384.3:g.24179G>A",
+      "collectionIdentifier" : "RefSeqGene",
+      "refSeqName" : null,
+      "refLocation" : "BASE",
+      "refSeqLabel" : "NG_008384.3",
+      "unique" : false,
+      "functionAltered" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/3065"
+        },
+        "varPosWithRefSeqName" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/3065"
+        },
+        "variantGroups" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/3065/variantGroups"
+        }
+      }
+    }, {
+      "isKeyVar" : 0,
+      "rsId" : "rs4244285",
+      "startPos" : 19154,
+      "stopPos" : 19154,
+      "hgvs" : "NG_008384.3:g.24179G>A",
+      "effect" : "splice defect",
+      "variantGroupId" : null,
+      "variantId" : 128,
+      "position" : "NG_008384.3:g.19154G>A",
+      "collectionIdentifier" : "RefSeqGene",
+      "refSeqName" : null,
+      "refLocation" : "ATG_START",
+      "refSeqLabel" : "NG_008384.3",
+      "unique" : false,
+      "functionAltered" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/3064"
+        },
+        "varPosWithRefSeqName" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/3064"
+        },
+        "variantGroups" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/3064/variantGroups"
+        }
+      }
+    }, {
+      "isKeyVar" : 0,
+      "rsId" : "rs4244285",
+      "startPos" : 706,
+      "stopPos" : 706,
+      "hgvs" : "NM_000769.4:c.681G>A",
+      "effect" : "splice defect",
+      "variantGroupId" : null,
+      "variantId" : 128,
+      "position" : "NM_000769.4:c.706G>A",
+      "collectionIdentifier" : "RefSeqTranscript",
+      "refSeqName" : null,
+      "refLocation" : "BASE",
+      "refSeqLabel" : "NM_000769.4",
+      "unique" : false,
+      "functionAltered" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/14760"
+        },
+        "varPosWithRefSeqName" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/14760"
+        },
+        "variantGroups" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/14760/variantGroups"
+        }
+      }
+    }, {
+      "isKeyVar" : 0,
+      "rsId" : "rs4244285",
+      "startPos" : 681,
+      "stopPos" : 681,
+      "hgvs" : "NM_000769.4:c.681G>A",
+      "effect" : "splice defect",
+      "variantGroupId" : null,
+      "variantId" : 128,
+      "position" : "NM_000769.4:c.681G>A",
+      "collectionIdentifier" : "RefSeqTranscript",
+      "refSeqName" : null,
+      "refLocation" : "ATG_START",
+      "refSeqLabel" : "NM_000769.4",
+      "unique" : false,
+      "functionAltered" : true,
+      "_links" : {
+        "self" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/14761"
+        },
+        "varPosWithRefSeqName" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/14761"
+        },
+        "variantGroups" : {
+          "href" : "http://www.pharmvar.org/api/varPosWithRefSeqName/14761/variantGroups"
+        }
+      }
+    } ]
+  },
+  "_links" : {
+    "self" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/search/findAllVariantsForHap?id=3110"
+    }
+  }
+}

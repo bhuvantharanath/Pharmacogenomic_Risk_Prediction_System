@@ -42,7 +42,16 @@ This system does that end to end for **7 pharmacogenes** and **6 drugs**:
 | TPMT (+ NUDT15) | azathioprine |
 | DPYD | fluorouracil |
 
-Risk labels: `Safe` · `Adjust Dosage` · `Toxic` · `Ineffective` · `Unknown`
+This six-drug list is the audited application boundary. Four pathways can return
+non-Unknown PGx guidance when their evidence requirements are met: clopidogrel,
+simvastatin, azathioprine and fluorouracil. Codeine remains an explicit CYP2D6
+abstention, and this project does not implement validated automated warfarin
+dosing. PharmCAT may contain other annotations internally; the application does
+not present them as supported guidance.
+
+Conclusion labels: `No PGx-guided adjustment identified` · `Adjust Dosage` ·
+`Toxic` · `Ineffective` · `Unknown`. The first label is bounded to the assessed
+PGx evidence; it is not a statement that a drug is broadly safe.
 
 ### What makes it different
 
@@ -63,16 +72,16 @@ The system's design is a response to that finding. It is built to decline rather
 | Result | Value |
 |---|---|
 | CPIC label-mapping validation | **92/105** combinations, exhaustive (not sampled); 13 documented divergences, all erring toward caution |
-| Integration fidelity (self-consistency, **not** external validation) | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches. Blind to input adequacy by construction — see below |
-| External genotype truth | **n = 1** (NA12273). GeT-RM covers only 2 of our 7 genes |
+| Historical integration fidelity (self-consistency, **not** accuracy) | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches against the same PharmCAT caller. Version-specific and blind to input adequacy |
+| Independent external benchmark | **208 individuals**, 1,456 sample×gene rows, **596 evaluable truth diplotypes** across seven genes. Results are reported per gene with denominators; no pooled “accuracy” is claimed |
 | PharmCAT adversarial test VCFs | **0 mismatches** across all 74 files |
 | CYP2D6 negative control | **400/400** declined — never fabricated |
-| Confident-label rate, complete-coverage input | **100%**, 0% wrong |
-| Usable rate, polymorphic-filtered research slices | **12.58%** — a property of that input format, not a pipeline failure rate |
-| External diplotype concordance | **n=1** — CYP2C19 concordant; CYP2C9 we **decline** where consensus asserts `*1/*2`. Bounded, see [Limitations](#limitations) |
-| South Asian subgroup, **n=601** | CYP2C19 reduced-function **57.1%** [53.1–61.0]. All five subcohorts n≥103; diaspora/regional samples, **not** a representative Indian sample |
-| Backend tests | 809 passing |
-| Client tests | 194 passing |
+| Application assertions on benchmark input | **0/1,456 sample×gene rows**: polymorphic-only 1000 Genomes evidence did not meet the application contract, so the application abstained rather than infer omitted positions as reference |
+| Historical complete-coverage synthetic sweep | **100% asserted, 0% discordant with its constructed truth**. This is a test-fixture result, not independent biological accuracy |
+| South Asian frequency analysis, **n=601** | Historical descriptive analysis of 1000 Genomes diaspora/regional samples; not representative population prevalence and not a performance metric |
+| Compatible scientific record | PharmCAT 3.4.0 and its data, rules, corpus, explanations, review state, sources, benchmark, and runtime are hash-bound in `compatible_bundle.json` |
+| Backend tests | See the current phase report/test run; counts change as regressions are added |
+| Client tests | 198 passing |
 
 ### The eight findings
 
@@ -103,7 +112,7 @@ flowchart TD
     E --> F{Phenotype asserted?}
     F -->|no| Z
     F -->|yes| G[Deterministic CPIC<br/>label mapping]
-    G --> H[Risk label + severity<br/>+ verbatim CPIC recommendation]
+    G --> H[Bounded PGx conclusion<br/>+ verbatim CPIC recommendation]
     H --> I[Pre-generated explanation<br/>keyed by drug + phenotype]
     I --> J[Runtime slot verification<br/>+ label/prose cross-check]
     J --> K[JSON response]
@@ -114,8 +123,8 @@ flowchart TD
 
 - **Decline over guess.** `Unknown` is a first-class, correct output — not a failure.
 - **No clinical content originates in the system.** Every dosing statement is verbatim CPIC, obtained via PharmCAT.
-- **No patient data reaches a third-party LLM.** Explanations are pre-generated offline from generic `(gene, phenotype, drug)` cases plus published CPIC text, then shipped static. This is an architectural guarantee, not a policy promise.
-- **Stateless.** Uploaded VCFs are written to a temp directory and deleted in a `finally` block. No genomic data is retained server-side.
+- **No patient data reaches a third-party LLM.** Explanation candidates are generated offline. Only exact approved content/source/context identities may be served; all other cases use deterministic templates. This is an architectural guarantee, not a policy promise.
+- **No application persistence.** Uploaded VCFs are bounded in memory and written only to an owned temporary directory; the child process is reaped and that directory is removed before the analysis slot is released. This does not claim control over reverse-proxy access logs, crash dumps, backups, or hosting-platform retention.
 
 ---
 
@@ -127,7 +136,7 @@ Which layer authors which field is the core of the safety design:
 |---|---|---|
 | `clinical_recommendation.*` | **Verbatim CPIC**, via PharmCAT | Never model-authored. Exact-match verified. |
 | `variant_rationale` | **Code**, composed at request time from the PharmCAT profile | Correct by construction — cannot disagree with the reported genotype |
-| `summary`, `mechanism`, `patient_friendly` | **LLM** (`meta/llama-3.1-8b-instruct`), genotype-agnostic | Pre-generated, guard-checked, and human-adjudicated — adjudication is **in progress**, 19 sentences outstanding |
+| `summary`, `mechanism`, `patient_friendly` | Approved stored prose or **code-authored deterministic template** | Current stored candidates remain withheld: 19 sentences are unresolved and 36 decisions are automated rather than human |
 | `recommendation_diplotype` | PharmCAT's `recommendationDiplotypes` | Provenance only — deliberately not rendered to the user |
 
 The LLM never decides anything. It rephrases sourced text.
@@ -148,7 +157,7 @@ Five checked edges. **Each was added after a defect proved it necessary** — no
 
 Plus a **contradiction guard**: the mapping reads CPIC recommendation *text*, and is cross-checked against CPIC's *structured* booleans. Different inputs, so agreement is evidence rather than tautology.
 
-**Automated checks are triage. Human adjudication is the release gate.** That is not a preference — it is the direct consequence of findings 1–3, which measured the structural limits of automated faithfulness checking.
+**Automated checks are triage.** Human adjudication is a required prerequisite. `scripts/release_status.py` is the sole final decision and also requires tests plus matching approval and candidate hashes.
 
 ---
 
@@ -220,7 +229,7 @@ Methodological practices that materially changed outcomes:
 
 ### Adjudicating
 
-Every clinical claim in the shipped explanation set is read against its source by a human, who records accept / edit / reject with a rationale. This is under way, not finished — 55 sentences remain, and the release gate stays red until they are decided. This verifies **provenance** — that generated text faithfully represents its source. It is explicitly *not* clinical approval; no qualified clinical reviewer was available, and that is a declared limitation rather than a concealed one.
+Clinical claims in the stored explanation candidates are compared with their sources and recorded as accept / edit / reject with a rationale. This is under way, not finished: 19 sentences remain unresolved and 36 decisions are automated. Consequently none of the 20 stored entries is approved for serving; the deterministic fallback is used. This process verifies **provenance**, not clinical approval. No qualified clinical reviewer was available, and that remains an explicit limitation.
 
 ---
 
@@ -249,7 +258,7 @@ This demonstrates *integration fidelity* — that the pipeline does not corrupt 
 
 **And it is blind to input adequacy by construction.** Two systems reading the same input can agree perfectly on an answer neither was in a position to give. Across these 400 samples the slice carried 8 of DPYD's 28 decision-critical positions; PharmCAT read those 8 and returned Normal Metabolizer, and so did we. Agreement measures whether the second system reproduces the first — it says nothing about whether the first had enough evidence to be asked.
 
-**External truth here is n = 1.** The cohort is `HG*`-keyed and GeT-RM is `NA*`-keyed, so it could never have overlapped: of 107 GeT-RM Coriell samples, exactly one (`NA12273`) is in the 1000 Genomes phase-3 panel. GeT-RM also covers only **two** of our seven genes (CYP2C19, CYP2C9) — there is **no external consensus** for SLCO1B1, TPMT, NUDT15 or DPYD. On NA12273, CYP2C19 matched consensus exactly; CYP2C9 diverged **conservatively**, our pipeline reporting `Undetermined` where consensus says `*1/*2` — a refusal, not a wrong call.
+The original Phase 6 exercise had only one overlapping sample and remains preserved as a version-specific historical report. The current independent benchmark uses the later CDC consolidated GeT-RM/PGx consensus workbook and a deterministic 1000 Genomes overlap: **208 individuals**, 1,456 sample×gene rows, and 596 evaluable truth diplotypes across seven genes. See [`reports/external_analytical_benchmark.md`](reports/external_analytical_benchmark.md). Results are reported per gene because gene observations repeat within individuals and sparse genes must not be hidden in one pooled number.
 
 ### Coverage sensitivity
 
@@ -268,15 +277,13 @@ These are an **upper bound**: the sweep dropped positions at random, whereas rea
 
 **A monomorphic-aware relaxation of the gate was considered and rejected.** It would assert "this position is usually reference, therefore this patient is reference" — the exact bias the gate exists to prevent, with a probability attached. It fails worst for rare severe variants: DPYD deficiency alleles are rare (hence monomorphic in a panel), and missing one causes fatal fluorouracil toxicity.
 
-### External concordance
+### Independent external benchmark
 
-GeT-RM PGx consensus (107 samples) ∩ 1000 Genomes (3,202) = **1 sample**. 98 of 107 GeT-RM IDs are `NA17xxxx` Coriell PGx lines never whole-genome sequenced into public panels. External concordance is therefore bounded at **n=1** and is reported as n=1, never as a percentage.
+The frozen current benchmark intersects the CDC consolidated consensus workbook with 1000 Genomes high-coverage data and contains **208 individuals**. Across seven genes it has **596 evaluable independent truth diplotypes**; exact and candidate-compatible concordance, abstention, assertion coverage, conditional accuracy, and Wilson intervals are reported separately by gene with explicit denominators.
 
-On NA12273, CYP2C19 is **concordant** (`*1/*2`). CYP2C9 is **divergent in the conservative direction**: consensus asserts `*1/*2`, and we report `Undetermined (2 equally likely)` because that gene reaches only 19.3% position coverage in this slice. That is a **refusal, not an error** — the pipeline declining to pick between two candidates rather than asserting the wrong one.
+Layer A measures the pinned PharmCAT call against consensus truth. Layer B measures the application after its evidence gate. All 1,456 benchmark sample×gene inputs are polymorphic-only slices and therefore ineligible under the application contract; Layer B abstains throughout. This is an analytically useful negative result, not evidence of clinical utility and not a reason to weaken the evidence gate.
 
-That line previously read "CYP2C9 exact". It went stale when ambiguous-diplotype representation changed: the pipeline stopped collapsing co-equal candidates to the first one, which is the fix that removed 294 unsupported confident labels. The documentation was not re-derived at the same time.
-
-**The CYP2D6 negative control is externally verified.** GeT-RM records NA12273 as a real `*1/*1`, confirmed by other assays. Our pipeline declines to call it — demonstrating refusal to guess something genuinely *present* but undeterminable from a VCF, not merely failure to call something absent.
+The original n=1 result is retained in `reports/validation_report.md` as historical evidence only; it is superseded for current external-benchmark claims. In that historical case, the CYP2C9 divergence was conservative: consensus asserted `*1/*2` while the application declined an ambiguous call.
 
 ---
 
@@ -365,11 +372,15 @@ Six scenarios, ~7 seconds of compute. The centrepiece is **S1 vs S2**:
                        complete coverage         variants-only
   PharmCAT called      *2/*2                     *2/*2            (identical)
   phenotype            PM                        Unknown
-  RISK LABEL           Ineffective               Unknown
-  severity             critical                  none
-  confidence           0.95                      0.00
+  PGx CONCLUSION       Ineffective               Unknown
   coverage             35/35 = 100.0%            4/35 = 11.4%
 ```
+
+The API still carries the historical `confidence_score` and `severity` fields
+for compatibility. They are deprecated: the score is a deterministic pipeline
+status lookup, not a calibrated probability, and the severity value is not a
+validated clinical severity assessment. Neither is shown or included in the
+user export.
 
 Same patient. Same genotype call from PharmCAT. Different file *shape*.
 
@@ -408,7 +419,8 @@ cd app && flutter test        # client suite
 Counts are in [Key results](#key-results); they are a snapshot of the last run,
 not a target.
 
-Release gates, each exiting non-zero on failure:
+Release prerequisites, each exiting non-zero on failure and combined only by
+`scripts/release_status.py`:
 
 | Gate | Checks |
 |---|---|
@@ -417,7 +429,9 @@ Release gates, each exiting non-zero on failure:
 | Detector sensitivity | Planted violations still caught |
 | Coverage gate tests | 31 tests incl. sabotage cases |
 | Provenance verification | Clinical sentences traceable |
-| Adjudication status | Every shipped sentence decided — **red by decision, see below** |
+| Human adjudication | Every stored sentence decided by a named person — **red** |
+| Approval identity | Exact content, source, drug/gene/phenotype/risk context, and store hashes |
+| Authoritative release status | All required tests plus the exact tested candidate hash |
 
 **Invariants contributors must not break:**
 
@@ -441,11 +455,12 @@ Release gates, each exiting non-zero on failure:
 | 7 — Adjudication, docs, demo | ⚠️ Docs and demo complete; adjudication deliberately left open |
 | 8 — Deployment | ✅ **Live** — backend on Render, web on Cloudflare Pages; S1–S6 verified against the deployed URLs |
 
-### The adjudication gate is red, and that is the honest state
+### The adjudication prerequisite is incomplete, and that is the honest state
 
-179 claim sentences. **179 adjudicated** — 124 by a person, 36 by automation
+179 claim sentences. **160 adjudicated** — 124 by a person, 36 by automation
 against a quoted source passage. **19 escalated to a human and left undecided.**
-The gate exits non-zero, and CI is red because of it.
+The authoritative content gate exits non-zero. Unapproved stored prose is not
+served; requests receive the deterministic fallback instead.
 
 **This is a decision, not an unfinished task.** The 19 are clinical assertions —
 whether a rapid metaboliser carries a higher bleeding risk, whether a normal
@@ -458,14 +473,14 @@ records, in `scripts/adjudication_status.py`'s own output:
 clinical expert      NOT_OBTAINED   (no qualified reviewer on this project)
 ```
 
-Clearing the gate without that reviewer would mean signing a clinical review that
+Clearing the prerequisite without that reviewer would mean signing a clinical review that
 did not happen. A green gate would then mean less than the red one does — it
 would assert review, where red asserts only that unreviewed prose exists and is
-marked as such. The 19 sentences are listed in
+withheld. The 19 sentences are listed in
 [`reports/escalation_list.md`](reports/escalation_list.md), each with its source
 passage and the specific tension.
 
-Everything the gate can decide without a clinician, it has decided. What remains
+Everything adjudication can decide without a clinician, it has decided. What remains
 is what a clinician is for.
 
 ```bash
@@ -478,14 +493,14 @@ python scripts/adjudicate.py --escalated-only --adjudicator "<your real name>"
 
 Stated plainly, because declared limitations cost less than concealed ones.
 
-- **36 of 179 clinical sentences were adjudicated by automated alignment, not by a person.** Each was matched to a quoted passage in the mechanism corpus and accepted only where it added no causal step, quantity, timeline, comparative or scope claim. A further 19 were escalated for human review and remain outstanding; 124 were previously decided by a person. Full human adjudication of the remainder is outstanding. This is disclosed because the project's own findings show automated verification of clinical faithfulness has structural limits — automation is used here as triage under time constraint, not as a substitute for human review. The release gate reports `provisional` and never `release_ready` while any automated decision stands; `--require-human` fails on them.
+- **36 of 179 clinical sentences were adjudicated by automated alignment, not by a person.** Each was matched to a quoted passage in the mechanism corpus and accepted only where it added no causal step, quantity, timeline, comparative or scope claim. A further 19 were escalated for human review and remain outstanding; 124 were previously decided by a person. Full human adjudication of the remainder is outstanding. Automation is triage, not a substitute for human review: the detail report marks this state `provisional`, the sole authoritative release status remains not ready, and all 20 stored entries currently fall back rather than serve as approved prose.
 - **No clinical expert review.** No qualified clinical reviewer was available. The system compensates by generating no clinical content of its own; every clinical statement is provenance-verified to a CPIC source. This is a declared limitation, not a solved problem.
-- **External concordance is n=1.** GeT-RM and 1000 Genomes overlap in a single sample. This is a structural property of the available reference materials, not a sampling choice.
+- **The current independent benchmark has 208 individuals but no application-eligible inputs.** Its 596 evaluable truth diplotypes support gene-specific upstream-caller comparisons. They do not establish application accuracy on inputs satisfying the evidence contract, because Layer B correctly abstained on every polymorphic-only slice.
 - **CYP2D6 is not called from VCF.** Copy-number and structural variation cannot be resolved from an unphased VCF. The system returns `Unknown` with an explicit warning and never fabricates a call.
-- **12.58% usable on research-format slices.** This characterises polymorphic-filtered input, not the system. On complete-coverage input the confident-label rate is 100% with 0% wrong. Both numbers should always be cited together.
+- **Historical usability and complete-coverage numbers are synthetic/self-consistency results.** They characterize particular frozen fixtures, not clinical accuracy or population performance. The current independent benchmark and its explicit denominators are the authoritative analytical report.
 - **A coverage percentage is a proxy, and DPYD is no longer exempt from identity.** Position *identity* matters, not count: DPYD used to clear a 20% threshold at 37.3% coverage with 0% measured error while CYP2C9 failed at 19.3%. That 0% came from a sweep over a cohort where DPYD's reduced-function variants are rare, so it could not detect the failure the threshold exists to exclude — absence of observed error is not absence of possible error. Every gene now additionally requires each **decision-critical position**, derived mechanically from PharmCAT's own function assignments; DPYD carries 8 of 28 and is **gated**. Percentages remain in place as a second, weaker condition; replacing them entirely with function-weighted coverage is still future work.
 - **`Indeterminate` and `No Result` share an enum value.** The falsehood was removed from user-facing prose and the distinction is preserved in `quality_metrics.warnings`, but a client cannot machine-check it. Deferred deliberately: clinical action is identical in both states.
-- **No persistence or history.** Results are not stored; they vanish on reload. This follows from the no-retention privacy design.
+- **No application result history.** The application does not store results and they vanish on reload. Static/default explanation mode makes no outbound explanation call. Host access logs, crash handling, backups, and platform-level retention remain deployment responsibilities rather than a universal zero-retention promise.
 - **Deployed on free tiers, with the costs that implies.** An analysis takes
   ~52 s on Render's free CPU (~20× the local 2.6 s), and the instance sleeps
   after ~15 minutes idle so the first visitor pays a cold start. Neither is a

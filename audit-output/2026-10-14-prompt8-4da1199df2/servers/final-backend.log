@@ -1,0 +1,38 @@
+INFO:     Started server process [76811]
+INFO:     Waiting for application startup.
+[startup] pharmcat=jar via /opt/homebrew/opt/openjdk@17/bin/java -jar /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar
+[startup] pharmcat_concurrency=1 workers=1 queue_timeout=25s
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+[startup] explanation_mode=static cors_origins=['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:3000', 'http://127.0.0.1:3000'] rate_limit=10/300s proxy_trust={'forwarded_headers': 'ignored', 'trusted_proxy_cidrs': []}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60227 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60242 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60244 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60245 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60246 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60247 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60248 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60249 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60250 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60251 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60252 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60253 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60254 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60255 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60256 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60257 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60258 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60259 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60260 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60261 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60262 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60263 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60264 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60265 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60266 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60267 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [76811]

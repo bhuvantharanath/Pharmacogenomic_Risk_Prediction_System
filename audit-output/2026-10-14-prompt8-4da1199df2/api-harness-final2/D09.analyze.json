@@ -1,0 +1,1 @@
+{"detail":"This compressed VCF ended before its compressed-data member was complete. Re-create the compressed copy, or upload the plain .vcf instead.","error_code":"CORRUPT_GZIP"}

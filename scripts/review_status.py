@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Review coverage — provenance and author-read, reported separately.
+Review coverage — provenance and author-read detail, reported separately.
 
     python scripts/review_status.py
     python scripts/review_status.py --json
@@ -9,8 +9,7 @@ Review coverage — provenance and author-read, reported separately.
 THE TWO COLUMNS MEAN DIFFERENT THINGS, AND NEITHER IS CLINICAL APPROVAL
 
     provenance   machine-checked: every clinical-claim sentence traces to a
-                 CPIC recommendation or a cited mechanism document. This is the
-                 release gate, and scripts/verify_provenance.py sets it.
+                 CPIC recommendation or a cited mechanism document.
 
     author read  a human read the entry. Not qualified clinical review -- this
                  project has none -- but "nobody looked" and "a non-clinician
@@ -26,9 +25,8 @@ signal look like the strong one.
     python scripts/review_status.py --json
     python scripts/review_status.py --quiet  # exit code only
 
-Designed as a release gate: a non-zero exit means "clinical content has not
-been signed off", which is exactly the condition that should block a demo or a
-submission. Wire it into CI with `python scripts/review_status.py || exit 1`.
+This is not the final release decision. scripts/release_status.py consumes this
+detail together with adjudication, tests, and artifact hashes.
 """
 
 from __future__ import annotations
@@ -82,8 +80,8 @@ def main(argv: list[str] | None = None) -> int:
         row["read"] += bool(review(entry).get("read_by_author"))
         row["fallback"] += bool(entry.get("fallback"))
 
-    # The gate is provenance. Author reading is reported, never required --
-    # gating on it would imply the read carries an authority it does not.
+    # This detail is provenance. Author reading is reported separately; final
+    # readiness belongs only to release_status.py.
     ok = bool(entries) and not unverified and not claims_expert
 
     if args.json:
@@ -97,7 +95,7 @@ def main(argv: list[str] | None = None) -> int:
             "clinical_expert_review": "NOT_OBTAINED",
             "fallback": len(fallback),
             "guard_failed": len(guard_failed),
-            "release_ready": ok,
+            "provenance_complete": ok,
         }, indent=1))
         return 0 if ok else 1
 
@@ -137,11 +135,11 @@ def main(argv: list[str] | None = None) -> int:
         print(red("  No such reviewer exists on this project. Investigate before shipping."))
         return 1
     if unverified:
-        print(red(f"\nNOT RELEASE READY: {len(unverified)} entry(ies) have unverified clinical content."))
+        print(red(f"\nPROVENANCE CHECK FAILED: {len(unverified)} entry(ies) have unverified clinical content."))
         print(dim("  python scripts/verify_provenance.py -v      # see which sentences"))
         return 1
 
-    print(green("\nRELEASE READY (provenance): every clinical claim traces to a cited source."))
+    print(green("\nPROVENANCE CHECK PASSED: every clinical claim traces to a cited source."))
     if unread:
         print(yellow(f"  {len(unread)} entry(ies) have not been read by anyone."))
         print(dim("  python scripts/author_read.py --author '<name>'"))

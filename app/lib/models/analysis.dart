@@ -5,6 +5,7 @@
 /// change a field here, change it in the Pydantic models too.
 library;
 
+import '../generated/capabilities.g.dart';
 import 'enums.dart';
 
 /// Reads a `String` defensively — nulls and non-strings become [fallback].
@@ -69,8 +70,12 @@ class RiskAssessment {
 
   final RiskLabel riskLabel;
 
-  /// 0.0 – 1.0.
+  /// Legacy deterministic pipeline-status score. It is not a calibrated
+  /// probability and is retained only to parse the current API contract.
   final double confidenceScore;
+
+  /// Legacy presentation category. It is not a validated clinical severity
+  /// assessment and is not rendered or exported by the client.
   final Severity severity;
 
   factory RiskAssessment.fromJson(Map<String, dynamic> json) => RiskAssessment(
@@ -83,6 +88,16 @@ class RiskAssessment {
     'risk_label': riskLabel.toJson(),
     'confidence_score': confidenceScore,
     'severity': severity.toJson(),
+  };
+
+  /// Public export shape. Legacy certainty fields are intentionally omitted:
+  /// without the OpenAPI deprecation text they can look like patient-level
+  /// probability and clinical severity, which they are not.
+  Map<String, dynamic> toExportJson() => <String, dynamic>{
+    'risk_label': riskLabel.toJson(),
+    'assessment_scope':
+        'PGx interpretation only; not a clinical safety, '
+        'probability, or severity assessment',
   };
 }
 
@@ -128,7 +143,8 @@ class PharmacogenomicProfile {
       primaryGene: _str(json['primary_gene'], 'Unknown'),
       diplotype: _str(json['diplotype'], 'Unknown'),
       recommendationDiplotype: json['recommendation_diplotype'] as String?,
-      candidateDiplotypes: (json['candidate_diplotypes'] as List<dynamic>?)
+      candidateDiplotypes:
+          (json['candidate_diplotypes'] as List<dynamic>?)
               ?.whereType<String>()
               .toList(growable: false) ??
           const <String>[],
@@ -174,6 +190,11 @@ class ClinicalRecommendation {
 
   /// "STUB" in Phase 1; a real guideline citation later.
   final String source;
+
+  /// The backend uses this explicit provenance marker when no CPIC row
+  /// matched. Its `action` is then an application abstention, not a quotation.
+  bool get hasMatchedCpicEntry =>
+      !source.toLowerCase().contains('no matching cpic entry');
 
   factory ClinicalRecommendation.fromJson(Map<String, dynamic> json) =>
       ClinicalRecommendation(
@@ -273,6 +294,25 @@ class PerDrugResult {
     'clinical_recommendation': clinicalRecommendation.toJson(),
     'llm_generated_explanation': llmGeneratedExplanation.toJson(),
   };
+
+  Map<String, dynamic> toExportJson() {
+    final DrugCapability? capability = capabilityForDrug(drug);
+    return <String, dynamic>{
+      'drug': drug,
+      'application_capability':
+          capability?.toExportJson() ??
+          <String, dynamic>{
+            'drug': drug,
+            'guidance_capable': false,
+            'export_available': false,
+            'limitation': 'Outside the audited application scope.',
+          },
+      'risk_assessment': riskAssessment.toExportJson(),
+      'pharmacogenomic_profile': pharmacogenomicProfile.toJson(),
+      'clinical_recommendation': clinicalRecommendation.toJson(),
+      'llm_generated_explanation': llmGeneratedExplanation.toJson(),
+    };
+  }
 }
 
 /// Pipeline telemetry — lets the UI show how much to trust the result.
@@ -289,6 +329,10 @@ class GeneCoverage {
     required this.percent,
     required this.minimumPercent,
     required this.sufficient,
+    this.decisionCriticalPresent,
+    this.decisionCriticalRequired,
+    this.decisionCriticalEnforced,
+    this.evidenceCounts,
   });
 
   final int positionsPresent;
@@ -297,12 +341,49 @@ class GeneCoverage {
   final int minimumPercent;
   final bool sufficient;
 
+  /// Additional scientific evidence supplied by newer backend bundles. It is
+  /// retained in JSON export even when the compact visual census omits it.
+  final int? decisionCriticalPresent;
+  final int? decisionCriticalRequired;
+  final bool? decisionCriticalEnforced;
+  final Map<String, int>? evidenceCounts;
+
+  int get _shortfall => positionsRequired > positionsPresent
+      ? positionsRequired - positionsPresent
+      : 0;
+
+  /// Required positions absent from the file, from the backend's typed counts.
+  /// A response without counts (an older backend) reads the whole shortfall as
+  /// absence, which is what the client assumed before the counts existed.
+  int get absentPositions {
+    final int? absent = evidenceCounts?['absent_position'];
+    if (absent == null) return _shortfall;
+    return absent < _shortfall ? absent : _shortfall;
+  }
+
+  /// Required positions that ARE in the file but whose genotype could not be
+  /// used: a failed FILTER, a partial, missing or malformed call.
+  int get unusablePositions => _shortfall - absentPositions;
+
   factory GeneCoverage.fromJson(Map<String, dynamic> json) => GeneCoverage(
     positionsPresent: (json['positions_present'] as num?)?.toInt() ?? 0,
     positionsRequired: (json['positions_required'] as num?)?.toInt() ?? 0,
     percent: (json['percent'] as num?)?.toDouble() ?? 0,
     minimumPercent: (json['minimum_percent'] as num?)?.toInt() ?? 100,
     sufficient: json['sufficient'] == true,
+    decisionCriticalPresent: (json['decision_critical_present'] as num?)
+        ?.toInt(),
+    decisionCriticalRequired: (json['decision_critical_required'] as num?)
+        ?.toInt(),
+    decisionCriticalEnforced: json['decision_critical_enforced'] as bool?,
+    evidenceCounts: json['evidence_counts'] is Map
+        ? <String, int>{
+            for (final MapEntry<dynamic, dynamic> e
+                in (json['evidence_counts'] as Map).entries)
+              if (e.key is String && e.value is num)
+                e.key as String: (e.value as num).toInt(),
+          }
+        : null,
   );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -311,6 +392,13 @@ class GeneCoverage {
     'percent': percent,
     'minimum_percent': minimumPercent,
     'sufficient': sufficient,
+    if (decisionCriticalPresent != null)
+      'decision_critical_present': decisionCriticalPresent,
+    if (decisionCriticalRequired != null)
+      'decision_critical_required': decisionCriticalRequired,
+    if (decisionCriticalEnforced != null)
+      'decision_critical_enforced': decisionCriticalEnforced,
+    if (evidenceCounts != null) 'evidence_counts': evidenceCounts,
   };
 }
 
@@ -433,8 +521,18 @@ class GuidelineProvenance {
 }
 
 const List<String> _months = <String>[
-  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
 ];
 
 String _formatDate(String iso) {
@@ -537,7 +635,8 @@ class QualityMetrics {
 
   factory QualityMetrics.fromJson(Map<String, dynamic> json) => QualityMetrics(
     vcfParsingSuccess: json['vcf_parsing_success'] == true,
-    variantsDetectedCount: (json['variants_detected_count'] as num?)?.toInt() ?? 0,
+    variantsDetectedCount:
+        (json['variants_detected_count'] as num?)?.toInt() ?? 0,
     processingTimeMs: (json['processing_time_ms'] as num?)?.toInt() ?? 0,
     warnings: _strList(json['warnings']),
     positionCoverage: <String, GeneCoverage>{
@@ -609,6 +708,13 @@ class AnalyzeResponse {
     'patient_id': patientId,
     'timestamp': timestamp,
     'analyses': analyses.map((PerDrugResult a) => a.toJson()).toList(),
+    'quality_metrics': qualityMetrics.toJson(),
+  };
+
+  Map<String, dynamic> toExportJson() => <String, dynamic>{
+    'patient_id': patientId,
+    'timestamp': timestamp,
+    'analyses': analyses.map((PerDrugResult a) => a.toExportJson()).toList(),
     'quality_metrics': qualityMetrics.toJson(),
   };
 }

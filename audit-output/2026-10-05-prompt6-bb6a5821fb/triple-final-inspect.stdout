@@ -1,0 +1,232 @@
+[
+    {
+        "Id": "7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d",
+        "Created": "2026-10-05T12:01:50.646015465Z",
+        "Path": "tini",
+        "Args": [
+            "--",
+            "sh",
+            "-c",
+            "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 143,
+            "Error": "",
+            "StartedAt": "2026-10-05T12:01:50.670301552Z",
+            "FinishedAt": "2026-10-05T12:04:09.009265124Z"
+        },
+        "Image": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+        "ResolvConfPath": "/var/lib/docker/containers/7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d/hostname",
+        "HostsPath": "/var/lib/docker/containers/7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d/hosts",
+        "LogPath": "/var/lib/docker/containers/7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d/7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d-json.log",
+        "Name": "/pgx-p6-triple-20261005",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "bridge",
+            "PortBindings": {
+                "7860/tcp": [
+                    {
+                        "HostIp": "127.0.0.1",
+                        "HostPort": "8769"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 536870912,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 536870912,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "7c6063d0e168",
+            "Domainname": "",
+            "User": "1000",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "7860/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PHARMCAT_TIMEOUT_SECONDS=120",
+                "EXPLANATION_MODE=static",
+                "STRICT_PHARMCAT=1",
+                "PHARMAGUARD_ENV=development",
+                "JAVA_TOOL_OPTIONS=-Xmx208m -XX:MaxMetaspaceSize=68m",
+                "MAX_CONCURRENT_PHARMCAT=1",
+                "PHARMCAT_QUEUE_TIMEOUT_SECONDS=90",
+                "PATH=/home/user/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/pharmcat",
+                "PYTHON_VERSION=3.14.6",
+                "PYTHON_SHA256=143b1dddefaec3bd2e21e3b839b34a2b7fb9842272883c576420d605e9f30c63",
+                "BCFTOOLS_VERSION=1.24",
+                "HTSLIB_VERSION=1.24",
+                "SAMTOOLS_VERSION=1.24",
+                "PCAT_PLATFORM=docker",
+                "PYTHONUNBUFFERED=1",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PIP_NO_CACHE_DIR=1",
+                "PHARMCAT_PIPELINE=pharmcat_pipeline",
+                "PHARMCAT_JAR=/pharmcat/pharmcat.jar",
+                "PHARMAGUARD_CORPUS_DIR=/home/user/app/rag-corpus/mechanisms",
+                "CORS_ALLOWED_ORIGINS=",
+                "HOME=/home/user",
+                "TMPDIR=/home/user/app/tmp"
+            ],
+            "Cmd": [
+                "sh",
+                "-c",
+                "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1"
+            ],
+            "Image": "pgx-p6-candidate:20261005",
+            "Volumes": null,
+            "WorkingDir": "/home/user/app",
+            "Entrypoint": [
+                "tini",
+                "--"
+            ],
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "727345c3b277eaeb8614a0bfeda464f17810834d671493d209088db2e19aaeef",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+            "size": 7707,
+            "platform": {
+                "architecture": "arm64",
+                "os": "linux"
+            }
+        }
+    }
+]

@@ -1,0 +1,179 @@
+..............................F......................................... [  7%]
+.........................................................F.............. [ 15%]
+........................................................................ [ 23%]
+....F.F................................................................. [ 31%]
+.................................................s...................... [ 38%]
+........................................................................ [ 46%]
+.............................s.......................................... [ 54%]
+........................................................................ [ 62%]
+........................................................................ [ 70%]
+........................................................................ [ 77%]
+.......................................F................................ [ 85%]
+........................................................................ [ 93%]
+.............................................................            [100%]
+=================================== FAILURES ===================================
+___ TestContractCompatibility.test_client_and_api_disclaimers_are_identical ____
+
+self = <test_analyze_api.TestContractCompatibility object at 0x10a94cdd0>
+
+    def test_client_and_api_disclaimers_are_identical(self) -> None:
+        """
+        `app/lib/config.dart` renders its own copy in a persistent banner, so
+        the two can drift silently — the client would keep showing a weaker
+        disclaimer than the API sends, and nothing would flag it.
+        """
+        import re
+    
+        from app.models import DISCLAIMER
+    
+        config = (
+            Path(__file__).resolve().parents[2] / "app" / "lib" / "config.dart"
+        ).read_text()
+        match = re.search(r"const String kDisclaimer =\s*(.*?);", config, re.S)
+        assert match, "kDisclaimer not found in app/lib/config.dart"
+        client_text = "".join(re.findall(r"'([^']*)'", match.group(1)))
+>       assert client_text == DISCLAIMER, (
+            "client and API disclaimers have drifted:\n"
+            f"  api:    {DISCLAIMER}\n  client: {client_text}"
+        )
+E       AssertionError: client and API disclaimers have drifted:
+E           api:    Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text. Recommendation text is quoted from CPIC via PharmCAT; automated source checks are not human review and cannot show that every statement is supported or that it is correct for you.
+E           client: Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text. Recommendation text 
+E       assert 'Research/edu...ndation text ' == 'Research/edu...rect for you.'
+E         
+E         Skipping 150 identical leading characters in diff, use -v to show
+E         - ation text is quoted from CPIC via PharmCAT; automated source checks are not human review and cannot show that every statement is supported or that it is correct for you.
+E         + ation text
+
+backend/tests/test_analyze_api.py:208: AssertionError
+______________ test_checked_manifest_matches_declared_environment ______________
+
+    def test_checked_manifest_matches_declared_environment() -> None:
+>       assert bundle.build_manifest() == CHECKED
+E       AssertionError: assert {'schema_vers...d file'}, ...} == {'schema_vers...d file'}, ...}
+E         
+E         Omitting 10 identical items, use -vv to show
+E         Differing items:
+E         {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}} != {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}}
+E         {'evaluation_current': {'evaluat...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+backend/tests/test_compatible_bundle.py:35: AssertionError
+________ test_current_evaluation_requires_exact_candidate_and_evidence _________
+
+    def test_current_evaluation_requires_exact_candidate_and_evidence() -> None:
+        record = bundle.current_evaluation_record()
+        checked = json.loads(bundle.MANIFEST_PATH.read_text())
+    
+>       assert record["evidence_matches"] is True, record["problems"]
+E       AssertionError: ['current evaluation does not bind the candidate scientific core', 'raw application run does not bind candidate and protocol']
+E       assert False is True
+
+backend/tests/test_current_candidate_evaluation.py:23: AssertionError
+_________ test_current_evidence_is_portable_and_tampering_fails_closed _________
+
+tmp_path = PosixPath('/private/var/folders/86/x_h8qf3s0cl8_mf5m_j028qw0000gn/T/pytest-of-bhuvant/pytest-0/test_current_evidence_is_porta0')
+
+    def test_current_evidence_is_portable_and_tampering_fails_closed(tmp_path: Path) -> None:
+        root = tmp_path / "candidate-in-another-parent"
+        manifest = json.loads(
+            (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json").read_text()
+        )
+        refs = [manifest[name]["path"] for name in (
+            "frozen_protocol", "frozen_cohort_lock", "independent_truth_workbook",
+            "independent_truth_table", "frozen_combined_vcf", "pinned_jar",
+            "upstream_report_manifest", "historical_benchmark_manifest",
+        )]
+        paths = set(bundle.load_hash_policy()["core_paths"])
+        paths.update(refs)
+        paths.update(item["path"] for item in manifest["outputs"])
+        paths.update({
+            "scripts/scientific_hash_policy.json",
+            "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json",
+            "test-data/benchmark/external/external_benchmark_results.json",
+        })
+        for relative in sorted(paths):
+            destination = root / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(REPO_ROOT / relative, destination)
+    
+>       assert bundle.current_evaluation_record(root)["evidence_matches"] is True
+E       assert False is True
+
+backend/tests/test_current_candidate_evaluation.py:66: AssertionError
+_____________ test_clean_isolated_copy_passes_bundle_verification ______________
+
+tmp_path = PosixPath('/private/var/folders/86/x_h8qf3s0cl8_mf5m_j028qw0000gn/T/pytest-of-bhuvant/pytest-0/test_clean_isolated_copy_passe0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x118513b90>
+
+    def test_clean_isolated_copy_passes_bundle_verification(tmp_path: Path, monkeypatch) -> None:
+        root = tmp_path / "clean-copy"
+        required = set(bundle.load_hash_policy()["core_paths"])
+        required.update(
+            {
+                "scripts/scientific_hash_policy.json",
+                "scripts/application_hash_migration.json",
+                "backend/app/data/compatible_bundle.json",
+                "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+                "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz",
+                "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz.csi",
+                "test-data/benchmark/external/protocol.json",
+                "test-data/benchmark/external/cohort_lock.json",
+                "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+                "test-data/benchmark/external/genomic/locked_cohort.vcf.gz",
+                "test-data/benchmark/external/benchmark_manifest.json",
+                "test-data/benchmark/external/external_benchmark_results.json",
+                "test-data/benchmark/external/pharmcat_report_manifest.json",
+                "test-data/benchmark/external/sample_gene_truth.tsv",
+                "reports/external_analytical_benchmark.md",
+                "reports/scientific_record_reproduction.json",
+                "backend/requirements.txt",
+                "backend/requirements-dev.txt",
+                ".github/workflows/test.yml",
+            }
+        )
+        required.update(
+            str(path.relative_to(REPO_ROOT))
+            for path in (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-04").iterdir()
+            if path.is_file()
+        )
+        for relative in sorted(required):
+            _copy_file(root, relative)
+        assert not (root / "backend/app/.DS_Store").exists()
+        monkeypatch.setattr(bundle, "REPO_ROOT", root)
+        monkeypatch.setattr(bundle, "MANIFEST_PATH", root / "backend/app/data/compatible_bundle.json")
+        monkeypatch.setattr(bundle, "JAR_PATH", root / "test-data/reference/tools/pharmcat-3.4.0-all.jar")
+    
+        result = bundle.verify_manifest(root / "backend/app/data/compatible_bundle.json")
+>       assert result["compatible"] is True, result["problems"]
+E       AssertionError: ["$.evaluation.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', f...pected 0 entries, found 2', '$.evaluation_current.evidence_matches: new candidate evidence is missing or incompatible']
+E       assert False is True
+
+backend/tests/test_portable_scientific_hash.py:161: AssertionError
+=============================== warnings summary ===============================
+tests/test_captured_outputs.py::TestProvenanceVerifierOnCapturedText::test_a_planted_unsourced_clinical_sentence_fails
+tests/test_guard_real_outputs.py::TestShippedExplanationsAreStillFaithful::test_every_shipped_entry_passes_the_current_guard
+tests/test_guard_real_outputs.py::TestAdversarialArmsCaughtRealFabrication::test_all_four_arms_produced_output
+tests/test_guard_real_outputs.py::TestGuardEventLog::test_events_are_well_formed
+tests/test_phase5a_tooling.py::TestReachability::test_matrix_has_the_expected_shape
+tests/test_phase5a_tooling.py::TestResumeIdempotency::test_resume_skips_exactly_what_is_already_present
+tests/test_phase5a_tooling.py::TestGuardExperimentIsolation::test_refuses_the_real_store_by_exact_path
+tests/test_phase5a_tooling.py::TestKeyHygiene::test_redact_never_reveals_the_middle
+tests/test_privacy.py::TestBuildTimePayloadCarriesNoPatientData::test_no_case_sends_a_concrete_diplotype
+  /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/lib/python3.11/site-packages/_pytest/fixtures.py:1313: PytestRemovedIn10Warning: Class-scoped fixture defined as instance method is deprecated.
+  Instance attributes set in this fixture will NOT be visible to test methods,
+  as each test gets a new instance while the fixture runs only once per class.
+  Use @classmethod decorator and set attributes on cls instead.
+  See https://docs.pytest.org/en/stable/deprecations.html#class-scoped-fixture-as-instance-method
+    fixturefunc = resolve_fixture_function(fixturedef, request)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+SKIPPED [1] backend/tests/test_documented_numbers.py:263: README no longer quotes a backend test count
+SKIPPED [1] backend/tests/test_glossary_audit.py:284: no decisions recorded yet
+FAILED backend/tests/test_analyze_api.py::TestContractCompatibility::test_client_and_api_disclaimers_are_identical
+FAILED backend/tests/test_compatible_bundle.py::test_checked_manifest_matches_declared_environment
+FAILED backend/tests/test_current_candidate_evaluation.py::test_current_evaluation_requires_exact_candidate_and_evidence
+FAILED backend/tests/test_current_candidate_evaluation.py::test_current_evidence_is_portable_and_tampering_fails_closed
+FAILED backend/tests/test_portable_scientific_hash.py::test_clean_isolated_copy_passes_bundle_verification

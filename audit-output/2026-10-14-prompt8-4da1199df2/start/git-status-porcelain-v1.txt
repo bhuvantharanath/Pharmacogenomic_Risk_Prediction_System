@@ -1,0 +1,120 @@
+ M .github/workflows/deploy-web.yml
+ M .github/workflows/test.yml
+ M README.md
+ M app/lib/api/pharmaguard_api.dart
+ M app/lib/config.dart
+ M app/lib/models/analysis.dart
+ M app/lib/models/enums.dart
+ M app/lib/models/unknown_reason.dart
+ M app/lib/print/summary_document.dart
+ M app/lib/screens/about_screen.dart
+ M app/lib/screens/home_screen.dart
+ M app/lib/screens/results_screen.dart
+ M app/lib/widgets/sample_files.dart
+ M app/lib/widgets/summary_grid.dart
+ M app/lib/widgets/unknown_reason_panel.dart
+ M app/lib/widgets/verdict_card.dart
+ M app/test/contract_test.dart
+ M app/test/print_summary_test.dart
+ M app/test/redesign_test.dart
+ M app/test/server_busy_test.dart
+ M app/test/state_census_test.dart
+ M app/test/summary_grid_test.dart
+ M app/test/unknown_reason_test.dart
+ M backend/.env.example
+ M backend/README.md
+ M backend/app/coverage.py
+ M backend/app/cpic_engine.py
+ M backend/app/data/label_mapping.yaml
+ M backend/app/explanation/__init__.py
+ M backend/app/explanation/generator_template.py
+ M backend/app/explanation/provenance.py
+ M backend/app/explanation/static_store.py
+ M backend/app/main.py
+ M backend/app/models.py
+ M backend/app/pharmcat_runner.py
+ M backend/app/security.py
+ M backend/app/vcf_validation.py
+ M backend/tests/conftest.py
+ M backend/tests/test_analyze_api.py
+ M backend/tests/test_coverage_endpoint.py
+ M backend/tests/test_coverage_gate.py
+ M backend/tests/test_demo_script.py
+ M backend/tests/test_deployment.py
+ M backend/tests/test_documented_numbers.py
+ M backend/tests/test_explanation.py
+ M backend/tests/test_sample_vcfs.py
+ M backend/tests/test_slot_verifier.py
+ M backend/tests/test_vcf_validation.py
+ M docs/DEMO_SCRIPT.md
+ M docs/ONBOARDING.md
+ M docs/input_requirements.md
+ M infra/DEPLOY_NOTES.md
+ M infra/Dockerfile
+ M infra/PHARMCAT_NOTES.md
+ M infra/docker-compose.yml
+ M infra/hf-space/README.md
+ M infra/render.yaml
+ M reports/constructed_allele_sweep.md
+ M reports/deployment_verification.md
+ M reports/sas_cohort_expansion.md
+ M reports/validation_report.md
+ M scripts/README.md
+ M scripts/adjudication_status.py
+ M scripts/preflight.py
+ M scripts/pregenerate_explanations.py
+ M scripts/review_status.py
+ M scripts/run_demo.py
+ M scripts/validate_label_mapping.py
+ M scripts/verify_provenance.py
+ M test-data/demo/README.md
+ M test-data/demo/outputs/S1_confident.json
+ M test-data/demo/outputs/S2_variants_only.json
+ M test-data/demo/outputs/S3_cyp2d6.json
+ M test-data/demo/outputs/S4_dpyd.json
+ M test-data/demo/outputs/S5_normal.json
+ M test-data/demo/outputs/S6_multidrug.json
+ M test-data/reference/cpic_expectations.json
+?? FINAL-REAL-WORLD-ACCEPTANCE-REPORT.md
+?? Final-Scientific-Audit.md
+?? PharmaGuard.pdf
+?? PharmaGuard_IEEE_Research_Paper.docx
+?? RELEASE-READINESS-REMEDIATION-PROMPTS.md
+?? app/lib/generated/
+?? app/test/capability_scope_test.dart
+?? audit-output/
+?? backend/app/capabilities.py
+?? backend/app/data/capabilities.json
+?? backend/app/data/compatible_bundle.json
+?? backend/app/data/explanation_approvals.json
+?? backend/app/explanation/approval.py
+?? backend/tests/test_analysis_memory_admission.py
+?? backend/tests/test_capability_scope.py
+?? backend/tests/test_compatible_bundle.py
+?? backend/tests/test_current_candidate_evaluation.py
+?? backend/tests/test_evidence_validity.py
+?? backend/tests/test_explanation_approval.py
+?? backend/tests/test_external_benchmark.py
+?? backend/tests/test_portable_scientific_hash.py
+?? backend/tests/test_release_status.py
+?? backend/tests/test_resource_ownership.py
+?? docs/RELEASE-READINESS-REMEDIATION-PROMPTS.md
+?? docs/scientific_record.md
+?? output/
+?? reports/cyp2c19_definition_delta.md
+?? reports/external_analytical_benchmark.md
+?? reports/release_content_review.md
+?? reports/resource_ownership_privacy_audit.md
+?? reports/scientific_record_reproduction.json
+?? scripts/application_hash_migration.json
+?? scripts/benchmark_external.py
+?? scripts/build_compatible_bundle.py
+?? scripts/build_explanation_approvals.py
+?? scripts/build_release_review_packet.py
+?? scripts/compatible_bundle.py
+?? scripts/generate_capabilities.py
+?? scripts/release_status.py
+?? scripts/scientific_hash_policy.json
+?? scripts/verify_compatible_bundle.py
+?? test-data/benchmark/
+?? tmp/

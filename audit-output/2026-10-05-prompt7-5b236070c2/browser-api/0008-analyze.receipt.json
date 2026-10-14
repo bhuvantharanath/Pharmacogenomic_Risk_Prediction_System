@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-06T10:40:38.805164+00:00",
+  "path": "/analyze",
+  "method": "POST",
+  "status": 200,
+  "bytes": 23068,
+  "sha256": "146909022e600cbf6b38d438ba206f447032a7f3e3f4f861bf576503d795b573",
+  "headers": {
+    "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36",
+    "sec-ch-ua": "\"Chromium\";v=\"154\", \"Google Chrome\";v=\"154\", \"Not A(Brand\";v=\"99\"",
+    "origin": "http://127.0.0.1:3000"
+  }
+}

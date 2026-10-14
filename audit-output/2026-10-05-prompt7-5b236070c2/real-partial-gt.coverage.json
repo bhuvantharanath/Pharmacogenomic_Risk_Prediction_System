@@ -1,0 +1,94 @@
+{
+  "genes": [
+    {
+      "gene": "CYP2C19",
+      "positions_found": 34,
+      "positions_required": 35,
+      "threshold_percent": 100,
+      "percent": 97.1,
+      "passes": false,
+      "not_readable_from_vcf": false,
+      "reason": "34 of 35 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 1 partial genotypes."
+    },
+    {
+      "gene": "CYP2C9",
+      "positions_found": 0,
+      "positions_required": 88,
+      "threshold_percent": 100,
+      "percent": 0.0,
+      "passes": false,
+      "not_readable_from_vcf": false,
+      "reason": "0 of 88 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 88 absent positions."
+    },
+    {
+      "gene": "CYP2D6",
+      "positions_found": 0,
+      "positions_required": 157,
+      "threshold_percent": 100,
+      "percent": 0.0,
+      "passes": false,
+      "not_readable_from_vcf": true,
+      "reason": "Defined by copy-number and structural variation, which a VCF cannot express. A different kind of genetic test is needed; no VCF will resolve it."
+    },
+    {
+      "gene": "DPYD",
+      "positions_found": 0,
+      "positions_required": 83,
+      "threshold_percent": 20,
+      "percent": 0.0,
+      "passes": false,
+      "not_readable_from_vcf": false,
+      "reason": "0 of 83 required positions had acceptable genotypes; this gene needs 20%. Evidence gaps: 83 absent positions."
+    },
+    {
+      "gene": "NUDT15",
+      "positions_found": 0,
+      "positions_required": 20,
+      "threshold_percent": 80,
+      "percent": 0.0,
+      "passes": false,
+      "not_readable_from_vcf": false,
+      "reason": "0 of 20 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 20 absent positions."
+    },
+    {
+      "gene": "SLCO1B1",
+      "positions_found": 0,
+      "positions_required": 35,
+      "threshold_percent": 100,
+      "percent": 0.0,
+      "passes": false,
+      "not_readable_from_vcf": false,
+      "reason": "0 of 35 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 35 absent positions."
+    },
+    {
+      "gene": "TPMT",
+      "positions_found": 0,
+      "positions_required": 45,
+      "threshold_percent": 80,
+      "percent": 0.0,
+      "passes": false,
+      "not_readable_from_vcf": false,
+      "reason": "0 of 45 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 45 absent positions."
+    }
+  ],
+  "genes_passing": 0,
+  "genes_total": 7,
+  "answerable_drugs": [],
+  "unanswerable_drugs": [
+    "clopidogrel",
+    "fluorouracil",
+    "azathioprine",
+    "simvastatin",
+    "warfarin",
+    "codeine"
+  ],
+  "variants_only": false,
+  "warnings": [],
+  "guideline_provenance": {
+    "pharmcat_version": "3.4.0",
+    "cpic_data_version": "",
+    "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+    "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+    "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+  }
+}

@@ -1,0 +1,15 @@
+4478a4479,4492
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/inventory_compare.py
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/branch.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/freeze-comparison-vs-prompt7.json
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-diff-staged.patch
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-diff-stat.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-diff.patch
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-stash-list.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-status-delta-vs-prompt7.diff
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-status-ignored.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-status-porcelain-v1.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-status-porcelain-v2.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/git-status-uall.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/start/head.txt
+> ?? audit-output/2026-10-14-prompt8-4da1199df2/started-utc.txt

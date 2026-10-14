@@ -1,0 +1,22 @@
+{
+  "stage": "main",
+  "checks": {
+    "startup_healthy": true,
+    "large_coverage_200": true,
+    "real_incomplete_unknown": true,
+    "synthetic_normal": true,
+    "synthetic_actionable": true,
+    "f4_normal_frozen_scientific_fields": true,
+    "f4_actionable_frozen_scientific_fields": true,
+    "sequential_both_200": true
+  },
+  "peak_bytes": 507760640,
+  "events": {
+    "low": 0,
+    "high": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_kill": 0,
+    "oom_group_kill": 0
+  }
+}

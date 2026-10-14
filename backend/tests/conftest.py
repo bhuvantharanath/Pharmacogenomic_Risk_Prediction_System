@@ -29,11 +29,15 @@ def _reset_rate_limiter():
     reset, the 11th `/analyze` call *in the whole session* gets a 429 and a
     dozen unrelated tests fail with confusing assertions.
     """
-    from app.security import limiter
+    from app.security import (
+        RATE_LIMIT_REQUESTS,
+        RATE_LIMIT_WINDOW_SECONDS,
+        limiter,
+    )
 
-    limiter.reset()
+    limiter.__init__(RATE_LIMIT_REQUESTS, RATE_LIMIT_WINDOW_SECONDS)
     yield
-    limiter.reset()
+    limiter.__init__(RATE_LIMIT_REQUESTS, RATE_LIMIT_WINDOW_SECONDS)
 
 
 def load_fixture(name: str) -> dict:

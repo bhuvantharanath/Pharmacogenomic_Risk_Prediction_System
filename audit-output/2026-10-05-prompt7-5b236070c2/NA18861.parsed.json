@@ -1,0 +1,4827 @@
+{
+  "pharmcat_version": "3.4.0",
+  "data_version": "2026-07-13-11-40",
+  "timestamp": "2026-10-05T13:15:20.475Z",
+  "sample_id": "NA18861.1000G2022",
+  "genes": {
+    "CYP2C19": {
+      "gene": "CYP2C19",
+      "status": "definite",
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+        "*1/*1"
+      ],
+      "phenotype_raw": "Normal Metabolizer",
+      "activity_score": null,
+      "lookup_keys": [
+        "Normal Metabolizer"
+      ],
+      "recommendation_diplotype": "*1/*1",
+      "candidate_phenotypes": [
+        "Normal Metabolizer"
+      ],
+      "candidate_lookup_keys": [
+        "Normal Metabolizer"
+      ],
+      "allele_functions": [
+        "Normal function",
+        "Normal function"
+      ],
+      "variants": [
+        {
+          "position": 94761900,
+          "chromosome": "chr10",
+          "dbSnpId": "rs12248560",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*4",
+            "*17"
+          ]
+        },
+        {
+          "position": 94762706,
+          "chromosome": "chr10",
+          "dbSnpId": "rs28399504",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*4"
+          ]
+        },
+        {
+          "position": 94762712,
+          "chromosome": "chr10",
+          "dbSnpId": "rs367543002",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*34",
+            "*40"
+          ]
+        },
+        {
+          "position": 94762715,
+          "chromosome": "chr10",
+          "dbSnpId": "rs367543003",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*1",
+            "*34",
+            "*40"
+          ]
+        },
+        {
+          "position": 94762760,
+          "chromosome": "chr10",
+          "dbSnpId": "rs17882687",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*15",
+            "*28",
+            "*35",
+            "*39"
+          ]
+        },
+        {
+          "position": 94775367,
+          "chromosome": "chr10",
+          "dbSnpId": "rs12769205",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*2",
+            "*35"
+          ]
+        },
+        {
+          "position": 94775416,
+          "chromosome": "chr10",
+          "dbSnpId": "rs41291556",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*1",
+            "*8"
+          ]
+        },
+        {
+          "position": 94775423,
+          "chromosome": "chr10",
+          "dbSnpId": "rs17885179",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*39"
+          ]
+        },
+        {
+          "position": 94775489,
+          "chromosome": "chr10",
+          "dbSnpId": "rs17884712",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*9"
+          ]
+        },
+        {
+          "position": 94775507,
+          "chromosome": "chr10",
+          "dbSnpId": "rs58973490",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*2",
+            "*11"
+          ]
+        },
+        {
+          "position": 94780574,
+          "chromosome": "chr10",
+          "dbSnpId": "rs140278421",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*22"
+          ]
+        },
+        {
+          "position": 94780653,
+          "chromosome": "chr10",
+          "dbSnpId": "rs4986893",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*3"
+          ]
+        },
+        {
+          "position": 94781858,
+          "chromosome": "chr10",
+          "dbSnpId": "rs6413438",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*10"
+          ]
+        },
+        {
+          "position": 94781859,
+          "chromosome": "chr10",
+          "dbSnpId": "rs4244285",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*2"
+          ]
+        },
+        {
+          "position": 94842866,
+          "chromosome": "chr10",
+          "dbSnpId": "rs3758581",
+          "call": "G|G",
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*2",
+            "*3",
+            "*4",
+            "*5",
+            "*6",
+            "*7",
+            "*8",
+            "*9",
+            "*10",
+            "*11",
+            "*12",
+            "*13",
+            "*14",
+            "*15",
+            "*17",
+            "*18",
+            "*19",
+            "*22",
+            "*23",
+            "*24",
+            "*25",
+            "*26",
+            "*28",
+            "*29",
+            "*31",
+            "*32",
+            "*33",
+            "*35",
+            "*39",
+            "*40",
+            "*41"
+          ]
+        },
+        {
+          "position": 94849995,
+          "chromosome": "chr10",
+          "dbSnpId": "rs17879685",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*13"
+          ]
+        },
+        {
+          "position": 94762755,
+          "chromosome": "chr10",
+          "dbSnpId": "rs55752064",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*1",
+            "*14"
+          ]
+        },
+        {
+          "position": 94762788,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1564656981",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*29"
+          ]
+        },
+        {
+          "position": 94762856,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1564657013",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*19"
+          ]
+        },
+        {
+          "position": 94775106,
+          "chromosome": "chr10",
+          "dbSnpId": "rs145328984",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*30"
+          ]
+        },
+        {
+          "position": 94775121,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1564660997",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*31"
+          ]
+        },
+        {
+          "position": 94775160,
+          "chromosome": "chr10",
+          "dbSnpId": "rs118203756",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*23"
+          ]
+        },
+        {
+          "position": 94775185,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1288601658",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*32"
+          ]
+        },
+        {
+          "position": 94775453,
+          "chromosome": "chr10",
+          "dbSnpId": "rs72552267",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*6"
+          ]
+        },
+        {
+          "position": 94780544,
+          "chromosome": "chr10",
+          "dbSnpId": "rs57700608",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*41"
+          ]
+        },
+        {
+          "position": 94780579,
+          "chromosome": "chr10",
+          "dbSnpId": "rs370803989",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*33"
+          ]
+        },
+        {
+          "position": 94781944,
+          "chromosome": "chr10",
+          "dbSnpId": "rs375781227",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*26"
+          ]
+        },
+        {
+          "position": 94781999,
+          "chromosome": "chr10",
+          "dbSnpId": "rs72558186",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*1",
+            "*7"
+          ]
+        },
+        {
+          "position": 94842861,
+          "chromosome": "chr10",
+          "dbSnpId": "rs138142612",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*18"
+          ]
+        },
+        {
+          "position": 94842879,
+          "chromosome": "chr10",
+          "dbSnpId": "rs118203757",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*24"
+          ]
+        },
+        {
+          "position": 94842995,
+          "chromosome": "chr10",
+          "dbSnpId": "rs113934938",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*1",
+            "*28"
+          ]
+        },
+        {
+          "position": 94852738,
+          "chromosome": "chr10",
+          "dbSnpId": "rs56337013",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*5"
+          ]
+        },
+        {
+          "position": 94852765,
+          "chromosome": "chr10",
+          "dbSnpId": "rs192154563",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*16"
+          ]
+        },
+        {
+          "position": 94852785,
+          "chromosome": "chr10",
+          "dbSnpId": "rs118203759",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*1",
+            "*25"
+          ]
+        },
+        {
+          "position": 94852914,
+          "chromosome": "chr10",
+          "dbSnpId": "rs55640102",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*1",
+            "*12"
+          ]
+        }
+      ],
+      "warnings": []
+    },
+    "CYP2C9": {
+      "gene": "CYP2C9",
+      "status": "definite",
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+        "*1/*1"
+      ],
+      "phenotype_raw": "Normal Metabolizer",
+      "activity_score": 2.0,
+      "lookup_keys": [
+        "2.0"
+      ],
+      "recommendation_diplotype": "*1/*1",
+      "candidate_phenotypes": [
+        "Normal Metabolizer"
+      ],
+      "candidate_lookup_keys": [
+        "2.0"
+      ],
+      "allele_functions": [
+        "Normal function",
+        "Normal function"
+      ],
+      "variants": [
+        {
+          "position": 94941958,
+          "chromosome": "chr10",
+          "dbSnpId": "rs72558187",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*13"
+          ]
+        },
+        {
+          "position": 94942231,
+          "chromosome": "chr10",
+          "dbSnpId": "rs12414460",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*42"
+          ]
+        },
+        {
+          "position": 94942234,
+          "chromosome": "chr10",
+          "dbSnpId": "rs72558189",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*14",
+            "*35"
+          ]
+        },
+        {
+          "position": 94942249,
+          "chromosome": "chr10",
+          "dbSnpId": "rs200965026",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*26",
+            "*44"
+          ]
+        },
+        {
+          "position": 94942290,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1799853",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*2",
+            "*35",
+            "*61",
+            "*92"
+          ]
+        },
+        {
+          "position": 94942309,
+          "chromosome": "chr10",
+          "dbSnpId": "rs7900194",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*8",
+            "*27"
+          ]
+        },
+        {
+          "position": 94949184,
+          "chromosome": "chr10",
+          "dbSnpId": "rs369745682",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*86"
+          ]
+        },
+        {
+          "position": 94949217,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2256871",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*9"
+          ]
+        },
+        {
+          "position": 94949281,
+          "chromosome": "chr10",
+          "dbSnpId": "rs9332131",
+          "call": "GA|GA",
+          "referenceAllele": "GA",
+          "alleles": [
+            "*6"
+          ]
+        },
+        {
+          "position": 94972119,
+          "chromosome": "chr10",
+          "dbSnpId": "rs182132442",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*29"
+          ]
+        },
+        {
+          "position": 94981201,
+          "chromosome": "chr10",
+          "dbSnpId": "rs57505750",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*31"
+          ]
+        },
+        {
+          "position": 94981224,
+          "chromosome": "chr10",
+          "dbSnpId": "rs28371685",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*11"
+          ]
+        },
+        {
+          "position": 94981296,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1057910",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*3",
+            "*18",
+            "*68"
+          ]
+        },
+        {
+          "position": 94981301,
+          "chromosome": "chr10",
+          "dbSnpId": "rs28371686",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*5",
+            "*36"
+          ]
+        },
+        {
+          "position": 94981305,
+          "chromosome": "chr10",
+          "dbSnpId": "rs578144976",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*66"
+          ]
+        },
+        {
+          "position": 94988925,
+          "chromosome": "chr10",
+          "dbSnpId": "rs202201137",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*61"
+          ]
+        },
+        {
+          "position": 94989020,
+          "chromosome": "chr10",
+          "dbSnpId": "rs9332239",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*12",
+            "*71"
+          ]
+        },
+        {
+          "position": 94938683,
+          "chromosome": "chr10",
+          "dbSnpId": "rs114071557",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*36"
+          ]
+        },
+        {
+          "position": 94938719,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*80"
+          ]
+        },
+        {
+          "position": 94938737,
+          "chromosome": "chr10",
+          "dbSnpId": "rs67807361",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*7"
+          ]
+        },
+        {
+          "position": 94938771,
+          "chromosome": "chr10",
+          "dbSnpId": "rs142240658",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*21"
+          ]
+        },
+        {
+          "position": 94938788,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*83"
+          ]
+        },
+        {
+          "position": 94938800,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1364419386",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*76"
+          ]
+        },
+        {
+          "position": 94938803,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2031308986",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*22"
+          ]
+        },
+        {
+          "position": 94938828,
+          "chromosome": "chr10",
+          "dbSnpId": "rs564813580",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*37"
+          ]
+        },
+        {
+          "position": 94941897,
+          "chromosome": "chr10",
+          "dbSnpId": "rs371055887",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*20"
+          ]
+        },
+        {
+          "position": 94941915,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1216169538",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*23"
+          ]
+        },
+        {
+          "position": 94941975,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2493006942",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*77"
+          ]
+        },
+        {
+          "position": 94941976,
+          "chromosome": "chr10",
+          "dbSnpId": "rs761033063",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*38"
+          ]
+        },
+        {
+          "position": 94941982,
+          "chromosome": "chr10",
+          "dbSnpId": "rs762239445",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*39"
+          ]
+        },
+        {
+          "position": 94942018,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*40"
+          ]
+        },
+        {
+          "position": 94942203,
+          "chromosome": "chr10",
+          "dbSnpId": "rs771237265",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*90"
+          ]
+        },
+        {
+          "position": 94942205,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1304490498",
+          "call": null,
+          "referenceAllele": "CAATGGAAAGA",
+          "alleles": [
+            "*25"
+          ]
+        },
+        {
+          "position": 94942216,
+          "chromosome": "chr10",
+          "dbSnpId": "rs774607211",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*41"
+          ]
+        },
+        {
+          "position": 94942226,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*92"
+          ]
+        },
+        {
+          "position": 94942230,
+          "chromosome": "chr10",
+          "dbSnpId": "rs767576260",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*43"
+          ]
+        },
+        {
+          "position": 94942233,
+          "chromosome": "chr10",
+          "dbSnpId": "rs375805362",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*62"
+          ]
+        },
+        {
+          "position": 94942240,
+          "chromosome": "chr10",
+          "dbSnpId": "rs530507053",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*88"
+          ]
+        },
+        {
+          "position": 94942243,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1375956433",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*78"
+          ]
+        },
+        {
+          "position": 94942254,
+          "chromosome": "chr10",
+          "dbSnpId": "rs199523631",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*45"
+          ]
+        },
+        {
+          "position": 94942255,
+          "chromosome": "chr10",
+          "dbSnpId": "rs200183364",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*33"
+          ]
+        },
+        {
+          "position": 94942291,
+          "chromosome": "chr10",
+          "dbSnpId": "rs141489852",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*63"
+          ]
+        },
+        {
+          "position": 94942305,
+          "chromosome": "chr10",
+          "dbSnpId": "rs754487195",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*46"
+          ]
+        },
+        {
+          "position": 94942306,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1289704600",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*72"
+          ]
+        },
+        {
+          "position": 94942308,
+          "chromosome": "chr10",
+          "dbSnpId": "rs17847037",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*73"
+          ]
+        },
+        {
+          "position": 94947782,
+          "chromosome": "chr10",
+          "dbSnpId": "rs72558190",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*15"
+          ]
+        },
+        {
+          "position": 94947785,
+          "chromosome": "chr10",
+          "dbSnpId": "rs774550549",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*47"
+          ]
+        },
+        {
+          "position": 94947817,
+          "chromosome": "chr10",
+          "dbSnpId": "rs199539783",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*91"
+          ]
+        },
+        {
+          "position": 94947869,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2492587526",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*69"
+          ]
+        },
+        {
+          "position": 94947907,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*57"
+          ]
+        },
+        {
+          "position": 94947917,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1326630788",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*48"
+          ]
+        },
+        {
+          "position": 94947938,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2031531005",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*28"
+          ]
+        },
+        {
+          "position": 94947939,
+          "chromosome": "chr10",
+          "dbSnpId": "rs370100007",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*74"
+          ]
+        },
+        {
+          "position": 94949129,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*49"
+          ]
+        },
+        {
+          "position": 94949144,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2492591692",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*50"
+          ]
+        },
+        {
+          "position": 94949145,
+          "chromosome": "chr10",
+          "dbSnpId": "rs772782449",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*82"
+          ]
+        },
+        {
+          "position": 94949161,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "AT",
+          "alleles": [
+            "*85"
+          ]
+        },
+        {
+          "position": 94949189,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1295294399",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*89"
+          ]
+        },
+        {
+          "position": 94949278,
+          "chromosome": "chr10",
+          "dbSnpId": "rs996190254",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*94"
+          ]
+        },
+        {
+          "position": 94949280,
+          "chromosome": "chr10",
+          "dbSnpId": "rs9332130",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*10",
+            "*71"
+          ]
+        },
+        {
+          "position": 94972123,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*64"
+          ]
+        },
+        {
+          "position": 94972134,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2492634549",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*51"
+          ]
+        },
+        {
+          "position": 94972179,
+          "chromosome": "chr10",
+          "dbSnpId": "rs72558192",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*16"
+          ]
+        },
+        {
+          "position": 94972180,
+          "chromosome": "chr10",
+          "dbSnpId": "rs988617574",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*52"
+          ]
+        },
+        {
+          "position": 94972183,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*81"
+          ]
+        },
+        {
+          "position": 94972194,
+          "chromosome": "chr10",
+          "dbSnpId": "rs546318684",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*87"
+          ]
+        },
+        {
+          "position": 94972233,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1237225311",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*53"
+          ]
+        },
+        {
+          "position": 94981199,
+          "chromosome": "chr10",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*65"
+          ]
+        },
+        {
+          "position": 94981225,
+          "chromosome": "chr10",
+          "dbSnpId": "rs367826293",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*34"
+          ]
+        },
+        {
+          "position": 94981230,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1274535931",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*58"
+          ]
+        },
+        {
+          "position": 94981250,
+          "chromosome": "chr10",
+          "dbSnpId": "rs750820937",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*54",
+            "*93"
+          ]
+        },
+        {
+          "position": 94981258,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1297714792",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*79"
+          ]
+        },
+        {
+          "position": 94981281,
+          "chromosome": "chr10",
+          "dbSnpId": "rs749060448",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*24"
+          ]
+        },
+        {
+          "position": 94981297,
+          "chromosome": "chr10",
+          "dbSnpId": "rs56165452",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*4"
+          ]
+        },
+        {
+          "position": 94981302,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1250577724",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*55"
+          ]
+        },
+        {
+          "position": 94981365,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2492650213",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*17"
+          ]
+        },
+        {
+          "position": 94981371,
+          "chromosome": "chr10",
+          "dbSnpId": "rs542577750",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*68"
+          ]
+        },
+        {
+          "position": 94986042,
+          "chromosome": "chr10",
+          "dbSnpId": "rs764211126",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*56"
+          ]
+        },
+        {
+          "position": 94986073,
+          "chromosome": "chr10",
+          "dbSnpId": "rs72558193",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*18"
+          ]
+        },
+        {
+          "position": 94986136,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1254213342",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*75"
+          ]
+        },
+        {
+          "position": 94986174,
+          "chromosome": "chr10",
+          "dbSnpId": "rs1441296358",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*84"
+          ]
+        },
+        {
+          "position": 94988852,
+          "chromosome": "chr10",
+          "dbSnpId": "rs776908257",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*67"
+          ]
+        },
+        {
+          "position": 94988855,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2492662738",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*59"
+          ]
+        },
+        {
+          "position": 94988880,
+          "chromosome": "chr10",
+          "dbSnpId": "rs2492662839",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*70"
+          ]
+        },
+        {
+          "position": 94988917,
+          "chromosome": "chr10",
+          "dbSnpId": "rs769942899",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*19"
+          ]
+        },
+        {
+          "position": 94988955,
+          "chromosome": "chr10",
+          "dbSnpId": "rs767284820",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*60"
+          ]
+        },
+        {
+          "position": 94988984,
+          "chromosome": "chr10",
+          "dbSnpId": "rs781583846",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*30"
+          ]
+        },
+        {
+          "position": 94989023,
+          "chromosome": "chr10",
+          "dbSnpId": "rs868182778",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*32"
+          ]
+        }
+      ],
+      "warnings": [
+        "The CYP2C9 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing."
+      ]
+    },
+    "SLCO1B1": {
+      "gene": "SLCO1B1",
+      "status": "definite",
+      "diplotype": "*1/*43",
+      "candidate_diplotypes": [
+        "*1/*43"
+      ],
+      "phenotype_raw": "Indeterminate",
+      "activity_score": null,
+      "lookup_keys": [
+        "Indeterminate"
+      ],
+      "recommendation_diplotype": "*1/*43",
+      "candidate_phenotypes": [
+        "Indeterminate"
+      ],
+      "candidate_lookup_keys": [
+        "Indeterminate"
+      ],
+      "allele_functions": [
+        "Normal function",
+        "Unknown function"
+      ],
+      "variants": [
+        {
+          "position": 21172675,
+          "chromosome": "chr12",
+          "dbSnpId": "rs556524705",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*57"
+          ]
+        },
+        {
+          "position": 21176804,
+          "chromosome": "chr12",
+          "dbSnpId": "rs2306283",
+          "call": "A|G",
+          "referenceAllele": "A",
+          "alleles": [
+            "*14",
+            "*15",
+            "*20",
+            "*24",
+            "*25",
+            "*27",
+            "*28",
+            "*29",
+            "*30",
+            "*31",
+            "*32",
+            "*33",
+            "*37",
+            "*39",
+            "*42",
+            "*43",
+            "*44",
+            "*45",
+            "*47",
+            "*52",
+            "*53",
+            "*54",
+            "*55",
+            "*56",
+            "*57"
+          ]
+        },
+        {
+          "position": 21176868,
+          "chromosome": "chr12",
+          "dbSnpId": "rs2306282",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*16"
+          ]
+        },
+        {
+          "position": 21176871,
+          "chromosome": "chr12",
+          "dbSnpId": "rs145144129",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*55"
+          ]
+        },
+        {
+          "position": 21176879,
+          "chromosome": "chr12",
+          "dbSnpId": "rs11045819",
+          "call": "C|A",
+          "referenceAllele": "C",
+          "alleles": [
+            "*4",
+            "*14",
+            "*25",
+            "*32",
+            "*43",
+            "*53",
+            "*55"
+          ]
+        },
+        {
+          "position": 21176898,
+          "chromosome": "chr12",
+          "dbSnpId": "rs77271279",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*41"
+          ]
+        },
+        {
+          "position": 21178615,
+          "chromosome": "chr12",
+          "dbSnpId": "rs4149056",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*5",
+            "*15",
+            "*40",
+            "*45",
+            "*47"
+          ]
+        },
+        {
+          "position": 21178926,
+          "chromosome": "chr12",
+          "dbSnpId": "rs201722521",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*54"
+          ]
+        },
+        {
+          "position": 21178957,
+          "chromosome": "chr12",
+          "dbSnpId": "rs79135870",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*30"
+          ]
+        },
+        {
+          "position": 21196951,
+          "chromosome": "chr12",
+          "dbSnpId": "rs11045852",
+          "call": "A|G",
+          "referenceAllele": "A",
+          "alleles": [
+            "*24",
+            "*25",
+            "*28",
+            "*32",
+            "*33",
+            "*43",
+            "*44",
+            "*54"
+          ]
+        },
+        {
+          "position": 21196975,
+          "chromosome": "chr12",
+          "dbSnpId": "rs183501729",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*39"
+          ]
+        },
+        {
+          "position": 21196976,
+          "chromosome": "chr12",
+          "dbSnpId": "rs11045853",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*25",
+            "*28",
+            "*33"
+          ]
+        },
+        {
+          "position": 21200544,
+          "chromosome": "chr12",
+          "dbSnpId": "rs72559747",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*47"
+          ]
+        },
+        {
+          "position": 21202555,
+          "chromosome": "chr12",
+          "dbSnpId": "rs59113707",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*27",
+            "*53",
+            "*55"
+          ]
+        },
+        {
+          "position": 21205999,
+          "chromosome": "chr12",
+          "dbSnpId": "rs59502379",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*9",
+            "*31"
+          ]
+        },
+        {
+          "position": 21206031,
+          "chromosome": "chr12",
+          "dbSnpId": "rs74064213",
+          "call": "A|G",
+          "referenceAllele": "A",
+          "alleles": [
+            "*43",
+            "*44"
+          ]
+        },
+        {
+          "position": 21222355,
+          "chromosome": "chr12",
+          "dbSnpId": "rs71581941",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*45"
+          ]
+        },
+        {
+          "position": 21224840,
+          "chromosome": "chr12",
+          "dbSnpId": "rs200994482",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*51"
+          ]
+        },
+        {
+          "position": 21239042,
+          "chromosome": "chr12",
+          "dbSnpId": "rs34671512",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "*19",
+            "*20",
+            "*40",
+            "*54"
+          ]
+        },
+        {
+          "position": 21239158,
+          "chromosome": "chr12",
+          "dbSnpId": "rs140790673",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*29"
+          ]
+        },
+        {
+          "position": 21141575,
+          "chromosome": "chr12",
+          "dbSnpId": "rs185905373",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*56"
+          ]
+        },
+        {
+          "position": 21172734,
+          "chromosome": "chr12",
+          "dbSnpId": "rs139257324",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*33"
+          ]
+        },
+        {
+          "position": 21172735,
+          "chromosome": "chr12",
+          "dbSnpId": "rs61760182",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*58"
+          ]
+        },
+        {
+          "position": 21172776,
+          "chromosome": "chr12",
+          "dbSnpId": "rs373327528",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*23"
+          ]
+        },
+        {
+          "position": 21172782,
+          "chromosome": "chr12",
+          "dbSnpId": "rs56101265",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*2"
+          ]
+        },
+        {
+          "position": 21178612,
+          "chromosome": "chr12",
+          "dbSnpId": "rs141467543",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*42"
+          ]
+        },
+        {
+          "position": 21178653,
+          "chromosome": "chr12",
+          "dbSnpId": "rs200331427",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*50"
+          ]
+        },
+        {
+          "position": 21200595,
+          "chromosome": "chr12",
+          "dbSnpId": "rs55901008",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*6"
+          ]
+        },
+        {
+          "position": 21200673,
+          "chromosome": "chr12",
+          "dbSnpId": "rs756393362",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*52"
+          ]
+        },
+        {
+          "position": 21202553,
+          "chromosome": "chr12",
+          "dbSnpId": "rs1228465562",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*36"
+          ]
+        },
+        {
+          "position": 21202664,
+          "chromosome": "chr12",
+          "dbSnpId": "rs142965323",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*26"
+          ]
+        },
+        {
+          "position": 21205921,
+          "chromosome": "chr12",
+          "dbSnpId": "rs72559748",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*8"
+          ]
+        },
+        {
+          "position": 21239077,
+          "chromosome": "chr12",
+          "dbSnpId": "rs56199088",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*10"
+          ]
+        },
+        {
+          "position": 21239113,
+          "chromosome": "chr12",
+          "dbSnpId": "rs55737008",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*11"
+          ]
+        },
+        {
+          "position": 21239145,
+          "chromosome": "chr12",
+          "dbSnpId": "rs200995543",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*34"
+          ]
+        }
+      ],
+      "warnings": [
+        "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+        "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing."
+      ]
+    },
+    "TPMT": {
+      "gene": "TPMT",
+      "status": "definite",
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+        "*1/*1"
+      ],
+      "phenotype_raw": "Normal Metabolizer",
+      "activity_score": null,
+      "lookup_keys": [
+        "Normal Metabolizer"
+      ],
+      "recommendation_diplotype": "*1/*1",
+      "candidate_phenotypes": [
+        "Normal Metabolizer"
+      ],
+      "candidate_lookup_keys": [
+        "Normal Metabolizer"
+      ],
+      "allele_functions": [
+        "Normal function",
+        "Normal function"
+      ],
+      "variants": [
+        {
+          "position": 18130687,
+          "chromosome": "chr6",
+          "dbSnpId": "rs1142345",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*3A",
+            "*3C",
+            "*41"
+          ]
+        },
+        {
+          "position": 18130762,
+          "chromosome": "chr6",
+          "dbSnpId": "rs56161402",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*8",
+            "*46"
+          ]
+        },
+        {
+          "position": 18133847,
+          "chromosome": "chr6",
+          "dbSnpId": "rs6921269",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*24"
+          ]
+        },
+        {
+          "position": 18138969,
+          "chromosome": "chr6",
+          "dbSnpId": "rs144041067",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*16",
+            "*22"
+          ]
+        },
+        {
+          "position": 18138970,
+          "chromosome": "chr6",
+          "dbSnpId": "rs112339338",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*33",
+            "*46"
+          ]
+        },
+        {
+          "position": 18138997,
+          "chromosome": "chr6",
+          "dbSnpId": "rs1800460",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*3A",
+            "*3B"
+          ]
+        },
+        {
+          "position": 18143622,
+          "chromosome": "chr6",
+          "dbSnpId": "rs115106679",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*32"
+          ]
+        },
+        {
+          "position": 18143724,
+          "chromosome": "chr6",
+          "dbSnpId": "rs1800462",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*2"
+          ]
+        },
+        {
+          "position": 18147851,
+          "chromosome": "chr6",
+          "dbSnpId": "rs200591577",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*21"
+          ]
+        },
+        {
+          "position": 18130694,
+          "chromosome": "chr6",
+          "dbSnpId": "rs150900439",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*20"
+          ]
+        },
+        {
+          "position": 18130725,
+          "chromosome": "chr6",
+          "dbSnpId": "rs72552736",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*7"
+          ]
+        },
+        {
+          "position": 18130729,
+          "chromosome": "chr6",
+          "dbSnpId": "rs139392616",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*40"
+          ]
+        },
+        {
+          "position": 18130730,
+          "chromosome": "chr6",
+          "dbSnpId": "rs761990479",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*45"
+          ]
+        },
+        {
+          "position": 18130758,
+          "chromosome": "chr6",
+          "dbSnpId": "rs398122996",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*37"
+          ]
+        },
+        {
+          "position": 18130772,
+          "chromosome": "chr6",
+          "dbSnpId": "rs377085266",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*25"
+          ]
+        },
+        {
+          "position": 18130781,
+          "chromosome": "chr6",
+          "dbSnpId": "rs1800584",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*4"
+          ]
+        },
+        {
+          "position": 18132136,
+          "chromosome": "chr6",
+          "dbSnpId": "rs72556347",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*26"
+          ]
+        },
+        {
+          "position": 18132147,
+          "chromosome": "chr6",
+          "dbSnpId": "rs79901429",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*31"
+          ]
+        },
+        {
+          "position": 18132163,
+          "chromosome": "chr6",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*36"
+          ]
+        },
+        {
+          "position": 18133845,
+          "chromosome": "chr6",
+          "dbSnpId": "rs75543815",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*6"
+          ]
+        },
+        {
+          "position": 18133870,
+          "chromosome": "chr6",
+          "dbSnpId": "rs772832951",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*38"
+          ]
+        },
+        {
+          "position": 18133884,
+          "chromosome": "chr6",
+          "dbSnpId": "rs74423290",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*23"
+          ]
+        },
+        {
+          "position": 18133887,
+          "chromosome": "chr6",
+          "dbSnpId": "rs201695576",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*44"
+          ]
+        },
+        {
+          "position": 18133890,
+          "chromosome": "chr6",
+          "dbSnpId": "rs9333570",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*15"
+          ]
+        },
+        {
+          "position": 18139027,
+          "chromosome": "chr6",
+          "dbSnpId": "rs72552737",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*10"
+          ]
+        },
+        {
+          "position": 18139689,
+          "chromosome": "chr6",
+          "dbSnpId": "rs72552738",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*11"
+          ]
+        },
+        {
+          "position": 18139710,
+          "chromosome": "chr6",
+          "dbSnpId": "rs200220210",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*12"
+          ]
+        },
+        {
+          "position": 18143597,
+          "chromosome": "chr6",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*19"
+          ]
+        },
+        {
+          "position": 18143606,
+          "chromosome": "chr6",
+          "dbSnpId": "rs151149760",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*9"
+          ]
+        },
+        {
+          "position": 18143613,
+          "chromosome": "chr6",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*28"
+          ]
+        },
+        {
+          "position": 18143643,
+          "chromosome": "chr6",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*27"
+          ]
+        },
+        {
+          "position": 18143700,
+          "chromosome": "chr6",
+          "dbSnpId": "rs753545734",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*43"
+          ]
+        },
+        {
+          "position": 18143718,
+          "chromosome": "chr6",
+          "dbSnpId": "rs111901354",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*34"
+          ]
+        },
+        {
+          "position": 18143728,
+          "chromosome": "chr6",
+          "dbSnpId": "rs1256618794",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*43"
+          ]
+        },
+        {
+          "position": 18147838,
+          "chromosome": "chr6",
+          "dbSnpId": "rs281874771",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*39"
+          ]
+        },
+        {
+          "position": 18147845,
+          "chromosome": "chr6",
+          "dbSnpId": "rs777686348",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*18"
+          ]
+        },
+        {
+          "position": 18147856,
+          "chromosome": "chr6",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*35"
+          ]
+        },
+        {
+          "position": 18147910,
+          "chromosome": "chr6",
+          "dbSnpId": "rs72552740",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*5"
+          ]
+        },
+        {
+          "position": 18149004,
+          "chromosome": "chr6",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*17"
+          ]
+        },
+        {
+          "position": 18149022,
+          "chromosome": "chr6",
+          "dbSnpId": "rs750424422",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*30"
+          ]
+        },
+        {
+          "position": 18149032,
+          "chromosome": "chr6",
+          "dbSnpId": "rs759836180",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*42"
+          ]
+        },
+        {
+          "position": 18149045,
+          "chromosome": "chr6",
+          "dbSnpId": "rs72552742",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*13"
+          ]
+        },
+        {
+          "position": 18149103,
+          "chromosome": "chr6",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "CAAGT",
+          "alleles": [
+            "*47"
+          ]
+        },
+        {
+          "position": 18149126,
+          "chromosome": "chr6",
+          "dbSnpId": "rs267607275",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*29"
+          ]
+        },
+        {
+          "position": 18149127,
+          "chromosome": "chr6",
+          "dbSnpId": "rs9333569",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*14"
+          ]
+        }
+      ],
+      "warnings": [
+        "The TPMT gene is on the negative chromosomal strand, all genotype calls for TPMT in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+        "The TPMT *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing."
+      ]
+    },
+    "NUDT15": {
+      "gene": "NUDT15",
+      "status": "definite",
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+        "*1/*1"
+      ],
+      "phenotype_raw": "Normal Metabolizer",
+      "activity_score": null,
+      "lookup_keys": [
+        "Normal Metabolizer"
+      ],
+      "recommendation_diplotype": "*1/*1",
+      "candidate_phenotypes": [
+        "Normal Metabolizer"
+      ],
+      "candidate_lookup_keys": [
+        "Normal Metabolizer"
+      ],
+      "allele_functions": [
+        "Normal function",
+        "Normal function"
+      ],
+      "variants": [
+        {
+          "position": 48037782,
+          "chromosome": "chr13",
+          "dbSnpId": "rs746071566",
+          "call": "AGGAGTC|AGGAGTC",
+          "referenceAllele": "AGGAGTC",
+          "alleles": [
+            "*3",
+            "*6",
+            "*9"
+          ]
+        },
+        {
+          "position": 48037798,
+          "chromosome": "chr13",
+          "dbSnpId": "rs186364861",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*5"
+          ]
+        },
+        {
+          "position": 48045719,
+          "chromosome": "chr13",
+          "dbSnpId": "rs116855232",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "*3"
+          ]
+        },
+        {
+          "position": 48045720,
+          "chromosome": "chr13",
+          "dbSnpId": "rs147390019",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "*4"
+          ]
+        },
+        {
+          "position": 48045771,
+          "chromosome": "chr13",
+          "dbSnpId": "rs139551410",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "*15"
+          ]
+        },
+        {
+          "position": 48037748,
+          "chromosome": "chr13",
+          "dbSnpId": "rs769369441",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*10"
+          ]
+        },
+        {
+          "position": 48037749,
+          "chromosome": "chr13",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*19"
+          ]
+        },
+        {
+          "position": 48037825,
+          "chromosome": "chr13",
+          "dbSnpId": "rs777311140",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*14"
+          ]
+        },
+        {
+          "position": 48037834,
+          "chromosome": "chr13",
+          "dbSnpId": "rs1202487323",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*16"
+          ]
+        },
+        {
+          "position": 48037845,
+          "chromosome": "chr13",
+          "dbSnpId": "rs150241065",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*22"
+          ]
+        },
+        {
+          "position": 48037847,
+          "chromosome": "chr13",
+          "dbSnpId": "rs766023281",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*7"
+          ]
+        },
+        {
+          "position": 48037849,
+          "chromosome": "chr13",
+          "dbSnpId": null,
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "*8"
+          ]
+        },
+        {
+          "position": 48037852,
+          "chromosome": "chr13",
+          "dbSnpId": "rs753319151",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*23"
+          ]
+        },
+        {
+          "position": 48037885,
+          "chromosome": "chr13",
+          "dbSnpId": "rs1950545307",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*11"
+          ]
+        },
+        {
+          "position": 48037902,
+          "chromosome": "chr13",
+          "dbSnpId": "rs149436418",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*12"
+          ]
+        },
+        {
+          "position": 48040977,
+          "chromosome": "chr13",
+          "dbSnpId": "rs1457579126",
+          "call": null,
+          "referenceAllele": "GA",
+          "alleles": [
+            "*18"
+          ]
+        },
+        {
+          "position": 48041103,
+          "chromosome": "chr13",
+          "dbSnpId": "rs761191455",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "*13"
+          ]
+        },
+        {
+          "position": 48041113,
+          "chromosome": "chr13",
+          "dbSnpId": "rs1368252918",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*17"
+          ]
+        },
+        {
+          "position": 48045690,
+          "chromosome": "chr13",
+          "dbSnpId": "rs768324690",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "*20"
+          ]
+        },
+        {
+          "position": 48045714,
+          "chromosome": "chr13",
+          "dbSnpId": "rs1185228044",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "*21"
+          ]
+        }
+      ],
+      "warnings": [
+        "The NUDT15 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing."
+      ]
+    },
+    "DPYD": {
+      "gene": "DPYD",
+      "status": "definite",
+      "diplotype": "c.85T>C (*9A) (heterozygous)",
+      "candidate_diplotypes": [
+        "c.85T>C (*9A) (heterozygous)"
+      ],
+      "phenotype_raw": "Normal Metabolizer",
+      "activity_score": 2.0,
+      "lookup_keys": [
+        "2.0"
+      ],
+      "recommendation_diplotype": "c.85T>C (*9A) (heterozygous)",
+      "candidate_phenotypes": [
+        "Normal Metabolizer"
+      ],
+      "candidate_lookup_keys": [
+        "2.0"
+      ],
+      "allele_functions": [
+        "Normal function",
+        "Normal function"
+      ],
+      "variants": [
+        {
+          "position": 97078987,
+          "chromosome": "chr1",
+          "dbSnpId": "rs114096998",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.3067C>A"
+          ]
+        },
+        {
+          "position": 97079076,
+          "chromosome": "chr1",
+          "dbSnpId": "rs139459586",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "c.2978T>G"
+          ]
+        },
+        {
+          "position": 97079077,
+          "chromosome": "chr1",
+          "dbSnpId": "rs202144771",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.2977C>T"
+          ]
+        },
+        {
+          "position": 97079139,
+          "chromosome": "chr1",
+          "dbSnpId": "rs145529148",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.2915A>G"
+          ]
+        },
+        {
+          "position": 97082391,
+          "chromosome": "chr1",
+          "dbSnpId": "rs67376798",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.2846A>T"
+          ]
+        },
+        {
+          "position": 97234958,
+          "chromosome": "chr1",
+          "dbSnpId": "rs199634007",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.2336C>A"
+          ]
+        },
+        {
+          "position": 97305279,
+          "chromosome": "chr1",
+          "dbSnpId": "rs112766203",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.2279C>T"
+          ]
+        },
+        {
+          "position": 97305363,
+          "chromosome": "chr1",
+          "dbSnpId": "rs60511679",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "c.2195T>G"
+          ]
+        },
+        {
+          "position": 97305364,
+          "chromosome": "chr1",
+          "dbSnpId": "rs1801160",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.2194G>A (*6)"
+          ]
+        },
+        {
+          "position": 97306195,
+          "chromosome": "chr1",
+          "dbSnpId": "rs145548112",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.2161G>A"
+          ]
+        },
+        {
+          "position": 97450058,
+          "chromosome": "chr1",
+          "dbSnpId": "rs3918290",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1905+1G>A (*2A)"
+          ]
+        },
+        {
+          "position": 97450068,
+          "chromosome": "chr1",
+          "dbSnpId": "rs17376848",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "c.1896T>C"
+          ]
+        },
+        {
+          "position": 97515787,
+          "chromosome": "chr1",
+          "dbSnpId": "rs55886062",
+          "call": "A|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "c.1679T>G (*13)"
+          ]
+        },
+        {
+          "position": 97515839,
+          "chromosome": "chr1",
+          "dbSnpId": "rs1801159",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.1627A>G (*5)"
+          ]
+        },
+        {
+          "position": 97515851,
+          "chromosome": "chr1",
+          "dbSnpId": "rs142619737",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1615G>A"
+          ]
+        },
+        {
+          "position": 97515865,
+          "chromosome": "chr1",
+          "dbSnpId": "rs1801158",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1601G>A (*4)"
+          ]
+        },
+        {
+          "position": 97515889,
+          "chromosome": "chr1",
+          "dbSnpId": "rs190951787",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1577C>G"
+          ]
+        },
+        {
+          "position": 97549713,
+          "chromosome": "chr1",
+          "dbSnpId": "rs57918000",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1371C>T"
+          ]
+        },
+        {
+          "position": 97549726,
+          "chromosome": "chr1",
+          "dbSnpId": "rs144395748",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1358C>G"
+          ]
+        },
+        {
+          "position": 97549735,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72975710",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1349C>T"
+          ]
+        },
+        {
+          "position": 97573863,
+          "chromosome": "chr1",
+          "dbSnpId": "rs56038477",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1129-5923C>G, c.1236G>A (HapB3)"
+          ]
+        },
+        {
+          "position": 97573881,
+          "chromosome": "chr1",
+          "dbSnpId": "rs61622928",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1218G>A"
+          ]
+        },
+        {
+          "position": 97573918,
+          "chromosome": "chr1",
+          "dbSnpId": "rs143815742",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1181G>T"
+          ]
+        },
+        {
+          "position": 97579893,
+          "chromosome": "chr1",
+          "dbSnpId": "rs75017182",
+          "call": "G|G",
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1129-5923C>G",
+            "c.1129-5923C>G, c.1236G>A (HapB3)"
+          ]
+        },
+        {
+          "position": 97595149,
+          "chromosome": "chr1",
+          "dbSnpId": "rs146356975",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.868A>G"
+          ]
+        },
+        {
+          "position": 97679170,
+          "chromosome": "chr1",
+          "dbSnpId": "rs45589337",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.775A>G"
+          ]
+        },
+        {
+          "position": 97699474,
+          "chromosome": "chr1",
+          "dbSnpId": "rs115232898",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.557A>G"
+          ]
+        },
+        {
+          "position": 97699506,
+          "chromosome": "chr1",
+          "dbSnpId": "rs6670886",
+          "call": "C|C",
+          "referenceAllele": "C",
+          "alleles": [
+            "c.525G>A"
+          ]
+        },
+        {
+          "position": 97699535,
+          "chromosome": "chr1",
+          "dbSnpId": "rs2297595",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.496A>G"
+          ]
+        },
+        {
+          "position": 97721542,
+          "chromosome": "chr1",
+          "dbSnpId": "rs200562975",
+          "call": "T|T",
+          "referenceAllele": "T",
+          "alleles": [
+            "c.451A>G"
+          ]
+        },
+        {
+          "position": 97883329,
+          "chromosome": "chr1",
+          "dbSnpId": "rs1801265",
+          "call": "G|A",
+          "referenceAllele": "A",
+          "alleles": [
+            "c.85T>C (*9A)"
+          ]
+        },
+        {
+          "position": 97078993,
+          "chromosome": "chr1",
+          "dbSnpId": "rs148799944",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.3061G>C"
+          ]
+        },
+        {
+          "position": 97079005,
+          "chromosome": "chr1",
+          "dbSnpId": "rs140114515",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.3049G>A"
+          ]
+        },
+        {
+          "position": 97079071,
+          "chromosome": "chr1",
+          "dbSnpId": "rs1801268",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.2983G>T (*10)"
+          ]
+        },
+        {
+          "position": 97079121,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72547601",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.2933A>G"
+          ]
+        },
+        {
+          "position": 97079133,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72547602",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.2921A>T"
+          ]
+        },
+        {
+          "position": 97082365,
+          "chromosome": "chr1",
+          "dbSnpId": "rs141044036",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.2872A>G"
+          ]
+        },
+        {
+          "position": 97098598,
+          "chromosome": "chr1",
+          "dbSnpId": "rs1801267",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.2657G>A (*9B)"
+          ]
+        },
+        {
+          "position": 97098599,
+          "chromosome": "chr1",
+          "dbSnpId": "rs147545709",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.2656C>T"
+          ]
+        },
+        {
+          "position": 97098616,
+          "chromosome": "chr1",
+          "dbSnpId": "rs55674432",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.2639G>T"
+          ]
+        },
+        {
+          "position": 97098632,
+          "chromosome": "chr1",
+          "dbSnpId": "rs201035051",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.2623A>C"
+          ]
+        },
+        {
+          "position": 97193109,
+          "chromosome": "chr1",
+          "dbSnpId": "rs60139309",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.2582A>G"
+          ]
+        },
+        {
+          "position": 97193209,
+          "chromosome": "chr1",
+          "dbSnpId": "rs200687447",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.2482G>A"
+          ]
+        },
+        {
+          "position": 97234991,
+          "chromosome": "chr1",
+          "dbSnpId": "rs56005131",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.2303C>A"
+          ]
+        },
+        {
+          "position": 97305372,
+          "chromosome": "chr1",
+          "dbSnpId": "rs146529561",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.2186C>T"
+          ]
+        },
+        {
+          "position": 97373598,
+          "chromosome": "chr1",
+          "dbSnpId": "rs137999090",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.2021G>A"
+          ]
+        },
+        {
+          "position": 97373629,
+          "chromosome": "chr1",
+          "dbSnpId": "rs138545885",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1990G>T"
+          ]
+        },
+        {
+          "position": 97382461,
+          "chromosome": "chr1",
+          "dbSnpId": "rs55971861",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.1906A>C"
+          ]
+        },
+        {
+          "position": 97450059,
+          "chromosome": "chr1",
+          "dbSnpId": "rs3918289",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1905C>G"
+          ]
+        },
+        {
+          "position": 97450065,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549303",
+          "call": null,
+          "referenceAllele": "TG",
+          "alleles": [
+            "c.1898delC (*3)"
+          ]
+        },
+        {
+          "position": 97450168,
+          "chromosome": "chr1",
+          "dbSnpId": "rs147601618",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "c.1796T>C"
+          ]
+        },
+        {
+          "position": 97450187,
+          "chromosome": "chr1",
+          "dbSnpId": "rs145773863",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1777G>A"
+          ]
+        },
+        {
+          "position": 97450189,
+          "chromosome": "chr1",
+          "dbSnpId": "rs138616379",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1775G>A"
+          ]
+        },
+        {
+          "position": 97450190,
+          "chromosome": "chr1",
+          "dbSnpId": "rs59086055",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1774C>T"
+          ]
+        },
+        {
+          "position": 97515784,
+          "chromosome": "chr1",
+          "dbSnpId": "rs201615754",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1682G>T"
+          ]
+        },
+        {
+          "position": 97515923,
+          "chromosome": "chr1",
+          "dbSnpId": "rs148994843",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1543G>A"
+          ]
+        },
+        {
+          "position": 97549565,
+          "chromosome": "chr1",
+          "dbSnpId": "rs138391898",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1519G>A"
+          ]
+        },
+        {
+          "position": 97549600,
+          "chromosome": "chr1",
+          "dbSnpId": "rs111858276",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.1484A>G"
+          ]
+        },
+        {
+          "position": 97549609,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549304",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1475C>T"
+          ]
+        },
+        {
+          "position": 97549681,
+          "chromosome": "chr1",
+          "dbSnpId": "rs199549923",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1403C>A"
+          ]
+        },
+        {
+          "position": 97573785,
+          "chromosome": "chr1",
+          "dbSnpId": "rs186169810",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "c.1314T>G"
+          ]
+        },
+        {
+          "position": 97573805,
+          "chromosome": "chr1",
+          "dbSnpId": "rs142512579",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1294G>A"
+          ]
+        },
+        {
+          "position": 97573821,
+          "chromosome": "chr1",
+          "dbSnpId": "rs764666241",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1278G>T"
+          ]
+        },
+        {
+          "position": 97573839,
+          "chromosome": "chr1",
+          "dbSnpId": "rs200064537",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "c.1260T>A"
+          ]
+        },
+        {
+          "position": 97573919,
+          "chromosome": "chr1",
+          "dbSnpId": "rs140602333",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1180C>T"
+          ]
+        },
+        {
+          "position": 97573943,
+          "chromosome": "chr1",
+          "dbSnpId": "rs78060119",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1156G>T (*12)"
+          ]
+        },
+        {
+          "position": 97593238,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549305",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.1108A>G"
+          ]
+        },
+        {
+          "position": 97593289,
+          "chromosome": "chr1",
+          "dbSnpId": "rs143154602",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.1057C>T"
+          ]
+        },
+        {
+          "position": 97593322,
+          "chromosome": "chr1",
+          "dbSnpId": "rs183385770",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1024G>A"
+          ]
+        },
+        {
+          "position": 97593343,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549306",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.1003G>T (*11)"
+          ]
+        },
+        {
+          "position": 97593379,
+          "chromosome": "chr1",
+          "dbSnpId": "rs201018345",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.967G>A"
+          ]
+        },
+        {
+          "position": 97595083,
+          "chromosome": "chr1",
+          "dbSnpId": "rs145112791",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.934C>T"
+          ]
+        },
+        {
+          "position": 97595088,
+          "chromosome": "chr1",
+          "dbSnpId": "rs150437414",
+          "call": null,
+          "referenceAllele": "A",
+          "alleles": [
+            "c.929T>C"
+          ]
+        },
+        {
+          "position": 97691776,
+          "chromosome": "chr1",
+          "dbSnpId": "rs1801266",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.703C>T (*8)"
+          ]
+        },
+        {
+          "position": 97699399,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549307",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.632A>G"
+          ]
+        },
+        {
+          "position": 97699430,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549308",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.601A>C"
+          ]
+        },
+        {
+          "position": 97699533,
+          "chromosome": "chr1",
+          "dbSnpId": "rs139834141",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.498G>A"
+          ]
+        },
+        {
+          "position": 97721650,
+          "chromosome": "chr1",
+          "dbSnpId": "rs141462178",
+          "call": null,
+          "referenceAllele": "T",
+          "alleles": [
+            "c.343A>G"
+          ]
+        },
+        {
+          "position": 97740400,
+          "chromosome": "chr1",
+          "dbSnpId": "rs150385342",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.313G>A"
+          ]
+        },
+        {
+          "position": 97740410,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549309",
+          "call": null,
+          "referenceAllele": "GATGA",
+          "alleles": [
+            "c.295_298delTCAT (*7)"
+          ]
+        },
+        {
+          "position": 97883352,
+          "chromosome": "chr1",
+          "dbSnpId": "rs80081766",
+          "call": null,
+          "referenceAllele": "C",
+          "alleles": [
+            "c.62G>A"
+          ]
+        },
+        {
+          "position": 97883353,
+          "chromosome": "chr1",
+          "dbSnpId": "rs72549310",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.61C>T"
+          ]
+        },
+        {
+          "position": 97883368,
+          "chromosome": "chr1",
+          "dbSnpId": "rs150036960",
+          "call": null,
+          "referenceAllele": "G",
+          "alleles": [
+            "c.46C>G"
+          ]
+        }
+      ],
+      "warnings": [
+        "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+        "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+        "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing."
+      ]
+    },
+    "CYP2D6": {
+      "gene": "CYP2D6",
+      "status": "not_attempted",
+      "diplotype": null,
+      "candidate_diplotypes": [
+        "Unknown/Unknown"
+      ],
+      "phenotype_raw": "No Result",
+      "activity_score": null,
+      "lookup_keys": [
+        "No Result"
+      ],
+      "recommendation_diplotype": "Unknown/Unknown",
+      "candidate_phenotypes": [],
+      "candidate_lookup_keys": [],
+      "allele_functions": [],
+      "variants": [],
+      "warnings": [
+        "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned"
+      ]
+    }
+  },
+  "drugs": {
+    "abacavir": {
+      "drug": "abacavir",
+      "guideline_name": "Annotation of CPIC Guideline for abacavir and HLA-B",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104997",
+      "annotations": [],
+      "genes": []
+    },
+    "allopurinol": {
+      "drug": "allopurinol",
+      "guideline_name": "Annotation of CPIC Guideline for allopurinol and HLA-B",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105003",
+      "annotations": [],
+      "genes": []
+    },
+    "amikacin": {
+      "drug": "amikacin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "amitriptyline": {
+      "drug": "amitriptyline",
+      "guideline_name": "Annotation of CPIC Guideline for amitriptyline and CYP2C19, CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105006",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose.",
+          "implications": [
+            "CYP2C19: Normal metabolism of tertiary amines",
+            "CYP2D6: n/a"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2D6": "No Result",
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19",
+        "CYP2D6"
+      ]
+    },
+    "atazanavir": {
+      "drug": "atazanavir",
+      "guideline_name": "Annotation of CPIC Guideline for atazanavir and UGT1A1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166128738",
+      "annotations": [],
+      "genes": []
+    },
+    "atomoxetine": {
+      "drug": "atomoxetine",
+      "guideline_name": "Annotation of CPIC Guideline for atomoxetine and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166181885",
+      "annotations": [],
+      "genes": []
+    },
+    "atorvastatin": {
+      "drug": "atorvastatin",
+      "guideline_name": "Annotation of CPIC Guideline for atorvastatin and SLCO1B1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166262221",
+      "annotations": [
+        {
+          "drug_recommendation": "No recommendation",
+          "implications": [
+            "SLCO1B1: n/a"
+          ],
+          "classification": "No recommendation",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "SLCO1B1": "Indeterminate"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "SLCO1B1"
+      ]
+    },
+    "azathioprine": {
+      "drug": "azathioprine",
+      "guideline_name": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104933",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+          "implications": [
+            "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+            "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "TPMT": "Normal Metabolizer",
+              "NUDT15": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "NUDT15",
+        "TPMT"
+      ]
+    },
+    "capecitabine": {
+      "drug": "capecitabine",
+      "guideline_name": "Annotation of CPIC Guideline for capecitabine and DPYD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166109594",
+      "annotations": [
+        {
+          "drug_recommendation": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+          "implications": [
+            "DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "DPYD": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "DPYD"
+      ]
+    },
+    "carbamazepine": {
+      "drug": "carbamazepine",
+      "guideline_name": "Annotation of CPIC Guideline for carbamazepine and HLA-A, HLA-B",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105008",
+      "annotations": [],
+      "genes": []
+    },
+    "celecoxib": {
+      "drug": "celecoxib",
+      "guideline_name": "Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166191841",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+          "implications": [
+            "CYP2C9: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9"
+      ]
+    },
+    "citalopram": {
+      "drug": "citalopram",
+      "guideline_name": "Annotation of CPIC Guideline for citalopram, escitalopram and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166127638",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose",
+          "implications": [
+            "CYP2C19: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "clomipramine": {
+      "drug": "clomipramine",
+      "guideline_name": "Annotation of CPIC Guideline for clomipramine and CYP2C19, CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105007",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose.",
+          "implications": [
+            "CYP2C19: Normal metabolism of tertiary amines",
+            "CYP2D6: n/a"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2D6": "No Result",
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19",
+        "CYP2D6"
+      ]
+    },
+    "clopidogrel": {
+      "drug": "clopidogrel",
+      "guideline_name": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104948",
+      "annotations": [
+        {
+          "drug_recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+          "implications": [
+            "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+          ],
+          "classification": "Strong",
+          "population": "CVI ACS PCI",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        },
+        {
+          "drug_recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+          "implications": [
+            "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+          ],
+          "classification": "Strong",
+          "population": "CVI non-ACS non-PCI",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        },
+        {
+          "drug_recommendation": "If considering clopidogrel, use at standard dose (75 mg/day)",
+          "implications": [
+            "CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity"
+          ],
+          "classification": "Strong",
+          "population": "NVI",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "codeine": {
+      "drug": "codeine",
+      "guideline_name": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104996",
+      "annotations": [],
+      "genes": []
+    },
+    "dapsone": {
+      "drug": "dapsone",
+      "guideline_name": "Annotation of CPIC Guideline for dapsone, methylene blue, pegloticase, rasburicase, tafenoquine, toluidine blue and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166119846",
+      "annotations": [],
+      "genes": []
+    },
+    "desflurane": {
+      "drug": "desflurane",
+      "guideline_name": "Annotation of CPIC Guideline for desflurane, enflurane, halothane, isoflurane, methoxyflurane, sevoflurane, succinylcholine and CACNA1S, RYR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166303941",
+      "annotations": [],
+      "genes": []
+    },
+    "desipramine": {
+      "drug": "desipramine",
+      "guideline_name": "Annotation of CPIC Guideline for desipramine and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105002",
+      "annotations": [],
+      "genes": []
+    },
+    "dexlansoprazole": {
+      "drug": "dexlansoprazole",
+      "guideline_name": "Annotation of CPIC Guideline for dexlansoprazole and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166219301",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate standard starting daily dose. Consider increasing dose by 50-100% for the treatment of H. pylori infection and erosive esophagitis. Daily dose may be given in divided doses.\nMonitor for efficacy.",
+          "implications": [
+            "CYP2C19: Normal PPI metabolism; may be at increased risk of therapeutic failure compared to CYP2C19 IMs and PMs"
+          ],
+          "classification": "Optional",
+          "population": "general",
+          "dosing_information": true,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "dibekacin": {
+      "drug": "dibekacin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "doxepin": {
+      "drug": "doxepin",
+      "guideline_name": "Annotation of CPIC Guideline for doxepin and CYP2C19, CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105000",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose.",
+          "implications": [
+            "CYP2C19: Normal metabolism of tertiary amines",
+            "CYP2D6: n/a"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2D6": "No Result",
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19",
+        "CYP2D6"
+      ]
+    },
+    "efavirenz": {
+      "drug": "efavirenz",
+      "guideline_name": "Annotation of CPIC Guideline for efavirenz and CYP2B6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166182603",
+      "annotations": [],
+      "genes": []
+    },
+    "enflurane": {
+      "drug": "enflurane",
+      "guideline_name": "Annotation of CPIC Guideline for desflurane, enflurane, halothane, isoflurane, methoxyflurane, sevoflurane, succinylcholine and CACNA1S, RYR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166303941",
+      "annotations": [],
+      "genes": []
+    },
+    "escitalopram": {
+      "drug": "escitalopram",
+      "guideline_name": "Annotation of CPIC Guideline for citalopram, escitalopram and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166127638",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose",
+          "implications": [
+            "CYP2C19: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "fluorouracil": {
+      "drug": "fluorouracil",
+      "guideline_name": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166122686",
+      "annotations": [
+        {
+          "drug_recommendation": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+          "implications": [
+            "DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "DPYD": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "DPYD"
+      ]
+    },
+    "flurbiprofen": {
+      "drug": "flurbiprofen",
+      "guideline_name": "Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166191841",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+          "implications": [
+            "CYP2C9: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9"
+      ]
+    },
+    "fluvastatin": {
+      "drug": "fluvastatin",
+      "guideline_name": "Annotation of CPIC Guideline for fluvastatin and CYP2C9, SLCO1B1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166262341",
+      "annotations": [
+        {
+          "drug_recommendation": "Based on CYP2C9 status, prescribe desired starting dose and adjust doses of fluvastatin based on disease-specific guidelines. SLCO1B1 phenotype could not be assigned based on genotyping.",
+          "implications": [
+            "CYP2C9: Normal exposure.",
+            "SLCO1B1: n/a"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0",
+              "SLCO1B1": "Indeterminate"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9",
+        "SLCO1B1"
+      ]
+    },
+    "fluvoxamine": {
+      "drug": "fluvoxamine",
+      "guideline_name": "Annotation of CPIC Guideline for fluvoxamine and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166127637",
+      "annotations": [],
+      "genes": []
+    },
+    "fosphenytoin": {
+      "drug": "fosphenytoin",
+      "guideline_name": "Annotation of CPIC Guideline for fosphenytoin, phenytoin and CYP2C9, HLA-B",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166122806",
+      "annotations": [
+        {
+          "drug_recommendation": "No adjustments needed from typical dosing strategies. Subsequent doses should be adjusted according to therapeutic drug monitoring, response, and side effects. An HLA-B*15:02 negative test does not eliminate the risk of phenytoin-induced SJS/TEN and patients should be carefully monitored according to a usual standard.",
+          "implications": [
+            "CYP2C9: Normal phenytoin metabolism",
+            "HLA-B: n/a"
+          ],
+          "classification": "Strong",
+          "population": "PHT naive",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "HLA-B": "No Result",
+              "CYP2C9": "2.0"
+            }
+          ]
+        },
+        {
+          "drug_recommendation": "No adjustments needed from typical dosing strategies. Subsequent doses should be adjusted according to therapeutic drug monitoring, response, and side effects. An HLA-B*15:02 negative test does not eliminate the risk of phenytoin-induced SJS/TEN and patients should be carefully monitored according to a usual standard.",
+          "implications": [
+            "CYP2C9: Normal phenytoin metabolism",
+            "HLA-B: n/a"
+          ],
+          "classification": "Strong",
+          "population": "PHT use >3mos",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "HLA-B": "No Result",
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9",
+        "HLA-B"
+      ]
+    },
+    "gentamicin": {
+      "drug": "gentamicin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "halothane": {
+      "drug": "halothane",
+      "guideline_name": "Annotation of CPIC Guideline for desflurane, enflurane, halothane, isoflurane, methoxyflurane, sevoflurane, succinylcholine and CACNA1S, RYR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166303941",
+      "annotations": [],
+      "genes": []
+    },
+    "hydralazine": {
+      "drug": "hydralazine",
+      "guideline_name": "Annotation of CPIC Guideline for hydralazine and NAT2",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166416341",
+      "annotations": [],
+      "genes": []
+    },
+    "hydrocodone": {
+      "drug": "hydrocodone",
+      "guideline_name": "Annotation of CPIC Guideline for hydrocodone and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166228121",
+      "annotations": [],
+      "genes": []
+    },
+    "ibuprofen": {
+      "drug": "ibuprofen",
+      "guideline_name": "Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166191841",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+          "implications": [
+            "CYP2C9: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9"
+      ]
+    },
+    "imipramine": {
+      "drug": "imipramine",
+      "guideline_name": "Annotation of CPIC Guideline for imipramine and CYP2C19, CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104999",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose.",
+          "implications": [
+            "CYP2C19: Normal metabolism of tertiary amines",
+            "CYP2D6: n/a"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2D6": "No Result",
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19",
+        "CYP2D6"
+      ]
+    },
+    "isoflurane": {
+      "drug": "isoflurane",
+      "guideline_name": "Annotation of CPIC Guideline for desflurane, enflurane, halothane, isoflurane, methoxyflurane, sevoflurane, succinylcholine and CACNA1S, RYR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166303941",
+      "annotations": [],
+      "genes": []
+    },
+    "ivacaftor": {
+      "drug": "ivacaftor",
+      "guideline_name": "Annotation of CPIC Guideline for ivacaftor and CFTR",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166114461",
+      "annotations": [],
+      "genes": []
+    },
+    "kanamycin": {
+      "drug": "kanamycin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "lansoprazole": {
+      "drug": "lansoprazole",
+      "guideline_name": "Annotation of CPIC Guideline for lansoprazole, omeprazole, pantoprazole and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166219103",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate standard starting daily dose. Consider increasing dose by 50-100% for the treatment of H. pylori infection and erosive esophagitis. Daily dose may be given in divided doses.\nMonitor for efficacy.",
+          "implications": [
+            "CYP2C19: Normal PPI metabolism; may be at increased risk of therapeutic failure compared to CYP2C19 IMs and PMs"
+          ],
+          "classification": "Moderate",
+          "population": "general",
+          "dosing_information": true,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "lornoxicam": {
+      "drug": "lornoxicam",
+      "guideline_name": "Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166191841",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+          "implications": [
+            "CYP2C9: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9"
+      ]
+    },
+    "lovastatin": {
+      "drug": "lovastatin",
+      "guideline_name": "Annotation of CPIC Guideline for lovastatin and SLCO1B1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166262241",
+      "annotations": [
+        {
+          "drug_recommendation": "No recommendation",
+          "implications": [
+            "SLCO1B1: n/a"
+          ],
+          "classification": "No recommendation",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "SLCO1B1": "Indeterminate"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "SLCO1B1"
+      ]
+    },
+    "meloxicam": {
+      "drug": "meloxicam",
+      "guideline_name": "Annotation of CPIC Guideline for meloxicam and CYP2C9",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166192301",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+          "implications": [
+            "CYP2C9: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9"
+      ]
+    },
+    "mercaptopurine": {
+      "drug": "mercaptopurine",
+      "guideline_name": "Annotation of CPIC Guideline for mercaptopurine and NUDT15, TPMT",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104945",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with standard starting dose of mecaptopurine (e.g., 75 mg/m2/day for malignancy or 1.5 mg/kg/day for nonmalignancy). During therapy, adjust the doses of myelosuppressive agents, as per standard clinical practice. It usually takes at least 2 weeks of stable dosing to reach steady state after each dose adjustment.",
+          "implications": [
+            "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+            "TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "TPMT": "Normal Metabolizer",
+              "NUDT15": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "NUDT15",
+        "TPMT"
+      ]
+    },
+    "methoxyflurane": {
+      "drug": "methoxyflurane",
+      "guideline_name": "Annotation of CPIC Guideline for desflurane, enflurane, halothane, isoflurane, methoxyflurane, sevoflurane, succinylcholine and CACNA1S, RYR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166303941",
+      "annotations": [],
+      "genes": []
+    },
+    "methylene blue": {
+      "drug": "methylene blue",
+      "guideline_name": "Annotation of CPIC Guideline for dapsone, methylene blue, pegloticase, rasburicase, tafenoquine, toluidine blue and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166119846",
+      "annotations": [],
+      "genes": []
+    },
+    "metoprolol": {
+      "drug": "metoprolol",
+      "guideline_name": "Annotation of CPIC Guideline for metoprolol and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166341321",
+      "annotations": [],
+      "genes": []
+    },
+    "neomycin": {
+      "drug": "neomycin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "netilmicin": {
+      "drug": "netilmicin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "nitrofurantoin": {
+      "drug": "nitrofurantoin",
+      "guideline_name": "Annotation of CPIC Guideline for nitrofurantoin and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166279721",
+      "annotations": [],
+      "genes": []
+    },
+    "nortriptyline": {
+      "drug": "nortriptyline",
+      "guideline_name": "Annotation of CPIC Guideline for nortriptyline and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104998",
+      "annotations": [],
+      "genes": []
+    },
+    "omeprazole": {
+      "drug": "omeprazole",
+      "guideline_name": "Annotation of CPIC Guideline for lansoprazole, omeprazole, pantoprazole and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166219103",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate standard starting daily dose. Consider increasing dose by 50-100% for the treatment of H. pylori infection and erosive esophagitis. Daily dose may be given in divided doses.\nMonitor for efficacy.",
+          "implications": [
+            "CYP2C19: Normal PPI metabolism; may be at increased risk of therapeutic failure compared to CYP2C19 IMs and PMs"
+          ],
+          "classification": "Moderate",
+          "population": "general",
+          "dosing_information": true,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "ondansetron": {
+      "drug": "ondansetron",
+      "guideline_name": "Annotation of CPIC Guideline for ondansetron and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166161954",
+      "annotations": [],
+      "genes": []
+    },
+    "oxcarbazepine": {
+      "drug": "oxcarbazepine",
+      "guideline_name": "Annotation of CPIC Guideline for oxcarbazepine and HLA-B",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166176623",
+      "annotations": [],
+      "genes": []
+    },
+    "pantoprazole": {
+      "drug": "pantoprazole",
+      "guideline_name": "Annotation of CPIC Guideline for lansoprazole, omeprazole, pantoprazole and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166219103",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate standard starting daily dose. Consider increasing dose by 50-100% for the treatment of H. pylori infection and erosive esophagitis. Daily dose may be given in divided doses.\nMonitor for efficacy.",
+          "implications": [
+            "CYP2C19: Normal PPI metabolism; may be at increased risk of therapeutic failure compared to CYP2C19 IMs and PMs"
+          ],
+          "classification": "Moderate",
+          "population": "general",
+          "dosing_information": true,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "paromomycin": {
+      "drug": "paromomycin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "paroxetine": {
+      "drug": "paroxetine",
+      "guideline_name": "Annotation of CPIC Guideline for paroxetine and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166127636",
+      "annotations": [],
+      "genes": []
+    },
+    "peginterferon alfa-2a": {
+      "drug": "peginterferon alfa-2a",
+      "guideline_name": "Annotation of CPIC Guideline for peginterferon alfa-2a, peginterferon alfa-2b, ribavirin and IFNL3",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166110235",
+      "annotations": [],
+      "genes": []
+    },
+    "peginterferon alfa-2b": {
+      "drug": "peginterferon alfa-2b",
+      "guideline_name": "Annotation of CPIC Guideline for peginterferon alfa-2a, peginterferon alfa-2b, ribavirin and IFNL3",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166110235",
+      "annotations": [],
+      "genes": []
+    },
+    "pegloticase": {
+      "drug": "pegloticase",
+      "guideline_name": "Annotation of CPIC Guideline for dapsone, methylene blue, pegloticase, rasburicase, tafenoquine, toluidine blue and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166119846",
+      "annotations": [],
+      "genes": []
+    },
+    "phenytoin": {
+      "drug": "phenytoin",
+      "guideline_name": "Annotation of CPIC Guideline for fosphenytoin, phenytoin and CYP2C9, HLA-B",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166122806",
+      "annotations": [
+        {
+          "drug_recommendation": "No adjustments needed from typical dosing strategies. Subsequent doses should be adjusted according to therapeutic drug monitoring, response, and side effects. An HLA-B*15:02 negative test does not eliminate the risk of phenytoin-induced SJS/TEN and patients should be carefully monitored according to a usual standard.",
+          "implications": [
+            "CYP2C9: Normal phenytoin metabolism",
+            "HLA-B: n/a"
+          ],
+          "classification": "Strong",
+          "population": "PHT naive",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "HLA-B": "No Result",
+              "CYP2C9": "2.0"
+            }
+          ]
+        },
+        {
+          "drug_recommendation": "No adjustments needed from typical dosing strategies. Subsequent doses should be adjusted according to therapeutic drug monitoring, response, and side effects. An HLA-B*15:02 negative test does not eliminate the risk of phenytoin-induced SJS/TEN and patients should be carefully monitored according to a usual standard.",
+          "implications": [
+            "CYP2C9: Normal phenytoin metabolism",
+            "HLA-B: n/a"
+          ],
+          "classification": "Strong",
+          "population": "PHT use >3mos",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "HLA-B": "No Result",
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9",
+        "HLA-B"
+      ]
+    },
+    "piroxicam": {
+      "drug": "piroxicam",
+      "guideline_name": "Annotation of CPIC Guideline for piroxicam and CYP2C9",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166192321",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+          "implications": [
+            "CYP2C9: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9"
+      ]
+    },
+    "pitavastatin": {
+      "drug": "pitavastatin",
+      "guideline_name": "Annotation of CPIC Guideline for pitavastatin and SLCO1B1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166262261",
+      "annotations": [
+        {
+          "drug_recommendation": "No recommendation",
+          "implications": [
+            "SLCO1B1: n/a"
+          ],
+          "classification": "No recommendation",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "SLCO1B1": "Indeterminate"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "SLCO1B1"
+      ]
+    },
+    "plazomicin": {
+      "drug": "plazomicin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "pravastatin": {
+      "drug": "pravastatin",
+      "guideline_name": "Annotation of CPIC Guideline for pravastatin and SLCO1B1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166262281",
+      "annotations": [
+        {
+          "drug_recommendation": "No recommendation",
+          "implications": [
+            "SLCO1B1: n/a"
+          ],
+          "classification": "No recommendation",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "SLCO1B1": "Indeterminate"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "SLCO1B1"
+      ]
+    },
+    "primaquine": {
+      "drug": "primaquine",
+      "guideline_name": "Annotation of CPIC Guideline for primaquine and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166279621",
+      "annotations": [],
+      "genes": []
+    },
+    "rasburicase": {
+      "drug": "rasburicase",
+      "guideline_name": "Annotation of CPIC Guideline for dapsone, methylene blue, pegloticase, rasburicase, tafenoquine, toluidine blue and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166119846",
+      "annotations": [],
+      "genes": []
+    },
+    "ribavirin": {
+      "drug": "ribavirin",
+      "guideline_name": "Annotation of CPIC Guideline for peginterferon alfa-2a, peginterferon alfa-2b, ribavirin and IFNL3",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166110235",
+      "annotations": [],
+      "genes": []
+    },
+    "ribostamycin": {
+      "drug": "ribostamycin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "rosuvastatin": {
+      "drug": "rosuvastatin",
+      "guideline_name": "Annotation of CPIC Guideline for rosuvastatin and ABCG2, SLCO1B1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166262321",
+      "annotations": [
+        {
+          "drug_recommendation": "No recommendation",
+          "implications": [
+            "ABCG2: n/a",
+            "SLCO1B1: n/a"
+          ],
+          "classification": "No recommendation",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "ABCG2": "No Result",
+              "SLCO1B1": "Indeterminate"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "ABCG2",
+        "SLCO1B1"
+      ]
+    },
+    "sertraline": {
+      "drug": "sertraline",
+      "guideline_name": "Annotation of CPIC Guideline for sertraline and CYP2B6, CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166127639",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose",
+          "implications": [
+            "CYP2B6: n/a",
+            "CYP2C19: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2B6": "No Result",
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2B6",
+        "CYP2C19"
+      ]
+    },
+    "sevoflurane": {
+      "drug": "sevoflurane",
+      "guideline_name": "Annotation of CPIC Guideline for desflurane, enflurane, halothane, isoflurane, methoxyflurane, sevoflurane, succinylcholine and CACNA1S, RYR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166303941",
+      "annotations": [],
+      "genes": []
+    },
+    "simvastatin": {
+      "drug": "simvastatin",
+      "guideline_name": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105005",
+      "annotations": [
+        {
+          "drug_recommendation": "No recommendation",
+          "implications": [
+            "SLCO1B1: n/a"
+          ],
+          "classification": "No recommendation",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "SLCO1B1": "Indeterminate"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "SLCO1B1"
+      ]
+    },
+    "streptomycin": {
+      "drug": "streptomycin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "succinylcholine": {
+      "drug": "succinylcholine",
+      "guideline_name": "Annotation of CPIC Guideline for desflurane, enflurane, halothane, isoflurane, methoxyflurane, sevoflurane, succinylcholine and CACNA1S, RYR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166303941",
+      "annotations": [],
+      "genes": []
+    },
+    "tacrolimus": {
+      "drug": "tacrolimus",
+      "guideline_name": "Annotation of CPIC Guideline for tacrolimus and CYP3A5",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166124619",
+      "annotations": [],
+      "genes": []
+    },
+    "tafenoquine": {
+      "drug": "tafenoquine",
+      "guideline_name": "Annotation of CPIC Guideline for dapsone, methylene blue, pegloticase, rasburicase, tafenoquine, toluidine blue and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166119846",
+      "annotations": [],
+      "genes": []
+    },
+    "tamoxifen": {
+      "drug": "tamoxifen",
+      "guideline_name": "Annotation of CPIC Guideline for tamoxifen and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166176068",
+      "annotations": [],
+      "genes": []
+    },
+    "tenoxicam": {
+      "drug": "tenoxicam",
+      "guideline_name": "Annotation of CPIC Guideline for tenoxicam and CYP2C9",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166192341",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose. In accordance with the prescribing information, use the lowest effective dosage for shortest duration consistent with individual patient treatment goals.",
+          "implications": [
+            "CYP2C9: Normal metabolism"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C9": "2.0"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C9"
+      ]
+    },
+    "thioguanine": {
+      "drug": "thioguanine",
+      "guideline_name": "Annotation of CPIC Guideline for thioguanine and NUDT15, TPMT",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104965",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with standard starting dose of thioguanine (e.g., 40 mg/m2/day for malignancy). During therapy, adjust the doses of myelosuppressive agents, as per standard clinical practice. It usually takes at least 2 weeks of stable dosing to reach steady state after each dose adjustment.",
+          "implications": [
+            "Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression.",
+            "TPMT NMs have lower erythrocyte concentrations of TGN metabolites compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "TPMT": "Normal Metabolizer",
+              "NUDT15": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "NUDT15",
+        "TPMT"
+      ]
+    },
+    "tobramycin": {
+      "drug": "tobramycin",
+      "guideline_name": "Annotation of CPIC Guideline for amikacin, dibekacin, gentamicin, kanamycin, neomycin, netilmicin, paromomycin, plazomicin, ribostamycin, streptomycin, tobramycin and MT-RNR1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166229081",
+      "annotations": [],
+      "genes": []
+    },
+    "toluidine blue": {
+      "drug": "toluidine blue",
+      "guideline_name": "Annotation of CPIC Guideline for dapsone, methylene blue, pegloticase, rasburicase, tafenoquine, toluidine blue and G6PD",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166119846",
+      "annotations": [],
+      "genes": []
+    },
+    "tramadol": {
+      "drug": "tramadol",
+      "guideline_name": "Annotation of CPIC Guideline for tramadol and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166228101",
+      "annotations": [],
+      "genes": []
+    },
+    "trimipramine": {
+      "drug": "trimipramine",
+      "guideline_name": "Annotation of CPIC Guideline for trimipramine and CYP2C19, CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166105001",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended starting dose.",
+          "implications": [
+            "CYP2C19: Normal metabolism of tertiary amines",
+            "CYP2D6: n/a"
+          ],
+          "classification": "Strong",
+          "population": "general",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2D6": "No Result",
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19",
+        "CYP2D6"
+      ]
+    },
+    "tropisetron": {
+      "drug": "tropisetron",
+      "guideline_name": "Annotation of CPIC Guideline for tropisetron and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166161955",
+      "annotations": [],
+      "genes": []
+    },
+    "venlafaxine": {
+      "drug": "venlafaxine",
+      "guideline_name": "Annotation of CPIC Guideline for venlafaxine and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166288201",
+      "annotations": [],
+      "genes": []
+    },
+    "voriconazole": {
+      "drug": "voriconazole",
+      "guideline_name": "Annotation of CPIC Guideline for voriconazole and CYP2C19",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166161537",
+      "annotations": [
+        {
+          "drug_recommendation": "Initiate therapy with recommended standard of care dosing",
+          "implications": [
+            "CYP2C19: Normal voriconazole metabolism"
+          ],
+          "classification": "Strong",
+          "population": "adults",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        },
+        {
+          "drug_recommendation": "Initiate therapy with recommended standard of care dosing",
+          "implications": [
+            "CYP2C19: Normal voriconazole metabolism"
+          ],
+          "classification": "Strong",
+          "population": "pediatrics",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": [
+            {
+              "CYP2C19": "Normal Metabolizer"
+            }
+          ]
+        }
+      ],
+      "genes": [
+        "CYP2C19"
+      ]
+    },
+    "vortioxetine": {
+      "drug": "vortioxetine",
+      "guideline_name": "Annotation of CPIC Guideline for vortioxetine and CYP2D6",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166288221",
+      "annotations": [],
+      "genes": []
+    },
+    "warfarin": {
+      "drug": "warfarin",
+      "guideline_name": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "guideline_url": "https://www.clinpgx.org/guidelineAnnotation/PA166104949",
+      "annotations": [
+        {
+          "drug_recommendation": null,
+          "implications": [],
+          "classification": null,
+          "population": "n/a",
+          "dosing_information": false,
+          "alternate_drug_available": false,
+          "other_prescribing_guidance": false,
+          "lookup_key": []
+        }
+      ],
+      "genes": []
+    }
+  },
+  "warnings": []
+}

@@ -1,0 +1,3 @@
+PROFILE            STATUS     ARCH       CPUS    MEMORY    DISK     RUNTIME    ADDRESS
+default            Stopped    aarch64    4       8GiB      40GiB    docker     
+pgx-p6-20261005    Stopped    aarch64    4       8GiB      40GiB    docker     

@@ -1,0 +1,145 @@
+{
+  "protocol_id": "pharmaguard-external-analytical-benchmark-v1",
+  "protocol_version": "1.0.0",
+  "frozen_at": "2026-09-24T00:00:00+05:30",
+  "status": "FROZEN_BEFORE_ACQUISITION_OR_PERFORMANCE_EVALUATION",
+  "purpose": "Independent, offline analytical and full-pipeline evaluation of the bounded audited PGx surface; not clinical validation or clinical utility evaluation.",
+  "truth_source": {
+    "name": "CDC GeT-RM Consolidated PGx and HLA Table",
+    "version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "url": "https://www.cdc.gov/lab-quality/media/files/2025/08/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "landing_page": "https://www.cdc.gov/lab-quality/php/get-rm/reference-materials.html",
+    "declared_scope": "Up-to-date consensus PGx genotypes for 363 DNA samples characterized in nine GeT-RM PGx/HLA studies covering 34 genes/loci.",
+    "integrity": "Record SHA-256 and byte size immediately after download. The source table is immutable for this benchmark once cohort_lock.json is written.",
+    "prohibited_truth_derivation": [
+      "No truth label may be taken from PharmCAT, this application, its mapping YAML, or its output.",
+      "No blank truth cell may be inferred as reference or normal.",
+      "No disagreement may be resolved by editing the truth table after outputs are examined."
+    ]
+  },
+  "genomic_source": {
+    "name": "1000 Genomes Project 30x high-coverage GRCh38 phased SNV/INDEL/SV panel",
+    "version": "20220422_3202_phased_SNV_INDEL_SV",
+    "base_url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV",
+    "sample_manifest": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/20130606_g1k_3202_samples_ped_population.txt",
+    "reference_build": "GRCh38",
+    "input_characteristic": "Polymorphic-filtered research VCF. Omitted positions are unknown, never inferred reference.",
+    "integrity": "Use source-indexed remote slices without genotype rewriting; record each source URL, extraction regions, SHA-256, and byte size."
+  },
+  "software_lock": {
+    "pharmcat_version": "3.4.0",
+    "application_source": "Current local working tree after Phases 1-3; record candidate artifact hash and Git revision in benchmark_manifest.json before evaluation.",
+    "production_changes_during_benchmark": "Forbidden. A newly demonstrated production defect is documented and evaluation stops before any fix."
+  },
+  "cohort_locking": {
+    "sample_rule": "Include every sample identifier present in both the frozen CDC truth workbook and the frozen 1000 Genomes 3,202-sample manifest. Do not subsample or select by expected result.",
+    "predeclared_sample_ids": [],
+    "why_ids_are_resolved_after_acquisition": "The authoritative consolidated workbook is the source of sample identity. The exact deterministic intersection is written to cohort_lock.json and the sample-by-gene truth table before any PharmCAT or application output is run or inspected.",
+    "post_lock_changes": "No sample or truth row may be removed. Later failures remain in the exclusion/discrepancy logs with a reason."
+  },
+  "genes": {
+    "primary": [
+      "CYP2C19",
+      "CYP2C9",
+      "DPYD",
+      "NUDT15",
+      "SLCO1B1",
+      "TPMT"
+    ],
+    "negative_control": [
+      "CYP2D6"
+    ],
+    "rule": "A primary gene is evaluated only when the consolidated table has an explicit consensus diplotype/genotype interpretable without consulting application output. CYP2D6 is reported separately as a predeclared abstention control and is never pooled with callable-gene accuracy."
+  },
+  "inclusion_criteria": [
+    "Sample is in the deterministic GeT-RM/1000 Genomes intersection.",
+    "Truth cell explicitly contains a consensus genotype or diplotype for the gene.",
+    "The truth value is not blank, pending, failed, discordant, or explicitly unresolved.",
+    "Genomic evidence is downloadable from the frozen 1000 Genomes release and passes file-integrity validation.",
+    "The sample remains single-sample when presented to the application."
+  ],
+  "input_contract": [
+    "GRCh38 declaration is internally consistent.",
+    "One sample only.",
+    "GT is parsed by FORMAT key and is complete for a position to count.",
+    "Partial/no-call and failed FILTER evidence are not valid complete observations.",
+    "Truncated/corrupt gzip is rejected.",
+    "Every required gene dependency is evaluated using the shared application eligibility logic.",
+    "Missing genomic positions remain absent/unknown and are never synthesized as reference.",
+    "No DP/GQ threshold is invented; quality-not-established follows the documented application policy."
+  ],
+  "exclusion_reasons": [
+    "not_in_1000g_panel",
+    "gene_outside_audited_scope",
+    "truth_blank",
+    "truth_unresolved_or_discordant",
+    "truth_nomenclature_not_safely_parseable",
+    "genomic_download_unavailable",
+    "genomic_integrity_failure",
+    "unsupported_build_or_sample_count",
+    "pharmcat_execution_failure"
+  ],
+  "equivalence_rules": {
+    "exact_diplotype": "Compare unordered allele pairs after trimming whitespace and normalizing only allele order. Preserve gene prefixes, suballeles, copy-number notation, tandem/hybrid notation, and bracketed compound alleles; do not collapse them.",
+    "candidate_compatible": "Compatible only when the independently characterized truth diplotype is an exact member of the application's preserved candidate set after the same order-only normalization. This does not count as exact concordance.",
+    "phenotype": "Score only when the independent truth resource explicitly supplies a phenotype/functional state or a separately frozen authoritative mapping supplies it. Never derive phenotype truth from PharmCAT or application output.",
+    "unparseable": "Retain the row and classify it truth_nomenclature_not_safely_parseable; do not force equivalence."
+  },
+  "actionable_state": {
+    "definition": "A truth state is actionable only when a separately frozen authoritative CPIC context maps the independent truth diplotype/phenotype to a recommendation to change dose, choose an alternative, or otherwise alter therapy. Unknown, missing, or unmapped truth is not silently classified as non-actionable.",
+    "freeze_rule": "The truth-to-actionability table must be written and hashed before application final results are evaluated.",
+    "non_actionable": "Explicit authoritative no-change recommendation for the independent truth state.",
+    "unavailable": "If independent phenotype/context is insufficient, false-reassurance and false-warning denominators are reported as zero/not estimable rather than inferred."
+  },
+  "layers": {
+    "A_upstream": "Compare PharmCAT source diplotype/candidates and phenotype, before application evidence gating or risk mapping, with independent truth.",
+    "B_application": "Run the unchanged shared evidence/dependency eligibility and final result construction. Compare assertion/abstention and, where independently evaluable, final action state with truth.",
+    "attribution": [
+      "truth_input_mismatch",
+      "upstream_caller",
+      "application_mapping",
+      "evidence_gate",
+      "intentional_cyp2d6_abstention",
+      "execution_or_parse_failure",
+      "unresolved"
+    ]
+  },
+  "abstention_policy": {
+    "upstream_no_call": "Not concordant; counted as upstream abstention, never as an incorrect asserted genotype.",
+    "application_unknown": "Counted as application abstention. It lowers assertion coverage but is not a false reassurance or false warning.",
+    "candidate_set": "Counted as an assertion only for candidate-compatible coverage, not exact-diplotype assertion coverage.",
+    "cyp2d6": "Expected application abstention and reported separately; never credited as callable-gene accuracy."
+  },
+  "metrics": {
+    "unit": "Unique individuals within each gene. Repeated genes in one individual are never treated as independent observations in a pooled confidence interval.",
+    "per_gene": [
+      "exact diplotype concordance / all evaluable truth rows",
+      "candidate-compatible concordance / all evaluable truth rows",
+      "phenotype concordance / rows with independent phenotype truth",
+      "assertion coverage / all evaluable truth rows",
+      "abstention / all evaluable truth rows",
+      "conditional exact accuracy / exact diplotype assertions",
+      "false reassurance / independently actionable rows",
+      "false warning / independently non-actionable rows"
+    ],
+    "intervals": "Two-sided 95% Wilson intervals only for per-gene binomial proportions with at least five independent individuals and a meaningful numerator/denominator. Smaller denominators are reported as counts without an interval. No pooled marketing accuracy is computed.",
+    "aggregation": "Report each gene separately. A descriptive macro average may be shown only with every per-gene denominator beside it and no confidence interval.",
+    "zero_denominator": "Report not estimable, never 0%."
+  },
+  "required_outputs": [
+    "benchmark_manifest.json",
+    "cohort_lock.json",
+    "sample_gene_truth.tsv",
+    "input_eligibility.tsv",
+    "exclusions.tsv",
+    "discrepancies.tsv",
+    "external_benchmark_results.json",
+    "reports/external_analytical_benchmark.md"
+  ],
+  "stopping_rules": [
+    "Do not modify production behavior after viewing results.",
+    "If a production correctness defect is demonstrated, document it and stop before fixing it.",
+    "Do not tune equivalence, eligibility, or actionability definitions on evaluated output.",
+    "Negative or sparse findings remain in the final report."
+  ]
+}

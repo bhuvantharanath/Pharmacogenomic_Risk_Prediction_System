@@ -1,0 +1,130 @@
+[
+ {
+  "id": "D08",
+  "coverage": {
+   "status": 413,
+   "body_sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+   "body_file": "browser-received/0054-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 413,
+   "body_sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+   "body_file": "browser-received/0055-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D09",
+  "coverage": {
+   "status": 400,
+   "body_sha256": "f8fb5d049ec3779bd8b42ef1ca92b878f1b71c4f1b0b776b63e89b98ad3d0bc5",
+   "body_file": "browser-received/0060-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 400,
+   "body_sha256": "f8fb5d049ec3779bd8b42ef1ca92b878f1b71c4f1b0b776b63e89b98ad3d0bc5",
+   "body_file": "browser-received/0061-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D10",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "99bbb01b28ae4e9b20601039b2a8fc5bdf8fd84e567b9d94acba6cf46a2d1722",
+   "body_file": "browser-received/0066-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "83677c94ff916a0d1c5ab3a2f618a67cb5d4e3d0efc6f7c89352a60981f4ce36",
+   "body_file": "browser-received/0067-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D11",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "073a4a5f75aea700963177220a5f9f5a8e7aa3fbd3df56e6d44ac21c5c213eb4",
+   "body_file": "browser-received/0070-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "97feaef6769e36aae0d49dfb0a4cd0cbb7c2a27a4ebcfb507388373b70975adc",
+   "body_file": "browser-received/0071-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D12",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "f43ac9c5a73e3841aae03d21f6df2c049b14bf19a55ae628b91f844d32018a27",
+   "body_file": "browser-received/0075-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "1d05458ea9e88f95895abd25c721b4850df3397c02eeec0df88df1e97fa32beb",
+   "body_file": "browser-received/0077-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D13",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "4b6820a2afa344dc1101279e01de7d98a28bc0b180a5dd728193a1ea2500fc6a",
+   "body_file": "browser-received/0080-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "bb514ebc40fb1bc54dc59c70d1a9f3286dc01a690ce3233361658f452d8ffd84",
+   "body_file": "browser-received/0081-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D14",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "87a04323fcfc7818418dc5e8f99bb187694d37c4c26b549f1e4f7028fb2986a3",
+   "body_file": "browser-received/0084-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "de8294691cacd9007960f4790804e64b196b73d02017eadedb8881f997c9cfc6",
+   "body_file": "browser-received/0085-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D15",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "b4b254b0b9a1991405366c72f529b1f7399e2d0075d081307754e49b21739097",
+   "body_file": "browser-received/0088-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "0bbc92bba874ccfaeb501a2acd73b2fd4e178fb26034e7c27fba5d667803f395",
+   "body_file": "browser-received/0089-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ }
+]

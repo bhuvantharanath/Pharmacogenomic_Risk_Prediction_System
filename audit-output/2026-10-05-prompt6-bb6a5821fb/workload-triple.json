@@ -1,0 +1,4951 @@
+{
+  "stage": "triple",
+  "at": "2026-10-05T12:02:24.455863+00:00",
+  "container": "pgx-p6-triple-20261005",
+  "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+  "measurement": {
+    "label": "triple",
+    "before": {
+      "current_bytes": 43327488,
+      "peak_bytes": 45129728,
+      "events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "stat": {
+        "anon": 41160704,
+        "file": 0,
+        "kernel": 2301952,
+        "kernel_stack": 114688,
+        "pagetables": 352256,
+        "sec_pagetables": 0,
+        "percpu": 2736,
+        "sock": 0,
+        "vmalloc": 16384,
+        "shmem": 0,
+        "zswap": 0,
+        "zswapped": 0,
+        "file_mapped": 0,
+        "file_dirty": 0,
+        "file_writeback": 0,
+        "swapcached": 0,
+        "anon_thp": 0,
+        "file_thp": 0,
+        "shmem_thp": 0,
+        "inactive_anon": 0,
+        "active_anon": 41148416,
+        "inactive_file": 0,
+        "active_file": 0,
+        "unevictable": 0,
+        "slab_reclaimable": 1202160,
+        "slab_unreclaimable": 377680,
+        "slab": 1579840,
+        "workingset_refault_anon": 0,
+        "workingset_refault_file": 0,
+        "workingset_activate_anon": 0,
+        "workingset_activate_file": 0,
+        "workingset_restore_anon": 0,
+        "workingset_restore_file": 0,
+        "workingset_nodereclaim": 0,
+        "pgscan": 0,
+        "pgsteal": 0,
+        "pgscan_kswapd": 0,
+        "pgscan_direct": 0,
+        "pgscan_khugepaged": 0,
+        "pgsteal_kswapd": 0,
+        "pgsteal_direct": 0,
+        "pgsteal_khugepaged": 0,
+        "pgfault": 13134,
+        "pgmajfault": 0,
+        "pgrefill": 0,
+        "pgactivate": 0,
+        "pgdeactivate": 0,
+        "pglazyfree": 0,
+        "pglazyfreed": 0,
+        "zswpin": 0,
+        "zswpout": 0,
+        "zswpwb": 0,
+        "thp_fault_alloc": 0,
+        "thp_collapse_alloc": 0,
+        "thp_swpout": 0,
+        "thp_swpout_fallback": 0
+      }
+    },
+    "after": {
+      "current_bytes": 182059008,
+      "peak_bytes": 515387392,
+      "events": {
+        "low": 0,
+        "high": 0,
+        "max": 0,
+        "oom": 0,
+        "oom_kill": 0,
+        "oom_group_kill": 0
+      },
+      "stat": {
+        "anon": 179396608,
+        "file": 0,
+        "kernel": 2703360,
+        "kernel_stack": 147456,
+        "pagetables": 647168,
+        "sec_pagetables": 0,
+        "percpu": 2640,
+        "sock": 0,
+        "vmalloc": 16384,
+        "shmem": 0,
+        "zswap": 0,
+        "zswapped": 0,
+        "file_mapped": 0,
+        "file_dirty": 0,
+        "file_writeback": 0,
+        "swapcached": 0,
+        "anon_thp": 0,
+        "file_thp": 0,
+        "shmem_thp": 0,
+        "inactive_anon": 0,
+        "active_anon": 179380224,
+        "inactive_file": 0,
+        "active_file": 0,
+        "unevictable": 0,
+        "slab_reclaimable": 1258120,
+        "slab_unreclaimable": 392624,
+        "slab": 1650744,
+        "workingset_refault_anon": 0,
+        "workingset_refault_file": 0,
+        "workingset_activate_anon": 0,
+        "workingset_activate_file": 0,
+        "workingset_restore_anon": 0,
+        "workingset_restore_file": 0,
+        "workingset_nodereclaim": 0,
+        "pgscan": 0,
+        "pgsteal": 0,
+        "pgscan_kswapd": 0,
+        "pgscan_direct": 0,
+        "pgscan_khugepaged": 0,
+        "pgsteal_kswapd": 0,
+        "pgsteal_direct": 0,
+        "pgsteal_khugepaged": 0,
+        "pgfault": 512417,
+        "pgmajfault": 0,
+        "pgrefill": 0,
+        "pgactivate": 0,
+        "pgdeactivate": 0,
+        "pglazyfree": 0,
+        "pglazyfreed": 0,
+        "zswpin": 0,
+        "zswpout": 0,
+        "zswpwb": 0,
+        "thp_fault_alloc": 0,
+        "thp_collapse_alloc": 0,
+        "thp_swpout": 0,
+        "thp_swpout_fallback": 0
+      }
+    },
+    "sample_count": 223,
+    "sampled_peak_bytes": 513892352,
+    "sampled_jvm_rss_kib_peak": 312660,
+    "sampled_python_rss_kib_peak": 192444,
+    "sampled_jvm_count_peak": 1,
+    "samples": [
+      {
+        "time": 72745.610969333,
+        "memory_current_bytes": 43425792,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 57364
+          }
+        ]
+      },
+      {
+        "time": 72745.811834875,
+        "memory_current_bytes": 201211904,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 54584
+          }
+        ]
+      },
+      {
+        "time": 72746.012333416,
+        "memory_current_bytes": 267010048,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 118756
+          }
+        ]
+      },
+      {
+        "time": 72746.211651583,
+        "memory_current_bytes": 306323456,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 152324
+          }
+        ]
+      },
+      {
+        "time": 72746.411392583,
+        "memory_current_bytes": 330678272,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 175492
+          }
+        ]
+      },
+      {
+        "time": 72746.612050791,
+        "memory_current_bytes": 353603584,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 198576
+          }
+        ]
+      },
+      {
+        "time": 72746.82038075,
+        "memory_current_bytes": 418418688,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 259664
+          }
+        ]
+      },
+      {
+        "time": 72747.021084125,
+        "memory_current_bytes": 419028992,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 260160
+          }
+        ]
+      },
+      {
+        "time": 72747.223262916,
+        "memory_current_bytes": 453210112,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 293668
+          }
+        ]
+      },
+      {
+        "time": 72747.426719958,
+        "memory_current_bytes": 454336512,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 294552
+          }
+        ]
+      },
+      {
+        "time": 72747.634779666,
+        "memory_current_bytes": 454447104,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 294876
+          }
+        ]
+      },
+      {
+        "time": 72747.840529083,
+        "memory_current_bytes": 456400896,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 296536
+          }
+        ]
+      },
+      {
+        "time": 72748.040337833,
+        "memory_current_bytes": 456224768,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 296548
+          }
+        ]
+      },
+      {
+        "time": 72748.240019,
+        "memory_current_bytes": 456630272,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 296560
+          }
+        ]
+      },
+      {
+        "time": 72748.440770666,
+        "memory_current_bytes": 457707520,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 297572
+          }
+        ]
+      },
+      {
+        "time": 72748.643448458,
+        "memory_current_bytes": 457961472,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 297596
+          }
+        ]
+      },
+      {
+        "time": 72748.846593291,
+        "memory_current_bytes": 457498624,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 297612
+          }
+        ]
+      },
+      {
+        "time": 72749.050337,
+        "memory_current_bytes": 458182656,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 297612
+          }
+        ]
+      },
+      {
+        "time": 72749.25140025,
+        "memory_current_bytes": 457940992,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 297636
+          }
+        ]
+      },
+      {
+        "time": 72749.449085,
+        "memory_current_bytes": 457904128,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 297648
+          }
+        ]
+      },
+      {
+        "time": 72749.653284416,
+        "memory_current_bytes": 459522048,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 299104
+          }
+        ]
+      },
+      {
+        "time": 72749.855146416,
+        "memory_current_bytes": 459575296,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 299348
+          }
+        ]
+      },
+      {
+        "time": 72750.055386458,
+        "memory_current_bytes": 463101952,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 302448
+          }
+        ]
+      },
+      {
+        "time": 72750.257827541,
+        "memory_current_bytes": 466272256,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 305568
+          }
+        ]
+      },
+      {
+        "time": 72750.461088333,
+        "memory_current_bytes": 466345984,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 305568
+          }
+        ]
+      },
+      {
+        "time": 72750.666443666,
+        "memory_current_bytes": 466423808,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 305624
+          }
+        ]
+      },
+      {
+        "time": 72750.8680455,
+        "memory_current_bytes": 469049344,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 308172
+          }
+        ]
+      },
+      {
+        "time": 72751.067617958,
+        "memory_current_bytes": 463769600,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 302980
+          }
+        ]
+      },
+      {
+        "time": 72751.269494916,
+        "memory_current_bytes": 463880192,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 303000
+          }
+        ]
+      },
+      {
+        "time": 72751.48011925,
+        "memory_current_bytes": 464240640,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304304
+          }
+        ]
+      },
+      {
+        "time": 72751.679403375,
+        "memory_current_bytes": 465182720,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304328
+          }
+        ]
+      },
+      {
+        "time": 72751.882905,
+        "memory_current_bytes": 465215488,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304328
+          }
+        ]
+      },
+      {
+        "time": 72752.085172958,
+        "memory_current_bytes": 465375232,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304368
+          }
+        ]
+      },
+      {
+        "time": 72752.287328,
+        "memory_current_bytes": 465334272,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304384
+          }
+        ]
+      },
+      {
+        "time": 72752.485886166,
+        "memory_current_bytes": 465276928,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304384
+          }
+        ]
+      },
+      {
+        "time": 72752.68641975,
+        "memory_current_bytes": 465534976,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304404
+          }
+        ]
+      },
+      {
+        "time": 72752.883017208,
+        "memory_current_bytes": 465637376,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304412
+          }
+        ]
+      },
+      {
+        "time": 72753.085711416,
+        "memory_current_bytes": 465690624,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304424
+          }
+        ]
+      },
+      {
+        "time": 72753.293786958,
+        "memory_current_bytes": 466026496,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304476
+          }
+        ]
+      },
+      {
+        "time": 72753.495589041,
+        "memory_current_bytes": 465530880,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304500
+          }
+        ]
+      },
+      {
+        "time": 72753.694466041,
+        "memory_current_bytes": 465661952,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304512
+          }
+        ]
+      },
+      {
+        "time": 72753.894102791,
+        "memory_current_bytes": 465698816,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304512
+          }
+        ]
+      },
+      {
+        "time": 72754.09448875,
+        "memory_current_bytes": 465752064,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304528
+          }
+        ]
+      },
+      {
+        "time": 72754.294284166,
+        "memory_current_bytes": 466030592,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304528
+          }
+        ]
+      },
+      {
+        "time": 72754.497971875,
+        "memory_current_bytes": 466014208,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304528
+          }
+        ]
+      },
+      {
+        "time": 72754.698411833,
+        "memory_current_bytes": 466243584,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304528
+          }
+        ]
+      },
+      {
+        "time": 72754.898452833,
+        "memory_current_bytes": 466116608,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304536
+          }
+        ]
+      },
+      {
+        "time": 72755.099941166,
+        "memory_current_bytes": 466210816,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304536
+          }
+        ]
+      },
+      {
+        "time": 72755.299811958,
+        "memory_current_bytes": 465932288,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304536
+          }
+        ]
+      },
+      {
+        "time": 72755.499745375,
+        "memory_current_bytes": 466219008,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304536
+          }
+        ]
+      },
+      {
+        "time": 72755.700370166,
+        "memory_current_bytes": 466341888,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304536
+          }
+        ]
+      },
+      {
+        "time": 72755.902499833,
+        "memory_current_bytes": 466300928,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304540
+          }
+        ]
+      },
+      {
+        "time": 72756.10391825,
+        "memory_current_bytes": 466358272,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304544
+          }
+        ]
+      },
+      {
+        "time": 72756.306885416,
+        "memory_current_bytes": 466399232,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304544
+          }
+        ]
+      },
+      {
+        "time": 72756.504832625,
+        "memory_current_bytes": 466419712,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304556
+          }
+        ]
+      },
+      {
+        "time": 72756.705055375,
+        "memory_current_bytes": 466640896,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304572
+          }
+        ]
+      },
+      {
+        "time": 72756.908118041,
+        "memory_current_bytes": 466620416,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304572
+          }
+        ]
+      },
+      {
+        "time": 72757.113561833,
+        "memory_current_bytes": 466333696,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304572
+          }
+        ]
+      },
+      {
+        "time": 72757.315245958,
+        "memory_current_bytes": 466722816,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304572
+          }
+        ]
+      },
+      {
+        "time": 72757.514494791,
+        "memory_current_bytes": 466485248,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304572
+          }
+        ]
+      },
+      {
+        "time": 72757.716955833,
+        "memory_current_bytes": 466718720,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304572
+          }
+        ]
+      },
+      {
+        "time": 72757.92275575,
+        "memory_current_bytes": 466767872,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304572
+          }
+        ]
+      },
+      {
+        "time": 72758.122958208,
+        "memory_current_bytes": 466903040,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304588
+          }
+        ]
+      },
+      {
+        "time": 72758.325857333,
+        "memory_current_bytes": 467021824,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304588
+          }
+        ]
+      },
+      {
+        "time": 72758.526216375,
+        "memory_current_bytes": 466980864,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304588
+          }
+        ]
+      },
+      {
+        "time": 72758.734853791,
+        "memory_current_bytes": 467034112,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304592
+          }
+        ]
+      },
+      {
+        "time": 72758.936758416,
+        "memory_current_bytes": 466993152,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304592
+          }
+        ]
+      },
+      {
+        "time": 72759.137094708,
+        "memory_current_bytes": 467050496,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304592
+          }
+        ]
+      },
+      {
+        "time": 72759.341004666,
+        "memory_current_bytes": 467062784,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304592
+          }
+        ]
+      },
+      {
+        "time": 72759.544587583,
+        "memory_current_bytes": 467263488,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 304720
+          }
+        ]
+      },
+      {
+        "time": 72759.753470375,
+        "memory_current_bytes": 467939328,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 307860
+          }
+        ]
+      },
+      {
+        "time": 72759.952680958,
+        "memory_current_bytes": 474324992,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 310992
+          }
+        ]
+      },
+      {
+        "time": 72760.155366875,
+        "memory_current_bytes": 474836992,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 154668
+          },
+          {
+            "pid": 8239,
+            "command": "java",
+            "rss_kib": 311412
+          }
+        ]
+      },
+      {
+        "time": 72760.353196083,
+        "memory_current_bytes": 142163968,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 152728
+          }
+        ]
+      },
+      {
+        "time": 72760.559172,
+        "memory_current_bytes": 243478528,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 59040
+          }
+        ]
+      },
+      {
+        "time": 72760.758314291,
+        "memory_current_bytes": 309571584,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 130128
+          }
+        ]
+      },
+      {
+        "time": 72760.954374625,
+        "memory_current_bytes": 342118400,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 153808
+          }
+        ]
+      },
+      {
+        "time": 72761.154649958,
+        "memory_current_bytes": 365895680,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 176444
+          }
+        ]
+      },
+      {
+        "time": 72761.354758666,
+        "memory_current_bytes": 388550656,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 198752
+          }
+        ]
+      },
+      {
+        "time": 72761.557233125,
+        "memory_current_bytes": 452243456,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 259056
+          }
+        ]
+      },
+      {
+        "time": 72761.758257583,
+        "memory_current_bytes": 452890624,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 259648
+          }
+        ]
+      },
+      {
+        "time": 72761.957674291,
+        "memory_current_bytes": 488579072,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 294472
+          }
+        ]
+      },
+      {
+        "time": 72762.155302833,
+        "memory_current_bytes": 488800256,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 294680
+          }
+        ]
+      },
+      {
+        "time": 72762.370036625,
+        "memory_current_bytes": 489058304,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 294712
+          }
+        ]
+      },
+      {
+        "time": 72762.570076541,
+        "memory_current_bytes": 489418752,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 295028
+          }
+        ]
+      },
+      {
+        "time": 72762.769062333,
+        "memory_current_bytes": 490225664,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 295784
+          }
+        ]
+      },
+      {
+        "time": 72762.96852375,
+        "memory_current_bytes": 490278912,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 295796
+          }
+        ]
+      },
+      {
+        "time": 72763.167986208,
+        "memory_current_bytes": 490205184,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 295808
+          }
+        ]
+      },
+      {
+        "time": 72763.368125666,
+        "memory_current_bytes": 491175936,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 296560
+          }
+        ]
+      },
+      {
+        "time": 72763.572842041,
+        "memory_current_bytes": 491409408,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 296644
+          }
+        ]
+      },
+      {
+        "time": 72763.776229041,
+        "memory_current_bytes": 491065344,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 296644
+          }
+        ]
+      },
+      {
+        "time": 72763.980596666,
+        "memory_current_bytes": 491507712,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 296752
+          }
+        ]
+      },
+      {
+        "time": 72764.181309666,
+        "memory_current_bytes": 491249664,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 296764
+          }
+        ]
+      },
+      {
+        "time": 72764.384733125,
+        "memory_current_bytes": 493162496,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 298560
+          }
+        ]
+      },
+      {
+        "time": 72764.591136958,
+        "memory_current_bytes": 495656960,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 301752
+          }
+        ]
+      },
+      {
+        "time": 72764.796519458,
+        "memory_current_bytes": 499159040,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 304452
+          }
+        ]
+      },
+      {
+        "time": 72764.995014125,
+        "memory_current_bytes": 499494912,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 304556
+          }
+        ]
+      },
+      {
+        "time": 72765.198626458,
+        "memory_current_bytes": 499732480,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 304564
+          }
+        ]
+      },
+      {
+        "time": 72765.423078541,
+        "memory_current_bytes": 499679232,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 304688
+          }
+        ]
+      },
+      {
+        "time": 72765.629665416,
+        "memory_current_bytes": 502984704,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 307732
+          }
+        ]
+      },
+      {
+        "time": 72765.82829475,
+        "memory_current_bytes": 504303616,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309228
+          }
+        ]
+      },
+      {
+        "time": 72766.028107958,
+        "memory_current_bytes": 504352768,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309244
+          }
+        ]
+      },
+      {
+        "time": 72766.226481666,
+        "memory_current_bytes": 504737792,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309244
+          }
+        ]
+      },
+      {
+        "time": 72766.4257155,
+        "memory_current_bytes": 504717312,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309268
+          }
+        ]
+      },
+      {
+        "time": 72766.625540875,
+        "memory_current_bytes": 504672256,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309272
+          }
+        ]
+      },
+      {
+        "time": 72766.830468833,
+        "memory_current_bytes": 504561664,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309284
+          }
+        ]
+      },
+      {
+        "time": 72767.034623541,
+        "memory_current_bytes": 504627200,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309300
+          }
+        ]
+      },
+      {
+        "time": 72767.238990125,
+        "memory_current_bytes": 505040896,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309300
+          }
+        ]
+      },
+      {
+        "time": 72767.444777375,
+        "memory_current_bytes": 504803328,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309332
+          }
+        ]
+      },
+      {
+        "time": 72767.643758416,
+        "memory_current_bytes": 505085952,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309332
+          }
+        ]
+      },
+      {
+        "time": 72767.844843333,
+        "memory_current_bytes": 505192448,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309352
+          }
+        ]
+      },
+      {
+        "time": 72768.05445725,
+        "memory_current_bytes": 505204736,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309368
+          }
+        ]
+      },
+      {
+        "time": 72768.254040625,
+        "memory_current_bytes": 505167872,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309380
+          }
+        ]
+      },
+      {
+        "time": 72768.460565291,
+        "memory_current_bytes": 505405440,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309392
+          }
+        ]
+      },
+      {
+        "time": 72768.660091583,
+        "memory_current_bytes": 505200640,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309392
+          }
+        ]
+      },
+      {
+        "time": 72768.863401541,
+        "memory_current_bytes": 505098240,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309396
+          }
+        ]
+      },
+      {
+        "time": 72769.06381575,
+        "memory_current_bytes": 505167872,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309424
+          }
+        ]
+      },
+      {
+        "time": 72769.269180333,
+        "memory_current_bytes": 505294848,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309440
+          }
+        ]
+      },
+      {
+        "time": 72769.469658708,
+        "memory_current_bytes": 505360384,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309452
+          }
+        ]
+      },
+      {
+        "time": 72769.669342416,
+        "memory_current_bytes": 505421824,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309456
+          }
+        ]
+      },
+      {
+        "time": 72769.884898958,
+        "memory_current_bytes": 505270272,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309460
+          }
+        ]
+      },
+      {
+        "time": 72770.08825375,
+        "memory_current_bytes": 505524224,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309468
+          }
+        ]
+      },
+      {
+        "time": 72770.29238425,
+        "memory_current_bytes": 505716736,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309472
+          }
+        ]
+      },
+      {
+        "time": 72770.490369791,
+        "memory_current_bytes": 505622528,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309472
+          }
+        ]
+      },
+      {
+        "time": 72770.692695541,
+        "memory_current_bytes": 505995264,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309472
+          }
+        ]
+      },
+      {
+        "time": 72770.8929965,
+        "memory_current_bytes": 505647104,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309472
+          }
+        ]
+      },
+      {
+        "time": 72771.098002083,
+        "memory_current_bytes": 505765888,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309472
+          }
+        ]
+      },
+      {
+        "time": 72771.301316,
+        "memory_current_bytes": 505757696,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309476
+          }
+        ]
+      },
+      {
+        "time": 72771.500400541,
+        "memory_current_bytes": 505782272,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309476
+          }
+        ]
+      },
+      {
+        "time": 72771.705780375,
+        "memory_current_bytes": 506130432,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309476
+          }
+        ]
+      },
+      {
+        "time": 72771.910329416,
+        "memory_current_bytes": 506134528,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309476
+          }
+        ]
+      },
+      {
+        "time": 72772.11564975,
+        "memory_current_bytes": 506171392,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309476
+          }
+        ]
+      },
+      {
+        "time": 72772.315083291,
+        "memory_current_bytes": 506228736,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309492
+          }
+        ]
+      },
+      {
+        "time": 72772.518480958,
+        "memory_current_bytes": 506310656,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309492
+          }
+        ]
+      },
+      {
+        "time": 72772.720900458,
+        "memory_current_bytes": 506302464,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309492
+          }
+        ]
+      },
+      {
+        "time": 72772.918954458,
+        "memory_current_bytes": 506257408,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309492
+          }
+        ]
+      },
+      {
+        "time": 72773.125798041,
+        "memory_current_bytes": 506368000,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309492
+          }
+        ]
+      },
+      {
+        "time": 72773.327710041,
+        "memory_current_bytes": 506449920,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309512
+          }
+        ]
+      },
+      {
+        "time": 72773.527700875,
+        "memory_current_bytes": 506404864,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309512
+          }
+        ]
+      },
+      {
+        "time": 72773.72906875,
+        "memory_current_bytes": 506437632,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309512
+          }
+        ]
+      },
+      {
+        "time": 72773.928867291,
+        "memory_current_bytes": 506560512,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309512
+          }
+        ]
+      },
+      {
+        "time": 72774.129099583,
+        "memory_current_bytes": 506511360,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309512
+          }
+        ]
+      },
+      {
+        "time": 72774.331659,
+        "memory_current_bytes": 506310656,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309512
+          }
+        ]
+      },
+      {
+        "time": 72774.530525708,
+        "memory_current_bytes": 506478592,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309528
+          }
+        ]
+      },
+      {
+        "time": 72774.727299458,
+        "memory_current_bytes": 506810368,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 309940
+          }
+        ]
+      },
+      {
+        "time": 72774.938154958,
+        "memory_current_bytes": 507822080,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 311164
+          }
+        ]
+      },
+      {
+        "time": 72775.143176333,
+        "memory_current_bytes": 509652992,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 311820
+          }
+        ]
+      },
+      {
+        "time": 72775.348134583,
+        "memory_current_bytes": 510746624,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188540
+          },
+          {
+            "pid": 10435,
+            "command": "java",
+            "rss_kib": 312660
+          }
+        ]
+      },
+      {
+        "time": 72775.553954625,
+        "memory_current_bytes": 178069504,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 188556
+          }
+        ]
+      },
+      {
+        "time": 72775.753746708,
+        "memory_current_bytes": 262627328,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 71496
+          }
+        ]
+      },
+      {
+        "time": 72775.953351583,
+        "memory_current_bytes": 332996608,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 140468
+          }
+        ]
+      },
+      {
+        "time": 72776.153574791,
+        "memory_current_bytes": 355213312,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 162860
+          }
+        ]
+      },
+      {
+        "time": 72776.350019625,
+        "memory_current_bytes": 376520704,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 184640
+          }
+        ]
+      },
+      {
+        "time": 72776.549904541,
+        "memory_current_bytes": 400498688,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 205408
+          }
+        ]
+      },
+      {
+        "time": 72776.756035125,
+        "memory_current_bytes": 456511488,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 259992
+          }
+        ]
+      },
+      {
+        "time": 72776.955811833,
+        "memory_current_bytes": 457015296,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 260480
+          }
+        ]
+      },
+      {
+        "time": 72777.156490541,
+        "memory_current_bytes": 491212800,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 293756
+          }
+        ]
+      },
+      {
+        "time": 72777.366805,
+        "memory_current_bytes": 491282432,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 294008
+          }
+        ]
+      },
+      {
+        "time": 72777.572140708,
+        "memory_current_bytes": 491798528,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 297596
+          }
+        ]
+      },
+      {
+        "time": 72777.776270458,
+        "memory_current_bytes": 497012736,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299032
+          }
+        ]
+      },
+      {
+        "time": 72777.984650666,
+        "memory_current_bytes": 496902144,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299052
+          }
+        ]
+      },
+      {
+        "time": 72778.186143166,
+        "memory_current_bytes": 496705536,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299080
+          }
+        ]
+      },
+      {
+        "time": 72778.382039208,
+        "memory_current_bytes": 497012736,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299136
+          }
+        ]
+      },
+      {
+        "time": 72778.583708875,
+        "memory_current_bytes": 497508352,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299536
+          }
+        ]
+      },
+      {
+        "time": 72778.785008166,
+        "memory_current_bytes": 497561600,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299536
+          }
+        ]
+      },
+      {
+        "time": 72778.986135875,
+        "memory_current_bytes": 497602560,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299552
+          }
+        ]
+      },
+      {
+        "time": 72779.190548833,
+        "memory_current_bytes": 497782784,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 299568
+          }
+        ]
+      },
+      {
+        "time": 72779.393287916,
+        "memory_current_bytes": 498671616,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 300744
+          }
+        ]
+      },
+      {
+        "time": 72779.598301041,
+        "memory_current_bytes": 502079488,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 303784
+          }
+        ]
+      },
+      {
+        "time": 72779.800516416,
+        "memory_current_bytes": 502083584,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 303788
+          }
+        ]
+      },
+      {
+        "time": 72780.0009285,
+        "memory_current_bytes": 502501376,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 304348
+          }
+        ]
+      },
+      {
+        "time": 72780.204473625,
+        "memory_current_bytes": 502587392,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 304732
+          }
+        ]
+      },
+      {
+        "time": 72780.409922208,
+        "memory_current_bytes": 506114048,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 307652
+          }
+        ]
+      },
+      {
+        "time": 72780.612462041,
+        "memory_current_bytes": 506019840,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 307680
+          }
+        ]
+      },
+      {
+        "time": 72780.815164458,
+        "memory_current_bytes": 506458112,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 307708
+          }
+        ]
+      },
+      {
+        "time": 72781.020118166,
+        "memory_current_bytes": 506273792,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 307708
+          }
+        ]
+      },
+      {
+        "time": 72781.217611708,
+        "memory_current_bytes": 506470400,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 307776
+          }
+        ]
+      },
+      {
+        "time": 72781.419738875,
+        "memory_current_bytes": 507596800,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 308888
+          }
+        ]
+      },
+      {
+        "time": 72781.62567075,
+        "memory_current_bytes": 508375040,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309548
+          }
+        ]
+      },
+      {
+        "time": 72781.835921166,
+        "memory_current_bytes": 508370944,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309608
+          }
+        ]
+      },
+      {
+        "time": 72782.038259125,
+        "memory_current_bytes": 508391424,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309608
+          }
+        ]
+      },
+      {
+        "time": 72782.23867275,
+        "memory_current_bytes": 508526592,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309620
+          }
+        ]
+      },
+      {
+        "time": 72782.441950708,
+        "memory_current_bytes": 508620800,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309648
+          }
+        ]
+      },
+      {
+        "time": 72782.64673225,
+        "memory_current_bytes": 508674048,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309660
+          }
+        ]
+      },
+      {
+        "time": 72782.848925541,
+        "memory_current_bytes": 509026304,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309672
+          }
+        ]
+      },
+      {
+        "time": 72783.049675958,
+        "memory_current_bytes": 508866560,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309672
+          }
+        ]
+      },
+      {
+        "time": 72783.251515791,
+        "memory_current_bytes": 509034496,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309688
+          }
+        ]
+      },
+      {
+        "time": 72783.452526291,
+        "memory_current_bytes": 508825600,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309700
+          }
+        ]
+      },
+      {
+        "time": 72783.655487541,
+        "memory_current_bytes": 508755968,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309712
+          }
+        ]
+      },
+      {
+        "time": 72783.859963458,
+        "memory_current_bytes": 508854272,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309728
+          }
+        ]
+      },
+      {
+        "time": 72784.060430875,
+        "memory_current_bytes": 508874752,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309728
+          }
+        ]
+      },
+      {
+        "time": 72784.263777333,
+        "memory_current_bytes": 509177856,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309736
+          }
+        ]
+      },
+      {
+        "time": 72784.461399541,
+        "memory_current_bytes": 508805120,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309736
+          }
+        ]
+      },
+      {
+        "time": 72784.665092833,
+        "memory_current_bytes": 509026304,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309792
+          }
+        ]
+      },
+      {
+        "time": 72784.8702955,
+        "memory_current_bytes": 509054976,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309804
+          }
+        ]
+      },
+      {
+        "time": 72785.072556708,
+        "memory_current_bytes": 509079552,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309812
+          }
+        ]
+      },
+      {
+        "time": 72785.273051416,
+        "memory_current_bytes": 509423616,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309812
+          }
+        ]
+      },
+      {
+        "time": 72785.477606791,
+        "memory_current_bytes": 509100032,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309812
+          }
+        ]
+      },
+      {
+        "time": 72785.678419958,
+        "memory_current_bytes": 509476864,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309812
+          }
+        ]
+      },
+      {
+        "time": 72785.884377833,
+        "memory_current_bytes": 509181952,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309812
+          }
+        ]
+      },
+      {
+        "time": 72786.083730958,
+        "memory_current_bytes": 509579264,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309816
+          }
+        ]
+      },
+      {
+        "time": 72786.279405125,
+        "memory_current_bytes": 509526016,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309820
+          }
+        ]
+      },
+      {
+        "time": 72786.479712666,
+        "memory_current_bytes": 509665280,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309820
+          }
+        ]
+      },
+      {
+        "time": 72786.683503958,
+        "memory_current_bytes": 509624320,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309828
+          }
+        ]
+      },
+      {
+        "time": 72786.886684166,
+        "memory_current_bytes": 509534208,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309828
+          }
+        ]
+      },
+      {
+        "time": 72787.087743375,
+        "memory_current_bytes": 509730816,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309828
+          }
+        ]
+      },
+      {
+        "time": 72787.291261791,
+        "memory_current_bytes": 509853696,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309840
+          }
+        ]
+      },
+      {
+        "time": 72787.494681458,
+        "memory_current_bytes": 509911040,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309840
+          }
+        ]
+      },
+      {
+        "time": 72787.693177125,
+        "memory_current_bytes": 509992960,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309840
+          }
+        ]
+      },
+      {
+        "time": 72787.893068958,
+        "memory_current_bytes": 509947904,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309840
+          }
+        ]
+      },
+      {
+        "time": 72788.093407875,
+        "memory_current_bytes": 509915136,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309840
+          }
+        ]
+      },
+      {
+        "time": 72788.290886958,
+        "memory_current_bytes": 509947904,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309840
+          }
+        ]
+      },
+      {
+        "time": 72788.493662791,
+        "memory_current_bytes": 509870080,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309860
+          }
+        ]
+      },
+      {
+        "time": 72788.69752075,
+        "memory_current_bytes": 510136320,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309860
+          }
+        ]
+      },
+      {
+        "time": 72788.899459166,
+        "memory_current_bytes": 509952000,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309860
+          }
+        ]
+      },
+      {
+        "time": 72789.100477333,
+        "memory_current_bytes": 510173184,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309860
+          }
+        ]
+      },
+      {
+        "time": 72789.301152666,
+        "memory_current_bytes": 510181376,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309860
+          }
+        ]
+      },
+      {
+        "time": 72789.4949645,
+        "memory_current_bytes": 510193664,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309860
+          }
+        ]
+      },
+      {
+        "time": 72789.692943666,
+        "memory_current_bytes": 510369792,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 309876
+          }
+        ]
+      },
+      {
+        "time": 72789.8952795,
+        "memory_current_bytes": 510324736,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 310192
+          }
+        ]
+      },
+      {
+        "time": 72790.096169375,
+        "memory_current_bytes": 512282624,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 311416
+          }
+        ]
+      },
+      {
+        "time": 72790.296051791,
+        "memory_current_bytes": 513593344,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 312040
+          }
+        ]
+      },
+      {
+        "time": 72790.504417083,
+        "memory_current_bytes": 513892352,
+        "processes": [
+          {
+            "pid": 8140,
+            "command": "tini",
+            "rss_kib": 1096
+          },
+          {
+            "pid": 8180,
+            "command": "uvicorn",
+            "rss_kib": 192444
+          },
+          {
+            "pid": 12699,
+            "command": "java",
+            "rss_kib": 312388
+          }
+        ]
+      }
+    ],
+    "container_state": {
+      "Status": "running",
+      "Running": true,
+      "Paused": false,
+      "Restarting": false,
+      "OOMKilled": false,
+      "Dead": false,
+      "Pid": 8140,
+      "ExitCode": 0,
+      "Error": "",
+      "StartedAt": "2026-10-05T12:01:50.670301552Z",
+      "FinishedAt": "0001-01-01T00:00:00Z"
+    },
+    "results": [
+      {
+        "case": "p6-triple-0",
+        "endpoint": "analyze",
+        "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+        "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+        "status": 200,
+        "seconds": 29.871,
+        "labels": {
+          "clopidogrel": "Unknown"
+        },
+        "error_code": null
+      },
+      {
+        "case": "p6-triple-1",
+        "endpoint": "analyze",
+        "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+        "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+        "status": 200,
+        "seconds": 14.767,
+        "labels": {
+          "clopidogrel": "Unknown"
+        },
+        "error_code": null
+      },
+      {
+        "case": "p6-triple-2",
+        "endpoint": "analyze",
+        "input": "audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+        "input_sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+        "status": 200,
+        "seconds": 45.033,
+        "labels": {
+          "clopidogrel": "Unknown"
+        },
+        "error_code": null
+      }
+    ]
+  },
+  "final_cgroup": {
+    "current_bytes": 182050816,
+    "peak_bytes": 515387392,
+    "events": {
+      "low": 0,
+      "high": 0,
+      "max": 0,
+      "oom": 0,
+      "oom_kill": 0,
+      "oom_group_kill": 0
+    },
+    "stat": {
+      "anon": 179396608,
+      "file": 0,
+      "kernel": 2691072,
+      "kernel_stack": 147456,
+      "pagetables": 647168,
+      "sec_pagetables": 0,
+      "percpu": 2640,
+      "sock": 0,
+      "vmalloc": 16384,
+      "shmem": 0,
+      "zswap": 0,
+      "zswapped": 0,
+      "file_mapped": 0,
+      "file_dirty": 0,
+      "file_writeback": 0,
+      "swapcached": 0,
+      "anon_thp": 0,
+      "file_thp": 0,
+      "shmem_thp": 0,
+      "inactive_anon": 0,
+      "active_anon": 179367936,
+      "inactive_file": 0,
+      "active_file": 0,
+      "unevictable": 0,
+      "slab_reclaimable": 1258120,
+      "slab_unreclaimable": 394832,
+      "slab": 1652952,
+      "workingset_refault_anon": 0,
+      "workingset_refault_file": 0,
+      "workingset_activate_anon": 0,
+      "workingset_activate_file": 0,
+      "workingset_restore_anon": 0,
+      "workingset_restore_file": 0,
+      "workingset_nodereclaim": 0,
+      "pgscan": 0,
+      "pgsteal": 0,
+      "pgscan_kswapd": 0,
+      "pgscan_direct": 0,
+      "pgscan_khugepaged": 0,
+      "pgsteal_kswapd": 0,
+      "pgsteal_direct": 0,
+      "pgsteal_khugepaged": 0,
+      "pgfault": 513073,
+      "pgmajfault": 0,
+      "pgrefill": 0,
+      "pgactivate": 0,
+      "pgdeactivate": 0,
+      "pglazyfree": 0,
+      "pglazyfreed": 0,
+      "zswpin": 0,
+      "zswpout": 0,
+      "zswpwb": 0,
+      "thp_fault_alloc": 0,
+      "thp_collapse_alloc": 0,
+      "thp_swpout": 0,
+      "thp_swpout_fallback": 0
+    }
+  },
+  "checks": {
+    "count": true,
+    "expected_response_types": true,
+    "successful_analyses_scientifically_unknown": true,
+    "at_most_one_jvm": true
+  }
+}

@@ -1,0 +1,4 @@
+time="2026-10-05T17:48:52+05:30" level=info msg="stopping colima [profile=pgx-p6-20261005]"
+time="2026-10-05T17:48:53+05:30" level=info msg="stopping ..." context=docker
+time="2026-10-05T17:48:53+05:30" level=info msg="stopping ..." context=vm
+time="2026-10-05T17:48:55+05:30" level=info msg=done

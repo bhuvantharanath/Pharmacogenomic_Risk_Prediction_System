@@ -69,10 +69,10 @@ RUN echo "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741  /pha
       | sha256sum -c - \
  && java -jar /pharmcat/pharmcat.jar -version | grep -q "PharmCAT 3.4.0"
 
-# Phase 3/4 defaults. `static` serves pre-generated, guard-checked explanations:
-# no API call, no key, nothing to leak. Set EXPLANATION_MODE=live only for a
-# demo, and only with GEMINI_API_KEY supplied as a platform secret at RUNTIME —
-# never as a build arg, which would bake it into an image layer.
+# Public/default mode. `static` serves only approved compatible prose or the
+# deterministic template: no API call and no key. Runtime clinical generation
+# remains disabled even if the legacy `live` value is selected. Do not change
+# this release default without a separate owner-approved privacy review.
 # Kept as its own ENV: a comment inside a line continuation is a parser trap.
 ENV EXPLANATION_MODE=static \
     PHARMAGUARD_CORPUS_DIR=/home/user/app/rag-corpus/mechanisms
@@ -99,6 +99,11 @@ ENV CORS_ALLOWED_ORIGINS=""
 # Verified against https://huggingface.co/docs/hub/spaces-sdks-docker (2026-07-23).
 # --------------------------------------------------------------------------- #
 USER root
+# The app launches PharmCAT as a child process. PID 1 must reap orphaned
+# descendants after cancellation/timeout; uvicorn itself does not act as init.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends tini \
+ && rm -rf /var/lib/apt/lists/*
 RUN if ! id -u 1000 >/dev/null 2>&1; then \
         useradd -m -u 1000 user; \
     fi && \
@@ -142,4 +147,5 @@ EXPOSE 7860
 # Single worker: PharmCAT spawns a JVM per request and is the memory
 # bottleneck, so concurrency is better limited here than discovered under load.
 # `sh -c` so ${PORT:-7860} expands at runtime, not at build time.
+ENTRYPOINT ["tini", "--"]
 CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1"]

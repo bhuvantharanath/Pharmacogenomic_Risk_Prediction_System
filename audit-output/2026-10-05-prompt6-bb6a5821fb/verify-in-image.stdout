@@ -1,0 +1,16 @@
+{
+  "copied_file_count": 50,
+  "checks": {
+    "copied_file_bytes_match": true,
+    "jar_matches": true,
+    "jar_data_version_matches": true,
+    "positions_match": true,
+    "positions_index_match": true,
+    "image_id_matches": true,
+    "memory_limit_matches": true,
+    "memory_swap_total_matches": true,
+    "container_running": true,
+    "cgroup_memory_max_matches": true,
+    "cgroup_swap_max_zero": true
+  }
+}

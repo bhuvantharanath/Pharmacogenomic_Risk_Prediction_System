@@ -1,0 +1,22 @@
+{
+  "mechanical_route": "PASS",
+  "visual_legibility": "PASS",
+  "summary_scientific_fields": "PASS",
+  "exact_full_api_parity": "NOT_CLAIMED",
+  "raw_misses": [
+    {
+      "field": "provenance.explanations_generated_at",
+      "expected": "2026-07-24T09:53:53.175011+00:00",
+      "present": false
+    }
+  ],
+  "documented_display_transform": {
+    "field": "guideline_provenance.explanations_generated_at",
+    "api": "2026-07-24T09:53:53.175011+00:00",
+    "printed": "24 Jul 2026",
+    "basis": "GuidelineProvenance.explanationsDate model getter; summary_document.dart uses date only"
+  },
+  "pipeline_warnings_omitted": 21,
+  "all_pipeline_warnings_absent_verbatim": true,
+  "content_review": "FAIL: unsupported assurance that automated source checking verifies nothing was invented; exact PDF page 1 and source disclaimer retained. No remediation performed in verification."
+}

@@ -142,11 +142,14 @@ python scripts/run_demo.py --slow
 
 ### 2 · THE CENTREPIECE (90s) — S2 and the contrast table
 
-**Expect:** **Unknown**, confidence 0.00, CYP2C19 4/35 = 11.4%, variants-only alert.
+**Expect:** **Unknown**, CYP2C19 4/35 = 11.4%, variants-only alert. The legacy
+internal score is deliberately not presented as a percentage or probability.
 
-> "Same patient. Same genotype — PharmCAT still calls \*2/\*2 from this file. The
-> only difference is that it lists variants only, with no homozygous-reference
-> rows. That's the shape most VCFs in the wild have.
+> "This pair retains the same non-reference genotypes. In a separate diagnostic
+> run, the pinned PharmCAT caller reports \*2/\*2 from both files. The final API
+> shows that diplotype only for the complete file; the variant-only profile is
+> Unknown because its absent positions were not observed. That's the shape
+> many VCFs in the wild have.
 >
 > An absent position is indistinguishable from one never tested. So a variant
 > whose defining position is missing is invisible, and the genotype reads as
@@ -167,13 +170,14 @@ python scripts/run_demo.py --slow
 
 ### 4 · A different guard (45s) — S4
 
-**Expect:** **Unknown**, DPYD coverage 37.3% against a 20% minimum — **passing**.
+**Expect:** **Unknown**. The percentage is 37.3% against a 20% floor, but the
+evidence still fails because only 8 of 28 decision-critical DPYD positions are
+present. Percentage alone cannot establish acceptable evidence.
 
-> "Coverage is fine here, so this isn't the gate. PharmCAT called the genotype but
-> said Indeterminate. Our lookup table would still have found a row and rendered
-> **Safe**, on fluorouracil, where DPYD deficiency is fatal. Found at 400 samples.
-> Fixing it generally rather than patching DPYD changed 294 results — 293 of them
-> on other genes a targeted patch would have missed."
+> "A simple percentage would have passed this file, but the required biological
+> positions are missing. The application therefore returns Unknown and explains
+> the evidence failure. It does not infer omitted positions as reference or turn
+> this partial observation into reassurance."
 
 ### 5 · It still answers (30s) — S5 and S6
 
@@ -190,11 +194,11 @@ python scripts/validate_label_mapping.py
 > sample. The 13 are documented divergences."
 
 ```bash
-python scripts/adjudication_status.py
+python scripts/release_status.py --content-only
 ```
 
-> "Exits 1. Human review of the explanation prose isn't finished, so the release
-> gate is red. It stays red until a person has read every claim."
+> "Exits 1. Stored prose with incomplete human adjudication is withheld and the
+> deterministic fallback is served. The authoritative content gate stays red."
 
 ---
 

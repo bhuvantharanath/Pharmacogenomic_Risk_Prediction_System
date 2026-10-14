@@ -1,0 +1,18 @@
+{
+  "migration_version": 1,
+  "historical_hash_policy_version": 1,
+  "historical_bundle_id": "pharmaguard-scientific-baseline-2026-09-24",
+  "historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
+  "historical_without_finder_sha256": "4088208d63a77c3e43bce7ba65fa3eb59e0cedc75cd01b1460dc8555bbcb0299",
+  "portable_hash_policy_version": 2,
+  "portable_application_sha256": "204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c",
+  "versioned_input_count": 90,
+  "legacy_input_count": 91,
+  "legacy_extra_file": {
+    "path": "backend/app/.DS_Store",
+    "sha256": "a17917a3a3356cd14a1e10b4db4c7a1792057345ab9be14b24c3a095fb41f5dd"
+  },
+  "basis": "In the recorded local candidate, the legacy directory walk contained the same 90 versioned application inputs plus only the ignored Finder file. Removing only that file reproduced the documented legacy mismatch. The v2 digest uses those 90 exact relative paths, raw bytes, lexical order, and a new domain separator.",
+  "benchmark_rerun": false,
+  "interpretation": "This is a hash-policy identity migration for unchanged intended application bytes, not a new analytical benchmark or a claim that the v1 and v2 digest values are directly comparable."
+}

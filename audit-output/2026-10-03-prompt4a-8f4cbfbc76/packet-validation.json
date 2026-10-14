@@ -1,0 +1,160 @@
+{
+  "passed": 38,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "Original store raw bytes preserved",
+      "passed": true
+    },
+    {
+      "check": "Original approval manifest raw bytes preserved",
+      "passed": true
+    },
+    {
+      "check": "Every current claim represented exactly once",
+      "passed": true
+    },
+    {
+      "check": "All 20 complete entries represented",
+      "passed": true
+    },
+    {
+      "check": "azathioprine:IM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "azathioprine:NM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "azathioprine:PM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "azathioprine:Unknown final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "clopidogrel:IM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "clopidogrel:NM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "clopidogrel:PM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "clopidogrel:RM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "clopidogrel:URM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "clopidogrel:Unknown final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "codeine:Unknown final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "fluorouracil:IM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "fluorouracil:NM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "fluorouracil:PM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "fluorouracil:Unknown final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "simvastatin:IM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "simvastatin:NM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "simvastatin:PM final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "simvastatin:Unknown final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "warfarin:Unknown final exact fields and bindings",
+      "passed": true
+    },
+    {
+      "check": "124 current human records match exact sentences/fields and keys",
+      "passed": true
+    },
+    {
+      "check": "Historical source bindings not invented",
+      "passed": true
+    },
+    {
+      "check": "126 original human-labelled records preserved including 2 unmatched",
+      "passed": true
+    },
+    {
+      "check": "Template covers all claims with no actual decisions",
+      "passed": true
+    },
+    {
+      "check": "Template binds each current claim exactly",
+      "passed": true
+    },
+    {
+      "check": "20 blank author-read returns; no expert claim",
+      "passed": true
+    },
+    {
+      "check": "Draft replacements reference current exact text only",
+      "passed": true
+    },
+    {
+      "check": "Every candidate row ID is present in the pinned snapshot",
+      "passed": true
+    },
+    {
+      "check": "Every candidate corpus span matches actual file lines",
+      "passed": true
+    },
+    {
+      "check": "Every entry/claim is visible in human-readable packet",
+      "passed": true
+    },
+    {
+      "check": "All inventoried source/data/policy/historical evidence bytes unchanged",
+      "passed": true
+    },
+    {
+      "check": "Tracked full binary diff unchanged",
+      "passed": true
+    },
+    {
+      "check": "Staged bytes unchanged and empty",
+      "passed": true
+    },
+    {
+      "check": "HEAD unchanged",
+      "passed": true
+    }
+  ],
+  "scope_files": 147,
+  "clinical_review": false
+}

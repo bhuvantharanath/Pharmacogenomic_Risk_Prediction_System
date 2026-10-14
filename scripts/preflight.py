@@ -214,11 +214,11 @@ def check_fixtures() -> CheckResult:
 
 def check_provenance() -> CheckResult:
     """
-    The release gate, surfaced at preflight.
+    The provenance prerequisite, surfaced at preflight.
 
     Warning rather than fatal: generation is exactly when the store is expected
     to be mid-verification, and failing here would block the run that fixes it.
-    `verify_provenance.py` itself is the gate, and CI runs it on every push.
+    `release_status.py` makes the final release decision after generation.
     """
     try:
         import verify_provenance

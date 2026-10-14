@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="0.133" timestamp="2026-10-04T09:41:15.495221+05:30" hostname="Bhuvans-MacBook-Air.local"><testcase classname="tests.test_current_candidate_evaluation" name="test_current_evaluation_requires_exact_candidate_and_evidence" time="0.088"><failure message="KeyError: 'evaluation_current'">def test_current_evaluation_requires_exact_candidate_and_evidence() -&gt; None:
+        record = bundle.current_evaluation_record()
+        checked = json.loads(bundle.MANIFEST_PATH.read_text())
+    
+        assert record["evidence_matches"] is True, record["problems"]
+        assert record["application_core_sha256"] == bundle.application_core_hash()
+&gt;       assert record == checked["evaluation_current"]
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'evaluation_current'
+
+backend/tests/test_current_candidate_evaluation.py:24: KeyError</failure></testcase><testcase classname="tests.test_current_candidate_evaluation" name="test_versioned_evaluation_declares_historical_source_separately" time="0.017" /></testsuite></testsuites>

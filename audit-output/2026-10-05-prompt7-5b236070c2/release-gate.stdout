@@ -1,0 +1,123 @@
+{
+ "release_ready": false,
+ "state": "not-ready",
+ "declared_explanation_release_policy": "human_review_all_stored_generated_entries",
+ "effective_explanation_mode": "deterministic_template_only",
+ "approved_generated_entries": 0,
+ "unapproved_generated_entries": 20,
+ "releasable_generated_entries": 0,
+ "fallback_only_cases": 20,
+ "human_review_complete_for_releasable_set": null,
+ "clinical_expert_review": "NOT_OBTAINED",
+ "candidate_revision": "1dc7557da49f38e831b382545044b00a481507b6",
+ "tested_revision": "1dc7557da49f38e831b382545044b00a481507b6",
+ "candidate_artifact_hash": "0c1aa418159cc7e4456b058d37cbabf751ff0f2bf9a7050566e798d6e24fa92c",
+ "tested_artifact_hash": "0c1aa418159cc7e4456b058d37cbabf751ff0f2bf9a7050566e798d6e24fa92c",
+ "prerequisites": {
+  "required_checks_passed": true,
+  "human_adjudication_complete": false,
+  "no_rejected_or_outstanding_claims": false,
+  "provenance_complete": true,
+  "manifest_compatible": true,
+  "scientific_bundle_compatible": true,
+  "all_entries_approved": false,
+  "approved_entries_human_bound": false,
+  "artifact_hashes_match": true,
+  "candidate_revision_matches": true,
+  "no_clinical_expert_review_claim": true
+ },
+ "required_checks": [
+  {
+   "name": "compatible-bundle",
+   "passed": true,
+   "exit_code": 0,
+   "output_tail": "compatible scientific bundle: PASS"
+  },
+  {
+   "name": "backend-tests",
+   "passed": true,
+   "exit_code": 0,
+   "output_tail": "ardEventLog::test_events_are_well_formed\ntests/test_phase5a_tooling.py::TestReachability::test_matrix_has_the_expected_shape\ntests/test_phase5a_tooling.py::TestResumeIdempotency::test_resume_skips_exactly_what_is_already_present\ntests/test_phase5a_tooling.py::TestGuardExperimentIsolation::test_refuses_the_real_store_by_exact_path\ntests/test_phase5a_tooling.py::TestKeyHygiene::test_redact_never_reveals_the_middle\ntests/test_privacy.py::TestBuildTimePayloadCarriesNoPatientData::test_no_case_sends_a_concrete_diplotype\n  /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/lib/python3.11/site-packages/_pytest/fixtures.py:1313: PytestRemovedIn10Warning: Class-scoped fixture defined as instance method is deprecated.\n  Instance attributes set in this fixture will NOT be visible to test methods,\n  as each test gets a new instance while the fixture runs only once per class.\n  Use @classmethod decorator and set attributes on cls instead.\n  See https://docs.pytest.org/en/stable/deprecations.html#class-scoped-fixture-as-instance-method\n    fixturefunc = resolve_fixture_function(fixturedef, request)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html"
+  },
+  {
+   "name": "provenance",
+   "passed": true,
+   "exit_code": 0,
+   "output_tail": "nism 0  process 0  framing 3\n  PASS  fluorouracil:IM            clinical 8/8  mechanism 0  process 0  framing 2\n  PASS  fluorouracil:NM            clinical 6/6  mechanism 0  process 0  framing 5\n  PASS  fluorouracil:PM            clinical 5/5  mechanism 0  process 0  framing 2\n  PASS  fluorouracil:Unknown       clinical 6/6  mechanism 0  process 0  framing 4\n  PASS  simvastatin:IM             clinical 7/7  mechanism 0  process 0  framing 4\n  PASS  simvastatin:NM             clinical 5/5  mechanism 0  process 0  framing 5\n  PASS  simvastatin:PM             clinical 5/5  mechanism 0  process 0  framing 3\n  PASS  simvastatin:Unknown        clinical 5/5  mechanism 0  process 0  framing 5\n  PASS  warfarin:Unknown           clinical 2/2  mechanism 0  process 0  framing 5\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\nClinical-claim provenance: 106/106 (100.0%)  target 100%\nMECHANISM: 0/0   FRAMING (exempt): 73\n\nAll clinical assertions trace to a cited source.\nVerified means every clinical ASSERTION traces to a cited source.\nWording may differ \u2014 paraphrase is allowed; invented claims are not.\nIt does NOT mean a clinician has agreed the sentence is correct."
+  },
+  {
+   "name": "label-mapping",
+   "passed": true,
+   "exit_code": 0,
+   "output_tail": "phine formation\n\n  codeine \u00b7 CYP2D6:1.75 \u00b7 general\n    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)\n    basis   : CPIC: no alternative drug and no dosing change\n    CPIC    : Use codeine label recommended age- or weight-specific dosing.\n    implies : CYP2D6: Expected morphine formation\n\n  codeine \u00b7 CYP2D6:2.25 \u00b7 general\n    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)\n    basis   : CPIC: no alternative drug and no dosing change\n    CPIC    : Use codeine label recommended age- or weight-specific dosing.\n    implies : CYP2D6: Expected morphine formation\n\n  codeine \u00b7 CYP2D6:1.0 \u00b7 general\n    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)\n    basis   : CPIC: no alternative drug and no dosing change\n    CPIC    : Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.\n    implies : CYP2D6: Reduced morphine formation\n\n  label_mapping.yaml was NOT modified by this script.\n\n  PASS: 13 divergence(s), all of them in the accepted baseline (label_mapping_accepted_divergences.json)."
+  },
+  {
+   "name": "flutter-analyze",
+   "passed": true,
+   "exit_code": 0,
+   "output_tail": "Resolving dependencies...\nDownloading packages...\n  archive 4.0.9 (4.3.0 available)\n  characters 1.4.0 (1.4.1 available)\n  clock 1.1.2 (1.1.3 available)\n  cross_file 0.3.5+4 (0.4.0 available)\n  cupertino_icons 1.0.9 (2.0.0 available)\n  dbus 0.7.14 (0.8.0 available)\n  dio 5.10.0 (5.11.1 available)\n  dio_web_adapter 2.2.0 (2.2.2 available)\n  file_picker 11.0.2 (13.1.0 available)\n  image 4.8.0 (4.10.1 available)\n  matcher 0.12.17 (0.12.20 available)\n  material_color_utilities 0.11.1 (0.13.1 available)\n  meta 1.17.0 (1.19.0 available)\n  mime 2.0.0 (2.1.0 available)\n  pdf 3.12.0 (3.13.1 available)\n  petitparser 7.0.2 (7.1.0 available)\n  printing 5.14.3 (5.15.1 available)\n  qr 3.0.2 (4.0.0 available)\n  stack_trace 1.12.1 (1.12.2 available)\n  test_api 0.7.7 (0.7.14 available)\n  vector_math 2.2.0 (2.4.3 available)\n  vm_service 15.2.0 (15.3.0 available)\n  win32 5.15.0 (6.4.0 available)\n  xml 6.6.1 (7.1.0 available)\nGot dependencies!\n24 packages have newer versions incompatible with dependency constraints.\nTry `flutter pub outdated` for more information.\nAnalyzing app...                                                \nNo issues found! (ran in 1.8s)"
+  },
+  {
+   "name": "flutter-tests",
+   "passed": true,
+   "exit_code": 0,
+   "output_tail": "ojects/Pharmacogenomic Risk Prediction System/app/test/backend_status_test.dart: a backend that never answers a transport exception also ends in unreachable, not a crash \n00:17 +200: /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app/test/backend_status_test.dart: a backend that never answers a backend that wakes on the last attempt still reaches ready\n00:18 +200: /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app/test/backend_status_test.dart: a backend that never answers a backend that wakes on the last attempt still reaches ready\n00:18 +201: /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app/test/backend_status_test.dart: a backend that never answers a backend that wakes on the last attempt still reaches ready\n00:18 +201: /Users/bhuvant/Projects/Pharmacogenomic ... unreachable is distinguishable from the other three waits it is not busy, and says something the others do not                                 \n00:18 +202: /Users/bhuvant/Projects/Pharmacogenomic ... unreachable is distinguishable from the other three waits it is not busy, and says something the others do not                                 \n00:18 +202: All tests passed!"
+  }
+ ],
+ "adjudication": {
+  "entries": 20,
+  "flagged_sentences": 179,
+  "adjudicated": 160,
+  "adjudicated_by_human": 124,
+  "adjudicated_by_automation": 36,
+  "escalated_awaiting_human": 19,
+  "outstanding": 19,
+  "rejected": 0,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "state": "incomplete",
+  "adjudication_complete": false,
+  "human_adjudication_complete": false,
+  "exit_code": 1
+ },
+ "review": {
+  "total": 20,
+  "provenance_verified": 20,
+  "provenance_unverified": 0,
+  "read_by_author": 0,
+  "unread": 20,
+  "author_concerns": 0,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "fallback": 0,
+  "guard_failed": 0,
+  "provenance_complete": true,
+  "exit_code": 0
+ },
+ "manifest": {
+  "compatible": true,
+  "all_entries_approved": false,
+  "approved_entries_human_bound": false,
+  "stored_generated_entries": 20,
+  "approved_generated_entries": 0,
+  "unapproved_generated_entries": 20,
+  "releasable_generated_entries": 0,
+  "fallback_only_cases": 20,
+  "human_review_complete_for_releasable_set": null,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "counts": {
+   "approved": 0,
+   "unresolved": 20,
+   "rejected": 0
+  },
+  "store_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+  "manifest_store_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+  "problems": []
+ },
+ "compatible_bundle": {
+  "compatible": true,
+  "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-04-v3",
+  "manifest_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+  "problems": [],
+  "exit_code": 0
+ },
+ "content_ready": false
+}

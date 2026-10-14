@@ -1,0 +1,11 @@
+{
+  "actual_browser_clipboard_read": true,
+  "actual_clipboard_bytes": 30189,
+  "actual_clipboard_sha256": "bdc29c085481488d763e71e5ab5da185c9db2b3b646cb2468a613384e4bc8089",
+  "api_sha256": "6f432b83256fb4491faee25534aa4dc70e663baee9e09dc466e6969442e92b1a",
+  "scientific_parity": true,
+  "capability_registry_parity": true,
+  "only_transform": "omit deprecated confidence_score/severity; add exact assessment_scope and registry application_capability",
+  "receipt_reconstructed_bytes_match_actual_clipboard_sha256": true,
+  "receipt_method": "Lossless reconstruction from captured API using documented export transform and browser JSON number serialization; SHA-256 exactly matches actual clipboard bytes read and hashed by CUA."
+}

@@ -1,0 +1,98 @@
+── label-mapping correctness (exhaustive) ────────────────────────────────────
+  drug            agree  total
+  azathioprine       32     35
+  clopidogrel        24     24
+  codeine            13     23
+  fluorouracil        5      5
+  simvastatin         6      6
+  warfarin           12     12
+──────────────────────────────────────────────────────────────────────────────
+
+  combinations 105   agreements 92   disagreements 13
+  coverage: EXHAUSTIVE over every CPIC recommendation PharmCAT ships
+            for these drugs — not a sample.
+
+13 disagreement(s):
+
+  azathioprine · NUDT15:Indeterminate, TPMT:No Result
+    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenoty
+
+  azathioprine · NUDT15:Indeterminate, TPMT:Indeterminate
+    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenoty
+
+  azathioprine · NUDT15:No Result, TPMT:Indeterminate
+    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Neither TPMT or NUDT15 phenotype could be assigned based on genotyping performed. Consider evaluating TPMT erythrocyte activity to assess TPMT phenoty
+
+  codeine · CYP2D6:xN combinations
+    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : xN is not a valid input for CYP2D6 copy number alleles. Please select a copy number representation as outlined below. 
+ 
+ 
+ 
+ xN Allele 
+ Possible sel
+
+  codeine · CYP2D6:0.25 · general
+    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.
+    implies : CYP2D6: Reduced morphine formation
+
+  codeine · CYP2D6:1.25 · general
+    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing.
+    implies : CYP2D6: Expected morphine formation
+
+  codeine · CYP2D6:0.5 · general
+    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.
+    implies : CYP2D6: Reduced morphine formation
+
+  codeine · CYP2D6:1.5 · general
+    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing.
+    implies : CYP2D6: Expected morphine formation
+
+  codeine · CYP2D6:2.0 · general
+    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing.
+    implies : CYP2D6: Expected morphine formation
+
+  codeine · CYP2D6:0.75 · general
+    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.
+    implies : CYP2D6: Reduced morphine formation
+
+  codeine · CYP2D6:1.75 · general
+    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing.
+    implies : CYP2D6: Expected morphine formation
+
+  codeine · CYP2D6:2.25 · general
+    expected No PGx-guided adjustment identified  got Unknown  (rule: fallback_unmatched)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing.
+    implies : CYP2D6: Expected morphine formation
+
+  codeine · CYP2D6:1.0 · general
+    expected No PGx-guided adjustment identified  got Adjust Dosage  (rule: dose_change_or_monitoring)
+    basis   : CPIC: no alternative drug and no dosing change
+    CPIC    : Use codeine label recommended age- or weight-specific dosing. If no response and opioid use is warranted, consider a non-tramadol opioid.
+    implies : CYP2D6: Reduced morphine formation
+
+  label_mapping.yaml was NOT modified by this script.
+
+  PASS: 13 divergence(s), all of them in the accepted baseline (label_mapping_accepted_divergences.json).

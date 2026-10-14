@@ -1,0 +1,48 @@
+{
+  "baseline_release_pass": false,
+  "scope": "content-only gate in isolated copy; full working-candidate gate run separately",
+  "baseline": {
+    "required_checks_passed": false,
+    "human_adjudication_complete": false,
+    "no_rejected_or_outstanding_claims": false,
+    "provenance_complete": true,
+    "manifest_compatible": true,
+    "scientific_bundle_compatible": true,
+    "all_entries_approved": false,
+    "approved_entries_human_bound": false,
+    "artifact_hashes_match": true,
+    "candidate_revision_matches": true,
+    "no_clinical_expert_review_claim": true
+  },
+  "invalid": {
+    "required_checks_passed": false,
+    "human_adjudication_complete": false,
+    "no_rejected_or_outstanding_claims": false,
+    "provenance_complete": true,
+    "manifest_compatible": false,
+    "scientific_bundle_compatible": false,
+    "all_entries_approved": false,
+    "approved_entries_human_bound": false,
+    "artifact_hashes_match": true,
+    "candidate_revision_matches": true,
+    "no_clinical_expert_review_claim": true
+  },
+  "rejection_reasons": [
+    "approval manifest and explanation-store hashes differ",
+    "content hash mismatch: azathioprine/IM"
+  ],
+  "restored": {
+    "required_checks_passed": false,
+    "human_adjudication_complete": false,
+    "no_rejected_or_outstanding_claims": false,
+    "provenance_complete": true,
+    "manifest_compatible": true,
+    "scientific_bundle_compatible": true,
+    "all_entries_approved": false,
+    "approved_entries_human_bound": false,
+    "artifact_hashes_match": true,
+    "candidate_revision_matches": true,
+    "no_clinical_expert_review_claim": true
+  },
+  "exact_restoration": true
+}

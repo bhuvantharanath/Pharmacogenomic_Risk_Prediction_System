@@ -36,6 +36,7 @@ class UnknownPanel extends StatelessWidget {
         : (dark ? const Color(0xFF8AB4F8) : const Color(0xFF1A5FB4));
     final IconData icon = switch (reason) {
       UnknownReason.lowCoverage => Icons.upload_file_outlined,
+      UnknownReason.unusableGenotypes => Icons.upload_file_outlined,
       UnknownReason.notCallable => Icons.biotech_outlined,
       UnknownReason.ambiguous => Icons.alt_route,
       UnknownReason.noGuidance => Icons.menu_book_outlined,
@@ -72,8 +73,10 @@ class UnknownPanel extends StatelessWidget {
           const SizedBox(height: 8),
           Text(reason.explanation, style: theme.textTheme.bodyMedium),
 
-          // The measured numbers, for the one state where they exist.
-          if (reason == UnknownReason.lowCoverage && coverage != null) ...<Widget>[
+          // The measured numbers, for the coverage states where they exist.
+          if ((reason == UnknownReason.lowCoverage ||
+                  reason == UnknownReason.unusableGenotypes) &&
+              coverage != null) ...<Widget>[
             const SizedBox(height: 12),
             _CoverageBar(coverage: coverage!, accent: accent),
           ],

@@ -104,13 +104,17 @@ jobs:
           EXPLANATION_MODE: static
         run: python -m pytest tests/test_coverage_gate.py tests/test_phenotype_label_invariant.py -q
 
-      # THE RELEASE GATE. Fails if any flagged claim is unadjudicated, or if a
-      # rejected sentence is still in the store.
-      - name: Adjudication gate
-        run: python scripts/adjudication_status.py
+      # Detail reports do not make an independent release decision. The
+      # authoritative status below consumes the same data together with the
+      # exact approval-manifest/store hashes.
+      - name: Explanation review detail
+        if: always()
+        run: |
+          python scripts/adjudication_status.py --json || true
+          python scripts/review_status.py --json || true
 
-      - name: Review status
-        run: python scripts/review_status.py
+      - name: Authoritative explanation-content gate
+        run: python scripts/release_status.py --content-only
 
       # Glossary coverage: does every domain term a user meets have an answer?
       #

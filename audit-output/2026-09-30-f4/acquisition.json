@@ -1,0 +1,53 @@
+{
+  "at": "2026-09-30T13:57:04.356363+00:00",
+  "artifacts": [
+    {
+      "url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=ERR3239353&result=read_run&fields=run_accession,sample_accession,submitted_ftp,submitted_md5,submitted_bytes&format=tsv",
+      "path": "NA18526.ena.tsv",
+      "bytes": 318,
+      "sha256": "9049e576e209cde2e3057b99f4931f4113d0dfb99a9ac781a1f6b2283a2c0a3c",
+      "md5": "9ba9e2f928c1fb569603f41fd2e9eb6f"
+    },
+    {
+      "url": "https://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239353/NA18526.final.cram.crai",
+      "path": "NA18526.final.cram.crai",
+      "bytes": 1456179,
+      "sha256": "6f703b4ea850afe77df577eeabf6ec03ab43ef4cf5d1d2df5e8aaf5955bfba26",
+      "md5": "b333d9d1b41e78c75d670628892cc1e2"
+    },
+    {
+      "url": "https://www.ebi.ac.uk/ena/portal/api/filereport?accession=ERR3239334&result=read_run&fields=run_accession,sample_accession,submitted_ftp,submitted_md5,submitted_bytes&format=tsv",
+      "path": "NA12878.ena.tsv",
+      "bytes": 318,
+      "sha256": "2ef1331694fa40a40ef077f808bc90fd235e5cf3a2cdefb1a76454d2d7a620b5",
+      "md5": "918dd08ab3152a6a510b44ee78243674"
+    },
+    {
+      "url": "https://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239334/NA12878.final.cram.crai",
+      "path": "NA12878.final.cram.crai",
+      "bytes": 1378885,
+      "sha256": "34f4827317b1208c38541d1dccd45d162e565285aef6884b7b16116fe2012d72",
+      "md5": "cc4cbfd43c2ee258a09ed505f6b4491e"
+    },
+    {
+      "url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa.fai",
+      "path": "source-reference.fa.fai",
+      "bytes": 154196,
+      "sha256": "f361f004bdae5ca68d632458b01a3848d02834ac7176f378e177344d148a6a6d",
+      "md5": "5ccc91e56dc4a05448dd5b9507ec6bc6"
+    },
+    {
+      "url": "https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/technical/reference/GRCh38_reference_genome/GRCh38_full_analysis_set_plus_decoy_hla.fa",
+      "range": "bytes=1698811686-1834520498",
+      "path": "exact-reference-chr10.range",
+      "sha256": "8f8475a58fd4c050122724636f3378646305b50849dd1f6fcf1f6d84b58107b0",
+      "bytes": 135708813
+    },
+    {
+      "path": "GRCh38.chr10.fa",
+      "sha256": "5380b5de2f7c54026e87cb6cd30573f645bce6466481f15861d45557d7590933",
+      "sequence_md5": "c0eeee7acfdaf31b770a509bdaa6e51a",
+      "description": "Exact complete chr10 sequence matching both CRAM M5 headers, FASTA wrapped at 60."
+    }
+  ]
+}

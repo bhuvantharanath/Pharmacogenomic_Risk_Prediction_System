@@ -1,0 +1,11 @@
+{
+  "changed": [
+    "backend/tests/test_demo_script.py",
+    "backend/tests/test_sample_vcfs.py",
+    "docs/DEMO_SCRIPT.md",
+    "scripts/run_demo.py",
+    "test-data/demo/README.md"
+  ],
+  "missing": [],
+  "prior_count": 421
+}

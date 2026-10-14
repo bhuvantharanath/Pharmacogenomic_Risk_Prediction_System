@@ -1,0 +1,19 @@
+{
+  "command": [
+    "bcftools",
+    "call",
+    "-m",
+    "--ploidy",
+    "2",
+    "-a",
+    "FORMAT/GQ",
+    "-Ov",
+    "-o",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.calls.vcf",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.pileup.bcf"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 0,
+  "seconds": 0.13295512499462347,
+  "at": "2026-10-05T13:13:27.625216+00:00"
+}

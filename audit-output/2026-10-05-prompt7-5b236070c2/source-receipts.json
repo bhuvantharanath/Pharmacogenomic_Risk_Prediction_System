@@ -1,0 +1,37 @@
+[
+  {
+    "name": "pharmcat-latest",
+    "url": "https://api.github.com/repos/PharmGKB/PharmCAT/releases/latest",
+    "at": "2026-10-05T13:11:30.257560+00:00",
+    "status": 200,
+    "sha256": "7fc17cdff93c4b6b6a406d8676a00ecd281d0c2182f1a62cbec7240af1f6b095"
+  },
+  {
+    "name": "pharmvar-version",
+    "url": "https://www.pharmvar.org/get-version",
+    "at": "2026-10-05T13:11:30.875997+00:00",
+    "status": 200,
+    "sha256": "c472975466f081d3006fbdc0e1f64d5747171f79ac6ed72d86396a243b54c2d3"
+  },
+  {
+    "name": "pharmvar-2",
+    "url": "https://www.pharmvar.org/api/haplotypes/3110?projection=FullHaplotypeInfo",
+    "at": "2026-10-05T13:11:30.836659+00:00",
+    "status": 200,
+    "sha256": "4c3ad581c4b2e709e4eb97b3d13318bb5e8bbb0a5351c0561002d801eb2a9e4e"
+  },
+  {
+    "name": "pharmvar-2-history",
+    "url": "https://www.pharmvar.org/get-haplotype-history?id=3110",
+    "at": "2026-10-05T13:11:30.883194+00:00",
+    "status": 200,
+    "sha256": "bde58a38f555f7498cbd22320355d68c90bb5a0a7be2ba8f0e99c560fd27482a"
+  },
+  {
+    "name": "pharmvar-2-variants",
+    "url": "https://www.pharmvar.org/api/haplotypes/search/findAllVariantsForHap?id=3110",
+    "at": "2026-10-05T13:11:30.883063+00:00",
+    "status": 200,
+    "sha256": "a77b3058785dd5500a18f4911bc6e26fab4c71bf4618e2eb76e3b5792b607e87"
+  }
+]

@@ -1,0 +1,1694 @@
+diff --git a/app/lib/config.dart b/app/lib/config.dart
+index 411189e..1ce9bde 100644
+--- a/app/lib/config.dart
++++ b/app/lib/config.dart
+@@ -63,9 +63,10 @@ const String kDisclaimerShort =
+ const String kDisclaimer =
+     'Research/educational decision support only. '
+     'Not a medical device. Not for clinical use. '
+-    'No qualified clinical expert has reviewed this text: every clinical '
+-    'statement is machine-verified to come from a published CPIC recommendation, '
+-    'which checks that nothing was invented, not that it is correct for you.';
++    'No qualified clinical expert has reviewed this text. Recommendation text '
++    'is quoted from CPIC via PharmCAT, and automated source checks are not human '
++    'review: they cannot show that every statement is supported or that it is '
++    'correct for you.';
+ 
+ /// How long to keep trying to wake the backend before calling it unreachable.
+ ///
+diff --git a/app/lib/models/analysis.dart b/app/lib/models/analysis.dart
+index 5623651..e4c0961 100644
+--- a/app/lib/models/analysis.dart
++++ b/app/lib/models/analysis.dart
+@@ -348,6 +348,23 @@ class GeneCoverage {
+   final bool? decisionCriticalEnforced;
+   final Map<String, int>? evidenceCounts;
+ 
++  int get _shortfall => positionsRequired > positionsPresent
++      ? positionsRequired - positionsPresent
++      : 0;
++
++  /// Required positions absent from the file, from the backend's typed counts.
++  /// A response without counts (an older backend) reads the whole shortfall as
++  /// absence, which is what the client assumed before the counts existed.
++  int get absentPositions {
++    final int? absent = evidenceCounts?['absent_position'];
++    if (absent == null) return _shortfall;
++    return absent < _shortfall ? absent : _shortfall;
++  }
++
++  /// Required positions that ARE in the file but whose genotype could not be
++  /// used: a failed FILTER, a partial, missing or malformed call.
++  int get unusablePositions => _shortfall - absentPositions;
++
+   factory GeneCoverage.fromJson(Map<String, dynamic> json) => GeneCoverage(
+     positionsPresent: (json['positions_present'] as num?)?.toInt() ?? 0,
+     positionsRequired: (json['positions_required'] as num?)?.toInt() ?? 0,
+diff --git a/app/lib/models/unknown_reason.dart b/app/lib/models/unknown_reason.dart
+index 288a66f..afeb050 100644
+--- a/app/lib/models/unknown_reason.dart
++++ b/app/lib/models/unknown_reason.dart
+@@ -6,12 +6,14 @@
+ /// identically would repeat that mistake in the UI, where the user actually sees
+ /// it.
+ ///
+-/// These four are clinically different, and only one of them is the user's to fix:
++/// These are clinically different, and only two of them are the user's to fix:
+ ///
+-///   notCallable   the gene cannot be resolved from a VCF at all, ever
+-///   lowCoverage   the uploaded file lacks required positions — ACTIONABLE
+-///   ambiguous     several genotypes fit and they disagree about function
+-///   noGuidance    CPIC publishes nothing for this gene/drug/phenotype
++///   notCallable        this application does not call the gene from a VCF
++///   lowCoverage        the uploaded file lacks required positions — ACTIONABLE
++///   unusableGenotypes  every position is present, but a genotype failed its
++///                      FILTER or was only partly called — ACTIONABLE
++///   ambiguous          several genotypes fit and they disagree about function
++///   noGuidance         CPIC publishes nothing for this gene/drug/phenotype
+ ///
+ /// HOW THEY ARE DETECTED, and where that is fragile
+ ///
+@@ -29,12 +31,18 @@ import 'enums.dart';
+ import '../generated/capabilities.g.dart';
+ 
+ enum UnknownReason {
+-  /// Structural variation a VCF cannot express (CYP2D6 copy number).
++  /// Structural and copy-number variation this application does not call from
++  /// an uploaded VCF (CYP2D6).
+   notCallable,
+ 
+   /// The uploaded VCF lacks enough required positions. The user can fix this.
+   lowCoverage,
+ 
++  /// Every required position is in the file, but at least one genotype could
++  /// not be used: a failed FILTER, a partial, missing or malformed call. Also
++  /// the user's to fix — by re-calling, not by emitting more sites.
++  unusableGenotypes,
++
+   /// Several diplotypes fit and their phenotypes disagree about function.
+   ambiguous,
+ 
+@@ -47,21 +55,25 @@ enum UnknownReason {
+ 
+   /// Short label for the badge.
+   String get headline => switch (this) {
+-    UnknownReason.notCallable => 'Not determinable from a VCF',
++    UnknownReason.notCallable => 'Not called from an uploaded VCF',
+     UnknownReason.lowCoverage => 'Your file is missing required positions',
++    UnknownReason.unusableGenotypes => 'Required genotypes could not be used',
+     UnknownReason.ambiguous => 'Several genotypes fit this data',
+     UnknownReason.noGuidance => 'No CPIC guidance for this combination',
+     UnknownReason.unspecified => 'Result withheld',
+   };
+ 
+   /// Whether the *user* can do something about it. Drives the call to action.
+-  bool get isActionable => this == UnknownReason.lowCoverage;
++  bool get isActionable =>
++      this == UnknownReason.lowCoverage ||
++      this == UnknownReason.unusableGenotypes;
+ 
+   String get explanation => switch (this) {
+     UnknownReason.notCallable =>
+-      'This gene is defined by structural and copy-number changes, which a VCF '
+-          'file cannot represent. No amount of extra sequencing depth in a VCF will '
+-          'resolve it — it needs a different kind of genetic test. The system declines to guess '
++      'This gene’s result depends on structural and copy-number changes that '
++          'need specialised analysis of the sequencing reads, which this '
++          'application does not perform. No VCF uploaded here will resolve it — '
++          'it needs a specialised test or caller. The system declines to guess '
+           'rather than report a genotype it cannot support.',
+     UnknownReason.lowCoverage =>
+       'Some of the positions needed to identify this gene carry no genotype in '
+@@ -69,6 +81,12 @@ enum UnknownReason {
+           'absent is invisible, so the genotype would read as normal and a '
+           'reduced-function result could be reported as safe. The system declines '
+           'rather than risk that.',
++    UnknownReason.unusableGenotypes =>
++      'Every position needed to identify this gene is in your file, but at '
++          'least one carries a genotype that cannot be used — a failed FILTER, '
++          'or a partial or missing call. A change at an unusable position is '
++          'invisible, so a reduced-function result could be reported as normal. '
++          'The system declines rather than risk that.',
+     UnknownReason.ambiguous =>
+       'More than one genotype is equally consistent with your data, and they do '
+           'not agree on how this gene functions. Reporting whichever one happened to '
+@@ -89,6 +107,10 @@ enum UnknownReason {
+           'reference — a clinical pharmacogenomic panel, or data covering all your '
+           'genes, produced with every position reported. A variants-only file '
+           'cannot work here.',
++    UnknownReason.unusableGenotypes =>
++      'Check the genotype and FILTER values your caller wrote at the affected '
++          'positions, and re-call them so each carries a complete genotype that '
++          'passed its filters.',
+     _ => null,
+   };
+ }
+@@ -99,8 +121,8 @@ UnknownReason classifyUnknown(PerDrugResult result, QualityMetrics metrics) {
+   final String gene = geneForResult(result);
+   final DrugCapability? capability = capabilityForDrug(result.drug);
+ 
+-  // A VCF cannot enable CYP2D6 or this app's unsupported warfarin dosing.
+-  // These limits take precedence over a short position census.
++  // No uploaded VCF enables this app's CYP2D6 calling or its unsupported
++  // warfarin dosing. These limits take precedence over a short position census.
+   if (gene == 'CYP2D6' && capability?.guidanceCapable == false) {
+     return UnknownReason.notCallable;
+   }
+@@ -108,10 +130,14 @@ UnknownReason classifyUnknown(PerDrugResult result, QualityMetrics metrics) {
+     return UnknownReason.unspecified;
+   }
+ 
+-  // 1. TYPED SIGNAL, preferred. Coverage is a real field, not prose.
++  // 1. TYPED SIGNAL, preferred. Coverage is a real field, not prose, and its
++  // evidence counts separate an absent row from one whose genotype failed —
++  // the two need different fixes.
+   final GeneCoverage? cov = metrics.positionCoverage[gene];
+   if (cov != null && !cov.sufficient) {
+-    return UnknownReason.lowCoverage;
++    return cov.absentPositions == 0 && cov.unusablePositions > 0
++        ? UnknownReason.unusableGenotypes
++        : UnknownReason.lowCoverage;
+   }
+ 
+   // 2. Warning text. Fragile by nature — see the library doc.
+diff --git a/app/lib/print/summary_document.dart b/app/lib/print/summary_document.dart
+index 7c37257..6a4dd46 100644
+--- a/app/lib/print/summary_document.dart
++++ b/app/lib/print/summary_document.dart
+@@ -131,9 +131,10 @@ String _disclaimer() => '''
+   final-year student project for research and education. It has not been
+   clinically validated, and no qualified clinical expert has reviewed the
+   explanatory text on this page.</p>
+-  <p>Every clinical statement here is machine-checked to trace back to a
+-  published CPIC recommendation. That verifies nothing was invented. It does not
+-  verify that any of it is correct for the person this sample came from.</p>
++  <p>Recommendation text on this page is quoted from published CPIC guidance via
++  PharmCAT. Automated source checks are not human review: they cannot show that
++  every statement here is supported, or that any of it is correct for the person
++  this sample came from.</p>
+   <p>Do not change a medicine on the strength of this page. Take it to a
+   qualified healthcare professional.</p>
+ </section>''';
+@@ -206,8 +207,8 @@ String _unknownSection(List<PerDrugResult> unknowns, QualityMetrics m) {
+     ..writeln('<h2>Unknown results (${unknowns.length})</h2>')
+     ..writeln(
+       '<p class="note">An Unknown is a declined answer, not a missing '
+-      'one. Only one of these reasons is something the sample provider can '
+-      'act on.</p>',
++      'one. Only the reasons about the file itself — missing positions or '
++      'unusable genotypes — are something the sample provider can act on.</p>',
+     );
+ 
+   for (final PerDrugResult r in unknowns) {
+@@ -248,14 +249,15 @@ String _census(QualityMetrics m) {
+     ..writeln('<h2>Input coverage</h2>')
+     ..writeln(
+       '<p class="note">How many of the positions each gene needs '
+-      'carried an explicit genotype in the uploaded file. A position that is '
+-      'absent reads as matching the reference, so missing data produces '
+-      'confident results rather than uncertain ones — which is why the count '
+-      'is printed whether or not it passed.</p>',
++      'carried a usable genotype in the uploaded file. A genotype caller reads '
++      'an absent position as matching the reference, so missing data can '
++      'produce confident results rather than uncertain ones — which is why the '
++      'count is printed whether or not it passed, and why a gene below its '
++      'minimum is reported as Unknown.</p>',
+     )
+     ..writeln(
+       '<table class="census"><thead><tr>'
+-      '<th>gene</th><th>reported</th><th>required</th><th>minimum</th>'
++      '<th>gene</th><th>usable</th><th>required</th><th>minimum</th>'
+       '<th>sufficient</th></tr></thead><tbody>',
+     );
+ 
+diff --git a/app/lib/screens/about_screen.dart b/app/lib/screens/about_screen.dart
+index db1e96b..513bb77 100644
+--- a/app/lib/screens/about_screen.dart
++++ b/app/lib/screens/about_screen.dart
+@@ -186,11 +186,11 @@ class _AboutScreenState extends State<AboutScreen> {
+                           'education. It has not been clinically validated and '
+                           'must not be used to make decisions about anyone’s '
+                           'medication. No qualified clinical expert has reviewed '
+-                          'the explanatory text: every clinical statement is '
+-                          'machine-checked to come from a published CPIC '
+-                          'recommendation, which verifies that nothing was '
+-                          'invented — not that it is correct for you. Always '
+-                          'consult a qualified healthcare professional.',
++                          'the explanatory text. Recommendation text is quoted '
++                          'from CPIC; automated source checks are not human '
++                          'review and cannot show that a statement is supported '
++                          'or correct for you. Always consult a qualified '
++                          'healthcare professional.',
+                           style: Tokens.proseSm.copyWith(color: Tokens.ink),
+                         ),
+                       ],
+diff --git a/app/lib/screens/home_screen.dart b/app/lib/screens/home_screen.dart
+index 040542d..faf37f3 100644
+--- a/app/lib/screens/home_screen.dart
++++ b/app/lib/screens/home_screen.dart
+@@ -347,12 +347,13 @@ class _HomeScreenState extends State<HomeScreen> {
+                 ),
+                 const SizedBox(height: 6),
+                 Text(
+-                  // The old copy called the explanations "placeholders". They are
+-                  // pre-generated, guard-checked and provenance-verified — the line
+-                  // undersold the work and contradicted the README.
++                  // Stored pre-generated prose is served only with a matching
++                  // approval, and none has one yet: what a reader sees is the
++                  // deterministic template, which no provenance check reads. So
++                  // the line says only what holds for every served explanation.
+                   'Upload a GRCh38 VCF and list the drugs to check. Genotypes are '
+                   'called by PharmCAT, dosing guidance is quoted from CPIC, and the '
+-                  'explanations are pre-generated and checked against their source.',
++                  'explanations are automated text that no clinician has reviewed.',
+                   style: theme.textTheme.bodyMedium?.copyWith(
+                     color: theme.colorScheme.onSurfaceVariant,
+                   ),
+@@ -407,8 +408,11 @@ class _HomeScreenState extends State<HomeScreen> {
+                 ),
+                 const SizedBox(height: 10),
+                 Text(
+-                  'Drugs with CPIC guidance in this build — anything else returns '
+-                  '"Unknown":',
++                  // Warfarin and codeine are in scope only as explicit
++                  // abstentions (capability registry), so they are not listed as
++                  // drugs this build gives guidance for.
++                  'Drugs in this build’s scope — warfarin and codeine always '
++                  'return "Unknown" here, as does any other drug:',
+                   style: theme.textTheme.labelSmall?.copyWith(
+                     color: theme.colorScheme.onSurfaceVariant,
+                   ),
+diff --git a/app/lib/widgets/coverage_census.dart b/app/lib/widgets/coverage_census.dart
+index 94d11fa..8f6a7db 100644
+--- a/app/lib/widgets/coverage_census.dart
++++ b/app/lib/widgets/coverage_census.dart
+@@ -13,9 +13,9 @@
+ /// every one of them reporting reduced function as normal — so the count is
+ /// exactly what a reader needs when the answer looks fine.
+ ///
+-/// A gene that cannot be called from a VCF at all shows "not applicable" with a
+-/// reason, never a zero bar. Zero would say "your file is deficient"; the truth
+-/// is that no VCF can carry this information.
++/// A gene this application does not call from a VCF shows "not applicable" with
++/// a reason, never a zero bar. Zero would say "your file is deficient"; the
++/// truth is that this application does not read that gene from any upload.
+ library;
+ 
+ import 'package:flutter/material.dart';
+@@ -50,7 +50,7 @@ class CoverageCensus extends StatelessWidget {
+     return Semantics(
+       // One spoken sentence beats 35 unlabelled ticks for a screen reader.
+       label: '$gene coverage: ${c.positionsPresent} of '
+-          '${c.positionsRequired} required positions reported'
++          '${c.positionsRequired} required positions usable'
+           '${c.sufficient ? '' : ', below the ${c.minimumPercent} percent minimum'}',
+       excludeSemantics: true,
+       child: Column(
+@@ -83,10 +83,7 @@ class CoverageCensus extends StatelessWidget {
+           ),
+           const SizedBox(height: 7),
+           Text(
+-            complete
+-                ? 'Every required position was reported.'
+-                : '${c.positionsRequired - c.positionsPresent} of '
+-                    '${c.positionsRequired} positions were not reported in your file.',
++            complete ? 'Every required position was reported.' : _shortfall(c),
+             style: Tokens.uiSm.copyWith(color: complete ? Tokens.ink2 : tick),
+           ),
+         ],
+@@ -94,6 +91,23 @@ class CoverageCensus extends StatelessWidget {
+     );
+   }
+ 
++  /// What the shortfall is made of. A row missing from the file and a row whose
++  /// genotype failed its FILTER or was only partly called need different
++  /// fixes, so they are not both described as "not reported".
++  static String _shortfall(GeneCoverage c) {
++    final int absent = c.absentPositions;
++    final int unusable = c.unusablePositions;
++    final String notReported =
++        '$absent of ${c.positionsRequired} positions were not reported in your file';
++    if (unusable == 0) return '$notReported.';
++    const String why =
++        'carried a genotype that could not be used (failed FILTER, partial or '
++        'missing call)';
++    return absent == 0
++        ? '$unusable of ${c.positionsRequired} positions $why.'
++        : '$notReported, and $unusable more $why.';
++  }
++
+   Widget _notApplicable(BuildContext context) => Semantics(
+         label: '$gene: not applicable. $notApplicableReason',
+         excludeSemantics: true,
+diff --git a/app/lib/widgets/disclosure_row.dart b/app/lib/widgets/disclosure_row.dart
+index 81b9a60..76d2c7b 100644
+--- a/app/lib/widgets/disclosure_row.dart
++++ b/app/lib/widgets/disclosure_row.dart
+@@ -44,11 +44,27 @@ class DisclosureRow extends StatefulWidget {
+   State<DisclosureRow> createState() => _DisclosureRowState();
+ }
+ 
+-class _DisclosureRowState extends State<DisclosureRow> {
++class _DisclosureRowState extends State<DisclosureRow>
++    with AutomaticKeepAliveClientMixin<DisclosureRow> {
+   bool _open = false;
+ 
++  /// An open row in a lazily built list must not close itself when scrolled
++  /// far away and back (see SummaryGrid). Kept alive only while open.
+   @override
+-  Widget build(BuildContext context) => Column(
++  bool get wantKeepAlive => _open;
++
++  void _toggle() {
++    setState(() => _open = !_open);
++    updateKeepAlive();
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    super.build(context);
++    return _build(context);
++  }
++
++  Widget _build(BuildContext context) => Column(
+     crossAxisAlignment: CrossAxisAlignment.stretch,
+     children: <Widget>[
+       Semantics(
+@@ -59,7 +75,7 @@ class _DisclosureRowState extends State<DisclosureRow> {
+             : '${widget.title}. ${widget.subtitle}',
+         excludeSemantics: true,
+         child: InkWell(
+-          onTap: () => setState(() => _open = !_open),
++          onTap: _toggle,
+           // Focus has to be visible: this is the control a keyboard user lands
+           // on most often, and the default ripple is invisible on paper.
+           focusColor: Tokens.accent.withValues(alpha: 0.28),
+diff --git a/app/lib/widgets/file_readiness.dart b/app/lib/widgets/file_readiness.dart
+index e37a3e8..3e6dabb 100644
+--- a/app/lib/widgets/file_readiness.dart
++++ b/app/lib/widgets/file_readiness.dart
+@@ -300,9 +300,10 @@ class _Footnote extends StatelessWidget {
+             'called positions in this file. Re-calling with all sites emitted '
+             'would fix it.',
+       if (blocked.isNotEmpty)
+-        '${blocked.map((GeneReadiness g) => g.gene).join(', ')}: cannot be '
+-            'read from any VCF. A different kind of genetic test is needed — a '
+-            'different file will not help.',
++        '${blocked.map((GeneReadiness g) => g.gene).join(', ')}: not called '
++            'from an uploaded VCF by this application — it needs specialised '
++            'copy-number and structural-variant calling, so a different file '
++            'will not help.',
+     ];
+ 
+     return Padding(
+diff --git a/app/lib/widgets/summary_grid.dart b/app/lib/widgets/summary_grid.dart
+index ac9640c..32c9e22 100644
+--- a/app/lib/widgets/summary_grid.dart
++++ b/app/lib/widgets/summary_grid.dart
+@@ -69,20 +69,29 @@ class SummaryGrid extends StatefulWidget {
+   State<SummaryGrid> createState() => _SummaryGridState();
+ }
+ 
+-class _SummaryGridState extends State<SummaryGrid> {
++class _SummaryGridState extends State<SummaryGrid>
++    with AutomaticKeepAliveClientMixin<SummaryGrid> {
+   /// Keyed by drug rather than index so the open set survives a re-sort.
+   final Set<String> _open = <String>{};
+ 
++  /// The grid is one child of the lazily built results list. Without this, a
++  /// long scroll down to the exports disposed it, and every opened row came
++  /// back closed. Kept alive only while something is open.
++  @override
++  bool get wantKeepAlive => _open.isNotEmpty;
++
+   @override
+   void initState() {
+     super.initState();
+     if (widget.startExpanded) {
+       _open.addAll(widget.analyses.map((PerDrugResult r) => r.drug));
++      updateKeepAlive();
+     }
+   }
+ 
+   @override
+   Widget build(BuildContext context) {
++    super.build(context);
+     final List<PerDrugResult> ordered = orderByConsequence(widget.analyses);
+ 
+     return Column(
+@@ -94,9 +103,12 @@ class _SummaryGridState extends State<SummaryGrid> {
+             metrics: widget.metrics,
+             mode: widget.mode,
+             open: _open.contains(r.drug),
+-            onToggle: () => setState(() {
+-              _open.contains(r.drug) ? _open.remove(r.drug) : _open.add(r.drug);
+-            }),
++            onToggle: () {
++              setState(() {
++                _open.contains(r.drug) ? _open.remove(r.drug) : _open.add(r.drug);
++              });
++              updateKeepAlive();
++            },
+           ),
+       ],
+     );
+diff --git a/app/lib/widgets/unknown_panel.dart b/app/lib/widgets/unknown_panel.dart
+index 3d86930..9ec4013 100644
+--- a/app/lib/widgets/unknown_panel.dart
++++ b/app/lib/widgets/unknown_panel.dart
+@@ -36,6 +36,7 @@ class UnknownPanel extends StatelessWidget {
+         : (dark ? const Color(0xFF8AB4F8) : const Color(0xFF1A5FB4));
+     final IconData icon = switch (reason) {
+       UnknownReason.lowCoverage => Icons.upload_file_outlined,
++      UnknownReason.unusableGenotypes => Icons.upload_file_outlined,
+       UnknownReason.notCallable => Icons.biotech_outlined,
+       UnknownReason.ambiguous => Icons.alt_route,
+       UnknownReason.noGuidance => Icons.menu_book_outlined,
+@@ -72,8 +73,10 @@ class UnknownPanel extends StatelessWidget {
+           const SizedBox(height: 8),
+           Text(reason.explanation, style: theme.textTheme.bodyMedium),
+ 
+-          // The measured numbers, for the one state where they exist.
+-          if (reason == UnknownReason.lowCoverage && coverage != null) ...<Widget>[
++          // The measured numbers, for the coverage states where they exist.
++          if ((reason == UnknownReason.lowCoverage ||
++                  reason == UnknownReason.unusableGenotypes) &&
++              coverage != null) ...<Widget>[
+             const SizedBox(height: 12),
+             _CoverageBar(coverage: coverage!, accent: accent),
+           ],
+diff --git a/app/lib/widgets/unknown_reason_panel.dart b/app/lib/widgets/unknown_reason_panel.dart
+index 4cd094c..de892d2 100644
+--- a/app/lib/widgets/unknown_reason_panel.dart
++++ b/app/lib/widgets/unknown_reason_panel.dart
+@@ -1,4 +1,4 @@
+-/// The four Unknowns, each looking and reading like itself.
++/// The Unknown reasons, each looking and reading like itself.
+ ///
+ /// Conflating "no data" with "data we cannot classify" is an error this project
+ /// documented in THREE separate backend layers before it was named. Rendering
+@@ -6,7 +6,8 @@
+ /// actually see, so each reason gets its own copy, its own icon, and its own
+ /// remedy — or an explicit statement that there is no remedy.
+ ///
+-/// Only ONE of the four is the user's to fix. Saying so plainly is the whole
++/// Only the two file-evidence reasons (missing positions, unusable genotypes)
++/// are the user's to fix. Saying so plainly is the whole
+ /// point: an actionable problem dressed up as a limit wastes their time, and a
+ /// hard limit dressed up as actionable sends them looking for a better file that
+ /// does not exist.
+@@ -50,14 +51,26 @@ class UnknownReasonPanel extends StatelessWidget {
+           'as does whole-genome or exome data called with all sites emitted. '
+           'A variants-only file cannot work here.',
+     ),
++    UnknownReason.unusableGenotypes => (
++      'A required genotype could not be used',
++      'Every position this gene needs is in your file, but at least one '
++          'carries a genotype that cannot be used — a failed FILTER, or a '
++          'partial or missing call. A variant at an unusable position is '
++          'invisible, so a reduced-function result would be reported as '
++          'normal. The system declines rather than risk that.',
++      'Check the genotype and FILTER values your caller wrote at the '
++          'affected positions, and re-call them so each carries a complete '
++          'genotype that passed its filters.',
++    ),
+     UnknownReason.notCallable => (
+-      'This gene cannot be read from a VCF',
+-      'This gene is defined by structural and copy-number variation — whole '
+-          'stretches duplicated, deleted or rearranged. A VCF records single '
+-          'positions, so it has no way to express that. This is a limit of '
+-          'the file format, not of your sample.',
+-      'A different kind of genetic test can resolve it. No VCF, however '
+-          'complete, will.',
++      'This gene is not called from a VCF here',
++      'This gene’s result depends on structural and copy-number variation — '
++          'whole stretches duplicated, deleted or rearranged. Calling that '
++          'needs specialised analysis of the sequencing reads, which this '
++          'application does not perform. This is a limit of this application, '
++          'not of your sample.',
++      'A specialised CYP2D6 test or caller can resolve it. A different VCF '
++          'uploaded here will not.',
+     ),
+     UnknownReason.ambiguous => (
+       'The evidence was adequate but not decisive',
+@@ -87,6 +100,8 @@ class UnknownReasonPanel extends StatelessWidget {
+ 
+   IconData get _icon => switch (reason) {
+     UnknownReason.lowCoverage => Icons.upload_file_outlined,
++    // The existing actionable-file icon, not a new one: the fix is a new file.
++    UnknownReason.unusableGenotypes => Icons.upload_file_outlined,
+     UnknownReason.notCallable => Icons.biotech_outlined,
+     UnknownReason.ambiguous => Icons.alt_route_outlined,
+     UnknownReason.noGuidance => Icons.menu_book_outlined,
+@@ -128,9 +143,10 @@ class UnknownReasonPanel extends StatelessWidget {
+           // Prose, because a person reads it.
+           GlossaryText(body, style: Tokens.proseSm),
+ 
+-          // The census carries the argument for the coverage case, so it is
++          // The census carries the argument for the coverage cases, so it is
+           // shown here rather than left further down the card.
+-          if (reason == UnknownReason.lowCoverage &&
++          if ((reason == UnknownReason.lowCoverage ||
++                  reason == UnknownReason.unusableGenotypes) &&
+               coverage != null) ...<Widget>[
+             const SizedBox(height: 13),
+             CoverageCensus(
+diff --git a/app/lib/widgets/verdict_card.dart b/app/lib/widgets/verdict_card.dart
+index dae87ba..70b7e76 100644
+--- a/app/lib/widgets/verdict_card.dart
++++ b/app/lib/widgets/verdict_card.dart
+@@ -22,11 +22,12 @@ import 'disclosure_row.dart';
+ import 'unknown_reason_panel.dart';
+ import 'view_mode.dart';
+ 
+-/// Genes that no VCF can resolve, with the reason shown in place of ticks.
++/// Genes this application does not call from a VCF, with the reason shown in
++/// place of ticks.
+ const Map<String, String> _notCallableFromVcf = <String, String>{
+   'CYP2D6':
+-      'Defined by copy-number and structural variation, which a VCF '
+-      'cannot represent. A different kind of genetic test is required.',
++      'Not called from an uploaded VCF by this application: copy-number and '
++      'structural variation need specialised read-level calling.',
+ };
+ 
+ class VerdictCard extends StatefulWidget {
+diff --git a/app/test/print_summary_test.dart b/app/test/print_summary_test.dart
+index 61f0b5b..af5cb36 100644
+--- a/app/test/print_summary_test.dart
++++ b/app/test/print_summary_test.dart
+@@ -186,8 +186,8 @@ void main() {
+         ),
+       );
+ 
+-      expect(html, contains('Not determinable from a VCF'));
+-      expect(html, contains('needs a different kind of genetic test'));
++      expect(html, contains('Not called from an uploaded VCF'));
++      expect(html, contains('needs a specialised test or caller'));
+       expect(
+         html,
+         contains('Nothing about the uploaded file would change this result.'),
+diff --git a/app/test/readiness_test.dart b/app/test/readiness_test.dart
+index 8055fef..982a377 100644
+--- a/app/test/readiness_test.dart
++++ b/app/test/readiness_test.dart
+@@ -5,7 +5,7 @@
+ /// renders. Three claims are load-bearing:
+ ///
+ ///   1. it never blocks — every state leaves the analysis reachable;
+-///   2. "short on coverage" and "no VCF can read this" stay apart, because the
++///   2. "short on coverage" and "this application does not call it" stay apart, because the
+ ///      remedies are opposite and one of them does not exist;
+ ///   3. the drug lists are honest in both directions — a drug the file can
+ ///      answer is named, and so is one it cannot.
+@@ -43,9 +43,9 @@ final GeneReadiness _cyp2d6 = _gene(
+   found: 157,
+   required_: 157,
+   blocked: true,
+-  reason: 'Defined by copy-number and structural variation, which a VCF cannot '
+-      'express. A different kind of genetic test is needed; no VCF will '
+-      'resolve it.',
++  reason: 'Not called from an uploaded VCF by this application: CYP2D6 results '
++      'depend on copy-number and structural variation, which need specialised '
++      'read-level calling. Uploading a different VCF here will not resolve it.',
+ );
+ 
+ CoverageResponse _readiness({
+@@ -167,11 +167,15 @@ void main() {
+       expect(find.textContaining('Re-calling with all sites emitted'),
+           findsOneWidget);
+ 
+-      // CYP2D6: no file will ever carry it. Say so, and do not send the user
+-      // looking for a better one.
+-      expect(find.textContaining('CYP2D6: cannot be read from any VCF'),
++      // CYP2D6: this application does not call it from any upload. Say so, and
++      // do not send the user looking for a better file.
++      expect(
++          find.textContaining(
++              'CYP2D6: not called from an uploaded VCF by this application'),
+           findsOneWidget);
+-      expect(find.textContaining('A different kind of genetic test is needed'),
++      expect(
++          find.textContaining(
++              'specialised copy-number and structural-variant calling'),
+           findsOneWidget);
+       expect(find.textContaining('a different file will not help'),
+           findsOneWidget);
+@@ -183,9 +187,11 @@ void main() {
+       await t.pumpAndSettle();
+ 
+       // "not applicable" is the census's own not-readable rendering. A bar of
+-      // 157 empty ticks would say the file was deficient; the format is.
++      // 157 empty ticks would say the file was deficient; the limit is this
++      // application's.
+       expect(find.text('not applicable'), findsOneWidget);
+-      expect(find.textContaining('no VCF will resolve it'), findsWidgets);
++      expect(find.textContaining('Uploading a different VCF here will not resolve it'),
++          findsWidgets);
+     });
+   });
+ 
+diff --git a/app/test/redesign_test.dart b/app/test/redesign_test.dart
+index 44f03c2..c881c3f 100644
+--- a/app/test/redesign_test.dart
++++ b/app/test/redesign_test.dart
+@@ -146,12 +146,12 @@ void main() {
+       expect(find.text('4 / 35'), findsOneWidget);
+     });
+ 
+-    testWidgets('not-callable blames the format, not the sample',
++    testWidgets('not-callable names this application\'s limit, not the sample',
+         (WidgetTester t) async {
+       await _pump(t, UnknownReasonPanel(
+         reason: UnknownReason.notCallable,
+         profile: _profile(gene: 'CYP2D6')));
+-      expect(find.textContaining('cannot be read from a VCF'), findsOneWidget);
++      expect(find.textContaining('not called from a VCF here'), findsOneWidget);
+       expect(find.textContaining('not of your sample'), findsOneWidget);
+       expect(find.text('WHAT WOULD WORK'), findsNothing);
+     });
+diff --git a/app/test/state_census_test.dart b/app/test/state_census_test.dart
+index 7c3413b..d65f7f3 100644
+--- a/app/test/state_census_test.dart
++++ b/app/test/state_census_test.dart
+@@ -183,7 +183,7 @@ void main() {
+     expect(RiskLabel.values.length, 5,
+         reason: 'a risk label was added or removed — add it to the render '
+             'group above, then update this count');
+-    expect(UnknownReason.values.length, 5,
++    expect(UnknownReason.values.length, 6,
+         reason: 'an Unknown reason was added or removed — the render group '
+             'enumerates the enum, but this pins the expected size so the '
+             'change is noticed rather than silently absorbed');
+diff --git a/app/test/unknown_reason_test.dart b/app/test/unknown_reason_test.dart
+index 951d7f1..e99df8c 100644
+--- a/app/test/unknown_reason_test.dart
++++ b/app/test/unknown_reason_test.dart
+@@ -192,14 +192,14 @@ void main() {
+       expect(texts.length, UnknownReason.values.length);
+     });
+ 
+-    test('only low coverage is actionable', () {
++    test('only the file-evidence reasons are actionable', () {
++      const Set<UnknownReason> actionable = <UnknownReason>{
++        UnknownReason.lowCoverage,
++        UnknownReason.unusableGenotypes,
++      };
+       for (final UnknownReason r in UnknownReason.values) {
+-        expect(r.isActionable, r == UnknownReason.lowCoverage, reason: '$r');
+-        expect(
+-          r.callToAction != null,
+-          r == UnknownReason.lowCoverage,
+-          reason: '$r',
+-        );
++        expect(r.isActionable, actionable.contains(r), reason: '$r');
++        expect(r.callToAction != null, actionable.contains(r), reason: '$r');
+       }
+     });
+   });
+@@ -257,7 +257,7 @@ void main() {
+           profile: _profile(gene: 'CYP2D6'),
+         ),
+       );
+-      expect(find.textContaining('cannot represent'), findsOneWidget);
++      expect(find.textContaining('this application does not perform'), findsOneWidget);
+       expect(
+         find.byIcon(Icons.lightbulb_outline),
+         findsNothing,
+diff --git a/backend/app/coverage.py b/backend/app/coverage.py
+index c156eae..a7312f3 100644
+--- a/backend/app/coverage.py
++++ b/backend/app/coverage.py
+@@ -304,11 +304,13 @@ def variants_only_warning() -> str:
+         "This VCF contains no homozygous-reference genotypes at any of PharmCAT's "
+         "required positions, which means it is almost certainly a variants-only "
+         "file. Such a file is indistinguishable from one where those positions "
+-        "were never tested, and the consequence is NOT a missing result — it is a "
++        "were never tested. For a genotype caller that reads a missing position "
++        "as reference, the consequence is NOT a missing result — it is a "
+         "confident WRONG result: a change whose key position is missing is "
+-        "invisible, so the genotype reads as reference and a reduced-function "
+-        "patient is reported as normal. Measured rate of confidently-wrong calls "
+-        "at 60% position coverage: up to 28.6%. Produce the file again with "
++        "invisible, so a reduced-function patient is reported as normal. "
++        "Measured rate of confidently-wrong calls at 60% position coverage: up "
++        "to 28.6%. This application therefore reports genes without their "
++        "required positions as Unknown rather than as normal. Produce the file again with "
+         "EVERY position reported — including the ones that match the reference "
+         "— so each required position carries an explicit genotype. The input "
+         "requirements page gives the exact commands. "
+@@ -401,13 +403,16 @@ def quality_not_established_warning(report: CoverageReport) -> str:
+ # Readiness — the shared view both /coverage and the client consume
+ # --------------------------------------------------------------------------- #
+ 
+-#: Genes no VCF can resolve, whatever the coverage, with the reason to show in
+-#: place of a tick bar. A zero bar would blame the user's file for a limit of the
+-#: file format.
++#: Genes this application does not call from an uploaded VCF, whatever the
++#: coverage, with the reason to show in place of a tick bar. A zero bar would
++#: blame the user's file for a limit of this application. (VCF itself can carry
++#: structural-variant and copy-number records; calling them for CYP2D6 needs
++#: specialised read-level analysis this application does not perform.)
+ NOT_READABLE_FROM_VCF: dict[str, str] = {
+     "CYP2D6": (
+-        "Defined by copy-number and structural variation, which a VCF cannot "
+-        "express. A different kind of genetic test is needed; no VCF will resolve it."
++        "Not called from an uploaded VCF by this application: CYP2D6 results "
++        "depend on copy-number and structural variation, which need specialised "
++        "read-level calling. Uploading a different VCF here will not resolve it."
+     ),
+ }
+ 
+diff --git a/backend/app/main.py b/backend/app/main.py
+index af3cfb0..3e549c9 100644
+--- a/backend/app/main.py
++++ b/backend/app/main.py
+@@ -779,8 +779,10 @@ def build_response(
+ 
+     store = explanation_store.load_store()
+     # The honest disclosure. This project has no qualified clinical reviewer,
+-    # so the warning states what was actually done -- provenance verification --
+-    # and names the gap directly rather than implying a review is pending.
++    # so the warning states what the automated checks do and cannot show, and
++    # names the gap directly rather than implying a review is pending. Served
++    # wording may be the deterministic template, which no provenance check
++    # reads, so nothing here may claim every statement was verified.
+     if store.entries:
+         if store.unverified_count:
+             warnings.append(
+@@ -788,11 +790,13 @@ def build_response(
+                 "have unverified clinical content. Treat their wording with caution."
+             )
+         warnings.append(
+-            "No qualified clinical expert has reviewed these explanations. This "
+-            "system writes no clinical content of its own: every clinical "
+-            "statement is machine-verified to trace to a CPIC recommendation "
+-            "issued by PharmCAT, or to a cited mechanism document. That checks "
+-            "provenance, not correctness."
++            "No qualified clinical expert has reviewed these explanations. "
++            "Recommendation text is quoted from CPIC annotations issued by "
++            "PharmCAT; explanatory wording is generated by this application. "
++            "Automated checks can flag stored wording that does not trace to a "
++            "CPIC recommendation or a cited mechanism document, but they are not "
++            "human review and cannot show that every statement is supported: "
++            "they check provenance, not correctness."
+         )
+ 
+     unknown = [
+diff --git a/backend/app/models.py b/backend/app/models.py
+index ae088ff..9baae6c 100644
+--- a/backend/app/models.py
++++ b/backend/app/models.py
+@@ -31,14 +31,16 @@ from pydantic import BaseModel, ConfigDict, Field
+ #:
+ #: The second sentence is load-bearing. "Not a medical device" is a legal
+ #: disclaimer that every such tool carries and every reader skims. Naming the
+-#: specific gap -- that no clinician has read this text, and what was done
+-#: instead -- is the part that actually informs.
++#: specific gap -- that no clinician has read this text, and what the automated
++#: checks can and cannot show -- is the part that actually informs. The checks
++#: are a filter, not a review: they never establish that nothing was invented.
+ DISCLAIMER = (
+     "Research/educational decision support only. "
+     "Not a medical device. Not for clinical use. "
+-    "No qualified clinical expert has reviewed this text: every clinical "
+-    "statement is machine-verified to come from a published CPIC recommendation, "
+-    "which checks that nothing was invented, not that it is correct for you."
++    "No qualified clinical expert has reviewed this text. Recommendation text "
++    "is quoted from CPIC via PharmCAT, and automated source checks are not human "
++    "review: they cannot show that every statement is supported or that it is "
++    "correct for you."
+ )
+ 
+ 
+diff --git a/backend/tests/test_analyze_api.py b/backend/tests/test_analyze_api.py
+index 2a54751..521a601 100644
+--- a/backend/tests/test_analyze_api.py
++++ b/backend/tests/test_analyze_api.py
+@@ -173,17 +173,21 @@ class TestContractCompatibility:
+         likely to be trimmed for brevity.
+ 
+         "Not a medical device" is boilerplate every such tool carries and every
+-        reader skims. The specific gap — no clinician read this, and here is
+-        what was done instead — is the part that actually informs, so the text
+-        must keep both halves: the absence, and the guarantee that replaces it.
++        reader skims. The specific gap — no clinician read this, and what the
++        automated checks can and cannot show — is the part that actually
++        informs, so the text must keep both halves. The automated check is not
++        a guarantee that replaces review: an earlier version said it "checks
++        that nothing was invented" (reproduced and corrected 2026-10-14; see
++        test_disclosure_wording.py).
+         """
+         from app.models import DISCLAIMER
+ 
+         assert "No qualified clinical expert has reviewed" in DISCLAIMER
+-        assert "machine-verified" in DISCLAIMER
++        assert "automated source checks are not human review" in DISCLAIMER
+         assert "CPIC" in DISCLAIMER
+-        # It must not overstate: verification is about provenance, not truth.
+-        assert "not that it is correct for you" in DISCLAIMER
++        # It must not overstate: checks are about provenance, not truth.
++        assert "correct for you" in DISCLAIMER
++        assert "nothing was invented" not in DISCLAIMER
+ 
+     def test_client_and_api_disclaimers_are_identical(self) -> None:
+         """
+diff --git a/backend/tests/test_coverage_endpoint.py b/backend/tests/test_coverage_endpoint.py
+index f476f25..d87b8ab 100644
+--- a/backend/tests/test_coverage_endpoint.py
++++ b/backend/tests/test_coverage_endpoint.py
+@@ -135,22 +135,25 @@ def test_preview_and_analysis_thresholds_come_from_the_same_place() -> None:
+ 
+ 
+ # --------------------------------------------------------------------------- #
+-# CYP2D6 — a limit of the format, not a deficiency of the file
++# CYP2D6 — a limit of this application, not a deficiency of the file
+ # --------------------------------------------------------------------------- #
+ 
+ 
+ def test_cyp2d6_is_never_reported_as_a_coverage_failure() -> None:
+     """
+-    Even at 100% of its positions, CYP2D6 cannot be called from a VCF: it is
+-    defined by copy number and structural variation. Reporting it as a coverage
+-    shortfall would tell a user to re-call their file, which will never work.
++    Even at 100% of its positions, this application does not call CYP2D6 from a
++    VCF: its result depends on copy-number and structural variation that needs
++    specialised read-level calling. Reporting it as a coverage shortfall would
++    tell a user to re-call their file, which will never work here.
+     """
+     reported = _gene(_post(_at_coverage("CYP2D6", 1.0)).json(), "CYP2D6")
+ 
+     assert reported["not_readable_from_vcf"] is True
+     assert reported["passes"] is False
+-    # The reason must point at the assay, not at the upload.
+-    assert "no VCF will resolve it" in reported["reason"]
++    # The reason must point at this application's limit, not at the upload, and
++    # must not blame the VCF format (which can carry SV/CNV records).
++    assert "this application" in reported["reason"]
++    assert "Uploading a different VCF here will not resolve it" in reported["reason"]
+     assert "required positions were reported" not in reported["reason"]
+ 
+ 
+diff --git a/backend/app/data/compatible_bundle.json b/backend/app/data/compatible_bundle.json
+index 4cf31d8..f5a63fc 100644
+--- a/backend/app/data/compatible_bundle.json
++++ b/backend/app/data/compatible_bundle.json
+@@ -1,6 +1,6 @@
+ {
+   "schema_version": 3,
+-  "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-04-v3",
++  "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-14-v4",
+   "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
+   "application_hash_policy": {
+     "version": 2,
+@@ -298,7 +298,7 @@
+     "pharmcat_reports": 208,
+     "application_eligible_sample_gene_rows": 0,
+     "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
+-    "application_core_sha256": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
++    "application_core_sha256": "bd20329df0c975a549f91640b785e35b9c5a7fe2afd081ea585413463c29a38f",
+     "application_hash_policy_version": 2,
+     "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
+     "benchmark_historical_hash_policy_version": 1,
+@@ -342,12 +342,12 @@
+     "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
+   },
+   "evaluation_current": {
+-    "evaluation_id": "pharmaguard-external-current-candidate-v2-2026-10-04",
+-    "application_core_sha256": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
++    "evaluation_id": "pharmaguard-external-current-candidate-v3-2026-10-14",
++    "application_core_sha256": "bd20329df0c975a549f91640b785e35b9c5a7fe2afd081ea585413463c29a38f",
+     "manifest": {
+-      "path": "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json",
+-      "sha256": "23a46b1070cd82b578c4f518ab77a0b87af71a30573513d87139328d61b7898a",
+-      "bytes": 5256
++      "path": "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json",
++      "sha256": "ef3202f4f159548b93f4353b00802bd5bf53c300f3633e3233d604988d879786",
++      "bytes": 5542
+     },
+     "historical_benchmark_manifest": {
+       "path": "test-data/benchmark/external/benchmark_manifest.json",
+@@ -365,54 +365,54 @@
+     },
+     "outputs": [
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/EVALUATION-REPORT.md",
+-        "bytes": 2237,
+-        "sha256": "e85b41c741f09b8ee6792f1123fb1715ed0d83e09110c188df9e68f255c45c73"
++        "path": "test-data/benchmark/current-candidate-2026-10-14/EVALUATION-REPORT.md",
++        "bytes": 2556,
++        "sha256": "a31cbf8804dfc2ac8ade32b2072c55f3ff6b9d55b208aa98a2bf2b4c60174194"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/discrepancies.tsv",
++        "path": "test-data/benchmark/current-candidate-2026-10-14/discrepancies.tsv",
+         "bytes": 172478,
+         "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/evaluation-comparison.json",
+-        "bytes": 3911,
+-        "sha256": "7694e4992cef7ee12ae1f4dc8be7eadd974708b06f5398c1d3cb55c40b91c012"
++        "path": "test-data/benchmark/current-candidate-2026-10-14/evaluation-comparison.json",
++        "bytes": 4302,
++        "sha256": "125ce8958ba65303c62a6eab37dd1d92e9295c8770fa7d80758c62e525a90353"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/exclusions.tsv",
++        "path": "test-data/benchmark/current-candidate-2026-10-14/exclusions.tsv",
+         "bytes": 48960,
+         "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/external_benchmark_results.json",
++        "path": "test-data/benchmark/current-candidate-2026-10-14/external_benchmark_results.json",
+         "bytes": 33667,
+-        "sha256": "debd692befa93ea41a6872036a2eccdea8e06c44d9f27af280348a0687c3961d"
++        "sha256": "d67349aa7186782d13d02d20fa853ace6ca0b0ffe0046fba2729de16af381727"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/f4-fresh-replay.json",
+-        "bytes": 1603,
+-        "sha256": "e693302d3cbbe0c8e5a24099abc9c2eeec798ce2d5c480d02f13a67c31d9cf50"
++        "path": "test-data/benchmark/current-candidate-2026-10-14/f4-fresh-replay.json",
++        "bytes": 1767,
++        "sha256": "e35d07b5eddc19fc7ab9c14bc7e3a8add89e0e06f4464e6d2224d6289fa0de81"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/input_eligibility.tsv",
++        "path": "test-data/benchmark/current-candidate-2026-10-14/input_eligibility.tsv",
+         "bytes": 466620,
+-        "sha256": "98de68b51fd4eebe01d152cfea7e3872dd5d8c4ce9a8e92cc3964166f8dc65bf"
++        "sha256": "1799a9c4cb64b5249c8b6832c56db0e8e2a18ef95934ef6215f53951a95d6bfc"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/raw_benchmark_manifest.json",
++        "path": "test-data/benchmark/current-candidate-2026-10-14/raw_benchmark_manifest.json",
+         "bytes": 7588,
+-        "sha256": "0a5c408901fef191da4a8a720861affdf362afed8cac5bd6c4e8c3d4cb49d37c"
++        "sha256": "8718e6e0d41cb781e3cc67a61b682bf1824fc3ff6397b3d75af950c19e28ad40"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/raw_scoring_report.md",
++        "path": "test-data/benchmark/current-candidate-2026-10-14/raw_scoring_report.md",
+         "bytes": 11481,
+         "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+       },
+       {
+-        "path": "test-data/benchmark/current-candidate-2026-10-04/stage-command-receipts.json",
+-        "bytes": 2920,
+-        "sha256": "420a4ce15f03e39f4240b7d7ff9611b31bc12cc8148e40a3fd8ec2e86b1759d0"
++        "path": "test-data/benchmark/current-candidate-2026-10-14/stage-command-receipts.json",
++        "bytes": 4162,
++        "sha256": "fca2ba9b0eb705eea56bbb4e5ee90ae4e9a35c0796c95fb190d3cc6ea1535a45"
+       }
+     ],
+     "evidence_matches": true,
+diff --git a/backend/tests/test_current_candidate_evaluation.py b/backend/tests/test_current_candidate_evaluation.py
+index 55f3b33..e4b2cda 100644
+--- a/backend/tests/test_current_candidate_evaluation.py
++++ b/backend/tests/test_current_candidate_evaluation.py
+@@ -33,7 +33,7 @@ def test_versioned_evaluation_declares_historical_source_separately() -> None:
+     record = bundle.current_evaluation_record()
+     source = json.loads((REPO_ROOT / "test-data/benchmark/external/benchmark_manifest.json").read_text())
+     current = json.loads(
+-        (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json").read_text()
++        (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json").read_text()
+     )
+     assert current["historical_benchmark_id"] == source["benchmark_id"]
+     assert current["candidate_application_core_sha256"] != source["local_production_artifact_sha256"]
+@@ -43,7 +43,7 @@ def test_versioned_evaluation_declares_historical_source_separately() -> None:
+ def test_current_evidence_is_portable_and_tampering_fails_closed(tmp_path: Path) -> None:
+     root = tmp_path / "candidate-in-another-parent"
+     manifest = json.loads(
+-        (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json").read_text()
++        (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json").read_text()
+     )
+     refs = [manifest[name]["path"] for name in (
+         "frozen_protocol", "frozen_cohort_lock", "independent_truth_workbook",
+@@ -55,7 +55,7 @@ def test_current_evidence_is_portable_and_tampering_fails_closed(tmp_path: Path)
+     paths.update(item["path"] for item in manifest["outputs"])
+     paths.update({
+         "scripts/scientific_hash_policy.json",
+-        "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json",
++        "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json",
+         "test-data/benchmark/external/external_benchmark_results.json",
+     })
+     for relative in sorted(paths):
+@@ -64,7 +64,7 @@ def test_current_evidence_is_portable_and_tampering_fails_closed(tmp_path: Path)
+         shutil.copy2(REPO_ROOT / relative, destination)
+ 
+     assert bundle.current_evaluation_record(root)["evidence_matches"] is True
+-    result = root / "test-data/benchmark/current-candidate-2026-10-04/external_benchmark_results.json"
++    result = root / "test-data/benchmark/current-candidate-2026-10-14/external_benchmark_results.json"
+     result.write_bytes(result.read_bytes() + b"\n")
+     decision = bundle.current_evaluation_record(root)
+     assert decision["evidence_matches"] is False
+diff --git a/backend/tests/test_portable_scientific_hash.py b/backend/tests/test_portable_scientific_hash.py
+index 5073fd6..8c8fbb7 100644
+--- a/backend/tests/test_portable_scientific_hash.py
++++ b/backend/tests/test_portable_scientific_hash.py
+@@ -147,7 +147,7 @@ def test_clean_isolated_copy_passes_bundle_verification(tmp_path: Path, monkeypa
+     )
+     required.update(
+         str(path.relative_to(REPO_ROOT))
+-        for path in (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-04").iterdir()
++        for path in (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-14").iterdir()
+         if path.is_file()
+     )
+     for relative in sorted(required):
+diff --git a/scripts/compatible_bundle.py b/scripts/compatible_bundle.py
+index 905c19d..5187f5c 100644
+--- a/scripts/compatible_bundle.py
++++ b/scripts/compatible_bundle.py
+@@ -18,7 +18,7 @@ JAR_PATH = REPO_ROOT / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
+ HASH_POLICY_RELATIVE = "scripts/scientific_hash_policy.json"
+ MIGRATION_RELATIVE = "scripts/application_hash_migration.json"
+ CURRENT_EVALUATION_RELATIVE = (
+-    "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json"
++    "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json"
+ )
+ HASH_POLICY_VERSION = 2
+ SCOPED_GENES = (
+@@ -361,7 +361,7 @@ def build_manifest() -> dict[str, Any]:
+ 
+     return {
+         "schema_version": 3,
+-        "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-04-v3",
++        "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-14-v4",
+         "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
+         "application_hash_policy": {
+             "version": HASH_POLICY_VERSION,
+diff --git a/scripts/release_status.py b/scripts/release_status.py
+index 3013795..2d8311a 100644
+--- a/scripts/release_status.py
++++ b/scripts/release_status.py
+@@ -30,17 +30,17 @@ RELEASE_IDENTITY_EXTRAS = (
+     "backend/app/data/compatible_bundle.json",
+     "scripts/scientific_hash_policy.json",
+     "scripts/application_hash_migration.json",
+-    "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json",
+-    "test-data/benchmark/current-candidate-2026-10-04/raw_benchmark_manifest.json",
+-    "test-data/benchmark/current-candidate-2026-10-04/external_benchmark_results.json",
+-    "test-data/benchmark/current-candidate-2026-10-04/input_eligibility.tsv",
+-    "test-data/benchmark/current-candidate-2026-10-04/exclusions.tsv",
+-    "test-data/benchmark/current-candidate-2026-10-04/discrepancies.tsv",
+-    "test-data/benchmark/current-candidate-2026-10-04/raw_scoring_report.md",
+-    "test-data/benchmark/current-candidate-2026-10-04/evaluation-comparison.json",
+-    "test-data/benchmark/current-candidate-2026-10-04/f4-fresh-replay.json",
+-    "test-data/benchmark/current-candidate-2026-10-04/stage-command-receipts.json",
+-    "test-data/benchmark/current-candidate-2026-10-04/EVALUATION-REPORT.md",
++    "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json",
++    "test-data/benchmark/current-candidate-2026-10-14/raw_benchmark_manifest.json",
++    "test-data/benchmark/current-candidate-2026-10-14/external_benchmark_results.json",
++    "test-data/benchmark/current-candidate-2026-10-14/input_eligibility.tsv",
++    "test-data/benchmark/current-candidate-2026-10-14/exclusions.tsv",
++    "test-data/benchmark/current-candidate-2026-10-14/discrepancies.tsv",
++    "test-data/benchmark/current-candidate-2026-10-14/raw_scoring_report.md",
++    "test-data/benchmark/current-candidate-2026-10-14/evaluation-comparison.json",
++    "test-data/benchmark/current-candidate-2026-10-14/f4-fresh-replay.json",
++    "test-data/benchmark/current-candidate-2026-10-14/stage-command-receipts.json",
++    "test-data/benchmark/current-candidate-2026-10-14/EVALUATION-REPORT.md",
+     "scripts/compatible_bundle.py",
+     "scripts/verify_compatible_bundle.py",
+     "scripts/release_status.py",
+diff --git a/backend/tests/test_disclosure_wording.py b/backend/tests/test_disclosure_wording.py
+new file mode 100644
+index 0000000..8096ce9
+--- /dev/null
++++ b/backend/tests/test_disclosure_wording.py
+@@ -0,0 +1,123 @@
++"""
++Disclosure wording has to describe what the system actually does.
++
++Each case below was reproduced through the real local API, browser, JSON export
++and printed PDF on 2026-10-14
++(`audit-output/2026-10-14-prompt8-4da1199df2/DEFECTS.md`):
++
++* Automated provenance described as a guarantee. The per-result disclaimer and
++  the analysis warning said every clinical statement is machine-verified and
++  that this "checks that nothing was invented", while the same responses were
++  served by the deterministic template (`source=template`), which no provenance
++  check reads, and `scripts/verify_provenance.py` documents itself as a filter
++  that cannot detect a reversed claim. Automated checks must not be presented
++  as human review or as proof that invented content is impossible.
++* An application limit presented as a file-format limit. CYP2D6 readiness said a
++  VCF "cannot express" copy-number and structural variation and that "no VCF
++  will resolve it". VCF 4.3 section 5.3 defines structural-variant and
++  copy-number records; the limit is that this application does not call CYP2D6
++  from an uploaded VCF.
++* An upstream hazard presented as this application's output. The variants-only
++  warning said the consequence "is NOT a missing result" without saying that
++  this application reports those genes as Unknown — which the same response does.
++"""
++
++from __future__ import annotations
++
++import io
++
++import pytest
++from fastapi.testclient import TestClient
++
++from app import coverage, main
++from app.models import DISCLAIMER
++from app.pharmcat_models import PharmcatReport
++
++#: Phrases that turn an automated provenance filter into a guarantee.
++OVERCLAIMS = (
++    "nothing was invented",
++    "invented nothing",
++    "every clinical statement is machine",
++    "machine-verified to come from",
++    "machine-verified to trace",
++    "writes no clinical content of its own",
++)
++
++#: Phrases that attribute this application's CYP2D6 limit to the VCF format.
++FORMAT_CLAIMS = (
++    "cannot express",
++    "cannot represent",
++    "no vcf will resolve",
++    "cannot be read from any vcf",
++    "no way to express",
++)
++
++
++@pytest.fixture
++def client(monkeypatch: pytest.MonkeyPatch, cyp2c19_pm_report: PharmcatReport):
++    async def fake_run_pharmcat(vcf_text: str, *, sample_hint: str = "sample"):
++        return cyp2c19_pm_report
++
++    monkeypatch.setattr(main, "run_pharmcat", fake_run_pharmcat)
++    return TestClient(main.app)
++
++
++def _post(client: TestClient, path: str, content: bytes, drugs: str | None = None):
++    return client.post(
++        path,
++        files={"file": ("test.vcf", io.BytesIO(content), "text/plain")},
++        data={"drugs": drugs} if drugs else {},
++    )
++
++
++def test_disclaimer_bounds_automated_checks() -> None:
++    text = DISCLAIMER.lower()
++    for phrase in OVERCLAIMS:
++        assert phrase not in text, f"disclaimer overclaims: {phrase!r}"
++    assert "no qualified clinical expert has reviewed" in text
++    assert "cpic" in text
++    # The automated check is named for what it is, not offered in place of review.
++    assert "not human review" in text
++    assert "correct for you" in text
++
++
++def test_analysis_response_does_not_overclaim_provenance(
++    client: TestClient, valid_vcf_bytes: bytes
++) -> None:
++    body = _post(client, "/analyze", valid_vcf_bytes, "clopidogrel,codeine").json()
++    warnings = " ".join(body["quality_metrics"]["warnings"]).lower()
++    for phrase in OVERCLAIMS:
++        assert phrase not in warnings, f"analysis warning overclaims: {phrase!r}"
++    assert "not human review" in warnings
++    for analysis in body["analyses"]:
++        disclaimer = analysis["llm_generated_explanation"]["disclaimer"].lower()
++        for phrase in OVERCLAIMS:
++            assert phrase not in disclaimer, f"{analysis['drug']} disclaimer overclaims: {phrase!r}"
++
++
++def test_cyp2d6_reason_names_the_application_boundary(valid_vcf_bytes: bytes) -> None:
++    reason = coverage.NOT_READABLE_FROM_VCF["CYP2D6"].lower()
++    for phrase in FORMAT_CLAIMS:
++        assert phrase not in reason, f"CYP2D6 reason blames the file format: {phrase!r}"
++    assert "this application" in reason
++
++    reported = next(
++        g
++        for g in TestClient(main.app)
++        .post("/coverage", files={"file": ("t.vcf", io.BytesIO(valid_vcf_bytes), "text/plain")})
++        .json()["genes"]
++        if g["gene"] == "CYP2D6"
++    )
++    assert reported["not_readable_from_vcf"] is True
++    assert reported["reason"] == coverage.NOT_READABLE_FROM_VCF["CYP2D6"]
++
++
++def test_variants_only_warning_states_that_this_application_withholds() -> None:
++    message = coverage.variants_only_warning()
++    lower = message.lower()
++    # The hazard is still named — and attributed to callers that read an
++    # absent position as reference — and the application's own behaviour is stated.
++    assert "confident WRONG result" in message
++    assert "genotype caller" in lower
++    assert "this application" in lower
++    assert "unknown" in lower
+diff --git a/app/test/disclosure_wording_test.dart b/app/test/disclosure_wording_test.dart
+new file mode 100644
+index 0000000..b45737d
+--- /dev/null
++++ b/app/test/disclosure_wording_test.dart
+@@ -0,0 +1,445 @@
++/// Wording and state that must stay true to what the system actually does.
++///
++/// Each group pins a defect reproduced through the real local API, browser,
++/// JSON export and printed PDF on 2026-10-14
++/// (audit-output/2026-10-14-prompt8-4da1199df2/DEFECTS.md):
++///
++///   DEF-1  automated provenance described as a guarantee ("verifies nothing
++///          was invented"), and served template text described as pre-generated
++///          and source-checked;
++///   DEF-2  this application's CYP2D6 limit described as a VCF format limit;
++///   DEF-3  the upstream missing-is-reference hazard described as this
++///          application's output;
++///   DEF-4  present-but-unusable genotypes (failed FILTER, partial call)
++///          described as "not reported", with an emit-all-sites remedy;
++///   DEF-5  opened results collapsing after a long scroll to the exports;
++///   DEF-6  warfarin and codeine listed under "Drugs with CPIC guidance in
++///          this build", although this build always returns Unknown for both.
++library;
++
++import 'dart:convert';
++import 'dart:io';
++
++import 'package:flutter/material.dart';
++import 'package:flutter/gestures.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:pharmaguard/config.dart';
++import 'package:pharmaguard/glossary/glossary_text.dart';
++import 'package:pharmaguard/models/analysis.dart';
++import 'package:pharmaguard/models/enums.dart';
++import 'package:pharmaguard/models/unknown_reason.dart';
++import 'package:pharmaguard/print/summary_document.dart';
++import 'package:pharmaguard/screens/about_screen.dart';
++import 'package:pharmaguard/screens/results_screen.dart';
++import 'package:pharmaguard/theme/tokens.dart';
++import 'package:pharmaguard/widgets/coverage_census.dart';
++import 'package:pharmaguard/widgets/file_readiness.dart';
++import 'package:pharmaguard/widgets/unknown_reason_panel.dart';
++import 'package:pharmaguard/widgets/verdict_card.dart';
++
++/// Phrases that turn an automated provenance filter into a guarantee.
++const List<String> _overclaims = <String>[
++  'nothing was invented',
++  'invented nothing',
++  'every clinical statement is machine',
++  'every clinical statement here is machine',
++  'machine-checked to come from',
++  'machine-checked to trace',
++  'machine-verified to come from',
++  'writes no clinical content of its own',
++];
++
++/// Phrases that attribute this application's CYP2D6 limit to the VCF format.
++const List<String> _formatClaims = <String>[
++  'cannot represent',
++  'cannot express',
++  'cannot be read from any vcf',
++  'cannot be read from a vcf',
++  'no way to express',
++  'limit of the file format',
++  'no vcf, however complete',
++  'not determinable from a vcf',
++];
++
++void _expectNone(String text, List<String> phrases, String where) {
++  final String lower = text.toLowerCase();
++  for (final String phrase in phrases) {
++    expect(lower.contains(phrase), isFalse, reason: '$where says "$phrase"');
++  }
++}
++
++String _allText(WidgetTester tester) => tester
++    .widgetList<Text>(find.byType(Text, skipOffstage: false))
++    .map((Text t) => t.data ?? t.textSpan?.toPlainText() ?? '')
++    .join('\n');
++
++String _allRichText(WidgetTester tester) => <String>[
++  // Glossary terms render as inline widgets, so a sentence is read from the
++  // GlossaryText's own string rather than from its split rendering.
++  ...tester
++      .widgetList<GlossaryText>(find.byType(GlossaryText, skipOffstage: false))
++      .map((GlossaryText g) => g.text),
++  ...tester
++      .widgetList<RichText>(find.byType(RichText, skipOffstage: false))
++      .map((RichText t) => t.text.toPlainText()),
++].join('\n');
++
++PerDrugResult _unknown(String drug, String gene) => PerDrugResult(
++  drug: drug,
++  riskAssessment: const RiskAssessment(
++    riskLabel: RiskLabel.unknown,
++    confidenceScore: 0.0,
++    severity: Severity.none,
++  ),
++  pharmacogenomicProfile: PharmacogenomicProfile(
++    primaryGene: gene,
++    diplotype: 'Unknown',
++    recommendationDiplotype: null,
++    candidateDiplotypes: const <String>[],
++    phenotype: Phenotype.unknown,
++    activityScore: null,
++    detectedVariants: const <DetectedVariant>[],
++  ),
++  clinicalRecommendation: ClinicalRecommendation(
++    action:
++        'Required genomic evidence is incomplete for $gene. Available partner '
++        'findings are partial evidence only; no complete drug-level PGx '
++        'recommendation is made.',
++    dosingGuidance: '',
++    cpicRecommendation: '',
++    cpicEvidenceLevel: CpicEvidenceLevel.unknown,
++    alternatives: const <String>[],
++    source: 'Annotation of CPIC Guideline for $drug and $gene',
++  ),
++  llmGeneratedExplanation: const LlmGeneratedExplanation(
++    summary: '',
++    mechanism: '',
++    variantRationale: '',
++    patientFriendly: '',
++    disclaimer: '',
++  ),
++);
++
++/// The F4 NA12878 read-backed file with FILTER=LowQual at chr10:94781859, as
++/// the API actually reports it: every position present, one unusable.
++const GeneCoverage _filterFailed = GeneCoverage(
++  positionsPresent: 34,
++  positionsRequired: 35,
++  percent: 97.1,
++  minimumPercent: 100,
++  sufficient: false,
++  evidenceCounts: <String, int>{
++    'valid_observed_genotype': 34,
++    'partial_genotype': 0,
++    'no_call': 0,
++    'gt_not_provided': 0,
++    'filter_failed': 1,
++    'quality_not_established': 0,
++    'malformed_genotype': 0,
++    'absent_position': 0,
++  },
++);
++
++/// The same file with that row deleted instead: genuinely not reported.
++const GeneCoverage _oneAbsent = GeneCoverage(
++  positionsPresent: 34,
++  positionsRequired: 35,
++  percent: 97.1,
++  minimumPercent: 100,
++  sufficient: false,
++  evidenceCounts: <String, int>{
++    'valid_observed_genotype': 34,
++    'filter_failed': 0,
++    'absent_position': 1,
++  },
++);
++
++const GeneCoverage _full = GeneCoverage(
++  positionsPresent: 157,
++  positionsRequired: 157,
++  percent: 100,
++  minimumPercent: 100,
++  sufficient: true,
++);
++
++AnalyzeResponse _response(
++  List<PerDrugResult> analyses,
++  Map<String, GeneCoverage> coverage,
++) => AnalyzeResponse(
++  patientId: 'NA12878',
++  timestamp: '2026-10-14T11:54:04.078805Z',
++  analyses: analyses,
++  qualityMetrics: QualityMetrics(
++    vcfParsingSuccess: true,
++    variantsDetectedCount: 0,
++    processingTimeMs: 1500,
++    warnings: const <String>[],
++    positionCoverage: coverage,
++  ),
++);
++
++Future<void> _pump(WidgetTester tester, Widget child, {Size size = const Size(1280, 3000)}) async {
++  await tester.binding.setSurfaceSize(size);
++  addTearDown(() => tester.binding.setSurfaceSize(null));
++  await tester.pumpWidget(
++    MaterialApp(theme: Tokens.theme(), home: Scaffold(body: SingleChildScrollView(child: child))),
++  );
++  await tester.pumpAndSettle();
++}
++
++void main() {
++  group('DEF-1 automated provenance is not a guarantee', () {
++    test('the shared disclaimer bounds the automated check', () {
++      _expectNone(kDisclaimer, _overclaims, 'kDisclaimer');
++      expect(kDisclaimer.toLowerCase(), contains('not human review'));
++      expect(kDisclaimer, contains('No qualified clinical expert has reviewed'));
++    });
++
++    test('the printed page bounds the automated check', () {
++      final String html = buildSummaryHtml(
++        _response(<PerDrugResult>[_unknown('codeine', 'CYP2D6')], const <String, GeneCoverage>{'CYP2D6': _full}),
++      );
++      _expectNone(html, _overclaims, 'printed summary');
++      expect(html.toLowerCase(), contains('not human review'));
++      expect(html, contains('no qualified clinical expert has reviewed'));
++    });
++
++    testWidgets('the About page bounds the automated check', (WidgetTester tester) async {
++      await tester.binding.setSurfaceSize(const Size(1280, 4000));
++      addTearDown(() => tester.binding.setSurfaceSize(null));
++      await tester.pumpWidget(
++        MaterialApp(
++          theme: Tokens.theme(),
++          home: const AboutScreen(
++            provenance: GuidelineProvenance(
++              pharmcatVersion: '3.4.0',
++              cpicDataVersion: '2026-07-13-11-40',
++              explanationsGeneratedAt: '2026-07-24T09:53:53.175011+00:00',
++              cpicSource: 'CPIC guidelines, retrieved via PharmCAT',
++              note: '',
++            ),
++          ),
++        ),
++      );
++      await tester.pumpAndSettle();
++      final String text = '${_allText(tester)}\n${_allRichText(tester)}';
++      _expectNone(text, _overclaims, 'About page');
++      expect(text.toLowerCase(), contains('not human review'));
++    });
++
++    test('the home subtitle does not call served text pre-generated and source-checked', () {
++      // HomeScreen builds its own network client and wake-up timers, so its
++      // copy is pinned at source, as the backend does for kDisclaimer.
++      final String source = File('lib/screens/home_screen.dart').readAsStringSync();
++      expect(source, isNot(contains('pre-generated and checked against their source')));
++    });
++  });
++
++  group('DEF-2 the CYP2D6 limit belongs to this application, not to VCF', () {
++    test('the Unknown reason used on the printed page', () {
++      final UnknownReason reason = classifyUnknown(
++        _unknown('codeine', 'CYP2D6'),
++        const QualityMetrics(
++          vcfParsingSuccess: true,
++          variantsDetectedCount: 0,
++          processingTimeMs: 1,
++          warnings: <String>[],
++          positionCoverage: <String, GeneCoverage>{'CYP2D6': _full},
++        ),
++      );
++      expect(reason, UnknownReason.notCallable);
++      _expectNone('${reason.headline}\n${reason.explanation}', _formatClaims, 'notCallable copy');
++      expect(reason.explanation.toLowerCase(), contains('this application'));
++    });
++
++    testWidgets('the Unknown panel on the result card', (WidgetTester tester) async {
++      await _pump(
++        tester,
++        UnknownReasonPanel(
++          reason: UnknownReason.notCallable,
++          profile: _unknown('codeine', 'CYP2D6').pharmacogenomicProfile,
++        ),
++      );
++      final String text = '${_allText(tester)}\n${_allRichText(tester)}';
++      _expectNone(text, _formatClaims, 'notCallable panel');
++      expect(text.toLowerCase(), contains('this application'));
++    });
++
++    testWidgets('the census line on the codeine card', (WidgetTester tester) async {
++      final PerDrugResult codeine = _unknown('codeine', 'CYP2D6');
++      await _pump(
++        tester,
++        VerdictCard(
++          result: codeine,
++          metrics: _response(<PerDrugResult>[codeine], const <String, GeneCoverage>{'CYP2D6': _full}).qualityMetrics,
++        ),
++      );
++      _expectNone('${_allText(tester)}\n${_allRichText(tester)}', _formatClaims, 'codeine card');
++    });
++
++    testWidgets('the readiness footnote before analysis', (WidgetTester tester) async {
++      await _pump(
++        tester,
++        FileReadinessPanel(
++          readiness: const CoverageResponse(
++            genes: <GeneReadiness>[
++              GeneReadiness(
++                gene: 'CYP2D6',
++                positionsFound: 157,
++                positionsRequired: 157,
++                thresholdPercent: 100,
++                percent: 100,
++                passes: false,
++                notReadableFromVcf: true,
++                reason: 'reason text supplied by the backend',
++              ),
++            ],
++            genesPassing: 0,
++            genesTotal: 1,
++            answerableDrugs: <String>[],
++            unanswerableDrugs: <String>['codeine'],
++            variantsOnly: false,
++            warnings: <String>[],
++          ),
++          onShowRequirements: () {},
++        ),
++      );
++      final String text = '${_allText(tester)}\n${_allRichText(tester)}';
++      _expectNone(text, _formatClaims, 'readiness footnote');
++      expect(text, contains('CYP2D6'));
++    });
++  });
++
++  group('DEF-3 the missing-is-reference hazard belongs to callers', () {
++    test('the printed census note says this application withholds', () {
++      final String html = buildSummaryHtml(
++        _response(<PerDrugResult>[_unknown('clopidogrel', 'CYP2C19')], const <String, GeneCoverage>{'CYP2C19': _oneAbsent}),
++      );
++      expect(
++        html,
++        isNot(contains('A position that is absent reads as matching the reference, so missing data produces confident results')),
++      );
++      expect(html.toLowerCase(), contains('genotype caller'));
++    });
++  });
++
++  group('DEF-4 an unusable genotype is not a missing position', () {
++    const QualityMetrics filtered = QualityMetrics(
++      vcfParsingSuccess: true,
++      variantsDetectedCount: 0,
++      processingTimeMs: 1,
++      warnings: <String>[],
++      positionCoverage: <String, GeneCoverage>{'CYP2C19': _filterFailed},
++    );
++
++    test('it is classified apart from absent positions', () {
++      final UnknownReason reason = classifyUnknown(_unknown('clopidogrel', 'CYP2C19'), filtered);
++      expect(reason, isNot(UnknownReason.lowCoverage));
++      expect(reason.headline.toLowerCase(), isNot(contains('missing required positions')));
++      expect(reason.explanation.toLowerCase(), isNot(contains('carry no genotype')));
++      expect(reason.explanation.toLowerCase(), contains('filter'));
++      expect(reason.callToAction ?? '', isNot(contains('variants-only')));
++      expect(reason.isActionable, isTrue);
++    });
++
++    test('a genuinely absent position keeps the absence explanation', () {
++      final UnknownReason reason = classifyUnknown(
++        _unknown('clopidogrel', 'CYP2C19'),
++        const QualityMetrics(
++          vcfParsingSuccess: true,
++          variantsDetectedCount: 0,
++          processingTimeMs: 1,
++          warnings: <String>[],
++          positionCoverage: <String, GeneCoverage>{'CYP2C19': _oneAbsent},
++        ),
++      );
++      expect(reason, UnknownReason.lowCoverage);
++    });
++
++    testWidgets('the census line counts the unusable row as unusable', (WidgetTester tester) async {
++      await _pump(tester, const CoverageCensus(gene: 'CYP2C19', coverage: _filterFailed));
++      final String text = '${_allText(tester)}\n${_allRichText(tester)}';
++      expect(text, isNot(contains('1 of 35 positions were not reported in your file')));
++      expect(text.toLowerCase(), contains('could not be used'));
++    });
++
++    testWidgets('the panel does not ask for an all-sites file', (WidgetTester tester) async {
++      final PerDrugResult r = _unknown('clopidogrel', 'CYP2C19');
++      await _pump(
++        tester,
++        UnknownReasonPanel(
++          reason: classifyUnknown(r, filtered),
++          profile: r.pharmacogenomicProfile,
++          coverage: _filterFailed,
++          gene: 'CYP2C19',
++        ),
++      );
++      final String text = '${_allText(tester)}\n${_allRichText(tester)}'.toLowerCase();
++      expect(text, isNot(contains('did not report enough positions')));
++      expect(text, isNot(contains('variants-only file cannot work')));
++      expect(text, contains('filter'));
++    });
++
++    test('the printed page gives the same account', () {
++      final String html = buildSummaryHtml(
++        _response(<PerDrugResult>[_unknown('clopidogrel', 'CYP2C19')], const <String, GeneCoverage>{'CYP2C19': _filterFailed}),
++      );
++      expect(html, isNot(contains('Your file is missing required positions')));
++      expect(html, isNot(contains('reports ALL positions')));
++      // Two reasons are actionable now; the section intro must not say one.
++      expect(html, isNot(contains('Only one of these reasons')));
++    });
++  });
++
++  group('DEF-5 opened results stay open', () {
++    testWidgets('after a long scroll to the exports and back', (WidgetTester tester) async {
++      await tester.binding.setSurfaceSize(const Size(1280, 720));
++      addTearDown(() => tester.binding.setSurfaceSize(null));
++      final AnalyzeResponse r = AnalyzeResponse.fromJson(
++        jsonDecode(File('../test-data/demo/outputs/S6_multidrug.json').readAsStringSync())
++            as Map<String, dynamic>,
++      );
++      await tester.pumpWidget(MaterialApp(theme: Tokens.theme(), home: ResultsScreen(response: r)));
++      await tester.pumpAndSettle();
++      final Finder list = find.byType(Scrollable).first;
++      for (final PerDrugResult a in r.analyses) {
++        final Finder header = find.byWidgetPredicate(
++          (Widget w) =>
++              w is Semantics &&
++              w.properties.label == '${a.drug}: ${a.riskAssessment.riskLabel.displayValue}',
++        );
++        await tester.ensureVisible(header);
++        await tester.pumpAndSettle();
++        await tester.tap(header);
++        await tester.pumpAndSettle();
++      }
++      expect(find.byType(VerdictCard, skipOffstage: false), findsNWidgets(r.analyses.length));
++
++      // Large wheel steps, as a mouse wheel or trackpad fling delivers them.
++      final Offset centre = tester.getCenter(list);
++      for (int i = 0; i < 8; i++) {
++        await tester.sendEventToBinding(PointerScrollEvent(position: centre, scrollDelta: const Offset(0, 3000)));
++        await tester.pump();
++      }
++      await tester.pumpAndSettle();
++      expect(find.text('Printable summary'), findsOneWidget);
++      for (int i = 0; i < 8; i++) {
++        await tester.sendEventToBinding(PointerScrollEvent(position: centre, scrollDelta: const Offset(0, -3000)));
++        await tester.pump();
++      }
++      await tester.pumpAndSettle();
++      expect(
++        find.byType(VerdictCard, skipOffstage: false),
++        findsNWidgets(r.analyses.length),
++        reason: 'opened result cards were closed by scrolling',
++      );
++    });
++  });
++
++  group('DEF-6 the drug list does not promise guidance it never gives', () {
++    test('warfarin and codeine are not listed as drugs with CPIC guidance', () {
++      final String source = File('lib/screens/home_screen.dart').readAsStringSync();
++      expect(source, isNot(contains('Drugs with CPIC guidance in this build')));
++    });
++  });
++}

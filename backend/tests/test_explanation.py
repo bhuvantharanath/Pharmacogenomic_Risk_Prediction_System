@@ -233,6 +233,17 @@ class TestTemplateGenerator:
         explanation = generator_template.generate(context)
         assert "No mechanism background" in explanation.mechanism
 
+    def test_no_cpic_entry_does_not_gain_cpic_authority(self) -> None:
+        context = make_context(
+            drug="ibuprofen", gene=None, mechanism=None,
+            phenotype=Phenotype.UNKNOWN, risk_label=RiskLabel.UNKNOWN,
+            cpic_recommendation="",
+        )
+        explanation = generator_template.generate(context).fill_slots(context)
+        assert "from CPIC via PharmCAT" not in explanation.mechanism
+        assert "published CPIC guidance" not in explanation.patient_friendly
+        assert "No pharmacogenomic guidance is produced" in explanation.mechanism
+
     def test_uncalled_gene_does_not_imply_a_phenotype(self) -> None:
         """Absence of a result must never read as a normal result."""
         context = make_context(
@@ -326,10 +337,11 @@ class TestModeDispatch:
     def test_mode_parsing(self, value: str, expected: ExplanationMode) -> None:
         assert ExplanationMode.from_env(value) is expected
 
-    def test_static_hits_the_store(self) -> None:
+    def test_unapproved_static_entry_falls_back(self) -> None:
         result = generate_explanation(make_context(), ExplanationMode.STATIC)
-        assert result.generator == "static"
+        assert result.generator == "template"
         assert "mode=static" in result.provenance
+        assert any("approval or semantic identity" in note for note in result.notes)
 
     def test_static_miss_degrades_to_template(self) -> None:
         """A lookup miss must never be an error."""
@@ -359,11 +371,11 @@ class TestModeDispatch:
 
 class TestLiveModeWithMockedModel:
     """
-    Live-mode control flow, without spending quota or needing a key.
+    Live mode cannot serve newly generated clinical prose.
 
-    The model is mocked so retry, fallback and violation logging can be asserted
-    deterministically. `TestLiveMode` below exercises the real API when a key is
-    available.
+    A runtime result cannot already possess the approved content/source/context
+    identity required by the serving gate.  These mocks prove the generator is
+    not called, even when a key is configured.
     """
 
     @staticmethod
@@ -385,57 +397,65 @@ class TestLiveModeWithMockedModel:
         patient_friendly="ok",
     )
 
-    def test_faithful_output_is_accepted(self, monkeypatch: pytest.MonkeyPatch) -> None:
+    def test_faithful_runtime_output_is_not_generated(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
         from app.explanation import generator_llm
 
         monkeypatch.setenv("GEMINI_API_KEY", "mock")
+
+        def forbidden(*args, **kwargs):
+            raise AssertionError("runtime explanation generation must remain disabled")
+
         monkeypatch.setattr(
-            generator_llm, "generate", lambda *a, **k: self._result(self.FAITHFUL)
-        )
-        result = generate_explanation(make_context(), ExplanationMode.LIVE)
-
-        assert result.generator == "llm:mock-model"
-        assert result.guard is not None and result.guard.passed
-        assert result.explanation.summary.startswith("CYP2C19 *2/*2")
-
-    def test_persistent_hallucination_falls_back_to_template(
-        self, monkeypatch: pytest.MonkeyPatch, tmp_path
-    ) -> None:
-        """The invented dose must never reach the response."""
-        from app.explanation import generator_llm, guard as guard_module
-
-        monkeypatch.setenv("GEMINI_API_KEY", "mock")
-        monkeypatch.setattr(guard_module, "DEFAULT_LOG_PATH", tmp_path / "g.jsonl")
-        monkeypatch.setattr(
-            generator_llm, "generate", lambda *a, **k: self._result(self.HALLUCINATED)
+            generator_llm, "generate", forbidden
         )
         result = generate_explanation(make_context(), ExplanationMode.LIVE)
 
         assert result.generator == "template"
-        assert result.guard is not None and not result.guard.passed
-        assert result.guard.attempts == 2
-        assert "75 mg" not in " ".join(result.explanation.fields().values())
+        assert result.guard is None
+        assert any("Runtime clinical prose is disabled" in note for note in result.notes)
 
-        # Both failed attempts are on record for the hallucination-rate report.
-        records = guard_module.read_violation_log(tmp_path / "g.jsonl")
-        assert len(records) == 2
-        assert records[0]["violations"][0]["kind"] == "dose"
-
-    def test_retry_recovers_from_a_transient_failure(
+    def test_persistent_hallucination_falls_back_to_template(
         self, monkeypatch: pytest.MonkeyPatch, tmp_path
     ) -> None:
+        """The invented dose must never be generated or reach the response."""
         from app.explanation import generator_llm, guard as guard_module
 
         monkeypatch.setenv("GEMINI_API_KEY", "mock")
         monkeypatch.setattr(guard_module, "DEFAULT_LOG_PATH", tmp_path / "g.jsonl")
-        outputs = iter([self.HALLUCINATED, self.FAITHFUL])
-        monkeypatch.setattr(
-            generator_llm, "generate", lambda *a, **k: self._result(next(outputs))
-        )
+        def forbidden(*args, **kwargs):
+            raise AssertionError("runtime explanation generation must remain disabled")
+
+        monkeypatch.setattr(generator_llm, "generate", forbidden)
         result = generate_explanation(make_context(), ExplanationMode.LIVE)
 
-        assert result.generator == "llm:mock-model"
-        assert result.guard.passed and result.guard.attempts == 2
+        assert result.generator == "template"
+        assert result.guard is None
+        assert "75 mg" not in " ".join(result.explanation.fields().values())
+
+        # No runtime attempt occurred, so there is nothing to record.
+        records = guard_module.read_violation_log(tmp_path / "g.jsonl")
+        assert records == []
+
+    def test_runtime_generation_is_not_retried(
+        self, monkeypatch: pytest.MonkeyPatch, tmp_path
+    ) -> None:
+        from app.explanation import generator_llm
+
+        monkeypatch.setenv("GEMINI_API_KEY", "mock")
+        attempts = 0
+
+        def forbidden(*args, **kwargs):
+            nonlocal attempts
+            attempts += 1
+            return self._result(self.FAITHFUL)
+
+        monkeypatch.setattr(generator_llm, "generate", forbidden)
+        result = generate_explanation(make_context(), ExplanationMode.LIVE)
+
+        assert result.generator == "template"
+        assert attempts == 0
 
     def test_sdk_error_degrades_without_raising(
         self, monkeypatch: pytest.MonkeyPatch
@@ -450,25 +470,24 @@ class TestLiveModeWithMockedModel:
         monkeypatch.setattr(generator_llm, "generate", boom)
         result = generate_explanation(make_context(), ExplanationMode.LIVE)
 
-        assert result.generator in ("static", "template")
+        assert result.generator == "template"
+        assert any("Runtime clinical prose is disabled" in note for note in result.notes)
         for value in result.explanation.fields().values():
             assert value.strip()
 
 
 class TestLiveMode:
-    """Skipped without a key — which is the normal, deployed condition."""
+    """The compatibility mode always resolves to approved static or template."""
 
-    @pytest.mark.skipif(
-        not os.environ.get("GEMINI_API_KEY"),
-        reason="GEMINI_API_KEY not set; live mode is optional by design",
-    )
-    def test_live_generation_passes_the_guard(self) -> None:
+    def test_live_mode_does_not_generate_even_with_a_key(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setenv("GEMINI_API_KEY", "configured-but-unused")
         context = make_context()
         result = generate_explanation(context, ExplanationMode.LIVE)
 
-        assert result.guard is not None
-        assert result.guard.passed, [str(v) for v in result.guard.violations]
-        assert result.generator.startswith("llm:")
+        assert result.generator == "template"
+        assert result.guard is None
         for name, value in result.explanation.fields().items():
             assert value.strip(), f"{name} is empty"
 
@@ -476,6 +495,6 @@ class TestLiveMode:
         """The important half: no key must degrade, not fail."""
         monkeypatch.delenv("GEMINI_API_KEY", raising=False)
         result = generate_explanation(make_context(), ExplanationMode.LIVE)
-        assert result.generator in ("static", "template")
+        assert result.generator == "template"
         for value in result.explanation.fields().values():
             assert value.strip()

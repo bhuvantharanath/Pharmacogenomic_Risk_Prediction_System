@@ -1,0 +1,30 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container flt-semantic-node-238
+			3 container flt-semantic-node-264
+				4 button Back, ID: flt-semantic-node-265
+				5 heading Analysis results, Value: 2, ID: flt-semantic-node-266
+					6 text Analysis results
+				7 button Copy JSON, ID: flt-semantic-node-267
+				8 button Export JSON, ID: flt-semantic-node-268
+			9 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			10 container flt-semantic-node-263
+				11 button (collapsed) ID: flt-semantic-node-242, Secondary Actions: Expand, NA18526 2026-10-02T12:41:12Z VCF accepted 0 variants 2772 ms 24 pipeline warnings No PGx-guided change Adjust Dosage Toxic Ineffective Unknown
+				12 container ID: flt-semantic-node-244, Description: DRUGS CHECKED (7) — MOST SERIOUS FIRST Reading view. Both views show the same result; they differ only in what is shown first.
+					13 button For a patient. Plain language first., ID: flt-semantic-node-245
+					14 button For a clinician. Genotype and guideline first., ID: flt-semantic-node-246
+				15 button (collapsed) Input coverage. 0 of 7 genes have enough positions to call, ID: flt-semantic-node-249, Secondary Actions: Expand
+				16 container flt-semantic-node-250
+					17 button (collapsed) azathioprine: Unknown, ID: flt-semantic-node-251, Secondary Actions: Expand
+					18 button (collapsed) clopidogrel: Unknown, ID: flt-semantic-node-252, Secondary Actions: Expand
+					19 button (collapsed) codeine: Unknown, ID: flt-semantic-node-253, Secondary Actions: Expand
+					20 button (collapsed) fluorouracil: Unknown, ID: flt-semantic-node-254, Secondary Actions: Expand
+					21 button (collapsed) ibuprofen: Unknown, ID: flt-semantic-node-255, Secondary Actions: Expand
+					22 button (collapsed) simvastatin: Unknown, ID: flt-semantic-node-256, Secondary Actions: Expand
+					23 button (collapsed) warfarin: Unknown, ID: flt-semantic-node-257, Secondary Actions: Expand
+				24 container flt-semantic-node-259
+					25 button Copy JSON, ID: flt-semantic-node-260
+					26 button Export JSON, ID: flt-semantic-node-261
+
+The focused UI element is 4 button Back, ID: flt-semantic-node-265

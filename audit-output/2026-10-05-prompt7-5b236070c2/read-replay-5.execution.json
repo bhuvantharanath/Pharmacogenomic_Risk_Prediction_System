@@ -1,0 +1,16 @@
+{
+  "command": [
+    "bcftools",
+    "norm",
+    "-f",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/GRCh38.chr10.fa",
+    "-Ov",
+    "-o",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.normalized.vcf",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.calls.vcf"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 0,
+  "seconds": 0.7628727089904714,
+  "at": "2026-10-05T13:13:28.388421+00:00"
+}

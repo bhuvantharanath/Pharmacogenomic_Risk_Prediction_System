@@ -1,5 +1,7 @@
 # Deployment verification — against the live URLs
 
+> **Historical deployment record only.** This captures a 2026-08 deployment and stale response terminology. It is not evidence for the current local scientific bundle, does not attest the current candidate, and must not be used as a current scientific result.
+
 Phase 8 §6. Measured **2026-08-13** against the deployed services, not
 localhost.
 

@@ -1,0 +1,1127 @@
+[
+  {
+    "name": "colima-start",
+    "argv": [
+      "colima",
+      "--profile",
+      "pgx-p6-20261005",
+      "start",
+      "--arch",
+      "aarch64",
+      "--cpus",
+      "4",
+      "--memory",
+      "8",
+      "--disk",
+      "40",
+      "--runtime",
+      "docker",
+      "--activate=false",
+      "--ssh-config=false",
+      "--mount",
+      "none"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T11:23:26.802836+00:00",
+    "ended_at": "2026-10-05T11:32:17.526612+00:00",
+    "exit_code": 0,
+    "stdout": "colima-start.stdout",
+    "stderr": "colima-start.stderr"
+  },
+  {
+    "name": "docker-build",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "build",
+      "--platform",
+      "linux/arm64",
+      "-f",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/build-context/infra/Dockerfile",
+      "-t",
+      "pgx-p6-candidate:20261005",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/build-context"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T11:33:18.347242+00:00",
+    "ended_at": "2026-10-05T11:46:01.560691+00:00",
+    "exit_code": 0,
+    "stdout": "docker-build.stdout",
+    "stderr": "docker-build.stderr"
+  },
+  {
+    "name": "image-inspect",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "image",
+      "inspect",
+      "pgx-p6-candidate:20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T11:46:31.940315+00:00",
+    "ended_at": "2026-10-05T11:46:32.049012+00:00",
+    "exit_code": 0,
+    "stdout": "image-inspect.stdout",
+    "stderr": "image-inspect.stderr"
+  },
+  {
+    "name": "container-main-start",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "run",
+      "--detach",
+      "--name",
+      "pgx-p6-main-20261005",
+      "--restart",
+      "no",
+      "--memory",
+      "512m",
+      "--memory-swap",
+      "512m",
+      "--memory-swappiness",
+      "0",
+      "--publish",
+      "127.0.0.1:8768:7860",
+      "--env",
+      "JAVA_TOOL_OPTIONS=-Xmx208m -XX:MaxMetaspaceSize=68m",
+      "--env",
+      "MAX_CONCURRENT_PHARMCAT=1",
+      "--env",
+      "PHARMCAT_QUEUE_TIMEOUT_SECONDS=90",
+      "--env",
+      "PHARMCAT_TIMEOUT_SECONDS=120",
+      "--env",
+      "EXPLANATION_MODE=static",
+      "--env",
+      "STRICT_PHARMCAT=1",
+      "--env",
+      "PHARMAGUARD_ENV=development",
+      "pgx-p6-candidate:20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T11:46:58.665016+00:00",
+    "ended_at": "2026-10-05T11:46:58.829713+00:00",
+    "exit_code": 0,
+    "stdout": "container-main-start.stdout",
+    "stderr": "container-main-start.stderr"
+  },
+  {
+    "name": "verify-in-image",
+    "argv": [
+      "python3",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/verify_image.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T11:48:34.095428+00:00",
+    "ended_at": "2026-10-05T11:48:34.344619+00:00",
+    "exit_code": 0,
+    "stdout": "verify-in-image.stdout",
+    "stderr": "verify-in-image.stderr"
+  },
+  {
+    "name": "workload-main",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/workload.py",
+      "main",
+      "pgx-p6-main-20261005",
+      "8768"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T11:59:57.998756+00:00",
+    "ended_at": "2026-10-05T12:00:24.898153+00:00",
+    "exit_code": 0,
+    "stdout": "workload-main.stdout",
+    "stderr": "workload-main.stderr"
+  },
+  {
+    "name": "rate-exhaust",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/rate_probe.py",
+      "exhaust"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:01:29.017076+00:00",
+    "ended_at": "2026-10-05T12:01:29.162787+00:00",
+    "exit_code": 0,
+    "stdout": "rate-exhaust.stdout",
+    "stderr": "rate-exhaust.stderr"
+  },
+  {
+    "name": "container-triple-start",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "run",
+      "--detach",
+      "--name",
+      "pgx-p6-triple-20261005",
+      "--restart",
+      "no",
+      "--memory",
+      "512m",
+      "--memory-swap",
+      "512m",
+      "--publish",
+      "127.0.0.1:8769:7860",
+      "--env",
+      "JAVA_TOOL_OPTIONS=-Xmx208m -XX:MaxMetaspaceSize=68m",
+      "--env",
+      "MAX_CONCURRENT_PHARMCAT=1",
+      "--env",
+      "PHARMCAT_QUEUE_TIMEOUT_SECONDS=90",
+      "--env",
+      "PHARMCAT_TIMEOUT_SECONDS=120",
+      "--env",
+      "EXPLANATION_MODE=static",
+      "--env",
+      "STRICT_PHARMCAT=1",
+      "--env",
+      "PHARMAGUARD_ENV=development",
+      "pgx-p6-candidate:20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:01:50.498827+00:00",
+    "ended_at": "2026-10-05T12:01:50.651115+00:00",
+    "exit_code": 0,
+    "stdout": "container-triple-start.stdout",
+    "stderr": "container-triple-start.stderr"
+  },
+  {
+    "name": "triple-ready",
+    "argv": [
+      "curl",
+      "--retry",
+      "10",
+      "--retry-delay",
+      "1",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "http://127.0.0.1:8769/ready"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:02:09.310788+00:00",
+    "ended_at": "2026-10-05T12:02:09.348216+00:00",
+    "exit_code": 0,
+    "stdout": "triple-ready.stdout",
+    "stderr": "triple-ready.stderr"
+  },
+  {
+    "name": "workload-triple",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/workload.py",
+      "triple",
+      "pgx-p6-triple-20261005",
+      "8769"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:02:24.346522+00:00",
+    "ended_at": "2026-10-05T12:03:09.668875+00:00",
+    "exit_code": 0,
+    "stdout": "workload-triple.stdout",
+    "stderr": "workload-triple.stderr"
+  },
+  {
+    "name": "triple-post-processes",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "top",
+      "pgx-p6-triple-20261005",
+      "-eo",
+      "pid,ppid,comm,rss"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:03:40.895545+00:00",
+    "ended_at": "2026-10-05T12:03:40.919307+00:00",
+    "exit_code": 0,
+    "stdout": "triple-post-processes.stdout",
+    "stderr": "triple-post-processes.stderr"
+  },
+  {
+    "name": "triple-post-temp",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "pgx-p6-triple-20261005",
+      "sh",
+      "-c",
+      "find /tmp /home/user/app/tmp -maxdepth 3 \\( -name \"pharmaguard_pharmcat_*\" -o -name \"*.log\" \\) -print"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:03:54.718819+00:00",
+    "ended_at": "2026-10-05T12:03:54.826674+00:00",
+    "exit_code": 0,
+    "stdout": "triple-post-temp.stdout",
+    "stderr": "triple-post-temp.stderr"
+  },
+  {
+    "name": "triple-stop",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "stop",
+      "--time",
+      "15",
+      "pgx-p6-triple-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:04:08.833807+00:00",
+    "ended_at": "2026-10-05T12:04:09.119039+00:00",
+    "exit_code": 0,
+    "stdout": "triple-stop.stdout",
+    "stderr": "triple-stop.stderr"
+  },
+  {
+    "name": "triple-final-inspect",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "inspect",
+      "pgx-p6-triple-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:04:25.043181+00:00",
+    "ended_at": "2026-10-05T12:04:25.101494+00:00",
+    "exit_code": 0,
+    "stdout": "triple-final-inspect.stdout",
+    "stderr": "triple-final-inspect.stderr"
+  },
+  {
+    "name": "triple-logs",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "logs",
+      "pgx-p6-triple-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:04:26.268265+00:00",
+    "ended_at": "2026-10-05T12:04:26.283070+00:00",
+    "exit_code": 0,
+    "stdout": "triple-logs.stdout",
+    "stderr": "triple-logs.stderr"
+  },
+  {
+    "name": "triple-remove",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "rm",
+      "pgx-p6-triple-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:04:56.666867+00:00",
+    "ended_at": "2026-10-05T12:04:56.737529+00:00",
+    "exit_code": 0,
+    "stdout": "triple-remove.stdout",
+    "stderr": "triple-remove.stderr"
+  },
+  {
+    "name": "container-burst-start",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "run",
+      "--detach",
+      "--name",
+      "pgx-p6-burst-20261005",
+      "--restart",
+      "no",
+      "--memory",
+      "512m",
+      "--memory-swap",
+      "512m",
+      "--publish",
+      "127.0.0.1:8770:7860",
+      "--env",
+      "JAVA_TOOL_OPTIONS=-Xmx208m -XX:MaxMetaspaceSize=68m",
+      "--env",
+      "MAX_CONCURRENT_PHARMCAT=1",
+      "--env",
+      "PHARMCAT_QUEUE_TIMEOUT_SECONDS=90",
+      "--env",
+      "PHARMCAT_TIMEOUT_SECONDS=120",
+      "--env",
+      "EXPLANATION_MODE=static",
+      "--env",
+      "STRICT_PHARMCAT=1",
+      "--env",
+      "PHARMAGUARD_ENV=development",
+      "pgx-p6-candidate:20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:05:15.838606+00:00",
+    "ended_at": "2026-10-05T12:05:16.008955+00:00",
+    "exit_code": 0,
+    "stdout": "container-burst-start.stdout",
+    "stderr": "container-burst-start.stderr"
+  },
+  {
+    "name": "burst-ready",
+    "argv": [
+      "curl",
+      "--retry",
+      "10",
+      "--retry-delay",
+      "1",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "http://127.0.0.1:8770/ready"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:05:25.758623+00:00",
+    "ended_at": "2026-10-05T12:05:25.787734+00:00",
+    "exit_code": 0,
+    "stdout": "burst-ready.stdout",
+    "stderr": "burst-ready.stderr"
+  },
+  {
+    "name": "workload-burst",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/workload.py",
+      "burst",
+      "pgx-p6-burst-20261005",
+      "8770"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:05:45.785037+00:00",
+    "ended_at": "2026-10-05T12:07:16.159210+00:00",
+    "exit_code": 0,
+    "stdout": "workload-burst.stdout",
+    "stderr": "workload-burst.stderr"
+  },
+  {
+    "name": "rate-recovery",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/rate_probe.py",
+      "recovery"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:08:16.622616+00:00",
+    "ended_at": "2026-10-05T12:08:16.765143+00:00",
+    "exit_code": 0,
+    "stdout": "rate-recovery.stdout",
+    "stderr": "rate-recovery.stderr"
+  },
+  {
+    "name": "burst-post-processes",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "top",
+      "pgx-p6-burst-20261005",
+      "-eo",
+      "pid,ppid,comm,rss"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:08:31.880802+00:00",
+    "ended_at": "2026-10-05T12:08:31.896171+00:00",
+    "exit_code": 0,
+    "stdout": "burst-post-processes.stdout",
+    "stderr": "burst-post-processes.stderr"
+  },
+  {
+    "name": "burst-post-temp",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "pgx-p6-burst-20261005",
+      "sh",
+      "-c",
+      "find /tmp /home/user/app/tmp -maxdepth 3 \\( -name \"pharmaguard_pharmcat_*\" -o -name \"*.log\" \\) -print"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:08:42.116235+00:00",
+    "ended_at": "2026-10-05T12:08:42.147566+00:00",
+    "exit_code": 0,
+    "stdout": "burst-post-temp.stdout",
+    "stderr": "burst-post-temp.stderr"
+  },
+  {
+    "name": "burst-stop",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "stop",
+      "--timeout",
+      "15",
+      "pgx-p6-burst-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:08:54.286943+00:00",
+    "ended_at": "2026-10-05T12:08:54.590874+00:00",
+    "exit_code": 0,
+    "stdout": "burst-stop.stdout",
+    "stderr": "burst-stop.stderr"
+  },
+  {
+    "name": "burst-final-inspect",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "inspect",
+      "pgx-p6-burst-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:09:07.867939+00:00",
+    "ended_at": "2026-10-05T12:09:07.880009+00:00",
+    "exit_code": 0,
+    "stdout": "burst-final-inspect.stdout",
+    "stderr": "burst-final-inspect.stderr"
+  },
+  {
+    "name": "burst-logs",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "logs",
+      "pgx-p6-burst-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:09:20.787051+00:00",
+    "ended_at": "2026-10-05T12:09:20.805369+00:00",
+    "exit_code": 0,
+    "stdout": "burst-logs.stdout",
+    "stderr": "burst-logs.stderr"
+  },
+  {
+    "name": "burst-remove",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "rm",
+      "pgx-p6-burst-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:09:33.215870+00:00",
+    "ended_at": "2026-10-05T12:09:33.231564+00:00",
+    "exit_code": 0,
+    "stdout": "burst-remove.stdout",
+    "stderr": "burst-remove.stderr"
+  },
+  {
+    "name": "container-mixed-start",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "run",
+      "--detach",
+      "--name",
+      "pgx-p6-mixed-20261005",
+      "--restart",
+      "no",
+      "--memory",
+      "512m",
+      "--memory-swap",
+      "512m",
+      "--publish",
+      "127.0.0.1:8771:7860",
+      "--env",
+      "JAVA_TOOL_OPTIONS=-Xmx208m -XX:MaxMetaspaceSize=68m",
+      "--env",
+      "MAX_CONCURRENT_PHARMCAT=1",
+      "--env",
+      "PHARMCAT_QUEUE_TIMEOUT_SECONDS=90",
+      "--env",
+      "PHARMCAT_TIMEOUT_SECONDS=120",
+      "--env",
+      "EXPLANATION_MODE=static",
+      "--env",
+      "STRICT_PHARMCAT=1",
+      "--env",
+      "PHARMAGUARD_ENV=development",
+      "pgx-p6-candidate:20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:09:49.019946+00:00",
+    "ended_at": "2026-10-05T12:09:49.169445+00:00",
+    "exit_code": 0,
+    "stdout": "container-mixed-start.stdout",
+    "stderr": "container-mixed-start.stderr"
+  },
+  {
+    "name": "mixed-ready",
+    "argv": [
+      "curl",
+      "--retry",
+      "10",
+      "--retry-delay",
+      "1",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "http://127.0.0.1:8771/ready"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:10:01.419096+00:00",
+    "ended_at": "2026-10-05T12:10:01.447482+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-ready.stdout",
+    "stderr": "mixed-ready.stderr"
+  },
+  {
+    "name": "workload-mixed",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/workload.py",
+      "mixed",
+      "pgx-p6-mixed-20261005",
+      "8771"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:10:13.842802+00:00",
+    "ended_at": "2026-10-05T12:10:30.553643+00:00",
+    "exit_code": 0,
+    "stdout": "workload-mixed.stdout",
+    "stderr": "workload-mixed.stderr"
+  },
+  {
+    "name": "cancellation-input-copy",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "cp",
+      "test-data/normal_metabolizer_control.vcf",
+      "pgx-p6-mixed-20261005:/tmp/p6-cancel-input.vcf"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:11:42.990414+00:00",
+    "ended_at": "2026-10-05T12:11:43.050141+00:00",
+    "exit_code": 0,
+    "stdout": "cancellation-input-copy.stdout",
+    "stderr": "cancellation-input-copy.stderr"
+  },
+  {
+    "name": "cancellation",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/run_cancel.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:12:11.612273+00:00",
+    "ended_at": "2026-10-05T12:12:12.124874+00:00",
+    "exit_code": 0,
+    "stdout": "cancellation.stdout",
+    "stderr": "cancellation.stderr"
+  },
+  {
+    "name": "cancellation-input-remove",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "--user",
+      "root",
+      "pgx-p6-mixed-20261005",
+      "rm",
+      "/tmp/p6-cancel-input.vcf"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:12:25.974338+00:00",
+    "ended_at": "2026-10-05T12:12:26.018839+00:00",
+    "exit_code": 0,
+    "stdout": "cancellation-input-remove.stdout",
+    "stderr": "cancellation-input-remove.stderr"
+  },
+  {
+    "name": "mixed-post-cgroup",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "pgx-p6-mixed-20261005",
+      "sh",
+      "-c",
+      "cat /sys/fs/cgroup/memory.current; cat /sys/fs/cgroup/memory.peak; cat /sys/fs/cgroup/memory.events"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:12:39.915737+00:00",
+    "ended_at": "2026-10-05T12:12:39.946280+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-post-cgroup.stdout",
+    "stderr": "mixed-post-cgroup.stderr"
+  },
+  {
+    "name": "mixed-post-processes",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "top",
+      "pgx-p6-mixed-20261005",
+      "-eo",
+      "pid,ppid,comm,rss"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:12:50.238011+00:00",
+    "ended_at": "2026-10-05T12:12:50.261032+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-post-processes.stdout",
+    "stderr": "mixed-post-processes.stderr"
+  },
+  {
+    "name": "mixed-post-temp",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "pgx-p6-mixed-20261005",
+      "sh",
+      "-c",
+      "find /tmp /home/user/app/tmp -maxdepth 3 \\( -name \"pharmaguard_pharmcat_*\" -o -name \"*.log\" -o -name \"p6-cancel-input.vcf\" \\) -print"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:13:01.820033+00:00",
+    "ended_at": "2026-10-05T12:13:01.852160+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-post-temp.stdout",
+    "stderr": "mixed-post-temp.stderr"
+  },
+  {
+    "name": "mixed-stop",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "stop",
+      "--timeout",
+      "15",
+      "pgx-p6-mixed-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:13:12.545064+00:00",
+    "ended_at": "2026-10-05T12:13:12.772548+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-stop.stdout",
+    "stderr": "mixed-stop.stderr"
+  },
+  {
+    "name": "mixed-final-inspect",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "inspect",
+      "pgx-p6-mixed-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:13:25.437269+00:00",
+    "ended_at": "2026-10-05T12:13:25.457050+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-final-inspect.stdout",
+    "stderr": "mixed-final-inspect.stderr"
+  },
+  {
+    "name": "mixed-logs",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "logs",
+      "pgx-p6-mixed-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:13:44.012576+00:00",
+    "ended_at": "2026-10-05T12:13:44.025524+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-logs.stdout",
+    "stderr": "mixed-logs.stderr"
+  },
+  {
+    "name": "mixed-remove",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "rm",
+      "pgx-p6-mixed-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:13:54.597592+00:00",
+    "ended_at": "2026-10-05T12:13:54.620826+00:00",
+    "exit_code": 0,
+    "stdout": "mixed-remove.stdout",
+    "stderr": "mixed-remove.stderr"
+  },
+  {
+    "name": "container-timeout-start",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "run",
+      "--detach",
+      "--name",
+      "pgx-p6-timeout-20261005",
+      "--restart",
+      "no",
+      "--memory",
+      "512m",
+      "--memory-swap",
+      "512m",
+      "--publish",
+      "127.0.0.1:8772:7860",
+      "--env",
+      "JAVA_TOOL_OPTIONS=-Xmx208m -XX:MaxMetaspaceSize=68m",
+      "--env",
+      "MAX_CONCURRENT_PHARMCAT=1",
+      "--env",
+      "PHARMCAT_QUEUE_TIMEOUT_SECONDS=90",
+      "--env",
+      "PHARMCAT_TIMEOUT_SECONDS=0.15",
+      "--env",
+      "EXPLANATION_MODE=static",
+      "--env",
+      "STRICT_PHARMCAT=1",
+      "--env",
+      "PHARMAGUARD_ENV=development",
+      "pgx-p6-candidate:20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:14:17.538979+00:00",
+    "ended_at": "2026-10-05T12:14:17.684369+00:00",
+    "exit_code": 0,
+    "stdout": "container-timeout-start.stdout",
+    "stderr": "container-timeout-start.stderr"
+  },
+  {
+    "name": "timeout-ready",
+    "argv": [
+      "curl",
+      "--retry",
+      "10",
+      "--retry-delay",
+      "1",
+      "--fail",
+      "--silent",
+      "--show-error",
+      "http://127.0.0.1:8772/ready"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:14:29.613308+00:00",
+    "ended_at": "2026-10-05T12:14:29.642943+00:00",
+    "exit_code": 0,
+    "stdout": "timeout-ready.stdout",
+    "stderr": "timeout-ready.stderr"
+  },
+  {
+    "name": "workload-timeout",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt6-bb6a5821fb/workload.py",
+      "timeout",
+      "pgx-p6-timeout-20261005",
+      "8772"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:15:11.193793+00:00",
+    "ended_at": "2026-10-05T12:15:11.740301+00:00",
+    "exit_code": 0,
+    "stdout": "workload-timeout.stdout",
+    "stderr": "workload-timeout.stderr"
+  },
+  {
+    "name": "timeout-post-processes",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "top",
+      "pgx-p6-timeout-20261005",
+      "-eo",
+      "pid,ppid,comm,rss"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:15:24.318880+00:00",
+    "ended_at": "2026-10-05T12:15:24.334560+00:00",
+    "exit_code": 0,
+    "stdout": "timeout-post-processes.stdout",
+    "stderr": "timeout-post-processes.stderr"
+  },
+  {
+    "name": "timeout-post-temp",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "pgx-p6-timeout-20261005",
+      "sh",
+      "-c",
+      "find /tmp /home/user/app/tmp -maxdepth 3 \\( -name \"pharmaguard_pharmcat_*\" -o -name \"*.log\" \\) -print"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:15:38.335534+00:00",
+    "ended_at": "2026-10-05T12:15:38.369859+00:00",
+    "exit_code": 0,
+    "stdout": "timeout-post-temp.stdout",
+    "stderr": "timeout-post-temp.stderr"
+  },
+  {
+    "name": "timeout-stop",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "stop",
+      "--timeout",
+      "15",
+      "pgx-p6-timeout-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:15:50.450828+00:00",
+    "ended_at": "2026-10-05T12:15:50.669523+00:00",
+    "exit_code": 0,
+    "stdout": "timeout-stop.stdout",
+    "stderr": "timeout-stop.stderr"
+  },
+  {
+    "name": "timeout-final-inspect",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "inspect",
+      "pgx-p6-timeout-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:16:04.149853+00:00",
+    "ended_at": "2026-10-05T12:16:04.161876+00:00",
+    "exit_code": 0,
+    "stdout": "timeout-final-inspect.stdout",
+    "stderr": "timeout-final-inspect.stderr"
+  },
+  {
+    "name": "timeout-logs",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "logs",
+      "pgx-p6-timeout-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:16:18.844985+00:00",
+    "ended_at": "2026-10-05T12:16:18.857895+00:00",
+    "exit_code": 0,
+    "stdout": "timeout-logs.stdout",
+    "stderr": "timeout-logs.stderr"
+  },
+  {
+    "name": "timeout-remove",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "rm",
+      "pgx-p6-timeout-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:16:30.301376+00:00",
+    "ended_at": "2026-10-05T12:16:30.318795+00:00",
+    "exit_code": 0,
+    "stdout": "timeout-remove.stdout",
+    "stderr": "timeout-remove.stderr"
+  },
+  {
+    "name": "main-final-cgroup",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "pgx-p6-main-20261005",
+      "sh",
+      "-c",
+      "cat /sys/fs/cgroup/memory.current; cat /sys/fs/cgroup/memory.peak; cat /sys/fs/cgroup/memory.events; cat /sys/fs/cgroup/memory.swap.max"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:16:51.665696+00:00",
+    "ended_at": "2026-10-05T12:16:51.738447+00:00",
+    "exit_code": 0,
+    "stdout": "main-final-cgroup.stdout",
+    "stderr": "main-final-cgroup.stderr"
+  },
+  {
+    "name": "main-post-processes",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "top",
+      "pgx-p6-main-20261005",
+      "-eo",
+      "pid,ppid,comm,rss"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:17:04.056315+00:00",
+    "ended_at": "2026-10-05T12:17:04.072473+00:00",
+    "exit_code": 0,
+    "stdout": "main-post-processes.stdout",
+    "stderr": "main-post-processes.stderr"
+  },
+  {
+    "name": "main-post-temp",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "exec",
+      "pgx-p6-main-20261005",
+      "sh",
+      "-c",
+      "find /tmp /home/user/app/tmp -maxdepth 3 \\( -name \"pharmaguard_pharmcat_*\" -o -name \"*.log\" \\) -print"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:17:17.652907+00:00",
+    "ended_at": "2026-10-05T12:17:17.735224+00:00",
+    "exit_code": 0,
+    "stdout": "main-post-temp.stdout",
+    "stderr": "main-post-temp.stderr"
+  },
+  {
+    "name": "main-stop",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "stop",
+      "--timeout",
+      "15",
+      "pgx-p6-main-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:17:29.390048+00:00",
+    "ended_at": "2026-10-05T12:17:29.625120+00:00",
+    "exit_code": 0,
+    "stdout": "main-stop.stdout",
+    "stderr": "main-stop.stderr"
+  },
+  {
+    "name": "main-final-inspect",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "inspect",
+      "pgx-p6-main-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:17:44.037971+00:00",
+    "ended_at": "2026-10-05T12:17:44.053654+00:00",
+    "exit_code": 0,
+    "stdout": "main-final-inspect.stdout",
+    "stderr": "main-final-inspect.stderr"
+  },
+  {
+    "name": "main-logs",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "logs",
+      "pgx-p6-main-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:17:56.524180+00:00",
+    "ended_at": "2026-10-05T12:17:56.546281+00:00",
+    "exit_code": 0,
+    "stdout": "main-logs.stdout",
+    "stderr": "main-logs.stderr"
+  },
+  {
+    "name": "main-remove",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "rm",
+      "pgx-p6-main-20261005"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:18:08.937113+00:00",
+    "ended_at": "2026-10-05T12:18:08.955120+00:00",
+    "exit_code": 0,
+    "stdout": "main-remove.stdout",
+    "stderr": "main-remove.stderr"
+  },
+  {
+    "name": "owned-container-cleanup",
+    "argv": [
+      "docker",
+      "--context",
+      "colima-pgx-p6-20261005",
+      "ps",
+      "-a",
+      "--format",
+      "{{.ID}} {{.Names}} {{.Status}}"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:18:26.224884+00:00",
+    "ended_at": "2026-10-05T12:18:26.243297+00:00",
+    "exit_code": 0,
+    "stdout": "owned-container-cleanup.stdout",
+    "stderr": "owned-container-cleanup.stderr"
+  },
+  {
+    "name": "colima-stop",
+    "argv": [
+      "colima",
+      "--profile",
+      "pgx-p6-20261005",
+      "stop"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:18:52.803871+00:00",
+    "ended_at": "2026-10-05T12:18:55.567520+00:00",
+    "exit_code": 0,
+    "stdout": "colima-stop.stdout",
+    "stderr": "colima-stop.stderr"
+  },
+  {
+    "name": "colima-final-state",
+    "argv": [
+      "colima",
+      "list"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T12:19:03.644764+00:00",
+    "ended_at": "2026-10-05T12:19:03.755574+00:00",
+    "exit_code": 0,
+    "stdout": "colima-final-state.stdout",
+    "stderr": "colima-final-state.stderr"
+  }
+]

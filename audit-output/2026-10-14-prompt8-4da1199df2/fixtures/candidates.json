@@ -1,0 +1,23 @@
+{"fixtures": [
+ {"id": "C01-bundled-real-NA12273", "path": "app/assets/samples/pharmaguard_sample_1000genomes.vcf"},
+ {"id": "C02-tutorial-NA18526-preprocessed", "path": "audit-output/2026-09-26/originals/NA18526.preprocessed.vcf"},
+ {"id": "C03-real-variant-only-NA12878", "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-variant-only.vcf"},
+ {"id": "C04-synthetic-normal", "path": "test-data/normal_metabolizer_control.vcf"},
+ {"id": "C05-synthetic-cyp2c19-pm", "path": "test-data/cyp2c19_poor_metabolizer.vcf"},
+ {"id": "C06-synthetic-dpyd-carrier", "path": "test-data/dpyd_variant_carrier.vcf"},
+ {"id": "C07-f4-NA18526", "path": "audit-output/2026-09-30-f4/NA18526.observed.vcf"},
+ {"id": "C08-f4-NA12878", "path": "audit-output/2026-09-30-f4/NA12878.observed.vcf"},
+ {"id": "C09-oversized-tutorial-NA18526", "path": "audit-output/2026-09-26/originals/PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18526.vcf.bgz"},
+ {"id": "C10-malformed-truncated-gzip", "path": "audit-output/2026-09-26/derived/real-truncated.vcf.gz"},
+ {"id": "C10b-valid-gzip-source", "path": "audit-output/2026-09-26/derived/real-valid-gzip.vcf.gz"},
+ {"id": "C11-failed-filter", "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-failed-filter.vcf"},
+ {"id": "C12-partial-gt", "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-partial-gt.vcf"},
+ {"id": "C13-missing-required", "path": "audit-output/2026-10-05-prompt7-5b236070c2/real-missing-required.vcf"},
+ {"id": "C14-missing-TPMT", "path": "audit-output/2026-10-05-prompt7-5b236070c2/missing-TPMT.vcf"},
+ {"id": "C15-missing-NUDT15", "path": "audit-output/2026-10-05-prompt7-5b236070c2/missing-NUDT15.vcf"},
+ {"id": "C16-bundled-synthetic-reduced", "path": "app/assets/samples/pharmaguard_sample_reduced_function.vcf"},
+ {"id": "C17-bundled-synthetic-normal", "path": "app/assets/samples/pharmaguard_sample_normal.vcf"},
+ {"id": "C18-bundled-variants-only", "path": "app/assets/samples/pharmaguard_sample_variants_only.vcf"},
+ {"id": "C19-real-missing-GT", "path": "audit-output/2026-09-26/derived/real-missing-GT.vcf"},
+ {"id": "C20-real-two-sample", "path": "audit-output/2026-09-26/derived/real-two-sample.vcf"}
+]}

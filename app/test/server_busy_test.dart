@@ -31,10 +31,12 @@ Dio _dioReturning({
   // on anything >= 400, so a test Dio left at the default would never reach the
   // status handling under test and every assertion here would pass or fail for
   // the wrong reason.
-  final Dio dio = Dio(BaseOptions(
-    baseUrl: 'http://test.invalid',
-    validateStatus: (int? code) => code != null && code < 600,
-  ));
+  final Dio dio = Dio(
+    BaseOptions(
+      baseUrl: 'http://test.invalid',
+      validateStatus: (int? code) => code != null && code < 600,
+    ),
+  );
   dio.httpClientAdapter = _CannedAdapter(
     status: status,
     body: body,
@@ -111,7 +113,8 @@ void main() {
         _dioReturning(
           status: 503,
           body: <String, dynamic>{
-            'detail': 'The server is busy with another analysis and could not '
+            'detail':
+                'The server is busy with another analysis and could not '
                 'start yours within 25 seconds. Nothing is wrong with your '
                 'file. Please try again in a moment.',
             'error_code': 'SERVER_BUSY',
@@ -133,7 +136,8 @@ void main() {
         _dioReturning(
           status: 503,
           body: <String, dynamic>{
-            'detail': 'The server is busy with another analysis and could not '
+            'detail':
+                'The server is busy with another analysis and could not '
                 'start yours within 25 seconds. Nothing is wrong with your '
                 'file. Please try again in a moment.',
             'error_code': 'SERVER_BUSY',
@@ -176,9 +180,13 @@ void main() {
       );
 
       expect(e.isBackendUnavailable, isTrue);
-      expect(e.isBusy, isFalse,
-          reason: 'a broken deployment must not be shown as a queue — '
-              'retrying does not help');
+      expect(
+        e.isBusy,
+        isFalse,
+        reason:
+            'a broken deployment must not be shown as a queue — '
+            'retrying does not help',
+      );
     });
 
     test('429 is rate-limited, not busy', () async {
@@ -202,28 +210,69 @@ void main() {
 
     test('no two of the three share a classification', () async {
       final List<ApiException> all = <ApiException>[
-        await _captureAnalyzeError(_dioReturning(
-          status: 503,
-          body: <String, dynamic>{'error_code': 'SERVER_BUSY'},
-        )),
-        await _captureAnalyzeError(_dioReturning(
-          status: 503,
-          body: <String, dynamic>{'error_code': 'PHARMCAT_UNAVAILABLE'},
-        )),
-        await _captureAnalyzeError(_dioReturning(
-          status: 429,
-          body: <String, dynamic>{'error_code': 'RATE_LIMITED'},
-        )),
+        await _captureAnalyzeError(
+          _dioReturning(
+            status: 503,
+            body: <String, dynamic>{'error_code': 'SERVER_BUSY'},
+          ),
+        ),
+        await _captureAnalyzeError(
+          _dioReturning(
+            status: 503,
+            body: <String, dynamic>{'error_code': 'PHARMCAT_UNAVAILABLE'},
+          ),
+        ),
+        await _captureAnalyzeError(
+          _dioReturning(
+            status: 429,
+            body: <String, dynamic>{'error_code': 'RATE_LIMITED'},
+          ),
+        ),
       ];
 
       final List<String> signatures = all
-          .map((ApiException e) =>
-              '${e.isBusy}/${e.isBackendUnavailable}/${e.isRateLimited}')
+          .map(
+            (ApiException e) =>
+                '${e.isBusy}/${e.isBackendUnavailable}/${e.isRateLimited}',
+          )
           .toList();
 
-      expect(signatures.toSet().length, 3,
-          reason: 'two of the three states are indistinguishable to the UI: '
-              '$signatures');
+      expect(
+        signatures.toSet().length,
+        3,
+        reason:
+            'two of the three states are indistinguishable to the UI: '
+            '$signatures',
+      );
+    });
+
+    test('a rejected upload does not imply the backend is unreachable', () {
+      expect(
+        const ApiException(
+          'Too large',
+          statusCode: 413,
+        ).shouldMarkBackendUnreachable,
+        isFalse,
+      );
+      expect(
+        const ApiException(
+          'Bad VCF',
+          statusCode: 400,
+        ).shouldMarkBackendUnreachable,
+        isFalse,
+      );
+      expect(
+        const ApiException('Network error').shouldMarkBackendUnreachable,
+        isTrue,
+      );
+      expect(
+        const ApiException(
+          'PharmCAT missing',
+          statusCode: 503,
+          errorCode: 'PHARMCAT_UNAVAILABLE',
+        ).shouldMarkBackendUnreachable,
+        isTrue,
+      );
     });
   });
 }

@@ -1,0 +1,139 @@
+{
+  "pvId" : "PV03110",
+  "legacyLabel" : null,
+  "evidenceLevel" : "0",
+  "referenceSequences" : [ {
+    "label" : "NM_000769.4",
+    "secondaryLabel" : null,
+    "display" : null,
+    "original" : 0,
+    "ncbiIndex" : "NM_000769.4",
+    "ncbiExternalLink" : "https://www.ncbi.nlm.nih.gov/nuccore/NM_000769.4",
+    "activeInd" : true,
+    "exons" : "5001-5193,17378-17540,17710-17859,22819-22979,24141-24317,62816-62957,85157-85344,92237-92378,95053-97867",
+    "sequenceLength" : 1847,
+    "stopCodonPosition" : 1548,
+    "altStartPosition" : 26
+  }, {
+    "label" : "NG_008384.3",
+    "secondaryLabel" : "LRG_584",
+    "display" : null,
+    "original" : 1,
+    "ncbiIndex" : "NG_008384.3",
+    "ncbiExternalLink" : "https://www.ncbi.nlm.nih.gov/nuccore/NG_008384.3",
+    "activeInd" : true,
+    "exons" : null,
+    "sequenceLength" : 99871,
+    "stopCodonPosition" : 95234,
+    "altStartPosition" : 5026
+  }, {
+    "label" : "NC_000010.10",
+    "secondaryLabel" : null,
+    "display" : "GRCh37",
+    "original" : 0,
+    "ncbiIndex" : "NC_000010.10",
+    "ncbiExternalLink" : "https://www.ncbi.nlm.nih.gov/nuccore/NC_000010.10",
+    "activeInd" : true,
+    "exons" : null,
+    "sequenceLength" : 0,
+    "stopCodonPosition" : 0,
+    "altStartPosition" : 0
+  }, {
+    "label" : "NC_000010.11",
+    "secondaryLabel" : null,
+    "display" : "GRCh38",
+    "original" : 0,
+    "ncbiIndex" : "NC_000010.11",
+    "ncbiExternalLink" : "https://www.ncbi.nlm.nih.gov/nuccore/NC_000010.11",
+    "activeInd" : true,
+    "exons" : null,
+    "sequenceLength" : 0,
+    "stopCodonPosition" : 0,
+    "altStartPosition" : 0
+  } ],
+  "textDescription" : null,
+  "activity" : {
+    "label" : "no function",
+    "_links" : {
+      "haplotypes" : {
+        "href" : "http://www.pharmvar.org/api/activities/2/haplotypes{?projection}",
+        "templated" : true
+      },
+      "self" : {
+        "href" : "http://www.pharmvar.org/api/activities/2{?projection}",
+        "templated" : true
+      }
+    }
+  },
+  "haplotypePublications" : [ ],
+  "gene" : {
+    "curationStatus" : "CURATED",
+    "id" : 18207,
+    "_links" : {
+      "referenceSequences" : {
+        "href" : "http://www.pharmvar.org/api/genes/18207/referenceSequences{?projection}",
+        "templated" : true
+      },
+      "geneExternalIdentifiers" : {
+        "href" : "http://www.pharmvar.org/api/genes/18207/geneExternalIdentifiers{?projection}",
+        "templated" : true
+      },
+      "haplotypes" : {
+        "href" : "http://www.pharmvar.org/api/genes/18207/haplotypes{?projection}",
+        "templated" : true
+      },
+      "geneSynonyms" : {
+        "href" : "http://www.pharmvar.org/api/genes/18207/geneSynonyms{?projection}",
+        "templated" : true
+      },
+      "self" : {
+        "href" : "http://www.pharmvar.org/api/genes/18207{?projection}",
+        "templated" : true
+      }
+    }
+  },
+  "activityScore" : null,
+  "activeInd" : true,
+  "label" : "CYP2C19*2",
+  "haplotypeExternalIdentifiers" : [ {
+    "externalLabel" : "*2",
+    "externalHyperLink" : "https://www.pharmfreq.com/?_inputs_&gene=\"CYP2C19\"&allele=\"*2\"&go=1"
+  }, {
+    "externalLabel" : "PA165980635",
+    "externalHyperLink" : "https://www.clinpgx.org/haplotype/PA165980635"
+  } ],
+  "_links" : {
+    "self" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110"
+    },
+    "haplotype" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110{?projection}",
+      "templated" : true
+    },
+    "haplotypeExternalIdentifiers" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110/haplotypeExternalIdentifiers"
+    },
+    "gene" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110/gene{?projection}",
+      "templated" : true
+    },
+    "haplotypePublications" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110/haplotypePublications"
+    },
+    "haplotypeVariant" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110/haplotypeVariant{?projection}",
+      "templated" : true
+    },
+    "variantGroups" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110/variantGroups"
+    },
+    "referenceSequences" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110/referenceSequences{?projection}",
+      "templated" : true
+    },
+    "activity" : {
+      "href" : "http://www.pharmvar.org/api/haplotypes/3110/activity{?projection}",
+      "templated" : true
+    }
+  }
+}

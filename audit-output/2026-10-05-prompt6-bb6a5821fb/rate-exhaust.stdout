@@ -1,0 +1,26 @@
+[
+  {
+    "at": "2026-10-05T12:01:29.141199+00:00",
+    "request_index": 0,
+    "status": 200,
+    "seconds": 0.036,
+    "retry_after": null,
+    "error_code": null
+  },
+  {
+    "at": "2026-10-05T12:01:29.146837+00:00",
+    "request_index": 1,
+    "status": 200,
+    "seconds": 0.006,
+    "retry_after": null,
+    "error_code": null
+  },
+  {
+    "at": "2026-10-05T12:01:29.150830+00:00",
+    "request_index": 2,
+    "status": 429,
+    "seconds": 0.004,
+    "retry_after": "210",
+    "error_code": "RATE_LIMITED"
+  }
+]

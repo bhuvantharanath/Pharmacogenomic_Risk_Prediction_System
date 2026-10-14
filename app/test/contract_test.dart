@@ -175,6 +175,29 @@ void main() {
       expect(jsonDecode(jsonEncode(roundTripped)), equals(original));
     });
 
+    test('scientific coverage evidence survives browser JSON export', () {
+      final GeneCoverage coverage = GeneCoverage.fromJson(<String, dynamic>{
+        'positions_present': 35,
+        'positions_required': 35,
+        'percent': 100.0,
+        'minimum_percent': 100,
+        'sufficient': true,
+        'decision_critical_present': 31,
+        'decision_critical_required': 31,
+        'decision_critical_enforced': false,
+        'evidence_counts': <String, int>{
+          'valid_observed_genotype': 35,
+          'absent_position': 0,
+        },
+      });
+      expect(coverage.toJson()['decision_critical_present'], 31);
+      expect(coverage.toJson()['decision_critical_enforced'], false);
+      expect(coverage.toJson()['evidence_counts'], <String, int>{
+        'valid_observed_genotype': 35,
+        'absent_position': 0,
+      });
+    });
+
     test('unrecognised enum values fall back instead of throwing', () {
       expect(RiskLabel.fromJson('Something New'), RiskLabel.unknown);
       expect(RiskLabel.fromJson(null), RiskLabel.unknown);
@@ -244,7 +267,9 @@ void main() {
       expect(find.text('CPIC GUIDELINE — QUOTED EXACTLY'), findsWidgets);
       expect(find.textContaining('Avoid codeine'), findsOneWidget);
 
-      await tester.ensureVisible(find.text('What was found in your file').first);
+      await tester.ensureVisible(
+        find.text('What was found in your file').first,
+      );
       await tester.pumpAndSettle();
       await tester.tap(find.text('What was found in your file').first);
       await tester.pumpAndSettle();

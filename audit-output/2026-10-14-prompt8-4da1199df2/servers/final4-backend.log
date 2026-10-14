@@ -1,0 +1,26 @@
+INFO:     Started server process [94220]
+INFO:     Waiting for application startup.
+[startup] pharmcat=jar via /opt/homebrew/opt/openjdk@17/bin/java -jar /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar
+[startup] pharmcat_concurrency=1 workers=1 queue_timeout=25s
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+[startup] explanation_mode=static cors_origins=['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:3000', 'http://127.0.0.1:3000'] rate_limit=10/300s proxy_trust={'forwarded_headers': 'ignored', 'trusted_proxy_cidrs': []}
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:52307 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52309 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52376 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52377 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52377 - "OPTIONS /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52376 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52376 - "OPTIONS /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52377 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52708 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52709 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52718 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52718 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53033 - "GET /ready HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53034 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53046 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53046 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Finished server process [94220]

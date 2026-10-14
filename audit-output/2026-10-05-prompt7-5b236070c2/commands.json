@@ -1,0 +1,191 @@
+[
+  {
+    "name": "git-status-start",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "-uall"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "git-diff-start",
+    "argv": [
+      "git",
+      "diff",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "git-staged-start",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "head",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "branch",
+    "argv": [
+      "git",
+      "branch",
+      "--show-current"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "gate-help",
+    "argv": [
+      "backend/.venv/bin/python",
+      "scripts/release_status.py",
+      "--help"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T13:09:32.551073+00:00",
+    "ended_at": "2026-10-05T13:09:32.731335+00:00",
+    "exit_code": 0,
+    "stdout": "gate-help.stdout",
+    "stderr": "gate-help.stderr"
+  },
+  {
+    "name": "real-acceptance",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt7-5b236070c2/real_acceptance.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T13:14:56.431861+00:00",
+    "ended_at": "2026-10-05T13:15:20.581567+00:00",
+    "exit_code": 0,
+    "stdout": "real-acceptance.stdout",
+    "stderr": "real-acceptance.stderr"
+  },
+  {
+    "name": "pdf-render",
+    "argv": [
+      "pdftoppm",
+      "-r",
+      "85",
+      "-png",
+      "audit-output/2026-10-05-prompt7-5b236070c2/native-NA12878-print.pdf",
+      "audit-output/2026-10-05-prompt7-5b236070c2/print-page"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T15:53:13.061317+00:00",
+    "ended_at": "2026-10-06T15:53:13.854151+00:00",
+    "exit_code": 0,
+    "stdout": "pdf-render.stdout",
+    "stderr": "pdf-render.stderr"
+  },
+  {
+    "name": "pdf-extract",
+    "argv": [
+      "/Users/bhuvant/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "audit-output/2026-10-05-prompt7-5b236070c2/verify_pdf.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T15:58:52.898789+00:00",
+    "ended_at": "2026-10-06T15:58:53.577028+00:00",
+    "exit_code": 0,
+    "stdout": "pdf-extract.stdout",
+    "stderr": "pdf-extract.stderr"
+  },
+  {
+    "name": "glossary-report",
+    "argv": [
+      "backend/.venv/bin/python",
+      "scripts/glossary_status.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:00:26.005038+00:00",
+    "ended_at": "2026-10-06T16:00:28.496808+00:00",
+    "exit_code": 0,
+    "stdout": "glossary-report.stdout",
+    "stderr": "glossary-report.stderr"
+  },
+  {
+    "name": "git-diff-final",
+    "argv": [
+      "git",
+      "diff",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.195723+00:00",
+    "ended_at": "2026-10-06T16:06:34.219304+00:00",
+    "exit_code": 0,
+    "stdout": "git-diff-final.stdout",
+    "stderr": "git-diff-final.stderr"
+  },
+  {
+    "name": "git-diff-stat-final",
+    "argv": [
+      "git",
+      "diff",
+      "--stat"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.241831+00:00",
+    "ended_at": "2026-10-06T16:06:34.259444+00:00",
+    "exit_code": 0,
+    "stdout": "git-diff-stat-final.stdout",
+    "stderr": "git-diff-stat-final.stderr"
+  },
+  {
+    "name": "git-diff-check",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.284018+00:00",
+    "ended_at": "2026-10-06T16:06:34.301478+00:00",
+    "exit_code": 0,
+    "stdout": "git-diff-check.stdout",
+    "stderr": "git-diff-check.stderr"
+  },
+  {
+    "name": "git-staged-final",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.325209+00:00",
+    "ended_at": "2026-10-06T16:06:34.332520+00:00",
+    "exit_code": 0,
+    "stdout": "git-staged-final.stdout",
+    "stderr": "git-staged-final.stderr"
+  },
+  {
+    "name": "finalize-owner-package",
+    "argv": [
+      "python3",
+      "audit-output/2026-10-05-prompt7-5b236070c2/finalize_package.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "note": "First completed finalization; read-only candidate checks and new audit artifacts only."
+  }
+]

@@ -1,0 +1,14 @@
+{
+ "entries": 20,
+ "flagged_sentences": 179,
+ "adjudicated": 160,
+ "adjudicated_by_human": 124,
+ "adjudicated_by_automation": 36,
+ "escalated_awaiting_human": 19,
+ "outstanding": 19,
+ "rejected": 0,
+ "clinical_expert_review": "NOT_OBTAINED",
+ "state": "incomplete",
+ "adjudication_complete": false,
+ "human_adjudication_complete": false
+}

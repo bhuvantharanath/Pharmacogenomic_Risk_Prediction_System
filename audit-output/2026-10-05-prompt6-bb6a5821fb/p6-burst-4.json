@@ -1,0 +1,4 @@
+{
+  "detail": "The server is busy with another analysis and could not start yours in time. Nothing is wrong with your file. Please try again in a moment.",
+  "error_code": "SERVER_BUSY"
+}

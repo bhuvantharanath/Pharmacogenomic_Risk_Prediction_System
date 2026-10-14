@@ -1,0 +1,194 @@
+{
+ "id": "D15",
+ "label": "Scope abstention: unsupported drug, CYP2D6/codeine, warfarin",
+ "fixture": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D15-pharmaguard_sample_normal.vcf",
+ "fixture_sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c",
+ "drugs": "clopidogrel,ibuprofen,codeine,warfarin",
+ "started": "2026-10-15T00:25:22+0530",
+ "coverage": {
+  "status": 200,
+  "body_sha256": "c1f0172598a7b56300f0b5d2161c2cda4eaa0c7ed9a2fdf00c9ac25f09f541bd",
+  "body_file": "browser-received/0013-post-coverage.body",
+  "failed": null
+ },
+ "readiness_text": [
+  "About PharmaGuard",
+  "Re-check backend connection",
+  "No genome file? Use a sample\nRun one here, or download it and upload it yourself. Two of these are declined on purpose \u2014 that is the behaviour, not a fault.\nReduced-function result\nAnswers confidently\nComplete coverage, CYP2C19 *2/*2. Clopidogrel comes back Ineffective \u2014 the case this system exists to catch.\nNormal result\nAnswers confidently\nComplete coverage, all genes at reference. Shows the system is not merely cautious \u2014 it will state when no PGx-guided adjustment was identified from the assessed evidence.\nVariants-only file\nDeclines every gene\nThe SAME patient as the first sample, with reference rows removed \u2014 the common output of most pipelines. The genotype is unchanged; what is lost is the evidence that it was measured.\nReal 1000 Genomes sample\nDeclines every gene\nGenuine public research data (NA12273), not synthetic. Polymorphic-filtered, so it is declined \u2014 which is what happens to most research VCFs, and why.",
+  "Try this",
+  "Download",
+  "Try this",
+  "Download",
+  "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.\nTHIS FILE\ncan answer 6 of 7 genes\nCAN BE ANSWERED\nclopidogrel\nfluorouracil\nazathioprine\nsimvastatin\nWILL RETURN UNKNOWN\nwarfarin\ncodeine\nPer-gene detail\nCYP2D6: not called from an uploaded VCF by this application \u2014 it needs specialised copy-number and structural-variant calling, so a different file will not help.\nPharmCAT 3.4.0 \u00b7 explanations 24 Jul 2026",
+  "Drugs (comma-separated)",
+  "clopidogrel",
+  "fluorouracil",
+  "azathioprine",
+  "simvastatin",
+  "warfarin",
+  "codeine",
+  "Analyze",
+  "Check all 6 medicines"
+ ],
+ "typed_drugs": "clopidogrel,ibuprofen,codeine,warfarin",
+ "loading_controls": [
+  {
+   "text": "About PharmaGuard",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Re-check backend connection",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": true
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": true
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": true
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": true
+  },
+  {
+   "text": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.\nTHIS FILE\ncan answer 6 of 7 genes\nCAN BE ANSWERED\nclopidogrel\nfluorouracil\nazathioprine\nsimvastatin\nWILL RETURN UNKNOWN\nwarfarin\ncodeine\nPer-gene detail\nCYP2D6: not called from an uploaded VCF by this application \u2014 it needs specialised copy-number and structural-variant calling, so a different file will not help.\nPharmCAT 3.4.0 \u00b7 explanations 24 Jul 2026",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "clopidogrel",
+   "role": "checkbox",
+   "disabled": true
+  },
+  {
+   "text": "fluorouracil",
+   "role": "checkbox",
+   "disabled": true
+  },
+  {
+   "text": "azathioprine",
+   "role": "checkbox",
+   "disabled": true
+  },
+  {
+   "text": "simvastatin",
+   "role": "checkbox",
+   "disabled": true
+  },
+  {
+   "text": "warfarin",
+   "role": "checkbox",
+   "disabled": true
+  },
+  {
+   "text": "codeine",
+   "role": "checkbox",
+   "disabled": true
+  },
+  {
+   "text": "Analyzing\u2026",
+   "role": "button",
+   "disabled": true
+  },
+  {
+   "text": "Check all 6 medicines",
+   "role": "button",
+   "disabled": true
+  }
+ ],
+ "analyze": {
+  "status": 200,
+  "body_sha256": "3ac4d60463d1100c2cd239111fcef743fe5ee5c12b929da6a009d09758308ce4",
+  "body_file": "browser-received/0014-post-analyze.body",
+  "failed": null
+ },
+ "results_shots": [
+  "results-00",
+  "results-01",
+  "results-02",
+  "results-03",
+  "results-04",
+  "results-05",
+  "results-06"
+ ],
+ "results_text": [
+  "Back",
+  "Copy JSON",
+  "Export JSON",
+  "DEMO_NORMAL\n2026-10-14T18:55:33Z\nVCF accepted\n0 variants\n1200 ms\n13 pipeline warnings\nCPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.\nThe CYP2C19 *38 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.\nPre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.\nibuprofen: This drug is outside the audited application scope; no application guidance is produced.\nNo pre-generated explanation for (ibuprofen, Unknown); using the deterministic template.\ncodeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.\nPre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.\nwarfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.\nPre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.\nCYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned\nexplanation mode=static, source=template, guard=n/a (deterministic), slots=verified\nNo qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.\nNo usable pharmacogenomic result for: ibuprofen, codeine, warfarin.\nNo PGx-guided change\nAdjust Dosage\nToxic\nIneffective\nUnknown",
+  "DRUGS CHECKED (4) \u2014 MOST SERIOUS FIRST\nReading view. Both views show the same result; they differ only in what is shown first.",
+  "For a patient. Plain language first.",
+  "For a clinician. Genotype and guideline first.",
+  "Input coverage. 7 of 7 genes have enough positions to call",
+  "clopidogrel: No PGx-guided change",
+  "CYP2C19 coverage: 35 of 35 required positions usable\nCYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 \n carries common \n that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of \n Guideline for clopidogrel and CYP2C19 \u2014 Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 \n and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351\nCPIC GUIDELINE \u2014 QUOTED EXACTLY\nIf considering clopidogrel, use at standard dose (75 mg/day)\nCPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity\n\u2014 Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: standard_dosing]",
+  "clopidogrel: CYP2C19 *38/*38 (\nNormal Metabolizer. Definition available.\n) \u2014 No PGx-guided adjustment identified.",
+  "gene. Definition available.",
+  "variants. Definition available.",
+  "CPIC. Definition available.",
+  "Genotype. Definition available.",
+  "The guideline in CPIC's own words",
+  "What was found in your file",
+  "codeine: Unknown",
+  "CYP2C19 coverage: 35 of 35 required positions usable\nCYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 \n carries common \n that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of \n Guideline for clopidogrel and CYP2C19 \u2014 Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 \n and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351\nCPIC GUIDELINE \u2014 QUOTED EXACTLY\nIf considering clopidogrel, use at standard dose (75 mg/day)\nCPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity\n\u2014 Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: standard_dosing]\ngene\nCYP2C19\n*38/*38\nNM\nevidence level\nUnknown\nvariants reported\n0\nCYP2D6: not applicable. Not called from an uploaded VCF by this application: copy-number and structural variation need specialised read-level calling.\nThis gene is not called from a VCF here\nThis gene\u2019s result depends on structural and copy-number variation \u2014 whole stretches duplicated, deleted or rearranged. Calling that needs specialised analysis of the sequencing reads, which this application does not perform. This is a limit of this application, not of your sample.\nWHAT THIS MEANS\ncodeine: no pharmacogenomic result (Unknown).",
+  "diplotype. Definition available.",
+  "phenotype. Definition available.",
+  "A specialised CYP2D6 test or caller can resolve it. A different \nVCF. Definition available.\n uploaded here will not.",
+  "CYP2D6 is a hepatic cytochrome P450 enzyme responsible for metabolising a large share of commonly used drugs. CYP2D6 is unusually variable: as well as single-nucleotide variants that alter or abolish activity, the gene is subject to **whole-gene deletions and duplications**, so copy number differs between people. Activity is conventionally summarised as an activity score derived from both \nalleles. Definition available.\n.\n\nSource: Annotation of CPIC Guideline for codeine and CYP2D6 \u2014 Crews KR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2D6, OPRM1, and COMT Genotypes and Select Opioid Therapy. Clin Pharmacol Ther (2021). PMID: 33387367",
+  "CYP2C19 coverage: 35 of 35 required positions usable\nCYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 \n carries common \n that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of \n Guideline for clopidogrel and CYP2C19 \u2014 Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 \n and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351\nCPIC GUIDELINE \u2014 QUOTED EXACTLY\nIf considering clopidogrel, use at standard dose (75 mg/day)\nCPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity\n\u2014 Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: standard_dosing]\ngene\nCYP2C19\n*38/*38\nNM\nevidence level\nUnknown\nvariants reported\n0\nCYP2D6: not applicable. Not called from an uploaded VCF by this application: copy-number and structural variation need specialised read-level calling.\nThis gene is not called from a VCF here\nThis gene\u2019s result depends on structural and copy-number variation \u2014 whole stretches duplicated, deleted or rearranged. Calling that needs specialised analysis of the sequencing reads, which this application does not perform. This is a limit of this application, not of your sample.\nWHAT THIS MEANS\ncodeine: no pharmacogenomic result (Unknown).\nAPPLICATION LIMITATION \u2014 NOT A CPIC QUOTE\nCYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.\nAnnotation of CPIC Guideline for codeine and CYP2D6\n\u2014 PharmCAT (no matching CPIC entry)\ngene\nUnknown\ndiplotype\nUnknown\nphenotype\nUnknown\nevidence level\nUnknown\nvariants reported\n0",
+  "Why no guideline was returned",
+  "ibuprofen: Unknown",
+  "warfarin: Unknown",
+  "Printable summary",
+  "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.\nPharmCAT 3.4.0 \u00b7 CPIC data 2026-07-13-11-40 \u00b7 explanations 24 Jul 2026",
+  "CYP2C19 coverage: 35 of 35 required positions usable\nCYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 \n carries common \n that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of \n Guideline for clopidogrel and CYP2C19 \u2014 Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 \n and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351\nCPIC GUIDELINE \u2014 QUOTED EXACTLY\nIf considering clopidogrel, use at standard dose (75 mg/day)\nCPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity\n\u2014 Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: standard_dosing]\ngene\nCYP2C19\n*38/*38\nNM\nevidence level\nUnknown\nvariants reported\n0\nCYP2D6: not applicable. Not called from an uploaded VCF by this application: copy-number and structural variation need specialised read-level calling.\nThis gene is not called from a VCF here\nThis gene\u2019s result depends on structural and copy-number variation \u2014 whole stretches duplicated, deleted or rearranged. Calling that needs specialised analysis of the sequencing reads, which this application does not perform. This is a limit of this application, not of your sample.\nWHAT THIS MEANS\ncodeine: no pharmacogenomic result (Unknown).\nAPPLICATION LIMITATION \u2014 NOT A CPIC QUOTE\nCYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.\nAnnotation of CPIC Guideline for codeine and CYP2D6\n\u2014 PharmCAT (no matching CPIC entry)\ngene\nUnknown\ndiplotype\nUnknown\nphenotype\nUnknown\nevidence level\nUnknown\nvariants reported\n0\nResult withheld\nThis drug is outside the audited application scope; no application guidance is produced.\nibuprofen: no pharmacogenomic result (Unknown).\nNo mechanism background is available in this build for ibuprofen. No pharmacogenomic guidance is produced for this result.\nAPPLICATION LIMITATION \u2014 NOT A CPIC QUOTE\nThis drug is outside the audited application scope; no application guidance is produced.\nAnnotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9\n\u2014 PharmCAT (no matching CPIC entry)",
+  "CYP2C19 coverage: 35 of 35 required positions usable\nCYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 \n carries common \n that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of \n Guideline for clopidogrel and CYP2C19 \u2014 Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 \n and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351\nCPIC GUIDELINE \u2014 QUOTED EXACTLY\nIf considering clopidogrel, use at standard dose (75 mg/day)\nCPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity\n\u2014 Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: standard_dosing]\ngene\nCYP2C19\n*38/*38\nNM\nevidence level\nUnknown\nvariants reported\n0\nCYP2D6: not applicable. Not called from an uploaded VCF by this application: copy-number and structural variation need specialised read-level calling.\nThis gene is not called from a VCF here\nThis gene\u2019s result depends on structural and copy-number variation \u2014 whole stretches duplicated, deleted or rearranged. Calling that needs specialised analysis of the sequencing reads, which this application does not perform. This is a limit of this application, not of your sample.\nWHAT THIS MEANS\ncodeine: no pharmacogenomic result (Unknown).\nAPPLICATION LIMITATION \u2014 NOT A CPIC QUOTE\nCYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.\nAnnotation of CPIC Guideline for codeine and CYP2D6\n\u2014 PharmCAT (no matching CPIC entry)\ngene\nUnknown\ndiplotype\nUnknown\nphenotype\nUnknown\nevidence level\nUnknown\nvariants reported\n0\nResult withheld\nThis drug is outside the audited application scope; no application guidance is produced.\nibuprofen: no pharmacogenomic result (Unknown).\nNo mechanism background is available in this build for ibuprofen. No pharmacogenomic guidance is produced for this result.\nAPPLICATION LIMITATION \u2014 NOT A CPIC QUOTE\nThis drug is outside the audited application scope; no application guidance is produced.\nAnnotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9\n\u2014 PharmCAT (no matching CPIC entry)\nCYP2C9 coverage: 88 of 88 required positions usable\nResult withheld\nNo validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.\nwarfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown.\nCYP2C9 is a hepatic cytochrome P450 enzyme. Among many substrates, it is the principal route of clearance for S-warfarin, the more pharmacologically potent of warfarin's two enantiomers.\n\nSource: Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1 \u2014 Johnson JA et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update. Clin Pharmacol Ther (2017). PMID: 28198005"
+ ],
+ "disclosures_not_toggled": [
+  "Input coverage. 7 of 7 genes have enough positions to call",
+  "What was found in your file",
+  "Why no guideline was returned"
+ ],
+ "download": {
+  "file": "download-pharmaguard_DEMO_NORMAL_2026-10-14T18-55-33-242293Z.json",
+  "bytes": 19172,
+  "sha256": "0e749d52c9ebb1b2308d0ed2ce18081d661b4a8cc7f358b7c67d7d802a85eac9",
+  "event": {
+   "guid": "06dfd09c-83ad-4161-b52e-2299053c487a",
+   "frameId": "74790C708FB75798E672667292190994",
+   "url": "blob:http://127.0.0.1:3000/6bdd7eb8-4848-4862-b7d3-b374d6fc4c35",
+   "suggestedFilename": "pharmaguard_DEMO_NORMAL_2026-10-14T18-55-33-242293Z.json",
+   "last_event": "Browser.downloadProgress",
+   "at": "2026-10-14T18:55:54.963Z",
+   "totalBytes": 19172,
+   "receivedBytes": 19172,
+   "state": "completed",
+   "filePath": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/browser/run-final4-print/downloads/pharmaguard_DEMO_NORMAL_2026-10-14T18-55-33-242293Z.json"
+  }
+ },
+ "clipboard": {
+  "skipped": "headless session; system clipboard not reachable"
+ },
+ "print": {
+  "file": "print.pdf",
+  "original_name": "PharmaGuard.pdf",
+  "bytes": 197605,
+  "sha256": "e5b114d1cf496abee952916117e1a1ae9d58e37b16efd12f3a093fcaee9e8104"
+ },
+ "analyze_requests_seen": 1,
+ "analyze_clicks_issued": 1,
+ "external_interference": false,
+ "finished": "2026-10-15T00:26:02+0530"
+}

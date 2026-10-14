@@ -1,0 +1,313 @@
+{
+ "version": 1,
+ "store_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+ "policy": "Exact content/source/context approval by named project-author provenance adjudication; not clinical expert review.",
+ "clinical_expert_review": "NOT_OBTAINED",
+ "counts": {
+  "approved": 0,
+  "unresolved": 20,
+  "rejected": 0
+ },
+ "entries": [
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "IM",
+   "status": "unresolved",
+   "content_hash": "165675b3dd76a2a0c4a6785e43cd6fc1044721a29954a418ee130234d700dd01",
+   "source_hash": "104f9a935d11a954528b234aa5c9a0348fa250e3a4fd7c8fc1a9670a5ac59e52",
+   "context_hash": "60d00ab1d27425db8cb65d4464fced3926cf83fc8532c7301267786f05b014e0",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "azathioprine",
+   "gene": "NUDT15",
+   "phenotype": "NM",
+   "status": "unresolved",
+   "content_hash": "9c8fda477cf31858e3d2268464f0a364150b62c4329c3628968a329146bf22c5",
+   "source_hash": "11068c6d0a5c7e4563487f2533cb945e47e4f468c375b40beb53cf1146a18ab1",
+   "context_hash": "8cdfd12f7611ebdcdeca3db98b6b71512d1a13a5807bcb1d0c1a247aa57affe0",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "PM",
+   "status": "unresolved",
+   "content_hash": "ca9271f3b88e589c691a0395db41421c4cf288b62a576b9a10065c45ee9a844a",
+   "source_hash": "a9f90422a5fc8d4604a44393b2784c8a7278a229218e6242238bdfedb30e22fb",
+   "context_hash": "6b19b184ca07854053d292d3512f39aefeec92beb4078dd9e2a17c86f5cfef94",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "unresolved adjudication"
+  },
+  {
+   "drug": "azathioprine",
+   "gene": "TPMT",
+   "phenotype": "Unknown",
+   "status": "unresolved",
+   "content_hash": "4364bd59b3579bf3d7bad7cc041b62b566a3a2a840a08704ebf86303a3408c43",
+   "source_hash": "30649615c531b5f13722cdb676cebb37c689b987286ae8a54b8b4a83e0639ce5",
+   "context_hash": "ee9cd1d99d477007adb005661ee4ac26076deade28e9a8515cbd3ded3726158c",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "IM",
+   "status": "unresolved",
+   "content_hash": "4493612b6afeff1064c2d7e4af77ffaa6b03f27d7fe7e8b7fdb6ada6eb679354",
+   "source_hash": "c443bfe6ea66381e66ab227d7c9a0a00cca430b5a4233b47488b4fbacb95d660",
+   "context_hash": "94e619b6bcbd770fc69b4bd368230ed9d85fa9d5c3f69afed170cd3715034916",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "NM",
+   "status": "unresolved",
+   "content_hash": "2782e5e684ff2590a8b00dd172f95451328be04852b222433b158aa77f1290c0",
+   "source_hash": "6f6a5b19cd75138f7d6ff4c977bc04386c63d77b5b46246fe17117a437b7c5da",
+   "context_hash": "ebf948b8cccd02052f46943a146060d746f22c7b9ab1cc7d6dfc8038edab53f8",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "PM",
+   "status": "unresolved",
+   "content_hash": "180ea78ddeb92bc4ed734d787813f5d754e511f2a89ab675537b703637f14560",
+   "source_hash": "72c0b3b4ddbc9b7e1721e4e5dbc37dbea010e0e66a4c9aba45c6acf725a7cae0",
+   "context_hash": "e5f2c49916f5edcd26d4381616af2be7219fa44ea1b09ccb72a772fd0f04f657",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "RM",
+   "status": "unresolved",
+   "content_hash": "ad33a801e57ff51f41d7170d95c19fa8988e2a8cea60c23563e0c3c2c48ef8e7",
+   "source_hash": "6f6a5b19cd75138f7d6ff4c977bc04386c63d77b5b46246fe17117a437b7c5da",
+   "context_hash": "f6bca6ecffcc174172cc52af5055860dd117a8d6acd3d2f3fe460deecb02017e",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "URM",
+   "status": "unresolved",
+   "content_hash": "e5615a782817e14353bc03de330bc84cb0786a7b739fe29763c120277b42bfcf",
+   "source_hash": "6f6a5b19cd75138f7d6ff4c977bc04386c63d77b5b46246fe17117a437b7c5da",
+   "context_hash": "348d477e7c7ed861a9c217db08bdd7ba4143c29887076e5ae5577024e14a56a2",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "clopidogrel",
+   "gene": "CYP2C19",
+   "phenotype": "Unknown",
+   "status": "unresolved",
+   "content_hash": "ca48868c71ee9fd4bfa8e16fe1e5305a02175fd6cb13e70017b45495cefc75a9",
+   "source_hash": "ae8d0e20c44e38122f34d5b279be8da18f22600380a9c5bf69437e84f7c94b78",
+   "context_hash": "9b5f5cb86f187006afe87d112982b6b5b95ccd153c1942822b052f9a2626de78",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "codeine",
+   "gene": "CYP2D6",
+   "phenotype": "Unknown",
+   "status": "unresolved",
+   "content_hash": "49c331da80040518ef10e648a9b40277ebcc43aadbde8cf4514d66e60e609aad",
+   "source_hash": "a0efc23c38910c7da7233884eb247a3309625295b871bc5e40200bf2eb5e1cf5",
+   "context_hash": "824c9e2c31759cebebae11c7d28fba910091bec8e144e8d3a74831c419188721",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "IM",
+   "status": "unresolved",
+   "content_hash": "5350de17a57b0f6d3e435eebabf6340a6daa587932a27d544fdd628aaddd215b",
+   "source_hash": "d0b8770a4494b6f7ca9ae2822d55cf4002047871219c4f80ee240c2e9f93efec",
+   "context_hash": "4465c229397014010d195686c78eb1f25ad863f07d02684cc60dff3b1a2d7694",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "NM",
+   "status": "unresolved",
+   "content_hash": "2774def9190902cd0d3a06a5ebe858bb0cd7c73aaa45ec5e35408449f7b1c428",
+   "source_hash": "00c7a9f3b933989fca8c84397c3ab44b733ff80c545554dca03d5eaa3b136a6e",
+   "context_hash": "2696f2b3684005c9817d52ffdff77b6b9bcafdbe67acb126bd7118928a710b4d",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "PM",
+   "status": "unresolved",
+   "content_hash": "9ddea44ad8cceee5dec2fa4e2b5d2a0b4e5b14e305fc505ba289ca0920aaca14",
+   "source_hash": "49993401cc1118f17749bcf48b3409b8ef38ae9edafee9c73f809d696cc5f038",
+   "context_hash": "23de0e85aff6fc28b94de98e4fe6d15c27a1dc61744fcb4429ae9aced461697c",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "fluorouracil",
+   "gene": "DPYD",
+   "phenotype": "Unknown",
+   "status": "unresolved",
+   "content_hash": "662b68148b27837a8e5f601c8700764c938d58add76e78dd043a47e25fe195a5",
+   "source_hash": "c1c57c85db15890f865f17a635d7bad8a8971a977ac8841bffc7cd10b2f08791",
+   "context_hash": "180f2336a87624bb2f7226c3b97616222411ba52933188a4ab1ccc48c8004457",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "IM",
+   "status": "unresolved",
+   "content_hash": "13f0895bcaaae4f3ec90c60df817513894b78a3379d5d82747eff17f6a13b116",
+   "source_hash": "94451ddf0721f987f6351d27b73657c19714049e91a6af7895afef46b58b5844",
+   "context_hash": "a9679a76bbe19c97391ab3e724a13c78a402161564a3cd779c84aad478a7055b",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "NM",
+   "status": "unresolved",
+   "content_hash": "b6dd45959e8ed30ff61b1a718e8a2b4737ec5fb935090db2a6214adb1c65f8bd",
+   "source_hash": "0d3f7124a484ee3fbd4e8ef1ddf9702d7f63d0327f50c02ff92204a2c90584f3",
+   "context_hash": "051ce9608867035acaf65bc548db0ed8af6ef3e24fa617783c440b01380b387a",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "PM",
+   "status": "unresolved",
+   "content_hash": "7a9a3d57d44821ae145e079562dcd96bfd2ba11c89f7b3091955805593b00f99",
+   "source_hash": "7e3b743be1ae79ff8e047a327ca8659a4d5108d794d4319b25a67e0700c0c14a",
+   "context_hash": "660f73f4984ebcadb1f6a7a78e47337db57d68ffdfcb6dec7170a1a750eb0c65",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "simvastatin",
+   "gene": "SLCO1B1",
+   "phenotype": "Unknown",
+   "status": "unresolved",
+   "content_hash": "9b821f058ad455e3cdb623b414df1cf139fd19d4ccb0f01416b3e2ab187d550d",
+   "source_hash": "59c085efb1bff22380eb5a09f78cb7b81e8e50c998b569d4c3607ddb4ab76b71",
+   "context_hash": "4a74e0e835e9915ba833b149d97063d1e548a0489f8f9424aa472203e2bfa883",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  },
+  {
+   "drug": "warfarin",
+   "gene": "CYP2C9",
+   "phenotype": "Unknown",
+   "status": "unresolved",
+   "content_hash": "5e2aec107c44fa6d87c6292ca7a0fd2951fb6aeff905002bbf19ac2b80c1ff80",
+   "source_hash": "9d670f0e43b50dac6f140024d15380686692773c9012727c150ca238605f7c2e",
+   "context_hash": "797054b6acbdf8d18c79bf35d35e72b01e8f38f1ce84b85b79a34fb176bf4ca2",
+   "review_kind": "incomplete_or_automated",
+   "adjudicated_by": [
+    "Bhuvan T"
+   ],
+   "clinical_expert_review_status": "NOT_OBTAINED",
+   "reason": "automated decision awaiting human adjudication; unresolved adjudication"
+  }
+ ]
+}

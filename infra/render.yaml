@@ -2,8 +2,8 @@
 #
 # WHY A BLUEPRINT RATHER THAN DASHBOARD CLICKS
 #   Every value here decides whether the service survives contact with a 512 MB
-#   instance, and three of them were arrived at by measurement rather than by
-#   taste (see reports/memory_measurement.md and reports/container_parity.md).
+#   instance. The current constrained-image measurements are in
+#   audit-output/2026-09-30-f5/.
 #   Set by hand in a web form they are undocumented, unreviewable and lost the
 #   next time the service is recreated. Here they are diffable.
 #
@@ -57,21 +57,21 @@ services:
       # cgroup's — measured at 727 MB of heap on a 16 GB machine, which is
       # instant death on a 512 MB instance. Stating -Xmx removes the guess.
       #
-      # 256m rather than the smaller settings that also work: PharmCAT OOMs at
-      # 160m and survives from 176m up, so this keeps 80 MB of margin over the
-      # cliff instead of 16 MB. It also measured LOWER in the container than
-      # -Xmx192m (252.8 MiB vs 289.2 MiB peak) — a bigger heap means less GC
-      # pressure and fewer pages touched.
+      # 208m/68m completed real-sized analyses under the 512 MiB cgroup.
+      # At ten simultaneous analyses, six completed and four received bounded
+      # SERVER_BUSY responses; final-image peak was 496.13 MiB with no
+      # limit-hit/OOM event. One analysis plus nine coverage previews peaked
+      # at 454.58 MiB with all ten requests completing.
+      # 192m/64m failed the real-sized PharmCAT run; 224m/72m reached the
+      # cgroup ceiling in the same burst. See audit-output/2026-09-30-f5/.
       - key: JAVA_TOOL_OPTIONS
-        value: "-Xmx256m -XX:MaxMetaspaceSize=80m"
+        value: "-Xmx208m -XX:MaxMetaspaceSize=68m"
 
       # THE ONE THAT PREVENTS AN OOM KILL.
       #
-      # Each in-flight /analyze spawns its own JVM. Measured peak, same image,
-      # same hard 512 MB limit, three concurrent requests:
-      #     MAX_CONCURRENT_PHARMCAT=1   252.8 MiB   survives
-      #     MAX_CONCURRENT_PHARMCAT=3   OOMKilled=true, two requests lost
-      # A larger instance can afford a larger number. This one cannot.
+      # Keep one JVM. The shared /analyze and /coverage admission gate also
+      # serializes upload parsing/decompression before the JVM slot, so queued
+      # requests do not retain multiple expanded VCFs in the 512 MiB cgroup.
       - key: MAX_CONCURRENT_PHARMCAT
         value: "1"
 
@@ -85,8 +85,9 @@ services:
       # concurrent requests produced 503, 503, 200 with both failures landing
       # at exactly 25.4 s.
       #
-      # 90 s lets ONE request wait out the analysis ahead of it (52 s + margin)
-      # and sheds anything deeper: a queue of one, an honest refusal beyond.
+      # 90 s bounds the wait before reading either queued upload body. It is a
+      # time bound, not a fixed queue-length limit: fast local runs can admit
+      # more than one waiter during that interval.
       # Raise it only alongside the client's receiveTimeout, which must exceed
       # queue wait + its own analysis.
       - key: PHARMCAT_QUEUE_TIMEOUT_SECONDS
@@ -106,9 +107,9 @@ services:
       - key: CORS_ALLOWED_ORIGINS
         value: "https://pharmaguard-web.pages.dev"
 
-      # Pre-generated, guard-checked explanations. No outbound call, no API
-      # key, nothing to leak. `live` would need GEMINI_API_KEY as a runtime
-      # secret; the deployed path deliberately needs no credential at all.
+      # Pre-generated, approval-checked explanations. No outbound call or API
+      # key. Runtime clinical prose remains disabled even if `live` is selected;
+      # the public/default release is explicitly static.
       - key: EXPLANATION_MODE
         value: static
 

@@ -1,0 +1,8 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 35-36
+~					17 container ID: flt-semantic-node-160, Description: CYP2C19 coverage: 35 of 35 required positions reported CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 carries common that abolish, reduce, or increase enzyme production. Source: Annotation of Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351 Result withheld This drug is outside the audited application scope; no application guidance is produced. ibuprofen: no pharmacogenomic result (Unknown). No mechanism background is available in this build for ibuprofen. No pharmacogenomic guidance is produced for this result.
+~						29 button (expanded) ibuprofen: Unknown, ID: flt-semantic-node-165, Secondary Actions: Collapse
++						35 button (collapsed) Why no guideline was returned, ID: flt-semantic-node-197, Secondary Actions: Expand
++						36 button (collapsed) What was found in your file, ID: flt-semantic-node-198, Secondary Actions: Expand
+The focused UI element is 2 container Back Analysis results Copy JSON Export JSON Research/educational decision support only. Not a medical device. No clinician has reviewed this content.

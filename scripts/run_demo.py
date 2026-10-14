@@ -54,7 +54,7 @@ RED, GREEN, AMBER, BLUE = "\033[31m", "\033[32m", "\033[33m", "\033[36m"
 
 def colour_for(label: str) -> str:
     return {
-        "Safe": GREEN,
+        "No PGx-guided adjustment identified": GREEN,
         "Ineffective": RED,
         "Toxic": RED,
         "Adjust Dosage": AMBER,
@@ -84,7 +84,8 @@ SCENARIOS: tuple[Scenario, ...] = (
              "Ineffective"),
     Scenario(2, "S2_variants_only", "demo_variants_only.vcf", "clopidogrel",
              "THE CENTREPIECE — same patient, and the system declines",
-             "Same genotype. PharmCAT still calls *2/*2. The only difference is that "
+             "Same non-reference genotypes. The pinned PharmCAT caller still reports "
+             "*2/*2, but the final API withholds that call. The only difference is that "
              "this file lists variants only, with no homozygous-reference rows — the "
              "shape most VCFs in the wild have. An absent position is "
              "indistinguishable from one never tested, so missing data reads as "
@@ -107,13 +108,15 @@ SCENARIOS: tuple[Scenario, ...] = (
     Scenario(5, "S5_normal", "demo_normal.vcf", "simvastatin",
              "Not a system that says Unknown to everything",
              "All-reference control, complete coverage. SLCO1B1 *1/*1, normal "
-             "transporter function, and a confident Safe.",
-             "Safe"),
+             "transporter function; no PGx-guided adjustment is identified from "
+             "the assessed evidence.",
+             "No PGx-guided adjustment identified"),
     Scenario(6, "S6_multidrug", "demo_confident.vcf",
              "clopidogrel,simvastatin,fluorouracil,codeine,ibuprofen",
              "Breadth, and graceful degradation",
-             "Five drugs in one request. Ibuprofen has no CPIC guideline at all — it "
-             "degrades to Unknown rather than erroring.",
+             "Five drugs in one request. Ibuprofen is outside the audited "
+             "application scope and returns Unknown rather "
+             "than inheriting generic upstream guidance.",
              "mixed"),
 )
 
@@ -237,8 +240,7 @@ def show(result: Result) -> None:
     for a in result.body.get("analyses", []):
         p, r = a["pharmacogenomic_profile"], a["risk_assessment"]
         c = colour_for(r["risk_label"])
-        print(f"  {a['drug']:14} {c}{BOLD}{r['risk_label']:14}{RESET}"
-              f" severity={r['severity']:9} confidence={r['confidence_score']:.2f}")
+        print(f"  {a['drug']:14} {c}{BOLD}{r['risk_label']}{RESET}")
         print(f"  {'':14} {DIM}{p['primary_gene']} {p['diplotype']} → "
               f"{p['phenotype']}{RESET}")
         if p.get("candidate_diplotypes"):
@@ -246,13 +248,20 @@ def show(result: Result) -> None:
                   f"{', '.join(p['candidate_diplotypes'][:4])}{RESET}")
 
     gene = result.primary.get("pharmacogenomic_profile", {}).get("primary_gene", "")
+    # S2's final profile is intentionally redacted; its measured CYP2C19
+    # coverage remains available and is the point of this presentation.
+    if s.key == "S2_variants_only" and gene == "Unknown":
+        gene = "CYP2C19"
     print(f"  {'coverage':14} {coverage_line(result, gene)}")
 
     warnings = result.body.get("quality_metrics", {}).get("warnings", [])
     # Show the warning that explains THIS scenario's result, not merely the first
     # interesting one. A multi-gene VCF carries coverage warnings for every gene,
     # and printing CYP2C9's while demonstrating DPYD buries the point.
+    drug = result.primary.get("drug", "")
     def rank(w: str) -> int:
+        if drug and w.startswith(f"{drug}:"):
+            return 0                                  # this drug's eligibility
         if gene and w.startswith(f"{gene}:"):
             return 0                                  # this gene, directly
         if "homozygous-reference" in w:
@@ -272,23 +281,24 @@ def show(result: Result) -> None:
 
 def show_contrast(a: Result, b: Result) -> None:
     """
-    S1 vs S2 side by side. This is the whole argument in one table: identical
-    genotype, opposite outcomes, and the only difference is the file's shape.
+    S1 vs S2 side by side. Show the final authorized API assertions, not the
+    upstream PharmCAT diagnostic call, which the API deliberately withholds.
     """
     if not (a.ok and b.ok):
         print(f"{RED}  contrast unavailable — one side failed{RESET}")
         return
 
+    contrast_gene = a.primary["pharmacogenomic_profile"]["primary_gene"]
+
     def field(r: Result, path: str) -> str:
         p = r.primary["pharmacogenomic_profile"]
         k = r.primary["risk_assessment"]
-        cov = r.body["quality_metrics"]["position_coverage"].get(p["primary_gene"], {})
+        # Use the complete pair's reporting gene when S2 withholds its profile.
+        cov = r.body["quality_metrics"]["position_coverage"].get(contrast_gene, {})
         return {
             "diplotype": p["diplotype"],
             "phenotype": p["phenotype"],
             "label": k["risk_label"],
-            "severity": k["severity"],
-            "confidence": f"{k['confidence_score']:.2f}",
             "coverage": f"{cov.get('positions_present')}/{cov.get('positions_required')}"
                         f" = {cov.get('percent', 0):.1f}%",
         }[path]
@@ -297,9 +307,8 @@ def show_contrast(a: Result, b: Result) -> None:
     print(f"{BOLD}══ THE CONTRAST — same patient, same genotype ══════════════════{RESET}")
     print(f"  {'':20} {BOLD}{'complete coverage':<26}{'variants-only':<26}{RESET}")
     print(f"  {DIM}{'-' * 72}{RESET}")
-    for key, label in (("diplotype", "PharmCAT called"), ("phenotype", "phenotype"),
-                       ("label", "RISK LABEL"), ("severity", "severity"),
-                       ("confidence", "confidence"), ("coverage", "coverage")):
+    for key, label in (("diplotype", "Final diplotype"), ("phenotype", "phenotype"),
+                       ("label", "PGx CONCLUSION"), ("coverage", "coverage")):
         left, right = field(a, key), field(b, key)
         same = left == right
         lc = "" if same else colour_for(left) or BOLD
@@ -307,10 +316,9 @@ def show_contrast(a: Result, b: Result) -> None:
         marker = f"{DIM}(identical){RESET}" if same else ""
         print(f"  {label:20} {lc}{left:<26}{RESET}{rc}{right:<26}{RESET}{marker}")
     print()
-    print(f"  {DIM}The genotype is not lost — PharmCAT calls *2/*2 from both files.{RESET}")
-    print(f"  {DIM}What changes is whether the system can verify the input supported{RESET}")
-    print(f"  {DIM}it. Missing data does not read as uncertainty here; it reads as{RESET}")
-    print(f"  {DIM}normal. So the system declines.{RESET}")
+    print(f"  {DIM}The pinned caller reports *2/*2 for both files in diagnostic runs.{RESET}")
+    print(f"  {DIM}The final API asserts it only when required positions are observed.{RESET}")
+    print(f"  {DIM}Missing positions may be untested, so the system declines.{RESET}")
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -1,0 +1,567 @@
+[
+  {
+    "name": "git-status-start",
+    "argv": [
+      "git",
+      "status",
+      "--porcelain=v1",
+      "-uall"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "git-diff-start",
+    "argv": [
+      "git",
+      "diff",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "git-staged-start",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "head",
+    "argv": [
+      "git",
+      "rev-parse",
+      "HEAD"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "branch",
+    "argv": [
+      "git",
+      "branch",
+      "--show-current"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0
+  },
+  {
+    "name": "gate-help",
+    "argv": [
+      "backend/.venv/bin/python",
+      "scripts/release_status.py",
+      "--help"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T13:09:32.551073+00:00",
+    "ended_at": "2026-10-05T13:09:32.731335+00:00",
+    "exit_code": 0,
+    "stdout": "gate-help.stdout",
+    "stderr": "gate-help.stderr"
+  },
+  {
+    "name": "real-acceptance",
+    "argv": [
+      "backend/.venv/bin/python",
+      "audit-output/2026-10-05-prompt7-5b236070c2/real_acceptance.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-05T13:14:56.431861+00:00",
+    "ended_at": "2026-10-05T13:15:20.581567+00:00",
+    "exit_code": 0,
+    "stdout": "real-acceptance.stdout",
+    "stderr": "real-acceptance.stderr"
+  },
+  {
+    "name": "pdf-render",
+    "argv": [
+      "pdftoppm",
+      "-r",
+      "85",
+      "-png",
+      "audit-output/2026-10-05-prompt7-5b236070c2/native-NA12878-print.pdf",
+      "audit-output/2026-10-05-prompt7-5b236070c2/print-page"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T15:53:13.061317+00:00",
+    "ended_at": "2026-10-06T15:53:13.854151+00:00",
+    "exit_code": 0,
+    "stdout": "pdf-render.stdout",
+    "stderr": "pdf-render.stderr"
+  },
+  {
+    "name": "pdf-extract",
+    "argv": [
+      "/Users/bhuvant/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "audit-output/2026-10-05-prompt7-5b236070c2/verify_pdf.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T15:58:52.898789+00:00",
+    "ended_at": "2026-10-06T15:58:53.577028+00:00",
+    "exit_code": 0,
+    "stdout": "pdf-extract.stdout",
+    "stderr": "pdf-extract.stderr"
+  },
+  {
+    "name": "glossary-report",
+    "argv": [
+      "backend/.venv/bin/python",
+      "scripts/glossary_status.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:00:26.005038+00:00",
+    "ended_at": "2026-10-06T16:00:28.496808+00:00",
+    "exit_code": 0,
+    "stdout": "glossary-report.stdout",
+    "stderr": "glossary-report.stderr"
+  },
+  {
+    "name": "git-diff-final",
+    "argv": [
+      "git",
+      "diff",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.195723+00:00",
+    "ended_at": "2026-10-06T16:06:34.219304+00:00",
+    "exit_code": 0,
+    "stdout": "git-diff-final.stdout",
+    "stderr": "git-diff-final.stderr"
+  },
+  {
+    "name": "git-diff-stat-final",
+    "argv": [
+      "git",
+      "diff",
+      "--stat"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.241831+00:00",
+    "ended_at": "2026-10-06T16:06:34.259444+00:00",
+    "exit_code": 0,
+    "stdout": "git-diff-stat-final.stdout",
+    "stderr": "git-diff-stat-final.stderr"
+  },
+  {
+    "name": "git-diff-check",
+    "argv": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.284018+00:00",
+    "ended_at": "2026-10-06T16:06:34.301478+00:00",
+    "exit_code": 0,
+    "stdout": "git-diff-check.stdout",
+    "stderr": "git-diff-check.stderr"
+  },
+  {
+    "name": "git-staged-final",
+    "argv": [
+      "git",
+      "diff",
+      "--cached",
+      "--binary"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-10-06T16:06:34.325209+00:00",
+    "ended_at": "2026-10-06T16:06:34.332520+00:00",
+    "exit_code": 0,
+    "stdout": "git-staged-final.stdout",
+    "stderr": "git-staged-final.stderr"
+  },
+  {
+    "name": "finalize-owner-package",
+    "argv": [
+      "python3",
+      "audit-output/2026-10-05-prompt7-5b236070c2/finalize_package.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "note": "First completed finalization; read-only candidate checks and new audit artifacts only."
+  },
+  {
+    "receipt": "NA12878-pharmcat.execution.json",
+    "command": [
+      "/opt/homebrew/opt/openjdk/bin/java",
+      "-Xmx208m",
+      "-XX:MaxMetaspaceSize=68m",
+      "-jar",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+      "-vcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/NA12878.observed.vcf",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.pharmcat",
+      "-reporterJson"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 1.3338302089978242,
+    "at": "2026-10-05T13:15:02.103056+00:00"
+  },
+  {
+    "receipt": "NA18526-pharmcat.execution.json",
+    "command": [
+      "/opt/homebrew/opt/openjdk/bin/java",
+      "-Xmx208m",
+      "-XX:MaxMetaspaceSize=68m",
+      "-jar",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+      "-vcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/NA18526.observed.vcf",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18526.pharmcat",
+      "-reporterJson"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 1.3152456249954412,
+    "at": "2026-10-05T13:14:59.354228+00:00"
+  },
+  {
+    "receipt": "NA18861-pharmcat.execution.json",
+    "command": [
+      "/opt/homebrew/opt/openjdk/bin/java",
+      "-Xmx208m",
+      "-XX:MaxMetaspaceSize=68m",
+      "-jar",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+      "-vcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-01-f7/frozen-local/NA18861.1000G2022.vcf.gz",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18861.pharmcat",
+      "-reporterJson"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 2.3391764580010204,
+    "at": "2026-10-05T13:15:20.551951+00:00"
+  },
+  {
+    "receipt": "adjudication.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/adjudication_status.py",
+      "--json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 1,
+    "seconds": 0.7868793749948964,
+    "at": "2026-10-05T13:12:13.232306+00:00"
+  },
+  {
+    "receipt": "backend.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "-m",
+      "pytest",
+      "backend/tests",
+      "-q",
+      "-ra",
+      "--junitxml=/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/backend.xml"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 70.04145858400443,
+    "at": "2026-10-05T13:12:11.388170+00:00"
+  },
+  {
+    "receipt": "bundle.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/verify_compatible_bundle.py",
+      "--json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.18806120799854398,
+    "at": "2026-10-05T13:12:11.577618+00:00"
+  },
+  {
+    "receipt": "flutter-analyzer.execution.json",
+    "command": [
+      "flutter",
+      "analyze",
+      "--no-pub"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app",
+    "exit_code": 0,
+    "seconds": 4.59167762499419,
+    "at": "2026-10-05T13:12:17.865467+00:00"
+  },
+  {
+    "receipt": "flutter-tests.execution.json",
+    "command": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter",
+      "json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app",
+    "exit_code": 0,
+    "seconds": 18.708100457995897,
+    "at": "2026-10-05T13:12:36.573872+00:00"
+  },
+  {
+    "receipt": "isolated-content-baseline.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy/scripts/release_status.py",
+      "--content-only",
+      "--candidate-sha",
+      "1dc7557da49f38e831b382545044b00a481507b6",
+      "--json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy",
+    "exit_code": 1
+  },
+  {
+    "receipt": "isolated-content-invalid.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy/scripts/release_status.py",
+      "--content-only",
+      "--candidate-sha",
+      "1dc7557da49f38e831b382545044b00a481507b6",
+      "--json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy",
+    "exit_code": 1
+  },
+  {
+    "receipt": "isolated-content-restored.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy/scripts/release_status.py",
+      "--content-only",
+      "--candidate-sha",
+      "1dc7557da49f38e831b382545044b00a481507b6",
+      "--json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/release-copy",
+    "exit_code": 1
+  },
+  {
+    "receipt": "mapping.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/validate_label_mapping.py"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.13299787500000093,
+    "at": "2026-10-05T13:12:12.444712+00:00"
+  },
+  {
+    "receipt": "provenance.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/verify_provenance.py",
+      "--no-report"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.7334023750008782,
+    "at": "2026-10-05T13:12:12.311354+00:00"
+  },
+  {
+    "receipt": "read-replay-0.execution.json",
+    "command": [
+      "bcftools",
+      "mpileup",
+      "-q",
+      "20",
+      "-Q",
+      "20",
+      "-d",
+      "1000",
+      "--ns",
+      "UNMAP,SECONDARY,QCFAIL,DUP,SUPPLEMENTARY",
+      "-a",
+      "FORMAT/DP,FORMAT/AD",
+      "-f",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/GRCh38.chr10.fa",
+      "-r",
+      "chr10:94760900-94853914",
+      "-Ob",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18526.pileup.bcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/NA18526.CYP2C19.bam"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.44975775000057183,
+    "at": "2026-10-05T13:13:26.177897+00:00"
+  },
+  {
+    "receipt": "read-replay-1.execution.json",
+    "command": [
+      "bcftools",
+      "call",
+      "-m",
+      "--ploidy",
+      "2",
+      "-a",
+      "FORMAT/GQ",
+      "-Ov",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18526.calls.vcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18526.pileup.bcf"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.13166133299819194,
+    "at": "2026-10-05T13:13:26.310267+00:00"
+  },
+  {
+    "receipt": "read-replay-2.execution.json",
+    "command": [
+      "bcftools",
+      "norm",
+      "-f",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/GRCh38.chr10.fa",
+      "-Ov",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18526.normalized.vcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18526.calls.vcf"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.7755359580041841,
+    "at": "2026-10-05T13:13:27.086309+00:00"
+  },
+  {
+    "receipt": "read-replay-3.execution.json",
+    "command": [
+      "bcftools",
+      "mpileup",
+      "-q",
+      "20",
+      "-Q",
+      "20",
+      "-d",
+      "1000",
+      "--ns",
+      "UNMAP,SECONDARY,QCFAIL,DUP,SUPPLEMENTARY",
+      "-a",
+      "FORMAT/DP,FORMAT/AD",
+      "-f",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/GRCh38.chr10.fa",
+      "-r",
+      "chr10:94760900-94853914",
+      "-Ob",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.pileup.bcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/NA12878.CYP2C19.bam"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.40523408399894834,
+    "at": "2026-10-05T13:13:27.491922+00:00"
+  },
+  {
+    "receipt": "read-replay-4.execution.json",
+    "command": [
+      "bcftools",
+      "call",
+      "-m",
+      "--ploidy",
+      "2",
+      "-a",
+      "FORMAT/GQ",
+      "-Ov",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.calls.vcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.pileup.bcf"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.13295512499462347,
+    "at": "2026-10-05T13:13:27.625216+00:00"
+  },
+  {
+    "receipt": "read-replay-5.execution.json",
+    "command": [
+      "bcftools",
+      "norm",
+      "-f",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/GRCh38.chr10.fa",
+      "-Ov",
+      "-o",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.normalized.vcf",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA12878.calls.vcf"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.7628727089904714,
+    "at": "2026-10-05T13:13:28.388421+00:00"
+  },
+  {
+    "receipt": "release-gate.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/release_status.py",
+      "--run-required",
+      "--candidate-sha",
+      "1dc7557da49f38e831b382545044b00a481507b6",
+      "--json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 1,
+    "seconds": 98.92992637499992,
+    "at": "2026-10-05T13:14:34.853928+00:00"
+  },
+  {
+    "receipt": "review.execution.json",
+    "command": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/review_status.py",
+      "--json"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "exit_code": 0,
+    "seconds": 0.04064591600035783,
+    "at": "2026-10-05T13:12:13.273266+00:00"
+  },
+  {
+    "receipt": "web-build.execution.json",
+    "command": [
+      "flutter",
+      "build",
+      "web",
+      "--release",
+      "--no-pub",
+      "--output=/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/web-build",
+      "--dart-define=API_BASE_URL=http://127.0.0.1:8000"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app",
+    "exit_code": 0,
+    "seconds": 19.349488291991292,
+    "at": "2026-10-05T13:12:55.923698+00:00"
+  },
+  {
+    "command": [
+      "python3",
+      "audit-output/2026-10-05-prompt7-5b236070c2/assemble_owner.py"
+    ],
+    "exit_code": 1,
+    "note": "Initial symlink inventory helper error; preserved receipt"
+  },
+  {
+    "command": [
+      "python3",
+      "audit-output/2026-10-05-prompt7-5b236070c2/assemble_owner.py"
+    ],
+    "exit_code": 0,
+    "note": "Inventory-contract correction; candidate unchanged"
+  }
+]

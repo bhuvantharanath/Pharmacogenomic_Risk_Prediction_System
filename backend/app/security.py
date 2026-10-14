@@ -6,7 +6,7 @@ assumed a caller on localhost. This module adds the three controls that matter
 for a public, unauthenticated, free-tier service:
 
   * an explicit CORS allowlist (no wildcard in production)
-  * a per-IP rate limit on the expensive endpoint
+  * a per-peer workload limit on upload endpoints
   * conservative security headers
 
 It also holds the startup assertion that fails loudly if an API key was baked
@@ -16,6 +16,8 @@ leaked key in a public Space would be the worst outcome of this phase.
 
 from __future__ import annotations
 
+import asyncio
+import ipaddress
 import os
 import re
 import threading
@@ -150,7 +152,8 @@ def cors_summary() -> dict[str, object]:
 # --------------------------------------------------------------------------- #
 
 # Deliberately generous for a demo, but low enough that a public URL cannot be
-# used to burn a free tier's compute budget. /analyze spawns a JVM per call.
+# used to burn a free tier's compute budget. /analyze spawns a JVM; /coverage
+# still performs bounded decompression and parsing.
 RATE_LIMIT_REQUESTS = int(os.environ.get("RATE_LIMIT_REQUESTS", "10"))
 RATE_LIMIT_WINDOW_SECONDS = int(os.environ.get("RATE_LIMIT_WINDOW_SECONDS", "300"))
 
@@ -246,22 +249,66 @@ def client_key(request: Request) -> str:
     """
     Identify the caller for rate-limiting purposes.
 
-    Every target platform (HF Spaces, Cloud Run, Render, Cloudflare) terminates
-    TLS at a proxy, so `request.client.host` is the proxy, not the user. The
-    left-most `X-Forwarded-For` entry is the original client.
-
-    That header is caller-controlled and trivially spoofed. We use it anyway
-    because the alternative — limiting every user to a shared proxy IP — would
-    rate-limit all legitimate traffic as one caller. Stated plainly: this
-    dampens casual abuse; it does not stop a determined attacker.
+    Forwarding headers are honored only when the direct peer is inside an
+    explicitly configured `TRUSTED_PROXY_CIDRS` network. With the safe default
+    (empty), caller-controlled forwarding headers are ignored.
     """
+    client = request.client
+    peer = client.host if client else "unknown"
+    if not _peer_is_trusted_proxy(peer):
+        return peer
+
     forwarded = request.headers.get("x-forwarded-for", "")
     if forwarded:
         first = forwarded.split(",")[0].strip()
-        if first:
+        try:
+            ipaddress.ip_address(first)
             return first
-    client = request.client
-    return client.host if client else "unknown"
+        except ValueError:
+            pass
+    return peer
+
+
+class ProxyTrustConfigurationError(RuntimeError):
+    """The trusted-proxy allowlist is invalid."""
+
+
+def trusted_proxy_networks() -> tuple[ipaddress.IPv4Network | ipaddress.IPv6Network, ...]:
+    """Networks allowed to supply sanitized forwarding headers."""
+    raw = os.environ.get("TRUSTED_PROXY_CIDRS", "")
+    networks = []
+    for item in raw.split(","):
+        value = item.strip()
+        if not value:
+            continue
+        try:
+            networks.append(ipaddress.ip_network(value, strict=False))
+        except ValueError as exc:
+            raise ProxyTrustConfigurationError(
+                f"Invalid TRUSTED_PROXY_CIDRS entry {value!r}; use an IP or CIDR."
+            ) from exc
+    return tuple(networks)
+
+
+def assert_proxy_trust_configured() -> None:
+    """Validate proxy trust at startup rather than on the first request."""
+    trusted_proxy_networks()
+
+
+def _peer_is_trusted_proxy(host: str) -> bool:
+    try:
+        address = ipaddress.ip_address(host)
+    except ValueError:
+        return False
+    return any(address in network for network in trusted_proxy_networks())
+
+
+def proxy_trust_summary() -> dict[str, object]:
+    networks = trusted_proxy_networks()
+    return {
+        "forwarded_headers": "trusted-peers-only" if networks else "ignored",
+        "trusted_proxy_cidrs": [str(network) for network in networks],
+    }
 
 
 # --------------------------------------------------------------------------- #
@@ -292,6 +339,68 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         return response
 
 
+class AnalysisMemoryGateMiddleware:
+    """Admit one upload before multipart parsing and VCF decompression.
+
+    The PharmCAT semaphore still owns JVM execution and cleanup. This outer
+    gate covers both /analyze and /coverage: either can expand a real-sized
+    VCF while a JVM consumes the container's remaining memory.
+    """
+
+    def __init__(self, app, wait_seconds: float):
+        self.app = app
+        self.wait_seconds = wait_seconds
+        # A process-wide lock is safe across the separate event loops used by
+        # embedded ASGI clients, while never blocking the server's event loop.
+        self._state_lock = threading.Lock()
+        self._waiters = deque()
+        self._busy = False
+
+    async def __call__(self, scope, receive, send):
+        if (scope["type"] != "http" or scope.get("method") != "POST"
+                or scope.get("path") not in {"/analyze", "/coverage"}):
+            await self.app(scope, receive, send)
+            return
+
+        ticket = object()
+        with self._state_lock:
+            self._waiters.append(ticket)
+        acquired = False
+        deadline = time.monotonic() + self.wait_seconds
+        try:
+            while True:
+                with self._state_lock:
+                    if not self._busy and self._waiters[0] is ticket:
+                        self._waiters.popleft()
+                        self._busy = acquired = True
+                if acquired:
+                    break
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    response = JSONResponse(
+                        status_code=503,
+                        content={
+                            "detail": (
+                                "The server is busy with another analysis and "
+                                "could not start yours in time. Nothing is wrong "
+                                "with your file. Please try again in a moment."
+                            ),
+                            "error_code": "SERVER_BUSY",
+                        },
+                        headers={"Retry-After": str(max(1, int(self.wait_seconds)))},
+                    )
+                    await response(scope, receive, send)
+                    return
+                await asyncio.sleep(min(0.01, remaining))
+            await self.app(scope, receive, send)
+        finally:
+            with self._state_lock:
+                if acquired:
+                    self._busy = False
+                else:
+                    self._waiters.remove(ticket)
+
+
 def should_rate_limit(request: Request) -> bool:
     """
     Whether this request is subject to the per-IP limit.
@@ -315,7 +424,7 @@ def rate_limit_response(decision: RateLimitDecision) -> JSONResponse:
         status_code=429,
         content={
             "detail": (
-                f"Rate limit reached: {RATE_LIMIT_REQUESTS} analyses per "
+                f"Rate limit reached: {RATE_LIMIT_REQUESTS} upload requests per "
                 f"{RATE_LIMIT_WINDOW_SECONDS // 60} minutes per client. "
                 f"Please wait {decision.retry_after} seconds and try again. "
                 "This is a free-tier academic demo, not a production service."

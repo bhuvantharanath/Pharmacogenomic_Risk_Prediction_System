@@ -1,0 +1,5 @@
+Wasm dry run succeeded. Consider building and testing your application with the `--wasm` flag. See docs for more info: https://docs.flutter.dev/platform-integration/web/wasm
+Use --no-wasm-dry-run to disable these warnings.
+real 20.96
+user 41.51
+sys 2.36

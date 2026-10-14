@@ -1,0 +1,892 @@
+sample_id	gene	layer	classification	truth	observed	detail
+HG00111	CYP2D6	A_upstream	upstream_caller_abstention	*3/*3	no assertion	independent truth compared using frozen order-only equivalence
+HG00111	CYP2D6	B_application	intentional_cyp2d6_abstention	*3/*3	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00133	TPMT	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00276	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00276	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+HG00276	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG00276	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+HG00276	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00276	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00276	TPMT	B_application	evidence_gate	*1/*16	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00276	CYP2D6	A_upstream	upstream_caller_abstention	*4/*5	no assertion	independent truth compared using frozen order-only equivalence
+HG00276	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00277	NUDT15	A_upstream	upstream_caller_disagreement	*1/*6	*1/*1	independent truth compared using frozen order-only equivalence
+HG00277	NUDT15	B_application	evidence_gate	*1/*6	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00304	TPMT	B_application	evidence_gate	*3A/*16	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00337	CYP2D6	A_upstream	upstream_caller_abstention	*2x2/*22	no assertion	independent truth compared using frozen order-only equivalence
+HG00337	CYP2D6	B_application	intentional_cyp2d6_abstention	*2x2/*22	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00373	CYP2D6	A_upstream	upstream_caller_abstention	*2/*2	no assertion	independent truth compared using frozen order-only equivalence
+HG00373	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00421	CYP2D6	A_upstream	upstream_caller_abstention	*2/*10x2	no assertion	independent truth compared using frozen order-only equivalence
+HG00421	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*10x2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00423	CYP2D6	A_upstream	upstream_caller_abstention	*10/*10x2	no assertion	independent truth compared using frozen order-only equivalence
+HG00423	CYP2D6	B_application	intentional_cyp2d6_abstention	*10/*10x2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00436	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00436	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG00436	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+HG00436	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00436	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+HG00436	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00436	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00436	CYP2D6	A_upstream	upstream_caller_abstention	*2x2/*71	no assertion	independent truth compared using frozen order-only equivalence
+HG00436	CYP2D6	B_application	intentional_cyp2d6_abstention	*2x2/*71	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00437	NUDT15	B_application	evidence_gate	*1/*5	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00463	CYP2D6	A_upstream	upstream_caller_abstention	*36+*10/*36+*10	no assertion	independent truth compared using frozen order-only equivalence
+HG00463	CYP2D6	B_application	intentional_cyp2d6_abstention	*36+*10/*36+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00524	NUDT15	B_application	evidence_gate	*3/*3	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00589	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00589	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG00589	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	[c.1627A>G (*5) + c.1896T>C] (heterozygous)	independent truth compared using frozen order-only equivalence
+HG00589	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00589	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*39 | *39/*42 | *39/*52 | *39/*56	independent truth compared using frozen order-only equivalence
+HG00589	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00589	TPMT	B_application	evidence_gate	*1/*3C	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG00589	CYP2D6	A_upstream	upstream_caller_abstention	*1/*21	no assertion	independent truth compared using frozen order-only equivalence
+HG00589	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*21	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG00599	NUDT15	A_upstream	upstream_caller_disagreement	*2/*2	*3/*3	independent truth compared using frozen order-only equivalence
+HG00599	NUDT15	B_application	evidence_gate	*2/*2	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01083	TPMT	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01086	NUDT15	A_upstream	upstream_caller_disagreement	*2/*9	*3/*9	independent truth compared using frozen order-only equivalence
+HG01086	NUDT15	B_application	evidence_gate	*2/*9	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01086	CYP2D6	A_upstream	upstream_caller_abstention	*1/*31	no assertion	independent truth compared using frozen order-only equivalence
+HG01086	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*31	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG01094	CYP2D6	A_upstream	upstream_caller_abstention	*1/*31	no assertion	independent truth compared using frozen order-only equivalence
+HG01094	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*31	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG01108	CYP2D6	A_upstream	upstream_caller_abstention	*2/*106	no assertion	independent truth compared using frozen order-only equivalence
+HG01108	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*106	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG01190	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01190	CYP2C9	B_application	evidence_gate	*1/*61	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG01190	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A) (heterozygous)	independent truth compared using frozen order-only equivalence
+HG01190	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01190	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01190	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01190	CYP2D6	A_upstream	upstream_caller_abstention	*68+*4/*5	no assertion	independent truth compared using frozen order-only equivalence
+HG01190	CYP2D6	B_application	intentional_cyp2d6_abstention	*68+*4/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG01359	NUDT15	B_application	evidence_gate	*1/*4	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01456	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01456	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG01465	NUDT15	B_application	evidence_gate	*1/*4	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01474	TPMT	A_upstream	upstream_caller_disagreement	*1/*40	*1/*1	independent truth compared using frozen order-only equivalence
+HG01474	TPMT	B_application	evidence_gate	*1/*40	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01680	CYP2D6	A_upstream	upstream_caller_abstention	*28/*59	no assertion	independent truth compared using frozen order-only equivalence
+HG01680	CYP2D6	B_application	intentional_cyp2d6_abstention	*28/*59	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG01697	CYP2C19	B_application	evidence_gate	*17/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01697	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG01809	CYP2C19	B_application	evidence_gate	*2/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG01809	CYP2C9	B_application	evidence_gate	*1/*13	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG02087	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG02087	CYP2C9	B_application	evidence_gate	*1/*13	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG02373	CYP2D6	A_upstream	upstream_caller_abstention	*14/*36+*10	no assertion	independent truth compared using frozen order-only equivalence
+HG02373	CYP2D6	B_application	intentional_cyp2d6_abstention	*14/*36+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG02496	TPMT	B_application	evidence_gate	*1/*24	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG02852	CYP2C19	B_application	evidence_gate	*2/*35	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG02852	CYP2C9	B_application	evidence_gate	*1/*11	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG02861	CYP2C19	B_application	evidence_gate	*2/*35	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG02861	CYP2C9	B_application	evidence_gate	*1/*11	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG03225	CYP2D6	A_upstream	upstream_caller_abstention	*5/*56	no assertion	independent truth compared using frozen order-only equivalence
+HG03225	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*56	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03246	CYP2D6	A_upstream	upstream_caller_abstention	*5/*43	no assertion	independent truth compared using frozen order-only equivalence
+HG03246	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*43	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03259	CYP2D6	A_upstream	upstream_caller_abstention	*5/*106	no assertion	independent truth compared using frozen order-only equivalence
+HG03259	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*106	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03370	CYP2C19	B_application	evidence_gate	*2/*35	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG03370	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+HG03521	TPMT	B_application	evidence_gate	*1/*46	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+HG03619	CYP2D6	A_upstream	upstream_caller_abstention	*2/*113	no assertion	independent truth compared using frozen order-only equivalence
+HG03619	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*113	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03643	CYP2D6	A_upstream	upstream_caller_abstention	*2/*7	no assertion	independent truth compared using frozen order-only equivalence
+HG03643	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*7	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03703	CYP2D6	A_upstream	upstream_caller_abstention	*1/*99	no assertion	independent truth compared using frozen order-only equivalence
+HG03703	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*99	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03780	CYP2D6	A_upstream	upstream_caller_abstention	*1/*112	no assertion	independent truth compared using frozen order-only equivalence
+HG03780	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*112	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03781	CYP2D6	A_upstream	upstream_caller_abstention	*2/*99	no assertion	independent truth compared using frozen order-only equivalence
+HG03781	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*99	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG03882	CYP2D6	A_upstream	upstream_caller_abstention	*1/*112	no assertion	independent truth compared using frozen order-only equivalence
+HG03882	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*112	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+HG04206	CYP2D6	A_upstream	upstream_caller_abstention	*2/*113	no assertion	independent truth compared using frozen order-only equivalence
+HG04206	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*113	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA06989	CYP2D6	A_upstream	upstream_caller_abstention	*9/*9	no assertion	independent truth compared using frozen order-only equivalence
+NA06989	CYP2D6	B_application	intentional_cyp2d6_abstention	*9/*9	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA06991	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA06991	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA06991	SLCO1B1	A_upstream	upstream_caller_disagreement	*15/*15	*15/*45	independent truth compared using frozen order-only equivalence
+NA06991	SLCO1B1	B_application	evidence_gate	*15/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA06991	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA06991	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA06991	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA06993	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA06993	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA06993	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA06993	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1601G>A (*4)/c.1627A>G (*5)	independent truth compared using frozen order-only equivalence
+NA06993	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA06993	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA06993	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA06993	CYP2D6	A_upstream	upstream_caller_abstention	*2(*35)/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA06993	CYP2D6	B_application	intentional_cyp2d6_abstention	*2(*35)/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA07000	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07000	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07000	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA07000	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07000	NUDT15	A_upstream	upstream_caller_disagreement	*1/*6	*1/*1	independent truth compared using frozen order-only equivalence
+NA07000	NUDT15	B_application	evidence_gate	*1/*6	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07000	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07000	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07019	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07019	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07019	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA07019	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07019	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07019	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07019	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA07019	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA07029	CYP2C19	B_application	evidence_gate	*8/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07029	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA07029	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07029	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA07029	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07029	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07029	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07029	CYP2D6	A_upstream	upstream_caller_abstention	*1/*35	no assertion	independent truth compared using frozen order-only equivalence
+NA07029	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*35	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA07048	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07048	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07048	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.2846A>T (heterozygous)	independent truth compared using frozen order-only equivalence
+NA07048	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07048	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07048	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07048	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA07048	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA07055	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07055	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07055	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5)/c.2846A>T	independent truth compared using frozen order-only equivalence
+NA07055	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07055	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07055	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07055	CYP2D6	A_upstream	upstream_caller_abstention	*4/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA07055	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA07056	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07056	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07056	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA07056	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07056	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07056	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07056	CYP2D6	A_upstream	upstream_caller_abstention	*2/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA07056	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA07348	CYP2C19	B_application	evidence_gate	*2/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07348	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07348	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1896T>C + c.2194G>A (*6)] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA07348	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07348	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07348	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07348	CYP2D6	A_upstream	upstream_caller_abstention	*1/*6	no assertion	independent truth compared using frozen order-only equivalence
+NA07348	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*6	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA07357	CYP2C19	B_application	evidence_gate	*2/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07357	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA07357	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.1627A>G (*5)/[c.85T>C (*9A) + c.1896T>C + c.2194G>A (*6)]	independent truth compared using frozen order-only equivalence
+NA07357	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07357	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07357	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA07357	CYP2D6	A_upstream	upstream_caller_abstention	*1/*6	no assertion	independent truth compared using frozen order-only equivalence
+NA07357	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*6	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10831	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10831	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA10831	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10831	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A)/[c.1627A>G (*5) + c.1896T>C]	independent truth compared using frozen order-only equivalence
+NA10831	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10831	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10831	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10831	CYP2D6	A_upstream	upstream_caller_abstention	*4/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA10831	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10838	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10838	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10838	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA10838	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10838	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*14	independent truth compared using frozen order-only equivalence
+NA10838	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10838	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10838	CYP2D6	A_upstream	upstream_caller_abstention	*2/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA10838	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10846	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10846	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10846	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1896T>C] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA10846	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10846	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10846	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10846	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA10846	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10847	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10847	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10847	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1627A>G (*5)] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA10847	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10847	SLCO1B1	B_application	evidence_gate	*5/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10847	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10847	CYP2D6	A_upstream	upstream_caller_abstention	*1/*41	no assertion	independent truth compared using frozen order-only equivalence
+NA10847	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*41	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10851	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10851	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10851	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.496A>G] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA10851	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10851	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10851	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10851	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA10851	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10854	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10854	CYP2C9	A_upstream	upstream_candidate_ambiguity	*2/*2	*2/*2 | *2/*92 | *92/*92	independent truth compared using frozen order-only equivalence
+NA10854	CYP2C9	B_application	evidence_gate	*2/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10854	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA10854	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10854	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA10854	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10854	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10854	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA10854	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10855	CYP2C19	A_upstream	upstream_caller_disagreement	*1/*1	*1/*38	independent truth compared using frozen order-only equivalence
+NA10855	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10855	CYP2C9	A_upstream	upstream_candidate_ambiguity	*2/*3	*2/*3 | *2/*18 | *2/*68 | *3/*92 | *18/*92 | *68/*92	independent truth compared using frozen order-only equivalence
+NA10855	CYP2C9	B_application	evidence_gate	*2/*3	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10855	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA10855	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10855	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*14	independent truth compared using frozen order-only equivalence
+NA10855	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10855	TPMT	B_application	evidence_gate	*1/*32	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10856	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10856	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA10856	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10856	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5)/c.2194G>A (*6)	independent truth compared using frozen order-only equivalence
+NA10856	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10856	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*20	independent truth compared using frozen order-only equivalence
+NA10856	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10856	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10856	CYP2D6	A_upstream	upstream_caller_abstention	*1/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA10856	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10859	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10859	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10859	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.1627A>G (*5)/[c.85T>C (*9A) + c.1896T>C + c.2194G>A (*6)]	independent truth compared using frozen order-only equivalence
+NA10859	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10859	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10859	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10859	CYP2D6	A_upstream	upstream_caller_abstention	*1/*2	no assertion	independent truth compared using frozen order-only equivalence
+NA10859	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10860	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4N+*4	no assertion	independent truth compared using frozen order-only equivalence
+NA10860	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4N+*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA10865	CYP2C19	B_application	evidence_gate	*8/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10865	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA10865	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA10865	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA10865	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10865	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*20	independent truth compared using frozen order-only equivalence
+NA10865	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10865	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA10865	CYP2D6	A_upstream	upstream_caller_abstention	*1/*41	no assertion	independent truth compared using frozen order-only equivalence
+NA10865	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*41	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA11832	CYP2C19	A_upstream	upstream_caller_disagreement	*1/*2	*2/*38	independent truth compared using frozen order-only equivalence
+NA11832	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11832	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*3	*1/*3 | *1/*18 | *1/*68	independent truth compared using frozen order-only equivalence
+NA11832	CYP2C9	B_application	evidence_gate	*1/*3	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA11832	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.496A>G/c.1627A>G (*5)	independent truth compared using frozen order-only equivalence
+NA11832	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11832	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*14/*20	independent truth compared using frozen order-only equivalence
+NA11832	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11832	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11839	CYP2C19	A_upstream	upstream_caller_disagreement	*1/*1	*1/*38	independent truth compared using frozen order-only equivalence
+NA11839	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11839	CYP2C9	A_upstream	upstream_candidate_ambiguity	*2/*3	*2/*3 | *2/*18 | *2/*68 | *3/*92 | *18/*92 | *68/*92	independent truth compared using frozen order-only equivalence
+NA11839	CYP2C9	B_application	evidence_gate	*2/*3	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA11839	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA11839	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11839	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1B	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA11839	SLCO1B1	B_application	evidence_gate	*1A/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11839	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11839	CYP2D6	A_upstream	upstream_caller_abstention	*1/*2	no assertion	independent truth compared using frozen order-only equivalence
+NA11839	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA11881	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11881	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA11881	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA11881	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11881	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11881	CYP2D6	A_upstream	upstream_caller_abstention	*2/*3	no assertion	independent truth compared using frozen order-only equivalence
+NA11881	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*3	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA11993	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11993	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA11993	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA11993	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11993	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*17	*1/*15	independent truth compared using frozen order-only equivalence
+NA11993	SLCO1B1	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11993	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA11993	CYP2D6	A_upstream	upstream_caller_abstention	*1/*9	no assertion	independent truth compared using frozen order-only equivalence
+NA11993	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*9	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12003	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12003	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA12003	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12003	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA12003	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12003	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12003	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12003	CYP2D6	A_upstream	upstream_caller_abstention	*4/*35	no assertion	independent truth compared using frozen order-only equivalence
+NA12003	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*35	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12006	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12006	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12006	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA12006	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12006	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*21	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA12006	SLCO1B1	B_application	evidence_gate	*1/*21	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12006	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12006	CYP2D6	A_upstream	upstream_caller_abstention	*4/*41	no assertion	independent truth compared using frozen order-only equivalence
+NA12006	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*41	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12044	TPMT	B_application	evidence_gate	*1/*21	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12145	CYP2C19	B_application	evidence_gate	*2/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12145	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12145	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA12145	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12145	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12145	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12145	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA12145	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12156	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12156	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA12156	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12156	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	[c.1627A>G (*5) + c.1896T>C] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA12156	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12156	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*21	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA12156	SLCO1B1	B_application	evidence_gate	*1/*21	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12156	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12156	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA12156	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12236	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12236	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12236	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/c.85T>C (*9A)	independent truth compared using frozen order-only equivalence
+NA12236	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12236	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12236	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12236	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA12236	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12273	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12273	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA12273	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12273	CYP2D6	A_upstream	upstream_caller_abstention	*1/*1	no assertion	independent truth compared using frozen order-only equivalence
+NA12273	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*1	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12336	CYP2C19	B_application	evidence_gate	*17/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12336	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12336	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.496A>G] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA12336	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12336	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12336	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12336	CYP2D6	A_upstream	upstream_caller_abstention	*5/*41	no assertion	independent truth compared using frozen order-only equivalence
+NA12336	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*41	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12717	CYP2C19	B_application	evidence_gate	*2/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12717	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12717	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA12717	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12717	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1A	*1/*1	independent truth compared using frozen order-only equivalence
+NA12717	SLCO1B1	B_application	evidence_gate	*1A/*1A	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12717	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12717	CYP2D6	A_upstream	upstream_caller_abstention	*1/*1	no assertion	independent truth compared using frozen order-only equivalence
+NA12717	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*1	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12751	TPMT	A_upstream	upstream_caller_disagreement	*1/*12	*1/*1	independent truth compared using frozen order-only equivalence
+NA12751	TPMT	B_application	evidence_gate	*1/*12	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12753	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12753	CYP2C9	B_application	evidence_gate	*1/*9	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12753	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.1896T>C/[c.85T>C (*9A) + c.1896T>C]	independent truth compared using frozen order-only equivalence
+NA12753	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12753	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*14	independent truth compared using frozen order-only equivalence
+NA12753	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12753	TPMT	B_application	evidence_gate	*1/*3A	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12753	CYP2D6	A_upstream	upstream_caller_abstention	*2/*3	no assertion	independent truth compared using frozen order-only equivalence
+NA12753	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*3	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12813	CYP2C19	A_upstream	upstream_caller_disagreement	*1/*17	*17/*38	independent truth compared using frozen order-only equivalence
+NA12813	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12813	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*3	*1/*3 | *1/*18 | *1/*68	independent truth compared using frozen order-only equivalence
+NA12813	CYP2C9	B_application	evidence_gate	*1/*3	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12813	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*21	*1/*20	independent truth compared using frozen order-only equivalence
+NA12813	SLCO1B1	B_application	evidence_gate	*1/*21	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12813	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12813	CYP2D6	A_upstream	upstream_caller_abstention	*2/*4	no assertion	independent truth compared using frozen order-only equivalence
+NA12813	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*4	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12815	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12815	CYP2C9	B_application	evidence_gate	*1/*8	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12815	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.496A>G] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA12815	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12815	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12815	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12815	CYP2D6	A_upstream	upstream_caller_abstention	*2/*41	no assertion	independent truth compared using frozen order-only equivalence
+NA12815	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*41	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12873	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12873	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12873	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA12873	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12873	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12873	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12873	CYP2D6	A_upstream	upstream_caller_abstention	*1/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA12873	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA12878	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12878	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA12878	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12878	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12878	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12892	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12892	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA12892	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA12892	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA12892	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12892	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12892	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA12892	CYP2D6	A_upstream	upstream_caller_abstention	*2/*3	no assertion	independent truth compared using frozen order-only equivalence
+NA12892	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*3	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18484	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18484	CYP2C9	B_application	evidence_gate	*1/*9	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18484	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18484	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18484	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1B	*37/*41 | *41/*42 | *41/*52 | *41/*56	independent truth compared using frozen order-only equivalence
+NA18484	SLCO1B1	B_application	evidence_gate	*1A/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18484	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18484	CYP2D6	A_upstream	upstream_caller_abstention	*1/*17	no assertion	independent truth compared using frozen order-only equivalence
+NA18484	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*17	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18518	CYP2C19	B_application	evidence_gate	*2/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18518	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18518	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A)/c.1627A>G (*5)	independent truth compared using frozen order-only equivalence
+NA18518	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18518	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1B	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA18518	SLCO1B1	B_application	evidence_gate	*1A/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18518	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18518	CYP2D6	A_upstream	upstream_caller_abstention	*17/*29	no assertion	independent truth compared using frozen order-only equivalence
+NA18518	CYP2D6	B_application	intentional_cyp2d6_abstention	*17/*29	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18519	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18519	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*5	*1/*5 | *1/*36	independent truth compared using frozen order-only equivalence
+NA18519	CYP2C9	B_application	evidence_gate	*1/*5	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18519	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/c.85T>C (*9A)	independent truth compared using frozen order-only equivalence
+NA18519	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18519	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA18519	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18519	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18519	CYP2D6	A_upstream	upstream_caller_abstention	*1/*29	no assertion	independent truth compared using frozen order-only equivalence
+NA18519	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*29	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18526	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18526	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18526	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA18526	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18526	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18526	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18526	CYP2D6	A_upstream	upstream_caller_abstention	*1/*36x2+*10	no assertion	independent truth compared using frozen order-only equivalence
+NA18526	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*36x2+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18544	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18544	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18544	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	[c.1627A>G (*5) + c.1896T>C] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18544	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18544	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*17	*15/*37 | *15/*42 | *15/*52 | *15/*56	independent truth compared using frozen order-only equivalence
+NA18544	SLCO1B1	B_application	evidence_gate	*1B/*17	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18544	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18544	CYP2D6	A_upstream	upstream_caller_abstention	*10/*41	no assertion	independent truth compared using frozen order-only equivalence
+NA18544	CYP2D6	B_application	intentional_cyp2d6_abstention	*10/*41	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18545	CYP2D6	A_upstream	upstream_caller_abstention	*5/*36x2+*10x2	no assertion	independent truth compared using frozen order-only equivalence
+NA18545	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*36x2+*10x2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18552	CYP2C19	B_application	evidence_gate	*1/*4	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18552	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18552	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18552	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18552	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*15	*15/*37 | *15/*42 | *15/*52 | *15/*56	independent truth compared using frozen order-only equivalence
+NA18552	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18552	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18552	CYP2D6	A_upstream	upstream_caller_abstention	*1/*14	no assertion	independent truth compared using frozen order-only equivalence
+NA18552	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*14	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18563	CYP2C19	A_upstream	upstream_caller_disagreement	*1/*1	*1/*38	independent truth compared using frozen order-only equivalence
+NA18563	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18563	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*3	*1/*3 | *1/*18 | *1/*68	independent truth compared using frozen order-only equivalence
+NA18563	CYP2C9	B_application	evidence_gate	*1/*3	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18563	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18563	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18563	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*17	*1/*15	independent truth compared using frozen order-only equivalence
+NA18563	SLCO1B1	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18563	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18563	CYP2D6	A_upstream	upstream_caller_abstention	*1/*36+*10	no assertion	independent truth compared using frozen order-only equivalence
+NA18563	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*36+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18564	CYP2C19	B_application	evidence_gate	*2/*3	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18564	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18564	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1627A>G (*5)] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18564	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18564	NUDT15	B_application	evidence_gate	*1/*3	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18564	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA18564	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18564	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18564	CYP2D6	A_upstream	upstream_caller_abstention	*2/*36+*10	no assertion	independent truth compared using frozen order-only equivalence
+NA18564	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*36+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18565	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18565	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18565	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA18565	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18565	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18565	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18565	CYP2D6	A_upstream	upstream_caller_abstention	*10/*36x2	no assertion	independent truth compared using frozen order-only equivalence
+NA18565	CYP2D6	B_application	intentional_cyp2d6_abstention	*10/*36x2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18572	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18572	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18572	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18572	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18572	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA18572	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18572	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18572	CYP2D6	A_upstream	upstream_caller_abstention	*36+*10/*41	no assertion	independent truth compared using frozen order-only equivalence
+NA18572	CYP2D6	B_application	intentional_cyp2d6_abstention	*36+*10/*41	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18603	TPMT	A_upstream	upstream_caller_disagreement	*1/*6	*1/*1	independent truth compared using frozen order-only equivalence
+NA18603	TPMT	B_application	evidence_gate	*1/*6	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18617	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18617	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18617	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA18617	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18617	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA18617	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18617	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18617	CYP2D6	A_upstream	upstream_caller_abstention	*36+*10/*36+*10	no assertion	independent truth compared using frozen order-only equivalence
+NA18617	CYP2D6	B_application	intentional_cyp2d6_abstention	*36+*10/*36+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18632	CYP2D6	A_upstream	upstream_caller_abstention	*36x2+*10/*52	no assertion	independent truth compared using frozen order-only equivalence
+NA18632	CYP2D6	B_application	intentional_cyp2d6_abstention	*36x2+*10/*52	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18642	CYP2D6	A_upstream	upstream_caller_abstention	*36+*10/*1+*90	no assertion	independent truth compared using frozen order-only equivalence
+NA18642	CYP2D6	B_application	intentional_cyp2d6_abstention	*36+*10/*1+*90	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18855	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18855	CYP2C9	B_application	evidence_gate	*1/*9	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18855	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/[c.85T>C (*9A) + c.1218G>A]	independent truth compared using frozen order-only equivalence
+NA18855	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18855	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA18855	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18855	TPMT	B_application	evidence_gate	*1/*3C	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18855	CYP2D6	A_upstream	upstream_caller_abstention	*1/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA18855	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18861	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18861	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18861	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18861	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18861	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*14	*1/*43	independent truth compared using frozen order-only equivalence
+NA18861	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18861	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18861	CYP2D6	A_upstream	upstream_caller_abstention	*5/*29	no assertion	independent truth compared using frozen order-only equivalence
+NA18861	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*29	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18868	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18868	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18868	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18868	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18868	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*44 | *42/*44 | *44/*52 | *44/*56	independent truth compared using frozen order-only equivalence
+NA18868	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18868	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18868	CYP2D6	A_upstream	upstream_caller_abstention	*2/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA18868	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18873	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18873	CYP2C9	B_application	evidence_gate	*1/*8	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18873	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.557A>G + c.1627A>G (*5)] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18873	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18873	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA18873	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18873	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18873	CYP2D6	A_upstream	upstream_caller_abstention	*5/*17	no assertion	independent truth compared using frozen order-only equivalence
+NA18873	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*17	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18877	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18877	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18942	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18942	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18942	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA18942	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18942	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA18942	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18942	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18942	CYP2D6	A_upstream	upstream_caller_abstention	*2/*2	no assertion	independent truth compared using frozen order-only equivalence
+NA18942	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18945	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18945	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18945	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1896T>C (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18945	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18945	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA18945	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18945	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18945	CYP2D6	A_upstream	upstream_caller_abstention	*1/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA18945	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18952	CYP2C19	A_upstream	upstream_caller_disagreement	*1/*1	*1/*38	independent truth compared using frozen order-only equivalence
+NA18952	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18952	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18952	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5)/c.1627A>G (*5)	independent truth compared using frozen order-only equivalence
+NA18952	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18952	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18952	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18952	CYP2D6	A_upstream	upstream_caller_abstention	*2/*2	no assertion	independent truth compared using frozen order-only equivalence
+NA18952	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18959	CYP2C19	A_upstream	upstream_caller_disagreement	*1/*1	*1/*38	independent truth compared using frozen order-only equivalence
+NA18959	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18959	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*3	*1/*3 | *1/*18 | *1/*68	independent truth compared using frozen order-only equivalence
+NA18959	CYP2C9	B_application	evidence_gate	*1/*3	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18959	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA18959	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18959	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA18959	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18959	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18959	CYP2D6	A_upstream	upstream_caller_abstention	*2/*36+*10	no assertion	independent truth compared using frozen order-only equivalence
+NA18959	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*36+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18966	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18966	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18966	TPMT	B_application	evidence_gate	*1/*3C	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18966	CYP2D6	A_upstream	upstream_caller_abstention	*1/*2	no assertion	independent truth compared using frozen order-only equivalence
+NA18966	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18973	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18973	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18973	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.1627A>G (*5)/[c.85T>C (*9A) + c.1627A>G (*5)]	independent truth compared using frozen order-only equivalence
+NA18973	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18973	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA18973	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18973	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18973	CYP2D6	A_upstream	upstream_caller_abstention	*1/*21	no assertion	independent truth compared using frozen order-only equivalence
+NA18973	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*21	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18980	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18980	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18980	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18980	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18980	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1B	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA18980	SLCO1B1	B_application	evidence_gate	*1A/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18980	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18980	CYP2D6	A_upstream	upstream_caller_abstention	*2/*36+*10	no assertion	independent truth compared using frozen order-only equivalence
+NA18980	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*36+*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA18992	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18992	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA18992	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1896T>C (heterozygous)	independent truth compared using frozen order-only equivalence
+NA18992	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18992	NUDT15	B_application	evidence_gate	*1/*3	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18992	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*17	*1/*15	independent truth compared using frozen order-only equivalence
+NA18992	SLCO1B1	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18992	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA18992	CYP2D6	A_upstream	upstream_caller_abstention	*1/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA18992	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19003	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19003	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19003	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19003	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19003	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA19003	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19003	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19003	CYP2D6	A_upstream	upstream_caller_abstention	*1/*1	no assertion	independent truth compared using frozen order-only equivalence
+NA19003	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*1	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19007	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19007	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19007	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19007	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19007	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA19007	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19007	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19007	CYP2D6	A_upstream	upstream_caller_abstention	*1/*1	no assertion	independent truth compared using frozen order-only equivalence
+NA19007	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*1	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19035	CYP2C19	B_application	evidence_gate	*17/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19035	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19035	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1218G>A (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19035	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19035	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*37/*53 | *42/*53 | *52/*53 | *53/*56	independent truth compared using frozen order-only equivalence
+NA19035	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19035	TPMT	B_application	evidence_gate	*3C/*3C	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19035	CYP2D6	A_upstream	upstream_caller_abstention	*2/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA19035	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19075	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19075	CYP2C9	B_application	evidence_gate	*1/*13	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19079	NUDT15	A_upstream	upstream_caller_disagreement	*2/*5	*3/*5	independent truth compared using frozen order-only equivalence
+NA19079	NUDT15	B_application	evidence_gate	*2/*5	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19095	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19095	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19095	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/[c.85T>C (*9A) + c.1218G>A]	independent truth compared using frozen order-only equivalence
+NA19095	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19095	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*20/*37 | *20/*42 | *20/*52 | *20/*56	independent truth compared using frozen order-only equivalence
+NA19095	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19095	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19095	CYP2D6	A_upstream	upstream_caller_abstention	*1/*29	no assertion	independent truth compared using frozen order-only equivalence
+NA19095	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*29	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19109	CYP2C19	B_application	evidence_gate	*17/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19109	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19109	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1218G>A] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19109	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19109	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*15	*15/*37 | *15/*42 | *15/*52 | *15/*56	independent truth compared using frozen order-only equivalence
+NA19109	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19109	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19109	CYP2D6	A_upstream	upstream_caller_abstention	*2x2/*29	no assertion	independent truth compared using frozen order-only equivalence
+NA19109	CYP2D6	B_application	intentional_cyp2d6_abstention	*2x2/*29	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19122	CYP2C19	B_application	evidence_gate	*2/*35	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19122	CYP2C9	B_application	evidence_gate	*1/*11	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19122	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19122	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19122	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA19122	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19122	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19122	CYP2D6	A_upstream	upstream_caller_abstention	*2/*17	no assertion	independent truth compared using frozen order-only equivalence
+NA19122	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*17	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19143	CYP2C19	B_application	evidence_gate	*1/*39	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19143	CYP2C9	B_application	evidence_gate	*1/*6	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19143	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19143	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19143	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA19143	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19143	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19147	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19147	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19147	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1349C>T] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19147	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19147	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*20/*30	independent truth compared using frozen order-only equivalence
+NA19147	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19147	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19147	CYP2D6	A_upstream	upstream_caller_abstention	*17/*29	no assertion	independent truth compared using frozen order-only equivalence
+NA19147	CYP2D6	B_application	intentional_cyp2d6_abstention	*17/*29	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19174	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19174	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19174	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19174	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19174	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1B	*1/*27	independent truth compared using frozen order-only equivalence
+NA19174	SLCO1B1	B_application	evidence_gate	*1A/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19174	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19174	CYP2D6	A_upstream	upstream_caller_abstention	*4/*40	no assertion	independent truth compared using frozen order-only equivalence
+NA19174	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*40	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19176	CYP2C19	B_application	evidence_gate	*2/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19176	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19176	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19176	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19176	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1B	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA19176	SLCO1B1	B_application	evidence_gate	*1A/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19176	TPMT	B_application	evidence_gate	*1/*8	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19176	CYP2D6	A_upstream	upstream_caller_abstention	*1/*2	no assertion	independent truth compared using frozen order-only equivalence
+NA19176	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19207	CYP2C19	B_application	evidence_gate	*2/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19207	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19207	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1A/*1B	*37/*41 | *41/*42 | *41/*52 | *41/*56	independent truth compared using frozen order-only equivalence
+NA19207	SLCO1B1	B_application	evidence_gate	*1A/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19207	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19207	CYP2D6	A_upstream	upstream_caller_abstention	*2x2/*10	no assertion	independent truth compared using frozen order-only equivalence
+NA19207	CYP2D6	B_application	intentional_cyp2d6_abstention	*2x2/*10	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19213	CYP2C19	B_application	evidence_gate	*1/*39	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19213	CYP2C9	B_application	evidence_gate	*1/*6	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19213	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19213	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19213	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*14	*14/*37 | *14/*42 | *14/*52 | *14/*56	independent truth compared using frozen order-only equivalence
+NA19213	SLCO1B1	B_application	evidence_gate	*1/*14	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19213	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19213	CYP2D6	A_upstream	upstream_caller_abstention	*1/*1	no assertion	independent truth compared using frozen order-only equivalence
+NA19213	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*1	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19226	CYP2C19	B_application	evidence_gate	*1/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19226	CYP2C9	B_application	evidence_gate	*1/*8	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19226	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1218G>A] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19226	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19226	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*31/*37 | *31/*42 | *31/*52 | *31/*56	independent truth compared using frozen order-only equivalence
+NA19226	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19226	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19226	CYP2D6	A_upstream	upstream_caller_abstention	*2/*2x2	no assertion	independent truth compared using frozen order-only equivalence
+NA19226	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*2x2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19238	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19238	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19238	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/c.85T>C (*9A)	independent truth compared using frozen order-only equivalence
+NA19238	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19238	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*20/*37 | *20/*42 | *20/*52 | *20/*56	independent truth compared using frozen order-only equivalence
+NA19238	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19238	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19238	CYP2D6	A_upstream	upstream_caller_abstention	*1/*17	no assertion	independent truth compared using frozen order-only equivalence
+NA19238	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*17	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19239	CYP2C19	B_application	evidence_gate	*13/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19239	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19239	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1349C>T] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19239	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19239	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA19239	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19239	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19239	CYP2D6	A_upstream	upstream_caller_abstention	*15/*17	no assertion	independent truth compared using frozen order-only equivalence
+NA19239	CYP2D6	B_application	intentional_cyp2d6_abstention	*15/*17	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19317	CYP2D6	A_upstream	upstream_caller_abstention	*5/*5	no assertion	independent truth compared using frozen order-only equivalence
+NA19317	CYP2D6	B_application	intentional_cyp2d6_abstention	*5/*5	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19327	CYP2C19	B_application	evidence_gate	*2/*35	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19327	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19395	CYP2C19	B_application	evidence_gate	*1/*3	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19395	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19466	CYP2C19	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19466	CYP2C9	B_application	evidence_gate	*1/*9	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19700	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19700	CYP2C9	B_application	evidence_gate	*1/*9	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19700	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/[c.85T>C (*9A) + c.496A>G]	independent truth compared using frozen order-only equivalence
+NA19700	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19700	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*37/*41 | *41/*42 | *41/*52 | *41/*56	independent truth compared using frozen order-only equivalence
+NA19700	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19700	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19700	CYP2D6	A_upstream	upstream_caller_abstention	*4/*29	no assertion	independent truth compared using frozen order-only equivalence
+NA19700	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*29	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19777	CYP2D6	A_upstream	upstream_caller_abstention	*1/*82	no assertion	independent truth compared using frozen order-only equivalence
+NA19777	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*82	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19785	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19785	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19785	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	Reference/Reference	independent truth compared using frozen order-only equivalence
+NA19785	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19785	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA19785	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19785	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19785	CYP2D6	A_upstream	upstream_caller_abstention	*1/*13+*2	no assertion	independent truth compared using frozen order-only equivalence
+NA19785	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*13+*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19789	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19789	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*2	*1/*2 | *1/*92	independent truth compared using frozen order-only equivalence
+NA19789	CYP2C9	B_application	evidence_gate	*1/*2	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19789	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*1	c.1627A>G (*5) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19789	DPYD	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19789	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA19789	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19789	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19789	CYP2D6	A_upstream	upstream_caller_abstention	*1/*1	no assertion	independent truth compared using frozen order-only equivalence
+NA19789	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*1	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19790	CYP2D6	A_upstream	upstream_caller_abstention	*1/*13+*2	no assertion	independent truth compared using frozen order-only equivalence
+NA19790	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*13+*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19819	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19819	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19819	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.496A>G + c.1627A>G (*5)] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19819	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19819	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA19819	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19819	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19819	CYP2D6	A_upstream	upstream_caller_abstention	*2/*4x2	no assertion	independent truth compared using frozen order-only equivalence
+NA19819	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*4x2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19908	CYP2C19	B_application	evidence_gate	*1/*17	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19908	CYP2C9	A_upstream	upstream_candidate_ambiguity	*1/*5	*1/*5 | *1/*36	independent truth compared using frozen order-only equivalence
+NA19908	CYP2C9	B_application	evidence_gate	*1/*5	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19908	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	[c.85T>C (*9A) + c.1218G>A + c.1896T>C] (heterozygous)	independent truth compared using frozen order-only equivalence
+NA19908	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19908	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*37/*37 | *37/*42 | *37/*52 | *37/*56 | *42/*42 | *42/*52 | *42/*56 | *52/*52 | *52/*56 | *56/*56	independent truth compared using frozen order-only equivalence
+NA19908	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19908	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19908	CYP2D6	A_upstream	upstream_caller_abstention	*1/*46	no assertion	independent truth compared using frozen order-only equivalence
+NA19908	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*46	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19917	CYP2C19	A_upstream	upstream_candidate_ambiguity	*2/*15	*2/*15 | *2/*28	independent truth compared using frozen order-only equivalence
+NA19917	CYP2C19	B_application	evidence_gate	*2/*15	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19917	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19917	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/c.85T>C (*9A)	independent truth compared using frozen order-only equivalence
+NA19917	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19917	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA19917	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19917	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19917	CYP2D6	A_upstream	upstream_caller_abstention	*1/*40	no assertion	independent truth compared using frozen order-only equivalence
+NA19917	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*40	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA19920	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19920	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA19920	DPYD	A_upstream	truth_output_nomenclature_mismatch	*9/*9	c.85T>C (*9A)/c.85T>C (*9A)	independent truth compared using frozen order-only equivalence
+NA19920	DPYD	B_application	evidence_gate	*9/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19920	SLCO1B1	A_upstream	upstream_caller_disagreement	*1/*1	*1/*37 | *1/*42 | *1/*52 | *1/*56	independent truth compared using frozen order-only equivalence
+NA19920	SLCO1B1	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19920	TPMT	B_application	evidence_gate	*1/*3C	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA19920	CYP2D6	A_upstream	upstream_caller_abstention	*1/*4x2	no assertion	independent truth compared using frozen order-only equivalence
+NA19920	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*4x2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA20289	CYP2D6	A_upstream	upstream_caller_abstention	*6/*11	no assertion	independent truth compared using frozen order-only equivalence
+NA20289	CYP2D6	B_application	intentional_cyp2d6_abstention	*6/*11	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA20296	CYP2C19	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20296	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA20296	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA20296	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20296	SLCO1B1	A_upstream	truth_output_nomenclature_or_definition_mismatch	*1B/*1B	*27/*37 | *27/*42 | *27/*52 | *27/*56	independent truth compared using frozen order-only equivalence
+NA20296	SLCO1B1	B_application	evidence_gate	*1B/*1B	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20296	TPMT	B_application	evidence_gate	*1/*3C	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20296	CYP2D6	A_upstream	upstream_caller_abstention	*1/*2	no assertion	independent truth compared using frozen order-only equivalence
+NA20296	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*2	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA20509	CYP2C19	B_application	evidence_gate	*2/*2	Unknown	Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20509	CYP2C9	B_application	evidence_gate	*1/*1	Unknown	No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+NA20509	DPYD	A_upstream	truth_output_nomenclature_mismatch	*1/*9	c.85T>C (*9A) (heterozygous)	independent truth compared using frozen order-only equivalence
+NA20509	DPYD	B_application	evidence_gate	*1/*9	Unknown	Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20509	SLCO1B1	B_application	evidence_gate	*1/*15	Unknown	Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20509	TPMT	B_application	evidence_gate	*1/*1	Unknown	Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+NA20509	CYP2D6	A_upstream	upstream_caller_abstention	*4/*35	no assertion	independent truth compared using frozen order-only equivalence
+NA20509	CYP2D6	B_application	intentional_cyp2d6_abstention	*4/*35	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA20803	CYP2D6	A_upstream	upstream_caller_abstention	*2/*22	no assertion	independent truth compared using frozen order-only equivalence
+NA20803	CYP2D6	B_application	intentional_cyp2d6_abstention	*2/*22	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA20875	CYP2D6	A_upstream	upstream_caller_abstention	*1/*111	no assertion	independent truth compared using frozen order-only equivalence
+NA20875	CYP2D6	B_application	intentional_cyp2d6_abstention	*1/*111	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+NA21105	CYP2D6	A_upstream	upstream_caller_abstention	*3/*111	no assertion	independent truth compared using frozen order-only equivalence
+NA21105	CYP2D6	B_application	intentional_cyp2d6_abstention	*3/*111	Unknown	CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.

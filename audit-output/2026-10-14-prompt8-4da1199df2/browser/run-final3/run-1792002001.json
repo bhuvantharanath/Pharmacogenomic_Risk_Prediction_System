@@ -1,0 +1,50 @@
+[
+ {
+  "id": "D05",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "ab7ec7af4e04776c0f80281e7365c23f0211cb57250eda61a22d9c5985a2d488",
+   "body_file": "browser-received/0012-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "9f87ae16e0b53366b9b29626d64b6c4fc18131d828f0148baa75ec9c0ca35565",
+   "body_file": "browser-received/0013-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D10",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "79505eda1aa81af9910c13f1fbceae725cf73acdc992423e42da285b3107f8e5",
+   "body_file": "browser-received/0016-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "ed92a6c98737504d93af2f91f5b5e6b1e4fad4d39674be4a5111d0d4bfcd7160",
+   "body_file": "browser-received/0017-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ },
+ {
+  "id": "D15",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "c1f0172598a7b56300f0b5d2161c2cda4eaa0c7ed9a2fdf00c9ac25f09f541bd",
+   "body_file": "browser-received/0020-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "926c5fe458dcc8d6a6f7de507f8a836c8f214b69a57b506dee21fed357fa3274",
+   "body_file": "browser-received/0021-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ }
+]

@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "docker",
+    "--context",
+    "colima-pgx-p6-20261005",
+    "exec",
+    "-i",
+    "pgx-p6-mixed-20261005",
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "stdout": "{\"cancelled\": true, \"observed_java_pids\": [881], \"java_after\": [], \"temp_before\": [], \"temp_after\": []}\n",
+  "stderr": ""
+}

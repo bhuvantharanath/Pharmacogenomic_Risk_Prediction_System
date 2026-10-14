@@ -1,0 +1,172 @@
+10/15/26, 12:25 AM PharmaGuard summary — NA12878
+RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+Pharmacogenomic analysis summary
+sample NA12878
+analysed 2026-10-14T18:54:37.842201Z
+printed 2026-10-14
+drugs checked 6
+This is not a clinical report. It was produced by a final-year student project for research and education. It has not
+been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page.
+Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are
+not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this
+sample came from.
+Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.
+Results
+Ordered by consequence, not alphabetically.
+Unknown
+azathioprine
+gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+azathioprine: no pharmacogenomic result (Unknown).
+APPLICATION LIMITATION — NOT A CPIC QUOTE
+Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are
+partial evidence only; no complete drug-level PGx recommendation is made.
+Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT
+— PharmCAT (no matching CPIC entry)
+127.0.0.1:3000 1/5
+
+10/15/26, 12:25 AM PharmaGuard summary — NA12878
+RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+Unknown
+clopidogrel
+gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+clopidogrel: no pharmacogenomic result (Unknown).
+APPLICATION LIMITATION — NOT A CPIC QUOTE
+Required genomic evidence is incomplete for CYP2C19. Available partner findings are
+partial evidence only; no complete drug-level PGx recommendation is made.
+Annotation of CPIC Guideline for clopidogrel and CYP2C19
+— PharmCAT (no matching CPIC entry)
+Unknown
+codeine
+gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+codeine: no pharmacogenomic result (Unknown).
+APPLICATION LIMITATION — NOT A CPIC QUOTE
+CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this
+application, so codeine guidance is not produced.
+Annotation of CPIC Guideline for codeine and CYP2D6
+— PharmCAT (no matching CPIC entry)
+Unknown
+fluorouracil
+gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+fluorouracil: no pharmacogenomic result (Unknown).
+APPLICATION LIMITATION — NOT A CPIC QUOTE
+Required genomic evidence is incomplete for DPYD. Available partner findings are partial
+evidence only; no complete drug-level PGx recommendation is made.
+Annotation of CPIC Guideline for fluorouracil and DPYD
+— PharmCAT (no matching CPIC entry)
+127.0.0.1:3000 2/5
+
+10/15/26, 12:25 AM PharmaGuard summary — NA12878
+RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+Unknown
+simvastatin
+gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+simvastatin: no pharmacogenomic result (Unknown).
+APPLICATION LIMITATION — NOT A CPIC QUOTE
+Required genomic evidence is incomplete for SLCO1B1. Available partner findings are
+partial evidence only; no complete drug-level PGx recommendation is made.
+Annotation of CPIC Guideline for simvastatin and SLCO1B1
+— PharmCAT (no matching CPIC entry)
+Unknown
+warfarin
+gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+warfarin: no pharmacogenomic result (Unknown).
+APPLICATION LIMITATION — NOT A CPIC QUOTE
+No validated automated warfarin-dose implementation is provided by this application; a
+gene call alone is not a complete dosing recommendation.
+Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1
+— PharmCAT (no matching CPIC entry)
+Unknown results (6)
+An Unknown is a declined answer, not a missing one. Only the reasons about the file itself — missing positions or unusable
+genotypes — are something the sample provider can act on.
+Your file is missing required positions
+azathioprine
+Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap:
+a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-
+function result could be reported as safe. The system declines rather than risk that.
+What would fix it: Upload a VCF that reports ALL positions, including those matching the reference
+— a clinical pharmacogenomic panel, or data covering all your genes, produced with every position
+reported. A variants-only file cannot work here.
+127.0.0.1:3000 3/5
+
+10/15/26, 12:25 AM PharmaGuard summary — NA12878
+RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+Required genotypes could not be used
+clopidogrel
+Every position needed to identify this gene is in your file, but at least one carries a genotype that cannot
+be used — a failed FILTER, or a partial or missing call. A change at an unusable position is invisible, so a
+reduced-function result could be reported as normal. The system declines rather than risk that.
+What would fix it: Check the genotype and FILTER values your caller wrote at the affected positions,
+and re-call them so each carries a complete genotype that passed its filters.
+Not called from an uploaded VCF
+codeine
+This gene’s result depends on structural and copy-number changes that need specialised analysis of the
+sequencing reads, which this application does not perform. No VCF uploaded here will resolve it — it
+needs a specialised test or caller. The system declines to guess rather than report a genotype it cannot
+support.
+Nothing about the uploaded file would change this result.
+Your file is missing required positions
+fluorouracil
+Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap:
+a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-
+function result could be reported as safe. The system declines rather than risk that.
+What would fix it: Upload a VCF that reports ALL positions, including those matching the reference
+— a clinical pharmacogenomic panel, or data covering all your genes, produced with every position
+reported. A variants-only file cannot work here.
+Your file is missing required positions
+simvastatin
+Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap:
+a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-
+function result could be reported as safe. The system declines rather than risk that.
+What would fix it: Upload a VCF that reports ALL positions, including those matching the reference
+— a clinical pharmacogenomic panel, or data covering all your genes, produced with every position
+reported. A variants-only file cannot work here.
+Result withheld
+warfarin
+No validated automated warfarin-dose implementation is provided by this application; a gene call alone
+is not a complete dosing recommendation.
+Nothing about the uploaded file would change this result.
+Input coverage
+How many of the positions each gene needs carried a usable genotype in the uploaded file. A genotype caller reads an absent position
+as matching the reference, so missing data can produce confident results rather than uncertain ones — which is why the count is
+printed whether or not it passed, and why a gene below its minimum is reported as Unknown.
+127.0.0.1:3000 4/5
+
+10/15/26, 12:25 AM PharmaGuard summary — NA12878
+RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+gene usable required minimum sufficient
+CYP2C19 34 35 100% NO
+CYP2C9 0 88 100% NO
+CYP2D6 0 157 100% NO
+DPYD 0 83 20% NO
+NUDT15 0 20 80% NO
+SLCO1B1 0 35 100% NO
+TPMT 0 45 80% NO
+Not resolved from this file: CYP2C19, CYP2C9, CYP2D6, DPYD, NUDT15, SLCO1B1, TPMT. Any drug keyed to these genes was
+reported as Unknown rather than assumed normal.
+Where this guidance came from
+PharmCAT 3.4.0
+CPIC data version 2026-07-13-11-40
+explanations generated 24 Jul 2026
+source CPIC guidelines, retrieved via PharmCAT
+Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for
+changes.
+127.0.0.1:3000 5/5

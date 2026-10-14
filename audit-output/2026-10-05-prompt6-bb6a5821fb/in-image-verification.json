@@ -1,0 +1,497 @@
+{
+  "container_id": "65e4c4182611c8516197caa04df137023316b3e9bab9581234a2290e78b16ba1",
+  "image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+  "architecture": "linux/arm64",
+  "copied_file_count": 50,
+  "checks": {
+    "copied_file_bytes_match": true,
+    "jar_matches": true,
+    "jar_data_version_matches": true,
+    "positions_match": true,
+    "positions_index_match": true,
+    "image_id_matches": true,
+    "memory_limit_matches": true,
+    "memory_swap_total_matches": true,
+    "container_running": true,
+    "cgroup_memory_max_matches": true,
+    "cgroup_swap_max_zero": true
+  },
+  "special": [
+    {
+      "path": "/pharmcat/pharmcat.jar",
+      "bytes": 32292707,
+      "sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741"
+    },
+    {
+      "path": "/pharmcat/pharmcat_positions.vcf.bgz",
+      "bytes": 11027,
+      "sha256": "01a28fe31675c9e8a8b18bcab4afb82a62abdfea6606856aeca0e0378e7d6b58"
+    },
+    {
+      "path": "/pharmcat/pharmcat_positions.vcf.bgz.csi",
+      "bytes": 1047,
+      "sha256": "eb536edd898613977e7429469e4a8fceb31afc85a839f98423272f90a9491ac4"
+    }
+  ],
+  "jar_data_version": "2026-07-13-11-40",
+  "cgroup_initial_events": [
+    "low 0",
+    "high 0",
+    "max 0",
+    "oom 0",
+    "oom_kill 0",
+    "oom_group_kill 0"
+  ],
+  "files": [
+    {
+      "source": "backend/app/__init__.py",
+      "inside": "/home/user/app/app/__init__.py",
+      "bytes": 63,
+      "sha256": "4042144309570eedd4c130b51ec6b01f71a70cbc7ab6fc5a23acee4dad8ffd01",
+      "actual_bytes": 63,
+      "actual_sha256": "4042144309570eedd4c130b51ec6b01f71a70cbc7ab6fc5a23acee4dad8ffd01",
+      "match": true
+    },
+    {
+      "source": "backend/app/capabilities.py",
+      "inside": "/home/user/app/app/capabilities.py",
+      "bytes": 3377,
+      "sha256": "d9b7431e63a5574ed9758643719fbcd505977e0513f7b9403e225818a00cda85",
+      "actual_bytes": 3377,
+      "actual_sha256": "d9b7431e63a5574ed9758643719fbcd505977e0513f7b9403e225818a00cda85",
+      "match": true
+    },
+    {
+      "source": "backend/app/coverage.py",
+      "inside": "/home/user/app/app/coverage.py",
+      "bytes": 22753,
+      "sha256": "7993195557659ad9da2e4536aa841f1e1500a4fbab94e3cee1cd582f9de5abef",
+      "actual_bytes": 22753,
+      "actual_sha256": "7993195557659ad9da2e4536aa841f1e1500a4fbab94e3cee1cd582f9de5abef",
+      "match": true
+    },
+    {
+      "source": "backend/app/cpic_engine.py",
+      "inside": "/home/user/app/app/cpic_engine.py",
+      "bytes": 40279,
+      "sha256": "954dff171fbbadbb1f1acfe96cf7af05508c85fe40c14d0faadaa51a6767af25",
+      "actual_bytes": 40279,
+      "actual_sha256": "954dff171fbbadbb1f1acfe96cf7af05508c85fe40c14d0faadaa51a6767af25",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/build_evidence.json",
+      "inside": "/home/user/app/app/data/build_evidence.json",
+      "bytes": 5025,
+      "sha256": "00e6a2d50101578769e2bb53a5290adfd5a7b52a21d5c21b85a552b6ef100d1a",
+      "actual_bytes": 5025,
+      "actual_sha256": "00e6a2d50101578769e2bb53a5290adfd5a7b52a21d5c21b85a552b6ef100d1a",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/capabilities.json",
+      "inside": "/home/user/app/app/data/capabilities.json",
+      "bytes": 3020,
+      "sha256": "287a319b8ca1fdac9e765d7b6ec7de55ea8ee87cd3d142700be0b7601d2c1704",
+      "actual_bytes": 3020,
+      "actual_sha256": "287a319b8ca1fdac9e765d7b6ec7de55ea8ee87cd3d142700be0b7601d2c1704",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/case_matrix.json",
+      "inside": "/home/user/app/app/data/case_matrix.json",
+      "bytes": 9876,
+      "sha256": "11883b138e0677f78f507c69552c2d5a2fb8f89594a32d4bbba763444d2e341a",
+      "actual_bytes": 9876,
+      "actual_sha256": "11883b138e0677f78f507c69552c2d5a2fb8f89594a32d4bbba763444d2e341a",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/compatible_bundle.json",
+      "inside": "/home/user/app/app/data/compatible_bundle.json",
+      "bytes": 20024,
+      "sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+      "actual_bytes": 20024,
+      "actual_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/explanation_approvals.json",
+      "inside": "/home/user/app/app/data/explanation_approvals.json",
+      "bytes": 12002,
+      "sha256": "b18c7d1d18d014fd1b2edf8ac24e2339a0c1df3f4252590c77db264df799f8a7",
+      "actual_bytes": 12002,
+      "actual_sha256": "b18c7d1d18d014fd1b2edf8ac24e2339a0c1df3f4252590c77db264df799f8a7",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/explanations.json",
+      "inside": "/home/user/app/app/data/explanations.json",
+      "bytes": 183387,
+      "sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+      "actual_bytes": 183387,
+      "actual_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/explanations_template_archive.json",
+      "inside": "/home/user/app/app/data/explanations_template_archive.json",
+      "bytes": 46980,
+      "sha256": "f61a8878ee2aa8a5348936b6e75c35276481c27e9ad307e16835d66c34fd983d",
+      "actual_bytes": 46980,
+      "actual_sha256": "f61a8878ee2aa8a5348936b6e75c35276481c27e9ad307e16835d66c34fd983d",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/label_mapping.yaml",
+      "inside": "/home/user/app/app/data/label_mapping.yaml",
+      "bytes": 25936,
+      "sha256": "5ade626cf83d410e620ac5fb9ba648854b152ef0e53abfe051c115c665514bc6",
+      "actual_bytes": 25936,
+      "actual_sha256": "5ade626cf83d410e620ac5fb9ba648854b152ef0e53abfe051c115c665514bc6",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/label_paraphrases.yaml",
+      "inside": "/home/user/app/app/data/label_paraphrases.yaml",
+      "bytes": 6713,
+      "sha256": "caf7948aa95f21895cc50e66e10c869780a86e31610fd2a7ff9f9c8d04a6d198",
+      "actual_bytes": 6713,
+      "actual_sha256": "caf7948aa95f21895cc50e66e10c869780a86e31610fd2a7ff9f9c8d04a6d198",
+      "match": true
+    },
+    {
+      "source": "backend/app/data/position_requirements.json",
+      "inside": "/home/user/app/app/data/position_requirements.json",
+      "bytes": 52050,
+      "sha256": "d0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3",
+      "actual_bytes": 52050,
+      "actual_sha256": "d0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/__init__.py",
+      "inside": "/home/user/app/app/explanation/__init__.py",
+      "bytes": 13909,
+      "sha256": "ca411f0f4e2a02f0f5da925b873fc6d9df9768f3207647b678b8cfd5dab6be82",
+      "actual_bytes": 13909,
+      "actual_sha256": "ca411f0f4e2a02f0f5da925b873fc6d9df9768f3207647b678b8cfd5dab6be82",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/approval.py",
+      "inside": "/home/user/app/app/explanation/approval.py",
+      "bytes": 10442,
+      "sha256": "d414baacbec67e8c7be7f6a634e022fe26a515e0b1c782b419de48fce0f68079",
+      "actual_bytes": 10442,
+      "actual_sha256": "d414baacbec67e8c7be7f6a634e022fe26a515e0b1c782b419de48fce0f68079",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/compose.py",
+      "inside": "/home/user/app/app/explanation/compose.py",
+      "bytes": 3897,
+      "sha256": "c6854c74b6ca33da70020ac5e210a2c1d306d50d15db5622b50f27ebfd4db754",
+      "actual_bytes": 3897,
+      "actual_sha256": "c6854c74b6ca33da70020ac5e210a2c1d306d50d15db5622b50f27ebfd4db754",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/consistency.py",
+      "inside": "/home/user/app/app/explanation/consistency.py",
+      "bytes": 10647,
+      "sha256": "0c5f0aa8ac76343de8588352c5918acfb36af0b3ffd2bbeb1e0eff8ebbce9364",
+      "actual_bytes": 10647,
+      "actual_sha256": "0c5f0aa8ac76343de8588352c5918acfb36af0b3ffd2bbeb1e0eff8ebbce9364",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/context.py",
+      "inside": "/home/user/app/app/explanation/context.py",
+      "bytes": 11030,
+      "sha256": "ff14a862e66046ac83c2f1df5a6b52931a4d207955c09d91c4a62b6fd58fcd37",
+      "actual_bytes": 11030,
+      "actual_sha256": "ff14a862e66046ac83c2f1df5a6b52931a4d207955c09d91c4a62b6fd58fcd37",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/generator_llm.py",
+      "inside": "/home/user/app/app/explanation/generator_llm.py",
+      "bytes": 11308,
+      "sha256": "df1fc5f171913a10193148c698eeb80fa555a6a333924c04f4aed156740d1b16",
+      "actual_bytes": 11308,
+      "actual_sha256": "df1fc5f171913a10193148c698eeb80fa555a6a333924c04f4aed156740d1b16",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/generator_template.py",
+      "inside": "/home/user/app/app/explanation/generator_template.py",
+      "bytes": 6482,
+      "sha256": "e4f69e18b3c8010895be4d39d8558a49799fd8d6eb83424c2a73e031d9add5f5",
+      "actual_bytes": 6482,
+      "actual_sha256": "e4f69e18b3c8010895be4d39d8558a49799fd8d6eb83424c2a73e031d9add5f5",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/guard.py",
+      "inside": "/home/user/app/app/explanation/guard.py",
+      "bytes": 11539,
+      "sha256": "0f436daefef109fa86adacc86bef95657cec54453c61411d9c006fe7a58c333a",
+      "actual_bytes": 11539,
+      "actual_sha256": "0f436daefef109fa86adacc86bef95657cec54453c61411d9c006fe7a58c333a",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/provenance.py",
+      "inside": "/home/user/app/app/explanation/provenance.py",
+      "bytes": 29496,
+      "sha256": "93d03afc4251da994361001a8572870094550bdffece5e07f4751837a06d4352",
+      "actual_bytes": 29496,
+      "actual_sha256": "93d03afc4251da994361001a8572870094550bdffece5e07f4751837a06d4352",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/__init__.py",
+      "inside": "/home/user/app/app/explanation/providers/__init__.py",
+      "bytes": 2618,
+      "sha256": "6183361ddf1364851aa944d4e2e39ce8b22a57f53edfd6a9a99c95cb86637eba",
+      "actual_bytes": 2618,
+      "actual_sha256": "6183361ddf1364851aa944d4e2e39ce8b22a57f53edfd6a9a99c95cb86637eba",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/_openai_compat.py",
+      "inside": "/home/user/app/app/explanation/providers/_openai_compat.py",
+      "bytes": 10351,
+      "sha256": "f93ee11eb643af61e12b6f53e11b99544255d82ec1189a3fca84339f1e75a741",
+      "actual_bytes": 10351,
+      "actual_sha256": "f93ee11eb643af61e12b6f53e11b99544255d82ec1189a3fca84339f1e75a741",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/base.py",
+      "inside": "/home/user/app/app/explanation/providers/base.py",
+      "bytes": 3438,
+      "sha256": "5fc4a720d31a12076e57417ae242dcff60d74df84af2f321e82a030fe36a32c8",
+      "actual_bytes": 3438,
+      "actual_sha256": "5fc4a720d31a12076e57417ae242dcff60d74df84af2f321e82a030fe36a32c8",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/errors.py",
+      "inside": "/home/user/app/app/explanation/providers/errors.py",
+      "bytes": 2780,
+      "sha256": "26d4bbb76fea0f8343737c6e1cb8fa325e8a806c71c929277235089c5da0b5c3",
+      "actual_bytes": 2780,
+      "actual_sha256": "26d4bbb76fea0f8343737c6e1cb8fa325e8a806c71c929277235089c5da0b5c3",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/gemini.py",
+      "inside": "/home/user/app/app/explanation/providers/gemini.py",
+      "bytes": 6007,
+      "sha256": "ddebe4e076d43347cee0ee1454d7058e17351bd4a976d71fbda2b923397c8b05",
+      "actual_bytes": 6007,
+      "actual_sha256": "ddebe4e076d43347cee0ee1454d7058e17351bd4a976d71fbda2b923397c8b05",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/json_output.py",
+      "inside": "/home/user/app/app/explanation/providers/json_output.py",
+      "bytes": 5187,
+      "sha256": "81feb40b7c991e819588971456334a12c057b61df40045b1ed065a3fc3e07046",
+      "actual_bytes": 5187,
+      "actual_sha256": "81feb40b7c991e819588971456334a12c057b61df40045b1ed065a3fc3e07046",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/nvidia_nim.py",
+      "inside": "/home/user/app/app/explanation/providers/nvidia_nim.py",
+      "bytes": 1106,
+      "sha256": "23fff7902716b270e5b7f2dd1bf81e423229caeea3169d4e5bb6a3a25fb7981e",
+      "actual_bytes": 1106,
+      "actual_sha256": "23fff7902716b270e5b7f2dd1bf81e423229caeea3169d4e5bb6a3a25fb7981e",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/ollama.py",
+      "inside": "/home/user/app/app/explanation/providers/ollama.py",
+      "bytes": 1595,
+      "sha256": "7e1ec55c3bae334b39bc20dfebdc527346e21e89d279b3d0ab6f366d42883328",
+      "actual_bytes": 1595,
+      "actual_sha256": "7e1ec55c3bae334b39bc20dfebdc527346e21e89d279b3d0ab6f366d42883328",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/redact.py",
+      "inside": "/home/user/app/app/explanation/providers/redact.py",
+      "bytes": 1213,
+      "sha256": "e50cdd632959fcb928c4b13512c0844d3238a81645950bbe6d7714f43b210448",
+      "actual_bytes": 1213,
+      "actual_sha256": "e50cdd632959fcb928c4b13512c0844d3238a81645950bbe6d7714f43b210448",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/providers/template.py",
+      "inside": "/home/user/app/app/explanation/providers/template.py",
+      "bytes": 1895,
+      "sha256": "08231ce9061f81a306ba49b2b97a15cefffbca561cea26de75ceca6f4bf95a95",
+      "actual_bytes": 1895,
+      "actual_sha256": "08231ce9061f81a306ba49b2b97a15cefffbca561cea26de75ceca6f4bf95a95",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/slot_verifier.py",
+      "inside": "/home/user/app/app/explanation/slot_verifier.py",
+      "bytes": 5515,
+      "sha256": "ca64b91485c473abb74a125e19b93e3e726a04a7a6ed536a1ed35cbe37f70ade",
+      "actual_bytes": 5515,
+      "actual_sha256": "ca64b91485c473abb74a125e19b93e3e726a04a7a6ed536a1ed35cbe37f70ade",
+      "match": true
+    },
+    {
+      "source": "backend/app/explanation/static_store.py",
+      "inside": "/home/user/app/app/explanation/static_store.py",
+      "bytes": 8603,
+      "sha256": "e2c05e5906f6b18117a6a73c46c14a4b5746160ec0dffb22ec28978abdebda3a",
+      "actual_bytes": 8603,
+      "actual_sha256": "e2c05e5906f6b18117a6a73c46c14a4b5746160ec0dffb22ec28978abdebda3a",
+      "match": true
+    },
+    {
+      "source": "backend/app/main.py",
+      "inside": "/home/user/app/app/main.py",
+      "bytes": 42960,
+      "sha256": "0c56ed79aeb8e06f92c4e10f3f493fa36f5a6c1ec819a93f97da2a74098d70f3",
+      "actual_bytes": 42960,
+      "actual_sha256": "0c56ed79aeb8e06f92c4e10f3f493fa36f5a6c1ec819a93f97da2a74098d70f3",
+      "match": true
+    },
+    {
+      "source": "backend/app/models.py",
+      "inside": "/home/user/app/app/models.py",
+      "bytes": 12493,
+      "sha256": "216cb88c8cb704bd6a3e6a29e6f2348f70940315c7035d3add02a3d5cac0e440",
+      "actual_bytes": 12493,
+      "actual_sha256": "216cb88c8cb704bd6a3e6a29e6f2348f70940315c7035d3add02a3d5cac0e440",
+      "match": true
+    },
+    {
+      "source": "backend/app/pharmcat_models.py",
+      "inside": "/home/user/app/app/pharmcat_models.py",
+      "bytes": 6948,
+      "sha256": "4e973f658486071a7e246a7291dbef01c1d7bc410eda62f45977d74c8613c2d8",
+      "actual_bytes": 6948,
+      "actual_sha256": "4e973f658486071a7e246a7291dbef01c1d7bc410eda62f45977d74c8613c2d8",
+      "match": true
+    },
+    {
+      "source": "backend/app/pharmcat_runner.py",
+      "inside": "/home/user/app/app/pharmcat_runner.py",
+      "bytes": 34366,
+      "sha256": "eea414f9d918cc5fa71a04298d7e5bdf2c8fbe08745b10a54fb65a4e56c1fbc8",
+      "actual_bytes": 34366,
+      "actual_sha256": "eea414f9d918cc5fa71a04298d7e5bdf2c8fbe08745b10a54fb65a4e56c1fbc8",
+      "match": true
+    },
+    {
+      "source": "backend/app/retrieval.py",
+      "inside": "/home/user/app/app/retrieval.py",
+      "bytes": 10388,
+      "sha256": "d2c578adad40f518f6cb6cdb4690d3d994a63017844c3d7255a4c4548514a018",
+      "actual_bytes": 10388,
+      "actual_sha256": "d2c578adad40f518f6cb6cdb4690d3d994a63017844c3d7255a4c4548514a018",
+      "match": true
+    },
+    {
+      "source": "backend/app/security.py",
+      "inside": "/home/user/app/app/security.py",
+      "bytes": 19238,
+      "sha256": "ce209f98757db6ce4f14b063a42e32764e706e73ea386a9fbf530d0890f948a6",
+      "actual_bytes": 19238,
+      "actual_sha256": "ce209f98757db6ce4f14b063a42e32764e706e73ea386a9fbf530d0890f948a6",
+      "match": true
+    },
+    {
+      "source": "backend/app/vcf_validation.py",
+      "inside": "/home/user/app/app/vcf_validation.py",
+      "bytes": 20739,
+      "sha256": "4ecd4151cf1fb561921bf6898dc8009d14d0abe806e525aaba9fcb4062e2c702",
+      "actual_bytes": 20739,
+      "actual_sha256": "4ecd4151cf1fb561921bf6898dc8009d14d0abe806e525aaba9fcb4062e2c702",
+      "match": true
+    },
+    {
+      "source": "backend/requirements.txt",
+      "inside": "/home/user/app/requirements.txt",
+      "bytes": 957,
+      "sha256": "dc986e4680ec7d6f7f46f69d86cbfe44bf324c0f300ae72f3bf35963f9b2a633",
+      "actual_bytes": 957,
+      "actual_sha256": "dc986e4680ec7d6f7f46f69d86cbfe44bf324c0f300ae72f3bf35963f9b2a633",
+      "match": true
+    },
+    {
+      "source": "rag-corpus/README.md",
+      "inside": "/home/user/app/rag-corpus/README.md",
+      "bytes": 5468,
+      "sha256": "c4582c0fe8cc54fe44c81a9e0959b73eb1c38d54c4dee80897747d3407ff4cfe",
+      "actual_bytes": 5468,
+      "actual_sha256": "c4582c0fe8cc54fe44c81a9e0959b73eb1c38d54c4dee80897747d3407ff4cfe",
+      "match": true
+    },
+    {
+      "source": "rag-corpus/mechanisms/CYP2C19_clopidogrel.md",
+      "inside": "/home/user/app/rag-corpus/mechanisms/CYP2C19_clopidogrel.md",
+      "bytes": 2955,
+      "sha256": "525a02e778306087a89e6aaafd7dfdc7de84d2258509c045c28e4a21e2e75e89",
+      "actual_bytes": 2955,
+      "actual_sha256": "525a02e778306087a89e6aaafd7dfdc7de84d2258509c045c28e4a21e2e75e89",
+      "match": true
+    },
+    {
+      "source": "rag-corpus/mechanisms/CYP2C9_warfarin.md",
+      "inside": "/home/user/app/rag-corpus/mechanisms/CYP2C9_warfarin.md",
+      "bytes": 2700,
+      "sha256": "f9f2455a1c0ff761f4b09b3e1aaba1be29edb65974c56d9c8ed4028f1dd35aa2",
+      "actual_bytes": 2700,
+      "actual_sha256": "f9f2455a1c0ff761f4b09b3e1aaba1be29edb65974c56d9c8ed4028f1dd35aa2",
+      "match": true
+    },
+    {
+      "source": "rag-corpus/mechanisms/CYP2D6_codeine.md",
+      "inside": "/home/user/app/rag-corpus/mechanisms/CYP2D6_codeine.md",
+      "bytes": 2867,
+      "sha256": "dcaa733534f0e0a768c0aa5fbc16f66ce8386c11d19c67abb0b5a5298b3a7bed",
+      "actual_bytes": 2867,
+      "actual_sha256": "dcaa733534f0e0a768c0aa5fbc16f66ce8386c11d19c67abb0b5a5298b3a7bed",
+      "match": true
+    },
+    {
+      "source": "rag-corpus/mechanisms/DPYD_fluorouracil.md",
+      "inside": "/home/user/app/rag-corpus/mechanisms/DPYD_fluorouracil.md",
+      "bytes": 2789,
+      "sha256": "90cd67e8812e811595c731aee9eb6d8c42f1ef3311e6059a344e9baddfeef716",
+      "actual_bytes": 2789,
+      "actual_sha256": "90cd67e8812e811595c731aee9eb6d8c42f1ef3311e6059a344e9baddfeef716",
+      "match": true
+    },
+    {
+      "source": "rag-corpus/mechanisms/SLCO1B1_simvastatin.md",
+      "inside": "/home/user/app/rag-corpus/mechanisms/SLCO1B1_simvastatin.md",
+      "bytes": 2577,
+      "sha256": "7aae15a031570212aa107b1f0b0be83eeebbd964d3f8b75e915d5cf85275dddc",
+      "actual_bytes": 2577,
+      "actual_sha256": "7aae15a031570212aa107b1f0b0be83eeebbd964d3f8b75e915d5cf85275dddc",
+      "match": true
+    },
+    {
+      "source": "rag-corpus/mechanisms/TPMT_azathioprine.md",
+      "inside": "/home/user/app/rag-corpus/mechanisms/TPMT_azathioprine.md",
+      "bytes": 2875,
+      "sha256": "9b0357640e97bc0dd03073d83da516d6a8d855acf51028396396f1dd3170e56f",
+      "actual_bytes": 2875,
+      "actual_sha256": "9b0357640e97bc0dd03073d83da516d6a8d855acf51028396396f1dd3170e56f",
+      "match": true
+    }
+  ]
+}

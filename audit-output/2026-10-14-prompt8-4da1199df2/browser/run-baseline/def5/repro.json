@@ -1,0 +1,37 @@
+[
+ {
+  "step": "after expanding all six cards, at top",
+  "expanded": [
+   "azathioprine: No PGx-guided change",
+   "clopidogrel: No PGx-guided change"
+  ]
+ },
+ {
+  "step": "scrolled to bottom (Export JSON visible)",
+  "expanded": [],
+  "collapsed": [
+   "NORMAL_CONTROL 2026-10-14T12:22:38Z VCF ",
+   "Input coverage. 6 of 7 genes have enough",
+   "azathioprine: No PGx-guided change",
+   "clopidogrel: No PGx-guided change",
+   "fluorouracil: No PGx-guided change",
+   "simvastatin: No PGx-guided change",
+   "codeine: Unknown",
+   "warfarin: Unknown"
+  ]
+ },
+ {
+  "step": "scrolled back to top",
+  "expanded": [],
+  "collapsed": [
+   "NORMAL_CONTROL 2026-10-14T12:22:38Z VCF ",
+   "Input coverage. 6 of 7 genes have enough",
+   "azathioprine: No PGx-guided change",
+   "clopidogrel: No PGx-guided change",
+   "fluorouracil: No PGx-guided change",
+   "simvastatin: No PGx-guided change",
+   "codeine: Unknown",
+   "warfarin: Unknown"
+  ]
+ }
+]

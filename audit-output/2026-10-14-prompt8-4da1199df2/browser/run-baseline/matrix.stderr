@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/browser/run_cases.py", line 270, in <module>
+    rcov = upload(REPO / rf["upload_copy"], name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/browser/run_cases.py", line 175, in upload
+    click_node(lambda n: n["role"] == "button" and n["text"].startswith(card_text), "file card")
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/browser/run_cases.py", line 100, in click_node
+    raise LookupError(describe)
+LookupError: file card

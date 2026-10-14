@@ -55,7 +55,9 @@ class VcfErrorCode(str, Enum):
     NO_SAMPLE_COLUMN = "NO_SAMPLE_COLUMN"
     NO_VARIANTS = "NO_VARIANTS"
     UNSUPPORTED_REFERENCE_BUILD = "UNSUPPORTED_REFERENCE_BUILD"
+    CONFLICTING_REFERENCE_BUILD = "CONFLICTING_REFERENCE_BUILD"
     NON_HUMAN_GENOME = "NON_HUMAN_GENOME"
+    UNSUPPORTED_MULTISAMPLE = "UNSUPPORTED_MULTISAMPLE"
 
 
 class ReferenceBuild(str, Enum):
@@ -192,6 +194,34 @@ def detect_build_from_accessions(header_lines: list[str]) -> str | None:
     return None
 
 
+def _declared_builds(header_lines: list[str]) -> set[str]:
+    """Every build asserted by authoritative header fields.
+
+    Keeping the full set is essential: collapsing contradictory declarations
+    to ``Unknown`` or preferring the convenient build would turn a broken file
+    into an apparently usable one.
+    """
+    relevant = [
+        line
+        for line in header_lines
+        if line.startswith(("##reference", "##contig", "##assembly"))
+    ]
+    table = _build_evidence().get("accession_to_build", {})
+    seen: set[str] = set()
+    for line in relevant:
+        for accession in _ACCESSION.findall(line):
+            build = table.get(accession)
+            if build:
+                seen.add(build)
+
+    blob = "\n".join(relevant)
+    if any(pattern.search(blob) for pattern in _GRCH37_PATTERNS):
+        seen.add("GRCh37")
+    if any(pattern.search(blob) for pattern in _GRCH38_PATTERNS):
+        seen.add("GRCh38")
+    return seen
+
+
 def _detect_reference_build(header_lines: list[str]) -> ReferenceBuild:
     """
     Infer the reference build from the header's *declaration* lines.
@@ -201,33 +231,18 @@ def _detect_reference_build(header_lines: list[str]) -> ReferenceBuild:
     historical reasons (a liftover tool naming its input) and would produce
     false positives.
 
-    Precedence is deliberately asymmetric: **any** GRCh37 signal wins, even when
-    GRCh38 is also present. Analysing a GRCh37 file as GRCh38 does not error —
-    it silently produces wrong genotype calls at shifted coordinates, which is
-    the worst failure available here. A file that declares both is ambiguous,
-    and ambiguity should stop the run rather than pick a side.
+    Contradictory declarations are rejected by ``validate_vcf`` before this
+    helper is called. Analysing a GRCh37 file as GRCh38 would silently produce
+    wrong genotype calls at shifted coordinates, so ambiguity is never resolved
+    by choosing a convenient declaration.
 
     Returns UNKNOWN when the file says nothing, which is common and only warns.
     """
-    relevant = [
-        line
-        for line in header_lines
-        if line.startswith(("##reference", "##contig", "##assembly"))
-    ]
-    blob = "\n".join(relevant)
-
-    # Accessions first: PharmCAT-sourced and unambiguous, where a declared
-    # build is only what the file claims about itself.
-    from_accession = detect_build_from_accessions(header_lines)
-    if from_accession == "GRCh38":
+    builds = _declared_builds(header_lines)
+    if builds == {"GRCh38"}:
         return ReferenceBuild.GRCH38
-    if from_accession in ("GRCh37", "GRCh36"):
+    if builds and "GRCh38" not in builds:
         return ReferenceBuild.GRCH37
-
-    if any(p.search(blob) for p in _GRCH37_PATTERNS):
-        return ReferenceBuild.GRCH37
-    if any(p.search(blob) for p in _GRCH38_PATTERNS):
-        return ReferenceBuild.GRCH38
     return ReferenceBuild.UNKNOWN
 
 
@@ -263,8 +278,12 @@ def _decompress(raw: bytes) -> bytes:
                     "VCF restricted to pharmacogenomic positions.",
                 )
             if not decompressor.eof:
-                # Truncated final member.
-                break
+                raise VcfValidationError(
+                    VcfErrorCode.CORRUPT_GZIP,
+                    "This compressed VCF ended before its compressed-data member was "
+                    "complete. Re-create the compressed copy, or upload the "
+                    "plain .vcf instead.",
+                )
             stream = decompressor.unused_data
             if not stream:
                 break
@@ -405,6 +424,16 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
         )
 
     # --- reference build ---------------------------------------------------
+    declared_builds = _declared_builds(header_lines)
+    if len(declared_builds) > 1:
+        raise VcfValidationError(
+            VcfErrorCode.CONFLICTING_REFERENCE_BUILD,
+            "The VCF header contains contradictory genome-build declarations "
+            f"({', '.join(sorted(declared_builds))}). The analysis cannot choose "
+            "one without risking shifted-coordinate genotype calls. Re-export "
+            "the file with one internally consistent GRCh38 reference.",
+        )
+
     build = _detect_reference_build(header_lines)
     if build is ReferenceBuild.GRCH37:
         raise VcfValidationError(
@@ -457,10 +486,12 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
             "named sample.",
         )
     if len(sample_ids) > 1:
-        warnings.append(
+        raise VcfValidationError(
+            VcfErrorCode.UNSUPPORTED_MULTISAMPLE,
             f"The VCF contains {len(sample_ids)} samples "
-            f"({', '.join(sample_ids[:3])}{'…' if len(sample_ids) > 3 else ''}); "
-            f"only the first one is analysed ({sample_ids[0]})."
+            f"({', '.join(sample_ids[:3])}{'…' if len(sample_ids) > 3 else ''}). "
+            "This analysis currently accepts exactly one sample per upload; "
+            "split the file by sample and upload one sample at a time.",
         )
 
     # --- data rows ---------------------------------------------------------

@@ -1,0 +1,449 @@
+{
+  "schema_version": 2,
+  "bundle_id": "pharmaguard-scientific-baseline-2026-09-24-portable-v2",
+  "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
+  "application_hash_policy": {
+    "version": 2,
+    "policy": {
+      "path": "scripts/scientific_hash_policy.json",
+      "sha256": "5f7119e9fe6a9027ce407d43cbf5433b37f9570bffdf1d4d6d853696910b7e3f",
+      "bytes": 4074
+    },
+    "core_file_count": 90,
+    "algorithm": "SHA-256 of UTF-8 domain and NUL, then sorted POSIX relative path, NUL, raw bytes, NUL for every allowlisted file"
+  },
+  "pharmcat": {
+    "engine_version": "3.4.0",
+    "jar": {
+      "path": "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+      "sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741",
+      "bytes": 32292707
+    },
+    "positions": {
+      "path": "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz",
+      "sha256": "01a28fe31675c9e8a8b18bcab4afb82a62abdfea6606856aeca0e0378e7d6b58",
+      "bytes": 11027
+    },
+    "positions_index": {
+      "path": "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz.csi",
+      "sha256": "eb536edd898613977e7429469e4a8fceb31afc85a839f98423272f90a9491ac4",
+      "bytes": 1047
+    },
+    "data_version": "2026-07-13-11-40",
+    "definitions": {
+      "CYP2C19": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/CYP2C19_translation.json",
+        "sha256": "54896015c0874a40811a05d895a03a43139c495d4ebd162589d98d8543cfc873",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2026-02-05T20:58:29.114Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "CYP2C9": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/CYP2C9_translation.json",
+        "sha256": "3e29e9e0ced94d1996323e9a91e217fac58eab4f2974d83778e9f96c2c66e798",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2026-07-09T20:01:46.760Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "CYP2D6": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/CYP2D6_translation.json",
+        "sha256": "3b79842d14c588c1675cf47e980e5d39dab3cbddcd8fbd0597395da8fd9d0157",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2026-06-09T16:23:21.736Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "CYP4F2": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/CYP4F2_translation.json",
+        "sha256": "3618f21db9b475016c38614f031660b711b51989470b04fee94575a8e8ab00a0",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2025-11-03T16:56:17.571Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "DPYD": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/DPYD_translation.json",
+        "sha256": "f6890bd14dda5787fd371830092f13856ac5935967e8d9a13a7d61b7dae1752f",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2024-07-09T22:17:49.647Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "NUDT15": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/NUDT15_translation.json",
+        "sha256": "30e95f2fa83a38ca440d7f6acb7e6033b8015bed58b58829e5279fab55e865c4",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2026-06-06T00:04:34.543Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "SLCO1B1": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/SLCO1B1_translation.json",
+        "sha256": "80b070ab59ff5a3d2927e9484881e55ea431eb796b47d42850dc566e3f72ffdb",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2025-10-14T22:24:09.333Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "TPMT": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/TPMT_translation.json",
+        "sha256": "0b9bfb1ee3bf742ae69add7f07110b8a6906234a73ca0c5e0807a69a374d7b45",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2026-02-04T22:44:25.849Z",
+        "genome_build": "GRCh38.p14"
+      },
+      "VKORC1": {
+        "member": "org/pharmgkb/pharmcat/definition/alleles/VKORC1_translation.json",
+        "sha256": "14743fce72292ea83529b7673b5e6db2a7104816e59f6d61540f85c429e202dd",
+        "source": "CLINPGX",
+        "version": "2026-07-13-11-40",
+        "modification_date": "2023-05-04T00:25:05.851Z",
+        "genome_build": "GRCh38.p14"
+      }
+    },
+    "phenotypes": {
+      "CYP2C19": {
+        "member": "org/pharmgkb/pharmcat/phenotype/CYP2C19.json",
+        "sha256": "0be6a065e6f884a80319a97143d7d12eb8b4639c8965c757956b8d823a59d692"
+      },
+      "CYP2C9": {
+        "member": "org/pharmgkb/pharmcat/phenotype/CYP2C9.json",
+        "sha256": "14bddb57b93f36d68ece5f1f365d26c48b626cd0ae01974d11a9819ab3c68abf"
+      },
+      "CYP2D6": {
+        "member": "org/pharmgkb/pharmcat/phenotype/CYP2D6.json",
+        "sha256": "240cb8a78c68b0cdcb85cb56ed38c94630417a1f070f43bf373d4f6456644555"
+      },
+      "DPYD": {
+        "member": "org/pharmgkb/pharmcat/phenotype/DPYD.json",
+        "sha256": "b9e468f18d074710d0fd8e6820a4aaafb5baac402bea1d7bd53860b0f1826cdd"
+      },
+      "NUDT15": {
+        "member": "org/pharmgkb/pharmcat/phenotype/NUDT15.json",
+        "sha256": "2e830848807661ce2f0445599c480345c0314f39c514cf909a7fb56c5f97e729"
+      },
+      "SLCO1B1": {
+        "member": "org/pharmgkb/pharmcat/phenotype/SLCO1B1.json",
+        "sha256": "ae0618b3b8089041beb596b3af87b7f45b3a89ca04f7da64c22a15bee73191f9"
+      },
+      "TPMT": {
+        "member": "org/pharmgkb/pharmcat/phenotype/TPMT.json",
+        "sha256": "dc7db2eb44b0a372d9afacdb609680c4e84d14897513312d8ad2adcd5829506f"
+      }
+    },
+    "prescribing_guidance": {
+      "member": "org/pharmgkb/pharmcat/reporter/prescribing_guidance.json",
+      "sha256": "5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8",
+      "scoped_rows": {
+        "azathioprine": {
+          "id": "PA166104933",
+          "version": 59,
+          "source": "CPIC",
+          "chemicals": [
+            "azathioprine"
+          ],
+          "genes": [
+            "NUDT15",
+            "TPMT"
+          ],
+          "citation_pmids": [
+            "41618934",
+            "30447069",
+            "23422873",
+            "21270794"
+          ]
+        },
+        "clopidogrel": {
+          "id": "PA166104948",
+          "version": 49,
+          "source": "CPIC",
+          "chemicals": [
+            "clopidogrel"
+          ],
+          "genes": [
+            "CYP2C19"
+          ],
+          "citation_pmids": [
+            "35034351",
+            "23698643",
+            "21716271"
+          ]
+        },
+        "codeine": {
+          "id": "PA166104996",
+          "version": 69,
+          "source": "CPIC",
+          "chemicals": [
+            "codeine"
+          ],
+          "genes": [
+            "CYP2D6"
+          ],
+          "citation_pmids": [
+            "33387367",
+            "24458010",
+            "22205192"
+          ]
+        },
+        "fluorouracil": {
+          "id": "PA166122686",
+          "version": 53,
+          "source": "CPIC",
+          "chemicals": [
+            "fluorouracil"
+          ],
+          "genes": [
+            "DPYD"
+          ],
+          "citation_pmids": [
+            "29152729",
+            "23988873"
+          ]
+        },
+        "simvastatin": {
+          "id": "PA166105005",
+          "version": 57,
+          "source": "CPIC",
+          "chemicals": [
+            "simvastatin"
+          ],
+          "genes": [
+            "SLCO1B1"
+          ],
+          "citation_pmids": [
+            "35152405",
+            "24918167",
+            "22617227"
+          ]
+        },
+        "warfarin": {
+          "id": "PA166104949",
+          "version": 48,
+          "source": "CPIC",
+          "chemicals": [
+            "warfarin"
+          ],
+          "genes": [
+            "CYP2C9",
+            "CYP4F2",
+            "VKORC1"
+          ],
+          "citation_pmids": [
+            "28198005",
+            "21900891"
+          ]
+        }
+      }
+    }
+  },
+  "application_contract": {
+    "evidence_requirements": {
+      "path": "backend/app/data/position_requirements.json",
+      "sha256": "d0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3",
+      "bytes": 52050
+    },
+    "genome_build_evidence": {
+      "path": "backend/app/data/build_evidence.json",
+      "sha256": "00e6a2d50101578769e2bb53a5290adfd5a7b52a21d5c21b85a552b6ef100d1a",
+      "bytes": 5025
+    },
+    "mapping_rules": {
+      "path": "backend/app/data/label_mapping.yaml",
+      "sha256": "5ade626cf83d410e620ac5fb9ba648854b152ef0e53abfe051c115c665514bc6",
+      "bytes": 25936
+    },
+    "capability_registry": {
+      "path": "backend/app/data/capabilities.json",
+      "sha256": "287a319b8ca1fdac9e765d7b6ec7de55ea8ee87cd3d142700be0b7601d2c1704",
+      "bytes": 3020
+    }
+  },
+  "explanations": {
+    "corpus": {
+      "path": "rag-corpus/mechanisms",
+      "sha256": "ae67f1cb8ad52b2b123d24482d2dbe7ddea644ce2eb3786979177f7c8c2099a1",
+      "files": 6,
+      "hash_policy_version": 2
+    },
+    "store": {
+      "path": "backend/app/data/explanations.json",
+      "sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+      "bytes": 183387
+    },
+    "approval_manifest": {
+      "path": "backend/app/data/explanation_approvals.json",
+      "sha256": "b18c7d1d18d014fd1b2edf8ac24e2339a0c1df3f4252590c77db264df799f8a7",
+      "bytes": 12002
+    },
+    "review_state": {
+      "counts": {
+        "approved": 0,
+        "unresolved": 20,
+        "rejected": 0
+      },
+      "clinical_expert_review": "NOT_OBTAINED",
+      "policy": "Exact content/source/context approval by named project-author provenance adjudication; not clinical expert review."
+    }
+  },
+  "evaluation": {
+    "benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+    "evidence_type": "independent CDC GeT-RM consensus truth plus 1000 Genomes genomic evidence",
+    "sample_unit": "individual; gene-specific truth rows are repeated measures within individuals",
+    "cohort_samples": 208,
+    "sample_gene_rows": 1456,
+    "truth_evaluable": 596,
+    "pharmcat_reports": 208,
+    "application_eligible_sample_gene_rows": 0,
+    "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
+    "application_core_sha256": "204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c",
+    "application_hash_policy_version": 2,
+    "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
+    "benchmark_historical_hash_policy_version": 1,
+    "identity_migration": {
+      "path": "scripts/application_hash_migration.json",
+      "sha256": "8f8853a1fa4c0d47b4d3885d5381d859cc1d328e3ac4ef7841b122426c7bb0a5",
+      "bytes": 1258
+    },
+    "migration_identity_matches": true,
+    "benchmark_rerun_for_hash_migration": false,
+    "protocol": {
+      "path": "test-data/benchmark/external/protocol.json",
+      "sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e",
+      "bytes": 9677
+    },
+    "manifest": {
+      "path": "test-data/benchmark/external/benchmark_manifest.json",
+      "sha256": "e19f995579482b152271c2c4eadc7b4fbe4b89832299b3111b761985484d0e92",
+      "bytes": 7588
+    },
+    "truth_table": {
+      "path": "test-data/benchmark/external/sample_gene_truth.tsv",
+      "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601",
+      "bytes": 287825
+    },
+    "results": {
+      "path": "test-data/benchmark/external/external_benchmark_results.json",
+      "sha256": "eca017e3a6e05b3db4c2640d86d9b84f1e271d00cb0f035a04fcce773f839ea8",
+      "bytes": 33667
+    },
+    "report": {
+      "path": "reports/external_analytical_benchmark.md",
+      "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9",
+      "bytes": 11481
+    },
+    "reproduction_record": {
+      "path": "reports/scientific_record_reproduction.json",
+      "sha256": "3eb6a763cb33a05d84cc9f763ebc87c3e797104e138c6f5a84a8bcac692d6c7a",
+      "bytes": 1596
+    },
+    "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
+  },
+  "source_deltas": {
+    "upstream_release_source": "https://github.com/PharmGKB/PharmCAT/releases/tag/v3.4.0",
+    "CYP2C19_star2_definition": {
+      "metadata_version": 1,
+      "status": "not_included_in_pinned_bundle",
+      "local_bundle_status": "coherent_older_definition",
+      "impact": "known_version_delta",
+      "isolated_definition_patch": false,
+      "definition_version": "2026-07-13-11-40",
+      "definition_modified": "2026-02-05T20:58:29.114Z",
+      "definition_sha256": "54896015c0874a40811a05d895a03a43139c495d4ebd162589d98d8543cfc873",
+      "pinned_definition_matches_external_update": false,
+      "external_definition_update": {
+        "source": "https://www.pharmvar.org/haplotype/3110",
+        "history_source": "https://www.pharmvar.org/get-haplotype-history?id=3110",
+        "version_history_source": "https://www.pharmvar.org/get-previous-versions",
+        "pharmvar_id": "PV03110",
+        "replaces_pharmvar_id": "PV00599",
+        "pharmvar_version_at_change": "6.2.28",
+        "definition_changed_at": "2026-07-31T19:30:32.000+00:00",
+        "pharmvar_release_updated_at": "2026-07-31T19:34:56.000+00:00",
+        "core_variant": "NM_000769.4:c.681G>A",
+        "core_variant_grch38": "NC_000010.11:g.94781859G>A",
+        "clinpgx_source": "https://blog.clinpgx.org/cyp2c19-2-core-allele-definition-update/",
+        "clinpgx_announcement_date": "2026-08-07",
+        "clinpgx_required_bases_grch38": {
+          "94775367": "R",
+          "94775507": "R",
+          "94781859": "A",
+          "94842866": "R"
+        }
+      },
+      "source_verification": {
+        "checked_on": "2026-09-30",
+        "pharmvar_current_version": "6.2.29",
+        "pharmvar_current_updated_at": "2026-09-22T21:55:42.000+00:00",
+        "pharmvar_version_source": "https://www.pharmvar.org/get-version",
+        "latest_pharmcat_release": "3.4.0",
+        "latest_pharmcat_published_at": "2026-07-14T01:19:45Z",
+        "pharmcat_release_source": "https://api.github.com/repos/PharmGKB/PharmCAT/releases/latest",
+        "newer_official_pharmcat_release_available": false
+      },
+      "targeted_fixture": {
+        "allele": "*2",
+        "core_positions_grch38": [
+          94775367,
+          94775507,
+          94781859,
+          94842866
+        ],
+        "pinned_required_bases_grch38": {
+          "94775367": "G",
+          "94775507": "R",
+          "94781859": "A",
+          "94842866": "G"
+        }
+      },
+      "upgrade_decision": "owner_controlled_whole_bundle_upgrade"
+    },
+    "TPMT_terminology": {
+      "status": "use source phenotype/function terminology from pinned bundle; no isolated manual patch",
+      "definition_version": "2026-07-13-11-40",
+      "definition_modified": "2026-02-04T22:44:25.849Z",
+      "definition_sha256": "0b9bfb1ee3bf742ae69add7f07110b8a6906234a73ca0c5e0807a69a374d7b45"
+    },
+    "DPYD_guideline_material": {
+      "status": "pinned finalized row retained; pending/newer material is not silently mixed into this bundle",
+      "guideline_source": "https://cpicpgx.org/guidelines/guideline-for-fluoropyrimidines-and-dpyd/",
+      "pinned_guidance_id": "PA166122686",
+      "pinned_guidance_version": 53,
+      "definition_modified": "2024-07-09T22:17:49.647Z"
+    }
+  },
+  "runtime": {
+    "production_image": "pgkb/pharmcat:3.4.0",
+    "ci_python": "3.12",
+    "ci_flutter": "3.38.9",
+    "requirements": {
+      "path": "backend/requirements.txt",
+      "sha256": "dc986e4680ec7d6f7f46f69d86cbfe44bf324c0f300ae72f3bf35963f9b2a633",
+      "bytes": 957
+    },
+    "requirements_dev": {
+      "path": "backend/requirements-dev.txt",
+      "sha256": "3c55bbdff70c904048051518ae608b985f4d398466f104264a2cade9beff0de0",
+      "bytes": 674
+    },
+    "flutter_lock": {
+      "path": "app/pubspec.lock",
+      "sha256": "c42c6ef42ad2bbe1fba9c0589db3ae5afee0212a5cb52c6197831c9bbaf2732d",
+      "bytes": 12558
+    },
+    "manifest_verifier_python": ">=3.11 (CI and production baseline use 3.12)"
+  },
+  "upgrade_policy": {
+    "mode": "controlled_whole_bundle_upgrade",
+    "required_steps": [
+      "record source delta and candidate versions",
+      "update engine/data/definitions/guidance together",
+      "regenerate evidence requirements and mappings where affected",
+      "rerun targeted delta fixtures and complete regression suites",
+      "rerun the independent benchmark without tuning on its final set",
+      "regenerate this manifest and obtain required explanation review"
+    ]
+  }
+}

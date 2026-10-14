@@ -1,0 +1,155 @@
+[
+  {
+    "sample": "NA18526",
+    "independent_truth": "*1/*1",
+    "observed_qualified_positions": 35,
+    "DP_range": [
+      21,
+      42
+    ],
+    "pharmcat": [
+      {
+        "allele1": {
+          "gene": "CYP2C19",
+          "name": "*1",
+          "function": "Normal function",
+          "reference": false,
+          "activityValue": "n/a"
+        },
+        "allele2": {
+          "gene": "CYP2C19",
+          "name": "*1",
+          "function": "Normal function",
+          "reference": false,
+          "activityValue": "n/a"
+        },
+        "gene": "CYP2C19",
+        "matchScore": 70,
+        "phenotypes": [
+          "Normal Metabolizer"
+        ],
+        "outsidePhenotype": false,
+        "outsidePhenotypeMismatch": null,
+        "activityScore": null,
+        "outsideActivityScore": false,
+        "outsideActivityScoreMismatch": null,
+        "variant": null,
+        "lookupKey": [
+          "Normal Metabolizer"
+        ],
+        "label": "*1/*1",
+        "inferred": false,
+        "inferredSourceDiplotypes": null,
+        "combination": false,
+        "diplotypeKey": {
+          "*1": 2.0
+        }
+      }
+    ],
+    "parser": "*1/*1",
+    "final_profile": {
+      "primary_gene": "CYP2C19",
+      "diplotype": "*1/*1",
+      "recommendation_diplotype": null,
+      "candidate_diplotypes": [],
+      "phenotype": "NM",
+      "activity_score": null,
+      "detected_variants": [
+        {
+          "rsid": "rs3758581",
+          "gene": "CYP2C19",
+          "genotype": "G/G",
+          "star_allele": null,
+          "function": "Contributes to named allele(s): *1, *2, *3, *4, *5, *6, *7, *8, *9, *10, *11, *12, *13, *14, *15, *17, *18, *19, *22, *23, *24, *25, *26, *28, *29, *31, *32, *33, *35, *39, *40, *41"
+        }
+      ]
+    },
+    "label": "No PGx-guided adjustment identified",
+    "all_35_genotypes_preserved": true,
+    "discrepancy": "none_in_evaluated_path"
+  },
+  {
+    "sample": "NA12878",
+    "independent_truth": "*1/*2",
+    "observed_qualified_positions": 35,
+    "DP_range": [
+      15,
+      41
+    ],
+    "pharmcat": [
+      {
+        "allele1": {
+          "gene": "CYP2C19",
+          "name": "*1",
+          "function": "Normal function",
+          "reference": false,
+          "activityValue": "n/a"
+        },
+        "allele2": {
+          "gene": "CYP2C19",
+          "name": "*2",
+          "function": "No function",
+          "reference": false,
+          "activityValue": "n/a"
+        },
+        "gene": "CYP2C19",
+        "matchScore": 38,
+        "phenotypes": [
+          "Intermediate Metabolizer"
+        ],
+        "outsidePhenotype": false,
+        "outsidePhenotypeMismatch": null,
+        "activityScore": null,
+        "outsideActivityScore": false,
+        "outsideActivityScoreMismatch": null,
+        "variant": null,
+        "lookupKey": [
+          "Intermediate Metabolizer"
+        ],
+        "label": "*1/*2",
+        "inferred": false,
+        "inferredSourceDiplotypes": null,
+        "combination": false,
+        "diplotypeKey": {
+          "*1": 1.0,
+          "*2": 1.0
+        }
+      }
+    ],
+    "parser": "*1/*2",
+    "final_profile": {
+      "primary_gene": "CYP2C19",
+      "diplotype": "*1/*2",
+      "recommendation_diplotype": null,
+      "candidate_diplotypes": [],
+      "phenotype": "IM",
+      "activity_score": null,
+      "detected_variants": [
+        {
+          "rsid": "rs12769205",
+          "gene": "CYP2C19",
+          "genotype": "A/G",
+          "star_allele": null,
+          "function": "Contributes to named allele(s): *1, *2, *35"
+        },
+        {
+          "rsid": "rs4244285",
+          "gene": "CYP2C19",
+          "genotype": "G/A",
+          "star_allele": null,
+          "function": "Contributes to named allele(s): *1, *2"
+        },
+        {
+          "rsid": "rs3758581",
+          "gene": "CYP2C19",
+          "genotype": "G/G",
+          "star_allele": null,
+          "function": "Contributes to named allele(s): *1, *2, *3, *4, *5, *6, *7, *8, *9, *10, *11, *12, *13, *14, *15, *17, *18, *19, *22, *23, *24, *25, *26, *28, *29, *31, *32, *33, *35, *39, *40, *41"
+        }
+      ]
+    },
+    "label": "Ineffective",
+    "all_35_genotypes_preserved": true,
+    "discrepancy": "none_in_evaluated_path"
+  }
+]

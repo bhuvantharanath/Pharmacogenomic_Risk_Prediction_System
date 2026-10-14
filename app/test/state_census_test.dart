@@ -84,7 +84,7 @@ void main() {
         await _pumpNarrow(tester, ResultsScreen(response: _withLabel(label)));
 
         // The label itself must be on screen, and nothing may overflow.
-        expect(find.textContaining(label.wireValue), findsWidgets,
+        expect(find.textContaining(label.displayValue), findsWidgets,
             reason: '${label.wireValue} does not appear in its own result');
         expect(tester.takeException(), isNull,
             reason: '${label.wireValue} overflows at 360px');
@@ -183,7 +183,7 @@ void main() {
     expect(RiskLabel.values.length, 5,
         reason: 'a risk label was added or removed — add it to the render '
             'group above, then update this count');
-    expect(UnknownReason.values.length, 5,
+    expect(UnknownReason.values.length, 6,
         reason: 'an Unknown reason was added or removed — the render group '
             'enumerates the enum, but this pins the expected size so the '
             'change is noticed rather than silently absorbed');

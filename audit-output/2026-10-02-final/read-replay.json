@@ -1,0 +1,16 @@
+{
+  "NA18526": {
+    "all_normalized_rows_identical": true,
+    "read_called_rows": 93030,
+    "required_observed_rows": 35,
+    "genotype_DP_GQ_AD_unchanged": true,
+    "note": "VCF headers differ in run timestamp/output paths; record bytes match exactly."
+  },
+  "NA12878": {
+    "all_normalized_rows_identical": true,
+    "read_called_rows": 93033,
+    "required_observed_rows": 35,
+    "genotype_DP_GQ_AD_unchanged": true,
+    "note": "VCF headers differ in run timestamp/output paths; record bytes match exactly."
+  }
+}

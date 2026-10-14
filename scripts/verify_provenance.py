@@ -40,10 +40,10 @@ source. It cannot detect a reversed claim assembled from sourced concepts —
 "increased activity" where the source says decreased still matches the direction
 family. Negation and direction-of-effect need a reader.
 
-That is why the release gate is now `scripts/adjudication_status.py`: this script
-narrows twenty entries down to the handful of sentences a person must actually
-look at, and the person decides. With a pre-generated set that is tractable —
-which is the whole payoff of pre-generating rather than generating per request.
+This script narrows twenty entries down to the handful of sentences a person
+must actually look at, and the person decides. `scripts/release_status.py` is
+the sole final readiness decision: it combines this detail with adjudication,
+the approval manifest, required tests, and exact candidate hashes.
 
 No LLM is used as a judge anywhere here. Using a model to certify a model is
 circular, and it would spend quota to answer a question that documented rules
@@ -381,7 +381,7 @@ class EntryResult:
 
     @property
     def clinical_ok(self) -> bool:
-        """The release gate: every claim-bearing sentence must be traced."""
+        """The provenance prerequisite: every claim-bearing sentence is traced."""
         return all(s.verified for kind in GATED for s in self.of(kind))
 
 
@@ -739,7 +739,7 @@ def main(argv: list[str] | None = None) -> int:
 
     passed = all(r.clinical_ok for r in results)
     print(green("\nAll clinical assertions trace to a cited source.") if passed
-          else red("\nUnverified clinical content present — this is a release gate failure."))
+          else red("\nUnverified clinical content present — provenance check failed."))
     print(dim("Verified means every clinical ASSERTION traces to a cited source."))
     print(dim("Wording may differ — paraphrase is allowed; invented claims are not."))
     print(dim("It does NOT mean a clinician has agreed the sentence is correct."))

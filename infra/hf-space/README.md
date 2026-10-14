@@ -57,11 +57,12 @@ shows an honest "waking up" state rather than a bare spinner.
 
 ## Data privacy
 
-**No genomic data is retained.** An uploaded VCF is held in memory and written
-to a per-request temporary directory that is deleted in a `finally` block before
-the response is returned. Nothing is logged, persisted, or sent anywhere else.
-Spaces have an ephemeral filesystem in any case, but the deletion is explicit
-and [asserted by a test](https://github.com/bhuvantharanath/pharmaguard/blob/main/backend/tests/test_deployment.py).
+**The application does not persist genomic uploads.** A bounded upload is held
+in memory and written to an owned per-request temporary directory. The PharmCAT
+process group is stopped/reaped and its VCF, report, and tool-log tree is deleted
+before the concurrency slot is returned. Static/default explanation mode makes
+no outbound explanation call. This does not claim control over Spaces access
+logs, crash dumps, backups, or other platform-level retention.
 
 ## Configuration
 
@@ -74,6 +75,7 @@ All optional. The defaults need no secrets.
 | `CORS_ALLOW_PAGES_PREVIEWS` | — | Cloudflare Pages project name for preview subdomains |
 | `RATE_LIMIT_REQUESTS` | `10` | Analyses per window per client |
 | `RATE_LIMIT_WINDOW_SECONDS` | `300` | Rate-limit window |
+| `TRUSTED_PROXY_CIDRS` | *(empty)* | Direct proxy networks allowed to supply sanitized forwarding identity; leave empty unless the platform contract is known |
 
 Set these under **Settings → Variables**. If you ever switch to
 `EXPLANATION_MODE=live`, put `GEMINI_API_KEY` in **Settings → Secrets**, never

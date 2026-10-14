@@ -1,0 +1,18 @@
+{
+  "stage": "mixed",
+  "checks": {
+    "count": true,
+    "expected_response_types": true,
+    "successful_analyses_scientifically_unknown": true,
+    "at_most_one_jvm": true
+  },
+  "peak_bytes": 512688128,
+  "events": {
+    "low": 0,
+    "high": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_kill": 0,
+    "oom_group_kill": 0
+  }
+}

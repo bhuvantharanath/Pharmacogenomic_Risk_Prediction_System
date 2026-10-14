@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+    "scripts/verify_provenance.py",
+    "--no-report"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 0,
+  "seconds": 0.7334023750008782,
+  "at": "2026-10-05T13:12:12.311354+00:00"
+}

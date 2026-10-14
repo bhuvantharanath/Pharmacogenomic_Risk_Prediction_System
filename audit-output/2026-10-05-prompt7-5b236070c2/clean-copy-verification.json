@@ -1,0 +1,122 @@
+{
+  "intended_file_count": 433,
+  "copied_file_count": 437,
+  "baseline": {
+    "core": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+    "release": "0c1aa418159cc7e4456b058d37cbabf751ff0f2bf9a7050566e798d6e24fa92c"
+  },
+  "clean_validator": {
+    "exit_code": 0,
+    "payload": {
+      "compatible": true,
+      "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-04-v3",
+      "manifest_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+      "problems": []
+    },
+    "stderr": ""
+  },
+  "junk_ignored": [
+    "backend/app/.DS_Store",
+    "backend/app/main.py~",
+    "backend/app/__pycache__/audit.cpython-311.pyc",
+    "backend/app/local.log",
+    "backend/app/temporary.tmp"
+  ],
+  "mutations": [
+    {
+      "path": "backend/app/cpic_engine.py",
+      "changed_core": true,
+      "changed_release": true,
+      "validator_exit": 1,
+      "problems": [
+        "$.evaluation.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '29dedd00f99eba9f220d5d8781d1e4227f4cdf27d96b36434e467b9e9e863881'",
+        "$.evaluation_current.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '29dedd00f99eba9f220d5d8781d1e4227f4cdf27d96b36434e467b9e9e863881'",
+        "$.evaluation_current.evidence_matches: expected True, found False",
+        "$.evaluation_current.problems: expected 0 entries, found 2",
+        "$.evaluation_current.evidence_matches: new candidate evidence is missing or incompatible"
+      ]
+    },
+    {
+      "path": "backend/app/data/capabilities.json",
+      "changed_core": true,
+      "changed_release": true,
+      "validator_exit": 1,
+      "problems": [
+        "$.application_contract.capability_registry.bytes: expected 3020, found 3021",
+        "$.application_contract.capability_registry.sha256: expected '287a319b8ca1fdac9e765d7b6ec7de55ea8ee87cd3d142700be0b7601d2c1704', found 'bbfbff876f909e3d5fc7a22e92d7c0f64da79aaae30dbf27ba52721132ddaa5a'",
+        "$.evaluation.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '7f60944183dca8c5933e6ce7a266e876aa3e62dd2d7f72f64b4f62f828a17615'",
+        "$.evaluation_current.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '7f60944183dca8c5933e6ce7a266e876aa3e62dd2d7f72f64b4f62f828a17615'",
+        "$.evaluation_current.evidence_matches: expected True, found False"
+      ]
+    },
+    {
+      "path": "backend/app/data/position_requirements.json",
+      "changed_core": true,
+      "changed_release": true,
+      "validator_exit": 1,
+      "problems": [
+        "$.application_contract.evidence_requirements.bytes: expected 52050, found 52051",
+        "$.application_contract.evidence_requirements.sha256: expected 'd0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3', found '022e0605c5945fd3f2969994a37f53e04751c53ff604eecf5ffa7bced118a268'",
+        "$.evaluation.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found 'ec2c4c4fe1963a84743ae203cd9bd1560f84e8a8e3995778f9ff44d40eb80838'",
+        "$.evaluation_current.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found 'ec2c4c4fe1963a84743ae203cd9bd1560f84e8a8e3995778f9ff44d40eb80838'",
+        "$.evaluation_current.evidence_matches: expected True, found False"
+      ]
+    },
+    {
+      "path": "backend/app/data/explanations.json",
+      "changed_core": true,
+      "changed_release": true,
+      "validator_exit": 1,
+      "problems": [
+        "$.evaluation.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '0b298550d94c742ccba3c9f75fb23d96bf6186f52cc41943ef151772fcfa2586'",
+        "$.evaluation_current.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found '0b298550d94c742ccba3c9f75fb23d96bf6186f52cc41943ef151772fcfa2586'",
+        "$.evaluation_current.evidence_matches: expected True, found False",
+        "$.evaluation_current.problems: expected 0 entries, found 2",
+        "$.explanations.store.bytes: expected 183387, found 183388"
+      ]
+    },
+    {
+      "path": "backend/app/data/explanation_approvals.json",
+      "changed_core": true,
+      "changed_release": true,
+      "validator_exit": 1,
+      "problems": [
+        "$.evaluation.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found 'fff41a09629a439b05d2312052f39b8f9dfb059aa9343118100b02e32480b7a9'",
+        "$.evaluation_current.application_core_sha256: expected '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691', found 'fff41a09629a439b05d2312052f39b8f9dfb059aa9343118100b02e32480b7a9'",
+        "$.evaluation_current.evidence_matches: expected True, found False",
+        "$.evaluation_current.problems: expected 0 entries, found 2",
+        "$.explanations.approval_manifest.bytes: expected 12002, found 12003"
+      ]
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/external_benchmark_results.json",
+      "changed_core": false,
+      "changed_release": true,
+      "validator_exit": 1,
+      "problems": [
+        "$.evaluation_current.evidence_matches: expected True, found False",
+        "$.evaluation_current.problems: expected 0 entries, found 1",
+        "$.evaluation_current.evidence_matches: new candidate evidence is missing or incompatible"
+      ]
+    }
+  ],
+  "different_parent_identity": {
+    "core": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+    "release": "0c1aa418159cc7e4456b058d37cbabf751ff0f2bf9a7050566e798d6e24fa92c"
+  },
+  "final_clean_identity": {
+    "core": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+    "release": "0c1aa418159cc7e4456b058d37cbabf751ff0f2bf9a7050566e798d6e24fa92c"
+  },
+  "final_clean_validator": {
+    "exit_code": 0,
+    "payload": {
+      "compatible": true,
+      "bundle_id": "pharmaguard-scientific-current-candidate-2026-10-04-v3",
+      "manifest_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+      "problems": []
+    },
+    "stderr": ""
+  },
+  "restored_exactly": true
+}

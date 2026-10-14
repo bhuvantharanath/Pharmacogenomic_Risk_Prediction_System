@@ -1,0 +1,25 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container flt-semantic-node-494
+			3 container flt-semantic-node-522
+				4 button Back, ID: flt-semantic-node-523
+				5 heading Analysis results, Value: 2, ID: flt-semantic-node-524
+					6 text Analysis results
+				7 button Copy JSON, ID: flt-semantic-node-525
+				8 button Export JSON, ID: flt-semantic-node-526
+			9 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			10 container flt-semantic-node-521
+				11 container flt-semantic-node-535
+					12 button (collapsed) azathioprine: No PGx-guided change, Secondary Actions: Expand
+					13 button (collapsed) fluorouracil: No PGx-guided change, ID: flt-semantic-node-538, Secondary Actions: Expand
+					14 button (collapsed) simvastatin: No PGx-guided change, ID: flt-semantic-node-539, Secondary Actions: Expand
+					15 button (collapsed) codeine: Unknown, ID: flt-semantic-node-540, Secondary Actions: Expand
+					16 button (collapsed) warfarin: Unknown, ID: flt-semantic-node-541, Secondary Actions: Expand
+				17 container flt-semantic-node-531
+					18 button Copy JSON, ID: flt-semantic-node-532
+					19 button Export JSON, ID: flt-semantic-node-533
+				20 button Printable summary, ID: flt-semantic-node-529
+				21 button ID: flt-semantic-node-527, Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes. PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 · explanations 24 Jul 2026
+
+The focused UI element is 4 button Back, ID: flt-semantic-node-523

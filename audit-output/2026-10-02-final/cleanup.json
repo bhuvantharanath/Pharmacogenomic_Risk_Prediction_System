@@ -1,0 +1,11 @@
+{
+  "container_runtime": {
+    "docker_available": false,
+    "docker_error": "failed to connect to the docker API at unix:///Users/bhuvant/.colima/default/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/bhuvant/.colima/default/docker.sock: connect: no such file or directory\n",
+    "colima_status": "time=\"2026-10-03T08:57:12+05:30\" level=fatal msg=\"colima is not running\"\n",
+    "not_restarted": true
+  },
+  "20654": "already stopped",
+  "20655": "already stopped",
+  "scope": "Only two named test containers and two verified local acceptance servers. Other containers and the existing Colima VM left unchanged. Test images retained locally; no deployment."
+}

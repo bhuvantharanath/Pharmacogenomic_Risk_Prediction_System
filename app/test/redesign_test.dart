@@ -146,12 +146,12 @@ void main() {
       expect(find.text('4 / 35'), findsOneWidget);
     });
 
-    testWidgets('not-callable blames the format, not the sample',
+    testWidgets('not-callable names this application\'s limit, not the sample',
         (WidgetTester t) async {
       await _pump(t, UnknownReasonPanel(
         reason: UnknownReason.notCallable,
         profile: _profile(gene: 'CYP2D6')));
-      expect(find.textContaining('cannot be read from a VCF'), findsOneWidget);
+      expect(find.textContaining('not called from a VCF here'), findsOneWidget);
       expect(find.textContaining('not of your sample'), findsOneWidget);
       expect(find.text('WHAT WOULD WORK'), findsNothing);
     });
@@ -196,8 +196,10 @@ void main() {
           result: _result(label: label, severity: sev),
           metrics: _metrics(<String, GeneCoverage>{'CYP2C19': _full}),
         ));
-        expect(find.text(label.wireValue), findsOneWidget);
-        expect(find.textContaining('severity ${sev.wireValue}'), findsOneWidget);
+        expect(find.text(label.displayValue), findsOneWidget);
+        expect(find.textContaining('severity ${sev.wireValue}'), findsNothing);
+        expect(find.textContaining('not a clinical safety assessment'),
+            findsOneWidget);
       });
     }
 

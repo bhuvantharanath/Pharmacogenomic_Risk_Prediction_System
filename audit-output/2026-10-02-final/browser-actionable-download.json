@@ -1,0 +1,111 @@
+{
+  "cursor": 82,
+  "events": [
+    {
+      "sequence": 75,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadWillBegin",
+      "params": {
+        "frameId": "0203387F008E32347FA34C17406BB206",
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "suggestedFilename": "pharmaguard_NA12878_2026-10-02T10-36-37-986156Z.json",
+        "url": "blob:http://127.0.0.1:3000/f89097b8-f5a7-4370-ad67-1da46b8b30df"
+      }
+    },
+    {
+      "sequence": 76,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadProgress",
+      "params": {
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "receivedBytes": 0,
+        "state": "inProgress",
+        "totalBytes": 19921
+      }
+    },
+    {
+      "sequence": 77,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadProgress",
+      "params": {
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "receivedBytes": 19921,
+        "state": "inProgress",
+        "totalBytes": 19921
+      }
+    },
+    {
+      "sequence": 78,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadProgress",
+      "params": {
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "receivedBytes": 19921,
+        "state": "inProgress",
+        "totalBytes": 19921
+      }
+    },
+    {
+      "sequence": 79,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadProgress",
+      "params": {
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "receivedBytes": 19921,
+        "state": "inProgress",
+        "totalBytes": 19921
+      }
+    },
+    {
+      "sequence": 80,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadProgress",
+      "params": {
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "receivedBytes": 19921,
+        "state": "inProgress",
+        "totalBytes": 19921
+      }
+    },
+    {
+      "sequence": 81,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadProgress",
+      "params": {
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "receivedBytes": 19921,
+        "state": "inProgress",
+        "totalBytes": 19921
+      }
+    },
+    {
+      "sequence": 82,
+      "source": {
+        "tabId": 2
+      },
+      "method": "Page.downloadProgress",
+      "params": {
+        "guid": "3a0bd04e-d9c7-429c-a15a-71dff22df588",
+        "receivedBytes": 19921,
+        "state": "completed",
+        "totalBytes": 19921
+      }
+    }
+  ],
+  "hasMore": false,
+  "truncated": false
+}

@@ -1,0 +1,7 @@
+{
+ "cases": 3,
+ "all_uploads_bound": true,
+ "all_api_bytes_match_browser": true,
+ "export_parity_failures": {},
+ "clipboard_parity_failures": {}
+}

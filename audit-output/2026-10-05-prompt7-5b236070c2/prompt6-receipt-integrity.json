@@ -1,0 +1,10 @@
+{
+  "verified_at": "2026-10-06T10:38:24.974937+00:00",
+  "source": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt6-bb6a5821fb",
+  "top_level_receipts": 183,
+  "mismatches": [],
+  "workload_reexecuted_in_prompt7": false,
+  "basis": "Frozen candidate matches all 437 Prompt 5 files and Prompt 6 used that exact context; in-image receipt captured before cleanup. No post-freeze source/config changes.",
+  "build_context_exact_entries_match": true,
+  "build_context_files_checked": 437
+}

@@ -1,0 +1,11 @@
+{
+  "files": 437,
+  "differences": [
+    {
+      "path": "render.yaml",
+      "expected": "127fed4e4d5afe3d5bcba953a40e6a33d8c5c0dafbed05b699dc063b8ce622c9",
+      "actual": "efbf1f27a3e1841942264ed9ed6691a0357f01a78b114f0dd21802e001e0aa06"
+    }
+  ],
+  "inventory_sha256": "9582a19acd61d841e6ecc9d98cdeef5796e654cdc790343d27b1dc0100af62da"
+}

@@ -1,0 +1,1 @@
+Warning: `bcftools call -m` emits all callable sites, not just variants; use -v for variants only

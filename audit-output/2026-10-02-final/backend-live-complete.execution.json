@@ -1,0 +1,14 @@
+{
+  "command": [
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+    "-m",
+    "pytest",
+    "backend/tests",
+    "-ra",
+    "--junitxml=/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-02-final/backend-live-complete.xml"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 1,
+  "seconds": 65.33865708400117,
+  "at": "2026-10-02T12:44:50.866049+00:00"
+}

@@ -1,0 +1,9 @@
+{
+  "candidate_file_count": 437,
+  "candidate_bytes_unchanged": true,
+  "mismatches": [],
+  "staged_diff_bytes": 0,
+  "vm_started": false,
+  "image_built": false,
+  "container_started": false
+}

@@ -1,0 +1,266 @@
+{
+  "NA18526": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/NA18526.observed.vcf",
+    "sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.024200999992899597
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.3808397090033395
+    },
+    "labels": {
+      "clopidogrel": "No PGx-guided adjustment identified",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "NA12878": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/NA12878.observed.vcf",
+    "sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.023743375000776723
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.374146332993405
+    },
+    "labels": {
+      "clopidogrel": "Ineffective",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "real-incomplete": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-26/derived/NA18526.1000G2022.vcf.gz",
+    "sha256": "adefa771bacbe2cf7d1930c5c92c90eb46722132eddc43040bb9659f19c81c77",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.1095675420074258
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 2.628633041997091
+    },
+    "labels": {
+      "clopidogrel": "Unknown",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "synthetic-normal": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/normal_metabolizer_control.vcf",
+    "sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.0028582500090124086
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.266714834011509
+    },
+    "labels": {
+      "clopidogrel": "No PGx-guided adjustment identified",
+      "simvastatin": "No PGx-guided adjustment identified",
+      "fluorouracil": "No PGx-guided adjustment identified",
+      "azathioprine": "No PGx-guided adjustment identified",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "synthetic-actionable": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/cyp2c19_poor_metabolizer.vcf",
+    "sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.00266754200856667
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.246611042006407
+    },
+    "labels": {
+      "clopidogrel": "Ineffective",
+      "simvastatin": "No PGx-guided adjustment identified",
+      "fluorouracil": "No PGx-guided adjustment identified",
+      "azathioprine": "No PGx-guided adjustment identified",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "real-variant-only": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/real-variant-only.vcf",
+    "sha256": "af5558a206fac64d67908525830e749f74fe472e28f25b075a8aa05da0702019",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.024000417004572228
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.3545935000001919
+    },
+    "labels": {
+      "clopidogrel": "Unknown",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "real-failed-filter": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/real-failed-filter.vcf",
+    "sha256": "e1460421f84c2e9ac96a113f25d6de0b7b96e44f54daa22ec40137f28d12f362",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.02315920799446758
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.3580972920026397
+    },
+    "labels": {
+      "clopidogrel": "Unknown",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "real-partial-gt": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/real-partial-gt.vcf",
+    "sha256": "d8670fbe6c6036dde445931a7c8e2194e12930fe070e81ff066ff72198aaebe9",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.0232947089971276
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.3444687919982243
+    },
+    "labels": {
+      "clopidogrel": "Unknown",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "real-missing-required": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/real-missing-required.vcf",
+    "sha256": "93c86eb50f87583096a0d0aeae06a1ce00581903d1c787ead24ccfb442628edc",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.023467999999411404
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.3618072090030182
+    },
+    "labels": {
+      "clopidogrel": "Unknown",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "missing-TPMT": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/missing-TPMT.vcf",
+    "sha256": "3893a2c75b590ef5a39449e4f6b3889fad059cf966c16bb76870502cc181e852",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.003191249998053536
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.2849642500077607
+    },
+    "labels": {
+      "clopidogrel": "No PGx-guided adjustment identified",
+      "simvastatin": "No PGx-guided adjustment identified",
+      "fluorouracil": "No PGx-guided adjustment identified",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "missing-NUDT15": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/missing-NUDT15.vcf",
+    "sha256": "88e86f4cc93ad9212e65d264e82a6a0dbc688afdc0e2857edb5a5857644a44d7",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.002654916010214947
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 1.2503049579972867
+    },
+    "labels": {
+      "clopidogrel": "No PGx-guided adjustment identified",
+      "simvastatin": "No PGx-guided adjustment identified",
+      "fluorouracil": "No PGx-guided adjustment identified",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  },
+  "NA18861": {
+    "input": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-01-f7/frozen-local/NA18861.1000G2022.vcf.gz",
+    "sha256": "48696f0dc35a5cef9b5790a6c14bb76c361d0a2cc795b28042767ae9b24a075a",
+    "coverage": {
+      "status": 200,
+      "seconds": 0.11142850000760518
+    },
+    "analyze": {
+      "status": 200,
+      "seconds": 2.6447457500034943
+    },
+    "labels": {
+      "clopidogrel": "Unknown",
+      "simvastatin": "Unknown",
+      "fluorouracil": "Unknown",
+      "azathioprine": "Unknown",
+      "warfarin": "Unknown",
+      "codeine": "Unknown",
+      "ibuprofen": "Unknown",
+      "atorvastatin": "Unknown"
+    }
+  }
+}

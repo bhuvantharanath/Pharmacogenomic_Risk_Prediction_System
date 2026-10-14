@@ -1,0 +1,99 @@
+[
+    {
+        "Architecture": "arm64",
+        "Config": {
+            "Cmd": [
+                "sh",
+                "-c",
+                "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1"
+            ],
+            "Entrypoint": [
+                "tini",
+                "--"
+            ],
+            "Env": [
+                "PATH=/home/user/.local/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/pharmcat",
+                "PYTHON_VERSION=3.14.6",
+                "PYTHON_SHA256=143b1dddefaec3bd2e21e3b839b34a2b7fb9842272883c576420d605e9f30c63",
+                "BCFTOOLS_VERSION=1.24",
+                "HTSLIB_VERSION=1.24",
+                "SAMTOOLS_VERSION=1.24",
+                "PCAT_PLATFORM=docker",
+                "PYTHONUNBUFFERED=1",
+                "PYTHONDONTWRITEBYTECODE=1",
+                "PIP_NO_CACHE_DIR=1",
+                "PHARMCAT_PIPELINE=pharmcat_pipeline",
+                "PHARMCAT_TIMEOUT_SECONDS=120",
+                "PHARMCAT_JAR=/pharmcat/pharmcat.jar",
+                "EXPLANATION_MODE=static",
+                "PHARMAGUARD_CORPUS_DIR=/home/user/app/rag-corpus/mechanisms",
+                "CORS_ALLOWED_ORIGINS=",
+                "HOME=/home/user",
+                "TMPDIR=/home/user/app/tmp"
+            ],
+            "ExposedPorts": {
+                "7860/tcp": {}
+            },
+            "User": "1000",
+            "WorkingDir": "/home/user/app"
+        },
+        "Created": "2026-10-05T17:16:01.544748009+05:30",
+        "Descriptor": {
+            "digest": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "size": 7707
+        },
+        "Id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+        "Metadata": {
+            "LastTagTime": "2026-10-05T11:46:01.569306297Z"
+        },
+        "Os": "linux",
+        "Parent": "sha256:e82ef84460a2fddcd873010a0327e4d6d3537bb39066126480d5e156ec376d4a",
+        "RepoDigests": [
+            "pgx-p6-candidate@sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90"
+        ],
+        "RepoTags": [
+            "pgx-p6-candidate:20261005"
+        ],
+        "RootFS": {
+            "Layers": [
+                "sha256:3db15f712469c98ce1cf5d0ee54dfa56edf7176a4cab158a9331e28e82cb6890",
+                "sha256:a47229d29f6bbcc3aa488e864cbb2184b1d6f43246dc6be344c8373d56841853",
+                "sha256:a17666c43520e4a03179e097c0e388bc02a2f474c177b09342a5425186d0d050",
+                "sha256:6f54ebd43933b7ba49433f12b3c6d9e5f43314eec1df71f6ffc5f4fade8a4ff2",
+                "sha256:c76f16b8c937be7767b14248fbf5c2697fb738a396df731c299513fb4c29c21e",
+                "sha256:fb2ab12137029ddda2098313ffa9da7c0ce9944d11ddef9fd77298ee371a7c8b",
+                "sha256:14577f644e40af9eddb41880fd12fa3de15fb6582c97139b92085e60d2cc7427",
+                "sha256:5a4c60cb7881dde92d16127c2303652e555dcc30e88f4c371dba4718454af79b",
+                "sha256:d172fd09e6956760aef67e4976add1ee6d6a17613e19e568659fbfcd0dc2748b",
+                "sha256:f05eae9b666510d10291bd59661e070de4ecdbe36efc23292eeb161b863e4b5d",
+                "sha256:6c2eb84c4f4011c977c49f2316729930cb92acd9d1e71da59e5100f6e4acee48",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:75cfa70c7866cef713615642a61958130f523f8f2be2927e372935776b5a8238",
+                "sha256:3a7593ae83a0cb8a158c22e64838c3b8c0067b1dddf41c50319431c4e1c6ee54",
+                "sha256:f007f5d3079140dd608934092b8010e37a16cc969bf516c9f5003a6bbd5901b5",
+                "sha256:70e26e03f5eee4ac5a2de9b6f2e138d1f12556afd1884dab68922bf26d4e430d",
+                "sha256:8b70fbd1b330fbc57d9054c1a0e0399e62dd930048372666d11a974fb9eda8da",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:2f0ad0ae01d753f6278eab29ab8a311d59663594c65b483bb54bfdf86383f4c1",
+                "sha256:780e994ac783c703315d656b775966e7103f9c14e2924f87d62f146740942031",
+                "sha256:e8ee25815738a157cf2dc0cee99fcd0bc2fd91c4dc211505afebb099cf8a10a3",
+                "sha256:1fce7415c563230da636157cac58ffe5f4dd65442f3b98fe7b1c46e8e14c5cf7",
+                "sha256:e2934f9fd34f5f42bb3d803ac29119f280d50470cf8bb789abd684ada0a892ce",
+                "sha256:ab9b9080ae4d9c7ced05511773eb75698d39be58f8dd308065ebd69a00971b74",
+                "sha256:e3a408b122f556602a9043d61adc5358ccc117aa9dc0a2942a95d5026742fbfc",
+                "sha256:0a9e645927890142c66fae8629bbc5fc189754c6b3eae2ef224b84d22cfda232",
+                "sha256:8367d447774ac181212b060e136842942389f5ca1b76b3fffb1cdaaf0c1d0664",
+                "sha256:067cd2dfc7359718341eabb3b553c8d1e4143cfdfe0d33f6e1435e684d9fc14b",
+                "sha256:a5fd46b1d15fd60afb653a41a48d1aa5dd997d0513828f8e0437575d514f2602",
+                "sha256:d979dbe330f905096c469f9365993f775734fb9914adf453d7f0b885140a5dae",
+                "sha256:f51ac38d405291f10329b87b460f889f568bacbdfea95df1f3739a91143206c2",
+                "sha256:03afbbf37d2f52e1f5c80a23e043ae52ccac1e90e793d1c0b9e0c35675e1bcc7",
+                "sha256:18b0e92143169fc9d359565478f8a1db28651cc057f3e1d6d241cad2dec83c56",
+                "sha256:655259e471153b7f35f2ca8090895eb91a302985d3d32fa8a9195cdb7141ed27"
+            ],
+            "Type": "layers"
+        },
+        "Size": 1917515189
+    }
+]

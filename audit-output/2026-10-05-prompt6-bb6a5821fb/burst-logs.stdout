@@ -1,0 +1,15 @@
+[startup] pharmcat=jar via java -jar /pharmcat/pharmcat.jar
+[startup] pharmcat_concurrency=1 workers=1 queue_timeout=90s
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+[startup] explanation_mode=static cors_origins=(localhost only) rate_limit=10/300s proxy_trust={'forwarded_headers': 'ignored', 'trusted_proxy_cidrs': []}
+INFO:     172.17.0.1:60904 - "GET /ready HTTP/1.1" 200 OK
+INFO:     172.17.0.1:45048 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:45006 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:45008 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:45034 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:45054 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:45076 - "POST /analyze HTTP/1.1" 503 Service Unavailable
+INFO:     172.17.0.1:45064 - "POST /analyze HTTP/1.1" 503 Service Unavailable
+INFO:     172.17.0.1:45080 - "POST /analyze HTTP/1.1" 503 Service Unavailable
+INFO:     172.17.0.1:45088 - "POST /analyze HTTP/1.1" 503 Service Unavailable
+INFO:     172.17.0.1:45082 - "POST /analyze HTTP/1.1" 200 OK

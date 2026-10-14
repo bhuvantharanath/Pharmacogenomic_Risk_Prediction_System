@@ -1,0 +1,38 @@
+[
+  {
+    "path": "audit-output/2026-09-30-f4/PROTOCOL.md",
+    "sha256": "a3ce61586e1066685c8c6d3facc92cd125f570648d512e38ca56c001f90dcbcd",
+    "unchanged": true
+  },
+  {
+    "path": "audit-output/2026-09-30-f4/GRCh38.chr10.fa",
+    "sha256": "5380b5de2f7c54026e87cb6cd30573f645bce6466481f15861d45557d7590933",
+    "unchanged": true
+  },
+  {
+    "path": "backend/app/data/position_requirements.json",
+    "sha256": "d0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3",
+    "unchanged": true
+  },
+  {
+    "path": "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109",
+    "unchanged": true
+  },
+  {
+    "path": "test-data/benchmark/external/sample_gene_truth.tsv",
+    "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601",
+    "unchanged": true
+  },
+  {
+    "path": "backend/app/data/compatible_bundle.json",
+    "historical_sha256": "718dbcf0480d8d73a40ff1356ef65962440a43acae24c781eaeeba232e95c7a8",
+    "current_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+    "basis": "Prompt 5 controlled versioned reconciliation; historical snapshot verified separately"
+  },
+  {
+    "path": "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+    "sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741",
+    "unchanged": true
+  }
+]

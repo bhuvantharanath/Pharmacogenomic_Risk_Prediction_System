@@ -1,0 +1,15 @@
+[startup] pharmcat=jar via java -jar /pharmcat/pharmcat.jar
+[startup] pharmcat_concurrency=1 workers=1 queue_timeout=90s
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+[startup] explanation_mode=static cors_origins=(localhost only) rate_limit=10/300s proxy_trust={'forwarded_headers': 'ignored', 'trusted_proxy_cidrs': []}
+INFO:     172.17.0.1:45740 - "GET /ready HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36910 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36946 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36942 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36886 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36924 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36900 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36926 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36950 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36914 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:36958 - "POST /coverage HTTP/1.1" 200 OK

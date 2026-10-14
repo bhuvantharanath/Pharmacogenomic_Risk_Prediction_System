@@ -38,12 +38,13 @@ class ResultsScreen extends StatelessWidget {
 
   final AnalyzeResponse response;
 
-  /// Pretty-printed round-trip of the response, used by both Copy and Export.
+  /// Pretty-printed user export, used by both Copy and Export.
   ///
-  /// Round-tripping through `toJson()` (rather than holding the raw HTTP body)
-  /// is deliberate: if the Dart models ever drop a field, it shows up here.
+  /// The API retains two deprecated compatibility fields. The user export
+  /// deliberately omits them because a numeric score and categorical severity
+  /// would imply calibrated clinical certainty outside their documented scope.
   String get _prettyJson =>
-      const JsonEncoder.withIndent('  ').convert(response.toJson());
+      const JsonEncoder.withIndent('  ').convert(response.toExportJson());
 
   String get _fileName {
     // Colons are illegal in filenames on Windows, so flatten the timestamp.
@@ -410,7 +411,7 @@ class _Legend extends StatelessWidget {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    label.wireValue,
+                    label.displayValue,
                     style: Theme.of(context).textTheme.labelSmall,
                   ),
                 ],

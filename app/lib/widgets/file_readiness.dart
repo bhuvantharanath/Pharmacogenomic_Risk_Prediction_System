@@ -300,9 +300,10 @@ class _Footnote extends StatelessWidget {
             'called positions in this file. Re-calling with all sites emitted '
             'would fix it.',
       if (blocked.isNotEmpty)
-        '${blocked.map((GeneReadiness g) => g.gene).join(', ')}: cannot be '
-            'read from any VCF. A different kind of genetic test is needed — a '
-            'different file will not help.',
+        '${blocked.map((GeneReadiness g) => g.gene).join(', ')}: not called '
+            'from an uploaded VCF by this application — it needs specialised '
+            'copy-number and structural-variant calling, so a different file '
+            'will not help.',
     ];
 
     return Padding(

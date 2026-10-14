@@ -195,13 +195,13 @@ class TestDispatcherFallsBackOnMismatch:
             "a pre-generated explanation whose injected diplotype contradicts "
             "the reported profile was served instead of being demoted"
         )
-        assert any("slot verification" in n for n in result.notes)
+        assert any("approval or semantic identity" in n for n in result.notes)
 
-    def test_matching_profile_keeps_the_static_explanation(self) -> None:
+    def test_matching_profile_keeps_verified_template_fallback(self) -> None:
         result = generate_explanation(
             make_context(), ExplanationMode.STATIC, profile=make_profile()
         )
-        assert result.generator == "static"
+        assert result.generator == "template"
         assert result.slots is not None and result.slots.passed
         assert "slots=verified" in result.provenance
 

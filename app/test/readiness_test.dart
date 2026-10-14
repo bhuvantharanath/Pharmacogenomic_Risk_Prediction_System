@@ -5,7 +5,7 @@
 /// renders. Three claims are load-bearing:
 ///
 ///   1. it never blocks — every state leaves the analysis reachable;
-///   2. "short on coverage" and "no VCF can read this" stay apart, because the
+///   2. "short on coverage" and "this application does not call it" stay apart, because the
 ///      remedies are opposite and one of them does not exist;
 ///   3. the drug lists are honest in both directions — a drug the file can
 ///      answer is named, and so is one it cannot.
@@ -43,9 +43,9 @@ final GeneReadiness _cyp2d6 = _gene(
   found: 157,
   required_: 157,
   blocked: true,
-  reason: 'Defined by copy-number and structural variation, which a VCF cannot '
-      'express. A different kind of genetic test is needed; no VCF will '
-      'resolve it.',
+  reason: 'Not called from an uploaded VCF by this application: CYP2D6 results '
+      'depend on copy-number and structural variation, which need specialised '
+      'read-level calling. Uploading a different VCF here will not resolve it.',
 );
 
 CoverageResponse _readiness({
@@ -167,11 +167,15 @@ void main() {
       expect(find.textContaining('Re-calling with all sites emitted'),
           findsOneWidget);
 
-      // CYP2D6: no file will ever carry it. Say so, and do not send the user
-      // looking for a better one.
-      expect(find.textContaining('CYP2D6: cannot be read from any VCF'),
+      // CYP2D6: this application does not call it from any upload. Say so, and
+      // do not send the user looking for a better file.
+      expect(
+          find.textContaining(
+              'CYP2D6: not called from an uploaded VCF by this application'),
           findsOneWidget);
-      expect(find.textContaining('A different kind of genetic test is needed'),
+      expect(
+          find.textContaining(
+              'specialised copy-number and structural-variant calling'),
           findsOneWidget);
       expect(find.textContaining('a different file will not help'),
           findsOneWidget);
@@ -183,9 +187,11 @@ void main() {
       await t.pumpAndSettle();
 
       // "not applicable" is the census's own not-readable rendering. A bar of
-      // 157 empty ticks would say the file was deficient; the format is.
+      // 157 empty ticks would say the file was deficient; the limit is this
+      // application's.
       expect(find.text('not applicable'), findsOneWidget);
-      expect(find.textContaining('no VCF will resolve it'), findsWidgets);
+      expect(find.textContaining('Uploading a different VCF here will not resolve it'),
+          findsWidgets);
     });
   });
 

@@ -1,0 +1,895 @@
+[
+ {
+  "id": "D05",
+  "pdf": "cases/D05/print.pdf",
+  "pdf_sha256": "c659f13becb2fdb830a1d5bf9eefc32a492b9a990456f0158ca2e1019c596c28",
+  "api_body": "browser-received/0006-post-analyze.body",
+  "api_sha256": "21262699ec6537a060e02d5c005aea33ca1664675b9106beb216ff032704f8b2",
+  "pages": 5,
+  "page_sizes_pt": [
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ]
+  ],
+  "research_header_on_page": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "checks": [
+   {
+    "field": "patient_id",
+    "expected": "NA12878",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.risk_label",
+    "expected": "Ineffective",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.primary_gene",
+    "expected": "CYP2C19",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.diplotype",
+    "expected": "*1/*2",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.phenotype",
+    "expected": "IM",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.action",
+    "expected": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.cpic_recommendation",
+    "expected": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.source",
+    "expected": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.summary",
+    "expected": "clopidogrel: CYP2C19 *1/*2 (Intermediate Metabolizer) \u2014 Ineffective.",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.action",
+    "expected": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.summary",
+    "expected": "fluorouracil: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "azathioprine.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.action",
+    "expected": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+    "present": true
+   },
+   {
+    "field": "azathioprine.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+    "present": true
+   },
+   {
+    "field": "azathioprine.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "azathioprine.summary",
+    "expected": "azathioprine: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "simvastatin.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.action",
+    "expected": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+    "present": true
+   },
+   {
+    "field": "simvastatin.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+    "present": true
+   },
+   {
+    "field": "simvastatin.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "simvastatin.summary",
+    "expected": "simvastatin: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "warfarin.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.action",
+    "expected": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+    "present": true
+   },
+   {
+    "field": "warfarin.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+    "present": true
+   },
+   {
+    "field": "warfarin.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "warfarin.summary",
+    "expected": "warfarin: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "codeine.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.action",
+    "expected": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+    "present": true
+   },
+   {
+    "field": "codeine.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for codeine and CYP2D6",
+    "present": true
+   },
+   {
+    "field": "codeine.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "codeine.summary",
+    "expected": "codeine: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "provenance.pharmcat_version",
+    "expected": "3.4.0",
+    "present": true
+   },
+   {
+    "field": "provenance.cpic_data_version",
+    "expected": "2026-07-13-11-40",
+    "present": true
+   },
+   {
+    "field": "provenance.cpic_source",
+    "expected": "CPIC guidelines, retrieved via PharmCAT",
+    "present": true
+   },
+   {
+    "field": "provenance.note",
+    "expected": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.",
+    "present": true
+   }
+  ],
+  "missing_intended_fields": [],
+  "omitted_by_summary_policy": {
+   "pipeline_warnings_total": 21,
+   "pipeline_warnings_present_verbatim": 0,
+   "explanation.mechanism_present": 0,
+   "explanation.variant_rationale_present": 0,
+   "explanation.patient_friendly_present": 0,
+   "explanation.disclaimer_present": 0,
+   "detected_variants_rsids_present": [],
+   "detected_variants_rsids_total": [
+    "rs12769205",
+    "rs3758581",
+    "rs4244285"
+   ]
+  },
+  "verbatim": {
+   "source_checking_disclaimer": "This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page. Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from. Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.",
+   "census_note": "How many of the positions each gene needs carried a usable genotype in the uploaded file. A genotype caller reads an absent position as matching the reference, so missing data can produce confident results rather than uncertain ones \u2014 which is why the count is printed whether or not it passed, and why a gene below its minimum is reported as Unknown.",
+   "unknown_section": "Unknown results (5) An Unknown is a declined answer, not a missing one. Only the reasons about the file itself \u2014 missing positions or unusable genotypes \u2014 are something the sample provider can act on. Your file is missing required positions azathioprine Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced- function result could be reported as safe. The system declines rather than risk that. What would fix it: Upload a VCF that reports ALL positions, including those matching the reference \u2014 a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here. 127.0.0.1:3000 3/5 10/15/26, 12:24 AM PharmaGuard summary \u2014 NA12878 RESEARCH AND EDUCATIONAL USE ONLY \u2014 NOT A MEDICAL DEVICE Not called from an uploaded VCF codeine This gene\u2019s result depends on structural and copy-number changes that need specialised analysis of the sequencing reads, which this application does not perform. No VCF uploaded here will resolve it \u2014 it needs a specialised test or caller. The system declines to guess rather than report a genotype it cannot support. Nothing about the uploaded file would change this result. Your file is missing required positions fluorouracil Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced- function result could be reported as safe. The system declines rather than risk that. What would fix it: Upload a VCF that reports ALL positions, including those matching the reference \u2014 a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here. Your file is missing required positions simvastatin Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced- function result could be reported as safe. The system declines rather than risk that. What would fix it: Upload a VCF that reports ALL positions, including those matching the reference \u2014 a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here. Result withheld warfarin No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. Nothing about the uploaded file would change this result. Input coverage"
+  },
+  "renders": [
+   "print-page-1.png",
+   "print-page-2.png",
+   "print-page-3.png",
+   "print-page-4.png",
+   "print-page-5.png"
+  ]
+ },
+ {
+  "id": "D10",
+  "pdf": "cases/D10/print.pdf",
+  "pdf_sha256": "def0e38a446cb282abbdb1eba479fba042c4e4e9ac96b8c471e036ee2a70bf37",
+  "api_body": "browser-received/0010-post-analyze.body",
+  "api_sha256": "2778b12edbc18ebf953376975dd5f19d11a5e493bf463786ceb846771fa817f6",
+  "pages": 5,
+  "page_sizes_pt": [
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ]
+  ],
+  "research_header_on_page": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "checks": [
+   {
+    "field": "patient_id",
+    "expected": "NA12878",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.action",
+    "expected": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.summary",
+    "expected": "clopidogrel: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.action",
+    "expected": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "fluorouracil.summary",
+    "expected": "fluorouracil: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "azathioprine.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "azathioprine.action",
+    "expected": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+    "present": true
+   },
+   {
+    "field": "azathioprine.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+    "present": true
+   },
+   {
+    "field": "azathioprine.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "azathioprine.summary",
+    "expected": "azathioprine: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "simvastatin.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "simvastatin.action",
+    "expected": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+    "present": true
+   },
+   {
+    "field": "simvastatin.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+    "present": true
+   },
+   {
+    "field": "simvastatin.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "simvastatin.summary",
+    "expected": "simvastatin: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "warfarin.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.action",
+    "expected": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+    "present": true
+   },
+   {
+    "field": "warfarin.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+    "present": true
+   },
+   {
+    "field": "warfarin.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "warfarin.summary",
+    "expected": "warfarin: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "codeine.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.action",
+    "expected": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+    "present": true
+   },
+   {
+    "field": "codeine.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for codeine and CYP2D6",
+    "present": true
+   },
+   {
+    "field": "codeine.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "codeine.summary",
+    "expected": "codeine: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "provenance.pharmcat_version",
+    "expected": "3.4.0",
+    "present": true
+   },
+   {
+    "field": "provenance.cpic_data_version",
+    "expected": "2026-07-13-11-40",
+    "present": true
+   },
+   {
+    "field": "provenance.cpic_source",
+    "expected": "CPIC guidelines, retrieved via PharmCAT",
+    "present": true
+   },
+   {
+    "field": "provenance.note",
+    "expected": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.",
+    "present": true
+   }
+  ],
+  "missing_intended_fields": [],
+  "omitted_by_summary_policy": {
+   "pipeline_warnings_total": 16,
+   "pipeline_warnings_present_verbatim": 0,
+   "explanation.mechanism_present": 0,
+   "explanation.variant_rationale_present": 0,
+   "explanation.patient_friendly_present": 0,
+   "explanation.disclaimer_present": 0,
+   "detected_variants_rsids_present": [],
+   "detected_variants_rsids_total": []
+  },
+  "verbatim": {
+   "source_checking_disclaimer": "This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page. Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from. Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.",
+   "census_note": "How many of the positions each gene needs carried a usable genotype in the uploaded file. A genotype caller reads an absent position as matching the reference, so missing data can produce confident results rather than uncertain ones \u2014 which is why the count is printed whether or not it passed, and why a gene below its minimum is reported as Unknown.",
+   "unknown_section": "Unknown results (6) An Unknown is a declined answer, not a missing one. Only the reasons about the file itself \u2014 missing positions or unusable genotypes \u2014 are something the sample provider can act on. Your file is missing required positions azathioprine Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced- function result could be reported as safe. The system declines rather than risk that. What would fix it: Upload a VCF that reports ALL positions, including those matching the reference \u2014 a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here. 127.0.0.1:3000 3/5 10/15/26, 12:25 AM PharmaGuard summary \u2014 NA12878 RESEARCH AND EDUCATIONAL USE ONLY \u2014 NOT A MEDICAL DEVICE Required genotypes could not be used clopidogrel Every position needed to identify this gene is in your file, but at least one carries a genotype that cannot be used \u2014 a failed FILTER, or a partial or missing call. A change at an unusable position is invisible, so a reduced-function result could be reported as normal. The system declines rather than risk that. What would fix it: Check the genotype and FILTER values your caller wrote at the affected positions, and re-call them so each carries a complete genotype that passed its filters. Not called from an uploaded VCF codeine This gene\u2019s result depends on structural and copy-number changes that need specialised analysis of the sequencing reads, which this application does not perform. No VCF uploaded here will resolve it \u2014 it needs a specialised test or caller. The system declines to guess rather than report a genotype it cannot support. Nothing about the uploaded file would change this result. Your file is missing required positions fluorouracil Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced- function result could be reported as safe. The system declines rather than risk that. What would fix it: Upload a VCF that reports ALL positions, including those matching the reference \u2014 a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here. Your file is missing required positions simvastatin Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced- function result could be reported as safe. The system declines rather than risk that. What would fix it: Upload a VCF that reports ALL positions, including those matching the reference \u2014 a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here. Result withheld warfarin No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. Nothing about the uploaded file would change this result. Input coverage"
+  },
+  "renders": [
+   "print-page-1.png",
+   "print-page-2.png",
+   "print-page-3.png",
+   "print-page-4.png",
+   "print-page-5.png"
+  ]
+ },
+ {
+  "id": "D15",
+  "pdf": "cases/D15/print.pdf",
+  "pdf_sha256": "e5b114d1cf496abee952916117e1a1ae9d58e37b16efd12f3a093fcaee9e8104",
+  "api_body": "browser-received/0014-post-analyze.body",
+  "api_sha256": "3ac4d60463d1100c2cd239111fcef743fe5ee5c12b929da6a009d09758308ce4",
+  "pages": 3,
+  "page_sizes_pt": [
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ],
+   [
+    595,
+    842
+   ]
+  ],
+  "research_header_on_page": [
+   true,
+   true,
+   true
+  ],
+  "checks": [
+   {
+    "field": "patient_id",
+    "expected": "DEMO_NORMAL",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.risk_label",
+    "expected": "No PGx-guided adjustment identified",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.primary_gene",
+    "expected": "CYP2C19",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.diplotype",
+    "expected": "*38/*38",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.phenotype",
+    "expected": "NM",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.action",
+    "expected": "If considering clopidogrel, use at standard dose (75 mg/day)",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.cpic_recommendation",
+    "expected": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.source",
+    "expected": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: standard_dosing]",
+    "present": true
+   },
+   {
+    "field": "clopidogrel.summary",
+    "expected": "clopidogrel: CYP2C19 *38/*38 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified.",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.action",
+    "expected": "This drug is outside the audited application scope; no application guidance is produced.",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "ibuprofen.summary",
+    "expected": "ibuprofen: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "codeine.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.primary_gene",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.diplotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "codeine.action",
+    "expected": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+    "present": true
+   },
+   {
+    "field": "codeine.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for codeine and CYP2D6",
+    "present": true
+   },
+   {
+    "field": "codeine.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "codeine.summary",
+    "expected": "codeine: no pharmacogenomic result (Unknown).",
+    "present": true
+   },
+   {
+    "field": "warfarin.risk_label",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.primary_gene",
+    "expected": "CYP2C9",
+    "present": true
+   },
+   {
+    "field": "warfarin.diplotype",
+    "expected": "*1/*1",
+    "present": true
+   },
+   {
+    "field": "warfarin.phenotype",
+    "expected": "Unknown",
+    "present": true
+   },
+   {
+    "field": "warfarin.action",
+    "expected": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+    "present": true
+   },
+   {
+    "field": "warfarin.cpic_recommendation",
+    "expected": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+    "present": true
+   },
+   {
+    "field": "warfarin.source",
+    "expected": "PharmCAT (no matching CPIC entry)",
+    "present": true
+   },
+   {
+    "field": "warfarin.summary",
+    "expected": "warfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown.",
+    "present": true
+   },
+   {
+    "field": "provenance.pharmcat_version",
+    "expected": "3.4.0",
+    "present": true
+   },
+   {
+    "field": "provenance.cpic_data_version",
+    "expected": "2026-07-13-11-40",
+    "present": true
+   },
+   {
+    "field": "provenance.cpic_source",
+    "expected": "CPIC guidelines, retrieved via PharmCAT",
+    "present": true
+   },
+   {
+    "field": "provenance.note",
+    "expected": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.",
+    "present": true
+   }
+  ],
+  "missing_intended_fields": [],
+  "omitted_by_summary_policy": {
+   "pipeline_warnings_total": 13,
+   "pipeline_warnings_present_verbatim": 0,
+   "explanation.mechanism_present": 0,
+   "explanation.variant_rationale_present": 0,
+   "explanation.patient_friendly_present": 0,
+   "explanation.disclaimer_present": 0,
+   "detected_variants_rsids_present": [],
+   "detected_variants_rsids_total": []
+  },
+  "verbatim": {
+   "source_checking_disclaimer": "This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page. Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from. Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.",
+   "census_note": "How many of the positions each gene needs carried a usable genotype in the uploaded file. A genotype caller reads an absent position as matching the reference, so missing data can produce confident results rather than uncertain ones \u2014 which is why the count is printed whether or not it passed, and why a gene below its minimum is reported as Unknown.",
+   "unknown_section": "Unknown results (3) 127.0.0.1:3000 2/3 10/15/26, 12:26 AM PharmaGuard summary \u2014 DEMO_NORMAL RESEARCH AND EDUCATIONAL USE ONLY \u2014 NOT A MEDICAL DEVICE An Unknown is a declined answer, not a missing one. Only the reasons about the file itself \u2014 missing positions or unusable genotypes \u2014 are something the sample provider can act on. Not called from an uploaded VCF codeine This gene\u2019s result depends on structural and copy-number changes that need specialised analysis of the sequencing reads, which this application does not perform. No VCF uploaded here will resolve it \u2014 it needs a specialised test or caller. The system declines to guess rather than report a genotype it cannot support. Nothing about the uploaded file would change this result. Result withheld ibuprofen This drug is outside the audited application scope; no application guidance is produced. Nothing about the uploaded file would change this result. Result withheld warfarin No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. Nothing about the uploaded file would change this result. Input coverage"
+  },
+  "renders": [
+   "print-page-1.png",
+   "print-page-2.png",
+   "print-page-3.png"
+  ]
+ }
+]

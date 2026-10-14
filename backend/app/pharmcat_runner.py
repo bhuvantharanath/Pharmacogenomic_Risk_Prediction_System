@@ -31,8 +31,10 @@ from __future__ import annotations
 import asyncio
 import json
 import os
+import signal
 import shutil
 import tempfile
+from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -72,6 +74,13 @@ _JAR_GLOB = "pharmcat-*-all.jar"
 # PharmCAT on a free-tier CPU takes a few seconds for a PGx-sized VCF; 120s is
 # a generous ceiling that still stops a wedged JVM from pinning a worker.
 PHARMCAT_TIMEOUT_SECONDS = float(os.environ.get("PHARMCAT_TIMEOUT_SECONDS", "120"))
+
+# A cancelled request owns the child until it has been stopped and reaped. Two
+# seconds gives the JVM a chance to process SIGTERM; SIGKILL follows, so this is
+# a cleanup grace period rather than another unbounded request timeout.
+PHARMCAT_TERMINATION_GRACE_SECONDS = float(
+    os.environ.get("PHARMCAT_TERMINATION_GRACE_SECONDS", "2")
+)
 
 # --------------------------------------------------------------------------- #
 # Concurrency: how many JVMs may exist at once
@@ -369,71 +378,65 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
     event loop is never blocked. Everything is confined to a private temp dir
     that is removed in a `finally`, regardless of outcome.
     """
-    workdir = Path(tempfile.mkdtemp(prefix="pharmaguard_pharmcat_"))
-    try:
-        # Nested `in/` because the preprocessor mutates the input directory.
-        input_dir = workdir / "in"
-        output_dir = workdir / "out"
-        input_dir.mkdir()
-        output_dir.mkdir()
-
-        # Base filename drives the output names, so keep it predictable.
-        base = "sample"
-        vcf_path = input_dir / f"{base}.vcf"
-        vcf_path.write_text(vcf_text, encoding="utf-8")
-
-        invoker = resolve_invoker()
-        if invoker is None:
-            raise PharmcatExecutionError(
-                UNAVAILABLE_USER_MESSAGE,
-                # The operator detail — jar paths, JRE discovery, the
-                # environment variables to set — stays here. `detail` is not
-                # returned to the client; it goes to the log, which is where
-                # the person who can fix it is looking.
-                detail=unavailable_reason(),
-            )
-        invocation = await _exec(invoker.build(vcf_path, output_dir))
-
-        report_path = output_dir / f"{base}.report.json"
-        if not report_path.is_file():
-            # A non-zero exit with no report is the normal failure mode; surface
-            # PharmCAT's own stderr because it is usually specific and useful.
-            raise PharmcatExecutionError(
-                "The analysis did not produce a result for this file. Check "
-                "that it is a GRCh38 VCF with genotypes for the required "
-                "positions.",
-                detail=(invocation.stderr or invocation.stdout or "")[-2000:],
-            )
-
+    async with _pharmcat_slot():
+        workdir = Path(tempfile.mkdtemp(prefix="pharmaguard_pharmcat_"))
         try:
-            raw = json.loads(report_path.read_text())
-        except json.JSONDecodeError as exc:
-            raise PharmcatExecutionError(
-                "The analysis produced a result this server could not read. "
-                "This is a fault on our side, not a problem with your file.",
-                detail=str(exc),
-            ) from exc
+            # Nested `in/` because the preprocessor mutates the input directory.
+            input_dir = workdir / "in"
+            output_dir = workdir / "out"
+            input_dir.mkdir()
+            output_dir.mkdir()
 
-        return parse_report(raw, sample_hint=sample_hint)
-    finally:
-        # Unconditional: temp dirs holding patient-derived data must not linger.
-        shutil.rmtree(workdir, ignore_errors=True)
+            # Base filename drives the output names, so keep it predictable.
+            base = "sample"
+            vcf_path = input_dir / f"{base}.vcf"
+            vcf_path.write_text(vcf_text, encoding="utf-8")
+
+            invoker = resolve_invoker()
+            if invoker is None:
+                raise PharmcatExecutionError(
+                    UNAVAILABLE_USER_MESSAGE,
+                    detail=unavailable_reason(),
+                )
+            # PharmCAT/logback uses the process working directory for log files.
+            # Keep those logs inside the owned temp tree so the same finally
+            # removes VCFs, reports and tool logs together.
+            invocation = await _exec_unguarded(
+                invoker.build(vcf_path, output_dir), cwd=workdir
+            )
+
+            report_path = output_dir / f"{base}.report.json"
+            if not report_path.is_file():
+                raise PharmcatExecutionError(
+                    "The analysis did not produce a result for this file. Check "
+                    "that it is a GRCh38 VCF with genotypes for the required "
+                    "positions.",
+                    detail=(invocation.stderr or invocation.stdout or "")[-2000:],
+                )
+
+            try:
+                raw = json.loads(report_path.read_text())
+            except json.JSONDecodeError as exc:
+                raise PharmcatExecutionError(
+                    "The analysis produced a result this server could not read. "
+                    "This is a fault on our side, not a problem with your file.",
+                    detail=str(exc),
+                ) from exc
+
+            return parse_report(raw, sample_hint=sample_hint)
+        finally:
+            # This executes before the slot context releases its permit.
+            shutil.rmtree(workdir, ignore_errors=True)
 
 
-async def _exec(command: list[str]) -> PharmcatInvocation:
-    """
-    Run `command` under the concurrency gate, enforcing the timeout.
-
-    THE GATE WRAPS THIS FUNCTION AND NOTHING ELSE. Coverage assessment, label
-    mapping, explanation lookup and response assembly are pure Python holding
-    tens of KB, and they stay fully concurrent — serialising them would cost
-    throughput to solve a problem they are not part of. The JVM is the whole of
-    the memory cost, so the JVM is the whole of what queues.
-    """
+@asynccontextmanager
+async def _pharmcat_slot():
+    """Own one JVM slot until child and per-request resources are cleaned."""
     slots = _slots()
     try:
-        await asyncio.wait_for(slots.acquire(),
-                               timeout=PHARMCAT_QUEUE_TIMEOUT_SECONDS)
+        await asyncio.wait_for(
+            slots.acquire(), timeout=PHARMCAT_QUEUE_TIMEOUT_SECONDS
+        )
     except asyncio.TimeoutError as exc:
         raise PharmcatBusyError(
             "The server is busy with another analysis and could not start "
@@ -442,24 +445,81 @@ async def _exec(command: list[str]) -> PharmcatInvocation:
             detail=(f"no slot within {PHARMCAT_QUEUE_TIMEOUT_SECONDS}s; "
                     f"MAX_CONCURRENT_PHARMCAT={MAX_CONCURRENT_PHARMCAT}"),
         ) from exc
-
     try:
-        return await _exec_unguarded(command)
+        yield
     finally:
-        # `finally`, not a success path: a timeout, a kill or an unexpected
-        # exception must all give the slot back. A leaked permit is permanent —
-        # the next request waits the full queue timeout and then reports a busy
-        # server that is in fact completely idle.
         slots.release()
 
 
-async def _exec_unguarded(command: list[str]) -> PharmcatInvocation:
+async def _exec(command: list[str]) -> PharmcatInvocation:
+    """
+    Run `command` under the concurrency gate, enforcing the timeout.
+
+    This inner gate owns JVM execution and cleanup. The outer ASGI admission
+    gate serializes /analyze before multipart parsing and VCF decompression,
+    because multiple queued expanded uploads exceeded the 512 MiB cgroup.
+    """
+    async with _pharmcat_slot():
+        return await _exec_unguarded(command)
+
+
+def _signal_owned_process(process: asyncio.subprocess.Process, sig: signal.Signals) -> None:
+    """Signal only the process tree created for this invocation."""
+    try:
+        if os.name == "posix":
+            os.killpg(process.pid, sig)
+        elif sig == signal.SIGTERM:
+            process.terminate()
+        else:
+            process.kill()
+    except ProcessLookupError:
+        pass
+
+
+async def _terminate_owned_process(process: asyncio.subprocess.Process) -> None:
+    """Terminate, escalate if needed, and reap an owned child process."""
+    if process.returncode is not None:
+        await process.wait()
+        return
+    _signal_owned_process(process, signal.SIGTERM)
+    try:
+        await asyncio.wait_for(
+            process.wait(), timeout=PHARMCAT_TERMINATION_GRACE_SECONDS
+        )
+    except asyncio.TimeoutError:
+        pass
+    # The direct child may exit while a descendant ignores SIGTERM. The process
+    # group remains ours, so send the final signal to the group unconditionally.
+    _signal_owned_process(process, signal.SIGKILL)
+    await process.wait()
+
+
+async def _stop_completed_process_descendants(
+    process: asyncio.subprocess.Process,
+) -> None:
+    """Remove any daemonized descendants left after the direct child exits."""
+    if os.name != "posix":
+        return
+    try:
+        os.killpg(process.pid, 0)
+    except ProcessLookupError:
+        return
+    _signal_owned_process(process, signal.SIGTERM)
+    await asyncio.sleep(min(PHARMCAT_TERMINATION_GRACE_SECONDS, 0.1))
+    _signal_owned_process(process, signal.SIGKILL)
+
+
+async def _exec_unguarded(
+    command: list[str], *, cwd: Path | None = None
+) -> PharmcatInvocation:
     """Run `command`, enforcing the timeout and killing the process group."""
     try:
         process = await asyncio.create_subprocess_exec(
             *command,
             stdout=asyncio.subprocess.PIPE,
             stderr=asyncio.subprocess.PIPE,
+            cwd=cwd,
+            start_new_session=(os.name == "posix"),
         )
     except FileNotFoundError as exc:
         # resolve_invoker() already confirmed the executable existed, so reaching
@@ -476,14 +536,19 @@ async def _exec_unguarded(command: list[str]) -> PharmcatInvocation:
             process.communicate(), timeout=PHARMCAT_TIMEOUT_SECONDS
         )
     except asyncio.TimeoutError as exc:
-        process.kill()
-        # Reap it so we do not leave a zombie behind.
-        await process.wait()
+        await _terminate_owned_process(process)
         raise PharmcatExecutionError(
             f"The analysis did not finish within {PHARMCAT_TIMEOUT_SECONDS:.0f} "
             "seconds and was stopped. Try a file restricted to the positions "
             "this analysis needs — see the input requirements.",
         ) from exc
+    except BaseException:
+        # Includes request/task cancellation. Cleanup completes before this
+        # exception returns through `_pharmcat_slot` and releases the permit.
+        await _terminate_owned_process(process)
+        raise
+
+    await _stop_completed_process_descendants(process)
 
     return PharmcatInvocation(
         command=command,

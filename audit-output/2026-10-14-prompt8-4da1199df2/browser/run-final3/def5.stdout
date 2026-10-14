@@ -1,0 +1,34 @@
+[
+ {
+  "step": "after expanding all six cards, at top",
+  "expanded": [
+   "azathioprine: No PGx-guided change",
+   "clopidogrel: No PGx-guided change"
+  ]
+ },
+ {
+  "step": "scrolled to bottom (Export JSON visible)",
+  "expanded": [
+   "warfarin: Unknown"
+  ],
+  "collapsed": [
+   "Why no guideline was returned",
+   "What was found in your file",
+   "Why no guideline was returned",
+   "What was found in your file"
+  ]
+ },
+ {
+  "step": "scrolled back to top",
+  "expanded": [
+   "azathioprine: No PGx-guided change",
+   "clopidogrel: No PGx-guided change"
+  ],
+  "collapsed": [
+   "NORMAL_CONTROL 2026-10-14T18:20:12Z VCF ",
+   "Input coverage. 6 of 7 genes have enough",
+   "The guideline in CPIC's own words",
+   "What was found in your file"
+  ]
+ }
+]

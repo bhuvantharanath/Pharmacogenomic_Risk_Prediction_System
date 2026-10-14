@@ -55,8 +55,9 @@ WHAT THIS STILL CANNOT DO
 It cannot detect a reversed claim built from sourced concepts — "increased
 activity" where the source says decreased would match the DIRECTION concept
 family. Negation and direction-of-effect need a reader. That is exactly why the
-automated layer only flags candidates and `scripts/adjudicate.py` is the actual
-release gate: a person decides, once, for twenty entries.
+automated layer only flags candidates and `scripts/adjudicate.py` records the
+human decision, once, for twenty entries. The final release decision belongs to
+`scripts/release_status.py`.
 """
 
 from __future__ import annotations

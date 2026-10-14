@@ -34,6 +34,11 @@ class ApiException implements Exception {
   /// Too many requests from this client, within the rate-limit window.
   bool get isRateLimited => statusCode == 429;
 
+  /// A 4xx response proves the server is reachable. Only transport failures
+  /// and a declared unavailable analysis engine warrant the unreachable banner.
+  bool get shouldMarkBackendUnreachable =>
+      statusCode == null || isBackendUnavailable;
+
   @override
   String toString() => message;
 }
@@ -94,9 +99,7 @@ class PharmaGuardApi {
     try {
       final Response<dynamic> res = await _dio.get<dynamic>('/health');
       final dynamic body = res.data;
-      return res.statusCode == 200 &&
-          body is Map &&
-          body['status'] == 'ok';
+      return res.statusCode == 200 && body is Map && body['status'] == 'ok';
     } on DioException {
       return false;
     }
@@ -167,7 +170,9 @@ class PharmaGuardApi {
 
     final dynamic body = res.data;
     if (body is! Map) {
-      throw const ApiException('Server returned an unexpected (non-JSON) body.');
+      throw const ApiException(
+        'Server returned an unexpected (non-JSON) body.',
+      );
     }
 
     try {
@@ -248,7 +253,10 @@ class PharmaGuardApi {
       // A file /coverage rejects is a file /analyze would reject too — both go
       // through the same validation — so surfacing the error here saves the
       // user a round trip through a JVM to learn the same thing.
-      throw ApiException(_describeHttpError(status, res.data), statusCode: status);
+      throw ApiException(
+        _describeHttpError(status, res.data),
+        statusCode: status,
+      );
     }
 
     final dynamic body = res.data;

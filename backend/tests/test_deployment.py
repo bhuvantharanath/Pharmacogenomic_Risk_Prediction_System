@@ -293,24 +293,34 @@ class TestRateLimiter:
     def test_limit_is_per_client_ip(
         self, client: TestClient, valid_vcf_bytes: bytes
     ) -> None:
+        """Untrusted callers cannot split their budget with spoofed headers."""
         security.limiter.__init__(max_requests=1, window_seconds=300)
 
         first = post(client, valid_vcf_bytes, headers={"X-Forwarded-For": "1.1.1.1"})
         assert first.status_code == 200
-        blocked = post(client, valid_vcf_bytes, headers={"X-Forwarded-For": "1.1.1.1"})
+        blocked = post(client, valid_vcf_bytes, headers={"X-Forwarded-For": "2.2.2.2"})
         assert blocked.status_code == 429
-        # A different client is unaffected.
-        other = post(client, valid_vcf_bytes, headers={"X-Forwarded-For": "2.2.2.2"})
-        assert other.status_code == 200
 
-    def test_forwarded_for_takes_the_leftmost_entry(self) -> None:
-        """Every target platform terminates TLS at a proxy."""
+    def test_forwarded_for_requires_an_explicitly_trusted_peer(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        """Only a configured proxy may supply the original client identity."""
 
         class _Request:
             headers = {"x-forwarded-for": "203.0.113.7, 70.41.3.18, 150.172.238.178"}
-            client = None
+            client = type("Peer", (), {"host": "10.0.0.5"})()
 
+        monkeypatch.delenv("TRUSTED_PROXY_CIDRS", raising=False)
+        assert client_key(_Request()) == "10.0.0.5"
+        monkeypatch.setenv("TRUSTED_PROXY_CIDRS", "10.0.0.0/24")
         assert client_key(_Request()) == "203.0.113.7"
+
+    def test_invalid_proxy_trust_fails_configuration(
+        self, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        monkeypatch.setenv("TRUSTED_PROXY_CIDRS", "not-a-network")
+        with pytest.raises(security.ProxyTrustConfigurationError):
+            security.assert_proxy_trust_configured()
 
 
 class TestNoDataRetention:
@@ -342,10 +352,10 @@ class TestNoDataRetention:
         temp_root = Path(tempfile.gettempdir())
         before = set(temp_root.glob("pharmaguard_*"))
 
-        async def exploding_exec(command):
+        async def exploding_exec(command, **_kwargs):
             raise RuntimeError("simulated PharmCAT crash")
 
-        monkeypatch.setattr(pharmcat_runner, "_exec", exploding_exec)
+        monkeypatch.setattr(pharmcat_runner, "_exec_unguarded", exploding_exec)
 
         with pytest.raises(RuntimeError):
             import asyncio
@@ -365,7 +375,9 @@ class TestNoDataRetention:
 
     def test_root_advertises_no_retention(self) -> None:
         body = TestClient(main.app).get("/").json()
-        assert "none" in body["data_retention"].lower()
+        statement = body["data_retention"].lower()
+        assert "no application persistence" in statement
+        assert "platform retention" in statement
 
 
 class TestSecretHygiene:
@@ -451,6 +463,14 @@ class TestPortConfiguration:
         ).read_text()
         assert "${PORT:-7860}" in dockerfile, (
             "Dockerfile must honour $PORT with a 7860 default"
+        )
+
+    def test_container_has_child_reaper(self) -> None:
+        dockerfile = (
+            Path(__file__).resolve().parents[2] / "infra" / "Dockerfile"
+        ).read_text()
+        assert 'ENTRYPOINT ["tini", "--"]' in dockerfile, (
+            "PID 1 must reap PharmCAT descendants after timeout or cancellation"
         )
 
     def test_hf_space_readme_declares_docker_sdk(self) -> None:

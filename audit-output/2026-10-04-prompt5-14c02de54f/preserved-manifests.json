@@ -1,0 +1,32 @@
+[
+  {
+    "source": "backend/app/data/compatible_bundle.json",
+    "snapshot": "historical-compatible_bundle.json",
+    "sha256": "718dbcf0480d8d73a40ff1356ef65962440a43acae24c781eaeeba232e95c7a8",
+    "bytes": 16857
+  },
+  {
+    "source": "scripts/application_hash_migration.json",
+    "snapshot": "historical-application_hash_migration.json",
+    "sha256": "8f8853a1fa4c0d47b4d3885d5381d859cc1d328e3ac4ef7841b122426c7bb0a5",
+    "bytes": 1258
+  },
+  {
+    "source": "test-data/benchmark/external/benchmark_manifest.json",
+    "snapshot": "historical-benchmark_manifest.json",
+    "sha256": "e19f995579482b152271c2c4eadc7b4fbe4b89832299b3111b761985484d0e92",
+    "bytes": 7588
+  },
+  {
+    "source": "test-data/benchmark/external/external_benchmark_results.json",
+    "snapshot": "historical-external_benchmark_results.json",
+    "sha256": "eca017e3a6e05b3db4c2640d86d9b84f1e271d00cb0f035a04fcce773f839ea8",
+    "bytes": 33667
+  },
+  {
+    "source": "backend/app/data/explanation_approvals.json",
+    "snapshot": "historical-explanation_approvals.json",
+    "sha256": "b18c7d1d18d014fd1b2edf8ac24e2339a0c1df3f4252590c77db264df799f8a7",
+    "bytes": 12002
+  }
+]

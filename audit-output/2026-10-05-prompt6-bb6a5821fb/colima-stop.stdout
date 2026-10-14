@@ -1,0 +1,14 @@
+Stopping 'docker.service', but its triggering units are still active:
+docker.socket
+colima-pgx-p6-20261005
+time="2026-10-05T17:48:53+05:30" level=info msg="Sending SIGINT to hostagent process 21908"
+time="2026-10-05T17:48:53+05:30" level=info msg="Waiting for the host agent and the driver processes to shut down"
+time="2026-10-05T17:48:53+05:30" level=info msg="[hostagent] Received SIGINT, shutting down the host agent"
+time="2026-10-05T17:48:53+05:30" level=info msg="[hostagent] Shutting down the host agent"
+time="2026-10-05T17:48:53+05:30" level=info msg="[hostagent] Stopping forwarding `/var/run/docker.sock` (guest) to `/Users/bhuvant/.colima/pgx-p6-20261005/docker.sock` (host)"
+time="2026-10-05T17:48:53+05:30" level=info msg="[hostagent] Stopping forwarding `/var/run/containerd/containerd.sock` (guest) to `/Users/bhuvant/.colima/pgx-p6-20261005/containerd.sock` (host)"
+time="2026-10-05T17:48:53+05:30" level=info msg="[hostagent] Unmounting disk `colima-pgx-p6-20261005`"
+time="2026-10-05T17:48:53+05:30" level=info msg="[hostagent] Shutting down VZ"
+time="2026-10-05T17:48:54+05:30" level=info msg="[hostagent] [VZ] - vm state change: stopped"
+time="2026-10-05T17:48:54+05:30" level=info msg="Waiting for the instance to shut down"
+time="2026-10-05T17:48:55+05:30" level=info msg="The instance colima-pgx-p6-20261005 has shut down"

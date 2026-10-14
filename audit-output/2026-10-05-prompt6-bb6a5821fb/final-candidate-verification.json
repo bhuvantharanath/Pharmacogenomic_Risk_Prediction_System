@@ -1,0 +1,11 @@
+{
+  "candidate_files": 437,
+  "working_and_context_bytes_unchanged": true,
+  "problems": [],
+  "git_diff_start_sha256": "4fc44c3c697ee68b06420e32375622999ce738b2c3fafb03f88200cc61ce3800",
+  "git_diff_final_sha256": "4fc44c3c697ee68b06420e32375622999ce738b2c3fafb03f88200cc61ce3800",
+  "git_diff_unchanged": true,
+  "staged_final_bytes": 0,
+  "git_diff_check_exit": 0,
+  "git_diff_check_output": ""
+}

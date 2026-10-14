@@ -1,0 +1,287 @@
+{
+ "id": "D08",
+ "label": "Oversized public VCF (PharmCAT tutorial NA18526 bgzip)",
+ "fixture": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D08-PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18526.vcf.bgz",
+ "fixture_sha256": "a3e4676b1825cd3723e6094565e8c0bad15905a879ad431dcd80106b8b9334c1",
+ "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+ "started": "2026-10-14T17:22:58+0530",
+ "coverage": {
+  "status": 413,
+  "body_sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+  "body_file": "browser-received/0054-post-coverage.body",
+  "failed": null
+ },
+ "readiness_text": [
+  "About PharmaGuard",
+  "Re-check backend connection",
+  "No genome file? Use a sample\nRun one here, or download it and upload it yourself. Two of these are declined on purpose \u2014 that is the behaviour, not a fault.\nReduced-function result\nAnswers confidently\nComplete coverage, CYP2C19 *2/*2. Clopidogrel comes back Ineffective \u2014 the case this system exists to catch.\nNormal result\nAnswers confidently\nComplete coverage, all genes at reference. Shows the system is not merely cautious \u2014 it will state when no PGx-guided adjustment was identified from the assessed evidence.\nVariants-only file\nDeclines every gene\nThe SAME patient as the first sample, with reference rows removed \u2014 the common output of most pipelines. The genotype is unchanged; what is lost is the evidence that it was measured.\nReal 1000 Genomes sample\nDeclines every gene\nGenuine public research data (NA12273), not synthetic. Polymorphic-filtered, so it is declined \u2014 which is what happens to most research VCFs, and why.",
+  "Try this",
+  "Download",
+  "Try this",
+  "Download",
+  "Try this",
+  "Download",
+  "Try this",
+  "Download",
+  "Drugs (comma-separated)",
+  "clopidogrel",
+  "fluorouracil",
+  "azathioprine",
+  "simvastatin",
+  "warfarin",
+  "codeine",
+  "Analyze",
+  "Check all 6 medicines"
+ ],
+ "typed_drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+ "loading_controls": [
+  {
+   "text": "About PharmaGuard",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Re-check backend connection",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "clopidogrel",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "fluorouracil",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "azathioprine",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "simvastatin",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "warfarin",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "codeine",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "Analyze",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Check all 6 medicines",
+   "role": "button",
+   "disabled": false
+  }
+ ],
+ "analyze": {
+  "status": 413,
+  "body_sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+  "body_file": "browser-received/0055-post-analyze.body",
+  "failed": null
+ },
+ "error_view_text": [
+  "About PharmaGuard",
+  "Re-check backend connection",
+  "No genome file? Use a sample\nRun one here, or download it and upload it yourself. Two of these are declined on purpose \u2014 that is the behaviour, not a fault.\nReduced-function result\nAnswers confidently\nComplete coverage, CYP2C19 *2/*2. Clopidogrel comes back Ineffective \u2014 the case this system exists to catch.\nNormal result\nAnswers confidently\nComplete coverage, all genes at reference. Shows the system is not merely cautious \u2014 it will state when no PGx-guided adjustment was identified from the assessed evidence.\nVariants-only file\nDeclines every gene\nThe SAME patient as the first sample, with reference rows removed \u2014 the common output of most pipelines. The genotype is unchanged; what is lost is the evidence that it was measured.\nReal 1000 Genomes sample\nDeclines every gene\nGenuine public research data (NA12273), not synthetic. Polymorphic-filtered, so it is declined \u2014 which is what happens to most research VCFs, and why.",
+  "Try this",
+  "Download",
+  "Try this",
+  "Download",
+  "Try this",
+  "Download",
+  "Try this",
+  "Download",
+  "Drugs (comma-separated)",
+  "clopidogrel",
+  "fluorouracil",
+  "azathioprine",
+  "simvastatin",
+  "warfarin",
+  "codeine",
+  "Analyze",
+  "Check all 6 medicines"
+ ],
+ "controls_after_error": [
+  {
+   "text": "About PharmaGuard",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Re-check backend connection",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Try this",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Download",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "clopidogrel",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "fluorouracil",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "azathioprine",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "simvastatin",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "warfarin",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "codeine",
+   "role": "checkbox",
+   "disabled": false
+  },
+  {
+   "text": "Analyze",
+   "role": "button",
+   "disabled": false
+  },
+  {
+   "text": "Check all 6 medicines",
+   "role": "button",
+   "disabled": false
+  }
+ ],
+ "small_shots": [
+  "small-error-00",
+  "small-error-01",
+  "small-error-02"
+ ],
+ "recovery_coverage": {
+  "status": 200,
+  "body_sha256": "26101d2a45be0946955522bbf9a0318ce4ae6f80b82f193fb8e5d61c9a2ee6f4"
+ },
+ "recovery_analyze": {
+  "status": 200,
+  "body_sha256": "12e18498a5fb3d0807b2857cadafdf0570c70b266a013ca9a1714af2e317e175",
+  "body_file": "browser-received/0057-post-analyze.body"
+ },
+ "recovery_results_text": [
+  "Back",
+  "Copy JSON",
+  "Export JSON",
+  "NORMAL_CONTROL\n2026-10-14T11:53:29Z\nVCF accepted\n0 variants\n1611 ms\n19 pipeline warnings\nNo PGx-guided change\nAdjust Dosage\nToxic\nIneffective\nUnknown",
+  "DRUGS CHECKED (6) \u2014 MOST SERIOUS FIRST\nReading view. Both views show the same result; they differ only in what is shown first.",
+  "For a patient. Plain language first.",
+  "For a clinician. Genotype and guideline first.",
+  "Input coverage. 6 of 7 genes have enough positions to call",
+  "azathioprine: No PGx-guided change",
+  "clopidogrel: No PGx-guided change",
+  "fluorouracil: No PGx-guided change",
+  "simvastatin: No PGx-guided change",
+  "codeine: Unknown",
+  "warfarin: Unknown",
+  "Copy JSON",
+  "Export JSON",
+  "Printable summary",
+  "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.\nPharmCAT 3.4.0 \u00b7 CPIC data 2026-07-13-11-40 \u00b7 explanations 24 Jul 2026"
+ ],
+ "analyze_requests_seen": 2,
+ "analyze_clicks_issued": 2,
+ "external_interference": false,
+ "finished": "2026-10-14T17:23:31+0530"
+}

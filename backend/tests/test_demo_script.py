@@ -18,6 +18,7 @@ import sys
 import urllib.request
 from pathlib import Path
 
+import httpx
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -41,6 +42,16 @@ def _backend_up() -> bool:
             return r.status == 200
     except Exception:  # noqa: BLE001
         return False
+
+
+def _coverage(vcf: Path) -> dict:
+    with httpx.Client(timeout=30) as client:
+        response = client.post(
+            f"{BASE}/coverage",
+            files={"file": (vcf.name, vcf.read_bytes(), "text/plain")},
+        )
+    assert response.status_code == 200
+    return response.json()
 
 
 demo = _load()
@@ -112,22 +123,68 @@ class TestDemoAgainstLiveApi:
                 failures.append(f"S{s.number} {first}: expected {s.expect}, got {got}")
         assert not failures, "\n".join(failures)
 
-    def test_the_contrast_actually_contrasts(self) -> None:
-        """S1 and S2 must call the same diplotype and reach opposite conclusions."""
+    def test_the_contrast_actually_contrasts(
+        self, capsys: pytest.CaptureFixture[str]
+    ) -> None:
+        """The final API asserts S1 and withholds S2 despite shared variants."""
         a = demo.post_analyze(BASE, DEMO_DIR / "demo_confident.vcf", "clopidogrel")
         b = demo.post_analyze(BASE, DEMO_DIR / "demo_variants_only.vcf", "clopidogrel")
         assert a.status == 200 and b.status == 200
 
         pa = a.primary["pharmacogenomic_profile"]
         pb = b.primary["pharmacogenomic_profile"]
-        assert pa["diplotype"] == pb["diplotype"] == "*2/*2", (
-            "the demo's whole point is that the genotype is NOT lost"
-        )
+        assert pa["diplotype"] == "*2/*2"
+        assert pb["diplotype"] == pb["phenotype"] == "Unknown"
         assert a.primary["risk_assessment"]["risk_label"] == "Ineffective"
         assert b.primary["risk_assessment"]["risk_label"] == "Unknown"
 
         joined = " ".join(b.body["quality_metrics"]["warnings"])
         assert "homozygous-reference" in joined, "variants-only warning missing"
+        demo.show_contrast(a, b)
+        shown = capsys.readouterr().out
+        assert "Final diplotype" in shown
+        assert "Unknown" in shown
+        assert "4/35 = 11.4%" in shown
+        demo.show(demo.Result(demo.SCENARIOS[1], b.status, b.latency_ms, b.body, b.error))
+        rendered = capsys.readouterr().out
+        assert "4/35 = 11.4%" in rendered
+        assert "Required genomic evidence is incomplete" in rendered
+
+    def test_incomplete_presentation_withholds_final_assertions(self) -> None:
+        """The caller's diagnostic call cannot become an authorized final result."""
+        complete = DEMO_DIR / "demo_confident.vcf"
+        variants_only = DEMO_DIR / "demo_variants_only.vcf"
+        ready_complete = _coverage(complete)
+        ready_incomplete = _coverage(variants_only)
+        a = demo.post_analyze(BASE, complete, "clopidogrel")
+        b = demo.post_analyze(BASE, variants_only, "clopidogrel")
+
+        assert a.status == b.status == 200
+        assert "clopidogrel" in ready_complete["answerable_drugs"]
+        assert "clopidogrel" not in ready_incomplete["answerable_drugs"]
+        assert ready_incomplete["variants_only"] is True
+        assert any("variants-only" in w for w in ready_incomplete["warnings"])
+
+        complete_result = a.primary
+        incomplete_result = b.primary
+        assert complete_result["pharmacogenomic_profile"]["diplotype"] == "*2/*2"
+        assert complete_result["pharmacogenomic_profile"]["phenotype"] == "PM"
+        assert complete_result["risk_assessment"]["risk_label"] == "Ineffective"
+        profile = incomplete_result["pharmacogenomic_profile"]
+        assert profile["diplotype"] == profile["phenotype"] == "Unknown"
+        assert profile["candidate_diplotypes"] == []
+        assert profile["detected_variants"] == []
+        assert incomplete_result["risk_assessment"]["risk_label"] == "Unknown"
+        assert "*2/*2" not in str(incomplete_result)
+
+        warnings = " ".join(b.body["quality_metrics"]["warnings"])
+        assert "homozygous-reference" in warnings
+        assert "Required genomic evidence is incomplete" in warnings
+        assert "source=template" in warnings
+        explanation = incomplete_result["llm_generated_explanation"]
+        assert "no pharmacogenomic result" in explanation["summary"]
+        assert "No genotype was called" in explanation["variant_rationale"]
+        assert "could not reach a conclusion" in explanation["patient_friendly"]
 
     def test_loopback_is_not_rate_limited(self) -> None:
         """

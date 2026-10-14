@@ -7,7 +7,7 @@ library;
 
 /// Top-line verdict for one drug. Drives the result card's colour.
 enum RiskLabel {
-  safe('Safe'),
+  safe('No PGx-guided adjustment identified'),
   adjustDosage('Adjust Dosage'),
   toxic('Toxic'),
   ineffective('Ineffective'),
@@ -18,16 +18,24 @@ enum RiskLabel {
   /// The exact string used on the wire — do not derive this from `name`.
   final String wireValue;
 
+  /// Bounded screen wording. The no-adjustment conclusion is shortened only to
+  /// fit the existing responsive layout; the exported/API wording stays exact.
+  String get displayValue => switch (this) {
+    RiskLabel.safe => 'No PGx-guided change',
+    _ => wireValue,
+  };
+
   /// Ordering by CONSEQUENCE, for any list a user scans rather than reads.
   ///
-  /// Alphabetical order is the wrong default here: it puts "azathioprine —
-  /// Safe" above "clopidogrel — Ineffective", so the row that changes what
+  /// Alphabetical order is the wrong default here: it puts an azathioprine
+  /// no-adjustment row above "clopidogrel — Ineffective", so the row that changes what
   /// someone should do arrives after two rows that do not.
   ///
   /// Toxic and Ineffective share rank 0 deliberately. They are different
   /// mechanisms — harm from exposure versus therapeutic failure — but both mean
   /// "do not proceed as written", and ranking one above the other would assert
-  /// a clinical priority this project has no basis for. Severity breaks the tie.
+  /// a clinical priority this project has no basis for. Alphabetical order
+  /// breaks the tie without adding a severity claim.
   ///
   /// Unknown sits LAST, not because it is unimportant — it is frequently the
   /// hard-won correct answer — but because it is the one row where nothing about
@@ -40,10 +48,14 @@ enum RiskLabel {
     RiskLabel.unknown => 3,
   };
 
-  static RiskLabel fromJson(Object? value) => values.firstWhere(
-    (RiskLabel e) => e.wireValue == value,
-    orElse: () => RiskLabel.unknown,
-  );
+  static RiskLabel fromJson(Object? value) {
+    // Accept the old wire value while deployed clients/backends roll forward.
+    if (value == 'Safe') return RiskLabel.safe;
+    return values.firstWhere(
+      (RiskLabel e) => e.wireValue == value,
+      orElse: () => RiskLabel.unknown,
+    );
+  }
 
   String toJson() => wireValue;
 }

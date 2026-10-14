@@ -1,6 +1,8 @@
 /// App-wide configuration.
 library;
 
+export 'generated/capabilities.g.dart' show kDemoDrugs;
+
 /// Base URL of the PharmaGuard backend.
 ///
 /// **No production URL is hardcoded here.** The default is localhost so a fresh
@@ -61,9 +63,10 @@ const String kDisclaimerShort =
 const String kDisclaimer =
     'Research/educational decision support only. '
     'Not a medical device. Not for clinical use. '
-    'No qualified clinical expert has reviewed this text: every clinical '
-    'statement is machine-verified to come from a published CPIC recommendation, '
-    'which checks that nothing was invented, not that it is correct for you.';
+    'No qualified clinical expert has reviewed this text. Recommendation text '
+    'is quoted from CPIC via PharmCAT, and automated source checks are not human '
+    'review: they cannot show that every statement is supported or that it is '
+    'correct for you.';
 
 /// How long to keep trying to wake the backend before calling it unreachable.
 ///
@@ -104,24 +107,6 @@ const List<Duration> kWakeupBackoff = <Duration>[
   Duration(seconds: 8),
   Duration(seconds: 10),
 ];
-
-/// Quick-fill chips for the drugs this build demonstrates. UI hint only —
-/// anything else is still accepted and comes back as "Unknown".
-///
-/// Two of these are honest negatives worth showing:
-///   codeine  — keyed to CYP2D6, which PharmCAT cannot call from a plain VCF,
-///              so it always returns Unknown with an explanatory warning.
-///   warfarin — CPIC's guidance is a dosing algorithm rather than per-phenotype
-///              text, so PharmCAT returns no usable recommendation.
-const List<String> kDemoDrugs = <String>[
-  'clopidogrel',
-  'fluorouracil',
-  'azathioprine',
-  'simvastatin',
-  'warfarin',
-  'codeine',
-];
-
 
 /// The backend commit this bundle was built to talk to.
 ///

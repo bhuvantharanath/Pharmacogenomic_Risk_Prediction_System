@@ -12,6 +12,7 @@ library;
 import 'package:flutter/material.dart';
 
 import '../api/pharmaguard_api.dart';
+import '../generated/capabilities.g.dart';
 import '../models/analysis.dart';
 import '../theme/tokens.dart';
 
@@ -44,6 +45,8 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final DrugCapability codeine = capabilityForDrug('codeine')!;
+    final DrugCapability warfarin = capabilityForDrug('warfarin')!;
     return Scaffold(
       appBar: AppBar(title: Text('About', style: Tokens.uiLg)),
       body: SafeArea(
@@ -93,11 +96,11 @@ class _AboutScreenState extends State<AboutScreen> {
                         'TPMT and NUDT15 limit active metabolites. Low function '
                             'risks the bone marrow making fewer blood cells'],
                       ['warfarin', 'preventing clots',
-                        'CYP2C9 affects clearance, which shifts the dose needed '
-                            'to stay in range'],
+                        'CYP2C9 affects clearance, but this application has no '
+                            'validated automated warfarin-dose implementation'],
                       ['codeine', 'pain relief',
-                        'CYP2D6 converts it to morphine. Too little means no '
-                            'relief; too much is dangerous'],
+                        'CYP2D6 converts it to morphine, but its structural and '
+                            'copy-number variation is not called from this VCF'],
                     ],
                   ),
 
@@ -115,11 +118,7 @@ class _AboutScreenState extends State<AboutScreen> {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  _note('CYP2D6 is read but never called. It is defined by '
-                      'copy-number and structural changes that a VCF cannot '
-                      'express, so the system reports it as not determinable '
-                      'rather than guessing. Across 400 test samples it '
-                      'declined every single time.'),
+                  _note('${codeine.limitation} ${warfarin.limitation}'),
 
                   _h('What a usable file needs'),
                   _p('A GRCh38 VCF that reports every position the caller needs '
@@ -187,11 +186,11 @@ class _AboutScreenState extends State<AboutScreen> {
                           'education. It has not been clinically validated and '
                           'must not be used to make decisions about anyone’s '
                           'medication. No qualified clinical expert has reviewed '
-                          'the explanatory text: every clinical statement is '
-                          'machine-checked to come from a published CPIC '
-                          'recommendation, which verifies that nothing was '
-                          'invented — not that it is correct for you. Always '
-                          'consult a qualified healthcare professional.',
+                          'the explanatory text. Recommendation text is quoted '
+                          'from CPIC; automated source checks are not human '
+                          'review and cannot show that a statement is supported '
+                          'or correct for you. Always consult a qualified '
+                          'healthcare professional.',
                           style: Tokens.proseSm.copyWith(color: Tokens.ink),
                         ),
                       ],

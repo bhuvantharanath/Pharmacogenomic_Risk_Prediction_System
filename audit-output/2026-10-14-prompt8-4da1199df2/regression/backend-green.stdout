@@ -1,0 +1,7 @@
+....                                                                     [100%]
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED backend/tests/test_disclosure_wording.py::test_disclaimer_bounds_automated_checks
+PASSED backend/tests/test_disclosure_wording.py::test_analysis_response_does_not_overclaim_provenance
+PASSED backend/tests/test_disclosure_wording.py::test_cyp2d6_reason_names_the_application_boundary
+PASSED backend/tests/test_disclosure_wording.py::test_variants_only_warning_states_that_this_application_withholds

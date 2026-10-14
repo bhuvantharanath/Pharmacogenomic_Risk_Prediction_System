@@ -1,0 +1,4 @@
+# Reproducible acquisition/execution caches. Frozen source/output hashes are
+# retained in benchmark_manifest.json and pharmcat_report_manifest.json.
+/genomic/
+/pharmcat_reports/

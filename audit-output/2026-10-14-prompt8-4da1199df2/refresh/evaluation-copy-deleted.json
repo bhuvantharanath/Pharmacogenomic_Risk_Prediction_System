@@ -1,0 +1,8 @@
+{
+ "deleted_path": "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/6c5a09f8-c585-4984-85c4-7219381eef57/scratchpad/evaluation-copy-2026-10-14",
+ "recorded_at": "2026-10-14T18:49:36.620939+00:00",
+ "files": 1284,
+ "bytes": 554702994,
+ "listing_sha256": "f1c4f23a0226acb8bfa88b657163a60c6b66b8fee861ff44929e735b06014d9f",
+ "reason": "task-owned isolated evaluation copy; published outputs live in test-data/benchmark/current-candidate-2026-10-14/ and are hashed by its evaluation_manifest.json"
+}

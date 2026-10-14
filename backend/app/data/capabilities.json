@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "scope_note": "Audited research/educational application surface. PharmCAT may report additional drugs internally; this application does not interpret or present them as supported guidance.",
+  "capabilities": [
+    {
+      "drug": "clopidogrel",
+      "primary_gene": "CYP2C19",
+      "relevant_genes": ["CYP2C19"],
+      "evidence_dependencies": ["CYP2C19"],
+      "implementation_status": "implemented",
+      "guidance_capable": true,
+      "limitation": "Guidance is bounded to the CPIC annotation and the genomic evidence assessed by this application.",
+      "explanation_available": true,
+      "ui_available": true,
+      "export_available": true
+    },
+    {
+      "drug": "fluorouracil",
+      "primary_gene": "DPYD",
+      "relevant_genes": ["DPYD"],
+      "evidence_dependencies": ["DPYD"],
+      "implementation_status": "implemented",
+      "guidance_capable": true,
+      "limitation": "Guidance is bounded to the CPIC annotation and the genomic evidence assessed by this application.",
+      "explanation_available": true,
+      "ui_available": true,
+      "export_available": true
+    },
+    {
+      "drug": "azathioprine",
+      "primary_gene": "TPMT",
+      "relevant_genes": ["TPMT", "NUDT15"],
+      "evidence_dependencies": ["TPMT", "NUDT15"],
+      "implementation_status": "implemented",
+      "guidance_capable": true,
+      "limitation": "A complete drug-level interpretation requires acceptable evidence for both TPMT and NUDT15.",
+      "explanation_available": true,
+      "ui_available": true,
+      "export_available": true
+    },
+    {
+      "drug": "simvastatin",
+      "primary_gene": "SLCO1B1",
+      "relevant_genes": ["SLCO1B1"],
+      "evidence_dependencies": ["SLCO1B1"],
+      "implementation_status": "implemented",
+      "guidance_capable": true,
+      "limitation": "SLCO1B1 is a transporter; the result must not be described as a metabolizer phenotype.",
+      "explanation_available": true,
+      "ui_available": true,
+      "export_available": true
+    },
+    {
+      "drug": "warfarin",
+      "primary_gene": "CYP2C9",
+      "relevant_genes": ["CYP2C9"],
+      "evidence_dependencies": ["CYP2C9"],
+      "implementation_status": "explicit_abstention",
+      "guidance_capable": false,
+      "limitation": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "explanation_available": true,
+      "ui_available": true,
+      "export_available": true
+    },
+    {
+      "drug": "codeine",
+      "primary_gene": "CYP2D6",
+      "relevant_genes": ["CYP2D6"],
+      "evidence_dependencies": ["CYP2D6"],
+      "implementation_status": "explicit_abstention",
+      "guidance_capable": false,
+      "limitation": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "explanation_available": true,
+      "ui_available": true,
+      "export_available": true
+    }
+  ]
+}

@@ -65,6 +65,12 @@ def _mechanism_text(context: ExplanationContext) -> str:
     """Mechanism background, or an honest statement that we have none."""
     document = context.mechanism
     if document is None:
+        if not context.has_cpic_guidance:
+            return (
+                f"No mechanism background is available in this build for "
+                f"{context.drug}. No pharmacogenomic guidance is produced for "
+                "this result."
+            )
         return (
             f"No mechanism background is available in this build for "
             f"{context.drug}. The clinical recommendation section above comes "

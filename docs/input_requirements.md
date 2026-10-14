@@ -36,9 +36,11 @@ complete-coverage truth for the same genotype.
 | **CYP2C19** | 0.0% | 0.0% | 4.3% | 12.5% | 30.0% |
 | **DPYD** | 0.0% | 0.0% | 0.0% | 0.0% | 0.0% |
 
-DPYD is immune across the whole range because its clinically actionable variants
-are each defined by a single position, and CPIC scores it by activity rather than
-by matching a full reference haplotype.
+The historical random-mask sweep observed no DPYD discrepancies. That is not
+evidence that DPYD is “immune”: the tested backgrounds did not include deficient
+DPYD states capable of exposing the important failure. The current contract also
+requires every decision-critical DPYD position and does not infer absent positions
+as reference.
 
 ## Where usable files come from — and where they do not
 
@@ -96,6 +98,30 @@ a clinical PGx panel or unfiltered whole-genome/exome calling produces.
 **Do not supply a variants-only VCF.** A file listing only non-reference sites is
 indistinguishable, to the matcher, from a file where those positions were never
 assayed. This is the single most consequential input requirement here.
+
+### Evidence-quality contract
+
+For this application, a required position is usable only when the sample's `GT`
+value is located from the row's `FORMAT` field and is a complete genotype (for
+example `0/0`, `0/1`, or a phased equivalent). A named FILTER failure such as
+`LowQual` is not usable evidence.
+
+The following remain distinct in the reported evidence census and do **not**
+satisfy completeness: an absent position; a no-call such as `./.`; a partial call
+such as `0/.`; a row whose `FORMAT` has no `GT`; a malformed genotype; a named
+FILTER failure such as `LowQual`. The system does not infer an omitted position
+as reference.
+
+No universal DP, GQ, or QUAL cutoff is imposed. Those values depend on assay and
+caller. The application trusts `FILTER=PASS`, rejects named FILTER failures, and
+classifies `FILTER=.` separately as quality not established. A complete genotype
+on such a row remains usable because the VCF has not explicitly failed it, but
+both preview and final analysis emit a warning telling the reader to confirm the
+upstream caller's quality policy.
+
+Uploads must contain exactly one sample. Multi-sample VCFs are rejected with a
+specific error so the caller can split them deliberately rather than having the
+application silently choose the first sample.
 
 `pharmcat_positions_3.4.0.vcf` is fetched by
 `scripts/fetch_reference_data.py --fetch-tools` and lists every required position.
@@ -201,8 +227,11 @@ gunzip -c broken.vcf.gz | bgzip -c > fixed.vcf.gz
 **Coverage sensitivity only.** Inputs are synthesised from PharmCAT's own allele
 definitions, so the true genotype is known by construction and complete-coverage
 runs are correct by definition. This cannot validate whether those definitions are
-right, or whether PharmCAT calls real sequencing data correctly. External accuracy
-against consensus genotypes remains **n=1** (`NA12273`), reported as n=1.
+right, or whether PharmCAT calls real sequencing data correctly. The current
+independent benchmark contains 208 individuals and 596 evaluable truth diplotypes,
+but its polymorphic-only genomic slices satisfy none of the application evidence
+requirements. See `reports/external_analytical_benchmark.md`; the former n=1 study
+is retained only as a version-specific historical report.
 
 What it does establish, and could not be established any other way: the pipeline's
 answers degrade **silently** as input coverage falls, and the degradation favours

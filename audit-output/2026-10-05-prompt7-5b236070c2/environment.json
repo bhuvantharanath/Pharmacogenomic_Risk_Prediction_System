@@ -1,0 +1,68 @@
+[
+  {
+    "argv": [
+      "sw_vers"
+    ],
+    "exit_code": 0,
+    "stdout": "ProductName:\t\tmacOS\nProductVersion:\t\t27.0.1\nBuildVersion:\t\t26A434\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "uname",
+      "-m"
+    ],
+    "exit_code": 0,
+    "stdout": "arm64\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "backend/.venv/bin/python",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "Python 3.11.14\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "backend/.venv/bin/python",
+      "-m",
+      "pip",
+      "freeze"
+    ],
+    "exit_code": 0,
+    "stdout": "annotated-doc==0.0.4\nannotated-types==0.7.0\nanyio==4.14.2\nblis==1.3.3\ncatalogue==2.0.10\ncertifi==2026.7.22\ncffi==2.1.0\ncharset-normalizer==3.4.9\nclick==8.4.2\ncloudpathlib==0.24.0\ncolorama==0.4.6\nconfection==1.3.3\ncryptography==49.0.0\ncymem==2.0.13\ndistro==1.9.0\nen_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl#sha256=1932429db727d4bff3deed6b34cfc05df17794f4a52eeb26cf8928f7c1a0fb85\net_xmlfile==2.0.0\nfastapi==0.121.2\nftfy==6.3.1\ngoogle-auth==2.56.2\ngoogle-genai==2.13.0\nh11==0.16.0\nhttpcore==1.0.9\nhttptools==0.8.0\nhttpx==0.28.1\nidna==3.18\niniconfig==2.3.0\nJinja2==3.1.6\njiter==0.16.0\nlangcodes==3.5.1\nlocate==1.1.1\nmarkdown-it-py==4.2.0\nMarkupSafe==3.0.3\nmdurl==0.1.2\nmsgpack==1.2.1\nmurmurhash==1.0.15\nnumpy==2.4.6\nopenai==1.109.1\nopenpyxl==3.1.5\npackaging==26.2\npandas==3.0.3\npluggy==1.6.0\npreshed==3.0.13\npyasn1==0.6.4\npyasn1_modules==0.4.2\npycparser==3.0\npydantic==2.13.1\npydantic_core==2.46.1\nPygments==2.20.0\npytest==9.1.1\npytest-asyncio==1.4.0\npython-dateutil==2.9.0.post0\npython-dotenv==1.2.2\npython-multipart==0.0.20\nPyYAML==6.0.3\nregex==2026.7.19\nrequests==2.34.2\nrich==15.0.0\nshellingham==1.5.4\nsix==1.17.0\nsmart_open==8.0.1\nsniffio==1.3.1\nspacy==3.8.14\nspacy-legacy==3.0.12\nspacy-loggers==1.0.5\nsrsly==2.5.3\nstarlette==0.49.3\ntenacity==9.1.4\nthinc==8.3.13\ntqdm==4.69.0\ntyper==0.27.0\ntyping-inspection==0.4.2\ntyping_extensions==4.16.0\nurllib3==2.7.0\nuvicorn==0.40.0\nuvloop==0.22.1\nwasabi==1.1.3\nwatchfiles==1.2.0\nwcwidth==0.8.2\nweasel==1.0.0\nwebsockets==16.1.1\nwordfreq==3.1.1\nwrapt==2.2.2\nxlrd==2.0.2\n",
+    "stderr": "WARNING: The directory '/Users/bhuvant/Library/Caches/pip' or its parent directory is not owned or is not writable by the current user. The cache has been disabled. Check the permissions and owner of that directory. If executing pip with sudo, you should use sudo's -H flag.\n"
+  },
+  {
+    "argv": [
+      "/opt/homebrew/opt/openjdk/bin/java",
+      "-version"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "openjdk version \"25.0.1\" 2025-10-21\nOpenJDK Runtime Environment Homebrew (build 25.0.1)\nOpenJDK 64-Bit Server VM Homebrew (build 25.0.1, mixed mode, sharing)\n"
+  },
+  {
+    "argv": [
+      "bcftools",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "bcftools 1.24\nUsing htslib 1.24\nCopyright (C) 2026 Genome Research Ltd.\nLicense GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+    "stderr": ""
+  },
+  {
+    "argv": [
+      "/opt/homebrew/opt/openjdk/bin/java",
+      "-jar",
+      "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+      "-v"
+    ],
+    "exit_code": 1,
+    "stdout": "No input for Named Allele Matcher!\n\nPlease specify a VCF file (-vcf)\n",
+    "stderr": ""
+  }
+]

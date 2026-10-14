@@ -1,0 +1,220 @@
+[
+  {
+    "at": "2026-10-05T12:01:29.141199+00:00",
+    "request_index": 0,
+    "status": 200,
+    "seconds": 0.036,
+    "retry_after": null,
+    "error_code": null,
+    "body": {
+      "genes": [
+        {
+          "gene": "CYP2C19",
+          "positions_found": 35,
+          "positions_required": 35,
+          "threshold_percent": 100,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "CYP2C9",
+          "positions_found": 88,
+          "positions_required": 88,
+          "threshold_percent": 100,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "CYP2D6",
+          "positions_found": 0,
+          "positions_required": 157,
+          "threshold_percent": 100,
+          "percent": 0.0,
+          "passes": false,
+          "not_readable_from_vcf": true,
+          "reason": "Defined by copy-number and structural variation, which a VCF cannot express. A different kind of genetic test is needed; no VCF will resolve it."
+        },
+        {
+          "gene": "DPYD",
+          "positions_found": 83,
+          "positions_required": 83,
+          "threshold_percent": 20,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "NUDT15",
+          "positions_found": 20,
+          "positions_required": 20,
+          "threshold_percent": 80,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "SLCO1B1",
+          "positions_found": 35,
+          "positions_required": 35,
+          "threshold_percent": 100,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "TPMT",
+          "positions_found": 45,
+          "positions_required": 45,
+          "threshold_percent": 80,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        }
+      ],
+      "genes_passing": 6,
+      "genes_total": 7,
+      "answerable_drugs": [
+        "clopidogrel",
+        "fluorouracil",
+        "azathioprine",
+        "simvastatin"
+      ],
+      "unanswerable_drugs": [
+        "warfarin",
+        "codeine"
+      ],
+      "variants_only": false,
+      "warnings": [],
+      "guideline_provenance": {
+        "pharmcat_version": "3.4.0",
+        "cpic_data_version": "",
+        "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+        "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+        "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+      }
+    }
+  },
+  {
+    "at": "2026-10-05T12:01:29.146837+00:00",
+    "request_index": 1,
+    "status": 200,
+    "seconds": 0.006,
+    "retry_after": null,
+    "error_code": null,
+    "body": {
+      "genes": [
+        {
+          "gene": "CYP2C19",
+          "positions_found": 35,
+          "positions_required": 35,
+          "threshold_percent": 100,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "CYP2C9",
+          "positions_found": 88,
+          "positions_required": 88,
+          "threshold_percent": 100,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "CYP2D6",
+          "positions_found": 0,
+          "positions_required": 157,
+          "threshold_percent": 100,
+          "percent": 0.0,
+          "passes": false,
+          "not_readable_from_vcf": true,
+          "reason": "Defined by copy-number and structural variation, which a VCF cannot express. A different kind of genetic test is needed; no VCF will resolve it."
+        },
+        {
+          "gene": "DPYD",
+          "positions_found": 83,
+          "positions_required": 83,
+          "threshold_percent": 20,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "NUDT15",
+          "positions_found": 20,
+          "positions_required": 20,
+          "threshold_percent": 80,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "SLCO1B1",
+          "positions_found": 35,
+          "positions_required": 35,
+          "threshold_percent": 100,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        },
+        {
+          "gene": "TPMT",
+          "positions_found": 45,
+          "positions_required": 45,
+          "threshold_percent": 80,
+          "percent": 100.0,
+          "passes": true,
+          "not_readable_from_vcf": false,
+          "reason": ""
+        }
+      ],
+      "genes_passing": 6,
+      "genes_total": 7,
+      "answerable_drugs": [
+        "clopidogrel",
+        "fluorouracil",
+        "azathioprine",
+        "simvastatin"
+      ],
+      "unanswerable_drugs": [
+        "warfarin",
+        "codeine"
+      ],
+      "variants_only": false,
+      "warnings": [],
+      "guideline_provenance": {
+        "pharmcat_version": "3.4.0",
+        "cpic_data_version": "",
+        "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+        "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+        "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+      }
+    }
+  },
+  {
+    "at": "2026-10-05T12:01:29.150830+00:00",
+    "request_index": 2,
+    "status": 429,
+    "seconds": 0.004,
+    "retry_after": "210",
+    "error_code": "RATE_LIMITED",
+    "body": {
+      "detail": "Rate limit reached: 10 upload requests per 5 minutes per client. Please wait 210 seconds and try again. This is a free-tier academic demo, not a production service.",
+      "error_code": "RATE_LIMITED"
+    }
+  }
+]

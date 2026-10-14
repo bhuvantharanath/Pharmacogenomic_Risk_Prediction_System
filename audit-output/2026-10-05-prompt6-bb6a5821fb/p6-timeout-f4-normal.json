@@ -1,0 +1,4 @@
+{
+  "detail": "The analysis did not finish within 0 seconds and was stopped. Try a file restricted to the positions this analysis needs \u2014 see the input requirements.",
+  "error_code": "PHARMCAT_UNAVAILABLE"
+}

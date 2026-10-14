@@ -1,5 +1,7 @@
 # Validation against reference materials — Phase 6 COMPLETE
 
+> **Historical, version-specific record (superseded for current external-benchmark claims).** This report preserves the 2026-07 Phase 6 evidence and its n=1 external overlap. It must not be combined with current artifacts or quoted as current accuracy. The authoritative current analytical report is `reports/external_analytical_benchmark.md`, and compatible component identities are frozen in `backend/app/data/compatible_bundle.json`.
+
 **Date:** 2026-07-25 · **Status:** Phase 6 closed. Integration fidelity measured at scale
 (400 samples, §2b) alongside the exhaustive label-mapping validation (§4).
 External genotype concordance remains **n=1** and is reported as n=1 throughout —

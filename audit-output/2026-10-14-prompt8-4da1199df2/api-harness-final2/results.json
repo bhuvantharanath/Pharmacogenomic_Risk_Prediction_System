@@ -1,0 +1,3911 @@
+{
+ "label": "final2",
+ "api": "http://127.0.0.1:8000",
+ "fixtures": [
+  {
+   "id": "D01",
+   "label": "Complete synthetic normal control",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D01-normal_metabolizer_control.vcf",
+   "input_sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "azathioprine": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.033,
+    "sha256": "e6b984d514070f85779fd3018645d16933287157403a0d3dd1c79616f9cf37a4",
+    "answerable_drugs": [
+     "clopidogrel",
+     "fluorouracil",
+     "azathioprine",
+     "simvastatin"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.29,
+    "sha256": "b784fa50bc8cb194192a89e9556cc4293243765576c9ccedb3018a2c31e35626",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*38/*38",
+      "phenotype": "NM",
+      "action": "If considering clopidogrel, use at standard dose (75 mg/day)",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *38/*38 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "fluorouracil": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "DPYD",
+      "diplotype": "Reference/Reference",
+      "phenotype": "NM",
+      "action": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: DPYD Reference/Reference (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "azathioprine": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "TPMT",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression. TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern.",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: TPMT *1/*1 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "simvastatin": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "SLCO1B1",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: SLCO1B1 *1/*1 (Normal Function) \u2014 No PGx-guided adjustment identified."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "CYP2C9",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "CYP2D6: only 0 of 157 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 157 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 157 absent positions.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "The CYP2C19 *38 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+     "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.",
+     "The TPMT gene is on the negative chromosomal strand, all genotype calls for TPMT in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The TPMT *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+     "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D01-normal_metabolizer_control.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D01",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.2190646659946651,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D01/D01-normal_metabolizer_control.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D01/D01-normal_metabolizer_control.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D01/D01-normal_metabolizer_control.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D01/D01-normal_metabolizer_control.report.json",
+    "report_sha256": "d9a1266566fc0caf5838947176748a3423c3d3fa4072258bfecce1d3346647ae",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*38/*38"
+      ],
+      "recommendation_diplotypes": [
+       "*38/*38"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Reference/Reference"
+      ],
+      "recommendation_diplotypes": [
+       "Reference/Reference"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*38/*38",
+      "candidate_diplotypes": [
+       "*38/*38"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "TPMT": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "Reference/Reference",
+      "candidate_diplotypes": [
+       "Reference/Reference"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D02",
+   "label": "Complete synthetic CYP2C19 poor-metabolizer control",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D02-cyp2c19_poor_metabolizer.vcf",
+   "input_sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Ineffective (CYP2C19 *2/*2, PM) + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "azathioprine": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.006,
+    "sha256": "e6b984d514070f85779fd3018645d16933287157403a0d3dd1c79616f9cf37a4",
+    "answerable_drugs": [
+     "clopidogrel",
+     "fluorouracil",
+     "azathioprine",
+     "simvastatin"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.308,
+    "sha256": "4943e5b3c7fd3048b1cbda351c034e026bca386d34c78f51df41ab340ea696a6",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Ineffective",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*2/*2",
+      "phenotype": "PM",
+      "action": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *2/*2 (Poor Metabolizer) \u2014 Ineffective."
+     },
+     "fluorouracil": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "DPYD",
+      "diplotype": "Reference/Reference",
+      "phenotype": "NM",
+      "action": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: DPYD Reference/Reference (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "azathioprine": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "TPMT",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression. TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern.",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: TPMT *1/*1 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "simvastatin": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "SLCO1B1",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: SLCO1B1 *1/*1 (Normal Function) \u2014 No PGx-guided adjustment identified."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "CYP2C9",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "CYP2D6: only 0 of 157 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 157 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 157 absent positions.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+     "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.",
+     "The TPMT gene is on the negative chromosomal strand, all genotype calls for TPMT in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The TPMT *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+     "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D02-cyp2c19_poor_metabolizer.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D02",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.2451012910023564,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D02/D02-cyp2c19_poor_metabolizer.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D02/D02-cyp2c19_poor_metabolizer.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D02/D02-cyp2c19_poor_metabolizer.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D02/D02-cyp2c19_poor_metabolizer.report.json",
+    "report_sha256": "d3e9325d433ef230dbbad94e847ad2ced57302878c12dfad6df2ec4de2bd46f8",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*2/*2"
+      ],
+      "recommendation_diplotypes": [
+       "*2/*2"
+      ],
+      "phenotypes": [
+       "Poor Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Reference/Reference"
+      ],
+      "recommendation_diplotypes": [
+       "Reference/Reference"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*2/*2",
+      "candidate_diplotypes": [
+       "*2/*2"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "TPMT": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "Reference/Reference",
+      "candidate_diplotypes": [
+       "Reference/Reference"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D03",
+   "label": "Supported synthetic DPYD variant-carrier control",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D03-dpyd_variant_carrier.vcf",
+   "input_sha256": "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "Adjust Dosage (DPYD IM, activity score 1)",
+    "azathioprine": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.006,
+    "sha256": "e6b984d514070f85779fd3018645d16933287157403a0d3dd1c79616f9cf37a4",
+    "answerable_drugs": [
+     "clopidogrel",
+     "fluorouracil",
+     "azathioprine",
+     "simvastatin"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.213,
+    "sha256": "3a23f83f9705da1cc7b5d166a661253a733b7323b68e21100d4d9060092b7ce7",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*38/*38",
+      "phenotype": "NM",
+      "action": "If considering clopidogrel, use at standard dose (75 mg/day)",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *38/*38 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "fluorouracil": {
+      "risk_label": "Adjust Dosage",
+      "primary_gene": "DPYD",
+      "diplotype": "c.1905+1G>A (*2A) (heterozygous)",
+      "phenotype": "IM",
+      "action": "Reduce starting dose by 50% followed by titration of dose based on toxicity or therapeutic drug monitoring (if available). Patients with the c.2846A>T/c.2846A>T genotype may require >50% reduction in starting dose.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Decreased DPD activity (leukocyte DPD activity at 30% to 70% that of the normal population) and increased risk for severe or even fatal drug toxicity when treated with fluoropyrimidine drugs",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: DPYD c.1905+1G>A (*2A) (heterozygous) (Intermediate Metabolizer) \u2014 Adjust Dosage."
+     },
+     "azathioprine": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "TPMT",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression. TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern.",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: TPMT *1/*1 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "simvastatin": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "SLCO1B1",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: SLCO1B1 *1/*1 (Normal Function) \u2014 No PGx-guided adjustment identified."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "CYP2C9",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "CYP2D6: only 0 of 157 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 157 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 157 absent positions.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "The CYP2C19 *38 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+     "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.",
+     "The TPMT gene is on the negative chromosomal strand, all genotype calls for TPMT in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The TPMT *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+     "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D03-dpyd_variant_carrier.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D03",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.309952625000733,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D03/D03-dpyd_variant_carrier.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D03/D03-dpyd_variant_carrier.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D03/D03-dpyd_variant_carrier.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D03/D03-dpyd_variant_carrier.report.json",
+    "report_sha256": "cfe4a5477416808e982604a207926c9140a9a4746e391332d8e6042bca6ee913",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*38/*38"
+      ],
+      "recommendation_diplotypes": [
+       "*38/*38"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "c.1905+1G>A (*2A) (heterozygous)"
+      ],
+      "recommendation_diplotypes": [
+       "c.1905+1G>A (*2A) (heterozygous)"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*38/*38",
+      "candidate_diplotypes": [
+       "*38/*38"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "TPMT": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "c.1905+1G>A (*2A) (heterozygous)",
+      "candidate_diplotypes": [
+       "c.1905+1G>A (*2A) (heterozygous)"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D04",
+   "label": "Frozen F4 NA18526 read-backed normal",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D04-NA18526.observed.vcf",
+   "input_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified (CYP2C19 *1/*1, NM) + ACS/PCI qualifier",
+    "simvastatin": "Unknown (no SLCO1B1 evidence)",
+    "fluorouracil": "Unknown (no DPYD evidence)",
+    "azathioprine": "Unknown (no TPMT/NUDT15 evidence)",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.027,
+    "sha256": "ab7ec7af4e04776c0f80281e7365c23f0211cb57250eda61a22d9c5985a2d488",
+    "answerable_drugs": [
+     "clopidogrel"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.394,
+    "sha256": "c9f3b0e7231977015b435dd9e6be80c81fad5beb0fbfb30bcc91dd4b1dcd5eee",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "If considering clopidogrel, use at standard dose (75 mg/day)",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *1/*1 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "CYP2C9: only 0 of 88 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 88 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 88 absent positions.",
+     "SLCO1B1: only 0 of 35 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 35 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 35 absent positions.",
+     "TPMT: only 0 of 45 required positions (0%) carry an acceptable genotype in this VCF, below the 80% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 45 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 45 absent positions.",
+     "NUDT15: only 0 of 20 required positions (0%) carry an acceptable genotype in this VCF, below the 80% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 20 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 20 absent positions.",
+     "DPYD: only 0 of 83 required positions (0%) carry an acceptable genotype in this VCF, below the 20% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 83 required positions had acceptable genotypes; this gene needs 20%. Evidence gaps: 83 absent positions.",
+     "CYP2D6: only 0 of 157 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 157 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 157 absent positions.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "DPYD: no diplotype could be called (84 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "TPMT: no diplotype could be called (49 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "SLCO1B1: no diplotype could be called (46 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D04-NA18526.observed.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D04",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.3125497500004712,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D04/D04-NA18526.observed.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D04/D04-NA18526.observed.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D04/D04-NA18526.observed.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D04/D04-NA18526.observed.report.json",
+    "report_sha256": "4af6cb90bca6728a23dac3417859f7b9f30ed61db0a5959e7c19982c86b0d2c7",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "TPMT": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "DPYD": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D05",
+   "label": "Frozen F4 NA12878 read-backed actionable",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D05-NA12878.observed.vcf",
+   "input_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Ineffective (CYP2C19 *1/*2, IM) + ACS/PCI qualifier; hypothetical context, no donor diagnosis",
+    "simvastatin": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.026,
+    "sha256": "ab7ec7af4e04776c0f80281e7365c23f0211cb57250eda61a22d9c5985a2d488",
+    "answerable_drugs": [
+     "clopidogrel"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.323,
+    "sha256": "f14c3456737ff554f6c875d1a12a465e9f62eb3d41563dd0fff5434d82e37312",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Ineffective",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*1/*2",
+      "phenotype": "IM",
+      "action": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *1/*2 (Intermediate Metabolizer) \u2014 Ineffective."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "CYP2C9: only 0 of 88 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 88 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 88 absent positions.",
+     "SLCO1B1: only 0 of 35 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 35 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 35 absent positions.",
+     "TPMT: only 0 of 45 required positions (0%) carry an acceptable genotype in this VCF, below the 80% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 45 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 45 absent positions.",
+     "NUDT15: only 0 of 20 required positions (0%) carry an acceptable genotype in this VCF, below the 80% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 20 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 20 absent positions.",
+     "DPYD: only 0 of 83 required positions (0%) carry an acceptable genotype in this VCF, below the 20% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 83 required positions had acceptable genotypes; this gene needs 20%. Evidence gaps: 83 absent positions.",
+     "CYP2D6: only 0 of 157 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 157 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 157 absent positions.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "DPYD: no diplotype could be called (84 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "TPMT: no diplotype could be called (49 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "SLCO1B1: no diplotype could be called (46 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D05-NA12878.observed.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D05",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.3465964579954743,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D05/D05-NA12878.observed.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D05/D05-NA12878.observed.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D05/D05-NA12878.observed.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D05/D05-NA12878.observed.report.json",
+    "report_sha256": "e09ec16ed45d1c2cac734a55a6826f2737142dc25f24505276275b7effbb6edf",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*2"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*2"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*2",
+      "candidate_diplotypes": [
+       "*1/*2"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "TPMT": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "DPYD": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D06",
+   "label": "Real variant-only presentation (NA12878 minus hom-ref rows)",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D06-real-variant-only.vcf",
+   "input_sha256": "af5558a206fac64d67908525830e749f74fe472e28f25b075a8aa05da0702019",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.026,
+    "sha256": "c092692eb7140d87055ce1ed90840457b2ef284193c7b69428ad4d16482e8e2c",
+    "answerable_drugs": [],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.432,
+    "sha256": "41c92bcb15209ece2106114cb6ab7038062a24fa83fc23b84a45ab8845deb91a",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: no pharmacogenomic result (Unknown)."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "This VCF contains no homozygous-reference genotypes at any of PharmCAT's required positions, which means it is almost certainly a variants-only file. Such a file is indistinguishable from one where those positions were never tested. For a genotype caller that reads a missing position as reference, the consequence is NOT a missing result \u2014 it is a confident WRONG result: a change whose key position is missing is invisible, so a reduced-function patient is reported as normal. Measured rate of confidently-wrong calls at 60% position coverage: up to 28.6%. This application therefore reports genes without their required positions as Unknown rather than as normal. Produce the file again with EVERY position reported \u2014 including the ones that match the reference \u2014 so each required position carries an explicit genotype. The input requirements page gives the exact commands. See docs/input_requirements.md.",
+     "Every gene (7 of 7) was declined, at 0\u20139% position coverage. That pattern is a property of the FILE, not of 7 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "clopidogrel: Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "DPYD: no diplotype could be called (84 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "TPMT: no diplotype could be called (49 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "SLCO1B1: no diplotype could be called (46 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D06-real-variant-only.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D06",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.4030320000019856,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D06/D06-real-variant-only.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D06/D06-real-variant-only.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D06/D06-real-variant-only.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D06/D06-real-variant-only.report.json",
+    "report_sha256": "ef09116b368f5b9745477af95deb116f3a7824945537e47a1aa96a5132c021fd",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*2"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*2"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*2",
+      "candidate_diplotypes": [
+       "*1/*2"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "TPMT": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "DPYD": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D07",
+   "label": "Real incomplete public VCF (bundled NA12273, 1000G)",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D07-pharmaguard_sample_1000genomes.vcf",
+   "input_sha256": "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.006,
+    "sha256": "9e69b5be492d71557941c67bedf7d702a9633c23d77441e7cbf51fa44ce880d9",
+    "answerable_drugs": [],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.391,
+    "sha256": "d7b346135870f79d7004f8997f2b2479b1d9432a6e159570415910f0232e072d",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: no pharmacogenomic result (Unknown)."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "The VCF header does not state a reference build; assuming GRCh38. If it is actually GRCh37/hg19, the results will be wrong.",
+     "Input quality was not established for required positions marked FILTER=. in: CYP2C19 (16), CYP2C9 (17), CYP2D6 (67), DPYD (31), NUDT15 (5), SLCO1B1 (20), TPMT (9). These complete genotypes were retained because the VCF does not explicitly mark them as failed and this application does not invent assay-independent DP/GQ/QUAL thresholds. Confirm the upstream caller's quality policy before relying on them.",
+     "Every gene (7 of 7) was declined, at 19\u201357% position coverage. That pattern is a property of the FILE, not of 7 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+     "DPYD: 8 of 28 positions that could indicate reduced function carry an explicit genotype in this VCF. The gene met its 20% coverage minimum (37%), but percentage is a proxy: a file can clear it while omitting every position capable of showing a variant. Reported as Unknown rather than assuming the missing positions match the reference \u2014 which is what would make a reduced-function result read as normal.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "clopidogrel: Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+     "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing.",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "The TPMT gene is on the negative chromosomal strand, all genotype calls for TPMT in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The TPMT *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing.",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+     "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing.",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D07-pharmaguard_sample_1000genomes.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D07",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.1785328750047483,
+    "stdout_tail": "chr13:48037782\n\tDiscarded genotype at this position because REF in VCF (A) does not match expected reference (AGGAGTC)\n\tDuplicate entry found in VCF; this entry trumps previous invalid entry.\n\tGenotype at this position has SNP (A) but PharmCAT expects indel or repeat (A/AGGAGTCGGAGTC)\nchr1:97078987\n\tDuplicate entry found in VCF; first valid entry trumps others.\nchr22:42128211\n\tDuplicate entry found in VCF; first valid entry trumps others.\nchr22:42129037\n\tDuplicate entry found in VCF; first valid entry trumps others.\nSaving VCF warnings to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D07/D07-pharmaguard_sample_1000genomes.match_warnings.txt\nSaving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D07/D07-pharmaguard_sample_1000genomes.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D07/D07-pharmaguard_sample_1000genomes.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D07/D07-pharmaguard_sample_1000genomes.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D07/D07-pharmaguard_sample_1000genomes.report.json",
+    "report_sha256": "b9881e686c3740fa1cbc6b8c27d94ac0959812cc9509b208f3c9437034092c6b",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*2"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*2"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*2",
+       "*1/*92"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*2",
+       "*1/*92"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer",
+       "Indeterminate"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Reference/Reference"
+      ],
+      "recommendation_diplotypes": [
+       "Reference/Reference"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*2",
+      "candidate_diplotypes": [
+       "*1/*2"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*2",
+      "candidate_diplotypes": [
+       "*1/*2",
+       "*1/*92"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "TPMT": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "Reference/Reference",
+      "candidate_diplotypes": [
+       "Reference/Reference"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D08",
+   "label": "Oversized public VCF (PharmCAT tutorial NA18526 bgzip)",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D08-PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18526.vcf.bgz",
+   "input_sha256": "a3e4676b1825cd3723e6094565e8c0bad15905a879ad431dcd80106b8b9334c1",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "upload": "HTTP 413 FILE_TOO_LARGE at /coverage and /analyze; clear 5 MB message; controls re-enabled; next valid file analyses normally"
+   },
+   "coverage": {
+    "status": 413,
+    "seconds": 0.017,
+    "sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+    "answerable_drugs": null,
+    "error_code": "FILE_TOO_LARGE"
+   },
+   "analyze": {
+    "status": 413,
+    "seconds": 0.201,
+    "sha256": "3d0ada1ad0d40a5f91a1ea956c953cc8c45850253869fc043373f2623456ab9f",
+    "error": "The file is over the 5 MB upload limit. Restrict it to the required pharmacogenomic positions before uploading.",
+    "drugs": null,
+    "warnings": null,
+    "guideline_provenance": null
+   }
+  },
+  {
+   "id": "D09",
+   "label": "Malformed VCF (truncated gzip)",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D09-real-truncated.vcf.gz",
+   "input_sha256": "729feae06ff4039de81d56a9f18a4210e22286baddad6f15706a83b4051b5c3f",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "upload": "HTTP 400 CORRUPT_GZIP; clear message; recovery"
+   },
+   "coverage": {
+    "status": 400,
+    "seconds": 0.179,
+    "sha256": "f8fb5d049ec3779bd8b42ef1ca92b878f1b71c4f1b0b776b63e89b98ad3d0bc5",
+    "answerable_drugs": null,
+    "error_code": "CORRUPT_GZIP"
+   },
+   "analyze": {
+    "status": 400,
+    "seconds": 0.004,
+    "sha256": "f8fb5d049ec3779bd8b42ef1ca92b878f1b71c4f1b0b776b63e89b98ad3d0bc5",
+    "error": "This compressed VCF ended before its compressed-data member was complete. Re-create the compressed copy, or upload the plain .vcf instead.",
+    "drugs": null,
+    "warnings": null,
+    "guideline_provenance": null
+   }
+  },
+  {
+   "id": "D10",
+   "label": "Failed FILTER at CYP2C19 *2 core position",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D10-real-failed-filter.vcf",
+   "input_sha256": "e1460421f84c2e9ac96a113f25d6de0b7b96e44f54daa22ec40137f28d12f362",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.027,
+    "sha256": "79505eda1aa81af9910c13f1fbceae725cf73acdc992423e42da285b3107f8e5",
+    "answerable_drugs": [],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.4,
+    "sha256": "e6dd5a090507e7cbc9abfb350bf3b89098a505b612328e4bbc26b92da607fec3",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: no pharmacogenomic result (Unknown)."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "Every gene (7 of 7) was declined, at 0\u201397% position coverage. That pattern is a property of the FILE, not of 7 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "clopidogrel: Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "DPYD: no diplotype could be called (84 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "TPMT: no diplotype could be called (49 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "SLCO1B1: no diplotype could be called (46 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D10-real-failed-filter.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D10",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.3672988750040531,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D10/D10-real-failed-filter.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D10/D10-real-failed-filter.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D10/D10-real-failed-filter.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D10/D10-real-failed-filter.report.json",
+    "report_sha256": "95bf56a0699a57530ec7a00045ae532a4a2b76ecc3245c1dbb6a7a48a5dc89da",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*2"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*2"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*2",
+      "candidate_diplotypes": [
+       "*1/*2"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "TPMT": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "DPYD": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D11",
+   "label": "Partial genotype at CYP2C19 *2 core position",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D11-real-partial-gt.vcf",
+   "input_sha256": "d8670fbe6c6036dde445931a7c8e2194e12930fe070e81ff066ff72198aaebe9",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.027,
+    "sha256": "e7619b2c9e2305373759e5cdd2b07494ed89474d0bdcbd6edbaa05253cfd7710",
+    "answerable_drugs": [],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.47,
+    "sha256": "9a70905d46e40af3dcd72ce35e109a281ba601bcaf5703f5b576696f87b5d4f6",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: no pharmacogenomic result (Unknown)."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "Every gene (7 of 7) was declined, at 0\u201397% position coverage. That pattern is a property of the FILE, not of 7 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "CYP2C19: PharmCAT reported 2 equally likely diplotypes (*1/*2, *1/*35). Results use the first; confidence is reduced accordingly.",
+     "clopidogrel: Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "DPYD: no diplotype could be called (84 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "TPMT: no diplotype could be called (49 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "SLCO1B1: no diplotype could be called (46 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D11-real-partial-gt.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D11",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.3954845410044072,
+    "stdout_tail": "chr10:94781859\n\tIgnoring: only a single genotype found (GT=0/.).  Since it's reference, treating this as a missing position.\nSaving VCF warnings to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D11/D11-real-partial-gt.match_warnings.txt\nSaving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D11/D11-real-partial-gt.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D11/D11-real-partial-gt.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D11/D11-real-partial-gt.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D11/D11-real-partial-gt.report.json",
+    "report_sha256": "222914daa3d20ce55b8e7725d20c224fa8e064acb485559850e45e58c831b3ba",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*2",
+       "*1/*35"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*2",
+       "*1/*35"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer",
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*2",
+      "candidate_diplotypes": [
+       "*1/*2",
+       "*1/*35"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "TPMT": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "DPYD": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D12",
+   "label": "Missing required CYP2C19 position",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D12-real-missing-required.vcf",
+   "input_sha256": "93c86eb50f87583096a0d0aeae06a1ce00581903d1c787ead24ccfb442628edc",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.028,
+    "sha256": "b9430154a07bc0a03b07de8e5d1996d54ff32ba457049cfab5963a0b94ca4967",
+    "answerable_drugs": [],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.361,
+    "sha256": "c6df389e2f51718f139c72d72b4908a89c7a5100711278cb7c97951467d550a0",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: no pharmacogenomic result (Unknown)."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "Every gene (7 of 7) was declined, at 0\u201397% position coverage. That pattern is a property of the FILE, not of 7 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "CYP2C19: PharmCAT reported 2 equally likely diplotypes (*1/*2, *1/*35). Results use the first; confidence is reduced accordingly.",
+     "clopidogrel: Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "DPYD: no diplotype could be called (84 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "TPMT: no diplotype could be called (49 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "SLCO1B1: no diplotype could be called (46 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D12-real-missing-required.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D12",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.3195212079954217,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D12/D12-real-missing-required.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D12/D12-real-missing-required.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D12/D12-real-missing-required.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D12/D12-real-missing-required.report.json",
+    "report_sha256": "f76dbc2fdf8b8fa31698ec05f3f327f088668d48a0dda19c8e830a90d744ab08",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*2",
+       "*1/*35"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*2",
+       "*1/*35"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer",
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*2",
+      "candidate_diplotypes": [
+       "*1/*2",
+       "*1/*35"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "TPMT": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "DPYD": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D13",
+   "label": "Missing TPMT partner evidence (synthetic)",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D13-missing-TPMT.vcf",
+   "input_sha256": "3893a2c75b590ef5a39449e4f6b3889fad059cf966c16bb76870502cc181e852",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "azathioprine": "Unknown (TPMT evidence missing)",
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.006,
+    "sha256": "3d2ccc269548739cb6d730571a69ebb9b69bcce4505efab139f85d8f10d507ef",
+    "answerable_drugs": [
+     "clopidogrel",
+     "fluorouracil",
+     "simvastatin"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.359,
+    "sha256": "f01505d0dd3852236a02f0d366ab5e37315deb759d5d9ed7411289e48f8b13ad",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*38/*38",
+      "phenotype": "NM",
+      "action": "If considering clopidogrel, use at standard dose (75 mg/day)",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *38/*38 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "fluorouracil": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "DPYD",
+      "diplotype": "Reference/Reference",
+      "phenotype": "NM",
+      "action": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: DPYD Reference/Reference (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "NUDT15",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: NUDT15 *1/*1 (unknown) \u2014 Unknown."
+     },
+     "simvastatin": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "SLCO1B1",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: SLCO1B1 *1/*1 (Normal Function) \u2014 No PGx-guided adjustment identified."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "CYP2C9",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "TPMT: only 0 of 45 required positions (0%) carry an acceptable genotype in this VCF, below the 80% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 45 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 45 absent positions.",
+     "CYP2D6: only 0 of 157 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 157 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 157 absent positions.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "The CYP2C19 *38 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+     "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.",
+     "TPMT: no diplotype could be called (49 haplotype definitions could not be ruled out; the VCF is probably missing required positions)",
+     "azathioprine: Required genomic evidence is incomplete for TPMT. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+     "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: azathioprine, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D13-missing-TPMT.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D13",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.4977132499989239,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D13/D13-missing-TPMT.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D13/D13-missing-TPMT.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D13/D13-missing-TPMT.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D13/D13-missing-TPMT.report.json",
+    "report_sha256": "b30e4521e7942e68890e11030042f22563f98e70dcce3c475af7216659ba97f5",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*38/*38"
+      ],
+      "recommendation_diplotypes": [
+       "*38/*38"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Reference/Reference"
+      ],
+      "recommendation_diplotypes": [
+       "Reference/Reference"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*38/*38",
+      "candidate_diplotypes": [
+       "*38/*38"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "TPMT": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "Reference/Reference",
+      "candidate_diplotypes": [
+       "Reference/Reference"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D14",
+   "label": "Missing NUDT15 partner evidence (synthetic)",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D14-missing-NUDT15.vcf",
+   "input_sha256": "88e86f4cc93ad9212e65d264e82a6a0dbc688afdc0e2857edb5a5857644a44d7",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "azathioprine": "Unknown (NUDT15 evidence missing)",
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.007,
+    "sha256": "d47c39f7a98b31e0d454d9632ac5ca8e669f2f5d6396ae6c59f8ae44e7aaec66",
+    "answerable_drugs": [
+     "clopidogrel",
+     "fluorouracil",
+     "simvastatin"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.515,
+    "sha256": "3f999a913a047611529d49c182a75a0d2d0304e7771d134d0b51d1704a0f9824",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*38/*38",
+      "phenotype": "NM",
+      "action": "If considering clopidogrel, use at standard dose (75 mg/day)",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *38/*38 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "fluorouracil": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "DPYD",
+      "diplotype": "Reference/Reference",
+      "phenotype": "NM",
+      "action": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: DPYD Reference/Reference (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "TPMT",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: TPMT *1/*1 (unknown) \u2014 Unknown."
+     },
+     "simvastatin": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "SLCO1B1",
+      "diplotype": "*1/*1",
+      "phenotype": "NM",
+      "action": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: SLCO1B1 *1/*1 (Normal Function) \u2014 No PGx-guided adjustment identified."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "CYP2C9",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "NUDT15: only 0 of 20 required positions (0%) carry an acceptable genotype in this VCF, below the 80% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 20 required positions had acceptable genotypes; this gene needs 80%. Evidence gaps: 20 absent positions.",
+     "CYP2D6: only 0 of 157 required positions (0%) carry an acceptable genotype in this VCF, below the 100% minimum measured for this gene. Reported as Unknown. A confident call at this coverage would be unreliable \u2014 and unreliable in one direction: missing positions read as reference, so the error would be to report reduced function as normal. 0 of 157 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 157 absent positions.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "The CYP2C19 *38 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+     "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.",
+     "The TPMT gene is on the negative chromosomal strand, all genotype calls for TPMT in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The TPMT *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "azathioprine: Required genomic evidence is incomplete for NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+     "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: azathioprine, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D14-missing-NUDT15.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D14",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.3957282080009463,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D14/D14-missing-NUDT15.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D14/D14-missing-NUDT15.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D14/D14-missing-NUDT15.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D14/D14-missing-NUDT15.report.json",
+    "report_sha256": "eb9b4ae25811f080a50c3894b7b75ab87e70866b07bdabd0de93434b133d517c",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*38/*38"
+      ],
+      "recommendation_diplotypes": [
+       "*38/*38"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Reference/Reference"
+      ],
+      "recommendation_diplotypes": [
+       "Reference/Reference"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*38/*38",
+      "candidate_diplotypes": [
+       "*38/*38"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "TPMT": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "Reference/Reference",
+      "candidate_diplotypes": [
+       "Reference/Reference"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D15",
+   "label": "Scope abstention: unsupported drug, CYP2D6/codeine, warfarin",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D15-pharmaguard_sample_normal.vcf",
+   "input_sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c",
+   "drugs": "clopidogrel,ibuprofen,codeine,warfarin",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier (positive control in same request)",
+    "ibuprofen": "Unknown (outside audited scope; no CPIC text invented)",
+    "codeine": "Unknown even with 157/157 CYP2D6 positions",
+    "warfarin": "Unknown (no dose calculation)"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.007,
+    "sha256": "c1f0172598a7b56300f0b5d2161c2cda4eaa0c7ed9a2fdf00c9ac25f09f541bd",
+    "answerable_drugs": [
+     "clopidogrel",
+     "fluorouracil",
+     "azathioprine",
+     "simvastatin"
+    ],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.227,
+    "sha256": "44d3dd636384ee9c93903c2d3915d274db3cc382b52c4cc536474ae74884e2e0",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "No PGx-guided adjustment identified",
+      "primary_gene": "CYP2C19",
+      "diplotype": "*38/*38",
+      "phenotype": "NM",
+      "action": "If considering clopidogrel, use at standard dose (75 mg/day)",
+      "population": null,
+      "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: CYP2C19 *38/*38 (Normal Metabolizer) \u2014 No PGx-guided adjustment identified."
+     },
+     "ibuprofen": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "This drug is outside the audited application scope; no application guidance is produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for celecoxib, flurbiprofen, ibuprofen, lornoxicam and CYP2C9",
+      "unknown_reasons": null,
+      "explanation_summary": "ibuprofen: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "CYP2C9",
+      "diplotype": "*1/*1",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: CYP2C9 *1/*1 (unknown) \u2014 Unknown."
+     }
+    },
+    "warnings": [
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "The CYP2C19 *38 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+     "ibuprofen: This drug is outside the audited application scope; no application guidance is produced.",
+     "No pre-generated explanation for (ibuprofen, Unknown); using the deterministic template.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: ibuprofen, codeine, warfarin."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D15-pharmaguard_sample_normal.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D15",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.4100757079941104,
+    "stdout_tail": "Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D15/D15-pharmaguard_sample_normal.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D15/D15-pharmaguard_sample_normal.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D15/D15-pharmaguard_sample_normal.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D15/D15-pharmaguard_sample_normal.report.json",
+    "report_sha256": "87995197b45297000a6eafb73f4832600d9f6880bd92496365ec9b86feede4c0",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*38/*38"
+      ],
+      "recommendation_diplotypes": [
+       "*38/*38"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Reference/Reference"
+      ],
+      "recommendation_diplotypes": [
+       "Reference/Reference"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*38/*38",
+      "candidate_diplotypes": [
+       "*38/*38"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "TPMT": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "Reference/Reference",
+      "candidate_diplotypes": [
+       "Reference/Reference"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "D16",
+   "label": "Real incomplete official tutorial preprocessed VCF (NA18526)",
+   "input": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D16-NA18526.preprocessed.vcf",
+   "input_sha256": "188f839e8177406a92c87a5931e63fc75a848ac5757555a889a082fae7dafcb7",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "coverage": {
+    "status": 200,
+    "seconds": 0.007,
+    "sha256": "b3735d49dd911206a84a122e3896ea3e05ae0aa5056694428cf2087a09557964",
+    "answerable_drugs": [],
+    "error_code": null
+   },
+   "analyze": {
+    "status": 200,
+    "seconds": 1.347,
+    "sha256": "3c9fd6557069d9356753d2490d59de59df8457ae685f40cfa64413c8963b9237",
+    "error": null,
+    "drugs": {
+     "clopidogrel": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+      "unknown_reasons": null,
+      "explanation_summary": "clopidogrel: no pharmacogenomic result (Unknown)."
+     },
+     "fluorouracil": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "unknown_reasons": null,
+      "explanation_summary": "fluorouracil: no pharmacogenomic result (Unknown)."
+     },
+     "azathioprine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "unknown_reasons": null,
+      "explanation_summary": "azathioprine: no pharmacogenomic result (Unknown)."
+     },
+     "simvastatin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "unknown_reasons": null,
+      "explanation_summary": "simvastatin: no pharmacogenomic result (Unknown)."
+     },
+     "warfarin": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "unknown_reasons": null,
+      "explanation_summary": "warfarin: no pharmacogenomic result (Unknown)."
+     },
+     "codeine": {
+      "risk_label": "Unknown",
+      "primary_gene": "Unknown",
+      "diplotype": "Unknown",
+      "phenotype": "Unknown",
+      "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "population": null,
+      "cpic_recommendation": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "unknown_reasons": null,
+      "explanation_summary": "codeine: no pharmacogenomic result (Unknown)."
+     }
+    },
+    "warnings": [
+     "Every gene (7 of 7) was declined, at 25\u201355% position coverage. That pattern is a property of the FILE, not of 7 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+     "DPYD: 12 of 28 positions that could indicate reduced function carry an explicit genotype in this VCF. The gene met its 20% coverage minimum (55%), but percentage is a proxy: a file can clear it while omitting every position capable of showing a variant. Reported as Unknown rather than assuming the missing positions match the reference \u2014 which is what would make a reduced-function result read as normal.",
+     "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+     "clopidogrel: Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+     "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+     "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+     "The DPYD Reference allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing.",
+     "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "The NUDT15 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing.",
+     "azathioprine: Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "The assigned genotype is *1/*15; however, *5/*37 cannot be ruled out without phased data.",
+     "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+     "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions either because the position is reference or missing.",
+     "simvastatin: Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+     "warfarin: No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+     "codeine: CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+     "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+     "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+     "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+     "No usable pharmacogenomic result for: clopidogrel, fluorouracil, azathioprine, simvastatin, warfarin, codeine."
+    ],
+    "guideline_provenance": {
+     "pharmcat_version": "3.4.0",
+     "cpic_data_version": "2026-07-13-11-40",
+     "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+     "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+     "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+    }
+   },
+   "pharmcat_direct": {
+    "argv": [
+     "/opt/homebrew/opt/openjdk@17/bin/java",
+     "-jar",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+     "-vcf",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D16-NA18526.preprocessed.vcf",
+     "-o",
+     "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D16",
+     "-reporterJson"
+    ],
+    "exit_code": 0,
+    "seconds": 1.218555125000421,
+    "stdout_tail": "chr13:48037782\n\tDiscarded genotype at this position because REF in VCF (A) does not match expected reference (AGGAGTC)\n\tDuplicate entry found in VCF; this entry trumps previous invalid entry.\nchr22:42128248\n\tDiscarded genotype at this position because REF in VCF (C) does not match expected reference (CAGTT)\nchr22:42128325\n\tDuplicate entry found in VCF; first valid entry trumps others.\nSaving VCF warnings to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D16/D16-NA18526.match_warnings.txt\nSaving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D16/D16-NA18526.match.json\nSaving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D16/D16-NA18526.phenotype.json\nSaving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-14-prompt8-4da1199df2/api-harness-final2/pharmcat-direct/D16/D16-NA18526.report.json\nDone.\n",
+    "stderr_tail": "",
+    "report": "api-harness-final2/pharmcat-direct/D16/D16-NA18526.report.json",
+    "report_sha256": "4a9fedae2c9b7bc7cfbb9797a6243c28926812beadaf62cd4b5fd8cf7c9164d9",
+    "pharmcat_version": "3.4.0",
+    "data_version": "2026-07-13-11-40",
+    "raw_gene_calls": {
+     "CYP2C19": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2C9": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "CYP2D6": {
+      "source_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "recommendation_diplotypes": [
+       "Unknown/Unknown"
+      ],
+      "phenotypes": [
+       "No Result"
+      ],
+      "call_source": "NONE"
+     },
+     "DPYD": {
+      "source_diplotypes": [
+       "Reference/Reference"
+      ],
+      "recommendation_diplotypes": [
+       "Reference/Reference"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "NUDT15": {
+      "source_diplotypes": [
+       "*1/*3"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*3"
+      ],
+      "phenotypes": [
+       "Intermediate Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     },
+     "SLCO1B1": {
+      "source_diplotypes": [
+       "*1/*15"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*15"
+      ],
+      "phenotypes": [
+       "Decreased Function"
+      ],
+      "call_source": "MATCHER"
+     },
+     "TPMT": {
+      "source_diplotypes": [
+       "*1/*1"
+      ],
+      "recommendation_diplotypes": [
+       "*1/*1"
+      ],
+      "phenotypes": [
+       "Normal Metabolizer"
+      ],
+      "call_source": "MATCHER"
+     }
+    },
+    "parsed_gene_calls": {
+     "CYP2C19": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "CYP2C9": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "SLCO1B1": {
+      "diplotype": "*1/*15",
+      "candidate_diplotypes": [
+       "*1/*15"
+      ]
+     },
+     "TPMT": {
+      "diplotype": "*1/*1",
+      "candidate_diplotypes": [
+       "*1/*1"
+      ]
+     },
+     "NUDT15": {
+      "diplotype": "*1/*3",
+      "candidate_diplotypes": [
+       "*1/*3"
+      ]
+     },
+     "DPYD": {
+      "diplotype": "Reference/Reference",
+      "candidate_diplotypes": [
+       "Reference/Reference"
+      ]
+     },
+     "CYP2D6": {
+      "diplotype": null,
+      "candidate_diplotypes": [
+       "Unknown/Unknown"
+      ]
+     }
+    }
+   }
+  }
+ ]
+}

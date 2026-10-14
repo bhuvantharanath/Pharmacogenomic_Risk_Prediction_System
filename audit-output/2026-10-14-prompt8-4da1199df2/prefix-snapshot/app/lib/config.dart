@@ -1,0 +1,128 @@
+/// App-wide configuration.
+library;
+
+export 'generated/capabilities.g.dart' show kDemoDrugs;
+
+/// Base URL of the PharmaGuard backend.
+///
+/// **No production URL is hardcoded here.** The default is localhost so a fresh
+/// clone works for development; the deployed build supplies the real URL at
+/// build time:
+///
+///   flutter build web --release \
+///     --dart-define=API_BASE_URL=https://YOURNAME-pharmaguard.hf.space
+///
+/// The GitHub Actions web deploy passes it from a repository secret, so the
+/// backend URL is configuration rather than source.
+///
+/// `PHARMAGUARD_API_BASE_URL` is accepted as a legacy alias from Phase 1 so
+/// existing local scripts and docs keep working.
+///
+/// Android emulator note: `localhost` there is the emulator itself, not your
+/// machine. Use `--dart-define=API_BASE_URL=http://10.0.2.2:8000`.
+const String _apiBaseUrl = String.fromEnvironment(
+  'API_BASE_URL',
+  defaultValue: String.fromEnvironment(
+    'PHARMAGUARD_API_BASE_URL',
+    defaultValue: 'http://localhost:8000',
+  ),
+);
+
+/// Normalised base URL — trailing slashes stripped so `'$base/health'` is safe.
+final String kApiBaseUrl = _apiBaseUrl.replaceAll(RegExp(r'/+$'), '');
+
+/// True when the app is pointed at a local development backend.
+///
+/// Used to soften the cold-start messaging: a localhost backend either responds
+/// immediately or is not running, so telling the user to "wait a minute for the
+/// server to wake up" would be misleading.
+final bool kIsLocalBackend =
+    kApiBaseUrl.contains('localhost') ||
+    kApiBaseUrl.contains('127.0.0.1') ||
+    kApiBaseUrl.contains('10.0.2.2');
+
+/// The always-visible banner line.
+///
+/// Deliberately short. This strip sits above every screen, and the full
+/// disclosure — five lines of it — crowded the UI badly enough to push the
+/// results off-screen. A banner nobody can read past is not a disclosure.
+///
+/// It still names the gap. Brevity here buys scannability, not silence: the
+/// clause about no clinician having reviewed the content is the part that
+/// actually informs, and it stays.
+const String kDisclaimerShort =
+    'Research/educational decision support only. Not a medical device. '
+    'No clinician has reviewed this content.';
+
+/// The full disclosure, carried on every result.
+///
+/// Must stay byte-identical to `DISCLAIMER` in `backend/app/models.py` — the
+/// API sends its own copy with each analysis, and a client rendering weaker
+/// wording than the server sent would be the drift worth catching. Pinned by
+/// `test_client_and_api_disclaimers_are_identical`.
+const String kDisclaimer =
+    'Research/educational decision support only. '
+    'Not a medical device. Not for clinical use. '
+    'No qualified clinical expert has reviewed this text: every clinical '
+    'statement is machine-verified to come from a published CPIC recommendation, '
+    'which checks that nothing was invented, not that it is correct for you.';
+
+/// How long to keep trying to wake the backend before calling it unreachable.
+///
+/// MEASURED, AND RAISED ONCE. This was 90 s, chosen when a cold start measured
+/// 12.85 s — the image was still resident on the Render host from a recent
+/// deploy, so only the container had to start.
+///
+/// A day later, cold `/health` took **83 s**: Render had evicted the ~6 GB
+/// image and re-pulled it. That left 7 seconds of margin against the budget, so
+/// a slightly slower pull would have made the client give up on a server that
+/// was seconds from answering — and report "cannot be reached" about a backend
+/// that was fine. A false negative on availability is worse than a longer wait,
+/// because the wait is honest and the false negative is not.
+///
+/// 180 s is comfortably past the observed worst case. It is a CEILING, not an
+/// expectation: the banner shows elapsed seconds throughout, and a warm backend
+/// answers on the first ping without the waking state ever appearing.
+const Duration kWakeupBudget = Duration(seconds: 180);
+
+/// What to tell the user a cold start actually costs.
+///
+/// Kept beside the budget so the two cannot drift: the copy quoted "up to a
+/// minute" while the measured worst case was 83 s, which is precisely how a
+/// normal wait comes to read as a hang — the user was promised sixty seconds.
+const String kColdStartExpectation = 'usually 15–90 seconds, occasionally '
+    'longer if the server image has to be fetched again';
+
+/// Backoff schedule for the wake-up ping.
+///
+/// Front-loaded: an already-warm backend answers on the first try, so the early
+/// retries are cheap and fast. The later gaps widen so a genuinely cold start
+/// is not hammered with dozens of requests while it boots.
+const List<Duration> kWakeupBackoff = <Duration>[
+  Duration(seconds: 1),
+  Duration(seconds: 2),
+  Duration(seconds: 3),
+  Duration(seconds: 5),
+  Duration(seconds: 8),
+  Duration(seconds: 10),
+];
+
+/// The backend commit this bundle was built to talk to.
+///
+/// Set by the deploy workflow as `--dart-define=EXPECTED_BACKEND_SHA=<sha>`,
+/// the same SHA it tells Render to deploy. Empty in a local `flutter run`,
+/// which is correct — there is nothing to compare against a backend you are
+/// editing.
+///
+/// WHY THIS EXISTS. The two halves deploy through different systems: the web
+/// client through GitHub Actions, the backend through a Render API call. For
+/// one release they drifted silently, because Render's `autoDeploy` flag
+/// reports enabled while doing nothing. Nothing anywhere said so — the site
+/// looked fine and simply behaved like an older server. Comparing a compiled-in
+/// SHA against the one the backend reports turns that into a visible fact.
+const String kExpectedBackendSha =
+    String.fromEnvironment('EXPECTED_BACKEND_SHA', defaultValue: '');
+
+/// Short form for display. Full SHAs are unreadable in a banner.
+String shortSha(String sha) =>
+    sha.length >= 7 ? sha.substring(0, 7) : sha;

@@ -13,9 +13,9 @@
 /// every one of them reporting reduced function as normal — so the count is
 /// exactly what a reader needs when the answer looks fine.
 ///
-/// A gene that cannot be called from a VCF at all shows "not applicable" with a
-/// reason, never a zero bar. Zero would say "your file is deficient"; the truth
-/// is that no VCF can carry this information.
+/// A gene this application does not call from a VCF shows "not applicable" with
+/// a reason, never a zero bar. Zero would say "your file is deficient"; the
+/// truth is that this application does not read that gene from any upload.
 library;
 
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class CoverageCensus extends StatelessWidget {
     return Semantics(
       // One spoken sentence beats 35 unlabelled ticks for a screen reader.
       label: '$gene coverage: ${c.positionsPresent} of '
-          '${c.positionsRequired} required positions reported'
+          '${c.positionsRequired} required positions usable'
           '${c.sufficient ? '' : ', below the ${c.minimumPercent} percent minimum'}',
       excludeSemantics: true,
       child: Column(
@@ -83,15 +83,29 @@ class CoverageCensus extends StatelessWidget {
           ),
           const SizedBox(height: 7),
           Text(
-            complete
-                ? 'Every required position was reported.'
-                : '${c.positionsRequired - c.positionsPresent} of '
-                    '${c.positionsRequired} positions were not reported in your file.',
+            complete ? 'Every required position was reported.' : _shortfall(c),
             style: Tokens.uiSm.copyWith(color: complete ? Tokens.ink2 : tick),
           ),
         ],
       ),
     );
+  }
+
+  /// What the shortfall is made of. A row missing from the file and a row whose
+  /// genotype failed its FILTER or was only partly called need different
+  /// fixes, so they are not both described as "not reported".
+  static String _shortfall(GeneCoverage c) {
+    final int absent = c.absentPositions;
+    final int unusable = c.unusablePositions;
+    final String notReported =
+        '$absent of ${c.positionsRequired} positions were not reported in your file';
+    if (unusable == 0) return '$notReported.';
+    const String why =
+        'carried a genotype that could not be used (failed FILTER, partial or '
+        'missing call)';
+    return absent == 0
+        ? '$unusable of ${c.positionsRequired} positions $why.'
+        : '$notReported, and $unusable more $why.';
   }
 
   Widget _notApplicable(BuildContext context) => Semantics(

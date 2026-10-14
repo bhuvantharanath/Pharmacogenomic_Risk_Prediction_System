@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-02T07:19:01.784863+00:00",
+  "command": [
+    "/opt/homebrew/opt/openjdk/bin/java",
+    "-Xmx256m",
+    "-jar",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat-3.4.0-all.jar",
+    "-vcf",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-01-f7/frozen-local/NA18861.1000G2022.vcf",
+    "-o",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-01-f7/replay",
+    "-reporterJson"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.232535,
+  "checks": {
+    "frozen_checksums": true,
+    "source_artifacts_unchanged": true,
+    "four_core_variants_observed": true,
+    "missing_positions_not_imputed": true,
+    "fresh_pharmcat_call": "*1/*43",
+    "frozen_parser_call": "*1/*43",
+    "fresh_parser_call": "*1/*43",
+    "frozen_final_simvastatin": "Unknown",
+    "tracked_diff_unchanged": true
+  },
+  "complete_read_backed_na18861_rerun": false,
+  "coverage": {
+    "gene": "SLCO1B1",
+    "positions_found": 20,
+    "positions_required": 35,
+    "threshold_percent": 100,
+    "percent": 57.1,
+    "passes": false,
+    "not_readable_from_vcf": false,
+    "reason": "20 of 35 required positions had acceptable genotypes; this gene needs 100%. Evidence gaps: 20 unfiltered calls, 15 absent positions."
+  },
+  "pinned_version": "3.4.0",
+  "data_version": "2026-07-13-11-40"
+}

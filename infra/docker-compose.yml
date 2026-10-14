@@ -21,8 +21,8 @@ services:
     environment:
       PHARMCAT_PIPELINE: pharmcat_pipeline
       PHARMCAT_TIMEOUT_SECONDS: "120"
-      # static (default) serves pre-generated explanations with no API call.
-      # "live" additionally needs GEMINI_API_KEY and requirements-llm.txt.
+      # static (default) serves approved prose or deterministic fallback with
+      # no API call. Runtime clinical prose is disabled in every mode.
       EXPLANATION_MODE: static
       # Marks this as a local container so the hosted-deployment CORS assertion
       # does not fire. Without it, `PORT` alone would look like Cloud Run.

@@ -1,0 +1,6 @@
+{
+  "package": "test-data/benchmark/current-candidate-2026-10-04",
+  "evaluation_id": "pharmaguard-external-current-candidate-v2-2026-10-04",
+  "outputs": 10,
+  "current_core": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691"
+}

@@ -1,0 +1,210 @@
+{
+  "results": [
+    {
+      "sample": "NA18526",
+      "independent_truth": "*1/*1",
+      "observed_reference_calls": 34,
+      "DP_range": [
+        21,
+        42
+      ],
+      "reference_PL_margin_min": 63,
+      "variant_GQ_min": 127,
+      "pharmcat_source_diplotypes": [
+        {
+          "allele1": {
+            "gene": "CYP2C19",
+            "name": "*1",
+            "function": "Normal function",
+            "reference": false,
+            "activityValue": "n/a"
+          },
+          "allele2": {
+            "gene": "CYP2C19",
+            "name": "*1",
+            "function": "Normal function",
+            "reference": false,
+            "activityValue": "n/a"
+          },
+          "gene": "CYP2C19",
+          "matchScore": 70,
+          "phenotypes": [
+            "Normal Metabolizer"
+          ],
+          "outsidePhenotype": false,
+          "outsidePhenotypeMismatch": null,
+          "activityScore": null,
+          "outsideActivityScore": false,
+          "outsideActivityScoreMismatch": null,
+          "variant": null,
+          "lookupKey": [
+            "Normal Metabolizer"
+          ],
+          "label": "*1/*1",
+          "inferred": false,
+          "inferredSourceDiplotypes": null,
+          "combination": false,
+          "diplotypeKey": {
+            "*1": 2.0
+          }
+        }
+      ],
+      "parser_diplotype": "*1/*1",
+      "api_profile": {
+        "primary_gene": "CYP2C19",
+        "diplotype": "*1/*1",
+        "recommendation_diplotype": null,
+        "candidate_diplotypes": [],
+        "phenotype": "NM",
+        "activity_score": null,
+        "detected_variants": [
+          {
+            "rsid": "rs3758581",
+            "gene": "CYP2C19",
+            "genotype": "G/G",
+            "star_allele": null,
+            "function": "Contributes to named allele(s): *1, *2, *3, *4, *5, *6, *7, *8, *9, *10, *11, *12, *13, *14, *15, *17, *18, *19, *22, *23, *24, *25, *26, *28, *29, *31, *32, *33, *35, *39, *40, *41"
+          }
+        ]
+      },
+      "api_label": "No PGx-guided adjustment identified",
+      "api_recommendation": {
+        "action": "If considering clopidogrel, use at standard dose (75 mg/day)",
+        "dosing_guidance": "If considering clopidogrel, use at standard dose (75 mg/day)",
+        "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Normal clopidogrel active metabolite formation; normal on-treatment platelet reactivity",
+        "cpic_evidence_level": "Unknown",
+        "alternatives": [],
+        "source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: standard_dosing]"
+      },
+      "checks": {
+        "input_checksum": true,
+        "all_35_qualifying_observed_sites": true,
+        "no_failed_records": true,
+        "coverage_only_clopidogrel": true,
+        "observed_genotypes_preserved_in_pharmcat": true,
+        "direct_pharmcat_matches_truth": true,
+        "direct_pharmcat_matches_independent_phenotype": true,
+        "parser_matches_direct_and_truth": true,
+        "api_matches_diplotype_and_phenotype": true,
+        "other_five_drugs_abstain": true,
+        "template_fallback_truthful": true,
+        "no_clinical_review_claim": true
+      },
+      "discrepancy_classification": "none_in_evaluated_CYP2C19_path"
+    },
+    {
+      "sample": "NA12878",
+      "independent_truth": "*1/*2",
+      "observed_reference_calls": 32,
+      "DP_range": [
+        15,
+        41
+      ],
+      "reference_PL_margin_min": 45,
+      "variant_GQ_min": 127,
+      "pharmcat_source_diplotypes": [
+        {
+          "allele1": {
+            "gene": "CYP2C19",
+            "name": "*1",
+            "function": "Normal function",
+            "reference": false,
+            "activityValue": "n/a"
+          },
+          "allele2": {
+            "gene": "CYP2C19",
+            "name": "*2",
+            "function": "No function",
+            "reference": false,
+            "activityValue": "n/a"
+          },
+          "gene": "CYP2C19",
+          "matchScore": 38,
+          "phenotypes": [
+            "Intermediate Metabolizer"
+          ],
+          "outsidePhenotype": false,
+          "outsidePhenotypeMismatch": null,
+          "activityScore": null,
+          "outsideActivityScore": false,
+          "outsideActivityScoreMismatch": null,
+          "variant": null,
+          "lookupKey": [
+            "Intermediate Metabolizer"
+          ],
+          "label": "*1/*2",
+          "inferred": false,
+          "inferredSourceDiplotypes": null,
+          "combination": false,
+          "diplotypeKey": {
+            "*1": 1.0,
+            "*2": 1.0
+          }
+        }
+      ],
+      "parser_diplotype": "*1/*2",
+      "api_profile": {
+        "primary_gene": "CYP2C19",
+        "diplotype": "*1/*2",
+        "recommendation_diplotype": null,
+        "candidate_diplotypes": [],
+        "phenotype": "IM",
+        "activity_score": null,
+        "detected_variants": [
+          {
+            "rsid": "rs12769205",
+            "gene": "CYP2C19",
+            "genotype": "A/G",
+            "star_allele": null,
+            "function": "Contributes to named allele(s): *1, *2, *35"
+          },
+          {
+            "rsid": "rs4244285",
+            "gene": "CYP2C19",
+            "genotype": "G/A",
+            "star_allele": null,
+            "function": "Contributes to named allele(s): *1, *2"
+          },
+          {
+            "rsid": "rs3758581",
+            "gene": "CYP2C19",
+            "genotype": "G/G",
+            "star_allele": null,
+            "function": "Contributes to named allele(s): *1, *2, *3, *4, *5, *6, *7, *8, *9, *10, *11, *12, *13, *14, *15, *17, *18, *19, *22, *23, *24, *25, *26, *28, *29, *31, *32, *33, *35, *39, *40, *41"
+          }
+        ]
+      },
+      "api_label": "Ineffective",
+      "api_recommendation": {
+        "action": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+        "dosing_guidance": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+        "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events",
+        "cpic_evidence_level": "Unknown",
+        "alternatives": [
+          "CPIC indicates an alternative drug is available \u2014 see the recommendation text above for the specific agents."
+        ],
+        "source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]"
+      },
+      "checks": {
+        "input_checksum": true,
+        "all_35_qualifying_observed_sites": true,
+        "no_failed_records": true,
+        "coverage_only_clopidogrel": true,
+        "observed_genotypes_preserved_in_pharmcat": true,
+        "direct_pharmcat_matches_truth": true,
+        "direct_pharmcat_matches_independent_phenotype": true,
+        "parser_matches_direct_and_truth": true,
+        "api_matches_diplotype_and_phenotype": true,
+        "other_five_drugs_abstain": true,
+        "template_fallback_truthful": true,
+        "no_clinical_review_claim": true
+      },
+      "discrepancy_classification": "none_in_evaluated_CYP2C19_path"
+    }
+  ],
+  "passed": 24,
+  "total": 24,
+  "independent_per_base_truth_available": false,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "scope": "two real controls, one gene/drug pathway; not clinical validation"
+}

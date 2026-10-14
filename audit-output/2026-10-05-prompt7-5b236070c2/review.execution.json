@@ -1,0 +1,11 @@
+{
+  "command": [
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+    "scripts/review_status.py",
+    "--json"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 0,
+  "seconds": 0.04064591600035783,
+  "at": "2026-10-05T13:12:13.273266+00:00"
+}

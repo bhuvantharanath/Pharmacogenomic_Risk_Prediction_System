@@ -1,0 +1,260 @@
+Window: "", App: Google Chrome.
+0 window Print, Secondary Actions: Raise
+	1 container Print
+		2 container
+			3 scroll area
+				4 HTML content PharmaGuard, URL: chrome://print/
+					5 container
+						6 HTML content chrome://print/pdf/index_print.html?chrome-untrusted://print/EA29A4322EC285EBB2E14A380A5B8149/0/print.pdf
+							7 container
+								8 container
+									9 button Fit to width
+									10 button Zoom in
+									11 button Zoom out
+								12 text 1
+								13 HTML content
+									14 container PDF document containing 5 pages
+										15 container Finished loading PDF
+											16 text Finished loading PDF
+										17 container Page 1
+											18 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+
+											19 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+
+											20 heading 2
+												21 text Pharmacogenomic analysis summary
+
+											22 text sample NA12878
+analysed 2026-10-06T10:54:54.745948Z
+printed 2026-10-06
+drugs checked 6
+
+											23 text This is not a clinical report. It was produced by a final-year student project for research and education. It has not
+been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page.
+Every clinical statement here is machine-checked to trace back to a published CPIC recommendation. That verifies
+nothing was invented. It does not verify that any of it is correct for the person this sample came from.
+Do not change a medicine on the strength of this page. Take it t
+											24 text Results
+
+											25 text Ordered by consequence, not alphabetically.
+
+											26 text clopidogrel Ineffective
+
+											27 text gene CYP2C19
+diplotype *1/*2
+phenotype IM
+evidence level Unknown
+
+											28 text clopidogrel: CYP2C19 *1/*2 (Intermediate Metabolizer) — Ineffective.
+
+											29 text CPIC GUIDELINE — QUOTED EXACTLY
+Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at
+standard dose if no contraindication.
+CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19:
+Reduced clopidogrel active metabolite formation; increased on-treatment platelet
+reactivity; increased risk for adverse cardiac and cerebrovascular events
+— Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule:
+avoid_for_lack_of_ef
+											30 text 10/6/26, 4:27 PM PharmaGuard summary — NA12878
+
+											31 text 127.0.0.1:3000 1/5
+										32 container Page 2
+											33 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+
+											34 text azathioprine Unknown
+
+											35 text gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+
+											36 text azathioprine: no pharmacogenomic result (Unknown).
+
+											37 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are
+partial evidence only; no complete drug-level PGx recommendation is made.
+Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT
+— PharmCAT (no matching CPIC entry)
+
+											38 text codeine Unknown
+
+											39 text gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+
+											40 text codeine: no pharmacogenomic result (Unknown).
+
+											41 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this
+application, so codeine guidance is not produced.
+Annotation of CPIC Guideline for codeine and CYP2D6
+— PharmCAT (no matching CPIC entry)
+
+											42 text fluorouracil Unknown
+
+											43 text gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+
+											44 text fluorouracil: no pharmacogenomic result (Unknown).
+
+											45 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+Required genomic evidence is incomplete for DPYD. Available partner findings are partial
+evidence only; no complete drug-level PGx recommendation is made.
+Annotation of CPIC Guideline for fluorouracil and DPYD
+— PharmCAT (no matching CPIC entry)
+
+											46 text 10/6/26, 4:27 PM PharmaGuard summary — NA12878
+
+											47 text 127.0.0.1:3000 2/5
+										48 container Page 3
+											49 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+
+											50 text simvastatin Unknown
+
+											51 text gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+
+											52 text simvastatin: no pharmacogenomic result (Unknown).
+
+											53 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+Required genomic evidence is incomplete for SLCO1B1. Available partner findings are
+partial evidence only; no complete drug-level PGx recommendation is made.
+Annotation of CPIC Guideline for simvastatin and SLCO1B1
+— PharmCAT (no matching CPIC entry)
+
+											54 text warfarin Unknown
+
+											55 text gene Unknown
+diplotype Unknown
+phenotype Unknown
+evidence level Unknown
+
+											56 text warfarin: no pharmacogenomic result (Unknown).
+
+											57 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+No validated automated warfarin-dose implementation is provided by this application; a
+gene call alone is not a complete dosing recommendation.
+Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1
+— PharmCAT (no matching CPIC entry)
+
+											58 text Unknown results (5)
+
+											59 text An Unknown is a declined answer, not a missing one. Only one of these reasons is something the sample provider can act on.
+
+											60 text azathioprine Your file is missing required positions
+
+											61 text Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap:
+a change whose key position is absent is invisible, so the genotype would read as normal and a reducedfunction result could be reported as safe. The system declines rather than risk that.
+What would fix it: Upload a VCF that reports ALL positions, including those matching the reference
+— a clinical pharmacogenomic panel, or data covering all your genes, produced with every position
+reported. A va
+											62 text 10/6/26, 4:27 PM PharmaGuard summary — NA12878
+
+											63 text 127.0.0.1:3000 3/5
+										64 container Page 4
+											65 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+
+											66 text codeine Not determinable from a VCF
+
+											67 text This gene is defined by structural and copy-number changes, which a VCF file cannot represent. No
+amount of extra sequencing depth in a VCF will resolve it — it needs a different kind of genetic test. The
+system declines to guess rather than report a genotype it cannot support.
+Nothing about the uploaded file would change this result.
+
+											68 text fluorouracil Your file is missing required positions
+
+											69 text Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap:
+a change whose key position is absent is invisible, so the genotype would read as normal and a reducedfunction result could be reported as safe. The system declines rather than risk that.
+What would fix it: Upload a VCF that reports ALL positions, including those matching the reference
+— a clinical pharmacogenomic panel, or data covering all your genes, produced with every position
+reported. A va
+											70 text simvastatin Your file is missing required positions
+
+											71 text Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap:
+a change whose key position is absent is invisible, so the genotype would read as normal and a reducedfunction result could be reported as safe. The system declines rather than risk that.
+What would fix it: Upload a VCF that reports ALL positions, including those matching the reference
+— a clinical pharmacogenomic panel, or data covering all your genes, produced with every position
+reported. A va
+											72 text warfarin Result withheld
+
+											73 text No validated automated warfarin-dose implementation is provided by this application; a gene call alone
+is not a complete dosing recommendation.
+Nothing about the uploaded file would change this result.
+
+											74 heading 2
+												75 text Input coverage
+
+											76 text How many of the positions each gene needs carried an explicit genotype in the uploaded file. A position that is absent reads as
+matching the reference, so missing data produces confident results rather than uncertain ones — which is why the count is printed
+whether or not it passed.
+
+											77 text gene reported required minimum sufficient
+CYP2C19 35 35 100% yes
+CYP2C9 0 88 100% NO
+CYP2D6 0 157 100% NO
+DPYD 0 83 20% NO
+NUDT15 0 20 80% NO
+SLCO1B1 0 35 100% NO
+TPMT 0 45 80% NO
+
+											78 text 10/6/26, 4:27 PM PharmaGuard summary — NA12878
+
+											79 text 127.0.0.1:3000 4/5
+										80 container Page 5
+											81 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+Not resolved from this file: CYP2C9, CYP2D6, DPYD, NUDT15, SLCO1B1, TPMT. Any drug keyed to these genes was reported as
+Unknown rather than assumed normal.
+
+											82 heading 2
+												83 text Where this guidance came from
+PharmCAT 3.4.0
+CPIC data version 2026-07-13-11-40
+explanations generated 24 Jul 2026
+source CPIC guidelines, retrieved via PharmCAT
+Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for
+changes.
+
+											84 text 10/6/26, 4:27 PM PharmaGuard summary — NA12878
+
+											85 text 127.0.0.1:3000 5/5
+						86 container
+							87 text "
+						88 container
+							89 text "
+						90 container
+							91 text "
+						92 container
+							93 text "
+					94 heading Print, Value: 1
+						95 text Print
+					96 text 5 pages
+					97 container
+						98 text Destination
+						99 pop up button Destination, Value: Save as PDF
+							100 (selected) Save as PDF
+					101 text Pages
+					102 pop up button Pages, Value: All
+					103 text Layout
+					104 pop up button Layout, Value: Portrait
+					105 container More settings
+						106 button More settings
+					107 button Cancel
+					108 button Save
+109 menu bar
+	110 Chrome
+	111 File
+	112 Edit
+	113 View
+	114 History
+	115 Bookmarks
+	116 Profiles
+	117 Tab
+	118 Window
+	119 Help
+
+The focused UI element is 108 button Save

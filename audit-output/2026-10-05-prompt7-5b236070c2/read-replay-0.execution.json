@@ -1,0 +1,28 @@
+{
+  "command": [
+    "bcftools",
+    "mpileup",
+    "-q",
+    "20",
+    "-Q",
+    "20",
+    "-d",
+    "1000",
+    "--ns",
+    "UNMAP,SECONDARY,QCFAIL,DUP,SUPPLEMENTARY",
+    "-a",
+    "FORMAT/DP,FORMAT/AD",
+    "-f",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/GRCh38.chr10.fa",
+    "-r",
+    "chr10:94760900-94853914",
+    "-Ob",
+    "-o",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18526.pileup.bcf",
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-09-30-f4/NA18526.CYP2C19.bam"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 0,
+  "seconds": 0.44975775000057183,
+  "at": "2026-10-05T13:13:26.177897+00:00"
+}

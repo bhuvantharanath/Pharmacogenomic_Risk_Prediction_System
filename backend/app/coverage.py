@@ -33,11 +33,13 @@ before PharmCAT runs, which is what this module does.
 
 WHAT COUNTS AS COVERED
 
-A position counts only when the VCF carries an **explicit genotype** for it —
-including homozygous reference (`0/0`). `./.` does not count, and neither does a
-row that simply is not there. That distinction is the whole point: a
-variants-only VCF, which is the common shape in the wild, looks exactly like one
-where those positions were never assayed.
+A position counts only when the VCF carries a **complete genotype** for it —
+including homozygous reference (`0/0`) — located through `FORMAT`. Named FILTER
+failures, `./.`, partial calls, rows without `GT`, and absent rows do not count.
+`FILTER=.` remains a separately reported quality-not-established state rather
+than being silently treated as either PASS or failure. That distinction is the
+whole point: a variants-only VCF, which is the common shape in the wild, looks
+exactly like one where those positions were never assayed.
 """
 
 from __future__ import annotations
@@ -46,16 +48,82 @@ import functools
 import json
 import re
 from dataclasses import dataclass, field
+from enum import Enum
 from pathlib import Path
+
+from .capabilities import capability_for, presentation_capabilities
 
 REQUIREMENTS_PATH = Path(__file__).parent / "data" / "position_requirements.json"
 
-#: A genotype field that asserts a call. `./.` and `.` assert nothing.
+#: A genotype field that asserts no call. Partial calls are classified
+#: separately because they preserve some information but cannot establish a
+#: complete genotype.
 _NO_CALL = frozenset({".", "./.", ".|.", ""})
 
 #: Homozygous-reference genotypes. Their presence is what distinguishes a
 #: fully-called VCF from a variants-only one.
 _HOM_REF = frozenset({"0/0", "0|0", "0"})
+
+
+class EvidenceStatus(str, Enum):
+    """Application evidence contract for one required genomic position."""
+
+    VALID = "valid_observed_genotype"
+    PARTIAL = "partial_genotype"
+    NO_CALL = "no_call"
+    GT_NOT_PROVIDED = "gt_not_provided"
+    FILTER_FAILED = "filter_failed"
+    QUALITY_NOT_ESTABLISHED = "quality_not_established"
+    MALFORMED = "malformed_genotype"
+    ABSENT = "absent_position"
+
+
+# If duplicate rows disagree, the less trustworthy state wins. A second PASS
+# row must never erase an explicit failure at the same coordinate.
+_STATUS_PRIORITY = {
+    EvidenceStatus.VALID: 0,
+    EvidenceStatus.NO_CALL: 1,
+    EvidenceStatus.PARTIAL: 2,
+    EvidenceStatus.GT_NOT_PROVIDED: 3,
+    EvidenceStatus.QUALITY_NOT_ESTABLISHED: 4,
+    EvidenceStatus.MALFORMED: 5,
+    EvidenceStatus.FILTER_FAILED: 6,
+}
+
+
+def _sample_evidence(parts: list[str]) -> tuple[EvidenceStatus, str]:
+    """Classify the first (and, after validation, only) sample at a VCF row.
+
+    This deliberately does not invent DP, GQ or QUAL thresholds. The contract
+    trusts an upstream explicit ``FILTER=PASS``, declines named filter failures,
+    and preserves ``FILTER=.`` as a distinct quality-not-established state that
+    remains usable with a visible warning. GT is located through FORMAT as
+    required by the VCF specification.
+    """
+    format_keys = parts[8].split(":")
+    try:
+        gt_index = format_keys.index("GT")
+    except ValueError:
+        return EvidenceStatus.GT_NOT_PROVIDED, ""
+
+    sample_values = parts[9].split(":")
+    genotype = sample_values[gt_index].strip() if gt_index < len(sample_values) else ""
+
+    if genotype in _NO_CALL:
+        return EvidenceStatus.NO_CALL, genotype
+
+    alleles = re.split(r"[/|]", genotype)
+    if "." in alleles:
+        return EvidenceStatus.PARTIAL, genotype
+    if not alleles or any(not allele.isdigit() for allele in alleles):
+        return EvidenceStatus.MALFORMED, genotype
+
+    filter_value = parts[6].strip()
+    if filter_value.upper() == "PASS":
+        return EvidenceStatus.VALID, genotype
+    if filter_value in {"", "."}:
+        return EvidenceStatus.QUALITY_NOT_ESTABLISHED, genotype
+    return EvidenceStatus.FILTER_FAILED, genotype
 
 
 @functools.lru_cache(maxsize=1)
@@ -76,10 +144,14 @@ class GeneCoverage:
     #: function assignments — see `scripts/derive_decision_critical.py`.
     critical_required: int = 0
     critical_present: int = 0
-    #: Whether the identity requirement is enforced for this gene. True only
-    #: for DPYD today; the other six carry measured exposure and turning them
-    #: on is a separate decision.
+    #: Whether the identity requirement is enforced for this gene. True for
+    #: DPYD, TPMT and NUDT15 in the pinned requirements bundle; the remaining
+    #: genes retain their measured percentage threshold.
     critical_enforced: bool = False
+    #: One mutually exclusive state for every required position. This preserves
+    #: why evidence was declined instead of collapsing partial, failed and
+    #: absent evidence into a single coverage number.
+    evidence_counts: dict[str, int] = field(default_factory=dict)
 
     @property
     def percent(self) -> float:
@@ -142,6 +214,7 @@ class CoverageReport:
                 "decision_critical_present": c.critical_present,
                 "decision_critical_required": c.critical_required,
                 "decision_critical_enforced": c.critical_enforced,
+                "evidence_counts": dict(c.evidence_counts),
             }
             for gene, c in sorted(self.genes.items())
         }
@@ -163,8 +236,8 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
     can support a confident answer *before* one is produced.
     """
     cfg = requirements or load_requirements()
-    called: set[tuple[str, int]] = set()
-    hom_ref: set[tuple[str, int]] = set()
+    evidence: dict[tuple[str, int], EvidenceStatus] = {}
+    genotypes: dict[tuple[str, int], str] = {}
 
     for line in vcf_text.splitlines():
         if not line or line.startswith("#"):
@@ -177,24 +250,34 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
             position = int(parts[1])
         except ValueError:
             continue
-        genotype = parts[9].split(":", 1)[0].strip()
-        if genotype in _NO_CALL:
-            continue
         key = (_norm_chrom(parts[0]), position)
-        called.add(key)
-        if genotype in _HOM_REF:
-            hom_ref.add(key)
+        status, genotype = _sample_evidence(parts)
+        previous = evidence.get(key)
+        if previous is None or _STATUS_PRIORITY[status] > _STATUS_PRIORITY[previous]:
+            evidence[key] = status
+            genotypes[key] = genotype
 
-    report = CoverageReport(positions_seen=len(called))
+    # FILTER=. does not assert that a call failed; it says filtering was not
+    # applied. Without an assay-specific policy there is no defensible numeric
+    # threshold to substitute, so these complete genotypes remain usable but
+    # are counted and surfaced as quality-not-established.
+    usable_statuses = {EvidenceStatus.VALID, EvidenceStatus.QUALITY_NOT_ESTABLISHED}
+    valid = {key for key, status in evidence.items() if status in usable_statuses}
+    hom_ref = {key for key in valid if genotypes.get(key) in _HOM_REF}
+    report = CoverageReport(positions_seen=len(valid))
     total_hom_ref = 0
     for gene, spec in cfg["genes"].items():
         wanted = {(_norm_chrom(c), p) for c, p in spec["positions"]}
-        present = wanted & called
+        present = wanted & valid
         hr = wanted & hom_ref
         total_hom_ref += len(hr)
 
         critical = {(_norm_chrom(c), p)
                     for c, p in spec.get("decision_critical_positions", [])}
+        counts = {status.value: 0 for status in EvidenceStatus}
+        for key in wanted:
+            counts[evidence.get(key, EvidenceStatus.ABSENT).value] += 1
+
         report.genes[gene] = GeneCoverage(
             gene=gene,
             required=len(wanted),
@@ -202,8 +285,9 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
             hom_ref_present=len(hr),
             min_percent=int(spec.get("min_coverage_percent", 100)),
             critical_required=len(critical),
-            critical_present=len(critical & called),
+            critical_present=len(critical & valid),
             critical_enforced=bool(spec.get("decision_critical_enforced")),
+            evidence_counts=counts,
         )
 
     # THE COMMON CASE, not an edge case. Most VCFs in the wild omit
@@ -220,11 +304,13 @@ def variants_only_warning() -> str:
         "This VCF contains no homozygous-reference genotypes at any of PharmCAT's "
         "required positions, which means it is almost certainly a variants-only "
         "file. Such a file is indistinguishable from one where those positions "
-        "were never tested, and the consequence is NOT a missing result — it is a "
+        "were never tested. For a genotype caller that reads a missing position "
+        "as reference, the consequence is NOT a missing result — it is a "
         "confident WRONG result: a change whose key position is missing is "
-        "invisible, so the genotype reads as reference and a reduced-function "
-        "patient is reported as normal. Measured rate of confidently-wrong calls "
-        "at 60% position coverage: up to 28.6%. Produce the file again with "
+        "invisible, so a reduced-function patient is reported as normal. "
+        "Measured rate of confidently-wrong calls at 60% position coverage: up "
+        "to 28.6%. This application therefore reports genes without their "
+        "required positions as Unknown rather than as normal. Produce the file again with "
         "EVERY position reported — including the ones that match the reference "
         "— so each required position carries an explicit genotype. The input "
         "requirements page gives the exact commands. "
@@ -290,11 +376,26 @@ def all_genes_gated_warning(assessment: "CoverageReport") -> str:
 def insufficient_warning(cov: GeneCoverage) -> str:
     return (
         f"{cov.gene}: only {cov.present} of {cov.required} required positions "
-        f"({cov.percent:.0f}%) carry an explicit genotype in this VCF, below the "
+        f"({cov.percent:.0f}%) carry an acceptable genotype in this VCF, below the "
         f"{cov.min_percent}% minimum measured for this gene. Reported as Unknown. "
         f"A confident call at this coverage would be unreliable — and unreliable in "
         f"one direction: missing positions read as reference, so the error would be "
-        f"to report reduced function as normal."
+        f"to report reduced function as normal. {_evidence_reason(cov)}"
+    )
+
+
+def quality_not_established_warning(report: CoverageReport) -> str:
+    genes = [
+        f"{gene} ({cov.evidence_counts.get(EvidenceStatus.QUALITY_NOT_ESTABLISHED.value, 0)})"
+        for gene, cov in sorted(report.genes.items())
+        if cov.evidence_counts.get(EvidenceStatus.QUALITY_NOT_ESTABLISHED.value, 0)
+    ]
+    return (
+        "Input quality was not established for required positions marked "
+        f"FILTER=. in: {', '.join(genes)}. These complete genotypes were retained "
+        "because the VCF does not explicitly mark them as failed and this "
+        "application does not invent assay-independent DP/GQ/QUAL thresholds. "
+        "Confirm the upstream caller's quality policy before relying on them."
     )
 
 
@@ -302,24 +403,117 @@ def insufficient_warning(cov: GeneCoverage) -> str:
 # Readiness — the shared view both /coverage and the client consume
 # --------------------------------------------------------------------------- #
 
-#: Genes no VCF can resolve, whatever the coverage, with the reason to show in
-#: place of a tick bar. A zero bar would blame the user's file for a limit of the
-#: file format.
+#: Genes this application does not call from an uploaded VCF, whatever the
+#: coverage, with the reason to show in place of a tick bar. A zero bar would
+#: blame the user's file for a limit of this application. (VCF itself can carry
+#: structural-variant and copy-number records; calling them for CYP2D6 needs
+#: specialised read-level analysis this application does not perform.)
 NOT_READABLE_FROM_VCF: dict[str, str] = {
     "CYP2D6": (
-        "Defined by copy-number and structural variation, which a VCF cannot "
-        "express. A different kind of genetic test is needed; no VCF will resolve it."
+        "Not called from an uploaded VCF by this application: CYP2D6 results "
+        "depend on copy-number and structural variation, which need specialised "
+        "read-level calling. Uploading a different VCF here will not resolve it."
     ),
 }
 
 
-def readiness(report: CoverageReport, drug_gene: dict[str, str]) -> dict:
+@dataclass(frozen=True)
+class DrugEligibility:
+    """Whether all declared input dependencies for one drug are usable."""
+
+    drug: str
+    required_genes: tuple[str, ...]
+    failed_genes: tuple[str, ...]
+    guidance_capable: bool
+    limitation: str
+
+    @property
+    def eligible(self) -> bool:
+        return (
+            bool(self.required_genes)
+            and self.guidance_capable
+            and not self.failed_genes
+        )
+
+    @property
+    def valid_genes(self) -> tuple[str, ...]:
+        failed = set(self.failed_genes)
+        return tuple(gene for gene in self.required_genes if gene not in failed)
+
+    @property
+    def reason(self) -> str:
+        if self.eligible:
+            return ""
+        if self.limitation and not self.guidance_capable:
+            return self.limitation
+        if not self.required_genes:
+            return (
+                "This drug is outside the audited application scope; no "
+                "application guidance is produced."
+            )
+        return (
+            "Required genomic evidence is incomplete for "
+            + ", ".join(self.failed_genes)
+            + ". Available partner findings are partial evidence only; no complete "
+              "drug-level PGx recommendation is made."
+        )
+
+
+def drug_eligibility(
+    report: CoverageReport,
+    drug: str,
+    mapping: dict | None = None,
+) -> DrugEligibility:
+    """Shared drug-level evidence decision used by preview and final analysis."""
+    capability = capability_for(drug)
+    required = capability.evidence_dependencies if capability else ()
+    failed = tuple(
+        gene
+        for gene in required
+        if gene in NOT_READABLE_FROM_VCF
+        or gene not in report.genes
+        or not report.genes[gene].sufficient
+    )
+    return DrugEligibility(
+        drug=drug.strip().lower(),
+        required_genes=required,
+        failed_genes=failed,
+        guidance_capable=bool(capability and capability.guidance_capable),
+        limitation=capability.limitation if capability else "",
+    )
+
+
+def _evidence_reason(cov: GeneCoverage) -> str:
+    labels = {
+        EvidenceStatus.PARTIAL.value: "partial genotypes",
+        EvidenceStatus.NO_CALL.value: "no-calls",
+        EvidenceStatus.GT_NOT_PROVIDED.value: "rows without GT",
+        EvidenceStatus.FILTER_FAILED.value: "FILTER-failed calls",
+        EvidenceStatus.QUALITY_NOT_ESTABLISHED.value: "unfiltered calls",
+        EvidenceStatus.MALFORMED.value: "malformed genotypes",
+        EvidenceStatus.ABSENT.value: "absent positions",
+    }
+    detail = [
+        f"{cov.evidence_counts.get(status, 0)} {label}"
+        for status, label in labels.items()
+        if cov.evidence_counts.get(status, 0)
+    ]
+    suffix = f" Evidence gaps: {', '.join(detail)}." if detail else ""
+    return (
+        f"{cov.present} of {cov.required} required positions had acceptable "
+        f"genotypes; this gene needs {cov.min_percent}%." + suffix
+    )
+
+
+def readiness(report: CoverageReport, mapping: dict | None = None) -> dict:
     """
     Turn a `CoverageReport` into the per-gene + per-drug view the API returns.
 
     Kept here rather than in `main` so /coverage and /analyze cannot drift: both
     read the same thresholds from the same file through the same function.
-    `drug_gene` maps drug -> primary gene, from label_mapping.yaml.
+    Drug eligibility comes from the authoritative capability registry. A
+    multi-gene drug passes only when every dependency passes this same report,
+    and registry-declared abstentions remain unanswerable even with coverage.
     """
     genes: list[dict] = []
     for gene, cov in sorted(report.genes.items()):
@@ -334,17 +528,16 @@ def readiness(report: CoverageReport, drug_gene: dict[str, str]) -> dict:
             # coverage failure either — the reason field carries the difference.
             "passes": bool(cov.sufficient and not blocked),
             "not_readable_from_vcf": bool(blocked),
-            "reason": blocked or (
-                "" if cov.sufficient else
-                f"{cov.present} of {cov.required} required positions were "
-                f"reported; this gene needs {cov.min_percent}%."
-            ),
+            "reason": blocked or ("" if cov.sufficient else _evidence_reason(cov)),
         })
 
-    passing = {g["gene"].upper() for g in genes if g["passes"]}
     answerable, unanswerable = [], []
-    for drug, gene in sorted(drug_gene.items()):
-        (answerable if gene.upper() in passing else unanswerable).append(drug)
+    for capability in presentation_capabilities():
+        drug = capability.drug
+        eligibility = drug_eligibility(report, drug)
+        (answerable if eligibility.eligible else unanswerable).append(drug)
+
+    passing = {g["gene"].upper() for g in genes if g["passes"]}
 
     return {
         "genes": genes,

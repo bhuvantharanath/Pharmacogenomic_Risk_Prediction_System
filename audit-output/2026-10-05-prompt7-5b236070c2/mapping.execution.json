@@ -1,0 +1,10 @@
+{
+  "command": [
+    "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+    "scripts/validate_label_mapping.py"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+  "exit_code": 0,
+  "seconds": 0.13299787500000093,
+  "at": "2026-10-05T13:12:12.444712+00:00"
+}

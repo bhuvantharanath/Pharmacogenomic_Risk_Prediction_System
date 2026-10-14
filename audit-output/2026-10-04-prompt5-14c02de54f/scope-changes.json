@@ -1,0 +1,67 @@
+[
+  {
+    "path": "backend/app/data/compatible_bundle.json",
+    "before": {
+      "path": "backend/app/data/compatible_bundle.json",
+      "bytes": 16857,
+      "sha256": "718dbcf0480d8d73a40ff1356ef65962440a43acae24c781eaeeba232e95c7a8"
+    },
+    "after": {
+      "path": "backend/app/data/compatible_bundle.json",
+      "bytes": 20024,
+      "sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600"
+    }
+  },
+  {
+    "path": "backend/tests/test_compatible_bundle.py",
+    "before": {
+      "path": "backend/tests/test_compatible_bundle.py",
+      "bytes": 7043,
+      "sha256": "03164becab4d43510858d06b7d434b5dd4e5156d79c3ded6d47887cee2f80474"
+    },
+    "after": {
+      "path": "backend/tests/test_compatible_bundle.py",
+      "bytes": 7539,
+      "sha256": "ec87e5d186fae5a89b80d7508495225556ebe7488ba53bbd2f54225cf522af10"
+    }
+  },
+  {
+    "path": "backend/tests/test_portable_scientific_hash.py",
+    "before": {
+      "path": "backend/tests/test_portable_scientific_hash.py",
+      "bytes": 6502,
+      "sha256": "b7d4afc94a876e4bc1714553c635d7017e8884c6adac8655035bef5c9bf2dc44"
+    },
+    "after": {
+      "path": "backend/tests/test_portable_scientific_hash.py",
+      "bytes": 6912,
+      "sha256": "4df4212d26385a05cd0d3a8f49da11a2b24ae60bd9f052ffd7062d798c7720e7"
+    }
+  },
+  {
+    "path": "scripts/compatible_bundle.py",
+    "before": {
+      "path": "scripts/compatible_bundle.py",
+      "bytes": 19043,
+      "sha256": "059c5898832f0c8d202b57e4b0077da0f6bb7391c3137dae457fbf13a9b0e43c"
+    },
+    "after": {
+      "path": "scripts/compatible_bundle.py",
+      "bytes": 24898,
+      "sha256": "c93245ab52a7a3e1b0efb17239e1d1354a8ca1ba17220b5354acac94adb9d9f1"
+    }
+  },
+  {
+    "path": "scripts/release_status.py",
+    "before": {
+      "path": "scripts/release_status.py",
+      "bytes": 14610,
+      "sha256": "7c3962af69091098edbbec8a427daa9d2e49feeaf3523d34ae3c038bb9dbabd0"
+    },
+    "after": {
+      "path": "scripts/release_status.py",
+      "bytes": 15485,
+      "sha256": "41c794d615304902a956e4ef6771644d5f3590a78b5fafd45c19bd4348903214"
+    }
+  }
+]

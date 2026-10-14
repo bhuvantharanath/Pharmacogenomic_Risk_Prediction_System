@@ -1,0 +1,37 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container PharmaGuard About PharmaGuard Re-check backend connection Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			3 container flt-semantic-node-3
+				4 container flt-semantic-node-26
+					5 heading PharmaGuard, Value: 2, ID: flt-semantic-node-27
+						6 text PharmaGuard
+					7 button About PharmaGuard, ID: flt-semantic-node-28
+					8 button Re-check backend connection, ID: flt-semantic-node-29
+				9 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+				10 container flt-semantic-node-25
+					11 container ID: flt-semantic-node-16, Description: No genome file? Use a sample Run one here, or download it and upload it yourself. Two of these are declined on purpose — that is the behaviour, not a fault. Reduced-function result Answers confidently Complete coverage, CYP2C19 *2/*2. Clopidogrel comes back Ineffective — the case this system exists to catch. Normal result Answers confidently Complete coverage, all genes at reference. Shows the system is not merely cautious — it will state when no PGx-guided adjustment was identified from the assessed evidence. Variants-only file Declines every gene The SAME patient as the first sample, with reference rows removed — the common output of most pipelines. The genotype is unchanged; what is lost is the evidence that it was measured. Real 1000 Genomes sample Declines every gene Genuine public research data (NA12273), not synthetic. Polymorphic-filtered, so it is declined — which is what happens to most research VCFs, and why.
+						12 button Try this, ID: flt-semantic-node-17
+						13 button Download, ID: flt-semantic-node-18
+						14 button Try this, ID: flt-semantic-node-19
+						15 button Download, ID: flt-semantic-node-20
+						16 button Try this, ID: flt-semantic-node-21
+						17 button Download, ID: flt-semantic-node-22
+						18 button Try this, ID: flt-semantic-node-23
+						19 button Download, ID: flt-semantic-node-24
+					20 button (collapsed) ID: flt-semantic-node-211, Secondary Actions: Expand, Description: Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes. THIS FILE can answer 0 of 7 genes WILL RETURN UNKNOWN clopidogrel fluorouracil azathioprine simvastatin warfarin codeine No gene in this file has enough called positions to support a result. You can still run the analysis — every drug will come back Unknown, with the reason. Per-gene detail CYP2C19, CYP2C9, DPYD, NUDT15, SLCO1B1, TPMT: not enough called positions in this file. Re-calling with all sites emitted would fix it. CYP2D6: cannot be read from any VCF. A different kind of genetic test is needed — a different file will not help. PharmCAT 3.4.0 · explanations 24 Jul 2026
+						21 button What a usable file looks like, ID: flt-semantic-node-212
+					22 text 2 List the drugs
+					23 text field (settable) Drugs (comma-separated)
+					24 text Drugs with CPIC guidance in this build — anything else returns "Unknown":
+					25 container flt-semantic-node-220
+						26 checkbox Description: clopidogrel, Value: 0, ID: flt-semantic-node-221
+						27 checkbox Description: fluorouracil, Value: 0, ID: flt-semantic-node-222
+						28 checkbox Description: azathioprine, Value: 0, ID: flt-semantic-node-223
+						29 checkbox Description: simvastatin, Value: 0, ID: flt-semantic-node-224
+						30 checkbox Description: warfarin, Value: 0, ID: flt-semantic-node-225
+						31 checkbox Description: codeine, Value: 0, ID: flt-semantic-node-226
+					32 button Analyze, ID: flt-semantic-node-229
+					33 button Check all 6 medicines, ID: flt-semantic-node-232
+
+The focused UI element is 2 container PharmaGuard About PharmaGuard Re-check backend connection Research/educational decision support only. Not a medical device. No clinician has reviewed this content.

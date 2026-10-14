@@ -15,13 +15,16 @@ Phase 4 added the controls a public URL needs: an explicit CORS allowlist, a
 per-IP rate limit on /analyze, security headers, a startup assertion against
 baked-in secrets, and a /ready endpoint separate from the cheap /health ping.
 
-DATA RETENTION: none. An uploaded VCF lives in memory and in a per-request temp
-directory that `pharmcat_runner` removes in a `finally` block. Nothing genomic
-is written to durable storage, logged, or returned to any third party.
+DATA HANDLING: the application does not persist uploads. A VCF lives in memory
+and in an owned per-request temp directory removed before the request releases
+its analysis slot. PharmCAT logs are confined to that tree. This is not a claim
+about reverse-proxy access logs, crash dumps, backups, or platform retention.
+Static/default explanation mode makes no outbound explanation call.
 """
 
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import sys
@@ -34,13 +37,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from . import coverage as coverage_mod
-from . import cpic_engine, security
+from . import capabilities, cpic_engine, security
 from .explanation import ExplanationMode, generate_explanation
 from .explanation import static_store as explanation_store
 from .explanation.context import ExplanationContext
 from .models import (
     AnalyzeResponse,
     ClinicalRecommendation,
+    CapabilityResponse,
     CoverageResponse,
     DetectedVariant,
     GeneReadiness,
@@ -76,6 +80,7 @@ from .vcf_validation import (
 )
 
 MAX_DRUGS_PER_REQUEST = 25
+UPLOAD_READ_CHUNK_BYTES = 64 * 1024
 
 
 def _resolved_base_url() -> str:
@@ -116,6 +121,7 @@ async def lifespan(_: FastAPI):
     # health check while blocking every real browser request, so it would
     # otherwise be discovered by a visitor rather than by the deployer.
     security.assert_cors_configured()
+    security.assert_proxy_trust_configured()
 
     # PharmCAT reachability, checked at startup rather than at first request.
     #
@@ -165,7 +171,8 @@ async def lifespan(_: FastAPI):
         f"[startup] explanation_mode={ExplanationMode.from_env().value} "
         f"cors_origins={security.allowed_origins() or '(localhost only)'} "
         f"rate_limit={security.RATE_LIMIT_REQUESTS}/"
-        f"{security.RATE_LIMIT_WINDOW_SECONDS}s",
+        f"{security.RATE_LIMIT_WINDOW_SECONDS}s "
+        f"proxy_trust={security.proxy_trust_summary()}",
         flush=True,
     )
     yield
@@ -194,6 +201,15 @@ app = FastAPI(
     **_app_metadata(),
     version="0.4.0",
     lifespan=lifespan,
+)
+
+# The 512 MiB host can run one large VCF plus PharmCAT, but overlapping
+# decompressed VCFs exhausted its cgroup even with one JVM. Both /analyze and
+# /coverage expand uploads, so admit either before FastAPI consumes a body;
+# retain the inner JVM slot for process ownership and cleanup.
+app.add_middleware(
+    security.AnalysisMemoryGateMiddleware,
+    wait_seconds=PHARMCAT_QUEUE_TIMEOUT_SECONDS,
 )
 
 
@@ -343,6 +359,16 @@ async def health() -> HealthResponse:
     return HealthResponse(status="ok")
 
 
+@app.get("/capabilities", response_model=CapabilityResponse, tags=["meta"])
+async def capability_registry() -> CapabilityResponse:
+    """The audited drug/gene surface presented by this application."""
+    entries = capabilities.load_registry()
+    return CapabilityResponse(
+        version=1,
+        capabilities=[entry.public_dict() for entry in entries],
+    )
+
+
 @app.get("/ready", tags=["meta"])
 async def ready() -> JSONResponse:
     """
@@ -445,7 +471,17 @@ async def root() -> dict[str, object]:
             "requests": security.RATE_LIMIT_REQUESTS,
             "window_seconds": security.RATE_LIMIT_WINDOW_SECONDS,
         },
-        "data_retention": "none — uploaded VCFs are deleted before the response",
+        "data_handling": (
+            "Static/default mode makes no outbound explanation call. Uploads are "
+            "held in memory and an owned temporary directory; application-owned "
+            "temporary files are deleted before the response. Host access logs "
+            "and platform-level retention are outside this application guarantee."
+        ),
+        "data_retention": (
+            "No application persistence: application-owned temporary files are "
+            "removed before the response. This does not claim control over host "
+            "access logs, crash dumps, backups, or platform retention."
+        ),
         # Deployed default is API-free; say so plainly so a reviewer can check.
         "requires_api_key": mode is ExplanationMode.LIVE,
         # Deployment mistakes here are silent and catastrophic, so say it loudly.
@@ -588,7 +624,10 @@ def _build_context(
         diplotype=call.diplotype if call else None,
         activity_score=call.activity_score if call else None,
         detected_variants=_detected_variants(call),
-        cpic_recommendation=recommendation.action,
+        cpic_recommendation=(
+            "" if "no matching CPIC entry" in recommendation.source
+            else recommendation.action
+        ),
         cpic_implications=implications,
         cpic_strength="",
         cpic_evidence_level=recommendation.cpic_evidence_level.value,
@@ -601,7 +640,7 @@ def _build_context(
 def build_result(
     drug: str,
     report: PharmcatReport,
-    starved_genes: set[str] | None = None,
+    eligibility: "coverage_mod.DrugEligibility | None" = None,
 ) -> tuple[PerDrugResult, list[str], str]:
     """
     Map one drug through the engine and assemble its contract object.
@@ -613,9 +652,19 @@ def build_result(
     assessment, recommendation, call, warnings = cpic_engine.evaluate(drug, report)
     phenotype = cpic_engine.map_phenotype(call.phenotype_raw if call else None)
 
-    # Coverage-starved gene: demote to Unknown. The per-gene reason is already in
-    # quality_metrics.warnings; repeating it per drug would spam a 6-drug request.
-    if starved_genes and call is not None and call.gene in starved_genes:
+    # Drug-level evidence gate. This is deliberately evaluated after CPIC so a
+    # valid partner finding can remain visible, but before the public contract
+    # and explanation are assembled so partial evidence cannot inherit a
+    # complete/reassuring drug verdict.
+    if eligibility is not None and not eligibility.eligible:
+        valid_genes = set(eligibility.valid_genes)
+        if call is None or call.gene.upper() not in valid_genes:
+            candidates = (report.gene(gene) for gene in eligibility.valid_genes)
+            call = next(
+                (candidate for candidate in candidates
+                 if candidate is not None and candidate.is_called),
+                None,
+            )
         phenotype = Phenotype.UNKNOWN
         assessment = RiskAssessment(
             risk_label=RiskLabel.UNKNOWN,
@@ -625,12 +674,9 @@ def build_result(
         recommendation = cpic_engine.build_clinical_recommendation(
             None,
             report.drug(drug.strip().lower()),
-            fallback_reason=(
-                f"The uploaded VCF does not cover enough of {call.gene}'s required "
-                f"positions to support a confident call, so no recommendation is "
-                f"made for {drug}."
-            ),
+            fallback_reason=eligibility.reason,
         )
+        warnings.append(f"{drug.strip().lower()}: {eligibility.reason}")
 
     # Build the profile FIRST so it can be handed to the explanation layer.
     # This is the object the client renders in the card, and it is what every
@@ -674,10 +720,14 @@ def build_response(
     # cannot support a confident phenotype, so they are suppressed BEFORE the label
     # engine sees them. This is the only check that can catch a confidently-wrong
     # call, because the wrongness is in the input, not the output.
-    starved: set[str] = set()
     if cov is not None:
         if cov.variants_only:
             warnings.append(coverage_mod.variants_only_warning())
+        if any(
+            gene_cov.evidence_counts.get("quality_not_established", 0)
+            for gene_cov in cov.genes.values()
+        ):
+            warnings.append(coverage_mod.quality_not_established_warning(cov))
         insufficient = cov.insufficient()
         # EVERY gene declined is one diagnosis, not seven. Repeating a generic
         # coverage message per gene buries the useful part — that this is a
@@ -689,7 +739,6 @@ def build_response(
             warnings.append(coverage_mod.all_genes_gated_warning(cov))
 
         for gene_cov in insufficient:
-            starved.add(gene_cov.gene)
             # Two different refusals, two different sentences. A gene that met
             # its percentage but lacks the positions that could show a variant
             # needs the second one, or "37% was enough and you refused anyway"
@@ -704,8 +753,13 @@ def build_response(
                 warnings.append(coverage_mod.insufficient_warning(gene_cov))
 
     for drug in drugs:
+        eligibility = (
+            coverage_mod.drug_eligibility(cov, drug)
+            if cov is not None
+            else None
+        )
         result, drug_warnings, provenance = build_result(
-            drug, report, starved_genes=starved
+            drug, report, eligibility=eligibility
         )
         analyses.append(result)
         warnings.extend(drug_warnings)
@@ -725,8 +779,10 @@ def build_response(
 
     store = explanation_store.load_store()
     # The honest disclosure. This project has no qualified clinical reviewer,
-    # so the warning states what was actually done -- provenance verification --
-    # and names the gap directly rather than implying a review is pending.
+    # so the warning states what the automated checks do and cannot show, and
+    # names the gap directly rather than implying a review is pending. Served
+    # wording may be the deterministic template, which no provenance check
+    # reads, so nothing here may claim every statement was verified.
     if store.entries:
         if store.unverified_count:
             warnings.append(
@@ -734,11 +790,13 @@ def build_response(
                 "have unverified clinical content. Treat their wording with caution."
             )
         warnings.append(
-            "No qualified clinical expert has reviewed these explanations. This "
-            "system writes no clinical content of its own: every clinical "
-            "statement is machine-verified to trace to a CPIC recommendation "
-            "issued by PharmCAT, or to a cited mechanism document. That checks "
-            "provenance, not correctness."
+            "No qualified clinical expert has reviewed these explanations. "
+            "Recommendation text is quoted from CPIC annotations issued by "
+            "PharmCAT; explanatory wording is generated by this application. "
+            "Automated checks can flag stored wording that does not trace to a "
+            "CPIC recommendation or a cited mechanism document, but they are not "
+            "human review and cannot show that every statement is supported: "
+            "they check provenance, not correctness."
         )
 
     unknown = [
@@ -808,6 +866,45 @@ def _read_and_validate(contents: bytes, filename: str) -> VcfMetadata:
         raise ApiError(400, exc.code.value, exc.message) from exc
 
 
+def _upload_too_large(size: int) -> ApiError:
+    return ApiError(
+        413,
+        "FILE_TOO_LARGE",
+        f"The file is over the {MAX_UPLOAD_BYTES // (1024 * 1024)} MB upload "
+        "limit. Restrict it to the required pharmacogenomic positions before "
+        "uploading.",
+    )
+
+
+async def _read_upload_limited(file: UploadFile) -> bytes:
+    """Read at most the declared upload cap plus one byte, then always close."""
+    declared_size = getattr(file, "size", None)
+    if isinstance(declared_size, int) and declared_size > MAX_UPLOAD_BYTES:
+        await file.close()
+        raise _upload_too_large(declared_size)
+
+    contents = bytearray()
+    try:
+        while len(contents) <= MAX_UPLOAD_BYTES:
+            remaining = MAX_UPLOAD_BYTES + 1 - len(contents)
+            chunk = await file.read(min(UPLOAD_READ_CHUNK_BYTES, remaining))
+            if not chunk:
+                break
+            contents.extend(chunk)
+        if len(contents) > MAX_UPLOAD_BYTES:
+            raise _upload_too_large(len(contents))
+        return bytes(contents)
+    finally:
+        await file.close()
+
+
+def _workload_decision(request: Request) -> security.RateLimitDecision:
+    """Shared public workload budget for preview and final analysis."""
+    if not security.should_rate_limit(request):
+        return security.RateLimitDecision(True, security.RATE_LIMIT_REQUESTS, 0)
+    return security.limiter.check(security.client_key(request))
+
+
 def guideline_provenance(report: PharmcatReport | None = None) -> GuidelineProvenance:
     """
     When the guidance behind a result was captured.
@@ -837,8 +934,9 @@ def guideline_provenance(report: PharmcatReport | None = None) -> GuidelineProve
 
 @app.post("/coverage", response_model=CoverageResponse, tags=["analysis"])
 async def coverage_preview(
+    request: Request,
     file: UploadFile = File(..., description="VCF upload (.vcf or .vcf.gz, GRCh38)"),
-) -> CoverageResponse:
+) -> CoverageResponse | JSONResponse:
     """
     What this file can answer — WITHOUT running PharmCAT.
 
@@ -846,23 +944,34 @@ async def coverage_preview(
     analysis. Four Unknowns arriving unannounced read as failure; the same four
     announced in advance read as the system knowing its own limits.
 
-    **No JVM is started here**, which is why it is not rate limited: it reads the
-    upload, counts positions against the requirements table, and returns. It also
+    **No JVM is started here.** It shares the public request budget and upload /
+    decompression caps with `/analyze`; CPU parsing runs in a worker thread so a
+    bounded but expensive preview cannot stall the event loop. It also
     writes no temp files at all — the coverage check works on the in-memory text —
     so the retention guarantee is satisfied by construction rather than by a
     cleanup block.
     """
-    contents = await file.read()
-    await file.close()
-    metadata = _read_and_validate(contents, file.filename or "upload.vcf")
+    decision = _workload_decision(request)
+    if not decision.allowed:
+        await file.close()
+        return security.rate_limit_response(decision)
 
-    cov = coverage_mod.assess(metadata.text)
-    cfg = cpic_engine.load_mapping()
-    data = coverage_mod.readiness(cov, cfg.get("drug_primary_gene", {}) or {})
+    contents = await _read_upload_limited(file)
+    metadata = await asyncio.to_thread(
+        _read_and_validate, contents, file.filename or "upload.vcf"
+    )
+
+    cov = await asyncio.to_thread(coverage_mod.assess, metadata.text)
+    data = coverage_mod.readiness(cov)
 
     warnings = list(metadata.warnings)
     if cov.variants_only:
         warnings.append(coverage_mod.variants_only_warning())
+    if any(
+        gene_cov.evidence_counts.get("quality_not_established", 0)
+        for gene_cov in cov.genes.values()
+    ):
+        warnings.append(coverage_mod.quality_not_established_warning(cov))
 
     return CoverageResponse(
         genes=[GeneReadiness(**g) for g in data["genes"]],
@@ -899,12 +1008,9 @@ async def analyze(
     # public endpoint would burn a free tier's whole compute budget.
     # Loopback is exempt — see `security.should_rate_limit`. Checked before the
     # limiter so a local run does not even consume budget.
-    decision = (
-        security.limiter.check(security.client_key(request))
-        if security.should_rate_limit(request)
-        else security.RateLimitDecision(True, security.RATE_LIMIT_REQUESTS, 0)
-    )
+    decision = _workload_decision(request)
     if not decision.allowed:
+        await file.close()
         return security.rate_limit_response(decision)
 
     requested = _parse_drugs(drugs)
@@ -922,12 +1028,13 @@ async def analyze(
             f"{MAX_DRUGS_PER_REQUEST} per request.",
         )
 
-    contents = await file.read()
-    await file.close()
+    contents = await _read_upload_limited(file)
 
     # Size cap + format validation, shared with /coverage so the preview cannot
     # accept a file the analysis would reject.
-    metadata = _read_and_validate(contents, file.filename or "upload.vcf")
+    metadata = await asyncio.to_thread(
+        _read_and_validate, contents, file.filename or "upload.vcf"
+    )
 
     # A missing/ambiguous reference build is not fatal — validate_vcf has already
     # recorded a warning in metadata.warnings, which flows into quality_metrics.
@@ -936,7 +1043,7 @@ async def analyze(
     # because no output check can see it: missing positions do not make PharmCAT
     # decline, they make it confidently call the reference haplotype. See
     # `app/coverage.py` for the measured wrong-call rates.
-    cov = coverage_mod.assess(metadata.text)
+    cov = await asyncio.to_thread(coverage_mod.assess, metadata.text)
 
     try:
         report = await run_pharmcat(

@@ -1,0 +1,343 @@
+Browser tab: 1, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container flt-semantic-node-487
+			3 container flt-semantic-node-511
+				4 button Back, ID: flt-semantic-node-512
+				5 heading Analysis results, Value: 2, ID: flt-semantic-node-513
+					6 text Analysis results
+				7 button Copy JSON, ID: flt-semantic-node-514
+				8 button Export JSON, ID: flt-semantic-node-515
+			9 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			10 container flt-semantic-node-622
+				11 button (collapsed) ID: flt-semantic-node-644, Secondary Actions: Expand, NA12878 2026-10-06T10:43:18Z VCF accepted 3 variants 1500 ms 21 pipeline warnings No PGx-guided change Adjust Dosage Toxic Ineffective Unknown
+				12 container ID: flt-semantic-node-639, Description: DRUGS CHECKED (6) — MOST SERIOUS FIRST Reading view. Both views show the same result; they differ only in what is shown first.
+					13 button For a patient. Plain language first., ID: flt-semantic-node-640
+					14 button For a clinician. Genotype and guideline first., ID: flt-semantic-node-641
+				15 button (collapsed) Input coverage. 1 of 7 genes have enough positions to call, ID: flt-semantic-node-636, Secondary Actions: Expand
+				16 container flt-semantic-node-623
+					17 button (collapsed) clopidogrel: Ineffective, ID: flt-semantic-node-624, Secondary Actions: Expand
+					18 button (collapsed) azathioprine: Unknown, ID: flt-semantic-node-625, Secondary Actions: Expand
+					19 button (collapsed) codeine: Unknown, ID: flt-semantic-node-626, Secondary Actions: Expand
+					20 button (collapsed) fluorouracil: Unknown, ID: flt-semantic-node-627, Secondary Actions: Expand
+					21 button (collapsed) simvastatin: Unknown, ID: flt-semantic-node-628, Secondary Actions: Expand
+					22 button (collapsed) warfarin: Unknown, ID: flt-semantic-node-629, Secondary Actions: Expand
+				23 container flt-semantic-node-631
+					24 button Copy JSON, ID: flt-semantic-node-632
+					25 button Export JSON, ID: flt-semantic-node-633
+				26 button Printable summary, ID: flt-semantic-node-620
+				27 button ID: flt-semantic-node-618, Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes. PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 · explanations 24 Jul 2026
+		28 AXWebArea PharmaGuard summary — NA12878, URL: 127.0.0.1:3000/
+			29 table
+				30 row
+					31 cell
+						32 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+				33 row
+					34 cell
+						35 container
+							36 text RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE
+							37 heading Pharmacogenomic analysis summary, Value: 1
+								38 text Pharmacogenomic analysis summary
+							39 container
+								40 container sample
+									41 text sample
+								42 container NA12878
+									43 text NA12878
+							44 container
+								45 container analysed
+									46 text analysed
+								47 container 2026-10-06T10:43:18.934014Z
+									48 text 2026-10-06T10:43:18.934014Z
+							49 container
+								50 container printed
+									51 text printed
+								52 container 2026-10-06
+									53 text 2026-10-06
+							54 container
+								55 container drugs checked
+									56 text drugs checked
+								57 container 6
+									58 text 6
+							59 container
+								60 text This is not a clinical report.  It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page.
+							61 text Every clinical statement here is machine-checked to trace back to a published CPIC recommendation. That verifies nothing was invented. It does not verify that any of it is correct for the person this sample came from.
+							62 text Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.
+							63 heading Results, Value: 2
+								64 text Results
+							65 text Ordered by consequence, not alphabetically. clopidogrel Ineffective
+							66 container
+								67 container gene
+									68 text gene
+								69 container CYP2C19
+									70 text CYP2C19
+								71 container diplotype
+									72 text diplotype
+								73 container *1/*2
+									74 text *1/*2
+								75 container phenotype
+									76 text phenotype
+								77 container IM
+									78 text IM
+								79 container evidence level
+									80 text evidence level
+								81 container Unknown
+									82 text Unknown
+							83 text clopidogrel: CYP2C19 *1/*2 (Intermediate Metabolizer) — Ineffective.
+							84 text CPIC GUIDELINE — QUOTED EXACTLY
+							85 text Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.
+							86 text CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events
+							87 text — Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]
+							88 text azathioprine Unknown
+							89 container
+								90 container gene
+									91 text gene
+								92 container Unknown
+									93 text Unknown
+								94 container diplotype
+									95 text diplotype
+								96 container Unknown
+									97 text Unknown
+								98 container phenotype
+									99 text phenotype
+								100 container Unknown
+									101 text Unknown
+								102 container evidence level
+									103 text evidence level
+								104 container Unknown
+									105 text Unknown
+							106 text azathioprine: no pharmacogenomic result (Unknown).
+							107 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+							108 text Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+							109 text Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT
+							110 text — PharmCAT (no matching CPIC entry)
+							111 text codeine Unknown
+							112 container
+								113 container gene
+									114 text gene
+								115 container Unknown
+									116 text Unknown
+								117 container diplotype
+									118 text diplotype
+								119 container Unknown
+									120 text Unknown
+								121 container phenotype
+									122 text phenotype
+								123 container Unknown
+									124 text Unknown
+								125 container evidence level
+									126 text evidence level
+								127 container Unknown
+									128 text Unknown
+							129 text codeine: no pharmacogenomic result (Unknown).
+							130 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+							131 text CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.
+							132 text Annotation of CPIC Guideline for codeine and CYP2D6
+							133 text — PharmCAT (no matching CPIC entry)
+							134 text fluorouracil Unknown
+							135 container
+								136 container gene
+									137 text gene
+								138 container Unknown
+									139 text Unknown
+								140 container diplotype
+									141 text diplotype
+								142 container Unknown
+									143 text Unknown
+								144 container phenotype
+									145 text phenotype
+								146 container Unknown
+									147 text Unknown
+								148 container evidence level
+									149 text evidence level
+								150 container Unknown
+									151 text Unknown
+							152 text fluorouracil: no pharmacogenomic result (Unknown).
+							153 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+							154 text Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+							155 text Annotation of CPIC Guideline for fluorouracil and DPYD
+							156 text — PharmCAT (no matching CPIC entry)
+							157 text simvastatin Unknown
+							158 container
+								159 container gene
+									160 text gene
+								161 container Unknown
+									162 text Unknown
+								163 container diplotype
+									164 text diplotype
+								165 container Unknown
+									166 text Unknown
+								167 container phenotype
+									168 text phenotype
+								169 container Unknown
+									170 text Unknown
+								171 container evidence level
+									172 text evidence level
+								173 container Unknown
+									174 text Unknown
+							175 text simvastatin: no pharmacogenomic result (Unknown).
+							176 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+							177 text Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.
+							178 text Annotation of CPIC Guideline for simvastatin and SLCO1B1
+							179 text — PharmCAT (no matching CPIC entry)
+							180 text warfarin Unknown
+							181 container
+								182 container gene
+									183 text gene
+								184 container Unknown
+									185 text Unknown
+								186 container diplotype
+									187 text diplotype
+								188 container Unknown
+									189 text Unknown
+								190 container phenotype
+									191 text phenotype
+								192 container Unknown
+									193 text Unknown
+								194 container evidence level
+									195 text evidence level
+								196 container Unknown
+									197 text Unknown
+							198 text warfarin: no pharmacogenomic result (Unknown).
+							199 text APPLICATION LIMITATION — NOT A CPIC QUOTE
+							200 text No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+							201 text Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1
+							202 text — PharmCAT (no matching CPIC entry)
+							203 heading Unknown results (5), Value: 2
+								204 text Unknown results (5)
+							205 text An Unknown is a declined answer, not a missing one. Only one of these reasons is something the sample provider can act on. azathioprine Your file is missing required positions
+							206 text Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-function result could be reported as safe. The system declines rather than risk that.
+							207 container
+								208 text What would fix it:  Upload a VCF that reports ALL positions, including those matching the reference — a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here.
+							209 text codeine Not determinable from a VCF
+							210 text This gene is defined by structural and copy-number changes, which a VCF file cannot represent. No amount of extra sequencing depth in a VCF will resolve it — it needs a different kind of genetic test. The system declines to guess rather than report a genotype it cannot support.
+							211 text Nothing about the uploaded file would change this result.
+							212 text fluorouracil Your file is missing required positions
+							213 text Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-function result could be reported as safe. The system declines rather than risk that.
+							214 container
+								215 text What would fix it:  Upload a VCF that reports ALL positions, including those matching the reference — a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here.
+							216 text simvastatin Your file is missing required positions
+							217 text Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-function result could be reported as safe. The system declines rather than risk that.
+							218 container
+								219 text What would fix it:  Upload a VCF that reports ALL positions, including those matching the reference — a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here.
+							220 text warfarin Result withheld
+							221 text No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.
+							222 text Nothing about the uploaded file would change this result.
+							223 heading Input coverage, Value: 2
+								224 text Input coverage
+							225 text How many of the positions each gene needs carried an explicit genotype in the uploaded file. A position that is absent reads as matching the reference, so missing data produces confident results rather than uncertain ones — which is why the count is printed whether or not it passed.
+							226 table
+								227 row
+									228 cell
+										229 text gene
+									230 cell
+										231 text reported
+									232 cell
+										233 text required
+									234 cell
+										235 text minimum
+									236 cell
+										237 text sufficient
+								238 row
+									239 cell
+										240 text CYP2C19
+									241 cell
+										242 text 35
+									243 cell
+										244 text 35
+									245 cell
+										246 text 100%
+									247 cell
+										248 text yes
+								249 row
+									250 cell
+										251 text CYP2C9
+									252 cell
+										253 text 0
+									254 cell
+										255 text 88
+									256 cell
+										257 text 100%
+									258 cell
+										259 text NO
+								260 row
+									261 cell
+										262 text CYP2D6
+									263 cell
+										264 text 0
+									265 cell
+										266 text 157
+									267 cell
+										268 text 100%
+									269 cell
+										270 text NO
+								271 row
+									272 cell
+										273 text DPYD
+									274 cell
+										275 text 0
+									276 cell
+										277 text 83
+									278 cell
+										279 text 20%
+									280 cell
+										281 text NO
+								282 row
+									283 cell
+										284 text NUDT15
+									285 cell
+										286 text 0
+									287 cell
+										288 text 20
+									289 cell
+										290 text 80%
+									291 cell
+										292 text NO
+								293 row
+									294 cell
+										295 text SLCO1B1
+									296 cell
+										297 text 0
+									298 cell
+										299 text 35
+									300 cell
+										301 text 100%
+									302 cell
+										303 text NO
+								304 row
+									305 cell
+										306 text TPMT
+									307 cell
+										308 text 0
+									309 cell
+										310 text 45
+									311 cell
+										312 text 80%
+									313 cell
+										314 text NO
+							315 text Not resolved from this file:
+							316 text  CYP2C9, CYP2D6, DPYD, NUDT15, SLCO1B1, TPMT. Any drug keyed to these genes was reported as Unknown rather than assumed normal.
+							317 heading Where this guidance came from, Value: 2
+								318 text Where this guidance came from
+							319 container
+								320 container PharmCAT
+									321 text PharmCAT
+								322 container 3.4.0
+									323 text 3.4.0
+							324 container
+								325 container CPIC data version
+									326 text CPIC data version
+								327 container 2026-07-13-11-40
+									328 text 2026-07-13-11-40
+							329 container
+								330 container explanations generated
+									331 text explanations generated
+								332 container 24 Jul 2026
+									333 text 24 Jul 2026
+							334 container
+								335 container source
+									336 text source
+								337 container CPIC guidelines, retrieved via PharmCAT
+									338 text CPIC guidelines, retrieved via PharmCAT
+							339 text Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.
+
+The focused UI element is 28 AXWebArea PharmaGuard summary — NA12878, URL: 127.0.0.1:3000/

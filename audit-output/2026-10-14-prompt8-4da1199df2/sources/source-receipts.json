@@ -1,0 +1,6 @@
+[
+ {"url": "https://samtools.github.io/hts-specs/VCFv4.3.pdf", "accessed_utc": "2026-10-14T11:53Z", "sha256": "48c3615a0596572c5c70dcce5d38620b5663d7cec6439b0a21e156ff9e417781",
+  "used_for": "VCF format defines structural-variant and copy-number representation: section 5.3 'Encoding Structural Variants'; reserved symbolic ALT types DEL, DUP ('Region of elevated copy number relative to the reference'), INV, CNV ('Copy number variable region'), BND; INFO SVTYPE; FORMAT CN ('Copy number genotype for imprecise events')."},
+ {"url": "https://pharmcat.clinpgx.org/using/Calling-CYP2D6/", "accessed_utc": "2026-10-14T11:53Z",
+  "used_for": "PharmCAT does not recommend calling CYP2D6 from VCF because CYP2D6 phenotype is sensitive to SV and CNV; it accepts outside calls (-po), suggesting tools such as StellarPGx on WGS CRAM/BAM."}
+]

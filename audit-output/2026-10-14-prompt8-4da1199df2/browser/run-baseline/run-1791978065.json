@@ -1,0 +1,18 @@
+[
+ {
+  "id": "D01",
+  "coverage": {
+   "status": 200,
+   "body_sha256": "26101d2a45be0946955522bbf9a0318ce4ae6f80b82f193fb8e5d61c9a2ee6f4",
+   "body_file": "browser-received/0016-post-coverage.body",
+   "failed": null
+  },
+  "analyze": {
+   "status": 200,
+   "body_sha256": "5d7cc9e5a6a5e0f4ee98890ee0cffa48f156f31c35b9417ad2b2f054dba0ef3d",
+   "body_file": "browser-received/0017-post-analyze.body",
+   "failed": null
+  },
+  "external_interference": false
+ }
+]

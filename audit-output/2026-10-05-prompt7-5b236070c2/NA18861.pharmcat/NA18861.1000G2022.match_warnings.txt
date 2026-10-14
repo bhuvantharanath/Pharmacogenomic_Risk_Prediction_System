@@ -1,0 +1,10 @@
+chr13:48037782
+	Discarded genotype at this position because REF in VCF (A) does not match expected reference (AGGAGTC)
+	Duplicate entry found in VCF; this entry trumps previous invalid entry.
+	Genotype at this position has SNP (A) but PharmCAT expects indel or repeat (A/AGGAGTCGGAGTC)
+chr1:97078987
+	Duplicate entry found in VCF; first valid entry trumps others.
+chr22:42128211
+	Duplicate entry found in VCF; first valid entry trumps others.
+chr22:42129037
+	Duplicate entry found in VCF; first valid entry trumps others.

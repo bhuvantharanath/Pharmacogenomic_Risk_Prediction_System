@@ -1,0 +1,26 @@
+{
+  "backend": {
+    "total": 921,
+    "passed": 919,
+    "failures": [],
+    "skips": [
+      {
+        "id": "tests.test_documented_numbers::test_the_documented_test_counts_match_the_suite",
+        "message": "README no longer quotes a backend test count"
+      },
+      {
+        "id": "tests.test_glossary_audit::test_recorded_decisions_carry_who_and_when",
+        "message": "no decisions recorded yet"
+      }
+    ],
+    "deprecation_warnings": 9
+  },
+  "flutter": {
+    "passed": 202,
+    "done": {
+      "success": true,
+      "type": "done",
+      "time": 18219
+    }
+  }
+}

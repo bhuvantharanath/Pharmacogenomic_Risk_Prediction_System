@@ -1,0 +1,91 @@
+{
+  "same_image_id": "sha256:82abce68aaafd51da8ed41eba52a2e1d5e0909a6a0f06005c8aeb5b6e7016d90",
+  "all_passed": true,
+  "containers": [
+    {
+      "container": "main",
+      "id": "65e4c4182611c8516197caa04df137023316b3e9bab9581234a2290e78b16ba1",
+      "checks": {
+        "image": true,
+        "memory": true,
+        "memory_swap_total": true,
+        "jvm": true,
+        "one_slot": true,
+        "queue_90s": true,
+        "static": true,
+        "strict": true,
+        "timeout": true,
+        "no_restart": true,
+        "stopped_no_oom": true
+      }
+    },
+    {
+      "container": "triple",
+      "id": "7c6063d0e16829894c2c1ae9998401792f66034d2e7733b48482e469d0af626d",
+      "checks": {
+        "image": true,
+        "memory": true,
+        "memory_swap_total": true,
+        "jvm": true,
+        "one_slot": true,
+        "queue_90s": true,
+        "static": true,
+        "strict": true,
+        "timeout": true,
+        "no_restart": true,
+        "stopped_no_oom": true
+      }
+    },
+    {
+      "container": "burst",
+      "id": "8c85f0a294d11dec1c902ebf34988f11faadef014cacc5e05fd0f3678222a4ce",
+      "checks": {
+        "image": true,
+        "memory": true,
+        "memory_swap_total": true,
+        "jvm": true,
+        "one_slot": true,
+        "queue_90s": true,
+        "static": true,
+        "strict": true,
+        "timeout": true,
+        "no_restart": true,
+        "stopped_no_oom": true
+      }
+    },
+    {
+      "container": "mixed",
+      "id": "70b27060c0aa7d58769b9960f2538783a06757639ff4ad3ebc810441a572c393",
+      "checks": {
+        "image": true,
+        "memory": true,
+        "memory_swap_total": true,
+        "jvm": true,
+        "one_slot": true,
+        "queue_90s": true,
+        "static": true,
+        "strict": true,
+        "timeout": true,
+        "no_restart": true,
+        "stopped_no_oom": true
+      }
+    },
+    {
+      "container": "timeout",
+      "id": "88ce2e59bed52692066897c490329d508dde648b75e9ae5fbb739e7fb4cf1b41",
+      "checks": {
+        "image": true,
+        "memory": true,
+        "memory_swap_total": true,
+        "jvm": true,
+        "one_slot": true,
+        "queue_90s": true,
+        "static": true,
+        "strict": true,
+        "timeout": true,
+        "no_restart": true,
+        "stopped_no_oom": true
+      }
+    }
+  ]
+}

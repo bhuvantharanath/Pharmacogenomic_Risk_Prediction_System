@@ -198,12 +198,14 @@ def test_gate_can_only_remove_confidence_never_add_it() -> None:
     from app import main
 
     source = inspect.getsource(main.build_result)
-    assert "starved_genes" in source
+    assert "eligibility" in source
+    assert "not eligibility.eligible" in source
     # The demotion must be unconditional and must target Unknown specifically.
     assert "RiskLabel.UNKNOWN" in source
     assert "Phenotype.UNKNOWN" in source
     # Nothing in the gated branch may assign any other label.
-    gated = source.split("starved_genes", 1)[1].split("recommendation =", 1)[0]
+    gated = source.split("if eligibility is not None and not eligibility.eligible:", 1)[1]
+    gated = gated.split("# Build the profile", 1)[0]
     for label in ("RiskLabel.SAFE", "RiskLabel.TOXIC", "RiskLabel.INEFFECTIVE",
                   "RiskLabel.ADJUST_DOSAGE"):
         assert label not in gated, f"gated branch can assign {label}"
@@ -256,8 +258,9 @@ def test_coverage_is_reported_pass_or_fail() -> None:
             # gene, not only the enforced one, so the exposure the other six
             # carry is visible rather than inferable.
             "decision_critical_present", "decision_critical_required",
-            "decision_critical_enforced",
+            "decision_critical_enforced", "evidence_counts",
         }, f"{gene} metrics shape changed"
+        assert sum(entry["evidence_counts"].values()) == entry["positions_required"]
 
 
 # --------------------------------------------------------------------------- #

@@ -79,15 +79,15 @@ void main() {
       ];
 
       expect(_drugsInOrder(arrived), <String>[
-        'fluorouracil',  // Toxic, critical
-        'clopidogrel',   // Ineffective, high — same band, lower severity
+        'clopidogrel',   // Same consequence band; alphabetical within the band
+        'fluorouracil',
         'simvastatin',   // Adjust Dosage
         'azathioprine',  // Safe
         'codeine',       // Unknown, always last
       ]);
     });
 
-    test('Toxic and Ineffective share a band; severity separates them', () {
+    test('Toxic and Ineffective share a band without a severity claim', () {
       // Neither label outranks the other — they are different mechanisms, and
       // asserting a clinical priority between them is not this project's to make.
       expect(RiskLabel.toxic.consequenceRank,
@@ -97,7 +97,7 @@ void main() {
         _result('a-ineffective-critical', RiskLabel.ineffective, Severity.critical),
         _result('b-toxic-moderate', RiskLabel.toxic, Severity.moderate),
       ]);
-      expect(order.first, 'a-ineffective-critical');
+      expect(order, <String>['a-ineffective-critical', 'b-toxic-moderate']);
     });
 
     test('a tie falls back to alphabetical, not to arrival order', () {
@@ -125,7 +125,9 @@ void main() {
     test('the real five-drug payload orders as expected', () {
       final File payload =
           File('../test-data/demo/outputs/S6_multidrug.json');
-      if (!payload.existsSync()) return; // artifact not present in this checkout
+      if (!payload.existsSync()) {
+        return; // artifact not present in this checkout
+      }
 
       final AnalyzeResponse r = AnalyzeResponse.fromJson(
           jsonDecode(payload.readAsStringSync()) as Map<String, dynamic>);
@@ -157,16 +159,15 @@ void main() {
       expect(safe, lessThan(unknown));
     });
 
-    testWidgets('every row shows drug, verdict and severity',
+    testWidgets('rows preserve the detail slot without legacy severity',
         (WidgetTester t) async {
       await _pump(t, mixed);
 
       expect(find.text('clopidogrel'), findsOneWidget);
       expect(find.text('Ineffective'), findsOneWidget);
-      expect(find.text('severity critical'), findsOneWidget);
-      // Severity `none` is omitted rather than printed: "severity none" on a
-      // Safe row is noise that makes the critical row harder to spot.
+      expect(find.text('severity critical'), findsNothing);
       expect(find.text('severity none'), findsNothing);
+      expect(find.text('PGx interpretation only'), findsWidgets);
     });
 
     testWidgets('a row opens in place, and only that row',

@@ -1,0 +1,1 @@
+First assembly exit 1: audit helper compared render.yaml symlink target-string hash to frozen inventory target-content hash. Candidate target bytes were unchanged. Corrected only audit helper to use existing inventory contract, retaining symlink type. Initial result preserved in audit-harness-symlink-hash-mismatch.json. This was not a production defect.

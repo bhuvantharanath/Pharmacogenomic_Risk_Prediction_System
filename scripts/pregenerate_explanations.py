@@ -348,8 +348,8 @@ def _fresh_review() -> dict:
 
     `provenance_verified` starts False on purpose: generation and verification
     are separate steps, and an entry that asserted its own verification would
-    make the release gate self-certifying. `verify_provenance.py --write` is
-    what sets it, after actually checking.
+    make a required release prerequisite self-certifying.
+    `verify_provenance.py --write` sets it only after actually checking.
     """
     return {
         "provenance_verified": False,

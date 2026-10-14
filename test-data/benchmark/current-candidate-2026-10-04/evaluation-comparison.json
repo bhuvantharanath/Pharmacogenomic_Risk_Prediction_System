@@ -1,0 +1,40 @@
+{
+  "historical_benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "historical_generated_at": "2026-09-25T03:43:38.823412+00:00",
+  "new_generated_at": "2026-10-04T04:02:30.361553+00:00",
+  "individuals": 208,
+  "sample_gene_rows": 1456,
+  "evaluable_truth_rows": 596,
+  "all_metric_fields_equal_except_generation_time": true,
+  "eligibility_rows": 1456,
+  "differing_eligibility_fields": {
+    "vcf_sha256": 1456
+  },
+  "individuals_with_vcf_sha_difference": 208,
+  "exclusions_sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200",
+  "discrepancies_sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47",
+  "report_manifest_sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8",
+  "representative_projection": [
+    {
+      "label": "historical-path",
+      "path": "historical-path.HG00111.vcf",
+      "sha256": "305e088a734cf63cf642f305b69cfa29dd231a998b9bab1fdfd0778450707c97",
+      "command_lines": [
+        "##bcftools_viewCommand=view -r chr1:97078987-97883368 -S '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_samples.txt' --force-samples -Oz -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/chr1.locked_cohort.vcf.gz' https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr1.filtered.SNV_INDEL_SV_phased_panel.vcf.gz; Date=Thu Sep 24 19:15:21 2026",
+        "##bcftools_viewCommand=view -R '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz' -s HG00111 -Ov -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-04-prompt5-14c02de54f/historical-path.HG00111.vcf' '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_cohort.vcf.gz'; Date=Sun Oct  4 09:34:53 2026"
+      ]
+    },
+    {
+      "label": "isolated-path",
+      "path": "isolated-path.HG00111.vcf",
+      "sha256": "c2ebb7ef995e1a4a714ad004c50261275a83555f9ef47d69653eddb41c7b4c45",
+      "command_lines": [
+        "##bcftools_viewCommand=view -r chr1:97078987-97883368 -S '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_samples.txt' --force-samples -Oz -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/chr1.locked_cohort.vcf.gz' https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr1.filtered.SNV_INDEL_SV_phased_panel.vcf.gz; Date=Thu Sep 24 19:15:21 2026",
+        "##bcftools_viewCommand=view -R '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz' -s HG00111 -Ov -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-04-prompt5-14c02de54f/isolated-path.HG00111.vcf' '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-04-prompt5-14c02de54f/evaluation-copy/test-data/benchmark/external/genomic/locked_cohort.vcf.gz'; Date=Sun Oct  4 09:34:53 2026"
+      ]
+    }
+  ],
+  "representative_projection_record_count": 172,
+  "representative_biological_records_equal": true,
+  "interpretation": "The only changed comparison-table field is the hash of each regenerated single-sample VCF. A representative same-input projection differs only in the bcftools_viewCommand header because the isolated source path differs. This supports a provenance-header explanation. Historical per-sample VCF bytes are unavailable for direct bytewise comparison; no exact historical projection identity or new genotype concordance is claimed."
+}

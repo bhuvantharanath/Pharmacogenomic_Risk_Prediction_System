@@ -1,0 +1,18 @@
+[startup] pharmcat=jar via java -jar /pharmcat/pharmcat.jar
+[startup] pharmcat_concurrency=1 workers=1 queue_timeout=90s
+[startup] listening on http://127.0.0.1:8000  (docs at /docs)
+[startup] explanation_mode=static cors_origins=(localhost only) rate_limit=10/300s proxy_trust={'forwarded_headers': 'ignored', 'trusted_proxy_cidrs': []}
+INFO:     172.17.0.1:50054 - "GET /health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:50062 - "GET /ready HTTP/1.1" 200 OK
+INFO:     172.17.0.1:50076 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:50080 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:44796 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:44802 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:44804 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:44810 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:44826 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:44840 - "POST /analyze HTTP/1.1" 200 OK
+INFO:     172.17.0.1:33992 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:34002 - "POST /coverage HTTP/1.1" 200 OK
+INFO:     172.17.0.1:34012 - "POST /coverage HTTP/1.1" 429 Too Many Requests
+INFO:     172.17.0.1:58384 - "POST /coverage HTTP/1.1" 200 OK

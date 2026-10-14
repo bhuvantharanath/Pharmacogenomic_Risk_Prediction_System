@@ -1,0 +1,11 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+The following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 12-16, 18
+~					17 container ID: flt-semantic-node-69, Description: CYP2C19 coverage: 35 of 35 required positions reported CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 carries common that abolish, reduce, or increase enzyme production. Source: Annotation of Guideline for clopidogrel and CYP2C19 — Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351 CPIC GUIDELINE — QUOTED EXACTLY Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication. CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events — Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]
+~						24 button (expanded) The guideline in CPIC's own words, ID: flt-semantic-node-98, Secondary Actions: Collapse
++					28 container flt-semantic-node-101
++						29 button Copy JSON, ID: flt-semantic-node-102
++						30 button Export JSON, ID: flt-semantic-node-103
++					31 button Printable summary, ID: flt-semantic-node-106
++					32 button ID: flt-semantic-node-108, Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes. PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 · explanations 24 Jul 2026
+The focused UI element is 2 container Back Analysis results Copy JSON Export JSON Research/educational decision support only. Not a medical device. No clinician has reviewed this content.

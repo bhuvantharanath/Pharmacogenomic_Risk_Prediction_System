@@ -1,0 +1,70 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+___________________ test_disclaimer_bounds_automated_checks ____________________
+
+    def test_disclaimer_bounds_automated_checks() -> None:
+        text = DISCLAIMER.lower()
+        for phrase in OVERCLAIMS:
+>           assert phrase not in text, f"disclaimer overclaims: {phrase!r}"
+E           AssertionError: disclaimer overclaims: 'nothing was invented'
+E           assert 'nothing was invented' not in 'research/ed...ect for you.'
+E             
+E             'nothing was invented' is contained here:
+E             ?           --
+E               ecks that nothing was invented, not that it is correct for you.
+E             ?              ++++++++++++++++++++++
+
+backend/tests/test_disclosure_wording.py:76: AssertionError
+_____________ test_analysis_response_does_not_overclaim_provenance _____________
+
+client = <starlette.testclient.TestClient object at 0x108620050>
+valid_vcf_bytes = b'##fileformat=VCFv4.2\n##source=PharmaGuardSyntheticGenerator\n##pharmaguard_synthetic_CYP2C19=*2/*2 (definition CLIN...720\trs147390019\tG\tA\t.\tPASS\tPX=NUDT15\tGT\t0/0\nchr13\t48045771\trs139551410\tT\tA\t.\tPASS\tPX=NUDT15\tGT\t0/0\n'
+
+    def test_analysis_response_does_not_overclaim_provenance(
+        client: TestClient, valid_vcf_bytes: bytes
+    ) -> None:
+        body = _post(client, "/analyze", valid_vcf_bytes, "clopidogrel,codeine").json()
+        warnings = " ".join(body["quality_metrics"]["warnings"]).lower()
+        for phrase in OVERCLAIMS:
+>           assert phrase not in warnings, f"analysis warning overclaims: {phrase!r}"
+E           AssertionError: analysis warning overclaims: 'every clinical statement is machine'
+E           assert 'every clini...t is machine' not in 'cyp2d6: onl...or: codeine.'
+E             
+E             'every clinical statement is machine' is contained here:
+E                its own: every clinical statement is machine-verified to trace to a cpic recommendation issued by pharmcat, or to a cited mechanism document. that checks provenance, not correctness. no usable pharmacogenomic result for: codeine.
+E             ?           +++++++++++++++++++++++++++++++++++
+
+backend/tests/test_disclosure_wording.py:90: AssertionError
+______________ test_cyp2d6_reason_names_the_application_boundary _______________
+
+valid_vcf_bytes = b'##fileformat=VCFv4.2\n##source=PharmaGuardSyntheticGenerator\n##pharmaguard_synthetic_CYP2C19=*2/*2 (definition CLIN...720\trs147390019\tG\tA\t.\tPASS\tPX=NUDT15\tGT\t0/0\nchr13\t48045771\trs139551410\tT\tA\t.\tPASS\tPX=NUDT15\tGT\t0/0\n'
+
+    def test_cyp2d6_reason_names_the_application_boundary(valid_vcf_bytes: bytes) -> None:
+        reason = coverage.NOT_READABLE_FROM_VCF["CYP2D6"].lower()
+        for phrase in FORMAT_CLAIMS:
+>           assert phrase not in reason, f"CYP2D6 reason blames the file format: {phrase!r}"
+E           AssertionError: CYP2D6 reason blames the file format: 'cannot express'
+E           assert 'cannot express' not in 'defined by ... resolve it.'
+E             
+E             'cannot express' is contained here:
+E               ich a vcf cannot express. a different kind of genetic test is needed; no vcf will resolve it.
+E             ?           ++++++++++++++
+
+backend/tests/test_disclosure_wording.py:101: AssertionError
+______ test_variants_only_warning_states_that_this_application_withholds _______
+
+    def test_variants_only_warning_states_that_this_application_withholds() -> None:
+        message = coverage.variants_only_warning()
+        lower = message.lower()
+        # The hazard is still named — and attributed to callers that read an
+        # absent position as reference — and the application's own behaviour is stated.
+        assert "confident WRONG result" in message
+>       assert "genotype caller" in lower
+E       assert 'genotype caller' in "this vcf contains no homozygous-reference genotypes at any of pharmcat's required positions, which means it is almost...on carries an explicit genotype. the input requirements page gives the exact commands. see docs/input_requirements.md."
+
+backend/tests/test_disclosure_wording.py:121: AssertionError
+=========================== short test summary info ============================
+FAILED backend/tests/test_disclosure_wording.py::test_disclaimer_bounds_automated_checks
+FAILED backend/tests/test_disclosure_wording.py::test_analysis_response_does_not_overclaim_provenance
+FAILED backend/tests/test_disclosure_wording.py::test_cyp2d6_reason_names_the_application_boundary
+FAILED backend/tests/test_disclosure_wording.py::test_variants_only_warning_states_that_this_application_withholds

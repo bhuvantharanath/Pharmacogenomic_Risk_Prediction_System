@@ -1,0 +1,3731 @@
+{
+ "frozen_inventory": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/candidate-inventory.json",
+ "frozen_inventory_sha256": "9582a19acd61d841e6ecc9d98cdeef5796e654cdc790343d27b1dc0100af62da",
+ "entries": 437,
+ "differences": [
+  {
+   "path": "app/lib/config.dart",
+   "kind": "changed",
+   "frozen_sha256": "c254c222e99ab6bc63f9558e0513434777765dc1fe0f482bc63d5e9d22ebfec0",
+   "current_sha256": "b13f04bc5b2b0fbdebc5437be13482fbd3e36b01a25b096ed1dab8304c58b145",
+   "frozen_bytes": 5908,
+   "current_bytes": 5938
+  },
+  {
+   "path": "app/lib/models/analysis.dart",
+   "kind": "changed",
+   "frozen_sha256": "40cf782bbfaf7832abb579db65af643dc94d5060a57c6ecd5c2a411c5f85b629",
+   "current_sha256": "94296c570b03b3e4a0aed0fe572f6a46b4a5f42eac4ead691fff1e48d57d80a4",
+   "frozen_bytes": 25055,
+   "current_bytes": 25805
+  },
+  {
+   "path": "app/lib/models/unknown_reason.dart",
+   "kind": "changed",
+   "frozen_sha256": "f46823fb35de9e0e1a2dec225b0a3f8715dcb7da4be8478e06d4b316c72202a2",
+   "current_sha256": "fba671d992a578b467940ccba05a55856018121ccf649b05a4bb71d8429bf0fd",
+   "frozen_bytes": 7465,
+   "current_bytes": 9008
+  },
+  {
+   "path": "app/lib/print/summary_document.dart",
+   "kind": "changed",
+   "frozen_sha256": "0ae1f06200f7bfe46dd3f3c3e9074ee1757cf1216a3689072ef03fa25d3231fe",
+   "current_sha256": "272b459788a64d39498ab2265d24a729096fc705533711aae7246fb80bc1d6c9",
+   "frozen_bytes": 15947,
+   "current_bytes": 16124
+  },
+  {
+   "path": "app/lib/screens/about_screen.dart",
+   "kind": "changed",
+   "frozen_sha256": "0a5e170a8ee77d163e9cf5c79daceaec945bfb6834b3d3c63b3555a44d581e6e",
+   "current_sha256": "4071a7efbf6313c0a9cf5ac6c21ff4cd473935d4cf783070f50c5a41c6958812",
+   "frozen_bytes": 13130,
+   "current_bytes": 13115
+  },
+  {
+   "path": "app/lib/screens/home_screen.dart",
+   "kind": "changed",
+   "frozen_sha256": "e8e72df7594d4f78af8abb7e55b775dbea1a10fa6502855f94236a83f0c6d859",
+   "current_sha256": "a74633f9b4942ee2ec38523014bde2b67d76d818df3ddd6c9f2f7058b028acce",
+   "frozen_bytes": 28728,
+   "current_bytes": 29053
+  },
+  {
+   "path": "app/lib/widgets/coverage_census.dart",
+   "kind": "changed",
+   "frozen_sha256": "8be8cc144338cea2fc36db0e737a5e27617aaf1e8da84cf6dbdc1fc6a734e4e2",
+   "current_sha256": "d3591ed6ffc93046db388b6cef47886545504afd2f1848834075289b38d87bd9",
+   "frozen_bytes": 5147,
+   "current_bytes": 5802
+  },
+  {
+   "path": "app/lib/widgets/disclosure_row.dart",
+   "kind": "changed",
+   "frozen_sha256": "ee7a9993c42fdb4a55a3d526a499794134dde08ccca5a154b09c095279454c62",
+   "current_sha256": "7e3087efb22cbc5a731f32e1d62abf17dbfb7ac44402f0a74a0c17c9b6d1123f",
+   "frozen_bytes": 3480,
+   "current_bytes": 3883
+  },
+  {
+   "path": "app/lib/widgets/file_readiness.dart",
+   "kind": "changed",
+   "frozen_sha256": "171273b4dc8975d351d5664a6cdb617994a274c8e60bcf39fdff310f9f5ed1cd",
+   "current_sha256": "2889393e7789de91e685a18e7cb1cabb3fca246870dfa8549c7d747320297e92",
+   "frozen_bytes": 11409,
+   "current_bytes": 11472
+  },
+  {
+   "path": "app/lib/widgets/summary_grid.dart",
+   "kind": "changed",
+   "frozen_sha256": "11cc1ee8ce8a7801932bc2638d156f5785d24b09161c041b3140088223a0aefb",
+   "current_sha256": "a95fba66b6fd3bf56197bd59a25f27863d61d061ba70724168cf7a73f154c632",
+   "frozen_bytes": 6705,
+   "current_bytes": 7147
+  },
+  {
+   "path": "app/lib/widgets/unknown_panel.dart",
+   "kind": "changed",
+   "frozen_sha256": "8784465ecc125ea394c04b57526a89423ed741696a62374f602bab1c9b778cb3",
+   "current_sha256": "336ddc8ab7276f359f931b0e7d3fee9bfdfca7bc420c248de281124ad661ec24",
+   "frozen_bytes": 7254,
+   "current_bytes": 7408
+  },
+  {
+   "path": "app/lib/widgets/unknown_reason_panel.dart",
+   "kind": "changed",
+   "frozen_sha256": "102fd6abfc7c28a048feff23a910f7a25314de1994ac5e01abc3a2c0631607d6",
+   "current_sha256": "da72254e558131c2798fc54d54fca976e976333add572aeb11aa4d638a61e22b",
+   "frozen_bytes": 7860,
+   "current_bytes": 8866
+  },
+  {
+   "path": "app/lib/widgets/verdict_card.dart",
+   "kind": "changed",
+   "frozen_sha256": "432d9d240eecb72edc7b0247643826d0f2c499c1172ba1703d34f3e1d603ab7e",
+   "current_sha256": "61a4783bb1005e7a57af688c8000ef715e04d4e03653920fd8779b9ff84330a8",
+   "frozen_bytes": 11568,
+   "current_bytes": 11592
+  },
+  {
+   "path": "app/test/print_summary_test.dart",
+   "kind": "changed",
+   "frozen_sha256": "138e95db8acca0911a8f5a7f71091cb4fa1ab422103ede201680b60b52222b83",
+   "current_sha256": "129ae6e12c43cea98dbcf22c969c96b51cbb4a67f4a180d5402c1963e0ae3d8f",
+   "frozen_bytes": 15525,
+   "current_bytes": 15525
+  },
+  {
+   "path": "app/test/readiness_test.dart",
+   "kind": "changed",
+   "frozen_sha256": "6b160a3876efe4b4b049a90627d3d9e87f21b3124b5fda6f1427b80bcd394ccb",
+   "current_sha256": "d7477c23d06db95dfe0933bd3ad10f6e8b22dbfba4011448b03c72768262efb3",
+   "frozen_bytes": 11888,
+   "current_bytes": 12144
+  },
+  {
+   "path": "app/test/redesign_test.dart",
+   "kind": "changed",
+   "frozen_sha256": "3a172ee989fd2e900679b76d9b3ab8f91567ad1ca3fb4c7257eb778455ec985d",
+   "current_sha256": "6a30a532e1fb0b0eab2147874edcfedb57f367f3bc414f87c967818cae2c0386",
+   "frozen_bytes": 9721,
+   "current_bytes": 9736
+  },
+  {
+   "path": "app/test/state_census_test.dart",
+   "kind": "changed",
+   "frozen_sha256": "51f793a669217c627edea0bb67ee62e8996b200572b3d167c90ace43c81a1538",
+   "current_sha256": "5b0410bfe86bd1ef6e133a952b50cce74e03c2e3ad7c166a015a6f186d61f86c",
+   "frozen_bytes": 8058,
+   "current_bytes": 8058
+  },
+  {
+   "path": "app/test/unknown_reason_test.dart",
+   "kind": "changed",
+   "frozen_sha256": "5c5e5daa0501bf717571c13ddcc6f1e0265d65d2158079c1a1bfda86e3fdb526",
+   "current_sha256": "45c4000c12b65e88f419b23f2bf99e58d9c3fc6129df4de7b28332de7cf1d9ea",
+   "frozen_bytes": 8940,
+   "current_bytes": 9060
+  },
+  {
+   "path": "backend/app/coverage.py",
+   "kind": "changed",
+   "frozen_sha256": "7993195557659ad9da2e4536aa841f1e1500a4fbab94e3cee1cd582f9de5abef",
+   "current_sha256": "b9a714bc231b711e01586bcadb266c02cd9ee180d2f35c16cc6d4090469d2641",
+   "frozen_bytes": 22753,
+   "current_bytes": 23190
+  },
+  {
+   "path": "backend/app/data/compatible_bundle.json",
+   "kind": "changed",
+   "frozen_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+   "current_sha256": "c97059611776d460a1df9c50d62d5c27eb87e8621a1abdba0c22e0efc8b20a88",
+   "frozen_bytes": 20024,
+   "current_bytes": 20024
+  },
+  {
+   "path": "backend/app/main.py",
+   "kind": "changed",
+   "frozen_sha256": "0c56ed79aeb8e06f92c4e10f3f493fa36f5a6c1ec819a93f97da2a74098d70f3",
+   "current_sha256": "828d68f0b592072d382ecc288240494455148949b02e488506cc96219dbf1c44",
+   "frozen_bytes": 42960,
+   "current_bytes": 43273
+  },
+  {
+   "path": "backend/app/models.py",
+   "kind": "changed",
+   "frozen_sha256": "216cb88c8cb704bd6a3e6a29e6f2348f70940315c7035d3add02a3d5cac0e440",
+   "current_sha256": "b86b5bbba6f86ea48a8c31e2be9deb9227a8f73f946c7eace3e23c552b82838d",
+   "frozen_bytes": 12493,
+   "current_bytes": 12637
+  },
+  {
+   "path": "backend/tests/test_analyze_api.py",
+   "kind": "changed",
+   "frozen_sha256": "af60db6aa14cdd7a41976679633d4436ad2d563199ff8ab77e24b831bb7ad4ca",
+   "current_sha256": "b5f8315ebdc05e47d1ada16ab8dbf8258abc7af9b2264c5ff50f80bd6e004f69",
+   "frozen_bytes": 22831,
+   "current_bytes": 23080
+  },
+  {
+   "path": "backend/tests/test_coverage_endpoint.py",
+   "kind": "changed",
+   "frozen_sha256": "35d9bad711891b4039ca2f1377db93398bc062da7c6ac5123a4a8a5290362f7d",
+   "current_sha256": "5ce7cb5afa848b3d471319a538d0bb53bc4b1022dc9187293586a322e136c285",
+   "frozen_bytes": 13872,
+   "current_bytes": 14117
+  },
+  {
+   "path": "backend/tests/test_current_candidate_evaluation.py",
+   "kind": "changed",
+   "frozen_sha256": "024bcfea336fce39bd6276dbe9c49483f9e0886f21d16592f1ae8e6c78e915bf",
+   "current_sha256": "152bd65cb7d5f20ed4f6ece78406c75e145e15a98af8c6e3fc871fed926b2012",
+   "frozen_bytes": 3212,
+   "current_bytes": 3212
+  },
+  {
+   "path": "backend/tests/test_portable_scientific_hash.py",
+   "kind": "changed",
+   "frozen_sha256": "4df4212d26385a05cd0d3a8f49da11a2b24ae60bd9f052ffd7062d798c7720e7",
+   "current_sha256": "fe12a92db381217c2ac5accd0cd03adcfd8574067e74611060805e7431bb91bb",
+   "frozen_bytes": 6912,
+   "current_bytes": 6912
+  },
+  {
+   "path": "scripts/compatible_bundle.py",
+   "kind": "changed",
+   "frozen_sha256": "c93245ab52a7a3e1b0efb17239e1d1354a8ca1ba17220b5354acac94adb9d9f1",
+   "current_sha256": "b9abdd95c26339276f2d86bc00b691cce376788ae432f10d9e796b95e53341d7",
+   "frozen_bytes": 24898,
+   "current_bytes": 24898
+  },
+  {
+   "path": "scripts/release_status.py",
+   "kind": "changed",
+   "frozen_sha256": "41c794d615304902a956e4ef6771644d5f3590a78b5fafd45c19bd4348903214",
+   "current_sha256": "2bb959f4ef793cb1fa430a45249d562cc5fd983ced3f2f004354a1fc270edba8",
+   "frozen_bytes": 15485,
+   "current_bytes": 15485
+  }
+ ],
+ "current_inventory_canonical_sha256": "85e72b9affd8fc9fb97c50ed9e7972e6c34cd15c85fe595daaa93d6970e4d6d6",
+ "current": [
+  {
+   "path": ".github/workflows/build-apk.yml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7362,
+   "sha256": "fec60c4a5cc240e02c89e579c7f821309ed2a1d7dc5ccc38b9450bb3e1d7dea2"
+  },
+  {
+   "path": ".github/workflows/deploy-web.yml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12143,
+   "sha256": "f83ea1d6973cfd9cda1e8cfdd6bf221c85d0f9ccd2ce2165589b3f6b36314d5d"
+  },
+  {
+   "path": ".github/workflows/keepalive.yml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4124,
+   "sha256": "0cca4578fc6c2d78c9fea52911300a5eaf251e8a4046df73c48a9fc134f7997b"
+  },
+  {
+   "path": ".github/workflows/test.yml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11340,
+   "sha256": "8c50cdec45b2dd878cc2a8cab4b7ca2e00cd6c7e90644e06004b113533c03c06"
+  },
+  {
+   "path": ".gitignore",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4013,
+   "sha256": "930dcd5d7e03450dc4d966beb8b356fc4df96290c8ec240b2b2c5fbd5db31ac6"
+  },
+  {
+   "path": "FINAL-REAL-WORLD-ACCEPTANCE-REPORT.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 61566,
+   "sha256": "ea925913fb5244138b194749c02d3f876d253dd79f1724e7def1bd8e84ee79f4"
+  },
+  {
+   "path": "Final-Scientific-Audit.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 139257,
+   "sha256": "948bd43e34361e7524d92edca4107fdccefcfba29a65043725013e1c63cccf44"
+  },
+  {
+   "path": "LICENSE",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2240,
+   "sha256": "34db3bdc548852785d701fa2ced5dca65c0649450d2e2ae8613d06d30a7e5b22"
+  },
+  {
+   "path": "PROJECT_STATUS.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 88875,
+   "sha256": "2a0473e2bf35de819d878d73edd45b51b8a907f92bb9d2fc3727c691ae478058"
+  },
+  {
+   "path": "README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 33354,
+   "sha256": "923a64991f44478af90004f691a2c1f9540d8411a8242c5b0bb001af8f8b21d0"
+  },
+  {
+   "path": "app/.gitignore",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 703,
+   "sha256": "4a8d984279954e0461e0ffef9b9e7455340a0a762f227c01065a53482a83a4f1"
+  },
+  {
+   "path": "app/.metadata",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1260,
+   "sha256": "39508186f8388260ed2620a09332b3f0ff17e85495d6762252cfdf17255ef4da"
+  },
+  {
+   "path": "app/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3070,
+   "sha256": "bbc2f556c247be31863c9ce4ca651a2037f4c37c7a7392641de0d2c801ad6c42"
+  },
+  {
+   "path": "app/analysis_options.yaml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1420,
+   "sha256": "e0ea485cfdbc3e12b93efb8679a5ea73ebfe20ea4ca0c473dc594fc2fb274ed5"
+  },
+  {
+   "path": "app/android/.gitignore",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 537,
+   "sha256": "36493065f9cba53cee5e23b62be679c309228f852c599e5c71728f407ea1f22a"
+  },
+  {
+   "path": "app/android/app/build.gradle.kts",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4355,
+   "sha256": "abedfc34cb6059056cc16453fa34c6de67a089934a4ea66974481f64bc46a4d1"
+  },
+  {
+   "path": "app/android/app/src/debug/AndroidManifest.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 378,
+   "sha256": "30b0832ed8b92dfbd6ae2abfa939ccf26333d37600056b1572bd4a397a18a74b"
+  },
+  {
+   "path": "app/android/app/src/main/AndroidManifest.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3594,
+   "sha256": "c5174393c5fd44461df6aa4fa9d703b595ca766d451340629febe4da79145cfd"
+  },
+  {
+   "path": "app/android/app/src/main/kotlin/com/pharmaguard/pharmaguard/MainActivity.kt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 129,
+   "sha256": "171eb0a521d09d2c7806a0dfc58e0a937281183d0ced62c3072e947409cbbbfc"
+  },
+  {
+   "path": "app/android/app/src/main/res/drawable-v21/launch_background.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 438,
+   "sha256": "7ca6d5cec2169c5a98661a119db23a6f3399c8fef2256ff04f3a642831282478"
+  },
+  {
+   "path": "app/android/app/src/main/res/drawable/launch_background.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 434,
+   "sha256": "94433756fe10005ddd6fc55cc5c0b1e9f3c10b66a08ceac795ece6713d34e28a"
+  },
+  {
+   "path": "app/android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 544,
+   "sha256": "6a7c8f0d703e3682108f9662f813302236240d3f8f638bb391e32bfb96055fef"
+  },
+  {
+   "path": "app/android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 442,
+   "sha256": "c7c0c0189145e4e32a401c61c9bdc615754b0264e7afae24e834bb81049eaf81"
+  },
+  {
+   "path": "app/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 721,
+   "sha256": "e14aa40904929bf313fded22cf7e7ffcbf1d1aac4263b5ef1be8bfce650397aa"
+  },
+  {
+   "path": "app/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1031,
+   "sha256": "4d470bf22d5c17d84edc5f82516d1ba8a1c09559cd761cefb792f86d9f52b540"
+  },
+  {
+   "path": "app/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1443,
+   "sha256": "3c34e1f298d0c9ea3455d46db6b7759c8211a49e9ec6e44b635fc5c87dfb4180"
+  },
+  {
+   "path": "app/android/app/src/main/res/values-night/styles.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 995,
+   "sha256": "8c5bad5152f217e837519f9c15211d19f39bd45f5f67faf6dd81cb4b299e518f"
+  },
+  {
+   "path": "app/android/app/src/main/res/values/styles.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 996,
+   "sha256": "937d7c82f539c72eb94fd3a3773f29b3d3fef1997213c92cb632298cedf4bda9"
+  },
+  {
+   "path": "app/android/app/src/main/res/xml/network_security_config.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 998,
+   "sha256": "bfe7696b664311d13b93d08630f7239595d62717224b22ec3ae323298ed072b8"
+  },
+  {
+   "path": "app/android/app/src/profile/AndroidManifest.xml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 378,
+   "sha256": "30b0832ed8b92dfbd6ae2abfa939ccf26333d37600056b1572bd4a397a18a74b"
+  },
+  {
+   "path": "app/android/build.gradle.kts",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 537,
+   "sha256": "6a26dba2cb8dfba1e74f540b0d17a89d96c1301d3c3bfda14348bed257fddcba"
+  },
+  {
+   "path": "app/android/gradle.properties",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 138,
+   "sha256": "5539cf5f17c53900a72cf0065e450f0a8ba5b929dd2b364724c1296d0285d9dc"
+  },
+  {
+   "path": "app/android/gradle/wrapper/gradle-wrapper.properties",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 201,
+   "sha256": "297c9e63b6fa6e7e8b221900fa1787c1a0e38869d8957da66389fd0f6b00f78e"
+  },
+  {
+   "path": "app/android/settings.gradle.kts",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 772,
+   "sha256": "a9b5756048f668d4ebf355116678fd334cd5f2169b7d4518ad19b8df14d3af36"
+  },
+  {
+   "path": "app/assets/fonts/IBMPlexMono-Medium.ttf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 136704,
+   "sha256": "a9b4c49bb299e05b5f6c481e7fb5e78943d2793249a0c8874ab574a2d1ea6755"
+  },
+  {
+   "path": "app/assets/fonts/IBMPlexMono-Regular.ttf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 135580,
+   "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+  },
+  {
+   "path": "app/assets/fonts/IBMPlexMono-SemiBold.ttf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 140216,
+   "sha256": "d3c38e55c78f5b0f28009fddba4834ec503278936a5986032424c9bd2d23aa46"
+  },
+  {
+   "path": "app/assets/fonts/Newsreader-Italic-Variable.ttf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 495684,
+   "sha256": "796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792"
+  },
+  {
+   "path": "app/assets/fonts/Newsreader-Variable.ttf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 451664,
+   "sha256": "8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1"
+  },
+  {
+   "path": "app/assets/fonts/OFL-ibmplexmono.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4456,
+   "sha256": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da"
+  },
+  {
+   "path": "app/assets/fonts/OFL-newsreader.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4394,
+   "sha256": "fdfad38143ec470553cae82a1e45320bdd1b9ec70415d37bd0171051d8a4ded8"
+  },
+  {
+   "path": "app/assets/fonts/OFL-publicsans.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4390,
+   "sha256": "157a9e77f7580246e97c769490e2e977ae94399f9d30f4556015c41fe8c28bac"
+  },
+  {
+   "path": "app/assets/fonts/PublicSans-Variable.ttf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 103316,
+   "sha256": "d75a7dc1a27eb9e336d5b33f55489d2ecb5621bf694d5c43b2415bce2ca830a8"
+  },
+  {
+   "path": "app/assets/samples/pharmaguard_sample_1000genomes.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 198701,
+   "sha256": "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef"
+  },
+  {
+   "path": "app/assets/samples/pharmaguard_sample_normal.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 25966,
+   "sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c"
+  },
+  {
+   "path": "app/assets/samples/pharmaguard_sample_reduced_function.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 25967,
+   "sha256": "d9ad8dab7dca48eb8cf337089d3ac8b6096d619a9d63dba7b71b1f9f87d7bfa7"
+  },
+  {
+   "path": "app/assets/samples/pharmaguard_sample_variants_only.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1620,
+   "sha256": "fd17110ea604a41c6b1a28ce59efbc0ff50980c7d4429fe036d1e23e7a41b5ed"
+  },
+  {
+   "path": "app/ios/.gitignore",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 569,
+   "sha256": "37380775aeb2499662b7aca80f4ac4c95ae827c3ba2bfa179aa3e9af4812c623"
+  },
+  {
+   "path": "app/ios/Flutter/AppFrameworkInfo.plist",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 774,
+   "sha256": "91b8d35bd9c88b43ae0eac8348f9b57d2f3e209a4500e6516b18b459b7e3f2be"
+  },
+  {
+   "path": "app/ios/Flutter/Debug.xcconfig",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 107,
+   "sha256": "690b8a8b1ae15ddd29b241429963e971bbc6720ab22f154cf8cf6b085b6d4925"
+  },
+  {
+   "path": "app/ios/Flutter/Release.xcconfig",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 109,
+   "sha256": "75abb819a9de1e0e41c835e7307bc64a506cac25a9a5c0b0d8253fa1c3d5d422"
+  },
+  {
+   "path": "app/ios/Podfile",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1391,
+   "sha256": "db2da28b10a5ac3ed5d42dbf7208ece60fc886bd1f86f14335dde4037ba32350"
+  },
+  {
+   "path": "app/ios/Podfile.lock",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1916,
+   "sha256": "5901b9cf30367335756eefc5a36bf01515613891e907a87beaf1cea7b79aa61f"
+  },
+  {
+   "path": "app/ios/Runner.xcodeproj/project.pbxproj",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 30630,
+   "sha256": "1cf4fc01761b6662bfaa106a0b4f3c484d079524f9c31d4264ce60e75b49f2cc"
+  },
+  {
+   "path": "app/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 135,
+   "sha256": "7f3b00b5c3fdb45242d7b87e1e5c4e25d1fa8129a16c94295ecc4e8ea2235c5f"
+  },
+  {
+   "path": "app/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 238,
+   "sha256": "dfa0f9bb85b95ccba9c6811adadf8cb407fb5d52088e89db83ebc308ec448542"
+  },
+  {
+   "path": "app/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 226,
+   "sha256": "11b247bc6796892d67c9a821d18604db4dd6a880981b34f38460b9866e6b247f"
+  },
+  {
+   "path": "app/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3833,
+   "sha256": "2dd28b879e66081e28a3324cf2bee7ab2f70be9a3e50e08926b7366dadff7d6e"
+  },
+  {
+   "path": "app/ios/Runner.xcworkspace/contents.xcworkspacedata",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 224,
+   "sha256": "465e6de5660384eb6832e8078920ba6cd5305c445cb29a24a86a2fda4aa6b67e"
+  },
+  {
+   "path": "app/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 238,
+   "sha256": "dfa0f9bb85b95ccba9c6811adadf8cb407fb5d52088e89db83ebc308ec448542"
+  },
+  {
+   "path": "app/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 226,
+   "sha256": "11b247bc6796892d67c9a821d18604db4dd6a880981b34f38460b9866e6b247f"
+  },
+  {
+   "path": "app/ios/Runner/AppDelegate.swift",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 391,
+   "sha256": "9418c676adebac7e3f04daa80a7db62066e77f9766c804fd3e5e264124a31f80"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2519,
+   "sha256": "3b1e214f466ffedff74baa5598ad5c4421130eea6bc8d57b8fe23435e8280ae4"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10932,
+   "sha256": "7770183009e914112de7d8ef1d235a6a30c5834424858e0d2f8253f6b8d31926"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 295,
+   "sha256": "cab10a0d391ec5bc09ef50ce49e8ad401cee7ef03707ec0923a222c5c2b3d212"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 406,
+   "sha256": "b9ad02cf6576a04d1b6806ac02a2431481b448dd0c2e505ce25842d1f7c4730b"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 450,
+   "sha256": "c6e6d3b215ae744a9c391f4c4d44157eff5e739d6ad6c39f9bfa5df66dddd267"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 282,
+   "sha256": "5dee24dc104ac76dc162e42ae0beb163d426bf365562ee28ba7b3ad368559a60"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 462,
+   "sha256": "a9b21eb6f4271385655a8771f76e29eef8c1107d7879cbcfc567e6619d1f716a"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 704,
+   "sha256": "e677d701ffe4af7bc2935098d6b3984cc9ab7ace573e6900955a5535b12410cf"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 406,
+   "sha256": "b9ad02cf6576a04d1b6806ac02a2431481b448dd0c2e505ce25842d1f7c4730b"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 586,
+   "sha256": "7c61c42fc7b657d9cf314d32a4ec458f0647c3aaf360be1b9377857266ec2499"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 862,
+   "sha256": "19be171481dc71a0b2803ebcd01dd8b0c5fd5778dee34c0a3cabc948c225f24e"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 862,
+   "sha256": "19be171481dc71a0b2803ebcd01dd8b0c5fd5778dee34c0a3cabc948c225f24e"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1674,
+   "sha256": "4209a49e44a92ec40a327d3455eb1b1c153ee83d75de1c2be0a12ab18b2ff9de"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 762,
+   "sha256": "836c918cb613249eba0483a6b02fa3df3c1c0a89a315ee4d3b88509b83c7ab73"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1226,
+   "sha256": "41c7d42f6e61f8fe7f30b1ffa2256aecbc9682be06d18c4a3062043e1a2e547c"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1418,
+   "sha256": "5d7e5bdf01b93802bc973345b3a78c038907147625035952a08a115a563b7f81"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 391,
+   "sha256": "ccc7950fd5f5b82067c85f667940a9d59189151460761ece8098ca78daa19469"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 68,
+   "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 68,
+   "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 68,
+   "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20"
+  },
+  {
+   "path": "app/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 336,
+   "sha256": "a985b626c4f7546a8ba392d135e9226c3547c8e2b46895f5f2bdf40d7b14ef9f"
+  },
+  {
+   "path": "app/ios/Runner/Base.lproj/LaunchScreen.storyboard",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2377,
+   "sha256": "857e61203b3deafb05766d8fcda898b86a7cb6f3d5e385ecc9926c4d698215e9"
+  },
+  {
+   "path": "app/ios/Runner/Base.lproj/Main.storyboard",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1605,
+   "sha256": "fd367b6c43006d61b730f674970dd48b9f662c8f2264e52ffc1558102a2c9f2d"
+  },
+  {
+   "path": "app/ios/Runner/Info.plist",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1649,
+   "sha256": "b6fb2a4f6890e19cf03365ad6f1d9e2673fc7c3e695f73e012c5779dedb19278"
+  },
+  {
+   "path": "app/ios/Runner/Runner-Bridging-Header.h",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 38,
+   "sha256": "1a8d11d01d1cc92c650c9c9ed35299240052d4683a15a719a2315ef44185e074"
+  },
+  {
+   "path": "app/ios/RunnerTests/RunnerTests.swift",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 285,
+   "sha256": "5e8f4908dacea6f29b2a790e4d38bf5fded69096063f9a27a2f21584d62b30c0"
+  },
+  {
+   "path": "app/lib/api/backend_status.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7917,
+   "sha256": "d675742d6b81e6519d4359b8baf8ff080384bb192cfd6878da20077c44a07d9a"
+  },
+  {
+   "path": "app/lib/api/pharmaguard_api.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14665,
+   "sha256": "e9a63d2bd3767ef0d8328dd2d77f600832675dd41c5f5ebbdad6d15d119e0713"
+  },
+  {
+   "path": "app/lib/config.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5938,
+   "sha256": "b13f04bc5b2b0fbdebc5437be13482fbd3e36b01a25b096ed1dab8304c58b145"
+  },
+  {
+   "path": "app/lib/generated/capabilities.g.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4448,
+   "sha256": "885cade0e1f3c5ee37be3da582059d4f79554da72da7b27d44350365d144752d"
+  },
+  {
+   "path": "app/lib/glossary/glossary.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7800,
+   "sha256": "37868a28ea97b973398e8b068f913add4caed2c5c6d2f72e08856779ff7b1539"
+  },
+  {
+   "path": "app/lib/glossary/glossary_text.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8378,
+   "sha256": "b97d24061b3336e6799ee22ad4e7269174c8b4a368e8e0d53082eecb392a0715"
+  },
+  {
+   "path": "app/lib/main.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1015,
+   "sha256": "77a7e4462021b9dd97155e69e8c1cc9a4d2e66647c73c38d9981b86fbcc2d910"
+  },
+  {
+   "path": "app/lib/models/analysis.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 25805,
+   "sha256": "94296c570b03b3e4a0aed0fe572f6a46b4a5f42eac4ead691fff1e48d57d80a4"
+  },
+  {
+   "path": "app/lib/models/enums.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3875,
+   "sha256": "94c7260fdfd172b1e0f5d356750901bfda9fcd4cff9c53d864fad8b5e5f15495"
+  },
+  {
+   "path": "app/lib/models/unknown_reason.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9008,
+   "sha256": "fba671d992a578b467940ccba05a55856018121ccf649b05a4bb71d8429bf0fd"
+  },
+  {
+   "path": "app/lib/print/print_summary.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 416,
+   "sha256": "3a4f78f39d24f0cc383cc9fa67359f3789bfd6a16b02eba154c9d9f906ffd9d2"
+  },
+  {
+   "path": "app/lib/print/print_summary_io.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3142,
+   "sha256": "11003a40b089a473e1da5a9ee2f3eb45565b7c9e09873a27dccc87e6b370421d"
+  },
+  {
+   "path": "app/lib/print/print_summary_web.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1534,
+   "sha256": "84fbe5bbea124299b03c50f182ab5546e5e6409c40192dffbf683a2cafe43206"
+  },
+  {
+   "path": "app/lib/print/summary_document.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 16124,
+   "sha256": "272b459788a64d39498ab2265d24a729096fc705533711aae7246fb80bc1d6c9"
+  },
+  {
+   "path": "app/lib/screens/about_screen.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 13115,
+   "sha256": "4071a7efbf6313c0a9cf5ac6c21ff4cd473935d4cf783070f50c5a41c6958812"
+  },
+  {
+   "path": "app/lib/screens/home_screen.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 29053,
+   "sha256": "a74633f9b4942ee2ec38523014bde2b67d76d818df3ddd6c9f2f7058b028acce"
+  },
+  {
+   "path": "app/lib/screens/results_screen.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 15505,
+   "sha256": "0e54523c41e84f232a8581fafbddebcff96088407081b55f1dd7126ee2f586fc"
+  },
+  {
+   "path": "app/lib/theme/risk_style.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2459,
+   "sha256": "1f66b18f40712b64c5f138b44277124d3d0937221eaaf683e55df23d4ab97018"
+  },
+  {
+   "path": "app/lib/theme/tokens.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7219,
+   "sha256": "20493a18ac675f7b45b92e309a8592b38176cfe6e2f8eff70be8ef24a4cbc6c1"
+  },
+  {
+   "path": "app/lib/utils/json_export.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 370,
+   "sha256": "9480283e87d275c05d427ee9bc3045547673d651c995b4ea02a54e97d3597245"
+  },
+  {
+   "path": "app/lib/utils/json_export_io.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 863,
+   "sha256": "e795e8d6aff38aa5db713207f1e0ece03fb11f08991549897db556f8292db13b"
+  },
+  {
+   "path": "app/lib/utils/json_export_web.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1229,
+   "sha256": "c66a89521312bc33a21f1e4b343b25e95fb18162933becda255e748295faf6ab"
+  },
+  {
+   "path": "app/lib/utils/text_export.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 585,
+   "sha256": "d6ee34d9add71c699b3ac1029ba04645bdcb3db46bc29a1f20b1457d60874e1c"
+  },
+  {
+   "path": "app/lib/utils/text_export_io.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 488,
+   "sha256": "23986de11d0f2a04df36b6eb5c771a8050049bb4fbc075da9b76450e17a907b6"
+  },
+  {
+   "path": "app/lib/utils/text_export_web.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1155,
+   "sha256": "2e4d793d5944d05880ddfb8771bf36ed2ad231f66777643803a903316031c9d8"
+  },
+  {
+   "path": "app/lib/widgets/backend_status_banner.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5070,
+   "sha256": "619de0e2967c38c33e1aa783284facbeef2c2936662f1a67ca0e528eb7dfac0c"
+  },
+  {
+   "path": "app/lib/widgets/coverage_census.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5802,
+   "sha256": "d3591ed6ffc93046db388b6cef47886545504afd2f1848834075289b38d87bd9"
+  },
+  {
+   "path": "app/lib/widgets/coverage_summary.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5405,
+   "sha256": "f596dedb27d7258db3ddc5a747cc6ce7c5f3b33baf05c637e7f7cb5d3395f249"
+  },
+  {
+   "path": "app/lib/widgets/disclaimer_banner.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2283,
+   "sha256": "bf116e3a6c4337e505d2b0f7bc3cea8f6ccc6155fc3a3fb5dc152c680884540d"
+  },
+  {
+   "path": "app/lib/widgets/disclosure_row.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3883,
+   "sha256": "7e3087efb22cbc5a731f32e1d62abf17dbfb7ac44402f0a74a0c17c9b6d1123f"
+  },
+  {
+   "path": "app/lib/widgets/file_readiness.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11472,
+   "sha256": "2889393e7789de91e685a18e7cb1cabb3fca246870dfa8549c7d747320297e92"
+  },
+  {
+   "path": "app/lib/widgets/sample_files.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8076,
+   "sha256": "ac42e046ee970ea54dcc96f57afdbd71d6deabf2461263b697987ddbdf0df18e"
+  },
+  {
+   "path": "app/lib/widgets/summary_grid.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7147,
+   "sha256": "a95fba66b6fd3bf56197bd59a25f27863d61d061ba70724168cf7a73f154c632"
+  },
+  {
+   "path": "app/lib/widgets/unknown_panel.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7408,
+   "sha256": "336ddc8ab7276f359f931b0e7d3fee9bfdfca7bc420c248de281124ad661ec24"
+  },
+  {
+   "path": "app/lib/widgets/unknown_reason_panel.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8866,
+   "sha256": "da72254e558131c2798fc54d54fca976e976333add572aeb11aa4d638a61e22b"
+  },
+  {
+   "path": "app/lib/widgets/verdict_card.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11592,
+   "sha256": "61a4783bb1005e7a57af688c8000ef715e04d4e03653920fd8779b9ff84330a8"
+  },
+  {
+   "path": "app/lib/widgets/version_notice.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4119,
+   "sha256": "fbab4dae6f6ab6b6ff4afe363126e69c8226cc3f32b9771736aa7099370864c5"
+  },
+  {
+   "path": "app/lib/widgets/view_mode.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2372,
+   "sha256": "b088cce546ffc6482192021032f31516f96ba130129772153ed3a98f122d5bca"
+  },
+  {
+   "path": "app/lib/widgets/view_toggle.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2960,
+   "sha256": "9e63b9d8f34b18465d1e20150f9129807051d25dcdd37e1951799d712dd0bf30"
+  },
+  {
+   "path": "app/pubspec.lock",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12558,
+   "sha256": "c42c6ef42ad2bbe1fba9c0589db3ae5afee0212a5cb52c6197831c9bbaf2732d"
+  },
+  {
+   "path": "app/pubspec.yaml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5134,
+   "sha256": "451a7c2c6888024591cb3f46531a3c5d2045c20b4e1afdfcbc195248434336e6"
+  },
+  {
+   "path": "app/test/backend_status_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14467,
+   "sha256": "da73b5ee4b98c44dadc36e9f33109ef8f7ec05c922e8fd64f8f97ec31d2a6e93"
+  },
+  {
+   "path": "app/test/capability_scope_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4255,
+   "sha256": "7f9b5ee036fb7d66d20757c5207c22ce41eb4c766227f9f4f2abd9f235243c3a"
+  },
+  {
+   "path": "app/test/contract_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10498,
+   "sha256": "0b37456978c96f91383a71df862948d69a82e275691c2ccc327c5006e9b47f34"
+  },
+  {
+   "path": "app/test/glossary_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9499,
+   "sha256": "3f6b510a9c28ad2fed4e2ba51b13ad2d550195db1fd832390f1d35d87cf69c81"
+  },
+  {
+   "path": "app/test/live_render_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2383,
+   "sha256": "2f8034a2591092886ec0255d23d4f240caa21d7ec931b79f85541333b9b7c289"
+  },
+  {
+   "path": "app/test/print_summary_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 15525,
+   "sha256": "129ae6e12c43cea98dbcf22c969c96b51cbb4a67f4a180d5402c1963e0ae3d8f"
+  },
+  {
+   "path": "app/test/quality_floor_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7957,
+   "sha256": "c052ca009be13af32e111e63331804d1b3bdc3eb844206cc79e5fa5af8329d80"
+  },
+  {
+   "path": "app/test/readiness_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12144,
+   "sha256": "d7477c23d06db95dfe0933bd3ad10f6e8b22dbfba4011448b03c72768262efb3"
+  },
+  {
+   "path": "app/test/redesign_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9736,
+   "sha256": "6a30a532e1fb0b0eab2147874edcfedb57f367f3bc414f87c967818cae2c0386"
+  },
+  {
+   "path": "app/test/server_busy_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8161,
+   "sha256": "8e3851412940121872beea4f1aa6b73e2f29c06682045615a214ce89881215d3"
+  },
+  {
+   "path": "app/test/state_census_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8058,
+   "sha256": "5b0410bfe86bd1ef6e133a952b50cce74e03c2e3ad7c166a015a6f186d61f86c"
+  },
+  {
+   "path": "app/test/summary_grid_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8506,
+   "sha256": "95cacfda07b1cbc357a8eb9cb4efb53c19de05c42623148ac60ac4262a77646d"
+  },
+  {
+   "path": "app/test/unknown_reason_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9060,
+   "sha256": "45c4000c12b65e88f419b23f2bf99e58d9c3fc6129df4de7b28332de7cf1d9ea"
+  },
+  {
+   "path": "app/test/version_notice_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4891,
+   "sha256": "1e85a99070a4dc509a252312f2e68b4c3243e12158dc403c427be943a9f39fec"
+  },
+  {
+   "path": "app/test/view_mode_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10210,
+   "sha256": "8a72898195859ec173cd12178aeb3dddae0c49f48525ade13795e32008dd4005"
+  },
+  {
+   "path": "app/test/wait_states_test.dart",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5156,
+   "sha256": "06caf85691497ef9be6d36a820ff17a4111ed62361e14c637161b1d418f48dfa"
+  },
+  {
+   "path": "app/web/favicon.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 917,
+   "sha256": "7ab2525f4b86b65d3e4c70358a17e5a1aaf6f437f99cbcc046dad73d59bb9015"
+  },
+  {
+   "path": "app/web/icons/Icon-192.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5292,
+   "sha256": "3dce99077602f70421c1c6b2a240bc9b83d64d86681d45f2154143310c980be3"
+  },
+  {
+   "path": "app/web/icons/Icon-512.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8252,
+   "sha256": "baccb205ae45f0b421be1657259b4943ac40c95094ab877f3bcbe12cd544dcbe"
+  },
+  {
+   "path": "app/web/icons/Icon-maskable-192.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5594,
+   "sha256": "d2c842e22a9f4ec9d996b23373a905c88d9a203b220c5c151885ad621f974b5c"
+  },
+  {
+   "path": "app/web/icons/Icon-maskable-512.png",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20998,
+   "sha256": "6aee06cdcab6b2aef74b1734c4778f4421d2da100b0ff9e52b21b55240202929"
+  },
+  {
+   "path": "app/web/index.html",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1250,
+   "sha256": "08d02a1d2a83c90cb6da6d579bc4e537d6c57ba1e3ebb29ed8cc6a13250b6491"
+  },
+  {
+   "path": "app/web/manifest.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 948,
+   "sha256": "9a23880fe9d67350f54295dce4dcba52cea5bee5bda2c6a81c9ca90b5f56df76"
+  },
+  {
+   "path": "backend/.env.example",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3432,
+   "sha256": "c423b15ffa753a238783146f0b9a5dde93ae09c5cda5c700f1e0a7be87470f20"
+  },
+  {
+   "path": "backend/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10358,
+   "sha256": "5f6fb56a244a1d76aa630fe4c9c5a217fac962fb50119f4cffe07020326c9b08"
+  },
+  {
+   "path": "backend/app/__init__.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 63,
+   "sha256": "4042144309570eedd4c130b51ec6b01f71a70cbc7ab6fc5a23acee4dad8ffd01"
+  },
+  {
+   "path": "backend/app/capabilities.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3377,
+   "sha256": "d9b7431e63a5574ed9758643719fbcd505977e0513f7b9403e225818a00cda85"
+  },
+  {
+   "path": "backend/app/coverage.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 23190,
+   "sha256": "b9a714bc231b711e01586bcadb266c02cd9ee180d2f35c16cc6d4090469d2641"
+  },
+  {
+   "path": "backend/app/cpic_engine.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 40279,
+   "sha256": "954dff171fbbadbb1f1acfe96cf7af05508c85fe40c14d0faadaa51a6767af25"
+  },
+  {
+   "path": "backend/app/data/build_evidence.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5025,
+   "sha256": "00e6a2d50101578769e2bb53a5290adfd5a7b52a21d5c21b85a552b6ef100d1a"
+  },
+  {
+   "path": "backend/app/data/capabilities.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3020,
+   "sha256": "287a319b8ca1fdac9e765d7b6ec7de55ea8ee87cd3d142700be0b7601d2c1704"
+  },
+  {
+   "path": "backend/app/data/case_matrix.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9876,
+   "sha256": "11883b138e0677f78f507c69552c2d5a2fb8f89594a32d4bbba763444d2e341a"
+  },
+  {
+   "path": "backend/app/data/compatible_bundle.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20024,
+   "sha256": "c97059611776d460a1df9c50d62d5c27eb87e8621a1abdba0c22e0efc8b20a88"
+  },
+  {
+   "path": "backend/app/data/explanation_approvals.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12002,
+   "sha256": "b18c7d1d18d014fd1b2edf8ac24e2339a0c1df3f4252590c77db264df799f8a7"
+  },
+  {
+   "path": "backend/app/data/explanations.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 183387,
+   "sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8"
+  },
+  {
+   "path": "backend/app/data/explanations_template_archive.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 46980,
+   "sha256": "f61a8878ee2aa8a5348936b6e75c35276481c27e9ad307e16835d66c34fd983d"
+  },
+  {
+   "path": "backend/app/data/label_mapping.yaml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 25936,
+   "sha256": "5ade626cf83d410e620ac5fb9ba648854b152ef0e53abfe051c115c665514bc6"
+  },
+  {
+   "path": "backend/app/data/label_paraphrases.yaml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6713,
+   "sha256": "caf7948aa95f21895cc50e66e10c869780a86e31610fd2a7ff9f9c8d04a6d198"
+  },
+  {
+   "path": "backend/app/data/position_requirements.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 52050,
+   "sha256": "d0996c09885b75d46fea45260d4c048ad3cd6a2ebf473294de85863c798f3ad3"
+  },
+  {
+   "path": "backend/app/explanation/__init__.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 13909,
+   "sha256": "ca411f0f4e2a02f0f5da925b873fc6d9df9768f3207647b678b8cfd5dab6be82"
+  },
+  {
+   "path": "backend/app/explanation/approval.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10442,
+   "sha256": "d414baacbec67e8c7be7f6a634e022fe26a515e0b1c782b419de48fce0f68079"
+  },
+  {
+   "path": "backend/app/explanation/compose.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3897,
+   "sha256": "c6854c74b6ca33da70020ac5e210a2c1d306d50d15db5622b50f27ebfd4db754"
+  },
+  {
+   "path": "backend/app/explanation/consistency.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10647,
+   "sha256": "0c5f0aa8ac76343de8588352c5918acfb36af0b3ffd2bbeb1e0eff8ebbce9364"
+  },
+  {
+   "path": "backend/app/explanation/context.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11030,
+   "sha256": "ff14a862e66046ac83c2f1df5a6b52931a4d207955c09d91c4a62b6fd58fcd37"
+  },
+  {
+   "path": "backend/app/explanation/generator_llm.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11308,
+   "sha256": "df1fc5f171913a10193148c698eeb80fa555a6a333924c04f4aed156740d1b16"
+  },
+  {
+   "path": "backend/app/explanation/generator_template.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6482,
+   "sha256": "e4f69e18b3c8010895be4d39d8558a49799fd8d6eb83424c2a73e031d9add5f5"
+  },
+  {
+   "path": "backend/app/explanation/guard.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11539,
+   "sha256": "0f436daefef109fa86adacc86bef95657cec54453c61411d9c006fe7a58c333a"
+  },
+  {
+   "path": "backend/app/explanation/provenance.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 29496,
+   "sha256": "93d03afc4251da994361001a8572870094550bdffece5e07f4751837a06d4352"
+  },
+  {
+   "path": "backend/app/explanation/providers/__init__.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2618,
+   "sha256": "6183361ddf1364851aa944d4e2e39ce8b22a57f53edfd6a9a99c95cb86637eba"
+  },
+  {
+   "path": "backend/app/explanation/providers/_openai_compat.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10351,
+   "sha256": "f93ee11eb643af61e12b6f53e11b99544255d82ec1189a3fca84339f1e75a741"
+  },
+  {
+   "path": "backend/app/explanation/providers/base.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3438,
+   "sha256": "5fc4a720d31a12076e57417ae242dcff60d74df84af2f321e82a030fe36a32c8"
+  },
+  {
+   "path": "backend/app/explanation/providers/errors.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2780,
+   "sha256": "26d4bbb76fea0f8343737c6e1cb8fa325e8a806c71c929277235089c5da0b5c3"
+  },
+  {
+   "path": "backend/app/explanation/providers/gemini.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6007,
+   "sha256": "ddebe4e076d43347cee0ee1454d7058e17351bd4a976d71fbda2b923397c8b05"
+  },
+  {
+   "path": "backend/app/explanation/providers/json_output.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5187,
+   "sha256": "81feb40b7c991e819588971456334a12c057b61df40045b1ed065a3fc3e07046"
+  },
+  {
+   "path": "backend/app/explanation/providers/nvidia_nim.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1106,
+   "sha256": "23fff7902716b270e5b7f2dd1bf81e423229caeea3169d4e5bb6a3a25fb7981e"
+  },
+  {
+   "path": "backend/app/explanation/providers/ollama.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1595,
+   "sha256": "7e1ec55c3bae334b39bc20dfebdc527346e21e89d279b3d0ab6f366d42883328"
+  },
+  {
+   "path": "backend/app/explanation/providers/redact.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1213,
+   "sha256": "e50cdd632959fcb928c4b13512c0844d3238a81645950bbe6d7714f43b210448"
+  },
+  {
+   "path": "backend/app/explanation/providers/template.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1895,
+   "sha256": "08231ce9061f81a306ba49b2b97a15cefffbca561cea26de75ceca6f4bf95a95"
+  },
+  {
+   "path": "backend/app/explanation/slot_verifier.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5515,
+   "sha256": "ca64b91485c473abb74a125e19b93e3e726a04a7a6ed536a1ed35cbe37f70ade"
+  },
+  {
+   "path": "backend/app/explanation/static_store.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8603,
+   "sha256": "e2c05e5906f6b18117a6a73c46c14a4b5746160ec0dffb22ec28978abdebda3a"
+  },
+  {
+   "path": "backend/app/main.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 43273,
+   "sha256": "828d68f0b592072d382ecc288240494455148949b02e488506cc96219dbf1c44"
+  },
+  {
+   "path": "backend/app/models.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12637,
+   "sha256": "b86b5bbba6f86ea48a8c31e2be9deb9227a8f73f946c7eace3e23c552b82838d"
+  },
+  {
+   "path": "backend/app/pharmcat_models.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6948,
+   "sha256": "4e973f658486071a7e246a7291dbef01c1d7bc410eda62f45977d74c8613c2d8"
+  },
+  {
+   "path": "backend/app/pharmcat_runner.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 34366,
+   "sha256": "eea414f9d918cc5fa71a04298d7e5bdf2c8fbe08745b10a54fb65a4e56c1fbc8"
+  },
+  {
+   "path": "backend/app/retrieval.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10388,
+   "sha256": "d2c578adad40f518f6cb6cdb4690d3d994a63017844c3d7255a4c4548514a018"
+  },
+  {
+   "path": "backend/app/security.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 19238,
+   "sha256": "ce209f98757db6ce4f14b063a42e32764e706e73ea386a9fbf530d0890f948a6"
+  },
+  {
+   "path": "backend/app/vcf_validation.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20739,
+   "sha256": "4ecd4151cf1fb561921bf6898dc8009d14d0abe806e525aaba9fcb4062e2c702"
+  },
+  {
+   "path": "backend/pytest.ini",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 200,
+   "sha256": "f296eac9333b691e5a8196181910fc48d9bec1c2f6d3732656af8c9a110fff15"
+  },
+  {
+   "path": "backend/requirements-dev.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 674,
+   "sha256": "3c55bbdff70c904048051518ae608b985f4d398466f104264a2cade9beff0de0"
+  },
+  {
+   "path": "backend/requirements-llm.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 563,
+   "sha256": "b81c24f012807ab4aad9b0bc2f027a2dd5d1371fe52370c81e8ce3f5ecd811bd"
+  },
+  {
+   "path": "backend/requirements.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 957,
+   "sha256": "dc986e4680ec7d6f7f46f69d86cbfe44bf324c0f300ae72f3bf35963f9b2a633"
+  },
+  {
+   "path": "backend/tests/conftest.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1899,
+   "sha256": "3168c22a93ed03c2dce0d33d6fd5ec3b00a688681665ff070a2caa95c64fae8c"
+  },
+  {
+   "path": "backend/tests/fixtures/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2104,
+   "sha256": "1b8ba361713fbcc053a4137d60bd2d15cba63b6416881674f51cdbf819eeaa97"
+  },
+  {
+   "path": "backend/tests/fixtures/captured/gemini_3_6_flash_2026-07-23.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9146,
+   "sha256": "0b457300176cde23a6f9a24ce518cb698c9bed515dc2224239fb63fdde48b90a"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_all_normal.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141855,
+   "sha256": "8539a16e919fd1e5f513bac469e099932a59102278c480efe4d40c3227717d07"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_cyp2c19_im.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 143612,
+   "sha256": "fe52493e3f8f3be32812fc0ffef702765ab0ef571f6779ad84cf62c478ff4fe3"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_cyp2c19_pm.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141978,
+   "sha256": "798219073ea5aa69ec80b996bf0673d6d44a7c7722f5bbf09f1b7795aa042b4e"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_cyp2c19_rm.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141751,
+   "sha256": "1db39399b3f2109f2ef12d1f53dcb6eebcd519dacc5e583d12997b1cceff78e7"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_cyp2c19_urm.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141670,
+   "sha256": "22d38d1b1fc685487c165e08f60d88f798c5358e63d126d7bc9c9c918b0f65d0"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_cyp2c9_im.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141940,
+   "sha256": "2df092147e3f41d8e7e6ab3873f07e37580b7edc2f9ed3fa70669ba0b08c505e"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_cyp2c9_pm.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141529,
+   "sha256": "52f6745406fa632c471c6a2cc92e0cc7405ac8a5aeaff2d638ba219b12e1edad"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_dpyd_compound_het.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1064506,
+   "sha256": "ab92c669e549d2b621ab21f60955d2de316b47f045ba2592a096b45aab9897f7"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_dpyd_im.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 142481,
+   "sha256": "bd1cc4bdcd882ca82d2a73fed7c0cb893474117cdfd3f69bd6344bf103862840"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_dpyd_pm.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141716,
+   "sha256": "23632fe0e33f050275bc5edc1aae6b47242a4a2cb1e10bfe53633bb300711f24"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_slco1b1_im.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 142097,
+   "sha256": "f08686d72abb61e1a9148094615b5ae87bf150d876c4b1b386225829de15b5c8"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_slco1b1_pm.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141649,
+   "sha256": "111c71298c889b78185443230aa7759f0f79b77f994f9d96149b2b57a3137143"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_tpmt_im.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 143145,
+   "sha256": "31406970c031b48b4a6b5418edde56d2c1631f128764f53037de8b18c636539b"
+  },
+  {
+   "path": "backend/tests/fixtures/pharmcat_report_tpmt_pm.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141349,
+   "sha256": "1a7fd05a4e8f319a4ac2e191ec287bef12df478af0e850fc6618187f0fa8c938"
+  },
+  {
+   "path": "backend/tests/fixtures/planted_violations/planted.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1762,
+   "sha256": "220082943695e0370fdd613e93a11f750dab9e4fbdc540604083d6b2d9ccd0fd"
+  },
+  {
+   "path": "backend/tests/test_absence_controls.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 15347,
+   "sha256": "134f117a63fe630719077f6e93f1ea33621a9fd6cf4ee11ac3617cb88bc2d76a"
+  },
+  {
+   "path": "backend/tests/test_all_gated_message.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4433,
+   "sha256": "2a9994c3db526659f20557a9489790565e376c813637d741b3a6a0f18ebd69a9"
+  },
+  {
+   "path": "backend/tests/test_analysis_memory_admission.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3735,
+   "sha256": "0e503d1c9e0ea3142d50a0c1f885fd2d64702672199b45aa22da51a09862dd03"
+  },
+  {
+   "path": "backend/tests/test_analyze_api.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 23080,
+   "sha256": "b5f8315ebdc05e47d1ada16ab8dbf8258abc7af9b2264c5ff50f80bd6e004f69"
+  },
+  {
+   "path": "backend/tests/test_android_identity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7654,
+   "sha256": "f76fc3f9fc3c956029dbc44774e2691b312d2fd774d035e0434cfa421f3a260c"
+  },
+  {
+   "path": "backend/tests/test_build_and_binary_detection.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7567,
+   "sha256": "2140eda5c957cdc80e8fb9a70f9ab3f663e060f5d2901575134df76617d9d11a"
+  },
+  {
+   "path": "backend/tests/test_build_identity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8908,
+   "sha256": "c72975932072a6c76163861865c0867ec8a40459d60a365342a98732e0f71dbc"
+  },
+  {
+   "path": "backend/tests/test_capability_scope.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5937,
+   "sha256": "4d0d91ab1df336d83c9a2782b38b0fb1c1cc1a794d6bfe543369be6cf3de509e"
+  },
+  {
+   "path": "backend/tests/test_captured_outputs.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 16568,
+   "sha256": "40ad66c79e6914a72a065e92dda5556088493528bf8fbd63a4328a6b8f90e59c"
+  },
+  {
+   "path": "backend/tests/test_client_parity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3984,
+   "sha256": "58402ad2681b620cc61ea6fc8a00ba21d52fed89dc11dff3ac4d2ce17fb06d3c"
+  },
+  {
+   "path": "backend/tests/test_compatible_bundle.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7539,
+   "sha256": "ec87e5d186fae5a89b80d7508495225556ebe7488ba53bbd2f54225cf522af10"
+  },
+  {
+   "path": "backend/tests/test_consistency.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8513,
+   "sha256": "5fd6a7ade734bd304e2c267175bcd58cfd45af39e69293c5e28f3c8dfde5e3f5"
+  },
+  {
+   "path": "backend/tests/test_corpus.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 580,
+   "sha256": "b148b8a481bf03a2ec2616adafdc8ae720afe2b3b2ff1735919d0aa9b8b04afd"
+  },
+  {
+   "path": "backend/tests/test_coverage_endpoint.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14117,
+   "sha256": "5ce7cb5afa848b3d471319a538d0bb53bc4b1022dc9187293586a322e136c285"
+  },
+  {
+   "path": "backend/tests/test_coverage_gate.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14785,
+   "sha256": "c5e60e45bf6e9aef37ff0f9ff431abbcabe065dd79448a06707ceb765413bf6c"
+  },
+  {
+   "path": "backend/tests/test_current_candidate_evaluation.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3212,
+   "sha256": "152bd65cb7d5f20ed4f6ece78406c75e145e15a98af8c6e3fc871fed926b2012"
+  },
+  {
+   "path": "backend/tests/test_decision_critical_positions.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11569,
+   "sha256": "9d97de0fb05bc7802da97a9a613a1c0b6958ff71b4356bbf3819886a26e82eb0"
+  },
+  {
+   "path": "backend/tests/test_demo_script.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8366,
+   "sha256": "ca06f05f26908e9abdab21f2ebf34e0dbb8b2ccfc29a26f530fd791988962705"
+  },
+  {
+   "path": "backend/tests/test_deployment.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 29077,
+   "sha256": "e2a8985234fef5188256a53a9f14007fc9017cac6779aa83fd30a64cf815d653"
+  },
+  {
+   "path": "backend/tests/test_diplotype_source.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6814,
+   "sha256": "6e932f459ea167b212fa7bff5ea149575d319eb57dbfbce0ba2fdf6c63aeedbc"
+  },
+  {
+   "path": "backend/tests/test_documented_numbers.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 21134,
+   "sha256": "9b625e476e4bef7a0d9570b3903182cae29992a8436ff4f0d50f5ee80c92fc2d"
+  },
+  {
+   "path": "backend/tests/test_evidence_validity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10835,
+   "sha256": "927c843673b71c96fa92fad9c1b90a91178943fa481e984bc09e08d24ec7d610"
+  },
+  {
+   "path": "backend/tests/test_explanation.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20116,
+   "sha256": "fe8957d9233c2d6baa9fcc881a39f29cd4c62be593851e88508090eafce2e66a"
+  },
+  {
+   "path": "backend/tests/test_explanation_approval.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8130,
+   "sha256": "9248693e55d8abb198e7b191b78a70e708d41bb5d1451ff52543ae1cddd2f696"
+  },
+  {
+   "path": "backend/tests/test_external_benchmark.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3841,
+   "sha256": "1c511b098c14bde4d5a8c472a824087cf67319ba9f7cf30462618c38b2385a1d"
+  },
+  {
+   "path": "backend/tests/test_glossary_audit.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12103,
+   "sha256": "0524046613246f0105ba2159e9d75c61f7552735d172e6954eccc24b129de38c"
+  },
+  {
+   "path": "backend/tests/test_guard.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10412,
+   "sha256": "c02880236beed5a8e518d53ad57dc463b8f6b4950ca954f3852c3a0c99b6d73d"
+  },
+  {
+   "path": "backend/tests/test_guard_real_outputs.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 17966,
+   "sha256": "f588e36eaf5f3c8c756723cc1220ee8381ae06cd4a82b234958a2be6797b60ae"
+  },
+  {
+   "path": "backend/tests/test_hostile_input.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 15119,
+   "sha256": "550b863ae0fc73c1c00ef59f8fd4d15375368144e09f9cc3fd2934cf18a0c1da"
+  },
+  {
+   "path": "backend/tests/test_infra_config.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4377,
+   "sha256": "e91c11b6fa6b8d26a2a6b621cd93eac3ac42df361381bb2980f50cd85b8c03aa"
+  },
+  {
+   "path": "backend/tests/test_label_mapping.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 13898,
+   "sha256": "cc4e85738d1381b59a8123f4e2c615b237e19bb43b9a985d030ba849c6c208f6"
+  },
+  {
+   "path": "backend/tests/test_label_mapping_validation.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12591,
+   "sha256": "97006c077077682cdd8a795e8d025045ace12e7a856782b404094266b95ed1a9"
+  },
+  {
+   "path": "backend/tests/test_label_path_parity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4884,
+   "sha256": "947ab9b3a25d6b965022826fd407f3a380404c72274a5098f3c96c2969046815"
+  },
+  {
+   "path": "backend/tests/test_mapping_data_rows.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6734,
+   "sha256": "6ae256df04871d9383e529d51354b2753c9fcd70d3e46967c2e16679936264a3"
+  },
+  {
+   "path": "backend/tests/test_no_developer_strings.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7747,
+   "sha256": "56fbbd7a7a172f394a9007d3f2d8cb55eae967401defa1d2b54d5d4fafc88c06"
+  },
+  {
+   "path": "backend/tests/test_pharmcat_concurrency.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11015,
+   "sha256": "54320b07d8db3290b01b54b7744f99e0048d44132a514869afc1c56cf98618f5"
+  },
+  {
+   "path": "backend/tests/test_pharmcat_parser.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7329,
+   "sha256": "fc42ac803bd113f40e60368a368e370cd9f48620788641780988d729886bbc85"
+  },
+  {
+   "path": "backend/tests/test_phase5a_tooling.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20328,
+   "sha256": "c0be1a706cb7310037ae7d1fef4c14380d6ff6bd21b0f51217148371675dd5f1"
+  },
+  {
+   "path": "backend/tests/test_phenotype_label_invariant.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9144,
+   "sha256": "0eb8b9d49b546fef2754e87e81ac00362eb64abc5182e4dca30f07b2937da6e5"
+  },
+  {
+   "path": "backend/tests/test_phenotype_table.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 13804,
+   "sha256": "93ba4b46e1bd5b4288910acf7a9f1725d1d3d6a5fb4797012ec9d19c73cbc04e"
+  },
+  {
+   "path": "backend/tests/test_portable_scientific_hash.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6912,
+   "sha256": "fe12a92db381217c2ac5accd0cd03adcfd8574067e74611060805e7431bb91bb"
+  },
+  {
+   "path": "backend/tests/test_privacy.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6760,
+   "sha256": "1fe31e3488df54f6f170c67d7ab4b1444a15fe0a6f366589d52c7daf4169c193"
+  },
+  {
+   "path": "backend/tests/test_provenance_policy.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20669,
+   "sha256": "07b79cf316c68f6683fa874a0571674882cace4aa9ef5880599f4333c753536e"
+  },
+  {
+   "path": "backend/tests/test_providers.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11691,
+   "sha256": "456abc715213130db35a86dafe9a15981587492d0834b07a5000e0836db2dfb7"
+  },
+  {
+   "path": "backend/tests/test_release_status.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8446,
+   "sha256": "8f2485d87280b586555ea5d514c722b675279414bd608ba72f6dd0500429f76d"
+  },
+  {
+   "path": "backend/tests/test_resource_ownership.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8086,
+   "sha256": "dab2c5160f1dd62584ab3cee4b5f5839b4b4ea596e40e3b0c6d7eb79236d1d6a"
+  },
+  {
+   "path": "backend/tests/test_sample_vcfs.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 13295,
+   "sha256": "da80067061092a2384d5cae40a825a803a54cf348749b20f53e0f098498bea57"
+  },
+  {
+   "path": "backend/tests/test_slot_verifier.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10651,
+   "sha256": "d1a78cf4fd277ded725612d3882a10a37f017d9b6eb135dc59c86f3816d114a8"
+  },
+  {
+   "path": "backend/tests/test_unasserted_phenotype_invariant.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9348,
+   "sha256": "467a19e454e7f4e390102ca1e9a6dc055acfa5bd4bc64897941f5ab8f3bd126c"
+  },
+  {
+   "path": "backend/tests/test_vcf_validation.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10675,
+   "sha256": "2cdc8a844f4f717c9d754f1c1a8d7834a1290ea3fb89eab49b1daf1e75de63dc"
+  },
+  {
+   "path": "docs/DEMO_SCRIPT.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8776,
+   "sha256": "b74b5799e6e77e4e5c08d2f0672bdc149f831ecefd88e3e9e2782b82e8e0b33d"
+  },
+  {
+   "path": "docs/ONBOARDING.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4852,
+   "sha256": "415c4353130262f27aa3fc3112fb97d39d05a8a7891ca29f6490bba4d17a5c1a"
+  },
+  {
+   "path": "docs/input_requirements.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14179,
+   "sha256": "e1c96860767d4112ed936af5aae5644cf5385404ec50dcdc2b6fca2e459ea152"
+  },
+  {
+   "path": "docs/scientific_record.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5722,
+   "sha256": "3f5f178ee0abe36eaff21c90de5f642bf4086200c03cb61d7c489ed58de7eff8"
+  },
+  {
+   "path": "infra/DEPLOY_NOTES.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 27972,
+   "sha256": "b4bc8f080c32a47382bd8f2aa325ab928196dbd6e57c758f8890ce2510e126e7"
+  },
+  {
+   "path": "infra/Dockerfile",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7466,
+   "sha256": "ef06a97c25ad484a2ffca86110c26537990868bbec7568ca2fd194d0ce490c02"
+  },
+  {
+   "path": "infra/PHARMCAT_NOTES.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 15385,
+   "sha256": "bac308a5034dde9d2d5a121bcb1864658c8a8d1902eaf1d6abb62e036cee191d"
+  },
+  {
+   "path": "infra/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1913,
+   "sha256": "81add464e51403416df46aebc93ce665f92ba849ff47983d589e1ba9deeb403c"
+  },
+  {
+   "path": "infra/docker-compose.yml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2941,
+   "sha256": "9489322e54cb98c87cc68e21c85efa9d6acefd43dfec8947777310e280f9866e"
+  },
+  {
+   "path": "infra/hf-space/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3748,
+   "sha256": "ff6fca7bb3c723310ba8dc21a25735eacdd8e21a8d13dd3fdfa27cff96ebefba"
+  },
+  {
+   "path": "infra/local-dev.env.example",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1274,
+   "sha256": "c9c94f58a61070c6b43ef24cafc9b5464c31614f69789852f8148f1a34cad65c"
+  },
+  {
+   "path": "infra/render.yaml",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6035,
+   "sha256": "127fed4e4d5afe3d5bcba953a40e6a33d8c5c0dafbed05b699dc063b8ce622c9"
+  },
+  {
+   "path": "rag-corpus/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5468,
+   "sha256": "c4582c0fe8cc54fe44c81a9e0959b73eb1c38d54c4dee80897747d3407ff4cfe"
+  },
+  {
+   "path": "rag-corpus/mechanisms/CYP2C19_clopidogrel.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2955,
+   "sha256": "525a02e778306087a89e6aaafd7dfdc7de84d2258509c045c28e4a21e2e75e89"
+  },
+  {
+   "path": "rag-corpus/mechanisms/CYP2C9_warfarin.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2700,
+   "sha256": "f9f2455a1c0ff761f4b09b3e1aaba1be29edb65974c56d9c8ed4028f1dd35aa2"
+  },
+  {
+   "path": "rag-corpus/mechanisms/CYP2D6_codeine.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2867,
+   "sha256": "dcaa733534f0e0a768c0aa5fbc16f66ce8386c11d19c67abb0b5a5298b3a7bed"
+  },
+  {
+   "path": "rag-corpus/mechanisms/DPYD_fluorouracil.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2789,
+   "sha256": "90cd67e8812e811595c731aee9eb6d8c42f1ef3311e6059a344e9baddfeef716"
+  },
+  {
+   "path": "rag-corpus/mechanisms/SLCO1B1_simvastatin.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2577,
+   "sha256": "7aae15a031570212aa107b1f0b0be83eeebbd964d3f8b75e915d5cf85275dddc"
+  },
+  {
+   "path": "rag-corpus/mechanisms/TPMT_azathioprine.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2875,
+   "sha256": "9b0357640e97bc0dd03073d83da516d6a8d855acf51028396396f1dd3170e56f"
+  },
+  {
+   "path": "render.yaml",
+   "intended": true,
+   "symlink": true,
+   "link_target": "infra/render.yaml",
+   "exists": true,
+   "bytes": 6035,
+   "sha256": "127fed4e4d5afe3d5bcba953a40e6a33d8c5c0dafbed05b699dc063b8ce622c9"
+  },
+  {
+   "path": "reports/adjudication_worksheet.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 52716,
+   "sha256": "f995c469f68a28cb3cf6ea1fe0b7171d675f0a2c29b082c27ba309291e462d46"
+  },
+  {
+   "path": "reports/ambiguity_concordance.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3808,
+   "sha256": "d90ce1f0b744322bf6492a97b06d3d4667f0f07f97ecf29f0918050f15d99058"
+  },
+  {
+   "path": "reports/constructed_allele_sweep.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 109874,
+   "sha256": "f9c12c73d9e7e46b1abe3aea261eb4d896366af9afcf8e6635f78f3e011339dd"
+  },
+  {
+   "path": "reports/constructed_allele_sweep.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5108,
+   "sha256": "86044b64338ada409f4b75ace16e7121eb7153f59f96200ab60133520bf60217"
+  },
+  {
+   "path": "reports/container_parity.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6519,
+   "sha256": "1cbab0fb95532b69c70bfba5c082715b024d2abaf797edc2b62a7cd609e29f5a"
+  },
+  {
+   "path": "reports/coverage_sensitivity.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5579,
+   "sha256": "59b9af6bcdb9266a8e6e30742419c62def7c7039fa50b27c9b19399d60ffba13"
+  },
+  {
+   "path": "reports/cyp2c19_definition_delta.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5648,
+   "sha256": "c67db29cd445fd88c1bcf270de004deed4e742c3677f9009f0c086ffa988bebf"
+  },
+  {
+   "path": "reports/decision_critical_positions.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 35298,
+   "sha256": "10f7c4637def3b73f0ab762c9338006a0e72c4a2dafa4c6e9891805bbbd8d844"
+  },
+  {
+   "path": "reports/deployment_verification.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8393,
+   "sha256": "eaa2aa164f89ce3f18ea7905f42e5df72269b346b149b9e0c75e6daf98550771"
+  },
+  {
+   "path": "reports/detector_sensitivity.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4527,
+   "sha256": "34ae6fa4f12e72a74ba88b0451162c2caa573ba7285f736eb65b8d442292f5d7"
+  },
+  {
+   "path": "reports/escalation_list.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 15020,
+   "sha256": "cd02a520d13571c92396e1d9bf4ce62f26908dfba4b58cc2ebd4a3b041ea8ab1"
+  },
+  {
+   "path": "reports/explanations_for_reading.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 58053,
+   "sha256": "fc37857ce897ab8db956f908d310b1232ebd7b2c2918614b1504a70ade58d5a4"
+  },
+  {
+   "path": "reports/external_analytical_benchmark.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11481,
+   "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+  },
+  {
+   "path": "reports/fix_precommitment.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4159,
+   "sha256": "5a6c148515c57c918e5368c2cb81e555f49feb1621eda71226cab615d2902cc2"
+  },
+  {
+   "path": "reports/frequency_concordance.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10131,
+   "sha256": "970094176621072b2111dee54d87fd745d95a2073edcd71e69f76ff00ea96ccb"
+  },
+  {
+   "path": "reports/generation_report.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4420,
+   "sha256": "89e9b09680e744e3cc7f6a4d73d7568845f579d5eba4064f241d925f39638b84"
+  },
+  {
+   "path": "reports/glossary_candidates.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 22865,
+   "sha256": "7a7328f2da408ee812e4994d09faba8d5394a9407945d8206ec5bcdc459929f7"
+  },
+  {
+   "path": "reports/glossary_precommitment.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7489,
+   "sha256": "9f451138a2a1d58b5bfe67fdbbd22b64a3670b49192d278721ca8bb63299fc6b"
+  },
+  {
+   "path": "reports/guard_experiment.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6433,
+   "sha256": "9296f81ed19c6f63a73de6175de6f44bd7d12cf71c7901e192148509d5e2a89b"
+  },
+  {
+   "path": "reports/integration_fidelity.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 53212,
+   "sha256": "ba7f533e257af93d6592134c76998ffba0ae131995fec443d4a863d60abe85e6"
+  },
+  {
+   "path": "reports/label_mapping_accepted_divergences.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2548,
+   "sha256": "8edd7a8a5b8f98075a112b820ed0964e75704aa8d459340749484cf8c4a34f44"
+  },
+  {
+   "path": "reports/memory_measurement.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7165,
+   "sha256": "5fb00f0a163a596643ea736a0c4c498144a98483fb69f41cd4b3cf3f0c010189"
+  },
+  {
+   "path": "reports/model_benchmark.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14360,
+   "sha256": "0d17adb5fe033909908fed60eb92d35742a195e9a86d513d53d3fa7335f095de"
+  },
+  {
+   "path": "reports/predeploy_audit_a.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14895,
+   "sha256": "5adc203b2774248835fe6d221a72380a0057dbce152faf76ed336f5b98421d7f"
+  },
+  {
+   "path": "reports/provenance_diagnosis.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12550,
+   "sha256": "58ce695501ac9f00d48387360f8d3c3f5cc8f0f78a200c151a0e5f8e06d65980"
+  },
+  {
+   "path": "reports/provenance_finding.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 70504,
+   "sha256": "8f9596152a67ec562351919ca131a2d8f17f38ebc50372813678d16ac74d5566"
+  },
+  {
+   "path": "reports/provenance_report.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12855,
+   "sha256": "21db8730b4398bbbb58bcb285d0c30ed38eed6cd4c34112a4270fc0ac98e7268"
+  },
+  {
+   "path": "reports/regeneration_scope.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5185,
+   "sha256": "255a42ce96fb63573e5d903ce2a613c73777193ef2444df3317709881db90dc0"
+  },
+  {
+   "path": "reports/release_content_review.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 62407,
+   "sha256": "5448cfb6f6a378310b02c927aacc18caf33ec9cdff3ed7cb782cb4f2866fb1a5"
+  },
+  {
+   "path": "reports/resource_ownership_privacy_audit.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4959,
+   "sha256": "06e3cbf57bbb105784ca560b0be6ed4f4d4f66a2603511455a7bb6bf86e9b206"
+  },
+  {
+   "path": "reports/sas_cohort_expanded.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 875,
+   "sha256": "0843ca0fc76565184e86b4277e90721fbf5136424f5d98bca742389a37ce87f5"
+  },
+  {
+   "path": "reports/sas_cohort_expansion.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8533,
+   "sha256": "678f66f7808613dbf4ae33110284e007045bcf421f9d7b0e4399cf23b5e0d353"
+  },
+  {
+   "path": "reports/sas_deviation_filtered.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 33469,
+   "sha256": "bfc742d041b038af8180c5cd4015d052c3bf7b6cb1998bef8d3df58280aa0dc6"
+  },
+  {
+   "path": "reports/sas_deviation_filtered.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7050,
+   "sha256": "428e362f68bf56761b1d3fe0dfa5427eb2b61a7156967549e47710c18a850e7b"
+  },
+  {
+   "path": "reports/sas_frequencies.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 109377,
+   "sha256": "948fdeb3afcdce92003a0820b5b20edb7edcf3ead6ac20fdb06b3906729e801d"
+  },
+  {
+   "path": "reports/scientific_record_reproduction.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1596,
+   "sha256": "3eb6a763cb33a05d84cc9f763ebc87c3e797104e138c6f5a84a8bcac692d6c7a"
+  },
+  {
+   "path": "reports/template_vs_llm.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 51032,
+   "sha256": "a6d02b0e36244501ffe760dacd949ee773b5bb1562f21bc1c1c3a4d3ebea9e28"
+  },
+  {
+   "path": "reports/testvcf_fidelity.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2492,
+   "sha256": "6ac47735535f306489f90a25e451bb869bfbfe07137b54f05fa77afb7b68f54f"
+  },
+  {
+   "path": "reports/validation_report.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 47760,
+   "sha256": "faaa2bc73745fb9dd1ccb024d0feebd6bcf37934b4edd743b629f50d7d38e1cb"
+  },
+  {
+   "path": "scripts/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 19297,
+   "sha256": "55b7d9535188ad7a7ddccef951dc281158141709be8897261fbbbb528fe8cc72"
+  },
+  {
+   "path": "scripts/_common.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11264,
+   "sha256": "948d0bf8b4e54bf04c1319258411ec731624f8fcb3eea0d38f2be2a7f6e48e24"
+  },
+  {
+   "path": "scripts/adjudicate.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 25459,
+   "sha256": "7d9d41143cb41f121395ec36e990d70a83ca2cf038e05a29d95f8898b39be942"
+  },
+  {
+   "path": "scripts/adjudication_status.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9180,
+   "sha256": "7a162f46caeeb56dcb8a2ed1bbc51d381f5091cdcda092c86a276f72a2f190e6"
+  },
+  {
+   "path": "scripts/application_hash_migration.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1258,
+   "sha256": "8f8853a1fa4c0d47b4d3885d5381d859cc1d328e3ac4ef7841b122426c7bb0a5"
+  },
+  {
+   "path": "scripts/author_read.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12426,
+   "sha256": "50bb3089fcafe8f8c693bf1305c62cbb54b25652bec73c47b715462e86afe804"
+  },
+  {
+   "path": "scripts/auto_adjudicate.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 19162,
+   "sha256": "89c62f6677c72dec5eef3d69dcd594cbbc6c09043973aaec2a677ce8e68d65d2"
+  },
+  {
+   "path": "scripts/benchmark_external.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 42437,
+   "sha256": "df7efcffd1fecbc3d97a965c68d6e4ebbedada434d1e620206adfc2dd19599d4"
+  },
+  {
+   "path": "scripts/benchmark_models.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 23006,
+   "sha256": "860a10089b6e8049e5d9dceddd7ce23ddfe1a1a5bc9f4233320455ba7b63f696"
+  },
+  {
+   "path": "scripts/build_adjudication_worksheet.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 23154,
+   "sha256": "ed255e6dfda4003305c1276ea3b8213f7be936d60176bf03ab2fdd0e4dd2aeff"
+  },
+  {
+   "path": "scripts/build_compatible_bundle.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 350,
+   "sha256": "f8739abd6e0245e7b890df05331773330665a0f9a1aa88d0a7eb45307c91648b"
+  },
+  {
+   "path": "scripts/build_explanation_approvals.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5646,
+   "sha256": "cdcc099646864135436b6394b9d4f629832ad1c3d79898f8353f6cb5bae7434e"
+  },
+  {
+   "path": "scripts/build_release_review_packet.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7209,
+   "sha256": "718cfc2b87f4138e290057d69a6a8dd1228665e43cc465a5bfbcbeb540a4124e"
+  },
+  {
+   "path": "scripts/compatible_bundle.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 24898,
+   "sha256": "b9abdd95c26339276f2d86bc00b691cce376788ae432f10d9e796b95e53341d7"
+  },
+  {
+   "path": "scripts/derive_build_evidence.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2955,
+   "sha256": "3036508d22f748df703ddf6eae4d217f41d7c320e1dda54631ddd3c94b72403c"
+  },
+  {
+   "path": "scripts/derive_decision_critical.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12263,
+   "sha256": "7fd859f87adbef151682a54c07ce3a525ba551b719360d90c61e3e3e20d68d4d"
+  },
+  {
+   "path": "scripts/detector_sensitivity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 16362,
+   "sha256": "d5804e07db0bf7e531e20396a663fe80c8aa429055ec2593fd601f2d8ba92b0b"
+  },
+  {
+   "path": "scripts/diagnose_provenance.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20261,
+   "sha256": "4abb027a3e93d2c4dd4876b9ad4a7a2568a9aab9e1cefb6e6aaacfdc0e013bc8"
+  },
+  {
+   "path": "scripts/enumerate_cases.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11636,
+   "sha256": "518ca0f828068a926cb4b208ea107d2acb906fe5452b7c3785005d0a3ffda35e"
+  },
+  {
+   "path": "scripts/expand_sas_cohort.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5384,
+   "sha256": "78dbeeb52d89e4279fa4aca4b3df0d5b6879e49f4d92bb2d672f5c7c1190d70d"
+  },
+  {
+   "path": "scripts/export_for_reading.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11010,
+   "sha256": "5ad2c6e44609a85739988a86539caec9b966034766d5cf9b357336a80dc56e0a"
+  },
+  {
+   "path": "scripts/extract_glossary_candidates.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7798,
+   "sha256": "55368dbe9c0cdaa991c14f9b11946bf1f1f8d654ca51138aa3f94283201bc704"
+  },
+  {
+   "path": "scripts/fetch_reference_data.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 16792,
+   "sha256": "499e9495de9cf3eec12b7e0dcc215c1706c97f4666284ca46c03e253e7408c3e"
+  },
+  {
+   "path": "scripts/filter_frequency_deviations.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9379,
+   "sha256": "7bafad801435aef101b73fa400581715d3b6c502fe4960be93947c7ad091d195"
+  },
+  {
+   "path": "scripts/generate_capabilities.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3978,
+   "sha256": "d42561506be663798944d4f8dd3ac2d05f738651b55d5d90e56874cc834540cd"
+  },
+  {
+   "path": "scripts/generation_report.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12157,
+   "sha256": "710c99ffbb162b2a42435450c9e30de1226e517f9d7f324678ae3b22a419831f"
+  },
+  {
+   "path": "scripts/glossary_lib.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 36306,
+   "sha256": "9a9dbb9598a8cda6da41c774b2f23e2dccbaa91e838e459db03e8d0bee005300"
+  },
+  {
+   "path": "scripts/glossary_review.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8364,
+   "sha256": "41bf4dc5a60d8b8cabd0ebe7f44fba830f3683e9849701b46c8761a383ca7360"
+  },
+  {
+   "path": "scripts/glossary_status.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4581,
+   "sha256": "e8529b6955dbe101e2c12baee683db8afd4cfa4aa5747513f8c0a8c024ac256b"
+  },
+  {
+   "path": "scripts/guard_experiment.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 18191,
+   "sha256": "3aba7dfc2cc46477645358a4202838f51ff84db70a5c1dd53da22eb4073850e6"
+  },
+  {
+   "path": "scripts/list_models.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8325,
+   "sha256": "c67cda6f0e499dcb1db551b9e6798509c322ec6ec5b2c52efa9492e795eb7fb5"
+  },
+  {
+   "path": "scripts/measure_ambiguity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8120,
+   "sha256": "19d76445e4b58f2e2897627dc8917dafb5f86a84ac87f1885f21dee93a45fda6"
+  },
+  {
+   "path": "scripts/measure_coverage_sensitivity.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 14401,
+   "sha256": "abf3221327f090080c17e1daa9e2fbe01c27f8d8216ec120d4044ebb58942dac"
+  },
+  {
+   "path": "scripts/measure_peak_memory.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8521,
+   "sha256": "334d0cdb38fb500af026ba7efae965e9694d94ca816331efc4210e3b0c7692b6"
+  },
+  {
+   "path": "scripts/preflight.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 12632,
+   "sha256": "89c682f786fb9777d133227fe3cf57d3225a97e5b89bc111e512e14f0d3c7bbb"
+  },
+  {
+   "path": "scripts/pregenerate_explanations.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 23162,
+   "sha256": "5a0ac48f6bcb5fdd7209ee8a6cc24cfdc8c9711a52390e97edd3cbbc6da573f3"
+  },
+  {
+   "path": "scripts/release_status.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 15485,
+   "sha256": "2bb959f4ef793cb1fa430a45249d562cc5fd983ced3f2f004354a1fc270edba8"
+  },
+  {
+   "path": "scripts/review_status.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6613,
+   "sha256": "48ad56c762549d54cf6803a1a99c90979df36a02e084b89ce2a816f5b96c7035"
+  },
+  {
+   "path": "scripts/run_demo.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 17562,
+   "sha256": "42bac3d0065dda746e2d04cad1a3561bf2f43778e5265f52cb9795259dbb9fe0"
+  },
+  {
+   "path": "scripts/sas_frequencies.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9620,
+   "sha256": "9c606a4d75896ee5d26e24b62aec70e02692825138b2393b3d8aa5c2ec4146ff"
+  },
+  {
+   "path": "scripts/scientific_hash_policy.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 4074,
+   "sha256": "5f7119e9fe6a9027ce407d43cbf5433b37f9570bffdf1d4d6d853696910b7e3f"
+  },
+  {
+   "path": "scripts/sweep_constructed_alleles.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8535,
+   "sha256": "df70e5b3c3678304c04e02008ff4fe30af2f59f2da98eca143439ce4d0589d09"
+  },
+  {
+   "path": "scripts/validate_frequency.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 16633,
+   "sha256": "99b8ffc75d37c5ac208929741a8bd893f6bf57d6d7b469df7862b31367fe2212"
+  },
+  {
+   "path": "scripts/validate_integration.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 28407,
+   "sha256": "70cd50411e3376e83b04a4d9c2477fdafd64d86eef898dc7658bb98705838015"
+  },
+  {
+   "path": "scripts/validate_label_mapping.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 20505,
+   "sha256": "ea46333786d29525f1b752e3d4dedb97812cc5deac503399d0cd7c3527ebaecc"
+  },
+  {
+   "path": "scripts/validate_testvcfs.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10836,
+   "sha256": "60a49f5b4685ddefd15ebf3c4dd8b7e3d18455f84ca8f201f169425923c1588a"
+  },
+  {
+   "path": "scripts/verify_compatible_bundle.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 750,
+   "sha256": "987845726e701962e392f52a0ec02fbac7f1b3c329f75fdc78d848277dc465f4"
+  },
+  {
+   "path": "scripts/verify_provenance.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 32631,
+   "sha256": "011b957f16b121fb47071e8b7164d8697e7ff251113fac39aa3377658c0b2e12"
+  },
+  {
+   "path": "test-data/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6459,
+   "sha256": "3343e7457e197491bb2c8fe68eeed81f5487764b5128275f8db7a63ad61e36ac"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/EVALUATION-REPORT.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2237,
+   "sha256": "e85b41c741f09b8ee6792f1123fb1715ed0d83e09110c188df9e68f255c45c73"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/discrepancies.tsv",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 172478,
+   "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/evaluation-comparison.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3911,
+   "sha256": "7694e4992cef7ee12ae1f4dc8be7eadd974708b06f5398c1d3cb55c40b91c012"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/evaluation_manifest.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 5256,
+   "sha256": "23a46b1070cd82b578c4f518ab77a0b87af71a30573513d87139328d61b7898a"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/exclusions.tsv",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 48960,
+   "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/external_benchmark_results.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 33667,
+   "sha256": "debd692befa93ea41a6872036a2eccdea8e06c44d9f27af280348a0687c3961d"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/f4-fresh-replay.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1603,
+   "sha256": "e693302d3cbbe0c8e5a24099abc9c2eeec798ce2d5c480d02f13a67c31d9cf50"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/input_eligibility.tsv",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 466620,
+   "sha256": "98de68b51fd4eebe01d152cfea7e3872dd5d8c4ce9a8e92cc3964166f8dc65bf"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/raw_benchmark_manifest.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7588,
+   "sha256": "0a5c408901fef191da4a8a720861affdf362afed8cac5bd6c4e8c3d4cb49d37c"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/raw_scoring_report.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11481,
+   "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+  },
+  {
+   "path": "test-data/benchmark/current-candidate-2026-10-04/stage-command-receipts.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2920,
+   "sha256": "420a4ce15f03e39f4240b7d7ff9611b31bc12cc8148e40a3fd8ec2e86b1759d0"
+  },
+  {
+   "path": "test-data/benchmark/external/.gitignore",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 179,
+   "sha256": "f2c18403dcabb2e9cd0765524b717106dc22b49c8de014dfecd6fb21f78b6c58"
+  },
+  {
+   "path": "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 162599,
+   "sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109"
+  },
+  {
+   "path": "test-data/benchmark/external/benchmark_manifest.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7588,
+   "sha256": "e19f995579482b152271c2c4eadc7b4fbe4b89832299b3111b761985484d0e92"
+  },
+  {
+   "path": "test-data/benchmark/external/cohort_lock.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 45274,
+   "sha256": "88bc2da84b930493bd4db715b627a6b6fc61440969b1aecb2c287ebacecbb5dc"
+  },
+  {
+   "path": "test-data/benchmark/external/discrepancies.tsv",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 172478,
+   "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47"
+  },
+  {
+   "path": "test-data/benchmark/external/exclusions.tsv",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 48960,
+   "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+  },
+  {
+   "path": "test-data/benchmark/external/external_benchmark_results.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 33667,
+   "sha256": "eca017e3a6e05b3db4c2640d86d9b84f1e271d00cb0f035a04fcce773f839ea8"
+  },
+  {
+   "path": "test-data/benchmark/external/genomic/locked_cohort.vcf.gz",
+   "intended": false,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3266038,
+   "sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba"
+  },
+  {
+   "path": "test-data/benchmark/external/input_eligibility.tsv",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 466620,
+   "sha256": "9fbc9a51bbbb9a57322fc100fbb38ca59fec09a08cb5f57b751183b2d88b82af"
+  },
+  {
+   "path": "test-data/benchmark/external/pharmcat_report_manifest.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 54176,
+   "sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8"
+  },
+  {
+   "path": "test-data/benchmark/external/protocol.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9677,
+   "sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e"
+  },
+  {
+   "path": "test-data/benchmark/external/sample_gene_truth.tsv",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 287825,
+   "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601"
+  },
+  {
+   "path": "test-data/cyp2c19_poor_metabolizer.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 17296,
+   "sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489"
+  },
+  {
+   "path": "test-data/demo/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2344,
+   "sha256": "59320dd7d8bfbea07ea7d665baf63a4261b67e2d4017a4e77ccc2adcf610061c"
+  },
+  {
+   "path": "test-data/demo/demo_confident.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 25967,
+   "sha256": "d9ad8dab7dca48eb8cf337089d3ac8b6096d619a9d63dba7b71b1f9f87d7bfa7"
+  },
+  {
+   "path": "test-data/demo/demo_dpyd_indeterminate.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 199150,
+   "sha256": "293f975560e9cbe695237fb52c2455ef452bfbe6dc386dbdb0af83a030dadf8b"
+  },
+  {
+   "path": "test-data/demo/demo_na12273_1000g.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 198701,
+   "sha256": "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef"
+  },
+  {
+   "path": "test-data/demo/demo_normal.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 25966,
+   "sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c"
+  },
+  {
+   "path": "test-data/demo/demo_variants_only.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1620,
+   "sha256": "fd17110ea604a41c6b1a28ce59efbc0ff50980c7d4429fe036d1e23e7a41b5ed"
+  },
+  {
+   "path": "test-data/demo/outputs/S1_confident demo_confident.vcf clopidogrel.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 112,
+   "sha256": "15474a009fd73f7c7c468b4ee8a95bbd6fa9cd3d0b6592acaebd32648be729e0"
+  },
+  {
+   "path": "test-data/demo/outputs/S1_confident.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9076,
+   "sha256": "9bb1152a0eafcdcd0133b15a8917c75798f0ec1abe45b8c88068c341874d1f91"
+  },
+  {
+   "path": "test-data/demo/outputs/S2_variants_only demo_variants_only.vcf clopidogrel.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 112,
+   "sha256": "15474a009fd73f7c7c468b4ee8a95bbd6fa9cd3d0b6592acaebd32648be729e0"
+  },
+  {
+   "path": "test-data/demo/outputs/S2_variants_only.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9676,
+   "sha256": "816cd83a3dc031439713530fd66478bfb3d311efbd62a172c950638d45bf2e9b"
+  },
+  {
+   "path": "test-data/demo/outputs/S3_cyp2d6 demo_na12273_1000g.vcf codeine.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 112,
+   "sha256": "15474a009fd73f7c7c468b4ee8a95bbd6fa9cd3d0b6592acaebd32648be729e0"
+  },
+  {
+   "path": "test-data/demo/outputs/S3_cyp2d6.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 9722,
+   "sha256": "ccf245fcf1d5b2cd62b066ef2eed339928aec3cb65b7f2a3eeaf8d22f4b98813"
+  },
+  {
+   "path": "test-data/demo/outputs/S3_cyp2d6_na12273.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8484,
+   "sha256": "b9c0f121d62ed0a7839b189995e1bffdac48f6e35ab6f76b66544108d2890854"
+  },
+  {
+   "path": "test-data/demo/outputs/S4_dpyd demo_dpyd_indeterminate.vcf fluorouracil.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 112,
+   "sha256": "15474a009fd73f7c7c468b4ee8a95bbd6fa9cd3d0b6592acaebd32648be729e0"
+  },
+  {
+   "path": "test-data/demo/outputs/S4_dpyd.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 10349,
+   "sha256": "6c392481140fcf2228bbbcfc63e3f55f753fd89908fe05739f4b384534bc696f"
+  },
+  {
+   "path": "test-data/demo/outputs/S4_dpyd_indeterminate.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 6950,
+   "sha256": "6b494094f1eb03b72735874ee0c7e7ff11fc86cea73e5b411a634250b1ac30cd"
+  },
+  {
+   "path": "test-data/demo/outputs/S5_normal demo_normal.vcf simvastatin.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 112,
+   "sha256": "15474a009fd73f7c7c468b4ee8a95bbd6fa9cd3d0b6592acaebd32648be729e0"
+  },
+  {
+   "path": "test-data/demo/outputs/S5_normal.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 8424,
+   "sha256": "d7c5740f7c113d72f2e376e2fb44562fa8c403876e034c90006947c049c7665b"
+  },
+  {
+   "path": "test-data/demo/outputs/S6_multidrug demo_confident.vcf clopidogrel,simvastatin,fluorouracil,codeine,ibuprofen.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 112,
+   "sha256": "15474a009fd73f7c7c468b4ee8a95bbd6fa9cd3d0b6592acaebd32648be729e0"
+  },
+  {
+   "path": "test-data/demo/outputs/S6_multidrug.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 21387,
+   "sha256": "3eff877b0b66db6ff9a8d4c9f1d0eaa8b3ceb43fbf7c6a2534cb9b625b7cf4ef"
+  },
+  {
+   "path": "test-data/dpyd_variant_carrier.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 17302,
+   "sha256": "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7"
+  },
+  {
+   "path": "test-data/generate_synthetic_vcf.py",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 16132,
+   "sha256": "360777b2118ed44fa43aee208eec222dcacc4cb5db877d51323add9dfd5ba6fb"
+  },
+  {
+   "path": "test-data/glossary/README.md",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 2595,
+   "sha256": "7d7bbf701855138a4c81ec1e0176a19ad5d616643ce86016d1d08b937be7c28f"
+  },
+  {
+   "path": "test-data/glossary/ordinary_english_control.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 368577,
+   "sha256": "6dbe1310590a2a71385bc7901f48404ad9d0c93cd0910c1197c0a75f95663a16"
+  },
+  {
+   "path": "test-data/normal_metabolizer_control.vcf",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 17288,
+   "sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be"
+  },
+  {
+   "path": "test-data/reference/1000G_3202_populations.txt",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 97483,
+   "sha256": "4e164b717433fc9bfc16e29b20e5b4659b4216185b3275322d421fe3d323c132"
+  },
+  {
+   "path": "test-data/reference/cpic_expectations.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 76182,
+   "sha256": "4ccf422a036342a7342dfa0eb89f62d29ce908b37a570f7acce58d6c4a714f2f"
+  },
+  {
+   "path": "test-data/reference/cpic_frequencies/CYP2C19.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 69763,
+   "sha256": "5c1b4d1181a199ccd86ca74d9b557512d658aa0f2ae0ada4d56d964a7e0a2338"
+  },
+  {
+   "path": "test-data/reference/cpic_frequencies/CYP2C9.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 143755,
+   "sha256": "a6e5ee66f148762223c0cd8b9630bd70266a1bddf4878b1752f99b25ac95ff95"
+  },
+  {
+   "path": "test-data/reference/cpic_frequencies/NUDT15.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 7070,
+   "sha256": "3649529126a913daef21bc1129d6412712d2fa2c11ce20b420e156f292481cb2"
+  },
+  {
+   "path": "test-data/reference/cpic_frequencies/SLCO1B1.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 64903,
+   "sha256": "89f8b60038384aeac365ede1951ea88ee63cb02709d116a6d44aa84f39776dbb"
+  },
+  {
+   "path": "test-data/reference/cpic_frequencies/TPMT.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 64671,
+   "sha256": "fcbb9973dff92ee591124c0bd2772fe8567b917b2548b93c0ad86d3a18ad9527"
+  },
+  {
+   "path": "test-data/reference/getrm_pharmacogenomics.xls",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 141312,
+   "sha256": "62d6f742ebc003993c9017c566e61488f749ba2b77f3cc5590d342ec0a6b9c8b"
+  },
+  {
+   "path": "test-data/reference/manifest.json",
+   "intended": true,
+   "symlink": false,
+   "exists": true,
+   "bytes": 3382,
+   "sha256": "29530dc4be3a39ffd3f1abb8228297d4a3a6e622e33d7337ed2fb7c40f2ad824"
+  },
+  {
+   "path": "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+   "intended": false,
+   "symlink": false,
+   "exists": true,
+   "bytes": 32292707,
+   "sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741"
+  },
+  {
+   "path": "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz",
+   "intended": false,
+   "symlink": false,
+   "exists": true,
+   "bytes": 11027,
+   "sha256": "01a28fe31675c9e8a8b18bcab4afb82a62abdfea6606856aeca0e0378e7d6b58"
+  },
+  {
+   "path": "test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz.csi",
+   "intended": false,
+   "symlink": false,
+   "exists": true,
+   "bytes": 1047,
+   "sha256": "eb536edd898613977e7429469e4a8fceb31afc85a839f98423272f90a9491ac4"
+  }
+ ]
+}

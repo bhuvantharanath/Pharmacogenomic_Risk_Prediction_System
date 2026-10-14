@@ -1,0 +1,15 @@
+{
+  "at": "2026-09-30T13:58:12.664202+00:00",
+  "url": "https://ftp.sra.ebi.ac.uk/vol1/run/ERR323/ERR3239334/NA12878.final.cram",
+  "method": "pysam.AlignmentFile.fetch, unchanged read records",
+  "region_0based_half_open": [
+    "chr10",
+    94760899,
+    94853914
+  ],
+  "records": 23405,
+  "sha256": "47faa928718f8a98975029c9963345955e28758de0b47b85c84bc5cc5eb95bca",
+  "index_sha256": "b04ff90eaf88a4f67f86ea3fe71d17ed4229c6d7f0f6be1604fb710af1081f3c",
+  "reference_sha256": "5380b5de2f7c54026e87cb6cd30573f645bce6466481f15861d45557d7590933",
+  "frozen_protocol_sha256": "7b9a30b40b08bcc31d95f3526c6d9df850fb46f8a26262de2fe28994db9fa706"
+}

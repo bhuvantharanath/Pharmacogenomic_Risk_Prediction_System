@@ -1,0 +1,78 @@
+{
+  "colima_list": {
+    "argv": [
+      "colima",
+      "list"
+    ],
+    "exit_code": 0,
+    "stdout": "PROFILE    STATUS     ARCH       CPUS    MEMORY    DISK     RUNTIME    ADDRESS\ndefault    Stopped    aarch64    4       8GiB      40GiB    docker     \n",
+    "stderr": "2026-10-05 09:51:59.116 system_profiler[18441:1642734] Timed out waiting for the Activation Lock Status check\n"
+  },
+  "docker_contexts": {
+    "argv": [
+      "docker",
+      "context",
+      "ls"
+    ],
+    "exit_code": 0,
+    "stdout": "NAME            DESCRIPTION                               DOCKER ENDPOINT                                     ERROR\ncolima *        colima                                    unix:///Users/bhuvant/.colima/default/docker.sock   \ndefault         Current DOCKER_HOST based configuration   unix:///var/run/docker.sock                         \ndesktop-linux   Docker Desktop                            unix:///Users/bhuvant/.docker/run/docker.sock       \n",
+    "stderr": ""
+  },
+  "docker_colima_version": {
+    "argv": [
+      "docker",
+      "--context",
+      "colima",
+      "version",
+      "--format",
+      "{{json .Server}}"
+    ],
+    "exit_code": 1,
+    "stdout": "null\n",
+    "stderr": "failed to connect to the docker API at unix:///Users/bhuvant/.colima/default/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/bhuvant/.colima/default/docker.sock: connect: no such file or directory\n"
+  },
+  "docker_desktop_version": {
+    "argv": [
+      "docker",
+      "--context",
+      "desktop-linux",
+      "version",
+      "--format",
+      "{{json .Server}}"
+    ],
+    "exit_code": 1,
+    "stdout": "null\n",
+    "stderr": "failed to connect to the docker API at unix:///Users/bhuvant/.docker/run/docker.sock; check if the path is correct and if the daemon is running: dial unix /Users/bhuvant/.docker/run/docker.sock: connect: no such file or directory\n"
+  },
+  "host_arch": {
+    "argv": [
+      "uname",
+      "-m"
+    ],
+    "exit_code": 0,
+    "stdout": "arm64\n",
+    "stderr": ""
+  },
+  "disk_free": {
+    "argv": [
+      "df",
+      "-h",
+      "."
+    ],
+    "exit_code": 0,
+    "stdout": "Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on\n/dev/disk3s5   460Gi   266Gi   167Gi    62%    3.0M  1.8G    0%   /System/Volumes/Data\n",
+    "stderr": ""
+  },
+  "candidate": {
+    "head": "1dc7557da49f38e831b382545044b00a481507b6",
+    "scientific_core": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+    "compatible_manifest_sha256": "963a039ba16690d1c6ed772268ebb5c1512275beeb5fa117a6bef1c03aae7600",
+    "jar_sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741",
+    "data_version": "2026-07-13-11-40",
+    "prompt5_inventory_sha256": "9582a19acd61d841e6ecc9d98cdeef5796e654cdc790343d27b1dc0100af62da"
+  },
+  "host": {
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "machine": "arm64"
+  }
+}

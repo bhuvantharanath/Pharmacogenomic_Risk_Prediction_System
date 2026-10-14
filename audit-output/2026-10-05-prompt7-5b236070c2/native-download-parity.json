@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "saved_file": "audit-output/2026-10-05-prompt7-5b236070c2/native-NA12878-downloaded.json",
+  "bytes": 30189,
+  "sha256": "791e9f3122fc25f8ddb810f16c8680f99ae2f93ae7d10fde3cbacd4d91e80839",
+  "api_file": "audit-output/2026-10-05-prompt7-5b236070c2/browser-api/0020-analyze.body",
+  "api_sha256": "f2a0842de3be682e56989851d45be754b7b236dd3f3841191b95518359053183",
+  "timestamp": "2026-10-06T10:54:54.745948Z",
+  "exact_scientific_parity": true,
+  "capabilities_match_registry": true,
+  "method": "Native Chrome actual Export JSON and native Save dialog; actual disk bytes parsed and compared"
+}

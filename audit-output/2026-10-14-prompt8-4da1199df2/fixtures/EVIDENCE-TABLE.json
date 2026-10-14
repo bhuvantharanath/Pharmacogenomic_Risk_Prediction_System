@@ -1,0 +1,440 @@
+{
+ "frozen_utc": "2026-10-14T11:19:32.592216+00:00",
+ "frozen_before_evaluation": true,
+ "note": "Synthetic controls are fabricated plumbing checks (shared definitions with the caller) and are not independent clinical validation. F4 truth is consensus star-allele truth, not per-base truth.",
+ "fixtures": [
+  {
+   "id": "D01",
+   "label": "Complete synthetic normal control",
+   "src": "test-data/normal_metabolizer_control.vcf",
+   "synthetic": true,
+   "provenance": "Fabricated by test-data/generate_synthetic_vcf.py from PharmCAT 3.4.0 definitions (header: all genes reference; definition CLINPGX 2026-07-13-11-40). Not a person.",
+   "inspected": "306 PASS hom-ref rows; 35/35 CYP2C19, 88/88 CYP2C9, 35/35 SLCO1B1, 45/45 TPMT, 20/20 NUDT15, 83/83 DPYD; CYP2D6 0/157",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "azathioprine": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "basis": "Generator diplotypes (reference) + CPIC guideline direction + capability registry abstentions. Synthetic circular plumbing check, not independent validation.",
+   "browser": true,
+   "source_sha256": "850d95b9d295e0eb6cb0ea4b9af66d6e799d76256b614384b05ffb95751e36be",
+   "bytes": 17288,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D01-normal_metabolizer_control.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D02",
+   "label": "Complete synthetic CYP2C19 poor-metabolizer control",
+   "src": "test-data/cyp2c19_poor_metabolizer.vcf",
+   "synthetic": true,
+   "provenance": "Fabricated generator output, header CYP2C19=*2/*2; other genes reference.",
+   "inspected": "306 PASS rows; CYP2C19 hom-alt at 94775367, 94775507, 94781859, 94842866; all six genes complete",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Ineffective (CYP2C19 *2/*2, PM) + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "azathioprine": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "basis": "Generator header *2/*2 -> PM (CPIC 2022 Table 1) -> avoid clopidogrel in ACS/PCI. Synthetic; not independent truth.",
+   "browser": true,
+   "source_sha256": "3478e973fe013a19a95a78cd5d5718ecfd38b98ba16cd6b0329df54751b30489",
+   "bytes": 17296,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D02-cyp2c19_poor_metabolizer.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D03",
+   "label": "Supported synthetic DPYD variant-carrier control",
+   "src": "test-data/dpyd_variant_carrier.vcf",
+   "synthetic": true,
+   "provenance": "Fabricated generator output, header DPYD=c.1905+1G>A (*2A)/Reference.",
+   "inspected": "306 PASS rows; DPYD chr1:97450058 = 1/0 (c.1905+1G>A); all six genes complete",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "Adjust Dosage (DPYD IM, activity score 1)",
+    "azathioprine": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "basis": "One no-function DPYD allele -> AS 1 -> IM -> 50% starting-dose reduction (CPIC). Synthetic.",
+   "browser": true,
+   "source_sha256": "e820a04071b0f6b42e80ba68d1ec48dc11ef926c46df427f13f57dd7b0e373b7",
+   "bytes": 17302,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D03-dpyd_variant_carrier.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D04",
+   "label": "Frozen F4 NA18526 read-backed normal",
+   "src": "audit-output/2026-09-30-f4/NA18526.observed.vcf",
+   "synthetic": false,
+   "provenance": "Public 1000G/NYGC ERR3239353 reads, bcftools 1.24 frozen protocol (audit-output/2026-09-30-f4/PROTOCOL.md, frozen 2026-09-30T13:57:04Z, sha verified). Every required CYP2C19 record read-backed; no inferred 0/0.",
+   "inspected": "35 PASS rows, CYP2C19 only (34 hom-ref, 94842866 1/1); other genes 0 positions",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified (CYP2C19 *1/*1, NM) + ACS/PCI qualifier",
+    "simvastatin": "Unknown (no SLCO1B1 evidence)",
+    "fluorouracil": "Unknown (no DPYD evidence)",
+    "azathioprine": "Unknown (no TPMT/NUDT15 evidence)",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "basis": "Independent CDC GeT-RM V4 consensus *1/*1 (sha c66174be...), frozen predicted phenotype Normal Metabolizer; CPIC 2022 NM -> standard therapy if indicated.",
+   "browser": true,
+   "source_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+   "bytes": 174874,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D04-NA18526.observed.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D05",
+   "label": "Frozen F4 NA12878 read-backed actionable",
+   "src": "audit-output/2026-09-30-f4/NA12878.observed.vcf",
+   "synthetic": false,
+   "provenance": "Public ERR3239334 reads, same frozen F4 protocol.",
+   "inspected": "35 PASS rows, CYP2C19 only; het at 94775367 and 94781859 (*2 core), 94842866 1/1",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Ineffective (CYP2C19 *1/*2, IM) + ACS/PCI qualifier; hypothetical context, no donor diagnosis",
+    "simvastatin": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "basis": "Independent CDC GeT-RM *1/*2, frozen predicted phenotype Intermediate Metabolizer; CPIC 2022 IM in ACS/PCI -> avoid standard-dose clopidogrel.",
+   "browser": true,
+   "source_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+   "bytes": 175087,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D05-NA12878.observed.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D06",
+   "label": "Real variant-only presentation (NA12878 minus hom-ref rows)",
+   "src": "audit-output/2026-10-05-prompt7-5b236070c2/real-variant-only.vcf",
+   "synthetic": false,
+   "provenance": "Degradation-only derivative of D05 by Prompt 7 real_acceptance.py: every 0/0 row deleted. No genotype edited.",
+   "inspected": "3 PASS rows (94775367 0/1, 94781859 0/1, 94842866 1/1); CYP2C19 3/35",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "basis": "Documented contract (docs/input_requirements.md evidence-quality section): absent positions do not satisfy completeness and are never inferred as reference.",
+   "browser": true,
+   "source_sha256": "af5558a206fac64d67908525830e749f74fe472e28f25b075a8aa05da0702019",
+   "bytes": 172213,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D06-real-variant-only.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D07",
+   "label": "Real incomplete public VCF (bundled NA12273, 1000G)",
+   "src": "app/assets/samples/pharmaguard_sample_1000genomes.vcf",
+   "synthetic": false,
+   "provenance": "Real 1000 Genomes high-coverage NA12273 restricted to PharmCAT positions (test-data/demo/README.md); polymorphic-filtered source; no build header.",
+   "inspected": "169 rows FILTER '.'; CYP2C19 16/35, CYP2C9 17/88, SLCO1B1 20/35, TPMT 9/45, NUDT15 5/20, DPYD 31/83 (critical 8/28)",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "basis": "Every guidance gene below the documented contract; incomplete evidence must stay Unknown.",
+   "browser": true,
+   "source_sha256": "6b469b47ebbae02a1d7a20e4559371e112e620bca5e7f55077fc9bbfb2c4a3ef",
+   "bytes": 198701,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D07-pharmaguard_sample_1000genomes.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D08",
+   "label": "Oversized public VCF (PharmCAT tutorial NA18526 bgzip)",
+   "src": "audit-output/2026-09-26/originals/PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18526.vcf.bgz",
+   "synthetic": false,
+   "provenance": "PharmCAT-tutorial commit 30253e35 raw.githubusercontent download, 2026-09-26, sha a3e4676b...",
+   "inspected": "11,181,875 bytes (> 5,242,880 upload limit)",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "upload": "HTTP 413 FILE_TOO_LARGE at /coverage and /analyze; clear 5 MB message; controls re-enabled; next valid file analyses normally"
+   },
+   "basis": "Documented 5 MB limit (vcf_validation.MAX_UPLOAD_BYTES; docs/input_requirements.md).",
+   "browser": true,
+   "source_sha256": "a3e4676b1825cd3723e6094565e8c0bad15905a879ad431dcd80106b8b9334c1",
+   "bytes": 11181875,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D08-PharmCAT_tutorial_get-rm_wgs_30x_grch38.NA18526.vcf.bgz",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D09",
+   "label": "Malformed VCF (truncated gzip)",
+   "src": "audit-output/2026-09-26/derived/real-truncated.vcf.gz",
+   "synthetic": false,
+   "provenance": "2026-09-26 run_acceptance.py: real-valid-gzip.vcf.gz (NA18526 raw required sites, lossless gzip) with final 9 bytes removed.",
+   "inspected": "22,878 bytes; gzip decode fails (EOF before end-of-stream marker)",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "upload": "HTTP 400 CORRUPT_GZIP; clear message; recovery"
+   },
+   "basis": "Documented structural validation; corrupt input is rejected, never partially analysed.",
+   "browser": true,
+   "source_sha256": "729feae06ff4039de81d56a9f18a4210e22286baddad6f15706a83b4051b5c3f",
+   "bytes": 22878,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D09-real-truncated.vcf.gz",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D10",
+   "label": "Failed FILTER at CYP2C19 *2 core position",
+   "src": "audit-output/2026-10-05-prompt7-5b236070c2/real-failed-filter.vcf",
+   "synthetic": false,
+   "provenance": "Degradation of D05: FILTER=LowQual at chr10:94781859 only.",
+   "inspected": "35 rows; 94781859 FILTER LowQual GT 0/1; usable 34/35",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "basis": "Contract: named FILTER failure does not satisfy completeness; CYP2C19 requires 35/35.",
+   "browser": true,
+   "source_sha256": "e1460421f84c2e9ac96a113f25d6de0b7b96e44f54daa22ec40137f28d12f362",
+   "bytes": 175090,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D10-real-failed-filter.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D11",
+   "label": "Partial genotype at CYP2C19 *2 core position",
+   "src": "audit-output/2026-10-05-prompt7-5b236070c2/real-partial-gt.vcf",
+   "synthetic": false,
+   "provenance": "Degradation of D05: GT 0/. at chr10:94781859.",
+   "inspected": "35 rows; 94781859 GT 0/.; usable 34/35",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "basis": "Contract: partial call 0/. does not satisfy completeness.",
+   "browser": true,
+   "source_sha256": "d8670fbe6c6036dde445931a7c8e2194e12930fe070e81ff066ff72198aaebe9",
+   "bytes": 175087,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D11-real-partial-gt.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D12",
+   "label": "Missing required CYP2C19 position",
+   "src": "audit-output/2026-10-05-prompt7-5b236070c2/real-missing-required.vcf",
+   "synthetic": false,
+   "provenance": "Degradation of D05: row chr10:94781859 deleted.",
+   "inspected": "34 rows; 94781859 absent; usable 34/35",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "basis": "Contract: absent position is not inferred as reference.",
+   "browser": true,
+   "source_sha256": "93c86eb50f87583096a0d0aeae06a1ce00581903d1c787ead24ccfb442628edc",
+   "bytes": 174892,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D12-real-missing-required.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D13",
+   "label": "Missing TPMT partner evidence (synthetic)",
+   "src": "audit-output/2026-10-05-prompt7-5b236070c2/missing-TPMT.vcf",
+   "synthetic": true,
+   "provenance": "D01 with every chr6 row removed (Prompt 7).",
+   "inspected": "261 rows; TPMT 0/45, NUDT15 20/20, others complete",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "azathioprine": "Unknown (TPMT evidence missing)",
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "basis": "Registry: azathioprine evidence_dependencies TPMT AND NUDT15.",
+   "browser": true,
+   "source_sha256": "3893a2c75b590ef5a39449e4f6b3889fad059cf966c16bb76870502cc181e852",
+   "bytes": 15032,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D13-missing-TPMT.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D14",
+   "label": "Missing NUDT15 partner evidence (synthetic)",
+   "src": "audit-output/2026-10-05-prompt7-5b236070c2/missing-NUDT15.vcf",
+   "synthetic": true,
+   "provenance": "D01 with every chr13 row removed (Prompt 7).",
+   "inspected": "286 rows; NUDT15 0/20, TPMT 45/45, others complete",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "azathioprine": "Unknown (NUDT15 evidence missing)",
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "warfarin": "Unknown (explicit abstention: no automated dose)",
+    "codeine": "Unknown (explicit abstention: CYP2D6 CNV/SV not called)"
+   },
+   "basis": "Registry: azathioprine requires both partners (original audit counterexample #1).",
+   "browser": true,
+   "source_sha256": "88e86f4cc93ad9212e65d264e82a6a0dbc688afdc0e2857edb5a5857644a44d7",
+   "bytes": 16177,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D14-missing-NUDT15.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  },
+  {
+   "id": "D15",
+   "label": "Scope abstention: unsupported drug, CYP2D6/codeine, warfarin",
+   "src": "app/assets/samples/pharmaguard_sample_normal.vcf",
+   "synthetic": true,
+   "provenance": "Bundled synthetic DEMO_NORMAL (generator; CYP2D6 *1/*1 padded, 157/157 positions present).",
+   "inspected": "463 PASS rows; all seven genes complete incl. CYP2D6 157/157 (2 hom-alt CYP2D6 rows of the *1 definition background)",
+   "drugs": "clopidogrel,ibuprofen,codeine,warfarin",
+   "expected": {
+    "clopidogrel": "No PGx-guided adjustment identified + ACS/PCI qualifier (positive control in same request)",
+    "ibuprofen": "Unknown (outside audited scope; no CPIC text invented)",
+    "codeine": "Unknown even with 157/157 CYP2D6 positions",
+    "warfarin": "Unknown (no dose calculation)"
+   },
+   "basis": "Capability registry + docs: CYP2D6 calling withheld; warfarin dosing not implemented; unregistered drug abstains.",
+   "browser": true,
+   "source_sha256": "c124623f85d657f1e2e10bc74e0fb146f9440ea67cfd545234bd0d23506b691c",
+   "bytes": 25966,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D15-pharmaguard_sample_normal.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)"
+   }
+  },
+  {
+   "id": "D16",
+   "label": "Real incomplete official tutorial preprocessed VCF (NA18526)",
+   "src": "audit-output/2026-09-26/originals/NA18526.preprocessed.vcf",
+   "synthetic": false,
+   "provenance": "PharmCAT-tutorial commit 30253e35 official preprocessed output, sha 188f839e...",
+   "inspected": "236 rows incl. PCATxREF/PCATxALT filters; CYP2C19 19/35; TPMT 12/45; NUDT15 5/20; DPYD critical 12/28",
+   "drugs": "clopidogrel,fluorouracil,azathioprine,simvastatin,warfarin,codeine",
+   "expected": {
+    "clopidogrel": "Unknown",
+    "fluorouracil": "Unknown",
+    "azathioprine": "Unknown",
+    "simvastatin": "Unknown",
+    "warfarin": "Unknown",
+    "codeine": "Unknown"
+   },
+   "basis": "Below contract for every gene.",
+   "browser": false,
+   "source_sha256": "188f839e8177406a92c87a5931e63fc75a848ac5757555a889a082fae7dafcb7",
+   "bytes": 18287,
+   "upload_copy": "audit-output/2026-10-14-prompt8-4da1199df2/fixtures/inputs/D16-NA18526.preprocessed.vcf",
+   "cpic_basis": {
+    "clopidogrel": "CPIC 2022 CYP2C19/clopidogrel (PMID 35034351, PMC9287492): NM -> standard dose if indicated; IM/PM -> avoid standard-dose clopidogrel in ACS/PCI; recommendation applies to ACS/PCI population (hypothetical context; donor diagnosis not inferred)",
+    "simvastatin": "CPIC 2022 SLCO1B1/ABCG2/CYP2C9 statins (PMID 35152405): normal function -> no PGx-guided change",
+    "fluorouracil": "CPIC DPYD/fluoropyrimidines (2017 + 2024 update): activity score 2 -> standard dose; activity score 1 (one no-function allele) -> reduce starting dose 50%",
+    "azathioprine": "CPIC TPMT/NUDT15 thiopurines (2018; 2025 update PMID 41618934): requires both genes; NM/NM -> standard dosing"
+   }
+  }
+ ]
+}

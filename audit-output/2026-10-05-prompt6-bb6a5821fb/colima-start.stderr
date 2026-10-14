@@ -1,0 +1,7 @@
+time="2026-10-05T16:53:27+05:30" level=info msg="starting colima [profile=pgx-p6-20261005]"
+time="2026-10-05T16:53:27+05:30" level=info msg="runtime: docker"
+time="2026-10-05T16:53:27+05:30" level=info msg="creating and starting ..." context=vm
+time="2026-10-05T16:53:27+05:30" level=info msg="downloading disk image ..." context=vm
+time="2026-10-05T16:53:46+05:30" level=info msg="provisioning ..." context=docker
+time="2026-10-05T16:53:46+05:30" level=info msg="starting ..." context=docker
+time="2026-10-05T17:02:17+05:30" level=info msg=done

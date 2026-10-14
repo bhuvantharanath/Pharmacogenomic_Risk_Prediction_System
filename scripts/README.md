@@ -150,9 +150,10 @@ python scripts/generation_report.py
 python scripts/guard_experiment.py --dry-run
 python scripts/guard_experiment.py
 
-# 10. The release gate. Traces every clinical sentence to a cited source.
+# 10. Build approval identities, then run the authoritative content gate.
 python scripts/verify_provenance.py --write
-python scripts/review_status.py          # non-zero if anything is unverified
+python scripts/build_explanation_approvals.py
+python scripts/release_status.py --content-only
 
 # 11. Optional but worthwhile: read them yourself. Not clinical approval —
 #     nobody here can give that — but it catches direction-of-effect errors,
@@ -178,9 +179,20 @@ Steps 5, 6, 8, 10 and 11 are safe to re-run at any time.
 | `guard_experiment.py` | **yes** | Four adversarial arms. Evidence that the guard discriminates |
 | `generation_report.py` | no | `reports/generation_report.md` — pass rates, fallbacks, coverage |
 | `export_for_reading.py` | no | All explanations in one document, to read straight through |
-| `verify_provenance.py` | no | **The release gate.** Traces every clinical sentence to its source; non-zero exit on any failure |
+| `verify_provenance.py` | no | Traces every clinical sentence to its source; detailed prerequisite report |
 | `author_read.py` | no | Records that the author read an entry. No approve action — see below |
 | `review_status.py` | no | Provenance and author-read coverage, reported separately |
+| `build_explanation_approvals.py` | no | Projects existing adjudication into exact content/source/context identities; never invents approval |
+| `build_release_review_packet.py` | no | Lists every unresolved or automated-only claim, its exact entry hash, and candidate source span for owner review; records no decision |
+| `release_status.py` | no | **The sole release decision.** Requires tests, human adjudication, compatible approval hashes, and exact candidate identity |
+
+The release status reports both the current runtime prose path and the declared
+release policy. When all stored entries are unapproved, runtime requests use
+deterministic templates, but that fact does not satisfy this project's existing
+requirement for named human adjudication of every stored claim. The 20 entries
+remain in the approval surface until their review is completed under the current
+policy. Run `python scripts/build_release_review_packet.py` to prepare the
+current owner packet without changing any approval state.
 
 ### Model id
 

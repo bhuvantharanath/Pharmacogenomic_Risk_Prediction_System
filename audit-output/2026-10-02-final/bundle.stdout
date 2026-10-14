@@ -1,0 +1,10 @@
+{
+  "compatible": false,
+  "bundle_id": "pharmaguard-scientific-baseline-2026-09-24-portable-v2",
+  "manifest_sha256": "718dbcf0480d8d73a40ff1356ef65962440a43acae24c781eaeeba232e95c7a8",
+  "problems": [
+    "$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', found '38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691'",
+    "$.evaluation.migration_identity_matches: expected True, found False",
+    "$.evaluation.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core"
+  ]
+}

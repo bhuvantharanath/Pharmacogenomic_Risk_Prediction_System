@@ -1,0 +1,2 @@
+[W::bcf_hdr_check_sanity] MQ should be declared as Type=Float
+Lines   total/split/joined/realigned/mismatch_removed/dup_removed/skipped:	93033/0/0/17/0/0/0

@@ -1,0 +1,428 @@
+{
+  "backend_without_server": {
+    "counts": {
+      "passed": 906,
+      "failed": 2,
+      "skipped": 8
+    },
+    "nonpassing": [
+      {
+        "name": "tests.test_compatible_bundle::test_checked_manifest_matches_declared_environment",
+        "status": "failed",
+        "detail": "<testcase classname=\"tests.test_compatible_bundle\" name=\"test_checked_manifest_matches_declared_environment\" time=\"0.087\"><failure message=\"AssertionError: assert {'schema_vers...d file'}, ...} == {'schema_vers...d file'}, ...}&#10;  &#10;  Omitting 10 identical items, use -vv to show&#10;  Differing items:&#10;  {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}} != {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}}&#10;  Use -v to get more diff\">def test_checked_manifest_matches_declared_environment() -&gt; None:\n&gt;       assert bundle.build_manifest() == CHECKED\nE       AssertionError: assert {'schema_vers...d file'}, ...} == {'schema_vers...d file'}, ...}\nE         \nE         Omitting 10 identical items, use -vv to show\nE         Differing items:\nE         {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}} != {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}}\nE         Use -v to get more diff\n\nbackend/tests/test_compatible_bundle.py:35: AssertionError</failure></testcase>"
+      },
+      {
+        "name": "tests.test_demo_script.TestDemoAgainstLiveApi::test_each_scenario_returns_its_expected_label",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_demo_script.TestDemoAgainstLiveApi\" name=\"test_each_scenario_returns_its_expected_label\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"no backend on 127.0.0.1:8000\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_demo_script.py:102: no backend on 127.0.0.1:8000</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_demo_script.TestDemoAgainstLiveApi::test_the_contrast_actually_contrasts",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_demo_script.TestDemoAgainstLiveApi\" name=\"test_the_contrast_actually_contrasts\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"no backend on 127.0.0.1:8000\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_demo_script.py:115: no backend on 127.0.0.1:8000</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_demo_script.TestDemoAgainstLiveApi::test_loopback_is_not_rate_limited",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_demo_script.TestDemoAgainstLiveApi\" name=\"test_loopback_is_not_rate_limited\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"no backend on 127.0.0.1:8000\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_demo_script.py:132: no backend on 127.0.0.1:8000</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_documented_numbers::test_the_documented_test_counts_match_the_suite",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_documented_numbers\" name=\"test_the_documented_test_counts_match_the_suite\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"README no longer quotes a backend test count\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_documented_numbers.py:263: README no longer quotes a backend test count</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_glossary_audit::test_recorded_decisions_carry_who_and_when",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_glossary_audit\" name=\"test_recorded_decisions_carry_who_and_when\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"no decisions recorded yet\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_glossary_audit.py:284: no decisions recorded yet</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_portable_scientific_hash::test_clean_isolated_copy_passes_bundle_verification",
+        "status": "failed",
+        "detail": "<testcase classname=\"tests.test_portable_scientific_hash\" name=\"test_clean_isolated_copy_passes_bundle_verification\" time=\"0.103\"><failure message=\"AssertionError: [&quot;$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', f...on.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core']&#10;assert False is True\">tmp_path = PosixPath('/private/var/folders/86/x_h8qf3s0cl8_mf5m_j028qw0000gn/T/pytest-of-bhuvant/pytest-2/test_clean_isolated_copy_passe0')\nmonkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x116ada750&gt;\n\n    def test_clean_isolated_copy_passes_bundle_verification(tmp_path: Path, monkeypatch) -&gt; None:\n        root = tmp_path / \"clean-copy\"\n        required = set(bundle.load_hash_policy()[\"core_paths\"])\n        required.update(\n            {\n                \"scripts/scientific_hash_policy.json\",\n                \"scripts/application_hash_migration.json\",\n                \"backend/app/data/compatible_bundle.json\",\n                \"test-data/reference/tools/pharmcat-3.4.0-all.jar\",\n                \"test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz\",\n                \"test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz.csi\",\n                \"test-data/benchmark/external/protocol.json\",\n                \"test-data/benchmark/external/benchmark_manifest.json\",\n                \"test-data/benchmark/external/external_benchmark_results.json\",\n                \"test-data/benchmark/external/pharmcat_report_manifest.json\",\n                \"test-data/benchmark/external/sample_gene_truth.tsv\",\n                \"reports/external_analytical_benchmark.md\",\n                \"reports/scientific_record_reproduction.json\",\n                \"backend/requirements.txt\",\n                \"backend/requirements-dev.txt\",\n                \".github/workflows/test.yml\",\n            }\n        )\n        for relative in sorted(required):\n            _copy_file(root, relative)\n        assert not (root / \"backend/app/.DS_Store\").exists()\n        monkeypatch.setattr(bundle, \"REPO_ROOT\", root)\n        monkeypatch.setattr(bundle, \"MANIFEST_PATH\", root / \"backend/app/data/compatible_bundle.json\")\n        monkeypatch.setattr(bundle, \"JAR_PATH\", root / \"test-data/reference/tools/pharmcat-3.4.0-all.jar\")\n    \n        result = bundle.verify_manifest(root / \"backend/app/data/compatible_bundle.json\")\n&gt;       assert result[\"compatible\"] is True, result[\"problems\"]\nE       AssertionError: [\"$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', f...on.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core']\nE       assert False is True\n\nbackend/tests/test_portable_scientific_hash.py:153: AssertionError</failure></testcase>"
+      },
+      {
+        "name": "tests.test_sample_vcfs.TestAgainstRealPharmcat::test_produces_the_expected_label[cyp2c19_poor_metabolizer.vcf]",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_sample_vcfs.TestAgainstRealPharmcat\" name=\"test_produces_the_expected_label[cyp2c19_poor_metabolizer.vcf]\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"PharmCAT not on PATH; structural checks above cover the regression\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_sample_vcfs.py:286: PharmCAT not on PATH; structural checks above cover the regression</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_sample_vcfs.TestAgainstRealPharmcat::test_produces_the_expected_label[dpyd_variant_carrier.vcf]",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_sample_vcfs.TestAgainstRealPharmcat\" name=\"test_produces_the_expected_label[dpyd_variant_carrier.vcf]\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"PharmCAT not on PATH; structural checks above cover the regression\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_sample_vcfs.py:286: PharmCAT not on PATH; structural checks above cover the regression</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_sample_vcfs.TestAgainstRealPharmcat::test_produces_the_expected_label[normal_metabolizer_control.vcf]",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_sample_vcfs.TestAgainstRealPharmcat\" name=\"test_produces_the_expected_label[normal_metabolizer_control.vcf]\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"PharmCAT not on PATH; structural checks above cover the regression\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_sample_vcfs.py:286: PharmCAT not on PATH; structural checks above cover the regression</skipped></testcase>"
+      }
+    ],
+    "by_module": {
+      "test_absence_controls": {
+        "passed": 15
+      },
+      "test_all_gated_message": {
+        "passed": 6
+      },
+      "test_analysis_memory_admission": {
+        "passed": 3
+      },
+      "test_analyze_api": {
+        "passed": 33
+      },
+      "test_android_identity": {
+        "passed": 5
+      },
+      "test_build_and_binary_detection": {
+        "passed": 15
+      },
+      "test_build_identity": {
+        "passed": 14
+      },
+      "test_capability_scope": {
+        "passed": 11
+      },
+      "test_captured_outputs": {
+        "passed": 20
+      },
+      "test_client_parity": {
+        "passed": 7
+      },
+      "test_compatible_bundle": {
+        "failed": 1,
+        "passed": 6
+      },
+      "test_consistency": {
+        "passed": 16
+      },
+      "test_corpus": {
+        "passed": 5
+      },
+      "test_coverage_endpoint": {
+        "passed": 32
+      },
+      "test_coverage_gate": {
+        "passed": 31
+      },
+      "test_decision_critical_positions": {
+        "passed": 22
+      },
+      "test_demo_script": {
+        "passed": 5,
+        "skipped": 3
+      },
+      "test_deployment": {
+        "passed": 61
+      },
+      "test_diplotype_source": {
+        "passed": 7
+      },
+      "test_documented_numbers": {
+        "passed": 18,
+        "skipped": 1
+      },
+      "test_evidence_validity": {
+        "passed": 19
+      },
+      "test_explanation": {
+        "passed": 53
+      },
+      "test_explanation_approval": {
+        "passed": 12
+      },
+      "test_external_benchmark": {
+        "passed": 9
+      },
+      "test_glossary_audit": {
+        "passed": 25,
+        "skipped": 1
+      },
+      "test_guard": {
+        "passed": 30
+      },
+      "test_guard_real_outputs": {
+        "passed": 16
+      },
+      "test_hostile_input": {
+        "passed": 31
+      },
+      "test_infra_config": {
+        "passed": 9
+      },
+      "test_label_mapping": {
+        "passed": 51
+      },
+      "test_label_mapping_validation": {
+        "passed": 18
+      },
+      "test_label_path_parity": {
+        "passed": 5
+      },
+      "test_mapping_data_rows": {
+        "passed": 14
+      },
+      "test_no_developer_strings": {
+        "passed": 10
+      },
+      "test_pharmcat_concurrency": {
+        "passed": 16
+      },
+      "test_pharmcat_parser": {
+        "passed": 24
+      },
+      "test_phase5a_tooling": {
+        "passed": 28
+      },
+      "test_phenotype_label_invariant": {
+        "passed": 12
+      },
+      "test_phenotype_table": {
+        "passed": 16
+      },
+      "test_portable_scientific_hash": {
+        "passed": 16,
+        "failed": 1
+      },
+      "test_privacy": {
+        "passed": 6
+      },
+      "test_provenance_policy": {
+        "passed": 35
+      },
+      "test_providers": {
+        "passed": 24
+      },
+      "test_release_status": {
+        "passed": 12
+      },
+      "test_resource_ownership": {
+        "passed": 9
+      },
+      "test_sample_vcfs": {
+        "passed": 19,
+        "skipped": 3
+      },
+      "test_slot_verifier": {
+        "passed": 12
+      },
+      "test_unasserted_phenotype_invariant": {
+        "passed": 11
+      },
+      "test_vcf_validation": {
+        "passed": 32
+      }
+    }
+  },
+  "backend_with_server": {
+    "counts": {
+      "passed": 908,
+      "failed": 3,
+      "skipped": 5
+    },
+    "nonpassing": [
+      {
+        "name": "tests.test_compatible_bundle::test_checked_manifest_matches_declared_environment",
+        "status": "failed",
+        "detail": "<testcase classname=\"tests.test_compatible_bundle\" name=\"test_checked_manifest_matches_declared_environment\" time=\"0.096\"><failure message=\"AssertionError: assert {'schema_vers...d file'}, ...} == {'schema_vers...d file'}, ...}&#10;  &#10;  Omitting 10 identical items, use -vv to show&#10;  Differing items:&#10;  {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}} != {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}}&#10;  Use -v to get more diff\">def test_checked_manifest_matches_declared_environment() -&gt; None:\n&gt;       assert bundle.build_manifest() == CHECKED\nE       AssertionError: assert {'schema_vers...d file'}, ...} == {'schema_vers...d file'}, ...}\nE         \nE         Omitting 10 identical items, use -vv to show\nE         Differing items:\nE         {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}} != {'evaluation': {'benchmark_id': 'pharmaguard-external-analytical-benchmark-v1', 'evidence_type': 'independent CDC GeT-...le_unit': 'individual; gene-specific truth rows are repeated measures within individuals', 'cohort_samples': 208, ...}}\nE         Use -v to get more diff\n\nbackend/tests/test_compatible_bundle.py:35: AssertionError</failure></testcase>"
+      },
+      {
+        "name": "tests.test_demo_script.TestDemoAgainstLiveApi::test_the_contrast_actually_contrasts",
+        "status": "failed",
+        "detail": "<testcase classname=\"tests.test_demo_script.TestDemoAgainstLiveApi\" name=\"test_the_contrast_actually_contrasts\" time=\"2.749\"><failure message=\"AssertionError: the demo's whole point is that the genotype is NOT lost&#10;assert '*2/*2' == 'Unknown'&#10;  &#10;  - Unknown&#10;  + *2/*2\">self = &lt;test_demo_script.TestDemoAgainstLiveApi object at 0x10c0ed990&gt;\n\n    def test_the_contrast_actually_contrasts(self) -&gt; None:\n        \"\"\"S1 and S2 must call the same diplotype and reach opposite conclusions.\"\"\"\n        a = demo.post_analyze(BASE, DEMO_DIR / \"demo_confident.vcf\", \"clopidogrel\")\n        b = demo.post_analyze(BASE, DEMO_DIR / \"demo_variants_only.vcf\", \"clopidogrel\")\n        assert a.status == 200 and b.status == 200\n    \n        pa = a.primary[\"pharmacogenomic_profile\"]\n        pb = b.primary[\"pharmacogenomic_profile\"]\n&gt;       assert pa[\"diplotype\"] == pb[\"diplotype\"] == \"*2/*2\", (\n            \"the demo's whole point is that the genotype is NOT lost\"\n        )\nE       AssertionError: the demo's whole point is that the genotype is NOT lost\nE       assert '*2/*2' == 'Unknown'\nE         \nE         - Unknown\nE         + *2/*2\n\nbackend/tests/test_demo_script.py:123: AssertionError</failure></testcase>"
+      },
+      {
+        "name": "tests.test_documented_numbers::test_the_documented_test_counts_match_the_suite",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_documented_numbers\" name=\"test_the_documented_test_counts_match_the_suite\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"README no longer quotes a backend test count\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_documented_numbers.py:263: README no longer quotes a backend test count</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_glossary_audit::test_recorded_decisions_carry_who_and_when",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_glossary_audit\" name=\"test_recorded_decisions_carry_who_and_when\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"no decisions recorded yet\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_glossary_audit.py:284: no decisions recorded yet</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_portable_scientific_hash::test_clean_isolated_copy_passes_bundle_verification",
+        "status": "failed",
+        "detail": "<testcase classname=\"tests.test_portable_scientific_hash\" name=\"test_clean_isolated_copy_passes_bundle_verification\" time=\"0.132\"><failure message=\"AssertionError: [&quot;$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', f...on.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core']&#10;assert False is True\">tmp_path = PosixPath('/private/var/folders/86/x_h8qf3s0cl8_mf5m_j028qw0000gn/T/pytest-of-bhuvant/pytest-3/test_clean_isolated_copy_passe0')\nmonkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x116174250&gt;\n\n    def test_clean_isolated_copy_passes_bundle_verification(tmp_path: Path, monkeypatch) -&gt; None:\n        root = tmp_path / \"clean-copy\"\n        required = set(bundle.load_hash_policy()[\"core_paths\"])\n        required.update(\n            {\n                \"scripts/scientific_hash_policy.json\",\n                \"scripts/application_hash_migration.json\",\n                \"backend/app/data/compatible_bundle.json\",\n                \"test-data/reference/tools/pharmcat-3.4.0-all.jar\",\n                \"test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz\",\n                \"test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz.csi\",\n                \"test-data/benchmark/external/protocol.json\",\n                \"test-data/benchmark/external/benchmark_manifest.json\",\n                \"test-data/benchmark/external/external_benchmark_results.json\",\n                \"test-data/benchmark/external/pharmcat_report_manifest.json\",\n                \"test-data/benchmark/external/sample_gene_truth.tsv\",\n                \"reports/external_analytical_benchmark.md\",\n                \"reports/scientific_record_reproduction.json\",\n                \"backend/requirements.txt\",\n                \"backend/requirements-dev.txt\",\n                \".github/workflows/test.yml\",\n            }\n        )\n        for relative in sorted(required):\n            _copy_file(root, relative)\n        assert not (root / \"backend/app/.DS_Store\").exists()\n        monkeypatch.setattr(bundle, \"REPO_ROOT\", root)\n        monkeypatch.setattr(bundle, \"MANIFEST_PATH\", root / \"backend/app/data/compatible_bundle.json\")\n        monkeypatch.setattr(bundle, \"JAR_PATH\", root / \"test-data/reference/tools/pharmcat-3.4.0-all.jar\")\n    \n        result = bundle.verify_manifest(root / \"backend/app/data/compatible_bundle.json\")\n&gt;       assert result[\"compatible\"] is True, result[\"problems\"]\nE       AssertionError: [\"$.evaluation.application_core_sha256: expected '204c315389f97f8de688b8ac3219bcc27f0a95c6e8c699fc50fd8b0df361725c', f...on.migration_identity_matches: historical benchmark identity does not bridge to the current portable application core']\nE       assert False is True\n\nbackend/tests/test_portable_scientific_hash.py:153: AssertionError</failure></testcase>"
+      },
+      {
+        "name": "tests.test_sample_vcfs.TestAgainstRealPharmcat::test_produces_the_expected_label[cyp2c19_poor_metabolizer.vcf]",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_sample_vcfs.TestAgainstRealPharmcat\" name=\"test_produces_the_expected_label[cyp2c19_poor_metabolizer.vcf]\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"PharmCAT not on PATH; structural checks above cover the regression\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_sample_vcfs.py:286: PharmCAT not on PATH; structural checks above cover the regression</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_sample_vcfs.TestAgainstRealPharmcat::test_produces_the_expected_label[dpyd_variant_carrier.vcf]",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_sample_vcfs.TestAgainstRealPharmcat\" name=\"test_produces_the_expected_label[dpyd_variant_carrier.vcf]\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"PharmCAT not on PATH; structural checks above cover the regression\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_sample_vcfs.py:286: PharmCAT not on PATH; structural checks above cover the regression</skipped></testcase>"
+      },
+      {
+        "name": "tests.test_sample_vcfs.TestAgainstRealPharmcat::test_produces_the_expected_label[normal_metabolizer_control.vcf]",
+        "status": "skipped",
+        "detail": "<testcase classname=\"tests.test_sample_vcfs.TestAgainstRealPharmcat\" name=\"test_produces_the_expected_label[normal_metabolizer_control.vcf]\" time=\"0.000\"><skipped type=\"pytest.skip\" message=\"PharmCAT not on PATH; structural checks above cover the regression\">/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/tests/test_sample_vcfs.py:286: PharmCAT not on PATH; structural checks above cover the regression</skipped></testcase>"
+      }
+    ],
+    "by_module": {
+      "test_absence_controls": {
+        "passed": 15
+      },
+      "test_all_gated_message": {
+        "passed": 6
+      },
+      "test_analysis_memory_admission": {
+        "passed": 3
+      },
+      "test_analyze_api": {
+        "passed": 33
+      },
+      "test_android_identity": {
+        "passed": 5
+      },
+      "test_build_and_binary_detection": {
+        "passed": 15
+      },
+      "test_build_identity": {
+        "passed": 14
+      },
+      "test_capability_scope": {
+        "passed": 11
+      },
+      "test_captured_outputs": {
+        "passed": 20
+      },
+      "test_client_parity": {
+        "passed": 7
+      },
+      "test_compatible_bundle": {
+        "failed": 1,
+        "passed": 6
+      },
+      "test_consistency": {
+        "passed": 16
+      },
+      "test_corpus": {
+        "passed": 5
+      },
+      "test_coverage_endpoint": {
+        "passed": 32
+      },
+      "test_coverage_gate": {
+        "passed": 31
+      },
+      "test_decision_critical_positions": {
+        "passed": 22
+      },
+      "test_demo_script": {
+        "passed": 7,
+        "failed": 1
+      },
+      "test_deployment": {
+        "passed": 61
+      },
+      "test_diplotype_source": {
+        "passed": 7
+      },
+      "test_documented_numbers": {
+        "passed": 18,
+        "skipped": 1
+      },
+      "test_evidence_validity": {
+        "passed": 19
+      },
+      "test_explanation": {
+        "passed": 53
+      },
+      "test_explanation_approval": {
+        "passed": 12
+      },
+      "test_external_benchmark": {
+        "passed": 9
+      },
+      "test_glossary_audit": {
+        "passed": 25,
+        "skipped": 1
+      },
+      "test_guard": {
+        "passed": 30
+      },
+      "test_guard_real_outputs": {
+        "passed": 16
+      },
+      "test_hostile_input": {
+        "passed": 31
+      },
+      "test_infra_config": {
+        "passed": 9
+      },
+      "test_label_mapping": {
+        "passed": 51
+      },
+      "test_label_mapping_validation": {
+        "passed": 18
+      },
+      "test_label_path_parity": {
+        "passed": 5
+      },
+      "test_mapping_data_rows": {
+        "passed": 14
+      },
+      "test_no_developer_strings": {
+        "passed": 10
+      },
+      "test_pharmcat_concurrency": {
+        "passed": 16
+      },
+      "test_pharmcat_parser": {
+        "passed": 24
+      },
+      "test_phase5a_tooling": {
+        "passed": 28
+      },
+      "test_phenotype_label_invariant": {
+        "passed": 12
+      },
+      "test_phenotype_table": {
+        "passed": 16
+      },
+      "test_portable_scientific_hash": {
+        "passed": 16,
+        "failed": 1
+      },
+      "test_privacy": {
+        "passed": 6
+      },
+      "test_provenance_policy": {
+        "passed": 35
+      },
+      "test_providers": {
+        "passed": 24
+      },
+      "test_release_status": {
+        "passed": 12
+      },
+      "test_resource_ownership": {
+        "passed": 9
+      },
+      "test_sample_vcfs": {
+        "passed": 19,
+        "skipped": 3
+      },
+      "test_slot_verifier": {
+        "passed": 12
+      },
+      "test_unasserted_phenotype_invariant": {
+        "passed": 11
+      },
+      "test_vcf_validation": {
+        "passed": 32
+      }
+    }
+  },
+  "flutter": {
+    "tests": 202,
+    "results": {
+      "success": 202
+    },
+    "skipped": 0
+  },
+  "capability_generated_file_matches": false
+}

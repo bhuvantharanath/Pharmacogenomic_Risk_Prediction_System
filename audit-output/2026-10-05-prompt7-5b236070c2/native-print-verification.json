@@ -1,0 +1,392 @@
+{
+  "pdf_sha256": "6ac727b750a38d50d36f82a05ccb340c32a3c9f3d4a23d1347c2a1632f80efe9",
+  "api_sha256": "f2a0842de3be682e56989851d45be754b7b236dd3f3841191b95518359053183",
+  "pages": 5,
+  "checks": [
+    {
+      "field": "patient_id",
+      "expected": "NA12878",
+      "present": true
+    },
+    {
+      "field": "timestamp",
+      "expected": "2026-10-06T10:54:54.745948Z",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.drug",
+      "expected": "clopidogrel",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.risk_label",
+      "expected": "Ineffective",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.primary_gene",
+      "expected": "CYP2C19",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.diplotype",
+      "expected": "*1/*2",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.phenotype",
+      "expected": "IM",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.action",
+      "expected": "Avoid standard dose (75 mg) clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.cpic_recommendation",
+      "expected": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.cpic_evidence_level",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.source",
+      "expected": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]",
+      "present": true
+    },
+    {
+      "field": "clopidogrel.summary",
+      "expected": "clopidogrel: CYP2C19 *1/*2 (Intermediate Metabolizer) \u2014 Ineffective.",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.drug",
+      "expected": "fluorouracil",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.risk_label",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.primary_gene",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.diplotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.phenotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.action",
+      "expected": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.cpic_recommendation",
+      "expected": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.cpic_evidence_level",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.source",
+      "expected": "PharmCAT (no matching CPIC entry)",
+      "present": true
+    },
+    {
+      "field": "fluorouracil.summary",
+      "expected": "fluorouracil: no pharmacogenomic result (Unknown).",
+      "present": true
+    },
+    {
+      "field": "azathioprine.drug",
+      "expected": "azathioprine",
+      "present": true
+    },
+    {
+      "field": "azathioprine.risk_label",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "azathioprine.primary_gene",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "azathioprine.diplotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "azathioprine.phenotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "azathioprine.action",
+      "expected": "Required genomic evidence is incomplete for TPMT, NUDT15. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "present": true
+    },
+    {
+      "field": "azathioprine.cpic_recommendation",
+      "expected": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT",
+      "present": true
+    },
+    {
+      "field": "azathioprine.cpic_evidence_level",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "azathioprine.source",
+      "expected": "PharmCAT (no matching CPIC entry)",
+      "present": true
+    },
+    {
+      "field": "azathioprine.summary",
+      "expected": "azathioprine: no pharmacogenomic result (Unknown).",
+      "present": true
+    },
+    {
+      "field": "simvastatin.drug",
+      "expected": "simvastatin",
+      "present": true
+    },
+    {
+      "field": "simvastatin.risk_label",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "simvastatin.primary_gene",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "simvastatin.diplotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "simvastatin.phenotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "simvastatin.action",
+      "expected": "Required genomic evidence is incomplete for SLCO1B1. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "present": true
+    },
+    {
+      "field": "simvastatin.cpic_recommendation",
+      "expected": "Annotation of CPIC Guideline for simvastatin and SLCO1B1",
+      "present": true
+    },
+    {
+      "field": "simvastatin.cpic_evidence_level",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "simvastatin.source",
+      "expected": "PharmCAT (no matching CPIC entry)",
+      "present": true
+    },
+    {
+      "field": "simvastatin.summary",
+      "expected": "simvastatin: no pharmacogenomic result (Unknown).",
+      "present": true
+    },
+    {
+      "field": "warfarin.drug",
+      "expected": "warfarin",
+      "present": true
+    },
+    {
+      "field": "warfarin.risk_label",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "warfarin.primary_gene",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "warfarin.diplotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "warfarin.phenotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "warfarin.action",
+      "expected": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "present": true
+    },
+    {
+      "field": "warfarin.cpic_recommendation",
+      "expected": "Annotation of CPIC Guideline for warfarin and CYP2C9, CYP4F2, VKORC1",
+      "present": true
+    },
+    {
+      "field": "warfarin.cpic_evidence_level",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "warfarin.source",
+      "expected": "PharmCAT (no matching CPIC entry)",
+      "present": true
+    },
+    {
+      "field": "warfarin.summary",
+      "expected": "warfarin: no pharmacogenomic result (Unknown).",
+      "present": true
+    },
+    {
+      "field": "codeine.drug",
+      "expected": "codeine",
+      "present": true
+    },
+    {
+      "field": "codeine.risk_label",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "codeine.primary_gene",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "codeine.diplotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "codeine.phenotype",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "codeine.action",
+      "expected": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "present": true
+    },
+    {
+      "field": "codeine.cpic_recommendation",
+      "expected": "Annotation of CPIC Guideline for codeine and CYP2D6",
+      "present": true
+    },
+    {
+      "field": "codeine.cpic_evidence_level",
+      "expected": "Unknown",
+      "present": true
+    },
+    {
+      "field": "codeine.source",
+      "expected": "PharmCAT (no matching CPIC entry)",
+      "present": true
+    },
+    {
+      "field": "codeine.summary",
+      "expected": "codeine: no pharmacogenomic result (Unknown).",
+      "present": true
+    },
+    {
+      "field": "provenance.pharmcat_version",
+      "expected": "3.4.0",
+      "present": true
+    },
+    {
+      "field": "provenance.cpic_data_version",
+      "expected": "2026-07-13-11-40",
+      "present": true
+    },
+    {
+      "field": "provenance.explanations_generated_at",
+      "expected": "2026-07-24T09:53:53.175011+00:00",
+      "present": false
+    },
+    {
+      "field": "provenance.cpic_source",
+      "expected": "CPIC guidelines, retrieved via PharmCAT",
+      "present": true
+    },
+    {
+      "field": "provenance.note",
+      "expected": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes.",
+      "present": true
+    }
+  ],
+  "missing": [
+    {
+      "field": "provenance.explanations_generated_at",
+      "expected": "2026-07-24T09:53:53.175011+00:00",
+      "present": false
+    }
+  ],
+  "repeated_research_header": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "visual_inspection": {
+    "pages": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "clipping_or_truncation_observed": false,
+    "method": "85 dpi pdftoppm renders inspected individually"
+  },
+  "pipeline_warning_count": 21,
+  "pipeline_warnings_present_verbatim": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "scope": "Actual Chrome UI print route and native Save as PDF; summary fields only. Current summary_document.dart does not render mechanism, variant rationale, patient-friendly expansion, detected variants or raw pipeline-warning list. JSON exports retain them. Omissions disclosed, not normalized into full-response parity."
+}

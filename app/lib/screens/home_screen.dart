@@ -50,8 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Timer? _ticker;
 
   /// What the backend says it is running, once asked. Null until then.
-  VersionSkew _skew = const VersionSkew(expected: kExpectedBackendSha,
-      actual: null);
+  VersionSkew _skew = const VersionSkew(
+    expected: kExpectedBackendSha,
+    actual: null,
+  );
 
   /// A 503 SERVER_BUSY, held separately from `_error`.
   ///
@@ -81,8 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
     // exactly as usable as it was before the check existed.
     _api.backendCommit().then((String? commit) {
       if (!mounted || commit == null) return;
-      setState(() => _skew =
-          VersionSkew(expected: kExpectedBackendSha, actual: commit));
+      setState(
+        () =>
+            _skew = VersionSkew(expected: kExpectedBackendSha, actual: commit),
+      );
     });
     // Fire the wake-up ping immediately on load. On a free-tier backend that
     // has scaled to zero this starts the cold start now, in parallel with the
@@ -172,14 +176,14 @@ class _HomeScreenState extends State<HomeScreen> {
       final String contents = await sample.load();
       final String message = await exportText(sample.fileName, contents);
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(message)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(message)));
     } catch (e) {
       if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Could not save the sample: $e')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Could not save the sample: $e')));
     }
   }
 
@@ -258,7 +262,6 @@ class _HomeScreenState extends State<HomeScreen> {
     } on ApiException catch (e) {
       if (!mounted) return;
       _ticker?.cancel();
-      final bool serverIsFine = e.isBusy || e.isRateLimited;
       setState(() {
         _loading = false;
         if (e.isBusy) {
@@ -270,12 +273,9 @@ class _HomeScreenState extends State<HomeScreen> {
       // A failed call is the most likely moment for the backend to have gone
       // away; reflect that in the banner without starting a fresh ping storm.
       //
-      // But NOT for busy or rate-limited. Both are answers from a healthy
-      // server — a queue and a limit, respectively — and marking it unreachable
-      // would flip the status banner to "backend down" at the exact moment the
-      // backend is demonstrably up and talking to us. That is the confusion
-      // these three states exist to prevent.
-      if (!serverIsFine) _backend.markUnreachable(e.message);
+      // Rejected input, busy, and rate-limited responses also prove the server
+      // is up. Only a transport failure or unavailable engine changes status.
+      if (e.shouldMarkBackendUnreachable) _backend.markUnreachable(e.message);
     } catch (e) {
       if (!mounted) return;
       _ticker?.cancel();
@@ -347,12 +347,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  // The old copy called the explanations "placeholders". They are
-                  // pre-generated, guard-checked and provenance-verified — the line
-                  // undersold the work and contradicted the README.
+                  // Stored pre-generated prose is served only with a matching
+                  // approval, and none has one yet: what a reader sees is the
+                  // deterministic template, which no provenance check reads. So
+                  // the line says only what holds for every served explanation.
                   'Upload a GRCh38 VCF and list the drugs to check. Genotypes are '
                   'called by PharmCAT, dosing guidance is quoted from CPIC, and the '
-                  'explanations are pre-generated and checked against their source.',
+                  'explanations are automated text that no clinician has reviewed.',
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -407,8 +408,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'Drugs with CPIC guidance in this build — anything else returns '
-                  '"Unknown":',
+                  // Warfarin and codeine are in scope only as explicit
+                  // abstentions (capability registry), so they are not listed as
+                  // drugs this build gives guidance for.
+                  'Drugs in this build’s scope — warfarin and codeine always '
+                  'return "Unknown" here, as does any other drug:',
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -472,18 +476,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 if (_skew.isMismatch) ...<Widget>[
-              const SizedBox(height: 12),
-              VersionNotice(skew: _skew),
-            ],
-            if (_loading) ...<Widget>[
-              const SizedBox(height: 14),
-              _AnalysisProgress(elapsed: _elapsed),
-            ],
-            if (_busy != null) ...<Widget>[
-              const SizedBox(height: 14),
-              _BusyBox(message: _busy!, onRetry: _loading ? null : _analyze),
-            ],
-            if (_error != null) ...<Widget>[
+                  const SizedBox(height: 12),
+                  VersionNotice(skew: _skew),
+                ],
+                if (_loading) ...<Widget>[
+                  const SizedBox(height: 14),
+                  _AnalysisProgress(elapsed: _elapsed),
+                ],
+                if (_busy != null) ...<Widget>[
+                  const SizedBox(height: 14),
+                  _BusyBox(
+                    message: _busy!,
+                    onRetry: _loading ? null : _analyze,
+                  ),
+                ],
+                if (_error != null) ...<Widget>[
                   const SizedBox(height: 16),
                   _ErrorBox(message: _error!),
                 ],
@@ -660,17 +667,18 @@ class _AnalysisProgress extends StatelessWidget {
       decoration: BoxDecoration(
         color: theme.colorScheme.surfaceContainerHighest,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: theme.colorScheme.outlineVariant,
-        ),
+        border: Border.all(color: theme.colorScheme.outlineVariant),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.biotech_outlined, size: 20,
-                  color: theme.colorScheme.onSurfaceVariant),
+              Icon(
+                Icons.biotech_outlined,
+                size: 20,
+                color: theme.colorScheme.onSurfaceVariant,
+              ),
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
@@ -749,8 +757,10 @@ class _BusyBox extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Icon(Icons.hourglass_top,
-              color: theme.colorScheme.onSecondaryContainer),
+          Icon(
+            Icons.hourglass_top,
+            color: theme.colorScheme.onSecondaryContainer,
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Column(

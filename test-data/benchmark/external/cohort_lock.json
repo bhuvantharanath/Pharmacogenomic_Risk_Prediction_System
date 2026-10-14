@@ -1,0 +1,2113 @@
+{
+  "benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "locked_at": "2026-09-24T13:44:45.246322+00:00",
+  "selection_rule": "all identifiers in the CDC workbook and frozen 1000G 3,202-sample manifest",
+  "sample_count": 208,
+  "sample_ids": [
+    "HG00111",
+    "HG00118",
+    "HG00122",
+    "HG00129",
+    "HG00133",
+    "HG00139",
+    "HG00185",
+    "HG00276",
+    "HG00277",
+    "HG00304",
+    "HG00315",
+    "HG00325",
+    "HG00332",
+    "HG00334",
+    "HG00337",
+    "HG00368",
+    "HG00373",
+    "HG00421",
+    "HG00423",
+    "HG00436",
+    "HG00437",
+    "HG00452",
+    "HG00463",
+    "HG00524",
+    "HG00525",
+    "HG00537",
+    "HG00538",
+    "HG00589",
+    "HG00599",
+    "HG00613",
+    "HG00704",
+    "HG00734",
+    "HG01083",
+    "HG01086",
+    "HG01094",
+    "HG01108",
+    "HG01190",
+    "HG01253",
+    "HG01269",
+    "HG01275",
+    "HG01350",
+    "HG01359",
+    "HG01374",
+    "HG01456",
+    "HG01465",
+    "HG01474",
+    "HG01631",
+    "HG01680",
+    "HG01697",
+    "HG01809",
+    "HG01816",
+    "HG01865",
+    "HG02029",
+    "HG02054",
+    "HG02087",
+    "HG02134",
+    "HG02146",
+    "HG02373",
+    "HG02496",
+    "HG02645",
+    "HG02772",
+    "HG02852",
+    "HG02861",
+    "HG02952",
+    "HG03115",
+    "HG03159",
+    "HG03225",
+    "HG03246",
+    "HG03259",
+    "HG03370",
+    "HG03521",
+    "HG03619",
+    "HG03643",
+    "HG03645",
+    "HG03649",
+    "HG03703",
+    "HG03716",
+    "HG03770",
+    "HG03780",
+    "HG03781",
+    "HG03787",
+    "HG03882",
+    "HG03885",
+    "HG04206",
+    "NA06989",
+    "NA06991",
+    "NA06993",
+    "NA07000",
+    "NA07019",
+    "NA07029",
+    "NA07048",
+    "NA07055",
+    "NA07056",
+    "NA07348",
+    "NA07357",
+    "NA10831",
+    "NA10838",
+    "NA10846",
+    "NA10847",
+    "NA10851",
+    "NA10854",
+    "NA10855",
+    "NA10856",
+    "NA10859",
+    "NA10860",
+    "NA10865",
+    "NA11832",
+    "NA11839",
+    "NA11881",
+    "NA11993",
+    "NA12003",
+    "NA12006",
+    "NA12044",
+    "NA12145",
+    "NA12154",
+    "NA12156",
+    "NA12236",
+    "NA12248",
+    "NA12273",
+    "NA12336",
+    "NA12717",
+    "NA12751",
+    "NA12753",
+    "NA12813",
+    "NA12815",
+    "NA12873",
+    "NA12878",
+    "NA12892",
+    "NA18484",
+    "NA18518",
+    "NA18519",
+    "NA18526",
+    "NA18544",
+    "NA18545",
+    "NA18552",
+    "NA18561",
+    "NA18563",
+    "NA18564",
+    "NA18565",
+    "NA18572",
+    "NA18603",
+    "NA18617",
+    "NA18632",
+    "NA18642",
+    "NA18855",
+    "NA18861",
+    "NA18868",
+    "NA18873",
+    "NA18877",
+    "NA18934",
+    "NA18941",
+    "NA18942",
+    "NA18945",
+    "NA18952",
+    "NA18956",
+    "NA18959",
+    "NA18966",
+    "NA18973",
+    "NA18978",
+    "NA18980",
+    "NA18992",
+    "NA19003",
+    "NA19007",
+    "NA19026",
+    "NA19035",
+    "NA19075",
+    "NA19079",
+    "NA19093",
+    "NA19095",
+    "NA19109",
+    "NA19122",
+    "NA19143",
+    "NA19147",
+    "NA19160",
+    "NA19174",
+    "NA19176",
+    "NA19207",
+    "NA19213",
+    "NA19226",
+    "NA19238",
+    "NA19239",
+    "NA19317",
+    "NA19327",
+    "NA19395",
+    "NA19466",
+    "NA19700",
+    "NA19711",
+    "NA19777",
+    "NA19785",
+    "NA19789",
+    "NA19790",
+    "NA19819",
+    "NA19900",
+    "NA19902",
+    "NA19908",
+    "NA19917",
+    "NA19920",
+    "NA20289",
+    "NA20296",
+    "NA20362",
+    "NA20509",
+    "NA20786",
+    "NA20803",
+    "NA20813",
+    "NA20875",
+    "NA20901",
+    "NA21095",
+    "NA21105"
+  ],
+  "sample_metadata": [
+    {
+      "sample_id": "HG00111",
+      "family_id": "HG00111",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GBR",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00118",
+      "family_id": "HG00118",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GBR",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00122",
+      "family_id": "HG00122",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GBR",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00129",
+      "family_id": "HG00129",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "GBR",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00133",
+      "family_id": "HG00133",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GBR",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00139",
+      "family_id": "HG00139",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "GBR",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00185",
+      "family_id": "HG00185",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00276",
+      "family_id": "HG00276",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00277",
+      "family_id": "HG00277",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00304",
+      "family_id": "HG00304",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00315",
+      "family_id": "HG00315",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00325",
+      "family_id": "HG00325",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00332",
+      "family_id": "HG00332",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00334",
+      "family_id": "HG00334",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00337",
+      "family_id": "HG00337",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00368",
+      "family_id": "HG00368",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00373",
+      "family_id": "HG00373",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "FIN",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG00421",
+      "family_id": "SH007",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00423",
+      "family_id": "SH007",
+      "father_id": "HG00421",
+      "mother_id": "HG00422",
+      "sex": "2",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00436",
+      "family_id": "SH012",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00437",
+      "family_id": "SH012",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00452",
+      "family_id": "SH017",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00463",
+      "family_id": "SH021",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00524",
+      "family_id": "SH036",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00525",
+      "family_id": "SH036",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00537",
+      "family_id": "SH040",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00538",
+      "family_id": "SH040",
+      "father_id": "HG00536",
+      "mother_id": "HG00537",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00589",
+      "family_id": "SH056",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00599",
+      "family_id": "SH059",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00613",
+      "family_id": "SH064",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00704",
+      "family_id": "SH090",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHS",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG00734",
+      "family_id": "PR06",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "PUR",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01083",
+      "family_id": "PR28",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "PUR",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01086",
+      "family_id": "PR26",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "PUR",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01094",
+      "family_id": "PR29",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "PUR",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01108",
+      "family_id": "PR33",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "PUR",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01190",
+      "family_id": "PR40",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "PUR",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01253",
+      "family_id": "CLM15",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01269",
+      "family_id": "CLM20",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01275",
+      "family_id": "CLM22",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01350",
+      "family_id": "CLM29",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01359",
+      "family_id": "CLM32",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01374",
+      "family_id": "CLM37",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01456",
+      "family_id": "CLM51",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01465",
+      "family_id": "CLM54",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01474",
+      "family_id": "CLM57",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CLM",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG01631",
+      "family_id": "IBS014",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "IBS",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG01680",
+      "family_id": "IBS029",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "IBS",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG01697",
+      "family_id": "IBS035",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "IBS",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "HG01809",
+      "family_id": "HG01809",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CDX",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG01816",
+      "family_id": "HG01816",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CDX",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG01865",
+      "family_id": "VN032",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "KHV",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG02029",
+      "family_id": "VN050",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "KHV",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG02054",
+      "family_id": "BB15",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ACB",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG02087",
+      "family_id": "VN071",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "KHV",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG02134",
+      "family_id": "VN080",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "KHV",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG02146",
+      "family_id": "PEL39",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "PEL",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "HG02373",
+      "family_id": "HG02373",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CDX",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "HG02496",
+      "family_id": "BB57",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ACB",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG02645",
+      "family_id": "GB38",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "GWD",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG02772",
+      "family_id": "GB58",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GWD",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG02852",
+      "family_id": "GB78",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GWD",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG02861",
+      "family_id": "GB81",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GWD",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG02952",
+      "family_id": "NG16",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ESN",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03115",
+      "family_id": "NG31",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ESN",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03159",
+      "family_id": "NG46",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ESN",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03225",
+      "family_id": "SL23",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "MSL",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03246",
+      "family_id": "GB116",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "GWD",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03259",
+      "family_id": "GB120",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GWD",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03370",
+      "family_id": "NG98",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ESN",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03521",
+      "family_id": "NG109",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ESN",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "HG03619",
+      "family_id": "PK44",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "PJL",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03643",
+      "family_id": "ST004",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "STU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03645",
+      "family_id": "ST002",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "STU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03649",
+      "family_id": "PK52",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "PJL",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03703",
+      "family_id": "PK60",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "PJL",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03716",
+      "family_id": "IT009",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ITU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03770",
+      "family_id": "IT016",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ITU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03780",
+      "family_id": "IT039",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ITU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03781",
+      "family_id": "IT018",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ITU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03787",
+      "family_id": "IT027",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ITU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03882",
+      "family_id": "IT039a",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ITU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG03885",
+      "family_id": "ST016",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "STU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "HG04206",
+      "family_id": "HG04206",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ITU",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "NA06989",
+      "family_id": "1328",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA06991",
+      "family_id": "1341",
+      "father_id": "NA06993",
+      "mother_id": "NA06985",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA06993",
+      "family_id": "1341",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07000",
+      "family_id": "1340",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07019",
+      "family_id": "1340",
+      "father_id": "NA07022",
+      "mother_id": "NA07056",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07029",
+      "family_id": "1340",
+      "father_id": "NA06994",
+      "mother_id": "NA07000",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07048",
+      "family_id": "1341",
+      "father_id": "NA07034",
+      "mother_id": "NA07055",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07055",
+      "family_id": "1341",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07056",
+      "family_id": "1340",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07348",
+      "family_id": "1345",
+      "father_id": "NA07357",
+      "mother_id": "NA07345",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA07357",
+      "family_id": "1345",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10831",
+      "family_id": "1408",
+      "father_id": "NA12155",
+      "mother_id": "NA12156",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10838",
+      "family_id": "1420",
+      "father_id": "NA12003",
+      "mother_id": "NA12004",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10846",
+      "family_id": "1334",
+      "father_id": "NA12144",
+      "mother_id": "NA12145",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10847",
+      "family_id": "1334",
+      "father_id": "NA12146",
+      "mother_id": "NA12239",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10851",
+      "family_id": "1344",
+      "father_id": "NA12056",
+      "mother_id": "NA12057",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10854",
+      "family_id": "1349",
+      "father_id": "NA11839",
+      "mother_id": "NA11840",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10855",
+      "family_id": "1350",
+      "father_id": "NA11831",
+      "mother_id": "NA11832",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10856",
+      "family_id": "1350",
+      "father_id": "NA11829",
+      "mother_id": "NA11830",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10859",
+      "family_id": "1347",
+      "father_id": "NA11881",
+      "mother_id": "NA11882",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10860",
+      "family_id": "1362",
+      "father_id": "NA11992",
+      "mother_id": "NA11993",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA10865",
+      "family_id": "1377",
+      "father_id": "NA11891",
+      "mother_id": "NA11892",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA11832",
+      "family_id": "1350",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA11839",
+      "family_id": "1349",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA11881",
+      "family_id": "1347",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA11993",
+      "family_id": "1362",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12003",
+      "family_id": "1420",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12006",
+      "family_id": "1420",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12044",
+      "family_id": "1346",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12145",
+      "family_id": "1334",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12154",
+      "family_id": "1408",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12156",
+      "family_id": "1408",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12236",
+      "family_id": "1408",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12248",
+      "family_id": "1416",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12273",
+      "family_id": "1418",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12336",
+      "family_id": "1330",
+      "father_id": "NA12342",
+      "mother_id": "NA12343",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12717",
+      "family_id": "1358",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12751",
+      "family_id": "1444",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12753",
+      "family_id": "1447",
+      "father_id": "NA12762",
+      "mother_id": "NA12763",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12813",
+      "family_id": "1454",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12815",
+      "family_id": "1454",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12873",
+      "family_id": "1459",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12878",
+      "family_id": "1463",
+      "father_id": "NA12891",
+      "mother_id": "NA12892",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA12892",
+      "family_id": "1463",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CEU",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA18484",
+      "family_id": "Y001",
+      "father_id": "NA18486",
+      "mother_id": "NA18488",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18518",
+      "family_id": "Y014",
+      "father_id": "NA18519",
+      "mother_id": "NA18520",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18519",
+      "family_id": "Y014",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18526",
+      "family_id": "NA18526",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18544",
+      "family_id": "NA18544",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18545",
+      "family_id": "NA18545",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18552",
+      "family_id": "NA18552",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18561",
+      "family_id": "NA18561",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18563",
+      "family_id": "NA18563",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18564",
+      "family_id": "NA18564",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18565",
+      "family_id": "NA18565",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18572",
+      "family_id": "NA18572",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18603",
+      "family_id": "NA18603",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18617",
+      "family_id": "NA18617",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18632",
+      "family_id": "NA18632",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18642",
+      "family_id": "NA18642",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "CHB",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18855",
+      "family_id": "Y023",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18861",
+      "family_id": "Y024",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18868",
+      "family_id": "Y007",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18873",
+      "family_id": "Y019",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18877",
+      "family_id": "Y020",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18934",
+      "family_id": "Y036",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA18941",
+      "family_id": "NA18941",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18942",
+      "family_id": "NA18942",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18945",
+      "family_id": "NA18945",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18952",
+      "family_id": "NA18952",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18956",
+      "family_id": "NA18956",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18959",
+      "family_id": "NA18959",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18966",
+      "family_id": "NA18966",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18973",
+      "family_id": "NA18973",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18978",
+      "family_id": "NA18978",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18980",
+      "family_id": "NA18980",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA18992",
+      "family_id": "NA18992",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA19003",
+      "family_id": "NA19003",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA19007",
+      "family_id": "NA19007",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA19026",
+      "family_id": "NA19026",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "LWK",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19035",
+      "family_id": "NA19035",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "LWK",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19075",
+      "family_id": "NA19075",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA19079",
+      "family_id": "NA19079",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "JPT",
+      "superpopulation": "EAS"
+    },
+    {
+      "sample_id": "NA19093",
+      "family_id": "Y040",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19095",
+      "family_id": "Y041",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19109",
+      "family_id": "Y006",
+      "father_id": "NA19107",
+      "mother_id": "NA19108",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19122",
+      "family_id": "Y061",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19143",
+      "family_id": "Y074",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19147",
+      "family_id": "Y075",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19160",
+      "family_id": "Y056",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19174",
+      "family_id": "Y100",
+      "father_id": "NA19117",
+      "mother_id": "NA19118",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19176",
+      "family_id": "Y044",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19207",
+      "family_id": "Y051",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19213",
+      "family_id": "Y110",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19226",
+      "family_id": "Y057",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19238",
+      "family_id": "Y117",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19239",
+      "family_id": "Y117",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "YRI",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19317",
+      "family_id": "NA19317",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "LWK",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19327",
+      "family_id": "NA19327",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "LWK",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19395",
+      "family_id": "NA19395",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "LWK",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19466",
+      "family_id": "NA19466",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "LWK",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19700",
+      "family_id": "2367",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19711",
+      "family_id": "2371",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19777",
+      "family_id": "m034",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "MXL",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "NA19785",
+      "family_id": "m032",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "MXL",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "NA19789",
+      "family_id": "m037",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "MXL",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "NA19790",
+      "family_id": "m037",
+      "father_id": "NA19789",
+      "mother_id": "NA19788",
+      "sex": "2",
+      "population": "MXL",
+      "superpopulation": "AMR"
+    },
+    {
+      "sample_id": "NA19819",
+      "family_id": "2418",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19900",
+      "family_id": "2425",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19902",
+      "family_id": "2425",
+      "father_id": "NA19900",
+      "mother_id": "NA19901",
+      "sex": "2",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19908",
+      "family_id": "2427",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19917",
+      "family_id": "2431",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA19920",
+      "family_id": "2433",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA20289",
+      "family_id": "2471",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA20296",
+      "family_id": "2475",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA20362",
+      "family_id": "2495a",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "ASW",
+      "superpopulation": "AFR"
+    },
+    {
+      "sample_id": "NA20509",
+      "family_id": "NA20509",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "TSI",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA20786",
+      "family_id": "NA20786",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "TSI",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA20803",
+      "family_id": "NA20803",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "TSI",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA20813",
+      "family_id": "NA20813",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "TSI",
+      "superpopulation": "EUR"
+    },
+    {
+      "sample_id": "NA20875",
+      "family_id": "NA20875",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "2",
+      "population": "GIH",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "NA20901",
+      "family_id": "NA20901",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "GIH",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "NA21095",
+      "family_id": "NA21095",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "GIH",
+      "superpopulation": "SAS"
+    },
+    {
+      "sample_id": "NA21105",
+      "family_id": "NA21105",
+      "father_id": "0",
+      "mother_id": "0",
+      "sex": "1",
+      "population": "GIH",
+      "superpopulation": "SAS"
+    }
+  ],
+  "genes": [
+    "CYP2C19",
+    "CYP2C9",
+    "DPYD",
+    "NUDT15",
+    "SLCO1B1",
+    "TPMT",
+    "CYP2D6"
+  ],
+  "truth_rows": 1456,
+  "truth_status_counts": {
+    "evaluable": 596,
+    "truth_blank": 816,
+    "truth_nomenclature_not_safely_parseable": 42,
+    "truth_unresolved_or_discordant": 2
+  },
+  "truth_actionability": "FROZEN_UNAVAILABLE: no independent phenotype/drug-context truth in the selected CDC source",
+  "protocol_sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e",
+  "truth_workbook_sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109",
+  "panel_manifest_sha256": "4e164b717433fc9bfc16e29b20e5b4659b4216185b3275322d421fe3d323c132",
+  "sample_gene_truth_sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601",
+  "exclusions_sha256_at_lock": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200",
+  "performance_output_examined_before_lock": false
+}

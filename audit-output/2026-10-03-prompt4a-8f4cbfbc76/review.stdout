@@ -1,0 +1,12 @@
+{
+ "total": 20,
+ "provenance_verified": 20,
+ "provenance_unverified": 0,
+ "read_by_author": 0,
+ "unread": 20,
+ "author_concerns": 0,
+ "clinical_expert_review": "NOT_OBTAINED",
+ "fallback": 0,
+ "guard_failed": 0,
+ "provenance_complete": true
+}

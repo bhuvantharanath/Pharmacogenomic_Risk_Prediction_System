@@ -1,0 +1,13 @@
+{
+  "command": [
+    "flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "json"
+  ],
+  "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app",
+  "exit_code": 0,
+  "seconds": 18.708100457995897,
+  "at": "2026-10-05T13:12:36.573872+00:00"
+}

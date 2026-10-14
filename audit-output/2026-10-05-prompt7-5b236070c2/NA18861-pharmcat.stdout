@@ -1,0 +1,15 @@
+chr13:48037782
+	Discarded genotype at this position because REF in VCF (A) does not match expected reference (AGGAGTC)
+	Duplicate entry found in VCF; this entry trumps previous invalid entry.
+	Genotype at this position has SNP (A) but PharmCAT expects indel or repeat (A/AGGAGTCGGAGTC)
+chr1:97078987
+	Duplicate entry found in VCF; first valid entry trumps others.
+chr22:42128211
+	Duplicate entry found in VCF; first valid entry trumps others.
+chr22:42129037
+	Duplicate entry found in VCF; first valid entry trumps others.
+Saving VCF warnings to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18861.pharmcat/NA18861.1000G2022.match_warnings.txt
+Saving named allele matcher JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18861.pharmcat/NA18861.1000G2022.match.json
+Saving phenotyper JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18861.pharmcat/NA18861.1000G2022.phenotype.json
+Saving reporter JSON results to /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit-output/2026-10-05-prompt7-5b236070c2/NA18861.pharmcat/NA18861.1000G2022.report.json
+Done.

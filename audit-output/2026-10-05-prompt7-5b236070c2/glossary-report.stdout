@@ -1,0 +1,30 @@
+user-facing strings scanned : 428
+candidate terms             : 131
+  defined in the glossary   : 7
+  marked ordinary English   : 0
+  defined, not yet shipped  : 0
+  UNDEFINED and undecided   : 124
+
+    pharmcat                 zipf 0.00  x51
+    clopidogrel              zipf 1.98  x28
+    enzyme                   zipf 3.82  x26
+    pharmacist               zipf 3.34  x20
+    fluorouracil             zipf 1.84  x18
+    metabolizer              zipf 1.02  x17
+    simvastatin              zipf 1.98  x14
+    toxicity                 zipf 3.58  x12
+    dpd                      zipf 2.29  x11
+    mb                       zipf 3.78  x11
+    metabolite               zipf 2.81  x10
+    prodrug                  zipf 1.82  x10
+    warfarin                 zipf 2.64  x10
+    azathioprine             zipf 1.85  x9
+    guideline                zipf 3.25  x9
+    rationale                zipf 3.53  x9
+    genome                   zipf 3.70  x8
+    upload                   zipf 3.99  x8
+    header                   zipf 3.88  x7
+    mapping                  zipf 3.88  x7
+    … and 104 more — see reports/glossary_candidates.md
+
+REPORTED, NOT GATED: 124 undefined term(s). The extractor's false-positive rate on ordinary English (41.5%) is above the 25% recorded in reports/glossary_precommitment.md, so this does not fail the build. See that file for why the threshold was not moved.

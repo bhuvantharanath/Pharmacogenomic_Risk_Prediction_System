@@ -129,7 +129,7 @@ class TestContractCompatibility:
         ).json()
         for analysis in body["analyses"]:
             assert analysis["risk_assessment"]["risk_label"] in {
-                "Safe",
+                "No PGx-guided adjustment identified",
                 "Adjust Dosage",
                 "Toxic",
                 "Ineffective",
@@ -173,17 +173,21 @@ class TestContractCompatibility:
         likely to be trimmed for brevity.
 
         "Not a medical device" is boilerplate every such tool carries and every
-        reader skims. The specific gap — no clinician read this, and here is
-        what was done instead — is the part that actually informs, so the text
-        must keep both halves: the absence, and the guarantee that replaces it.
+        reader skims. The specific gap — no clinician read this, and what the
+        automated checks can and cannot show — is the part that actually
+        informs, so the text must keep both halves. The automated check is not
+        a guarantee that replaces review: an earlier version said it "checks
+        that nothing was invented" (reproduced and corrected 2026-10-14; see
+        test_disclosure_wording.py).
         """
         from app.models import DISCLAIMER
 
         assert "No qualified clinical expert has reviewed" in DISCLAIMER
-        assert "machine-verified" in DISCLAIMER
+        assert "automated source checks are not human review" in DISCLAIMER
         assert "CPIC" in DISCLAIMER
-        # It must not overstate: verification is about provenance, not truth.
-        assert "not that it is correct for you" in DISCLAIMER
+        # It must not overstate: checks are about provenance, not truth.
+        assert "correct for you" in DISCLAIMER
+        assert "nothing was invented" not in DISCLAIMER
 
     def test_client_and_api_disclaimers_are_identical(self) -> None:
         """
@@ -284,7 +288,9 @@ class TestRealResults:
         body = post(client, valid_vcf_bytes, "azathioprine").json()
         profile = body["analyses"][0]["pharmacogenomic_profile"]
         assert profile["primary_gene"] in {"TPMT", "NUDT15"}
-        assert body["analyses"][0]["risk_assessment"]["risk_label"] == "Safe"
+        assert body["analyses"][0]["risk_assessment"]["risk_label"] == (
+            "No PGx-guided adjustment identified"
+        )
 
     def test_codeine_is_unknown_with_the_cyp2d6_warning(
         self, client: TestClient, valid_vcf_bytes: bytes
@@ -305,9 +311,12 @@ class TestRealResults:
         analysis = body["analyses"][0]
         assert analysis["risk_assessment"]["risk_label"] == "Unknown"
         assert analysis["risk_assessment"]["confidence_score"] == 0.0
-        assert "not covered by any CPIC guideline" in (
+        assert "outside the audited application scope" in (
             analysis["clinical_recommendation"]["action"]
         )
+        explanation = analysis["llm_generated_explanation"]
+        assert "from CPIC via PharmCAT" not in explanation["mechanism"]
+        assert "published CPIC guidance" not in explanation["patient_friendly"]
 
     def test_one_analysis_per_requested_drug(
         self, client: TestClient, valid_vcf_bytes: bytes
@@ -391,10 +400,10 @@ class TestErrorResponses:
         assert isinstance(body["detail"], str) and body["detail"]
 
     def test_grch37_vcf(self, client: TestClient, valid_vcf_bytes: bytes) -> None:
-        text = valid_vcf_bytes.decode().replace(
-            "##fileformat=VCFv4.2\n",
-            "##fileformat=VCFv4.2\n##reference=file:///ref/human_g1k_v37.fasta\n",
-        )
+        # Replace the file's existing build declaration so this remains a pure
+        # GRCh37 case. A file declaring both builds has its own, more specific
+        # CONFLICTING_REFERENCE_BUILD regression.
+        text = valid_vcf_bytes.decode().replace("GRCh38.p14", "GRCh37")
         response = post(client, text.encode(), "clopidogrel", "grch37.vcf")
         self._assert_error(response, 400, "UNSUPPORTED_REFERENCE_BUILD")
         # The remedy in words, not the tool that performs it — the commands
@@ -471,12 +480,15 @@ class TestStaticModeIsApiFree:
             # Acceptance #6 — the disclaimer, on every result.
             assert "Not a medical device" in explanation["disclaimer"]
 
-    def test_static_source_is_used_where_available(
+    def test_unapproved_static_source_uses_template(
         self, client: TestClient, valid_vcf_bytes: bytes
     ) -> None:
         metrics = post(client, valid_vcf_bytes, "clopidogrel").json()["quality_metrics"]
         assert any(
-            "source=static" in w for w in metrics["warnings"]
+            "source=template" in w for w in metrics["warnings"]
+        ), metrics["warnings"]
+        assert any(
+            "approval or semantic identity" in w for w in metrics["warnings"]
         ), metrics["warnings"]
 
     def test_absent_clinical_review_is_disclosed(

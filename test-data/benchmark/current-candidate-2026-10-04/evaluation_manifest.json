@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "evaluation_id": "pharmaguard-external-current-candidate-v2-2026-10-04",
+  "created_at": "2026-10-04T04:09:12.153871+00:00",
+  "candidate_application_core_sha256": "38451a563c6f6cfb52257626d41700eeff3a5621ebe91b3358f878b375a6a691",
+  "application_hash_policy_version": 2,
+  "base_head_metadata_only": "1dc7557da49f38e831b382545044b00a481507b6",
+  "historical_benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "frozen_protocol": {
+    "path": "test-data/benchmark/external/protocol.json",
+    "bytes": 9677,
+    "sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e"
+  },
+  "frozen_cohort_lock": {
+    "path": "test-data/benchmark/external/cohort_lock.json",
+    "bytes": 45274,
+    "sha256": "88bc2da84b930493bd4db715b627a6b6fc61440969b1aecb2c287ebacecbb5dc"
+  },
+  "independent_truth_workbook": {
+    "path": "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "bytes": 162599,
+    "sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109"
+  },
+  "independent_truth_table": {
+    "path": "test-data/benchmark/external/sample_gene_truth.tsv",
+    "bytes": 287825,
+    "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601"
+  },
+  "frozen_combined_vcf": {
+    "path": "test-data/benchmark/external/genomic/locked_cohort.vcf.gz",
+    "bytes": 3266038,
+    "sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba"
+  },
+  "pinned_jar": {
+    "path": "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+    "bytes": 32292707,
+    "sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741"
+  },
+  "upstream_report_manifest": {
+    "path": "test-data/benchmark/external/pharmcat_report_manifest.json",
+    "bytes": 54176,
+    "sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8"
+  },
+  "historical_benchmark_manifest": {
+    "path": "test-data/benchmark/external/benchmark_manifest.json",
+    "bytes": 7588,
+    "sha256": "e19f995579482b152271c2c4eadc7b4fbe4b89832299b3111b761985484d0e92"
+  },
+  "upstream_reuse": {
+    "verified_report_count": 208,
+    "new_caller_executions_for_208_person_cohort": 0,
+    "source_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+    "report_manifest_source_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+    "reason": "same hashed source VCF, pinned JAR/definitions, 208 individually verified report hashes and frozen truth"
+  },
+  "fresh_stages": {
+    "application_individuals": 208,
+    "scored_sample_gene_rows": 1456,
+    "f4_local_api_cases": 2
+  },
+  "denominators": {
+    "unique_individuals": 208,
+    "sample_gene_rows": 1456,
+    "truth_evaluable_rows": 596,
+    "pharmcat_reports": 208
+  },
+  "comparison": {
+    "all_metrics_equal_except_generation_time": true,
+    "differing_eligibility_field": "vcf_sha256",
+    "differing_eligibility_rows": 1456,
+    "representative_biological_records_equal": true
+  },
+  "outputs": [
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/EVALUATION-REPORT.md",
+      "bytes": 2237,
+      "sha256": "e85b41c741f09b8ee6792f1123fb1715ed0d83e09110c188df9e68f255c45c73"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/discrepancies.tsv",
+      "bytes": 172478,
+      "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/evaluation-comparison.json",
+      "bytes": 3911,
+      "sha256": "7694e4992cef7ee12ae1f4dc8be7eadd974708b06f5398c1d3cb55c40b91c012"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/exclusions.tsv",
+      "bytes": 48960,
+      "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/external_benchmark_results.json",
+      "bytes": 33667,
+      "sha256": "debd692befa93ea41a6872036a2eccdea8e06c44d9f27af280348a0687c3961d"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/f4-fresh-replay.json",
+      "bytes": 1603,
+      "sha256": "e693302d3cbbe0c8e5a24099abc9c2eeec798ce2d5c480d02f13a67c31d9cf50"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/input_eligibility.tsv",
+      "bytes": 466620,
+      "sha256": "98de68b51fd4eebe01d152cfea7e3872dd5d8c4ce9a8e92cc3964166f8dc65bf"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/raw_benchmark_manifest.json",
+      "bytes": 7588,
+      "sha256": "0a5c408901fef191da4a8a720861affdf362afed8cac5bd6c4e8c3d4cb49d37c"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/raw_scoring_report.md",
+      "bytes": 11481,
+      "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-10-04/stage-command-receipts.json",
+      "bytes": 2920,
+      "sha256": "420a4ce15f03e39f4240b7d7ff9611b31bc12cc8148e40a3fd8ec2e86b1759d0"
+    }
+  ],
+  "self_reference": "This manifest hashes its outputs, not itself. The bundle manifest separately hashes this file.",
+  "clinical_review": "NOT_OBTAINED"
+}

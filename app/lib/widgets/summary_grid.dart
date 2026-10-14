@@ -8,15 +8,15 @@
 /// "check everything", and checking everything produces six results, which is
 /// more than anyone reads card by card.
 ///
-/// A row therefore has to be scannable in about a second: the drug, the verdict,
-/// and how serious it is. Everything else waits behind the row.
+/// A row therefore has to be scannable in about a second: the drug and the
+/// bounded verdict. Everything else waits behind the row.
 ///
 /// WHY THE ORDER IS NOT ALPHABETICAL
 ///
-/// Alphabetical puts "azathioprine — Safe" above "clopidogrel — Ineffective".
+/// Alphabetical puts a no-adjustment row above "clopidogrel — Ineffective".
 /// The reader meets two rows that change nothing before the one that does. The
-/// grid is sorted by `RiskLabel.consequenceRank`, then by severity, then by name
-/// for a stable order — so the first row is always the one worth reading first.
+/// grid is sorted by `RiskLabel.consequenceRank`, then by name for a stable
+/// order — without inventing a clinical severity priority.
 ///
 /// Rows open in place rather than navigating. A result you have to leave the
 /// list to read is a result you compare from memory.
@@ -41,13 +41,7 @@ List<PerDrugResult> orderByConsequence(List<PerDrugResult> analyses) {
         .compareTo(b.riskAssessment.riskLabel.consequenceRank);
     if (band != 0) return band;
 
-    // Within a band, worse first. This is what separates Toxic from
-    // Ineffective, which share both a colour and a rank.
-    final int severity = Tokens.severityRank(b.riskAssessment.severity)
-        .compareTo(Tokens.severityRank(a.riskAssessment.severity));
-    if (severity != 0) return severity;
-
-    // Alphabetical only as a tie-break, so the order never depends on the
+    // Alphabetical within a band, so the order never depends on the
     // sequence the drugs happened to be typed in.
     return a.drug.toLowerCase().compareTo(b.drug.toLowerCase());
   });
@@ -75,20 +69,29 @@ class SummaryGrid extends StatefulWidget {
   State<SummaryGrid> createState() => _SummaryGridState();
 }
 
-class _SummaryGridState extends State<SummaryGrid> {
+class _SummaryGridState extends State<SummaryGrid>
+    with AutomaticKeepAliveClientMixin<SummaryGrid> {
   /// Keyed by drug rather than index so the open set survives a re-sort.
   final Set<String> _open = <String>{};
+
+  /// The grid is one child of the lazily built results list. Without this, a
+  /// long scroll down to the exports disposed it, and every opened row came
+  /// back closed. Kept alive only while something is open.
+  @override
+  bool get wantKeepAlive => _open.isNotEmpty;
 
   @override
   void initState() {
     super.initState();
     if (widget.startExpanded) {
       _open.addAll(widget.analyses.map((PerDrugResult r) => r.drug));
+      updateKeepAlive();
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final List<PerDrugResult> ordered = orderByConsequence(widget.analyses);
 
     return Column(
@@ -100,9 +103,12 @@ class _SummaryGridState extends State<SummaryGrid> {
             metrics: widget.metrics,
             mode: widget.mode,
             open: _open.contains(r.drug),
-            onToggle: () => setState(() {
-              _open.contains(r.drug) ? _open.remove(r.drug) : _open.add(r.drug);
-            }),
+            onToggle: () {
+              setState(() {
+                _open.contains(r.drug) ? _open.remove(r.drug) : _open.add(r.drug);
+              });
+              updateKeepAlive();
+            },
           ),
       ],
     );
@@ -128,8 +134,6 @@ class _Row extends StatelessWidget {
   Widget build(BuildContext context) {
     final RiskAssessment risk = result.riskAssessment;
     final (Color fg, Color bg) = Tokens.verdict(risk.riskLabel);
-    final bool critical = Tokens.severityRank(risk.severity) >= 4;
-
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
@@ -143,12 +147,7 @@ class _Row extends StatelessWidget {
           Semantics(
             button: true,
             expanded: open,
-            // One spoken sentence. A screen reader hitting three separate
-            // labels would read the drug, then the verdict, then the severity
-            // as three unrelated facts.
-            label: '${result.drug}: ${risk.riskLabel.wireValue}'
-                '${risk.severity == Severity.none ? '' : ', severity '
-                    '${risk.severity.wireValue}'}',
+            label: '${result.drug}: ${risk.riskLabel.displayValue}',
             excludeSemantics: true,
             child: InkWell(
               onTap: onToggle,
@@ -163,7 +162,7 @@ class _Row extends StatelessWidget {
                       child: Padding(
                         padding:
                             const EdgeInsets.fromLTRB(12, 11, 8, 11),
-                        child: _content(fg, risk, critical),
+                        child: _content(fg, risk),
                       ),
                     ),
                     Padding(
@@ -193,22 +192,19 @@ class _Row extends StatelessWidget {
 
   /// At 360px the drug name and the verdict cannot share a line without one of
   /// them being clipped, and neither may be. They stack instead.
-  Widget _content(Color fg, RiskAssessment risk, bool critical) => Column(
+  Widget _content(Color fg, RiskAssessment risk) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       Text(result.drug.toLowerCase(),
           style: Tokens.monoLabel, overflow: TextOverflow.ellipsis),
       const SizedBox(height: 3),
-      Text(risk.riskLabel.wireValue,
+      Text(risk.riskLabel.displayValue,
           style: Tokens.verdictRow.copyWith(color: fg)),
       if (risk.severity != Severity.none) ...<Widget>[
         const SizedBox(height: 3),
         Text(
-          'severity ${risk.severity.wireValue}',
-          style: Tokens.monoSm.copyWith(
-            color: critical ? fg : Tokens.ink2,
-            fontWeight: critical ? FontWeight.w600 : FontWeight.w400,
-          ),
+          'PGx interpretation only',
+          style: Tokens.monoSm.copyWith(color: Tokens.ink2),
         ),
       ],
     ],

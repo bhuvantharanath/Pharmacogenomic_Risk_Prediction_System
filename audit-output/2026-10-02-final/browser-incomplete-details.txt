@@ -1,0 +1,30 @@
+Browser tab: 2, Title: "PharmaGuard", URL: "http://127.0.0.1:3000/".
+0 AXWebArea PharmaGuard, URL: 127.0.0.1:3000/
+	1 container
+		2 container Back Analysis results Copy JSON Export JSON Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+			3 container flt-semantic-node-238
+				4 container flt-semantic-node-264
+					5 button Back, ID: flt-semantic-node-265
+					6 heading Analysis results, Value: 2, ID: flt-semantic-node-266
+						7 text Analysis results
+					8 button Copy JSON, ID: flt-semantic-node-267
+					9 button Export JSON, ID: flt-semantic-node-268
+				10 text Research/educational decision support only. Not a medical device. No clinician has reviewed this content.
+				11 container flt-semantic-node-263
+					12 button (collapsed) ID: flt-semantic-node-242, Secondary Actions: Expand, NA18526 2026-10-02T12:41:12Z VCF accepted 0 variants 2772 ms 24 pipeline warnings No PGx-guided change Adjust Dosage Toxic Ineffective Unknown
+					13 container ID: flt-semantic-node-244, Description: DRUGS CHECKED (7) — MOST SERIOUS FIRST Reading view. Both views show the same result; they differ only in what is shown first.
+						14 button For a patient. Plain language first., ID: flt-semantic-node-245
+						15 button For a clinician. Genotype and guideline first., ID: flt-semantic-node-246
+					16 button (collapsed) Input coverage. 0 of 7 genes have enough positions to call, ID: flt-semantic-node-249, Secondary Actions: Expand
+					17 container ID: flt-semantic-node-250, Description: CYP2C19 coverage: 16 of 35 required positions reported, below the 100 percent minimum Your file did not report enough positions Some of the positions needed to identify this carry no in your file. That gap is not neutral. A whose defining is absent is invisible, so the would read as — and a reduced-function result would be reported as normal. The system declines rather than risk that. CYP2C19 coverage: 16 of 35 required positions reported, below the 100 percent minimum WHAT WOULD WORK clopidogrel: no pharmacogenomic result (Unknown).
+						18 button (collapsed) azathioprine: Unknown, ID: flt-semantic-node-251, Secondary Actions: Expand
+						19 button (expanded) clopidogrel: Unknown, ID: flt-semantic-node-252, Secondary Actions: Collapse
+						20 button gene. Definition available., ID: flt-semantic-node-269
+						21 button genotype. Definition available., ID: flt-semantic-node-270
+						22 button variant. Definition available., ID: flt-semantic-node-271
+						23 button position. Definition available., ID: flt-semantic-node-272
+						24 button genotype. Definition available., ID: flt-semantic-node-273
+						25 button reference. Definition available., ID: flt-semantic-node-274
+						26 button ID: flt-semantic-node-275, Upload a VCF. Definition available. that reports every position, including the ones that match the reference. A clinical pharmacogenomic panel does this, as does whole-genome or exome data called with all sites emitted. A variants-only file cannot work here.
+
+The focused UI element is 2 container Back Analysis results Copy JSON Export JSON Research/educational decision support only. Not a medical device. No clinician has reviewed this content.

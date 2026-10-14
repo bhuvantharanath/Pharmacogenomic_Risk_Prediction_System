@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "investigation": "F7",
+  "assessed_on": "2026-10-02",
+  "sample": "NA18861",
+  "gene": "SLCO1B1",
+  "frozen_truth": "*1/*14",
+  "frozen_and_replayed_pharmcat_call": "*1/*43",
+  "primary_attribution": ["C_truth_era_nomenclature_difference", "D_PharmVar_definition_evolution"],
+  "attribution_status": "documented_by_primary_source_and_supported_by_local_variant_replay",
+  "application_parsing_defect_demonstrated": false,
+  "exact_string_benchmark_discordance_retained": true,
+  "functional_equivalence_claimed": false,
+  "human_review_performed": false,
+  "clinical_expert_review_performed": false,
+  "complete_read_backed_na18861_rerun_performed": false,
+  "new_truth_source_revision_confirmed": false,
+  "old_discrepancy_category": "upstream_caller_disagreement",
+  "overlay_only": true,
+  "historical_benchmark_or_truth_modified": false,
+  "pharmcat_version": "3.4.0",
+  "pharmcat_data_version": "2026-07-13-11-40",
+  "star43_acceptance_date": "2021-05-21",
+  "star43_release_date": "2021-10-14",
+  "star43_release_database_version": "5.1",
+  "limitations": [
+    "F4 produced no complete observed-evidence NA18861 VCF; fresh F7 replay uses unchanged incomplete input.",
+    "Input has no DP, GQ, AD or explicit PS at four discriminating loci; 0|1 is public-panel phase, not newly verified physical phase.",
+    "15 of 35 required SLCO1B1 positions are absent; missing positions were not imputed.",
+    "Current CDC workbook binary refresh returned HTTP 403; current CDC page links the same filename, but byte identity and absence of a same-name revision cannot be asserted.",
+    "Public BAM/FASTQ accessions and archive checksums were retrieved, but full read files were not downloaded or newly called."
+  ],
+  "sources": [
+    {
+      "role": "explicit_sample_specific_attribution",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10121724/",
+      "doi": "10.1002/cpt.2790",
+      "first_published": "2022-11-09",
+      "journal_issue_year": 2023,
+      "local_snapshot": "tutorial-article.html"
+    },
+    {
+      "role": "truth_study_and_phase_caveat",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4695224/",
+      "doi": "10.1016/j.jmoldx.2015.08.005",
+      "first_published": "2015-11-24",
+      "journal_issue_year": 2016,
+      "local_snapshot": "getrm-2016-article.html"
+    },
+    {
+      "role": "current_core_definitions",
+      "url": "https://www.pharmvar.org/gene/SLCO1B1",
+      "star14_id": "PV01631",
+      "star43_id": "PV01655",
+      "access": "web search indexed primary page; downloaded HTML is a JavaScript shell, not an allele-data snapshot"
+    },
+    {
+      "role": "historical_release_date",
+      "url": "https://a.storyblok.com/f/70677/x/c5918ca4bb/change-log_slco1b1_v1-5.pdf",
+      "document": "PharmVar SLCO1B1 Change log",
+      "version": "06-10-2025_v1.5",
+      "locator": "Table 3, page 4, *43.001 and *43.002",
+      "access": "web-extracted table; PDF download HTTP 403 and screenshot unavailable; visual verification not completed"
+    },
+    {
+      "role": "current_truth_distribution_link",
+      "url": "https://www.cdc.gov/lab-quality/php/get-rm/reference-materials.html",
+      "linked_file": "https://www.cdc.gov/lab-quality/media/files/2025/08/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+      "frozen_workbook_sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109",
+      "workbook_modified_property": "2025-08-08T13:45:07",
+      "truth_cell": "'PGx HLA Genotypes'!BC280",
+      "study_reference_cell": "'PGx HLA Genotypes'!BD280",
+      "scope_notes": "'Table Info.'!A3:A5,A9; 'changes'!A2:C2 records HG01190 CYP2C9, not NA18861 SLCO1B1"
+    }
+  ]
+}
