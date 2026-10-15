@@ -7,9 +7,11 @@
 #   `deploy-web.yml` ran `flutter test` only, and the backend ran nowhere.
 #
 # WHAT IT MUST NEVER NEED
-#   No secrets, no API key, no PharmCAT, no network beyond installing
-#   dependencies, and no deployment. The deployed path itself needs no key, so a
-#   CI job that needed one would prove the opposite of what it is checking. The
+#   No secrets, no API key, and no deployment. The deployed path itself needs
+#   no key, so a CI job that needed one would prove the opposite of what it is
+#   checking. Network use is limited to installing dependencies and fetching
+#   the pinned PharmCAT binaries and cohort VCF. Each of those is refused
+#   unless its SHA-256 matches the hash-bound manifests. The
 #   `permissions: contents: read` block below is the enforcement, not the
 #   intention: this workflow cannot write to the repository.
 
@@ -66,6 +68,20 @@ jobs:
             exit 1
           fi
           echo "No API key present — as required."
+
+      # The identity checks hash four pinned binaries that git does not carry:
+      # the PharmCAT 3.4.0 jar, its positions VCF and index, and the locked
+      # cohort VCF. The script takes each file's path, size and SHA-256 from the
+      # hash-bound manifests and refuses anything that does not match. Without
+      # these files, six identity tests failed here and the PharmCAT-backed
+      # tests skipped.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Fetch and verify pinned binaries
+        run: python scripts/fetch_pinned_artifacts.py
 
       - name: pytest
         working-directory: backend

@@ -329,6 +329,9 @@ pip install -r requirements.txt
 # PharmCAT is a Java app, not a pip package — fetch the pinned 3.4.0 JAR:
 python ../scripts/fetch_reference_data.py --fetch-tools
 # ...or point at your own copy: export PHARMCAT_JAR=/path/to/pharmcat-3.4.0-all.jar
+# The identity checks also need the locked cohort VCF. This fetches every pinned
+# binary and refuses any whose SHA-256 differs from the manifests. CI runs it too:
+python ../scripts/fetch_pinned_artifacts.py
 
 cp ../infra/local-dev.env.example ../infra/local-dev.env   # then edit
 set -a && source ../infra/local-dev.env && set +a          # the app reads env, not the file

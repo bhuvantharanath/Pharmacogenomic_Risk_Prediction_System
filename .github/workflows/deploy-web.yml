@@ -78,6 +78,18 @@ jobs:
         working-directory: app
         run: flutter pub get
 
+      # The gate's identity checks hash the pinned PharmCAT binaries and the
+      # locked cohort VCF, which git does not carry. They are fetched here and
+      # verified against the hash-bound manifests. A mismatch stops the gate at
+      # this step.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Fetch and verify pinned binaries
+        run: python scripts/fetch_pinned_artifacts.py
+
       # This is the only final ready/not-ready decision. It runs every required
       # test, checks human adjudication and the approval manifest, and proves
       # that the tested source hash is the exact candidate this workflow would
