@@ -32,9 +32,7 @@ def test_current_evaluation_requires_exact_candidate_and_evidence() -> None:
 def test_versioned_evaluation_declares_historical_source_separately() -> None:
     record = bundle.current_evaluation_record()
     source = json.loads((REPO_ROOT / "test-data/benchmark/external/benchmark_manifest.json").read_text())
-    current = json.loads(
-        (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json").read_text()
-    )
+    current = json.loads((REPO_ROOT / bundle.CURRENT_EVALUATION_RELATIVE).read_text())
     assert current["historical_benchmark_id"] == source["benchmark_id"]
     assert current["candidate_application_core_sha256"] != source["local_production_artifact_sha256"]
     assert record["historical_benchmark_manifest"]["sha256"] == current["historical_benchmark_manifest"]["sha256"]
@@ -42,9 +40,7 @@ def test_versioned_evaluation_declares_historical_source_separately() -> None:
 
 def test_current_evidence_is_portable_and_tampering_fails_closed(tmp_path: Path) -> None:
     root = tmp_path / "candidate-in-another-parent"
-    manifest = json.loads(
-        (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json").read_text()
-    )
+    manifest = json.loads((REPO_ROOT / bundle.CURRENT_EVALUATION_RELATIVE).read_text())
     refs = [manifest[name]["path"] for name in (
         "frozen_protocol", "frozen_cohort_lock", "independent_truth_workbook",
         "independent_truth_table", "frozen_combined_vcf", "pinned_jar",
@@ -55,7 +51,7 @@ def test_current_evidence_is_portable_and_tampering_fails_closed(tmp_path: Path)
     paths.update(item["path"] for item in manifest["outputs"])
     paths.update({
         "scripts/scientific_hash_policy.json",
-        "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json",
+        bundle.CURRENT_EVALUATION_RELATIVE,
         "test-data/benchmark/external/external_benchmark_results.json",
     })
     for relative in sorted(paths):
@@ -64,7 +60,7 @@ def test_current_evidence_is_portable_and_tampering_fails_closed(tmp_path: Path)
         shutil.copy2(REPO_ROOT / relative, destination)
 
     assert bundle.current_evaluation_record(root)["evidence_matches"] is True
-    result = root / "test-data/benchmark/current-candidate-2026-10-14/external_benchmark_results.json"
+    result = root / Path(bundle.CURRENT_EVALUATION_RELATIVE).parent / "external_benchmark_results.json"
     result.write_bytes(result.read_bytes() + b"\n")
     decision = bundle.current_evaluation_record(root)
     assert decision["evidence_matches"] is False

@@ -1,0 +1,12 @@
+{
+ "package": "test-data/benchmark/current-candidate-2026-11-04-b1",
+ "core": "6fba49f922cadb60eb289634eee673191d3032a8043104ebab1b2f107cb03060",
+ "f4": [
+  true,
+  true
+ ],
+ "verify_rc": 0,
+ "verify": "compatible scientific bundle: PASS"
+}
+backend/.venv/bin/python audit/phase9/partb/rebind_evaluation.py --tag       45.09s user 2.73s system 103% cpu 46.019 total
+rebind rc=0

@@ -147,7 +147,7 @@ def test_clean_isolated_copy_passes_bundle_verification(tmp_path: Path, monkeypa
     )
     required.update(
         str(path.relative_to(REPO_ROOT))
-        for path in (REPO_ROOT / "test-data/benchmark/current-candidate-2026-10-14").iterdir()
+        for path in (REPO_ROOT / bundle.CURRENT_EVALUATION_RELATIVE).parent.iterdir()
         if path.is_file()
     )
     for relative in sorted(required):

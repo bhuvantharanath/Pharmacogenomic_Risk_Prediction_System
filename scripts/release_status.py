@@ -16,7 +16,7 @@ import sys
 from pathlib import Path
 
 from _common import REPO_ROOT, scrub
-from compatible_bundle import hash_selected_files, load_hash_policy
+from compatible_bundle import CURRENT_EVALUATION_RELATIVE, hash_selected_files, load_hash_policy
 
 sys.path.insert(0, str(REPO_ROOT / "backend"))
 
@@ -26,21 +26,22 @@ from app.models import Phenotype, RiskLabel  # noqa: E402
 from app.retrieval import retrieve_mechanism  # noqa: E402
 
 
+def _current_evaluation_files() -> tuple[str, ...]:
+    """The current evaluation manifest and every output it hashes.
+
+    Read from the manifest the bundle points at, rather than listed here, so a
+    controlled re-binding moves the release identity with it. A hand-kept list
+    of dated paths would keep hashing the previous package after an upgrade.
+    """
+    manifest = json.loads((REPO_ROOT / CURRENT_EVALUATION_RELATIVE).read_text())
+    return (CURRENT_EVALUATION_RELATIVE, *(item["path"] for item in manifest["outputs"]))
+
+
 RELEASE_IDENTITY_EXTRAS = (
     "backend/app/data/compatible_bundle.json",
     "scripts/scientific_hash_policy.json",
     "scripts/application_hash_migration.json",
-    "test-data/benchmark/current-candidate-2026-10-14/evaluation_manifest.json",
-    "test-data/benchmark/current-candidate-2026-10-14/raw_benchmark_manifest.json",
-    "test-data/benchmark/current-candidate-2026-10-14/external_benchmark_results.json",
-    "test-data/benchmark/current-candidate-2026-10-14/input_eligibility.tsv",
-    "test-data/benchmark/current-candidate-2026-10-14/exclusions.tsv",
-    "test-data/benchmark/current-candidate-2026-10-14/discrepancies.tsv",
-    "test-data/benchmark/current-candidate-2026-10-14/raw_scoring_report.md",
-    "test-data/benchmark/current-candidate-2026-10-14/evaluation-comparison.json",
-    "test-data/benchmark/current-candidate-2026-10-14/f4-fresh-replay.json",
-    "test-data/benchmark/current-candidate-2026-10-14/stage-command-receipts.json",
-    "test-data/benchmark/current-candidate-2026-10-14/EVALUATION-REPORT.md",
+    *_current_evaluation_files(),
     "scripts/compatible_bundle.py",
     "scripts/verify_compatible_bundle.py",
     "scripts/release_status.py",
