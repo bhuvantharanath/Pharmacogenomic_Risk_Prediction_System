@@ -97,12 +97,12 @@ const List<DrugCapability> kDrugCapabilities = <DrugCapability>[
   DrugCapability(
     drug: 'warfarin',
     primaryGene: 'CYP2C9',
-    relevantGenes: <String>['CYP2C9'],
-    evidenceDependencies: <String>['CYP2C9'],
+    relevantGenes: <String>['CYP2C9', 'VKORC1', 'CYP4F2'],
+    evidenceDependencies: <String>['CYP2C9', 'VKORC1'],
     implementationStatus: 'explicit_abstention',
     guidanceCapable: false,
     limitation:
-        'No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.',
+        'No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC\'s warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: "CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details." That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.',
     explanationAvailable: true,
     uiAvailable: true,
     exportAvailable: true,

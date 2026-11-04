@@ -28,10 +28,12 @@ Joined on the allele `name`.
 | CYP2C19 | 35 | **31** | 88.6% | Decreased function, Increased function, No function, Normal function, Uncertain function |
 | CYP2C9 | 88 | **69** | 78.4% | Decreased function, No function, Normal function, Uncertain function, Unknown function |
 | CYP2D6 | 157 | **140** | 89.2% | Decreased function, Increased function, No function, Normal function, Uncertain function, Unknown function |
+| CYP4F2 | 20 | **1** | 5.0% | named by the CPIC warfarin guideline (PharmCAT assigns no function) |
 | DPYD | 83 | **28** | 33.7% | Decreased function, No function, Normal function |
 | NUDT15 | 20 | **20** | 100.0% | Decreased function, No function, Normal function, Uncertain function |
 | SLCO1B1 | 35 | **26** | 74.3% | Increased function, No function, Normal function, Uncertain function, Unknown function |
 | TPMT | 45 | **45** | 100.0% | Decreased function, No function, Normal function, Uncertain function, Unknown function |
+| VKORC1 | 1 | **1** | 100.0% | named by the CPIC warfarin guideline (PharmCAT assigns no function) |
 
 ## CYP2C19
 
@@ -306,6 +308,18 @@ Source: `org/pharmgkb/pharmcat/definition/alleles/CYP2D6_translation.json` + `or
 | chr22:42130773 | rs72549358 | g.42130773C>T | `*28` (Uncertain function) |
 | chr22:42130778 | rs773790593 | g.42130778G>A | `*87` (Uncertain function) |
 
+## CYP4F2
+
+Source: `org/pharmgkb/pharmcat/definition/alleles/CYP4F2_translation.json` + `none; alleles named in NAMED_CRITICAL: ['*3']` (data version `2026-07-13-11-40`).
+
+1 of 20 positions define at least one non-normal allele.
+
+**20 named allele(s) have no function assignment** and were skipped rather than assumed normal: `*10`, `*11`, `*12`, `*13`, `*14`, `*15`, `*17`, `*18`, `*19`, `*2`, `*20`, `*21` …
+
+| position | rsid | HGVS | defines |
+| ---: | --- | --- | --- |
+| chr19:15879621 | rs2108622 | g.15879621C>T | `*3` (named by the CPIC warfarin guideline (PharmCAT assigns no function)) |
+
 ## DPYD
 
 Source: `org/pharmgkb/pharmcat/definition/alleles/DPYD_translation.json` + `org/pharmgkb/pharmcat/phenotype/DPYD.json` (data version `2026-07-13-11-40`).
@@ -462,4 +476,14 @@ Source: `org/pharmgkb/pharmcat/definition/alleles/TPMT_translation.json` + `org/
 | chr6:18149103 | — | g.18149104_18149107del | `*47` (No function) |
 | chr6:18149126 | rs267607275 | g.18149126A>G | `*29` (No function) |
 | chr6:18149127 | rs9333569 | g.18149127T>C | `*14` (No function) |
+
+## VKORC1
+
+Source: `org/pharmgkb/pharmcat/definition/alleles/VKORC1_translation.json` + `none; alleles named in NAMED_CRITICAL: ['rs9923231 variant (T)']` (data version `2026-07-13-11-40`).
+
+1 of 1 positions define at least one non-normal allele.
+
+| position | rsid | HGVS | defines |
+| ---: | --- | --- | --- |
+| chr16:31096368 | rs9923231 | g.31096368C>T | `rs9923231 variant (T)` (named by the CPIC warfarin guideline (PharmCAT assigns no function)) |
 

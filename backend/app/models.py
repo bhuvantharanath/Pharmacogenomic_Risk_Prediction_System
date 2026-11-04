@@ -209,6 +209,35 @@ class LlmGeneratedExplanation(BaseModel):
     disclaimer: str = DISCLAIMER
 
 
+class GeneFinding(BaseModel):
+    """
+    One gene's result, for a drug that depends on more than one (Phase 9 B5).
+
+    Shown beside the label, never instead of it. For warfarin the label stays
+    Unknown — CPIC's guidance is a dosing algorithm this application does not
+    run — and these rows are what the file did establish.
+    """
+
+    model_config = ConfigDict(extra="forbid")
+
+    gene: str
+    #: "required" when the drug's evidence depends on the gene; "reference" when
+    #: it is shown for context only (CYP4F2 for warfarin).
+    role: str
+    #: True only when the gene's coverage passed on both evidence views and
+    #: PharmCAT called it. A call from evidence that failed the gate is withheld,
+    #: exactly as it is for the label.
+    assessed: bool = False
+    #: PharmCAT's call as reported, e.g. "*3/*3" or
+    #: "rs9923231 variant (T)/rs9923231 variant (T)". Empty unless assessed.
+    call: str = ""
+    #: PharmCAT's phenotype wording. Empty for genes it assigns none (VKORC1,
+    #: CYP4F2) and unless assessed.
+    phenotype: str = ""
+    #: Why the gene was not assessed, when it was not.
+    note: str = ""
+
+
 class PerDrugResult(BaseModel):
     """One entry in `analyses` — exactly one per drug the caller asked about."""
 
@@ -219,6 +248,9 @@ class PerDrugResult(BaseModel):
     pharmacogenomic_profile: PharmacogenomicProfile
     clinical_recommendation: ClinicalRecommendation
     llm_generated_explanation: LlmGeneratedExplanation
+    #: Per-gene results for drugs with more than one relevant gene (azathioprine:
+    #: TPMT and NUDT15; warfarin: CYP2C9, VKORC1 and CYP4F2). Empty otherwise.
+    gene_findings: list[GeneFinding] = Field(default_factory=list)
 
 
 class GuidelineProvenance(BaseModel):

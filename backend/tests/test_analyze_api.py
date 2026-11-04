@@ -28,6 +28,11 @@ CONTRACT_PER_DRUG = {
     "pharmacogenomic_profile",
     "clinical_recommendation",
     "llm_generated_explanation",
+    # Added Phase 9 B5: per-gene rows for multi-gene drugs. Additive, an empty
+    # list for single-gene drugs, so existing clients that ignore unknown keys
+    # are unaffected — but it IS in the contract now, as recommendation_diplotype
+    # became in Phase 6.
+    "gene_findings",
 }
 
 

@@ -48,6 +48,7 @@ from .models import (
     CoverageResponse,
     DetectedVariant,
     GeneReadiness,
+    GeneFinding,
     GuidelineProvenance,
     HealthResponse,
     PerDrugResult,
@@ -639,6 +640,59 @@ def _build_context(
     )
 
 
+def _relevant_genes(drugs: list[str]) -> set[str]:
+    """Every gene a requested drug depends on or shows for reference."""
+    genes: set[str] = set()
+    for drug in drugs:
+        capability = capabilities.capability_for(drug)
+        if capability is not None:
+            genes.update(capability.relevant_genes)
+    return genes
+
+
+def _gene_findings(
+    drug: str,
+    report: PharmcatReport,
+    cov: "coverage_mod.CoverageReport",
+    evidence: dict,
+) -> list[GeneFinding]:
+    """
+    One row per relevant gene, for drugs with more than one.
+
+    A gene counts as assessed by the same test the label uses: coverage passed
+    on our evidence and, where PharmCAT reported positions, on PharmCAT's
+    (`evidence_crosscheck.restrict`), and PharmCAT called it. Otherwise the call
+    is withheld and the row says why — a call made from evidence that failed
+    the gate is exactly what the gate exists to keep off the screen.
+    """
+    capability = capabilities.capability_for(drug)
+    if capability is None or len(capability.relevant_genes) < 2:
+        return []
+    findings = []
+    for gene in capability.relevant_genes:
+        gene_cov = cov.genes.get(gene)
+        covered = (
+            gene_cov is not None and gene_cov.sufficient
+            and (gene not in evidence or evidence[gene].sufficient)
+        )
+        call = report.gene(gene)
+        called = call is not None and call.is_called
+        assessed = covered and called
+        findings.append(GeneFinding(
+            gene=gene,
+            role="required" if gene in capability.evidence_dependencies else "reference",
+            assessed=assessed,
+            call=(call.diplotype or "") if assessed else "",
+            phenotype=(call.phenotype_raw or "") if assessed else "",
+            note="" if assessed else (
+                "PharmCAT could not call this gene from the file." if covered
+                else "Coverage of this gene's positions is below what it needs; "
+                     "see the coverage panel."
+            ),
+        ))
+    return findings
+
+
 def build_result(
     drug: str,
     report: PharmcatReport,
@@ -718,6 +772,11 @@ def build_response(
     warnings: list[str] = list(metadata.warnings)
     provenances: list[str] = []
 
+    # Per-gene warnings name only genes a requested drug depends on or shows.
+    # Every gene stays in `position_coverage`; this only keeps a clopidogrel
+    # request from listing, say, VKORC1 gaps that cannot affect it.
+    relevant = _relevant_genes(drugs)
+
     # THE COVERAGE GATE. Genes whose input coverage is below the measured minimum
     # cannot support a confident phenotype, so they are suppressed BEFORE the label
     # engine sees them. This is the only check that can catch a confidently-wrong
@@ -741,6 +800,8 @@ def build_response(
             warnings.append(coverage_mod.all_genes_gated_warning(cov))
 
         for gene_cov in insufficient:
+            if gene_cov.gene not in relevant:
+                continue
             # Two different refusals, two different sentences. A gene that met
             # its percentage but lacks the positions that could show a variant
             # needs the second one, or "37% was enough and you refused anyway"
@@ -763,7 +824,8 @@ def build_response(
     if cov is not None:
         for gene, evidence in sorted(pharmcat_evidence.items()):
             gene_cov = cov.genes.get(gene)
-            if gene_cov is not None and gene_cov.sufficient and not evidence.sufficient:
+            if (gene in relevant and gene_cov is not None and gene_cov.sufficient
+                    and not evidence.sufficient):
                 warnings.append(evidence_crosscheck.disagreement_warning(evidence))
 
     for drug in drugs:
@@ -777,6 +839,10 @@ def build_response(
         result, drug_warnings, provenance = build_result(
             drug, report, eligibility=eligibility
         )
+        if cov is not None:
+            result = result.model_copy(update={
+                "gene_findings": _gene_findings(drug, report, cov, pharmcat_evidence)
+            })
         analyses.append(result)
         warnings.extend(drug_warnings)
         provenances.append(provenance)

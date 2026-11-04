@@ -31,12 +31,12 @@ Analyses a patient's genetic data (VCF) against a prescribed drug and returns a 
 
 Adverse drug reactions are a major cause of preventable harm, and a significant fraction are attributable to genetic variation in drug-metabolising enzymes. Pharmacogenomics maps that variation to prescribing guidance. The Clinical Pharmacogenetics Implementation Consortium (CPIC) publishes the guidelines; the problem is getting from a patient's raw genomic file to a recommendation a person can act on.
 
-This system does that end to end for **7 pharmacogenes** and **6 drugs**:
+This system does that end to end for **9 pharmacogenes** and **6 drugs**:
 
 | Gene | Drug |
 |---|---|
 | CYP2C19 | clopidogrel |
-| CYP2C9 | warfarin |
+| CYP2C9 (+ VKORC1, CYP4F2) | warfarin |
 | CYP2D6 | codeine |
 | SLCO1B1 | simvastatin |
 | TPMT (+ NUDT15) | azathioprine |
@@ -46,8 +46,13 @@ This six-drug list is the audited application boundary. Four pathways can return
 non-Unknown PGx guidance when their evidence requirements are met: clopidogrel,
 simvastatin, azathioprine and fluorouracil. Codeine remains an explicit CYP2D6
 abstention, and this project does not implement validated automated warfarin
-dosing. PharmCAT may contain other annotations internally; the application does
-not present them as supported guidance.
+dosing: CPIC's warfarin guidance is a dosing algorithm, so warfarin stays
+`Unknown`. Since Phase 9 B5 the warfarin result shows what the file established —
+CYP2C9 and VKORC1 calls (both coverage-gated) and CYP4F2 for reference — quotes
+CPIC's algorithm instruction, never quotes a dose, and states that ancestry is
+not collected, so rs12777823 is not assessed. PharmCAT may contain other
+annotations internally; the application does not present them as supported
+guidance.
 
 Conclusion labels: `No PGx-guided adjustment identified` · `Adjust Dosage` ·
 `Toxic` · `Ineffective` · `Unknown`. The first label is bounded to the assessed
@@ -308,7 +313,7 @@ Minimum coverage per gene, derived from the sensitivity measurement:
 
 Below threshold, the system returns `Unknown` with the coverage achieved versus required — it does not guess.
 
-**File size:** a conforming PGx VCF is around 25 KB (463 rows, all seven genes). A real 1000 Genomes slice restricted to the same positions is larger — roughly 194 KB for 169 rows — because research-format records carry long INFO fields. Either way the 5 MB upload cap leaves ample headroom, and only rejects whole-region research files (~28 MB raw slices).
+**File size:** a conforming PGx VCF is around 25 KB (463 rows: the seven genes gated before Phase 9 B5; warfarin's VKORC1 and CYP4F2 add 21 more positions, which the demo files do not carry). A real 1000 Genomes slice restricted to the same positions is larger — roughly 194 KB for 169 rows — because research-format records carry long INFO fields. Either way the 5 MB upload cap leaves ample headroom, and only rejects whole-region research files (~28 MB raw slices).
 
 Full detail: `docs/input_requirements.md`.
 

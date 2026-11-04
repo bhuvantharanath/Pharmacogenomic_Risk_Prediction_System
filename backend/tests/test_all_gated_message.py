@@ -64,12 +64,29 @@ def test_it_quotes_the_real_coverage_range() -> None:
     assert f"{len(assessment.genes)} of {len(assessment.genes)}" in message
 
 
-def test_a_good_file_gets_no_such_message() -> None:
+def test_a_good_file_gets_no_such_message(tmp_path) -> None:
     """
     The control. If this fired on a complete-coverage file it would tell a user
     with a perfectly good VCF that their file is the wrong shape.
+
+    The file is generated from the pinned jar's definitions for every gated
+    gene. `demo_confident.vcf` served until Phase 9 B5 gated VKORC1 and CYP4F2,
+    which that demo file never carried, so it is no longer complete coverage.
     """
-    assessment = _assess("demo_confident.vcf")
+    import subprocess
+    import sys
+
+    jar = REPO / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
+    if not jar.is_file():  # pragma: no cover
+        pytest.skip("pinned PharmCAT jar absent")
+    complete = tmp_path / "complete.vcf"
+    proc = subprocess.run(
+        [sys.executable, str(REPO / "test-data/generate_synthetic_vcf.py"), "--from-jar", str(jar),
+         "--pad-genes", ",".join(cov.load_requirements()["genes"]), "-o", str(complete)],
+        capture_output=True, text=True, check=False,
+    )
+    assert proc.returncode == 0, proc.stderr[-500:]
+    assessment = cov.assess(complete.read_text())
     gated = [g for g, c in assessment.genes.items() if not c.sufficient]
     assert not gated, "the complete-coverage fixture now gates something"
 

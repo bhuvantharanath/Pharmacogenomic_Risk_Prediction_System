@@ -35,6 +35,7 @@
     "app/lib/widgets/disclaimer_banner.dart",
     "app/lib/widgets/disclosure_row.dart",
     "app/lib/widgets/file_readiness.dart",
+    "app/lib/widgets/gene_findings.dart",
     "app/lib/widgets/sample_files.dart",
     "app/lib/widgets/summary_grid.dart",
     "app/lib/widgets/unknown_panel.dart",

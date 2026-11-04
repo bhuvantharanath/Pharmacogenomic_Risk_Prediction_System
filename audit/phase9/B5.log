@@ -1,0 +1,101 @@
+B5 plan written 2026-11-04T14:45:03Z
+b5b1543ab89d2244b9fb5541ef8dc47083e661bf0ea99d81aa38090d1c0c299b  audit/phase9/B5_PLAN.md
+
+== Conflict found after the plan was written, before any B5 code ==
+test-data/reference/cpic_expectations.json (the independent expectation behind the 105-row mapping validation,
+a release-gate prerequisite) already holds the 12 warfarin rows. Its rule, derived only from CPIC's structured
+fields, reads: "an algorithm pointer -> Unknown". All 12 rows: expected_label Unknown, basis "CPIC states no
+actionable recommendation for this combination"; the engine also gives Unknown (rule fallback_unmatched), so they
+currently match. AC2 ("Adjust Dosage" when CYP2C9 and VKORC1 are both covered and called), which follows the
+owner's brief, therefore contradicts an existing independent check and is exactly an honest-Unknown -> confident
+change (standing rule 5). Not resolved here: put to the owner before any label change.
+Parts that do not depend on the label (VKORC1/CYP4F2 parsing and gating, the additive per-gene contract,
+warning scoping) may proceed meanwhile.
+
+== Label amended by owner decision (2026-11-04T14:50:37Z) ==
+35fb598eac2e89bf5cae25c94b59026604b9cfd842bb3dcb9a3ee52e5c78e79f  audit/phase9/B5_AC2_AMENDMENT.md
+Owner's words: "Keep Unknown, show genes"
+
+== Approval binding moved (rule 7: listed, not silent) ==
+backend/app/data/explanation_approvals.json, entry warfarin / CYP2C9 / Unknown:
+  content_hash 5e2aec107c44fa6d87c6292ca7a0fd2951fb6aeff905002bbf19ac2b80c1ff80  unchanged
+  source_hash  9d670f0e43b50dac6f140024d15380686692773c9012727c150ca238605f7c2e  unchanged
+  context_hash 797054b6acbdf8d18c79bf35d35e72b01e8f38f1ce84b85b79a34fb176bf4ca2 -> 1e1cd181a92dff76796e54df361bab13da6bad88fae6ee54b288da01ebb2ad96 (rebuilt)
+  cause: semantic_context_hash includes the capability's relevant_genes, which B5 changed from [CYP2C9]
+         to [CYP2C9, VKORC1, CYP4F2].
+  status: unresolved before and after ("automated decision awaiting human adjudication; unresolved
+          adjudication"). No approval existed, so none is invalidated; adjudication is recorded per sentence
+          against content and source, both unchanged. The explanation store (explanations.json) is not touched
+          and nothing was regenerated. Any future approval of this entry is made against the 3-gene context.
+  Rebuilt with scripts/build_explanation_approvals.py; the release gate's manifest check requires the
+  manifest to match current contexts (a frozen old hash reads as "context hash mismatch", blocking).
+== Sabotages ==
+== SB5-a: VKORC1 dropped from warfarin's evidence dependencies ==
+FAILED tests/test_warfarin.py::test_warfarin_depends_on_cyp2c9_and_vkorc1_and_shows_cyp4f2
+FAILED tests/test_warfarin.py::test_a_missing_vkorc1_is_named_and_not_assessed
+2 failed, 8 passed in 8.03s
+== SB5-b: a dose figure appended to warfarin's action ==
+FAILED tests/test_warfarin.py::test_called_genes_are_shown_and_the_label_stays_unknown[normal-diplotypes0-None]
+FAILED tests/test_warfarin.py::test_called_genes_are_shown_and_the_label_stays_unknown[pm_tt_cyp4f2-diplotypes1-*1/*3]
+FAILED tests/test_warfarin.py::test_called_genes_are_shown_and_the_label_stays_unknown[pm_tt_ref_cyp4f2-diplotypes2-*1/*1]
+3 failed, 7 passed in 7.86s
+== SB5-c: Dart stops reading gene_findings ==
+FAILED tests/test_client_parity.py::test_every_backend_field_is_read_by_the_client[PerDrugResult]
+1 failed, 8 passed in 0.09s
+restored identical: yes
+
+== Zero-regression vs B3 (= live B4 application code; audit/phase9/partb/B5/comparison.json) ==
+S1-S6 6/6 labels; cohort 2400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other;
+74 PharmCAT test VCFs, 148 comparisons, 0 mismatches. PASS.
+A4 inputs, all six drugs (local; B5-after vs B3-after): 0 label changes, 0 status/error-code changes,
+0 Unknown->confident. Warnings +72 (2 per case: the files carry no chr16/chr19 rows, and warfarin is requested).
+S1-S6 warnings vs B3: S1, S5, S6 unchanged. S2/S3/S4: the file-level summary reads "Every gene (9 of 9)" instead
+of "(7 of 7)", and S3/S4's range starts at 0% (VKORC1 and CYP4F2 absent). S3 (codeine) no longer carries the
+DPYD critical-position warning: DPYD is not relevant to codeine (design item 4, warning scoping).
+Client display (not a label): the demo files carry no VKORC1/CYP4F2 rows, so the input-coverage summary reads
+"7 of 9 genes" on S1; docs/DEMO_SCRIPT.md and README updated to say so. Regenerating the demo/sample VCFs with
+those rows is left as a follow-up.
+
+== Suites ==
+backend (.venv) before re-bind: 1012 passed, 6 skipped, 4 failed (the four evaluation/bundle identity tests).
+  Three other tests needed deliberate updates, each recorded: test_all_gated_message control now uses a generated
+  complete file for every gated gene (demo_confident lacks VKORC1/CYP4F2); test_analyze_api CONTRACT_PER_DRUG gains
+  "gene_findings" (additive, as recommendation_diplotype in Phase 6); test_release_status manifest reproducibility
+  needed the approvals rebuild recorded above.
+flutter: analyze clean; 229 passed (gene_findings_test.dart: 4).
+== SB5-d: verifier accepts undeclared eligibility fields ==
+FAILED tests/test_compatible_bundle.py::test_an_undeclared_eligibility_change_is_refused
+FAILED tests/test_compatible_bundle.py::test_a_declaration_that_does_not_add_up_is_refused
+2 failed, 11 passed in 0.62s
+restored identical: yes
+
+== Re-bind (test-data/benchmark/current-candidate-2026-11-04-b5) ==
+Two attempts stopped on the re-bind's own invariants, logs kept: attempt 1 (eligibility differed beyond the VCF
+hash), attempt 2 (discrepancies.tsv detail differed). Every difference was inspected before anything changed:
+  input_eligibility.tsv  CYP2C9 rows only, 208 each: missing_dependency_genes "CYP2C9" -> "CYP2C9,VKORC1";
+                         eligibility_reason old limitation -> "Required genomic evidence is incomplete for CYP2C9,
+                         VKORC1. " + new limitation. drug_eligible unchanged (warfarin was never eligible).
+  discrepancies.tsv      CYP2C9 rows only, 100: free-text detail, the same reason. classification, truth and
+                         observed unchanged.
+  scored metrics, exclusions, truth, cohort lock, report manifest, scoring report: byte-identical.
+The procedure now takes an exact declaration (audit/phase9/partb/rebind/declared-changes-2026-11-04-b5.json:
+file, gene, field, from, to, rows, why). The re-bind asserts every observed change is declared and every declared
+change observed, and that discrepancies may change only in detail. scripts/compatible_bundle.py accepts only the
+VCF hash plus well-formed declared eligibility changes whose counts add up (comparison_supports_result; tamper
+tests in test_compatible_bundle.py; SB5-d above). The published comparison says equal_to_previous ... false and
+lists the declarations; EVALUATION-REPORT.md states them.
+Result: core 5fba129eec8150a4c0d38cad0bde2ae07a7c18b2f1ee3fb6a7d2007f4d6a47df, 0 new caller runs, F4 true/true,
+verify_compatible_bundle PASS. backend suite after re-bind: 1022 passed, 6 skipped, 0 failed.
+
+== AC verdicts (2026-11-04/05) ==
+AC1  PASS  VKORC1 (1 position) and CYP4F2 (20) parsed (genotype-only: no phenotype file in the jar) and gated;
+           build_position_requirements --check passes for all nine genes; critical: VKORC1 {31096368}, CYP4F2 the
+           *3-vs-*1 position {15879621 rs2108622}, recomputed by test_warfarin.py.
+AC2' PASS  (as amended) warfarin Unknown in every case; findings for CYP2C9/VKORC1/CYP4F2; CPIC text verbatim and
+           pinned against all 12 jar rows; no dose in the serialized result; ancestry and rs12777823 statements;
+           label identical with CYP4F2 absent, *1/*1 or *1/*3.
+AC3  PASS  VKORC1 or CYP2C9 removed -> Unknown, reason names the gene, finding not assessed.
+AC4  PASS  PerDrugResult and GeneFinding in the parity test; gene_findings_test.dart renders the rows.
+AC5' PASS  (as amended) synthetic VCFs through the real PharmCAT: *1/*1+C/C, *3/*3+T/T+CYP4F2 *1/*3,
+           *3/*3+T/T+CYP4F2 *1/*1, VKORC1 removed, CYP2C9 removed.
+Zero-regression PASS; sabotages SB5-a..d caught, files restored identical.

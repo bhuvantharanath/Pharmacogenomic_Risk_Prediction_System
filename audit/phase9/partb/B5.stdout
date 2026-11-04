@@ -1,0 +1,22 @@
+cohort label counts: {"azathioprine": {"Unknown": 400}, "clopidogrel": {"Unknown": 400}, "codeine": {"Unknown": 400}, "fluorouracil": {"Unknown": 400}, "simvastatin": {"Unknown": 400}, "warfarin": {"Unknown": 400}}
+74 test VCFs: 74 {'field_comparisons': 148, 'mismatches': 0, 'match_rate': 1.0, 'mismatch_detail': [], 'errors': {}}
+S1-S6: {"S1_confident": {"clopidogrel": "Ineffective"}, "S2_variants_only": {"clopidogrel": "Unknown"}, "S3_cyp2d6": {"codeine": "Unknown"}, "S4_dpyd": {"fluorouracil": "Unknown"}, "S5_normal": {"simvastatin": "No PGx-guided adjustment identified"}, "S6_multidrug": {"clopidogrel": "Ineffective", "simvastatin": "No PGx-guided adjustment identified", "fluorouracil": "No PGx-guided adjustment identified", "codeine": "Unknown", "ibuprofen": "Unknown"}}
+{
+ "tag": "B5",
+ "compared_to": "B3",
+ "s1_s6_labels_matched": "6/6",
+ "cohort_results": 2400,
+ "cohort_confident_to_unknown": 0,
+ "cohort_unknown_to_confident": 0,
+ "cohort_confident_to_other_confident": 0,
+ "testvcf_files_compared": 74,
+ "testvcf_mismatches": 0,
+ "testvcf_field_comparisons": 148,
+ "shift_examples": {
+  "confident_to_unknown": [],
+  "unknown_to_confident": [],
+  "confident_to_other_confident": []
+ }
+}
+done in 131s
+regression rc=0

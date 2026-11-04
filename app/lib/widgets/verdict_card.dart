@@ -19,6 +19,7 @@ import '../models/unknown_reason.dart';
 import '../theme/tokens.dart';
 import 'coverage_census.dart';
 import 'disclosure_row.dart';
+import 'gene_findings.dart';
 import 'unknown_reason_panel.dart';
 import 'view_mode.dart';
 
@@ -96,6 +97,12 @@ class _VerdictCardState extends State<VerdictCard> {
                 gene: gene,
                 fallbackReason: r.clinicalRecommendation.action,
               ),
+            ),
+          // Both views: these are what the file established, not prose.
+          if (r.geneFindings.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(14, 10, 14, 4),
+              child: GeneFindingsPanel(findings: r.geneFindings),
             ),
           const SizedBox(height: 8),
           // The census above and the disclaimer on the screen are outside this

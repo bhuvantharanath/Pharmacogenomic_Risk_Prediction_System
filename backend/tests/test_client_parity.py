@@ -27,8 +27,10 @@ import pytest
 from app.models import (
     AnalyzeResponse,
     CoverageResponse,
+    GeneFinding,
     GeneReadiness,
     GuidelineProvenance,
+    PerDrugResult,
     QualityMetrics,
 )
 from tests.conftest import REPO_ROOT
@@ -42,6 +44,8 @@ SHARED_MODELS = (
     CoverageResponse,
     GeneReadiness,
     GuidelineProvenance,
+    PerDrugResult,
+    GeneFinding,
 )
 
 

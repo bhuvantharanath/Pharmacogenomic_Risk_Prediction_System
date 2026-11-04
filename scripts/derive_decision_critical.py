@@ -53,7 +53,15 @@ REPO = Path(__file__).resolve().parents[1]
 JAR = REPO / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
 
 #: The genes this project reports on.
-GENES = ("CYP2C19", "CYP2C9", "CYP2D6", "DPYD", "NUDT15", "SLCO1B1", "TPMT")
+GENES = ("CYP2C19", "CYP2C9", "CYP2D6", "CYP4F2", "DPYD", "NUDT15", "SLCO1B1", "TPMT", "VKORC1")
+
+#: Genes PharmCAT 3.4.0 ships no phenotype (function) file for, so no position
+#: can be critical by `functionValue`. For these the critical positions are
+#: the ones that define the allele CPIC's warfarin guideline uses — read from
+#: the same definition file, by the same rule, with the allele named here
+#: instead of found by its function. Phase 9 B5.
+NAMED_CRITICAL = {"VKORC1": ("rs9923231 variant (T)",), "CYP4F2": ("*3",)}
+NAMED_FUNCTION = "named by the CPIC warfarin guideline (PharmCAT assigns no function)"
 
 DEF_PREFIX = "org/pharmgkb/pharmcat/definition/alleles/"
 PHENO_PREFIX = "org/pharmgkb/pharmcat/phenotype/"
@@ -81,7 +89,7 @@ def derive(gene: str) -> dict:
     translation, phenotype = load(gene)
     if translation is None:
         return {"gene": gene, "error": "no translation file in the jar"}
-    if phenotype is None:
+    if phenotype is None and gene not in NAMED_CRITICAL:
         # Reported, never guessed around. A gene with no function assignments
         # cannot have decision-critical positions derived, and saying so is the
         # correct outcome.
@@ -89,10 +97,13 @@ def derive(gene: str) -> dict:
                                        "assignments available",
                 "variants": len(translation.get("variants", []))}
 
-    functions = {
-        a["name"]: (a.get("functionValue") or "").strip()
-        for a in phenotype.get("namedAlleles", [])
-    }
+    if phenotype is None:
+        functions = {name: NAMED_FUNCTION for name in NAMED_CRITICAL[gene]}
+    else:
+        functions = {
+            a["name"]: (a.get("functionValue") or "").strip()
+            for a in phenotype.get("namedAlleles", [])
+        }
     variants = translation.get("variants", [])
     positions = [
         {
@@ -137,7 +148,8 @@ def derive(gene: str) -> dict:
         "alleles_without_function": sorted(unassigned),
         "function_values_seen": sorted({f for f in functions.values() if f}),
         "source_translation": f"{DEF_PREFIX}{gene}_translation.json",
-        "source_phenotype": f"{PHENO_PREFIX}{gene}.json",
+        "source_phenotype": (f"{PHENO_PREFIX}{gene}.json" if phenotype is not None
+                             else f"none; alleles named in NAMED_CRITICAL: {list(NAMED_CRITICAL[gene])}"),
         "pharmcat_version": translation.get("version"),
     }
 
@@ -290,7 +302,9 @@ def emit_requirements() -> int:
 
     data["decision_critical_provenance"] = {
         "rule": "a position is decision-critical if it defines any named allele "
-                "whose functionValue is not 'Normal function'",
+                "whose functionValue is not 'Normal function'; for genes PharmCAT "
+                "assigns no function (VKORC1, CYP4F2), if it defines the allele the "
+                "CPIC warfarin guideline uses (NAMED_CRITICAL)",
         "derived_by": "scripts/derive_decision_critical.py",
         "translation_source": "definition/alleles/<GENE>_translation.json "
                               "(variants[], namedAlleles[].alleles[])",

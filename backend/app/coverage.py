@@ -152,6 +152,10 @@ class GeneCoverage:
     #: why evidence was declined instead of collapsing partial, failed and
     #: absent evidence into a single coverage number.
     evidence_counts: dict[str, int] = field(default_factory=dict)
+    #: False for genes whose minimum no coverage sweep has measured (VKORC1 and
+    #: CYP4F2, Phase 9 B5): their 100% is a requirement, and the refusal must
+    #: not call it measured.
+    threshold_measured: bool = True
 
     @property
     def percent(self) -> float:
@@ -288,6 +292,7 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
             critical_present=len(critical & valid),
             critical_enforced=bool(spec.get("decision_critical_enforced")),
             evidence_counts=counts,
+            threshold_measured=bool(spec.get("threshold_measured", True)),
         )
 
     # THE COMMON CASE, not an edge case. Most VCFs in the wild omit
@@ -374,10 +379,16 @@ def all_genes_gated_warning(assessment: "CoverageReport") -> str:
 
 
 def insufficient_warning(cov: GeneCoverage) -> str:
+    minimum = (
+        f"{cov.min_percent}% minimum measured for this gene"
+        if cov.threshold_measured
+        else f"{cov.min_percent}% this gene requires (no coverage sweep has measured "
+             f"a lower minimum, so every position is required)"
+    )
     return (
         f"{cov.gene}: only {cov.present} of {cov.required} required positions "
         f"({cov.percent:.0f}%) carry an acceptable genotype in this VCF, below the "
-        f"{cov.min_percent}% minimum measured for this gene. Reported as Unknown. "
+        f"{minimum}. Reported as Unknown. "
         f"A confident call at this coverage would be unreliable — and unreliable in "
         f"one direction: missing positions read as reference, so the error would be "
         f"to report reduced function as normal. {_evidence_reason(cov)}"
@@ -449,7 +460,17 @@ class DrugEligibility:
         if self.eligible:
             return ""
         if self.limitation and not self.guidance_capable:
-            return self.limitation
+            # Name a missing gene the file could have supplied: for warfarin a
+            # VKORC1 gap is fixable and worth saying, even though no label is
+            # given either way. Genes no VCF can supply (CYP2D6) are already
+            # covered by the limitation itself.
+            readable = [g for g in self.failed_genes if g not in NOT_READABLE_FROM_VCF]
+            if not readable:
+                return self.limitation
+            return (
+                "Required genomic evidence is incomplete for "
+                + ", ".join(readable) + ". " + self.limitation
+            )
         if not self.required_genes:
             return (
                 "This drug is outside the audited application scope; no "

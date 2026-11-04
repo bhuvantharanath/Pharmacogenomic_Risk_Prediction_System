@@ -251,6 +251,55 @@ class LlmGeneratedExplanation {
   };
 }
 
+/// One gene's result, for a drug that depends on more than one (Phase 9 B5).
+///
+/// Shown beside the label, never instead of it: for warfarin the label stays
+/// Unknown, and these rows are what the file did establish. A call is present
+/// only when the backend [assessed] the gene — coverage passed and PharmCAT
+/// called it — so a call made from failed evidence never reaches the screen.
+class GeneFinding {
+  const GeneFinding({
+    required this.gene,
+    required this.role,
+    required this.assessed,
+    this.call = '',
+    this.phenotype = '',
+    this.note = '',
+  });
+
+  final String gene;
+
+  /// `required` when the drug's evidence depends on the gene; `reference`
+  /// when it is shown for context only (CYP4F2 for warfarin).
+  final String role;
+  final bool assessed;
+  final String call;
+  final String phenotype;
+
+  /// Why the gene was not assessed, when it was not.
+  final String note;
+
+  bool get isReference => role == 'reference';
+
+  factory GeneFinding.fromJson(Map<String, dynamic> json) => GeneFinding(
+    gene: _str(json['gene']),
+    role: _str(json['role'], 'required'),
+    assessed: json['assessed'] == true,
+    call: _str(json['call']),
+    phenotype: _str(json['phenotype']),
+    note: _str(json['note']),
+  );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+    'gene': gene,
+    'role': role,
+    'assessed': assessed,
+    'call': call,
+    'phenotype': phenotype,
+    'note': note,
+  };
+}
+
 /// One entry in [AnalyzeResponse.analyses] — exactly one per requested drug.
 class PerDrugResult {
   const PerDrugResult({
@@ -259,6 +308,7 @@ class PerDrugResult {
     required this.pharmacogenomicProfile,
     required this.clinicalRecommendation,
     required this.llmGeneratedExplanation,
+    this.geneFindings = const <GeneFinding>[],
   });
 
   final String drug;
@@ -266,6 +316,10 @@ class PerDrugResult {
   final PharmacogenomicProfile pharmacogenomicProfile;
   final ClinicalRecommendation clinicalRecommendation;
   final LlmGeneratedExplanation llmGeneratedExplanation;
+
+  /// Per-gene rows for multi-gene drugs (azathioprine, warfarin). Empty for
+  /// single-gene drugs and from backends older than Phase 9 B5.
+  final List<GeneFinding> geneFindings;
 
   factory PerDrugResult.fromJson(Map<String, dynamic> json) => PerDrugResult(
     drug: _str(json['drug'], 'unknown'),
@@ -285,14 +339,26 @@ class PerDrugResult {
       (json['llm_generated_explanation'] as Map?)?.cast<String, dynamic>() ??
           const <String, dynamic>{},
     ),
+    geneFindings: json['gene_findings'] is List
+        ? <GeneFinding>[
+            for (final Object? f in json['gene_findings'] as List)
+              if (f is Map) GeneFinding.fromJson(f.cast<String, dynamic>()),
+          ]
+        : const <GeneFinding>[],
   );
 
+  /// `gene_findings` is written only when present, so a payload from an older
+  /// backend round-trips byte for byte.
   Map<String, dynamic> toJson() => <String, dynamic>{
     'drug': drug,
     'risk_assessment': riskAssessment.toJson(),
     'pharmacogenomic_profile': pharmacogenomicProfile.toJson(),
     'clinical_recommendation': clinicalRecommendation.toJson(),
     'llm_generated_explanation': llmGeneratedExplanation.toJson(),
+    if (geneFindings.isNotEmpty)
+      'gene_findings': <Map<String, dynamic>>[
+        for (final GeneFinding f in geneFindings) f.toJson(),
+      ],
   };
 
   Map<String, dynamic> toExportJson() {
@@ -311,6 +377,10 @@ class PerDrugResult {
       'pharmacogenomic_profile': pharmacogenomicProfile.toJson(),
       'clinical_recommendation': clinicalRecommendation.toJson(),
       'llm_generated_explanation': llmGeneratedExplanation.toJson(),
+      if (geneFindings.isNotEmpty)
+        'gene_findings': <Map<String, dynamic>>[
+          for (final GeneFinding f in geneFindings) f.toJson(),
+        ],
     };
   }
 }
@@ -541,8 +611,11 @@ class GuidelineProvenance {
       _versioned('CPIC data', cpicDataVersion, cpicGuidanceSha256),
     if (alleleDefinitionsVersion.isNotEmpty ||
         alleleDefinitionsSha256.isNotEmpty)
-      _versioned('definitions', alleleDefinitionsVersion,
-          alleleDefinitionsSha256),
+      _versioned(
+        'definitions',
+        alleleDefinitionsVersion,
+        alleleDefinitionsSha256,
+      ),
     if (pharmvarRelease.isNotEmpty) 'PharmVar $pharmvarRelease',
     if (explanationsDate.isNotEmpty) 'explanations $explanationsDate',
   ].join(' · ');

@@ -135,7 +135,7 @@ python scripts/run_demo.py --slow
 
 ### 1 · It answers (45s) — S1
 
-**Expect:** `CYP2C19 *2/*2` → PM → **Ineffective**, critical, 7/7 genes at 100%.
+**Expect:** `CYP2C19 *2/*2` → PM → **Ineffective**, critical; input coverage reads 7 of 9 genes at 100% — the demo file predates the VKORC1/CYP4F2 gate (Phase 9 B5), so those two warfarin genes read as not covered.
 
 > "Poor metaboliser. Clopidogrel is a prodrug this patient never activates. The
 > recommendation text is CPIC's own words — we don't write dosing guidance."

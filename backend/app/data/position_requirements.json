@@ -2,7 +2,7 @@
   "_comment": "Required PharmCAT defining positions per gene, plus the minimum coverage at which each gene reliably resolves. Positions extracted from PharmCAT's own pharmcat_positions_3.4.0.vcf INFO/PX field - never transcribed by hand. Regenerate with scripts/build_position_requirements.py",
   "pharmcat_version": "3.4.0",
   "generated_at": "2026-07-26",
-  "threshold_provenance": "Each min_coverage_percent is the lowest level in the measured sweep at which every replicate both resolved to a single diplotype AND agreed with the complete-coverage truth. 120 synthetic samples, 12 random position subsets per level, two genotype backgrounds. See reports/coverage_sensitivity.json and docs/input_requirements.md.",
+  "threshold_provenance": "Each min_coverage_percent is the lowest level in the measured sweep at which every replicate both resolved to a single diplotype AND agreed with the complete-coverage truth. 120 synthetic samples, 12 random position subsets per level, two genotype backgrounds. See reports/coverage_sensitivity.json and docs/input_requirements.md. VKORC1 and CYP4F2 (added in Phase 9 B5) have no coverage sweep: their 100% is a requirement, not a measurement (threshold_measured: false), so every position is required.",
   "genes": {
     "CYP2C19": {
       "required_positions": 35,
@@ -3389,10 +3389,126 @@
       ],
       "decision_critical_count": 140,
       "decision_critical_enforced": false
+    },
+    "VKORC1": {
+      "required_positions": 1,
+      "min_coverage_percent": 100,
+      "measured_wrong_rate_below": {},
+      "threshold_measured": false,
+      "positions": [
+        [
+          "chr16",
+          31096368
+        ]
+      ],
+      "decision_critical_positions": [
+        [
+          "chr16",
+          31096368
+        ]
+      ],
+      "decision_critical_count": 1,
+      "decision_critical_enforced": false
+    },
+    "CYP4F2": {
+      "required_positions": 20,
+      "min_coverage_percent": 100,
+      "measured_wrong_rate_below": {},
+      "threshold_measured": false,
+      "positions": [
+        [
+          "chr19",
+          15878779
+        ],
+        [
+          "chr19",
+          15878886
+        ],
+        [
+          "chr19",
+          15878920
+        ],
+        [
+          "chr19",
+          15879412
+        ],
+        [
+          "chr19",
+          15879413
+        ],
+        [
+          "chr19",
+          15879621
+        ],
+        [
+          "chr19",
+          15886018
+        ],
+        [
+          "chr19",
+          15889671
+        ],
+        [
+          "chr19",
+          15890405
+        ],
+        [
+          "chr19",
+          15892379
+        ],
+        [
+          "chr19",
+          15892398
+        ],
+        [
+          "chr19",
+          15892541
+        ],
+        [
+          "chr19",
+          15895526
+        ],
+        [
+          "chr19",
+          15895527
+        ],
+        [
+          "chr19",
+          15895551
+        ],
+        [
+          "chr19",
+          15895560
+        ],
+        [
+          "chr19",
+          15897466
+        ],
+        [
+          "chr19",
+          15897473
+        ],
+        [
+          "chr19",
+          15897566
+        ],
+        [
+          "chr19",
+          15897578
+        ]
+      ],
+      "decision_critical_positions": [
+        [
+          "chr19",
+          15879621
+        ]
+      ],
+      "decision_critical_count": 1,
+      "decision_critical_enforced": false
     }
   },
   "decision_critical_provenance": {
-    "rule": "a position is decision-critical if it defines any named allele whose functionValue is not 'Normal function'",
+    "rule": "a position is decision-critical if it defines any named allele whose functionValue is not 'Normal function'; for genes PharmCAT assigns no function (VKORC1, CYP4F2), if it defines the allele the CPIC warfarin guideline uses (NAMED_CRITICAL)",
     "derived_by": "scripts/derive_decision_critical.py",
     "translation_source": "definition/alleles/<GENE>_translation.json (variants[], namedAlleles[].alleles[])",
     "function_source": "phenotype/<GENE>.json (namedAlleles[].functionValue)",

@@ -153,7 +153,15 @@ TARGET_GENES: tuple[str, ...] = (
     "NUDT15",
     "DPYD",
     "CYP2D6",
+    "VKORC1",
+    "CYP4F2",
 )
+
+#: Genes PharmCAT calls to a genotype but never to a phenotype: 3.4.0 ships no
+#: phenotype file for them (a test pins this). An empty phenotype is therefore
+#: the normal shape of their call, not a sign that nothing was called. Read for
+#: warfarin, whose result shows them (Phase 9 B5, audit finding F-14).
+GENOTYPE_ONLY_GENES: frozenset[str] = frozenset({"VKORC1", "CYP4F2"})
 
 # PharmCAT cannot resolve CYP2D6 from an unphased VCF: the gene's star alleles
 # depend on structural/copy-number variation that a VCF does not express. It
@@ -719,7 +727,7 @@ def _parse_gene(symbol: str, block: dict) -> PharmcatGeneCall:
     uncalled = (
         not labels
         or label in (None, "Unknown/Unknown")
-        or phenotype_raw in (None, "No Result")
+        or (symbol not in GENOTYPE_ONLY_GENES and phenotype_raw in (None, "No Result"))
     )
 
     if call_source == "NONE":
