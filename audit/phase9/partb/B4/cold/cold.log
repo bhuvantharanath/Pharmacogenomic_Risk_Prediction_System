@@ -1,0 +1,6 @@
+cold1 idle from 2026-11-04T14:57:02Z for 20 min
+cold1 render log read rc=0 for 2026-11-04T14:57:02Z..2026-11-04T15:17:02Z
+cold1 done 2026-11-04T15:17:25Z
+cold2 idle from 2026-11-04T15:17:25Z for 20 min
+cold2 render log read rc=0 for 2026-11-04T15:17:25Z..2026-11-04T15:37:25Z
+cold2 done 2026-11-04T15:37:48Z

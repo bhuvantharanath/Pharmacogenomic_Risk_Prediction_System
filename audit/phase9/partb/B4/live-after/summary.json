@@ -1,0 +1,29 @@
+{
+  "base": "https://pharmaguard-api-baml.onrender.com",
+  "coverage": {
+    "n_ok": 5,
+    "n": 5,
+    "seconds": [
+      1.213,
+      0.318,
+      0.895,
+      0.479,
+      0.296
+    ],
+    "p50": 0.479
+  },
+  "analyze": {
+    "n_ok": 5,
+    "n": 5,
+    "seconds": [
+      70.21,
+      67.297,
+      68.197,
+      67.196,
+      65.792
+    ],
+    "p50": 67.297,
+    "p95_nearest_rank": 70.21,
+    "note": "n=5: nearest-rank p95 equals the maximum"
+  }
+}

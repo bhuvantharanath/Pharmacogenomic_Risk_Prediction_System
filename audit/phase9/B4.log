@@ -54,3 +54,48 @@ AC4 (amended) PASS on the measurements above: no wrapper, jar 9317ef63..., tini 
 testvcf_genes.json (23 MB each, kept local, not committed):
 dbc48e08ba2801b2fbb6feda3da661088e82687f7f033432cab5a05ebcccf09f  audit/phase9/partb/B4/old/testvcf_genes.json
 dbc48e08ba2801b2fbb6feda3da661088e82687f7f033432cab5a05ebcccf09f  audit/phase9/partb/B4/slim/testvcf_genes.json
+
+== Live baseline before deploy (current deploy acf90e9; audit/phase9/partb/B4/live-before) ==
+warm /analyze n=5 seconds [66.507, 67.26, 62.709, 63.095, 63.093], p50 63.095 s; /coverage p50 0.322 s
+AC7 limit therefore: slim p50 <= 69.40 s. Render memory metric during this window: max 308.8 MiB (render_api.py, 60 s points).
+
+== Push and deploy (owner: "Amend AC4, push, deploy") ==
+pushed b25042a..d04edf2 to main (Deploy run created 2026-11-04T14:39:22Z): B1 82059b2 24a4398, B2 a27f0b1 500748c, B3 9f60d2b 2fc87c8, B4 0652691 d04edf2
+Deploy workflow run 41849728734 (release gate -> Render -> Pages); test workflow run 41849728774
+
+== After deploy (live d04edf2, same session; audit/phase9/partb/B4/live-after, live-after-s1s6) ==
+Deploy run 41849728734: release gate success, Render backend success (slim image built on Render's amd64 builder,
+commit-pinned /ready), Cloudflare Pages success.
+warm /analyze n=5 seconds [70.21, 67.297, 68.197, 67.196, 65.792], p50 67.297 s; /coverage p50 0.479 s
+AC7 PASS  67.297 <= 63.095 x 1.10 = 69.40 s (ratio 1.067).
+Live S1-S6 (verify_postdeploy.py vs local B3 S1-S6): commit matches, 6/6 labels equal, template-only prose,
+disclaimer equal: all_pass true (audit/phase9/partb/B4/postdeploy_verification.json).
+
+== Cold starts on Render (AC6; b4_cold.sh / b4_cold_chain.sh; raw Render logs kept local) ==
+Render's own health checker calls /health every 5 s from internal addresses while an instance is up; those are not
+visitor traffic. A cold start counts only with no visitor request in the window, a logged shutdown, and a fresh
+server process after the probe.
+cold1  idle 14:57:02Z..15:17:02Z. Last health check 15:11:55; log: "Shutting down" .. "Finished server process [7]"
+       at 15:12:00; no visitor request. Probe 15:17:02Z -> HTTP 200, total 22.40 s; "Started server process" 15:17:19.
+       VERIFIED.
+cold2  idle 15:17:25Z..15:37:25Z. Health checks stop at 15:29:59, then 7.5 min with no log line; no visitor request.
+       Probe 15:37:26Z -> HTTP 200, 22.35 s; new server process 15:37:41 on a different internal host. The log has
+       NO explicit shutdown line for this window, so it does not meet AC6's "shutdown seen in Render's log":
+       reported, not counted.
+cold3  after cold2: health checks until 15:52:48, then "Shutting down" .. "Finished server process [7]" at 15:52:48;
+       no visitor request and no restart until the probe (3 h 43 min down). Probe 19:36:11Z -> HTTP 200, 22.45 s;
+       "Started server process" 19:36:26. VERIFIED.
+AC6 PASS  two verified cold starts, 22.40 s and 22.45 s, each < 82.4 s (Part A baseline). The unverified sample was
+          22.35 s.
+
+== Render memory and events (AC8; render_api.py, read-only) ==
+memory metric, 60 s points, 14:40Z..19:36Z: slim instance that served the post-deploy measurements peak 306.8 MiB
+(14:56Z); cold-start instances 41.5-50.2 MiB; old instance before cutover 62.2 MiB. Before deploy, the old image's
+instance peaked at 308.8 MiB during the baseline window.
+events 14:35Z..19:36Z: build_started 14:42:49, build_ended 14:43:14 (succeeded; a 25 s build), deploy_started 14:42:49,
+deploy_ended 14:43:36 (succeeded). No failure, restart or OOM event.
+AC8 PASS  306.8 MiB < 512 MiB; no OOM event.
+
+== B4 verdicts (all) ==
+AC1 PASS (584 MB)  AC2 PASS (6/6, 74/74 identical)  AC3 PASS (335.0 <= 348.0 MiB x 1.05)  AC4 PASS as amended (/ready)
+AC5 PASS (sabotages)  AC6 PASS (22.40 s, 22.45 s vs 82.4 s)  AC7 PASS (67.3 s <= 69.4 s)  AC8 PASS (306.8 MiB, no OOM)

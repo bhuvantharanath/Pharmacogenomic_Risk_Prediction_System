@@ -1,0 +1,40 @@
+{"label": "coverage-1", "path": "/coverage", "vcf": "demo_confident.vcf", "drugs": null, "started_utc": "2026-11-04T14:32:06+00:00", "status": 200, "seconds": 0.317, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": null}
+{"label": "coverage-2", "path": "/coverage", "vcf": "demo_confident.vcf", "drugs": null, "started_utc": "2026-11-04T14:32:06+00:00", "status": 200, "seconds": 0.418, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": null}
+{"label": "coverage-3", "path": "/coverage", "vcf": "demo_confident.vcf", "drugs": null, "started_utc": "2026-11-04T14:32:07+00:00", "status": 200, "seconds": 0.319, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": null}
+{"label": "coverage-4", "path": "/coverage", "vcf": "demo_confident.vcf", "drugs": null, "started_utc": "2026-11-04T14:32:07+00:00", "status": 200, "seconds": 0.624, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": null}
+{"label": "coverage-5", "path": "/coverage", "vcf": "demo_confident.vcf", "drugs": null, "started_utc": "2026-11-04T14:32:08+00:00", "status": 200, "seconds": 0.322, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": null}
+{"label": "analyze-1", "path": "/analyze", "vcf": "demo_confident.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-04T14:32:08+00:00", "status": 200, "seconds": 66.507, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 66170}
+{"label": "analyze-2", "path": "/analyze", "vcf": "demo_confident.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-04T14:33:14+00:00", "status": 200, "seconds": 67.26, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 66940}
+{"label": "analyze-3", "path": "/analyze", "vcf": "demo_confident.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-04T14:34:22+00:00", "status": 200, "seconds": 62.709, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 62399}
+{"label": "analyze-4", "path": "/analyze", "vcf": "demo_confident.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-04T14:35:24+00:00", "status": 200, "seconds": 63.095, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 62778}
+{"label": "analyze-5", "path": "/analyze", "vcf": "demo_confident.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-04T14:36:28+00:00", "status": 200, "seconds": 63.093, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 62704}
+{
+  "base": "https://pharmaguard-api-baml.onrender.com",
+  "coverage": {
+    "n_ok": 5,
+    "n": 5,
+    "seconds": [
+      0.317,
+      0.418,
+      0.319,
+      0.624,
+      0.322
+    ],
+    "p50": 0.322
+  },
+  "analyze": {
+    "n_ok": 5,
+    "n": 5,
+    "seconds": [
+      66.507,
+      67.26,
+      62.709,
+      63.095,
+      63.093
+    ],
+    "p50": 63.095,
+    "p95_nearest_rank": 67.26,
+    "note": "n=5: nearest-rank p95 equals the maximum"
+  }
+}
+rc=0

@@ -1,0 +1,330 @@
+[
+ {
+  "labels": [
+   {
+    "field": "service",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   },
+   {
+    "field": "resource",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   },
+   {
+    "field": "instance",
+    "value": "srv-d9ulbovqj5pc73fsu7hg-wd2rn"
+   }
+  ],
+  "unit": "bytes",
+  "values": [
+   {
+    "timestamp": "2026-11-04T14:40:00Z",
+    "value": 65245184
+   },
+   {
+    "timestamp": "2026-11-04T14:41:00Z",
+    "value": 65245184
+   },
+   {
+    "timestamp": "2026-11-04T14:42:00Z",
+    "value": 65245184
+   },
+   {
+    "timestamp": "2026-11-04T14:43:00Z",
+    "value": 65245184
+   }
+  ]
+ },
+ {
+  "labels": [
+   {
+    "field": "instance",
+    "value": "srv-d9ulbovqj5pc73fsu7hg-nlk4t"
+   },
+   {
+    "field": "service",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   },
+   {
+    "field": "resource",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   }
+  ],
+  "unit": "bytes",
+  "values": [
+   {
+    "timestamp": "2026-11-04T14:44:00Z",
+    "value": 52834304
+   },
+   {
+    "timestamp": "2026-11-04T14:45:00Z",
+    "value": 115556350
+   },
+   {
+    "timestamp": "2026-11-04T14:46:00Z",
+    "value": 313880580
+   },
+   {
+    "timestamp": "2026-11-04T14:47:00Z",
+    "value": 314687500
+   },
+   {
+    "timestamp": "2026-11-04T14:48:00Z",
+    "value": 248913920
+   },
+   {
+    "timestamp": "2026-11-04T14:49:00Z",
+    "value": 310562800
+   },
+   {
+    "timestamp": "2026-11-04T14:50:00Z",
+    "value": 230088700
+   },
+   {
+    "timestamp": "2026-11-04T14:51:00Z",
+    "value": 232095740
+   },
+   {
+    "timestamp": "2026-11-04T14:52:00Z",
+    "value": 129413120
+   },
+   {
+    "timestamp": "2026-11-04T14:53:00Z",
+    "value": 111079420
+   },
+   {
+    "timestamp": "2026-11-04T14:54:00Z",
+    "value": 111136770
+   },
+   {
+    "timestamp": "2026-11-04T14:55:00Z",
+    "value": 117305340
+   },
+   {
+    "timestamp": "2026-11-04T14:56:00Z",
+    "value": 321724400
+   },
+   {
+    "timestamp": "2026-11-04T14:57:00Z",
+    "value": 312049660
+   },
+   {
+    "timestamp": "2026-11-04T14:58:00Z",
+    "value": 58626050
+   },
+   {
+    "timestamp": "2026-11-04T14:59:00Z",
+    "value": 58626050
+   },
+   {
+    "timestamp": "2026-11-04T15:00:00Z",
+    "value": 58626050
+   },
+   {
+    "timestamp": "2026-11-04T15:01:00Z",
+    "value": 58626050
+   },
+   {
+    "timestamp": "2026-11-04T15:02:00Z",
+    "value": 58626050
+   },
+   {
+    "timestamp": "2026-11-04T15:03:00Z",
+    "value": 58626050
+   },
+   {
+    "timestamp": "2026-11-04T15:04:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:05:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:06:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:07:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:08:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:09:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:10:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:11:00Z",
+    "value": 58654720
+   },
+   {
+    "timestamp": "2026-11-04T15:12:00Z",
+    "value": 58654720
+   }
+  ]
+ },
+ {
+  "labels": [
+   {
+    "field": "instance",
+    "value": "srv-d9ulbovqj5pc73fsu7hg-9k8dq"
+   },
+   {
+    "field": "service",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   },
+   {
+    "field": "resource",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   }
+  ],
+  "unit": "bytes",
+  "values": [
+   {
+    "timestamp": "2026-11-04T15:38:00Z",
+    "value": 51695616
+   },
+   {
+    "timestamp": "2026-11-04T15:39:00Z",
+    "value": 52432896
+   },
+   {
+    "timestamp": "2026-11-04T15:40:00Z",
+    "value": 52469760
+   },
+   {
+    "timestamp": "2026-11-04T15:41:00Z",
+    "value": 52473856
+   },
+   {
+    "timestamp": "2026-11-04T15:42:00Z",
+    "value": 52527104
+   },
+   {
+    "timestamp": "2026-11-04T15:43:00Z",
+    "value": 52592640
+   },
+   {
+    "timestamp": "2026-11-04T15:44:00Z",
+    "value": 52649984
+   },
+   {
+    "timestamp": "2026-11-04T15:45:00Z",
+    "value": 52654080
+   },
+   {
+    "timestamp": "2026-11-04T15:46:00Z",
+    "value": 44892160
+   },
+   {
+    "timestamp": "2026-11-04T15:47:00Z",
+    "value": 44896256
+   },
+   {
+    "timestamp": "2026-11-04T15:48:00Z",
+    "value": 44904450
+   },
+   {
+    "timestamp": "2026-11-04T15:49:00Z",
+    "value": 44961790
+   },
+   {
+    "timestamp": "2026-11-04T15:50:00Z",
+    "value": 44961790
+   },
+   {
+    "timestamp": "2026-11-04T15:51:00Z",
+    "value": 44961790
+   },
+   {
+    "timestamp": "2026-11-04T15:52:00Z",
+    "value": 44969984
+   }
+  ]
+ },
+ {
+  "labels": [
+   {
+    "field": "instance",
+    "value": "srv-d9ulbovqj5pc73fsu7hg-tj569"
+   },
+   {
+    "field": "service",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   },
+   {
+    "field": "resource",
+    "value": "srv-d9ulbovqj5pc73fsu7hg"
+   }
+  ],
+  "unit": "bytes",
+  "values": [
+   {
+    "timestamp": "2026-11-04T15:18:00Z",
+    "value": 43126784
+   },
+   {
+    "timestamp": "2026-11-04T15:19:00Z",
+    "value": 43200510
+   },
+   {
+    "timestamp": "2026-11-04T15:20:00Z",
+    "value": 43208704
+   },
+   {
+    "timestamp": "2026-11-04T15:21:00Z",
+    "value": 43237376
+   },
+   {
+    "timestamp": "2026-11-04T15:22:00Z",
+    "value": 43315200
+   },
+   {
+    "timestamp": "2026-11-04T15:23:00Z",
+    "value": 43376640
+   },
+   {
+    "timestamp": "2026-11-04T15:24:00Z",
+    "value": 43393024
+   },
+   {
+    "timestamp": "2026-11-04T15:25:00Z",
+    "value": 43397120
+   },
+   {
+    "timestamp": "2026-11-04T15:26:00Z",
+    "value": 43405310
+   },
+   {
+    "timestamp": "2026-11-04T15:27:00Z",
+    "value": 43405310
+   },
+   {
+    "timestamp": "2026-11-04T15:28:00Z",
+    "value": 43425790
+   },
+   {
+    "timestamp": "2026-11-04T15:29:00Z",
+    "value": 43458560
+   },
+   {
+    "timestamp": "2026-11-04T15:30:00Z",
+    "value": 43458560
+   },
+   {
+    "timestamp": "2026-11-04T15:31:00Z",
+    "value": 43458560
+   },
+   {
+    "timestamp": "2026-11-04T15:32:00Z",
+    "value": 43466750
+   }
+  ]
+ }
+]
