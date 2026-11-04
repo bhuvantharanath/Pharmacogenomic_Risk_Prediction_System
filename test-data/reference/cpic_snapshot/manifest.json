@@ -1,0 +1,17 @@
+{
+ "source": "CPIC public API (PostgREST)",
+ "api": "https://api.cpicpgx.org/v1",
+ "fetched_utc": "2026-11-04T06:46:39+00:00",
+ "files": {
+  "allele.json": {
+   "url": "https://api.cpicpgx.org/v1/allele?genesymbol=in.(CYP2C19,CYP2C9,SLCO1B1,TPMT,NUDT15,DPYD)&select=genesymbol,name,clinicalfunctionalstatus,activityvalue&order=genesymbol,name",
+   "rows": 346,
+   "sha256": "c6e9b79c1aa6c5576312fc2affac66837d8e8b4271eaf425ad04abfe9846cf47"
+  },
+  "recommendation.json": {
+   "url": "https://api.cpicpgx.org/v1/recommendation_view?drugname=in.(azathioprine,capecitabine,clopidogrel,codeine,fluorouracil,simvastatin,warfarin)&select=drugname,guidelinename,lookupkey,population,classification,drugrecommendation,implications&order=drugname,population",
+   "rows": 97,
+   "sha256": "2e45951ab44cfee7edc58ea910d0e61b90d10aa1c37d9d310e58b4abfa167f5f"
+  }
+ }
+}

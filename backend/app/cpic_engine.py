@@ -479,6 +479,46 @@ def _annotation_matches_calls(
     return False
 
 
+def compound_phenotypes(
+    annotation: CpicAnnotation, report: PharmcatReport, mapping: dict | None = None
+) -> list[tuple[str, str]]:
+    """
+    The non-normal phenotypes a multi-gene CPIC row was selected for.
+
+    CPIC's 2025 thiopurine update keys some rows on both genes at once: a TPMT
+    and NUDT15 compound intermediate metabolizer starts at 20-50% of the standard
+    dose, not the 30-80% either gene alone would get. The result card shows one
+    gene, so without this the second gene that changed the recommendation is
+    invisible (Phase 9 audit F-13).
+
+    Uses the same matching rules as `_annotation_matches_calls`, so it can only
+    describe the row that was actually selected. Returns (gene, CPIC phenotype
+    wording) pairs, and only when two or more of them are asserted and not
+    normal; otherwise empty.
+    """
+    cfg = mapping or load_mapping()
+    for entry in annotation.lookup_key:
+        abnormal: list[tuple[str, str]] = []
+        compared = 0
+        for gene_symbol, phenotype in entry.items():
+            call = report.gene(gene_symbol)
+            if call is None:
+                continue
+            resolved = resolve_phenotype(call, cfg)
+            if not resolved.asserted or not resolved.lookup_keys:
+                continue
+            compared += 1
+            called = {k.strip().lower() for k in resolved.lookup_keys}
+            if phenotype.strip().lower() not in called:
+                break
+            if map_phenotype(phenotype, cfg) not in (Phenotype.NM, Phenotype.UNKNOWN):
+                abnormal.append((gene_symbol, phenotype))
+        else:
+            if compared:
+                return abnormal if len(abnormal) >= 2 else []
+    return []
+
+
 def select_annotation(
     guideline: CpicDrugGuideline, report: PharmcatReport
 ) -> tuple[CpicAnnotation | None, list[str]]:
@@ -849,6 +889,15 @@ def evaluate(
                 f"{phenotype.value}, so the functional result is reported with "
                 f"confidence while the exact diplotype remains undetermined."
             )
+    compound = compound_phenotypes(annotation, report, cfg)
+    if compound:
+        shown = gene_call.gene if gene_call else compound[0][0]
+        warnings.append(
+            f"{key}: CPIC's recommendation here is for the combined result "
+            f"{' and '.join(f'{gene} {wording}' for gene, wording in compound)}, "
+            f"not for either gene alone. The result shows {shown}, but every gene "
+            f"named here changed the recommendation."
+        )
     # Routed through the shared derivation so runtime and build time cannot
     # disagree. The early gate above already handles the unasserted case;
     # this is the second layer, and it is deliberate.

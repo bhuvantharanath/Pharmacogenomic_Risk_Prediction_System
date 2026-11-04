@@ -7,6 +7,8 @@ suite run with **no PharmCAT, no Java and no Docker** installed.
 | --- | --- |
 | `pharmcat_report_cyp2c19_pm.json` | `CYP2C19 *2/*2` (Poor Metaboliser), everything else reference |
 | `pharmcat_report_dpyd_im.json` | `DPYD c.1905+1G>A (*2A)` heterozygote (Intermediate Metaboliser) |
+| `pharmcat_report_tpmt_im_nudt15_im.json` | `TPMT *1/*3C` + `NUDT15 *1/*3` — the 2025 CPIC compound intermediate metabolizer (Phase 9 B1); run with `java -jar pharmcat-3.4.0-all.jar -vcf … -reporterJson` |
+| `pharmcat_report_tpmt_im_nudt15_nm.json` | `TPMT *1/*3C` + `NUDT15 *1/*1` — single-gene TPMT intermediate metabolizer, the control for the compound case |
 
 ## What "trimmed" means
 

@@ -1,0 +1,2078 @@
+[
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C19",
+  "name": "*1"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C19",
+  "name": "*10"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C19",
+  "name": "*11"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*12"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C19",
+  "name": "*13"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*14"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C19",
+  "name": "*15"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C19",
+  "name": "*16"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Increased function",
+  "genesymbol": "CYP2C19",
+  "name": "*17"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C19",
+  "name": "*18"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C19",
+  "name": "*19"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*2"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*22"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*23"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*24"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C19",
+  "name": "*25"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C19",
+  "name": "*26"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C19",
+  "name": "*28"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*29"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*3"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*30"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*31"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*32"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*33"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*34"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*35"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*36"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*37"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C19",
+  "name": "*38"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C19",
+  "name": "*39"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*4"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*40"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*41"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*42"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*43"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*44"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*45"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*46"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*47"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*48"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*49"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*5"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*50"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*51"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C19",
+  "name": "*52"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*6"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*7"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C19",
+  "name": "*8"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C19",
+  "name": "*9"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C9",
+  "name": "*1"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*10"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*11"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*12"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*13"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*14"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*15"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*16"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*17"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*18"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*19"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*2"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*20"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*21"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*22"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*23"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*24"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*25"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*26"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*27"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*28"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*29"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*3"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*30"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*31"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*32"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*33"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*34"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*35"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*36"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*37"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*38"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*39"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*4"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*40"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*41"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*42"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*43"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*44"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*45"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*46"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*47"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*48"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*49"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*5"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*50"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*51"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*52"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*53"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*54"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*55"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*56"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "CYP2C9",
+  "name": "*57"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*58"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*59"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "CYP2C9",
+  "name": "*6"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*60"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*61"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*62"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*63"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*64"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*65"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*66"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*67"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*68"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*69"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*7"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*70"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "CYP2C9",
+  "name": "*71"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "CYP2C9",
+  "name": "*72"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "CYP2C9",
+  "name": "*73"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "CYP2C9",
+  "name": "*74"
+ },
+ {
+  "activityvalue": "n/a",
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "CYP2C9",
+  "name": "*75"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*76"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*77"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*78"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*79"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "CYP2C9",
+  "name": "*8"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*80"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*81"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*82"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*83"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*84"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*85"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*86"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*87"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*88"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*89"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "CYP2C9",
+  "name": "*9"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*90"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*91"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*92"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*93"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "CYP2C9",
+  "name": "*94"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "Reference"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1003G>T (*11)"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1024G>A"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1057C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1108A>G"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "DPYD",
+  "name": "c.1129-5923C>G"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "DPYD",
+  "name": "c.1129-5923C>G, c.1236G>A (HapB3)"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1156G>T (*12)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1180C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1181G>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1218G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1260T>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1278G>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1294G>A"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "DPYD",
+  "name": "c.1314T>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1349C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1358C>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1371C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1403C>A"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1475C>T"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1484A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1519G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1543G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1577C>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1601G>A (*4)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1615G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1627A>G (*5)"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1679T>G (*13)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1682G>T"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1774C>T"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1775G>A"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1777G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1796T>C"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1896T>C"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1898delC (*3)"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.1905+1G>A (*2A)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1905C>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1906A>C"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.1990G>T"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.2021G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2161G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2186C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2194G>A (*6)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2195T>G"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "DPYD",
+  "name": "c.2279C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2303C>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2336C>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2482G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2582A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2623A>C"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.2639G>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2656C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2657G>A (*9B)"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "DPYD",
+  "name": "c.2846A>T"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.2872A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2915A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2921A>T"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.2933A>G"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.295_298delTCAT (*7)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2977C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.2978T>G"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.2983G>T (*10)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.3049G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.3061G>C"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.3067C>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.313G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.343A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.451A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.46C>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.496A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.498G>A"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.525G>A"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "DPYD",
+  "name": "c.557A>G"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.601A>C"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.61C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.62G>A"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.632A>G"
+ },
+ {
+  "activityvalue": "0.0",
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "DPYD",
+  "name": "c.703C>T (*8)"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.775A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.85T>C (*9A)"
+ },
+ {
+  "activityvalue": "0.5",
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "DPYD",
+  "name": "c.868A>G"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.929T>C"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.934C>T"
+ },
+ {
+  "activityvalue": "1.0",
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "DPYD",
+  "name": "c.967G>A"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "NUDT15",
+  "name": "*1"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*10"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*11"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*12"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*13"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*14"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*15"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*16"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*17"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*18"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*19"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*2"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*20"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*21"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*22"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "NUDT15",
+  "name": "*23"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*3"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*4"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "NUDT15",
+  "name": "*5"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*6"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*7"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "NUDT15",
+  "name": "*8"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "NUDT15",
+  "name": "*9"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "SLCO1B1",
+  "name": "*1"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*10"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*11"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Increased function",
+  "genesymbol": "SLCO1B1",
+  "name": "*14"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*15"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*16"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*19"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*2"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Increased function",
+  "genesymbol": "SLCO1B1",
+  "name": "*20"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*23"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*24"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*25"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*26"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*27"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*28"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*29"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*30"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*31"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*32"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*33"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*34"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*36"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "SLCO1B1",
+  "name": "*37"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*39"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*4"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*40"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*41"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*42"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "SLCO1B1",
+  "name": "*43"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "SLCO1B1",
+  "name": "*44"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*45"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*47"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*48"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*49"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*5"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*50"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*51"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*52"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*53"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*54"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*55"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*56"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*57"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": null,
+  "genesymbol": "SLCO1B1",
+  "name": "*58"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*6"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "SLCO1B1",
+  "name": "*8"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "SLCO1B1",
+  "name": "*9"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Normal function",
+  "genesymbol": "TPMT",
+  "name": "*1"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*10"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*11"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "TPMT",
+  "name": "*12"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*13"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*14"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*15"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*16"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*17"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*18"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "TPMT",
+  "name": "*19"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*2"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*20"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*21"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*22"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*23"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "TPMT",
+  "name": "*24"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*25"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*26"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*27"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*28"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*29"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "TPMT",
+  "name": "*30"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*31"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "TPMT",
+  "name": "*32"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*33"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*34"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "TPMT",
+  "name": "*35"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Unknown function",
+  "genesymbol": "TPMT",
+  "name": "*36"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*37"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*38"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*39"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*3A"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*3B"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*3C"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*4"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "TPMT",
+  "name": "*40"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*41"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*42"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*43"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*44"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*45"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*46"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*47"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*5"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*6"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "No function",
+  "genesymbol": "TPMT",
+  "name": "*7"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Decreased function",
+  "genesymbol": "TPMT",
+  "name": "*8"
+ },
+ {
+  "activityvalue": null,
+  "clinicalfunctionalstatus": "Uncertain function",
+  "genesymbol": "TPMT",
+  "name": "*9"
+ }
+]

@@ -1,0 +1,18 @@
+   azathioprine/TPMT/IM: stored label 'Safe'; current label for its CPIC row ['Adjust Dosage'] (4 matching rows); content_hash 165675b3dd76a2a0; approval unresolved
+   azathioprine/NUDT15/NM: stored label 'Safe'; current label for its CPIC row ['No PGx-guided adjustment identified'] (1 matching rows); content_hash 9c8fda477cf31858; approval unresolved
+   azathioprine/TPMT/PM: stored label 'Toxic'; current label for its CPIC row ['Toxic'] (11 matching rows); content_hash ca9271f3b88e589c; approval unresolved
+   clopidogrel/CYP2C19/IM: stored label 'Ineffective'; current label for its CPIC row ['Ineffective'] (1 matching rows); content_hash 4493612b6afeff10; approval unresolved
+   clopidogrel/CYP2C19/NM: stored label 'Safe'; current label for its CPIC row ['No PGx-guided adjustment identified'] (5 matching rows); content_hash 2782e5e684ff2590; approval unresolved
+   clopidogrel/CYP2C19/PM: stored label 'Ineffective'; current label for its CPIC row ['Ineffective'] (4 matching rows); content_hash 180ea78ddeb92bc4; approval unresolved
+   clopidogrel/CYP2C19/RM: stored label 'Safe'; current label for its CPIC row ['No PGx-guided adjustment identified'] (5 matching rows); content_hash ad33a801e57ff51f; approval unresolved
+   clopidogrel/CYP2C19/URM: stored label 'Safe'; current label for its CPIC row ['No PGx-guided adjustment identified'] (5 matching rows); content_hash e5615a782817e143; approval unresolved
+   fluorouracil/DPYD/IM: stored label 'Adjust Dosage'; current label for its CPIC row ['Adjust Dosage'] (1 matching rows); content_hash 5350de17a57b0f6d; approval unresolved
+   fluorouracil/DPYD/NM: stored label 'Safe'; current label for its CPIC row ['No PGx-guided adjustment identified'] (1 matching rows); content_hash 2774def9190902cd; approval unresolved
+   fluorouracil/DPYD/PM: stored label 'Toxic'; current label for its CPIC row ['Toxic'] (1 matching rows); content_hash 9ddea44ad8cceee5; approval unresolved
+   simvastatin/SLCO1B1/IM: stored label 'Adjust Dosage'; current label for its CPIC row ['Toxic'] (2 matching rows); content_hash 13f0895bcaaae4f3; approval unresolved
+   simvastatin/SLCO1B1/NM: stored label 'Safe'; current label for its CPIC row ['No PGx-guided adjustment identified'] (2 matching rows); content_hash b6dd45959e8ed30f; approval unresolved
+   simvastatin/SLCO1B1/PM: stored label 'Adjust Dosage'; current label for its CPIC row ['Toxic'] (1 matching rows); content_hash 7a9a3d57d44821ae; approval unresolved
+checked 14 | stale label bindings: 3
+STALE azathioprine/TPMT/IM: stored label 'Safe'; current label for its CPIC row ['Adjust Dosage'] (4 matching rows); content_hash 165675b3dd76a2a0; approval unresolved
+STALE simvastatin/SLCO1B1/IM: stored label 'Adjust Dosage'; current label for its CPIC row ['Toxic'] (2 matching rows); content_hash 13f0895bcaaae4f3; approval unresolved
+STALE simvastatin/SLCO1B1/PM: stored label 'Adjust Dosage'; current label for its CPIC row ['Toxic'] (1 matching rows); content_hash 7a9a3d57d44821ae; approval unresolved

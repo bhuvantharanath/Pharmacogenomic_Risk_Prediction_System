@@ -1,0 +1,8 @@
+B1 plan written 2026-11-04T06:43:50Z
+a7fc56c78a12da0a97bccf7aa1ce26efa566c36e752d11452814f0a83892cfb5  audit/phase9/B1_PLAN.md
+SB1-a vendored CPIC text mutated: rc=1 failing=['test_the_vendored_snapshot_is_intact_and_dated', 'test_the_jar_agrees_with_cpic_except_the_enumerated_rows', 'test_no_recommendation_text_differs_for_an_implemented_drug']
+   restored test-data/reference/cpic_snapshot/recommendation.json byte-exact
+SB1-b compound warning removed: rc=1 failing=['test_the_compound_case_names_both_genes', 'test_end_to_end_compound_vcf_through_pharmcat']
+   restored backend/app/cpic_engine.py byte-exact
+SB1-c required position changed: rc=1 failing=['test_required_positions_regenerate_from_pharmcats_positions_vcf']
+   restored backend/app/data/position_requirements.json byte-exact
