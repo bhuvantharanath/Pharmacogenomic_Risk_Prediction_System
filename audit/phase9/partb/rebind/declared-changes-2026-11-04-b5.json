@@ -1,0 +1,30 @@
+{
+ "input_eligibility.tsv": [
+  {
+   "gene": "CYP2C9",
+   "field": "eligibility_reason",
+   "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+   "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+   "rows": 208,
+   "why": "Phase 9 B5: a refusal names the missing genes a file could supply before the limitation, and warfarin's limitation now quotes CPIC's algorithm text."
+  },
+  {
+   "gene": "CYP2C9",
+   "field": "missing_dependency_genes",
+   "from": "CYP2C9",
+   "to": "CYP2C9,VKORC1",
+   "rows": 208,
+   "why": "Phase 9 B5: warfarin depends on CYP2C9 and VKORC1; the benchmark slices carry no chr16 rows, so VKORC1 is missing for every individual."
+  }
+ ],
+ "discrepancies.tsv": [
+  {
+   "gene": "CYP2C9",
+   "field": "detail",
+   "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+   "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+   "rows": 100,
+   "why": "Phase 9 B5: the discrepancy detail repeats the warfarin eligibility reason, which now names CYP2C9 and VKORC1 and quotes CPIC."
+  }
+ ]
+}

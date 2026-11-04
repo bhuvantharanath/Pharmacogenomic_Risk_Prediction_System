@@ -164,3 +164,58 @@ def test_false_cyp2c19_inclusion_claim_fails_verification(tmp_path) -> None:
 
     assert result["compatible"] is False
     assert any("CYP2C19_star2_definition.status" in item for item in result["problems"])
+
+
+# --------------------------------------------------------------------------- #
+# Re-bind comparisons: only the VCF hash, plus exactly declared changes
+# (Phase 9 B5 made the first application change that alters eligibility text)
+# --------------------------------------------------------------------------- #
+
+_CHANGE = {"gene": "CYP2C9", "field": "missing_dependency_genes", "from": "CYP2C9",
+           "to": "CYP2C9,VKORC1", "rows": 208, "why": "B5: warfarin also depends on VKORC1"}
+
+
+def _comparison(**overrides) -> dict:
+    base = {"all_metric_fields_equal_except_generation_time": True,
+            "representative_biological_records_equal": True,
+            "differing_eligibility_fields": {"vcf_sha256": 1456},
+            "declared_eligibility_changes": []}
+    base.update(overrides)
+    return base
+
+
+def test_a_hash_only_comparison_is_supported() -> None:
+    assert bundle.comparison_supports_result(_comparison())
+
+
+def test_an_undeclared_eligibility_change_is_refused() -> None:
+    assert not bundle.comparison_supports_result(_comparison(
+        differing_eligibility_fields={"vcf_sha256": 1456, "missing_dependency_genes": 208}))
+
+
+def test_an_exactly_declared_change_is_supported() -> None:
+    assert bundle.comparison_supports_result(_comparison(
+        differing_eligibility_fields={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        declared_eligibility_changes=[_CHANGE]))
+
+
+def test_a_declaration_that_does_not_add_up_is_refused() -> None:
+    assert not bundle.comparison_supports_result(_comparison(
+        differing_eligibility_fields={"vcf_sha256": 1456, "missing_dependency_genes": 207},
+        declared_eligibility_changes=[_CHANGE]))
+
+
+def test_a_declaration_without_a_reason_or_widening_the_hash_is_refused() -> None:
+    no_why = {**_CHANGE, "why": " "}
+    widened = {**_CHANGE, "field": "vcf_sha256"}
+    for change in (no_why, widened):
+        assert not bundle.comparison_supports_result(_comparison(
+            differing_eligibility_fields={"vcf_sha256": 1456, change["field"]: 208},
+            declared_eligibility_changes=[change]))
+
+
+def test_changed_metrics_are_refused_even_when_declared() -> None:
+    assert not bundle.comparison_supports_result(_comparison(
+        all_metric_fields_equal_except_generation_time=False,
+        differing_eligibility_fields={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        declared_eligibility_changes=[_CHANGE]))

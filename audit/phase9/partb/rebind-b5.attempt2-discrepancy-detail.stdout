@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 445, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 423, in main
+    summary = compare(copy, previous, args.why, declared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 187, in compare
+    assert sha(R / B / name) == sha(copy / B / name), name
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: discrepancies.tsv
+rebind rc=1

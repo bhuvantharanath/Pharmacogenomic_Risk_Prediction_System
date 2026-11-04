@@ -146,7 +146,17 @@ def differing(before: list[dict], after: list[dict]) -> tuple[dict, set]:
     return dict(counter), samples
 
 
-def compare(copy: Path, previous: Path, why: str) -> dict:
+def detailed(before: list[dict], after: list[dict]) -> dict:
+    """Every non-hash eligibility change as (gene, field, from, to) -> rows."""
+    out: collections.Counter = collections.Counter()
+    for a, b in zip(before, after):
+        for key in a:
+            if key != "vcf_sha256" and a[key] != b[key]:
+                out[(a["gene"], key, a[key], b[key])] += 1
+    return dict(out)
+
+
+def compare(copy: Path, previous: Path, why: str, declared: dict | None = None) -> dict:
     strip = lambda d: {k: v for k, v in d.items() if k != "generated_at"}  # noqa: E731
     old = json.loads((R / B / "external_benchmark_results.json").read_text())
     new = json.loads((copy / B / "external_benchmark_results.json").read_text())
@@ -154,16 +164,42 @@ def compare(copy: Path, previous: Path, why: str) -> dict:
     assert strip(old) == strip(new) == strip(prev), "scored results changed"
     assert new["cohort_samples"] == 208 and new["sample_gene_truth_rows"] == 1456
     assert new["truth_status_counts"]["evaluable"] == 596 and new["pharmcat_reports"] == 208
-    vs_hist, hist_samples = differing(tsv(R / B / "input_eligibility.tsv"), tsv(copy / B / "input_eligibility.tsv"))
-    vs_prev, _ = differing(tsv(previous / "input_eligibility.tsv"), tsv(copy / B / "input_eligibility.tsv"))
-    assert vs_hist == {"vcf_sha256": 1456}, vs_hist
-    assert vs_prev == {"vcf_sha256": 1456}, vs_prev
+    hist_rows, prev_rows = tsv(R / B / "input_eligibility.tsv"), tsv(previous / "input_eligibility.tsv")
+    new_rows = tsv(copy / B / "input_eligibility.tsv")
+    vs_hist, hist_samples = differing(hist_rows, new_rows)
+    vs_prev, _ = differing(prev_rows, new_rows)
+    # Only the per-file VCF hash may differ, plus changes DECLARED in advance with
+    # their exact values and row counts (--declared-changes). Every observed
+    # change must be declared and every declared change observed: an
+    # application change that alters eligibility text is shown, never absorbed.
+    declared = declared or {}
+    eligibility_declared = declared.get("input_eligibility.tsv", [])
+    discrepancy_declared = declared.get("discrepancies.tsv", [])
+    assert set(declared) <= {"input_eligibility.tsv", "discrepancies.tsv"}, sorted(declared)
+    # In discrepancies.tsv only the free-text detail may change; the scored
+    # columns (classification, truth, observed) never may.
+    assert all(c["field"] == "detail" for c in discrepancy_declared), discrepancy_declared
+    expected = {"vcf_sha256": 1456}
+    for change in eligibility_declared:
+        expected[change["field"]] = expected.get(change["field"], 0) + change["rows"]
+    want = {(c["gene"], c["field"], c["from"], c["to"]): c["rows"] for c in eligibility_declared}
+    assert vs_hist == expected, vs_hist
+    assert vs_prev == expected, vs_prev
+    assert detailed(hist_rows, new_rows) == want, detailed(hist_rows, new_rows)
+    assert detailed(prev_rows, new_rows) == want, detailed(prev_rows, new_rows)
     assert len(hist_samples) == 208
-    for name in ("exclusions.tsv", "discrepancies.tsv", "sample_gene_truth.tsv", "cohort_lock.json",
+    for name in ("exclusions.tsv", "sample_gene_truth.tsv", "cohort_lock.json",
                  "pharmcat_report_manifest.json"):
         assert sha(R / B / name) == sha(copy / B / name), name
-    for name in ("exclusions.tsv", "discrepancies.tsv"):
-        assert sha(previous / name) == sha(copy / B / name), name
+    assert sha(previous / "exclusions.tsv") == sha(copy / B / "exclusions.tsv")
+    disc_want = {(c["gene"], c["field"], c["from"], c["to"]): c["rows"] for c in discrepancy_declared}
+    new_disc = tsv(copy / B / "discrepancies.tsv")
+    for before_path in (R / B / "discrepancies.tsv", previous / "discrepancies.tsv"):
+        before = tsv(before_path)
+        assert len(before) == len(new_disc)
+        assert [(r["sample_id"], r["gene"], r["layer"]) for r in before] == \
+            [(r["sample_id"], r["gene"], r["layer"]) for r in new_disc], before_path
+        assert detailed(before, new_disc) == disc_want, detailed(before, new_disc)
     assert sha(R / "reports/external_analytical_benchmark.md") == sha(copy / "reports/external_analytical_benchmark.md")
     source_manifest = json.loads((R / B / "benchmark_manifest.json").read_text())
     sample = "HG00111"
@@ -191,9 +227,11 @@ def compare(copy: Path, previous: Path, why: str) -> dict:
         "new_generated_at": new["generated_at"],
         "individuals": 208, "sample_gene_rows": 1456, "evaluable_truth_rows": 596,
         "all_metric_fields_equal_except_generation_time": True,
-        "equal_to_previous_evaluation_except_generation_time": True,
+        "equal_to_previous_evaluation_except_generation_time": not (eligibility_declared or discrepancy_declared),
         "eligibility_rows": 1456, "differing_eligibility_fields": vs_hist,
         "differing_eligibility_fields_vs_previous_evaluation": vs_prev,
+        "declared_eligibility_changes": eligibility_declared,
+        "declared_discrepancy_detail_changes": discrepancy_declared,
         "individuals_with_vcf_sha_difference": len(hist_samples),
         "exclusions_sha256": sha(copy / B / "exclusions.tsv"),
         "discrepancies_sha256": sha(copy / B / "discrepancies.tsv"),
@@ -204,10 +242,17 @@ def compare(copy: Path, previous: Path, why: str) -> dict:
         "representative_biological_records_equal": True,
         "interpretation": why + (" Its application rerun over the same 208 individuals reproduces "
                                  "every scored metric, exclusion and discrepancy of both the historical "
-                                 "benchmark and the previous evaluation. The only differing eligibility "
-                                 "field is the hash of each regenerated single-sample VCF, explained by "
-                                 "the path-bearing bcftools header shown in the representative projection. "
-                                 "No new genotype concordance or clinical claim follows."),
+                                 "benchmark and the previous evaluation. "
+                                 + ("The only differing eligibility field is the hash of each regenerated "
+                                    "single-sample VCF, explained by the path-bearing bcftools header shown in "
+                                    "the representative projection. " if not (eligibility_declared or discrepancy_declared) else
+                                    "Eligibility differs in the hash of each regenerated single-sample VCF "
+                                    "(the path-bearing bcftools header) and in the changes declared in "
+                                    "declared_eligibility_changes, and discrepancies differ only in the free-text "
+                                    "detail declared in declared_discrepancy_detail_changes, each with its exact "
+                                    "before and after value, row count and reason; no scored metric, exclusion or "
+                                    "discrepancy classification changed. ")
+                                 + "No new genotype concordance or clinical claim follows."),
     }
 
 
@@ -275,7 +320,21 @@ def replay_f4() -> list[dict]:
 
 
 def report_text(evaluation_id: str, core: str, protocol_sha: str, previous_id: str, why: str,
-                results: dict) -> str:
+                results: dict, summary: dict | None = None) -> str:
+    declared = (summary or {}).get("declared_eligibility_changes") or []
+    detail = (summary or {}).get("declared_discrepancy_detail_changes") or []
+    if declared or detail:
+        equality = (
+            "Compared with the historical run and the previous evaluation, per-gene metrics, exclusions and "
+            "discrepancy classifications are equal. Besides the temporary single-sample VCF SHA-256 in all "
+            "1,456 eligibility rows, the changes are exactly those declared before the run: "
+            + "; ".join(f"{c['field']} in {c['rows']} {c['gene']} rows ({c['why']})" for c in declared + detail)
+            + ". The re-bind asserts that no other value changed.")
+    else:
+        equality = (
+            "Compared with the historical run and the previous evaluation, per-gene metrics, exclusions and "
+            "discrepancies are equal. The only changed field in all 1,456 eligibility rows is the temporary "
+            "single-sample VCF SHA-256, explained by the path-bearing bcftools header.")
     rows = []
     for gene, data in results["genes"].items():
         eligible = data["layer_B_application"]["input_eligible"]
@@ -293,9 +352,7 @@ def report_text(evaluation_id: str, core: str, protocol_sha: str, previous_id: s
         "1,456 sample-gene rows in an isolated copy. The two frozen F4 read-backed VCF controls were "
         "replayed through a local API started from the candidate; they are bounded positives, not a "
         "replacement for the cohort.", "",
-        "Compared with the historical run and the previous evaluation, per-gene metrics, exclusions and "
-        "discrepancies are equal. The only changed field in all 1,456 eligibility rows is the temporary "
-        "single-sample VCF SHA-256, explained by the path-bearing bcftools header.", "",
+        equality, "",
         "| Gene | Evaluable truth rows | Application input eligible (individuals) |",
         "|---|---:|---:|", *rows, "",
         "The source VCF is polymorphic-filtered; missing required coordinates remain unknown. No pooled "
@@ -326,7 +383,8 @@ def publish(tag: str, copy: Path, summary: dict, f4: list, receipts: list, why: 
     evaluation_id = f"pharmaguard-external-current-candidate-{tag}"
     results = json.loads((package / "external_benchmark_results.json").read_text())
     (package / "EVALUATION-REPORT.md").write_text(
-        report_text(evaluation_id, core, old["frozen_protocol"]["sha256"], old["evaluation_id"], why, results))
+        report_text(evaluation_id, core, old["frozen_protocol"]["sha256"], old["evaluation_id"], why, results,
+                    summary))
     manifest = dict(old)
     manifest.update({
         "evaluation_id": evaluation_id,
@@ -343,6 +401,14 @@ def publish(tag: str, copy: Path, summary: dict, f4: list, receipts: list, why: 
                 summary["equal_to_previous_evaluation_except_generation_time"],
             "differing_eligibility_field": "vcf_sha256",
             "differing_eligibility_rows": summary["differing_eligibility_fields"]["vcf_sha256"],
+            "declared_eligibility_changes": [
+                {k: c[k] for k in ("gene", "field", "rows", "why")}
+                for c in summary["declared_eligibility_changes"]
+            ],
+            "declared_discrepancy_detail_changes": [
+                {k: c[k] for k in ("gene", "field", "rows", "why")}
+                for c in summary["declared_discrepancy_detail_changes"]
+            ],
             "representative_biological_records_equal": summary["representative_biological_records_equal"],
         },
         "outputs": [ref(path) for path in sorted(package.iterdir()) if path.name != "evaluation_manifest.json"],
@@ -369,6 +435,8 @@ def main() -> int:
     ap.add_argument("--tag", required=True, help="e.g. 2026-11-04-b1; names the new package")
     ap.add_argument("--why", required=True, help="one sentence: what changed in the core")
     ap.add_argument("--copy-root", required=True, help="scratch directory outside the repository")
+    ap.add_argument("--declared-changes", type=Path,
+                    help="JSON list of expected eligibility changes: gene, field, from, to, rows, why")
     args = ap.parse_args()
     global WORK
     WORK = WORK_BASE / args.tag
@@ -384,7 +452,8 @@ def main() -> int:
     run_stage("cohort-fetch-resume", [PY, script, "fetch", "--resume"], copy, receipts)
     run_stage("cohort-evaluate-resume", [PY, script, "evaluate", "--resume"], copy, receipts)
     previous = (R / bundle.CURRENT_EVALUATION_RELATIVE).parent
-    summary = compare(copy, previous, args.why)
+    declared = json.loads(args.declared_changes.read_text()) if args.declared_changes else []
+    summary = compare(copy, previous, args.why, declared)
     receipts.append({"name": "compare-evaluation", "ended_at": now(), "exit_code": 0})
     f4 = replay_f4()
     receipts.append({"name": "f4-fresh-replay", "ended_at": now(), "exit_code": 0,

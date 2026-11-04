@@ -18,7 +18,7 @@ JAR_PATH = REPO_ROOT / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
 HASH_POLICY_RELATIVE = "scripts/scientific_hash_policy.json"
 MIGRATION_RELATIVE = "scripts/application_hash_migration.json"
 CURRENT_EVALUATION_RELATIVE = (
-    "test-data/benchmark/current-candidate-2026-11-04-b4/evaluation_manifest.json"
+    "test-data/benchmark/current-candidate-2026-11-04-b5/evaluation_manifest.json"
 )
 HASH_POLICY_VERSION = 2
 SCOPED_GENES = (
@@ -283,9 +283,7 @@ def current_evaluation_record(root: Path | None = None) -> dict[str, Any]:
             or evaluation["fresh_stages"].get("f4_local_api_cases") != 2
             or len(f4) != 2 or not all(row.get("passed") for row in f4)):
         problems.append("fresh application or F4 stage receipt is incomplete")
-    if (not comparison.get("all_metric_fields_equal_except_generation_time")
-            or comparison.get("differing_eligibility_fields") != {"vcf_sha256": 1456}
-            or not comparison.get("representative_biological_records_equal")):
+    if not comparison_supports_result(comparison):
         problems.append("candidate comparison does not support the declared result")
     return {
         "evaluation_id": evaluation["evaluation_id"],
@@ -304,6 +302,36 @@ def current_evaluation_record(root: Path | None = None) -> dict[str, Any]:
         "evidence_matches": not problems,
         "problems": problems,
     }
+
+
+def comparison_supports_result(comparison: dict) -> bool:
+    """
+    Whether a re-bind's comparison shows only the differences it may show.
+
+    Scored metrics must be unchanged. Eligibility may differ in each regenerated
+    VCF's hash (1,456 rows) and in changes the re-bind DECLARED with exact
+    values, a row count and a reason (an application change that alters
+    eligibility wording, e.g. Phase 9 B5). The declaration lives in the
+    comparison, which the evaluation manifest hashes, so it cannot be widened
+    unseen; the re-bind itself asserts every observed change was declared.
+    """
+    declared = comparison.get("declared_eligibility_changes") or []
+    if not isinstance(declared, list):
+        return False
+    expected = {"vcf_sha256": 1456}
+    for change in declared:
+        if (not isinstance(change, dict)
+                or not {"gene", "field", "from", "to", "rows", "why"} <= set(change)
+                or change["field"] == "vcf_sha256"
+                or not isinstance(change["rows"], int) or change["rows"] <= 0
+                or not str(change["why"]).strip()):
+            return False
+        expected[change["field"]] = expected.get(change["field"], 0) + change["rows"]
+    return bool(
+        comparison.get("all_metric_fields_equal_except_generation_time")
+        and comparison.get("differing_eligibility_fields") == expected
+        and comparison.get("representative_biological_records_equal")
+    )
 
 
 def _declared_runtime() -> dict[str, Any]:
@@ -363,7 +391,7 @@ def build_manifest() -> dict[str, Any]:
 
     return {
         "schema_version": 3,
-        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-04-b4",
+        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-04-b5",
         "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
         "application_hash_policy": {
             "version": HASH_POLICY_VERSION,
