@@ -18,7 +18,7 @@ JAR_PATH = REPO_ROOT / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
 HASH_POLICY_RELATIVE = "scripts/scientific_hash_policy.json"
 MIGRATION_RELATIVE = "scripts/application_hash_migration.json"
 CURRENT_EVALUATION_RELATIVE = (
-    "test-data/benchmark/current-candidate-2026-11-04-b3/evaluation_manifest.json"
+    "test-data/benchmark/current-candidate-2026-11-04-b4/evaluation_manifest.json"
 )
 HASH_POLICY_VERSION = 2
 SCOPED_GENES = (
@@ -308,17 +308,19 @@ def current_evaluation_record(root: Path | None = None) -> dict[str, Any]:
 
 def _declared_runtime() -> dict[str, Any]:
     dockerfile = (REPO_ROOT / "infra/Dockerfile").read_text()
-    base = re.search(r"^FROM\s+(\S+)", dockerfile, re.MULTILINE)
+    # The FINAL stage is what is served; earlier stages only supply files.
+    stages = re.findall(r"^FROM\s+(\S+)", dockerfile, re.MULTILINE)
+    base = stages[-1] if stages else None
     workflow = (REPO_ROOT / ".github/workflows/test.yml").read_text()
     flutter = re.search(r'flutter-version:\s*"([^"]+)"', workflow)
     return {
-        "production_image": base.group(1) if base else None,
+        "production_image": base,
         "ci_python": "3.12",
         "ci_flutter": flutter.group(1) if flutter else None,
         "requirements": file_identity("backend/requirements.txt"),
         "requirements_dev": file_identity("backend/requirements-dev.txt"),
         "flutter_lock": file_identity("app/pubspec.lock"),
-        "manifest_verifier_python": ">=3.11 (CI and production baseline use 3.12)",
+        "manifest_verifier_python": ">=3.11 (CI uses 3.12; the production image runs 3.14.6)",
     }
 
 
@@ -361,7 +363,7 @@ def build_manifest() -> dict[str, Any]:
 
     return {
         "schema_version": 3,
-        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-04-b3",
+        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-04-b4",
         "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
         "application_hash_policy": {
             "version": HASH_POLICY_VERSION,

@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-04-b3",
+  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-04-b4",
   "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
   "application_hash_policy": {
     "version": 2,
@@ -298,7 +298,7 @@
     "pharmcat_reports": 208,
     "application_eligible_sample_gene_rows": 0,
     "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
-    "application_core_sha256": "d13bf2252e151bfce6c2c8805a9644084fa0afe392d56163088abaf75edff6f7",
+    "application_core_sha256": "fc8b7dbd8e6ccee97ad10c89ef617ace75f5753f820f8c052f14053d48d4fdd3",
     "application_hash_policy_version": 2,
     "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
     "benchmark_historical_hash_policy_version": 1,
@@ -342,11 +342,11 @@
     "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
   },
   "evaluation_current": {
-    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-04-b3",
-    "application_core_sha256": "d13bf2252e151bfce6c2c8805a9644084fa0afe392d56163088abaf75edff6f7",
+    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-04-b4",
+    "application_core_sha256": "fc8b7dbd8e6ccee97ad10c89ef617ace75f5753f820f8c052f14053d48d4fdd3",
     "manifest": {
-      "path": "test-data/benchmark/current-candidate-2026-11-04-b3/evaluation_manifest.json",
-      "sha256": "db9601c4ff64ef4effb2c700682e3cd1a24cb023ad3b6c7fd044866185d22ae5",
+      "path": "test-data/benchmark/current-candidate-2026-11-04-b4/evaluation_manifest.json",
+      "sha256": "4fbc1fb6ad86b5c142908530b40cb719bf6026c2f3d6e29860122875dfcbbc71",
       "bytes": 5575
     },
     "historical_benchmark_manifest": {
@@ -365,54 +365,54 @@
     },
     "outputs": [
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/EVALUATION-REPORT.md",
-        "bytes": 1997,
-        "sha256": "95e69a38d28a5bb3d9b1ba4203e35b0028c2eefd69bbd5c85ef2b057ba1844b5"
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/EVALUATION-REPORT.md",
+        "bytes": 1982,
+        "sha256": "1377ba8cb97009fe4e7d556a8a2aae861019e8f7b8b4e95b80c712d6ec0c237a"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/discrepancies.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/discrepancies.tsv",
         "bytes": 172478,
         "sha256": "c961c3eee341fa1986fd9b1b8e236045645eaab5f2d10bf8d41f1f2b5acfed47"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/evaluation-comparison.json",
-        "bytes": 4375,
-        "sha256": "18e64aeff1463e22831115a88446c13418f70563f958aa3b98404f11c6b569fc"
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/evaluation-comparison.json",
+        "bytes": 4360,
+        "sha256": "9503a970575cf0e48d9c2244c5089719110838c2b69d72b71a900ae8d671dc27"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/exclusions.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/exclusions.tsv",
         "bytes": 48960,
         "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/external_benchmark_results.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/external_benchmark_results.json",
         "bytes": 33667,
-        "sha256": "d192815eac2fe4db1212cc550a4896329ad74ccce7c4d1c728bfa1b41a197d34"
+        "sha256": "bff51f065b3b2575fc26810568e291b49ca25009e5b80a57b18fa05b331a95b5"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/f4-fresh-replay.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/f4-fresh-replay.json",
         "bytes": 1767,
-        "sha256": "8353ce9d3cc9599c272dacd71f9f36394af4c4bdca10389a86689b82f5720d4d"
+        "sha256": "3b46066f6d36edf3583b2a7421c1503421343e9a609b5f2f7ccd967fdc9daf66"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/input_eligibility.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/input_eligibility.tsv",
         "bytes": 466620,
-        "sha256": "3439cc66db1bd1b318a6d7cd6fb1f515312f754d3d3708ce5f6782907c946040"
+        "sha256": "d0c83bedaded52c9879fb5a4e6df56ccc576f0b065edf6d6f357a3a83995b129"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/raw_benchmark_manifest.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/raw_benchmark_manifest.json",
         "bytes": 7588,
-        "sha256": "06e5d0076b681cb5193f7049b2f86cc6245b6349fc07ac11b5f95b671d041951"
+        "sha256": "6479c657967313d6552e0a908aeb27d77e3efa5b70b543f7d978661cc263d1cf"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/raw_scoring_report.md",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/raw_scoring_report.md",
         "bytes": 11481,
         "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-04-b3/stage-command-receipts.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-04-b4/stage-command-receipts.json",
         "bytes": 3253,
-        "sha256": "ed1360847231db34ca8abcfb1751910f440bbec8605f02661937934cd488df0b"
+        "sha256": "d85f35fad030998fa59b1afa6bd89b99afa91bc2bb2476e9e7e714ec1fa17ac1"
       }
     ],
     "evidence_matches": true,
@@ -492,7 +492,7 @@
     }
   },
   "runtime": {
-    "production_image": "pgkb/pharmcat:3.4.0",
+    "production_image": "python:3.14.6-slim-trixie@sha256:7bec7ddcddeff7975d6ba9b4be7dd6f6b2f55e7491539145e2978f7f97ce9144",
     "ci_python": "3.12",
     "ci_flutter": "3.38.9",
     "requirements": {
@@ -510,7 +510,7 @@
       "sha256": "c42c6ef42ad2bbe1fba9c0589db3ae5afee0212a5cb52c6197831c9bbaf2732d",
       "bytes": 12558
     },
-    "manifest_verifier_python": ">=3.11 (CI and production baseline use 3.12)"
+    "manifest_verifier_python": ">=3.11 (CI uses 3.12; the production image runs 3.14.6)"
   },
   "upgrade_policy": {
     "mode": "controlled_whole_bundle_upgrade",
