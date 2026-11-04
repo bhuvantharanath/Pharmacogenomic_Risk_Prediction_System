@@ -1,0 +1,68 @@
+B3 plan written 2026-11-04T07:36:31Z
+14ad1b5e6cf32cf4fa1dd2d4875ff04d9070121e017d10cb1473e7334f57faa7  audit/phase9/B3_PLAN.md
+
+== Sabotages (tests/test_evidence_crosscheck.py) ==
+SB3-a PharmCAT-side verdict always sufficient: 7 failed (A4-09b/A4-09a/every-SNV/no-chr cases, null-call, native rule, restrict)
+SB3-b a null PharmCAT call counted as used: 7 failed (same set)
+SB3-c PharmCAT's own requiredPositions ignored: 1 failed (test_a_pharmcat_required_position_is_honoured)
+restored identical: yes
+
+== Fixture correction ==
+tests/test_evidence_validity.py::_nudt15_im_report swapped the TPMT and NUDT15 calls INCLUDING their per-position
+variants, i.e. it claimed PharmCAT read TPMT from chr13. The cross-check refused it (2 tests went red). The fixture now
+swaps the calls and keeps each gene's own positions; the phenotype driver (NUDT15) is unchanged. No assertion edited.
+
+== A4 inputs, all six drugs, local API (audit/phase9/partb/B3-before, B3-after; a4_labels.py) ==
+Label changes, B2 code -> B3 code (4, all confident -> Unknown, each on a gene PharmCAT discarded genotypes for):
+  A4-09a clopidogrel Ineffective -> Unknown
+  A4-09b clopidogrel Ineffective -> Unknown
+  A4-22  azathioprine No PGx-guided adjustment identified -> Unknown
+  A4-22  fluorouracil No PGx-guided adjustment identified -> Unknown
+Unknown -> confident: 0. HTTP status / error codes: unchanged for every case.
+A4-03 (contig "10"): every drug Unknown, 6 cross-check warnings (one per called gene) naming unused positions.
+A4-09a / A4-09b AFTER: azathioprine, fluorouracil, simvastatin remain "No PGx-guided adjustment identified".
+
+== Disagreement table (audit/phase9/partb/B3/b3_disagreements.{json,md}; b3_disagreements.py) ==
+Per gene, (ours, PharmCAT): S1-S6 18 SS + 18 II, 0 disagreements; cohort 400 II per gene, 0 disagreements;
+A4 21 disagreements (20 ours-S/PharmCAT-I, 1 ours-I/PharmCAT-S), every one with a position-level cause:
+  A4-03, A4-20  all six genes ours 100% / PharmCAT 0%   contig name not recognised by PharmCAT (612 positions)
+  A4-22         all six genes ours 100% / PharmCAT 0-4%  PharmCAT discarded: REF does not match GRCh38
+  A4-09a        CYP2C19 35/35 vs 25/35                    PharmCAT discarded: REF mismatch (10)
+  A4-09b        CYP2C19 35/35 vs 34/35                    PharmCAT discarded: REF mismatch (rs4244285)
+  A4-16         CYP2C19 34/35 vs 35/35 (ours stricter)    the gate rejects a FILTER-failed row PharmCAT used
+Position-level causes: contig_name_not_recognised_by_pharmcat 612, pharmcat_discarded_ref_mismatch 309,
+gate_rejected_filter_failed 1. Unexplained: 0.
+Invariant (confident label with either verdict insufficient for a required gene): 0 violations
+over S1-S6, every validating A4 input, and 2,400 cohort results.
+
+== Zero-regression vs B2 (audit/phase9/partb/B3/comparison.json) ==
+S1-S6 6/6 labels; cohort 2400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other;
+74 PharmCAT test VCFs, 148 comparisons, 0 mismatches. PASS.
+
+== Suites (B3 tree, before re-bind) ==
+backend (.venv): 994 passed, 6 skipped, 4 failed (the four evaluation/bundle identity tests: core hash not yet re-bound).
+tests/test_evidence_crosscheck.py: 13 passed. flutter: analyze clean, 225 passed.
+
+== AC verdicts (2026-11-04) ==
+AC1 PASS  jar requiredPositions pinned: NAT2's five, empty for all six called genes; injected requirement fires and
+          declines for CYP2C19 (as written) and for DPYD (where it is the only reason).
+AC2 PASS  the module takes PharmCAT's evidence from the parsed report only; no runtime import of app.coverage.
+AC3 PASS  0 confident labels with either verdict insufficient (S1-S6, every validating A4 input, 2,400 cohort results).
+AC4 PASS  21 disagreements, each with a named position-level cause; unexplained 0.
+AC5 FAIL  as written. A4-22/A4-23: every drug declined (PASS). A4-03: declined, unused positions named per gene (PASS).
+          No A4 row Unknown->confident (PASS). A4-09a and A4-09b: clopidogrel declined, but azathioprine, fluorouracil
+          and simvastatin stay "No PGx-guided adjustment identified": those files alter CYP2C19 rows only, and PharmCAT
+          verified the REF of every TPMT/NUDT15/DPYD/SLCO1B1 position it used. Declining them would need a file-level
+          rule (any unrecovered REF discard declines the whole file), which the B3 design does not contain.
+AC6 PASS  preprocessor not on the served path; Dockerfile pins PHARMCAT_JAR to the sha-verified jar (test); bcftools 1.24 local.
+
+Per the standing rule the criterion is not adjusted. B3 is stopped here: not committed, not re-bound; B4 not started.
+Owner decision needed: (1) accept per-gene declines and amend AC5 for A4-09a/b in writing, or (2) add a file-level
+REF-integrity decline now (it would otherwise come with B6's build/REF checks).
+
+== AC5 amended by owner decision (2026-11-04T13:22:11Z) ==
+b384547738b42793a3fec3d9769995cc7272fb3545b26818149686383a7cb9ca  audit/phase9/B3_AC5_AMENDMENT.md
+Owner's words: "Per-gene, amend AC5"
+AC5 (amended) PASS on the measurements already recorded above: A4-22 declines all six drugs; A4-09a/b decline
+  clopidogrel (CYP2C19 discards) and keep azathioprine/fluorouracil/simvastatin (genes PharmCAT used in full);
+  A4-03 names unused positions for all six genes; 0 A4 rows Unknown->confident.

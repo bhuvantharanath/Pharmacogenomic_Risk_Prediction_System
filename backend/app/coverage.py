@@ -426,6 +426,10 @@ class DrugEligibility:
     failed_genes: tuple[str, ...]
     guidance_capable: bool
     limitation: str
+    #: Why a gene failed when the reason is not in this module's own counts —
+    #: e.g. app/evidence_crosscheck.py finding that PharmCAT discarded genotypes
+    #: this module accepted. Named in `reason` so the refusal says what happened.
+    findings: tuple[str, ...] = ()
 
     @property
     def eligible(self) -> bool:
@@ -454,7 +458,9 @@ class DrugEligibility:
         return (
             "Required genomic evidence is incomplete for "
             + ", ".join(self.failed_genes)
-            + ". Available partner findings are partial evidence only; no complete "
+            + ". "
+            + "".join(f"{finding} " for finding in self.findings)
+            + "Available partner findings are partial evidence only; no complete "
               "drug-level PGx recommendation is made."
         )
 

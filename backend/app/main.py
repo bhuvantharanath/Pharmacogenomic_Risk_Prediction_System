@@ -37,7 +37,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from . import coverage as coverage_mod
-from . import capabilities, cpic_engine, security
+from . import capabilities, cpic_engine, evidence_crosscheck, security
 from .explanation import ExplanationMode, generate_explanation
 from .explanation import static_store as explanation_store
 from .explanation.context import ExplanationContext
@@ -754,9 +754,23 @@ def build_response(
             elif not all_gated:
                 warnings.append(coverage_mod.insufficient_warning(gene_cov))
 
+    # THE SECOND VIEW. The same thresholds, counted over the positions PharmCAT
+    # itself used (app/evidence_crosscheck.py). Where the coverage check counted
+    # genotypes PharmCAT discarded — a REF that contradicts GRCh38, a contig it
+    # does not recognise — the gene is declined here too, and the warning says
+    # which positions and why, in PharmCAT's words.
+    pharmcat_evidence = evidence_crosscheck.assess(report) if cov is not None else {}
+    if cov is not None:
+        for gene, evidence in sorted(pharmcat_evidence.items()):
+            gene_cov = cov.genes.get(gene)
+            if gene_cov is not None and gene_cov.sufficient and not evidence.sufficient:
+                warnings.append(evidence_crosscheck.disagreement_warning(evidence))
+
     for drug in drugs:
         eligibility = (
-            coverage_mod.drug_eligibility(cov, drug)
+            evidence_crosscheck.restrict(
+                coverage_mod.drug_eligibility(cov, drug), pharmcat_evidence
+            )
             if cov is not None
             else None
         )
@@ -835,7 +849,9 @@ def build_response(
             processing_time_ms=elapsed_ms,
             warnings=deduped,
             position_coverage=(
-                cov.as_metrics() if cov is not None else {}
+                evidence_crosscheck.annotate(cov.as_metrics(), pharmcat_evidence)
+                if cov is not None
+                else {}
             ),
             guideline_provenance=guideline_provenance(report),
         ),

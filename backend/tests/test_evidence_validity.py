@@ -149,9 +149,12 @@ def _nudt15_im_report() -> PharmcatReport:
     nudt15 = report.gene("NUDT15")
     assert tpmt is not None and nudt15 is not None
 
+    # The calls swap; each gene keeps its own per-position evidence. Swapping the
+    # positions too would claim PharmCAT read TPMT from chromosome 13, which the
+    # evidence cross-check (app/evidence_crosscheck.py) rightly refuses.
     genes = dict(report.genes)
-    genes["TPMT"] = nudt15.model_copy(update={"gene": "TPMT"})
-    genes["NUDT15"] = tpmt.model_copy(update={"gene": "NUDT15"})
+    genes["TPMT"] = nudt15.model_copy(update={"gene": "TPMT", "variants": tpmt.variants})
+    genes["NUDT15"] = tpmt.model_copy(update={"gene": "NUDT15", "variants": nudt15.variants})
 
     guideline = report.drug("azathioprine")
     assert guideline is not None

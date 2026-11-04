@@ -49,6 +49,9 @@ class PharmcatVariant(BaseModel):
     referenceAllele: str | None = None
     # Named alleles this position helps define, e.g. ["*1", "*4", "*17"].
     alleles: list[str] = Field(default_factory=list)
+    # PharmCAT's own notes on this position, e.g. why it discarded a genotype
+    # ("REF in VCF (C) does not match expected reference (G)").
+    warnings: list[str] = Field(default_factory=list)
 
 
 class PharmcatGeneCall(BaseModel):

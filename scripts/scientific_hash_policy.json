@@ -58,6 +58,7 @@
     "backend/app/data/label_mapping.yaml",
     "backend/app/data/label_paraphrases.yaml",
     "backend/app/data/position_requirements.json",
+    "backend/app/evidence_crosscheck.py",
     "backend/app/explanation/__init__.py",
     "backend/app/explanation/approval.py",
     "backend/app/explanation/compose.py",

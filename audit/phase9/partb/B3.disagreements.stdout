@@ -1,0 +1,5 @@
+Disagreements: 21 {'SI': 20, 'IS': 1}
+Causes (position-level): {'contig_name_not_recognised_by_pharmcat': 612, 'pharmcat_discarded_ref_mismatch': 309, 'gate_rejected_filter_failed': 1}
+Unexplained: 0
+Invariant violations (confident with either verdict insufficient): 0
+rc=0

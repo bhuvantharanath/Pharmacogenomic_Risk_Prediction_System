@@ -333,6 +333,8 @@ class GeneCoverage {
     this.decisionCriticalRequired,
     this.decisionCriticalEnforced,
     this.evidenceCounts,
+    this.pharmcatPositionsUsed,
+    this.pharmcatSufficient,
   });
 
   final int positionsPresent;
@@ -347,6 +349,13 @@ class GeneCoverage {
   final int? decisionCriticalRequired;
   final bool? decisionCriticalEnforced;
   final Map<String, int>? evidenceCounts;
+
+  /// The same count after PharmCAT ran: of the required positions, how many
+  /// PharmCAT itself had a usable genotype for, and whether that meets the same
+  /// thresholds. Lower than [positionsPresent] when PharmCAT discarded rows this
+  /// file reports, e.g. a REF that contradicts GRCh38. Absent on `/coverage`.
+  final int? pharmcatPositionsUsed;
+  final bool? pharmcatSufficient;
 
   int get _shortfall => positionsRequired > positionsPresent
       ? positionsRequired - positionsPresent
@@ -384,6 +393,8 @@ class GeneCoverage {
                 e.key as String: (e.value as num).toInt(),
           }
         : null,
+    pharmcatPositionsUsed: (json['pharmcat_positions_used'] as num?)?.toInt(),
+    pharmcatSufficient: json['pharmcat_sufficient'] as bool?,
   );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -399,6 +410,9 @@ class GeneCoverage {
     if (decisionCriticalEnforced != null)
       'decision_critical_enforced': decisionCriticalEnforced,
     if (evidenceCounts != null) 'evidence_counts': evidenceCounts,
+    if (pharmcatPositionsUsed != null)
+      'pharmcat_positions_used': pharmcatPositionsUsed,
+    if (pharmcatSufficient != null) 'pharmcat_sufficient': pharmcatSufficient,
   };
 }
 

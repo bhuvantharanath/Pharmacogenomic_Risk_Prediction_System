@@ -1,0 +1,17 @@
+{
+ "tag": "B3",
+ "compared_to": "B2",
+ "s1_s6_labels_matched": "6/6",
+ "cohort_results": 2400,
+ "cohort_confident_to_unknown": 0,
+ "cohort_unknown_to_confident": 0,
+ "cohort_confident_to_other_confident": 0,
+ "testvcf_files_compared": 74,
+ "testvcf_mismatches": 0,
+ "testvcf_field_comparisons": 148,
+ "shift_examples": {
+  "confident_to_unknown": [],
+  "unknown_to_confident": [],
+  "confident_to_other_confident": []
+ }
+}

@@ -200,6 +200,26 @@ void main() {
         'valid_observed_genotype': 35,
         'absent_position': 0,
       });
+      // Older payloads, and /coverage, carry no PharmCAT count: none invented.
+      expect(coverage.toJson().containsKey('pharmcat_positions_used'), isFalse);
+    });
+
+    test("PharmCAT's own count survives export beside the coverage check's", () {
+      // The shape /analyze sends when PharmCAT discarded a genotype the
+      // coverage check counted (a REF that contradicts GRCh38).
+      final Map<String, dynamic> json = <String, dynamic>{
+        'positions_present': 35,
+        'positions_required': 35,
+        'percent': 100.0,
+        'minimum_percent': 100,
+        'sufficient': true,
+        'pharmcat_positions_used': 34,
+        'pharmcat_sufficient': false,
+      };
+      final GeneCoverage coverage = GeneCoverage.fromJson(json);
+      expect(coverage.pharmcatPositionsUsed, 34);
+      expect(coverage.pharmcatSufficient, isFalse);
+      expect(coverage.toJson(), json);
     });
 
     test('unrecognised enum values fall back instead of throwing', () {
