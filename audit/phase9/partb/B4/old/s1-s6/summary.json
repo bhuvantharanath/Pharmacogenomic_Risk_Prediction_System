@@ -1,0 +1,51 @@
+{
+  "base": "http://127.0.0.1:8031",
+  "scenarios": {
+    "S1_confident": {
+      "status": 200,
+      "labels": {
+        "clopidogrel": "Ineffective"
+      },
+      "expect": "Ineffective"
+    },
+    "S2_variants_only": {
+      "status": 200,
+      "labels": {
+        "clopidogrel": "Unknown"
+      },
+      "expect": "Unknown"
+    },
+    "S3_cyp2d6": {
+      "status": 200,
+      "labels": {
+        "codeine": "Unknown"
+      },
+      "expect": "Unknown"
+    },
+    "S4_dpyd": {
+      "status": 200,
+      "labels": {
+        "fluorouracil": "Unknown"
+      },
+      "expect": "Unknown"
+    },
+    "S5_normal": {
+      "status": 200,
+      "labels": {
+        "simvastatin": "No PGx-guided adjustment identified"
+      },
+      "expect": "No PGx-guided adjustment identified"
+    },
+    "S6_multidrug": {
+      "status": 200,
+      "labels": {
+        "clopidogrel": "Ineffective",
+        "simvastatin": "No PGx-guided adjustment identified",
+        "fluorouracil": "No PGx-guided adjustment identified",
+        "codeine": "Unknown",
+        "ibuprofen": "Unknown"
+      },
+      "expect": "mixed"
+    }
+  }
+}

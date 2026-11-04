@@ -10,59 +10,56 @@
 #   (usually 8080) and expect the app to honour it. The CMD below reads
 #   ${PORT:-7860}, so the same image runs on all three with no rebuild.
 #
-# SIZE — MEASURED 2026-08-13, linux/arm64
-#   Built image  6.01 GB
-#   Base alone   5.96 GB   (pgkb/pharmcat:3.4.0)
-#   Our layers   ~45 MB    (43 MB of it pip; the rest is app code and corpus)
+# WHY MULTI-STAGE (Phase 9 B4)
+#   This image used to be `FROM pgkb/pharmcat:3.4.0`: 5.96 GB of base for a
+#   ~45 MB application, because that image carries a full JDK, PharmCAT's VCF
+#   preprocessor, bcftools, its own Python stack and data the served path never
+#   touches. `/analyze` runs `java -jar pharmcat.jar` and nothing else
+#   (app/pharmcat_runner.py, PHARMCAT_JAR below). So the final stage now holds
+#   only that: a JRE, the jar, Python with backend/requirements.txt, the app,
+#   the mechanism corpus and tini. Every free-tier cold start pulls the image,
+#   which is what the size costs.
 #
-#   The "~1.97 GB" this comment used to quote is Docker Hub's COMPRESSED figure.
-#   On disk it is three times that, which is the number that matters to a host
-#   with a build-disk or pull-time limit. The base image is essentially the
-#   whole cost, and it is the cost of having PharmCAT at all.
+#   The runtimes are deliberately the SAME versions the old base shipped —
+#   Temurin 25.0.3+9 and Python 3.14.6 on Debian 13 (trixie) — so the change is
+#   the packaging, not the software. Measured in audit/phase9/B4.log.
 #   Re-measure with:  docker images pharmaguard-api
 
-# Pinned, never :latest — a floating tag would silently change allele
-# definitions and therefore change clinical output between deploys.
-# Verified on Docker Hub 2026-07-22 (3.4.0, published 2026-07-14).
-FROM pgkb/pharmcat:3.4.0
+# Pinned by tag AND digest, never :latest — a floating tag would silently
+# change allele definitions and therefore clinical output between deploys.
+#
+# Stage 1: the jar, from the same image and bytes as before.
+FROM pgkb/pharmcat:3.4.0@sha256:bc498d55c33094002bd7e14221a6b3fcd7243a587675369bc1a5ecf6ac0e5319 AS pharmcat
 
-# The base image already provides:
-#   /pharmcat/pharmcat.jar             the PharmCAT JAR
-#   /pharmcat/pharmcat_pipeline        preprocessor + pipeline wrapper (on PATH)
-#   /pharmcat/pharmcat_positions.vcf*  allele-definition positions
-#   a JRE, python3, bcftools and bgzip
-# Confirm with:  docker run --rm pgkb/pharmcat:3.4.0 pharmcat_pipeline --help
+# Stage 2: a JRE of the Java release PharmCAT 3.4.0's own image runs.
+FROM eclipse-temurin:25.0.3_9-jre@sha256:7c1c6297dc3a3ff947922f3ab14ecd326e29083b9edaa8dbff3b94fef1688311 AS jre
+
+# Final stage: what is served.
+FROM python:3.14.6-slim-trixie@sha256:7bec7ddcddeff7975d6ba9b4be7dd6f6b2f55e7491539145e2978f7f97ce9144
+
+ENV JAVA_HOME=/opt/java/openjdk
+ENV PATH=$JAVA_HOME/bin:$PATH
+COPY --from=jre /opt/java/openjdk /opt/java/openjdk
+COPY --from=pharmcat /pharmcat/pharmcat.jar /pharmcat/pharmcat.jar
 
 # Consumed by app/pharmcat_runner.py.
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     PIP_NO_CACHE_DIR=1 \
-    PHARMCAT_PIPELINE=pharmcat_pipeline \
     PHARMCAT_TIMEOUT_SECONDS=120
 
-# POINT AT THE JAR EXPLICITLY. Without this the container silently ran a
-# DIFFERENT code path from every test.
-#
-# `find_jar()` searches for `pharmcat-*-all.jar` under a fixed list of
-# directories. The base image installs `/pharmcat/pharmcat.jar` — a name the
-# glob does not match, in a directory that is not on the list — so resolution
-# fell through to the `pharmcat_pipeline` wrapper. Both "work", which is why
-# nothing caught it: `/ready` was green and analyses returned results. But the
-# wrapper runs PharmCAT's VCF preprocessor first, and the suite validates
-# `java -jar` with no preprocessing. The deployed image was exercising an
-# invocation the test suite has never covered.
-#
-# Found by Phase 8 §2, which exists to ask exactly this question.
+# POINT AT THE JAR EXPLICITLY. `find_jar()` globs `pharmcat-*-all.jar`, which
+# `/pharmcat/pharmcat.jar` does not match, and when the old base image was in
+# use resolution fell through to its `pharmcat_pipeline` wrapper — a code path
+# (the VCF preprocessor) the test suite never covers. Found by Phase 8 §2. This
+# image no longer contains the wrapper at all, so the jar is the only path.
 ENV PHARMCAT_JAR=/pharmcat/pharmcat.jar
 
-# Fail the BUILD if that jar is ever not the one we validated.
+# Fail the BUILD if that jar is ever not the one we validated, or if the JRE
+# cannot run it.
 #
-# The version is already pinned by the base image tag, but a tag is a promise
-# about a name, not about bytes — and this jar decides clinical output. The
-# digest below was taken from `pgkb/pharmcat:3.4.0` on 2026-08-13 and is
-# byte-identical to `test-data/reference/tools/pharmcat-3.4.0-all.jar`, the jar
-# every validation number in this repository was produced with.
-#
+# The digest is byte-identical to `test-data/reference/tools/pharmcat-3.4.0-all.jar`,
+# the jar every validation number in this repository was produced with.
 # If this step fails, do not "fix" it by updating the hash. Find out what
 # changed, re-run the validation, and update the numbers with it.
 RUN echo "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741  /pharmcat/pharmcat.jar" \
@@ -94,11 +91,9 @@ ENV CORS_ALLOWED_ORIGINS=""
 #
 # Hugging Face Spaces runs the container as UID 1000, and their Docker guide is
 # explicit that you should create that user and set WORKDIR before any COPY.
-# The pgkb base ships its own `pharmcat` user which may or may not be uid 1000,
-# so we create/reuse uid 1000 by NUMBER rather than trusting a name.
+# Created by NUMBER rather than trusting a name.
 # Verified against https://huggingface.co/docs/hub/spaces-sdks-docker (2026-07-23).
 # --------------------------------------------------------------------------- #
-USER root
 # The app launches PharmCAT as a child process. PID 1 must reap orphaned
 # descendants after cancellation/timeout; uvicorn itself does not act as init.
 RUN apt-get update \
@@ -121,13 +116,11 @@ WORKDIR /home/user/app
 # affected file into a new layer, which HF's Docker docs call out explicitly.
 COPY --chown=1000:1000 backend/requirements.txt ./requirements.txt
 
-# --break-system-packages: the base image's python is a distro python marked
-# externally managed (PEP 668). This is a single-purpose container, so
-# installing into the user site-packages is fine and avoids a second venv layer.
-# NOTE: requirements-dev.txt and requirements-llm.txt are deliberately NOT
-# installed — no pytest, no google-genai. The deployed path calls no LLM, so
-# shipping its SDK would be dead weight and a needless supply-chain surface.
-RUN pip3 install --no-cache-dir --break-system-packages --user -r requirements.txt
+# User site-packages, as before. requirements-dev.txt and requirements-llm.txt
+# are deliberately NOT installed — no pytest, no google-genai. The deployed path
+# calls no LLM, so shipping its SDK would be dead weight and a needless
+# supply-chain surface.
+RUN pip install --no-cache-dir --user -r requirements.txt
 
 COPY --chown=1000:1000 backend/app ./app
 # The mechanism corpus is read at request time by app/retrieval.py. Without it

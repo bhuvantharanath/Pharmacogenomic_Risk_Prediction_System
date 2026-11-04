@@ -1,0 +1,9 @@
+old 364916736
+slim 351318016
+{
+ "s1_s6_identical": "6/6",
+ "s1_s6_differing": [],
+ "testvcf_identical": "74/74",
+ "testvcf_differing": []
+}
+rc=0

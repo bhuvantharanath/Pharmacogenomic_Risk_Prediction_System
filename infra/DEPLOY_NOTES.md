@@ -87,7 +87,7 @@ Render's Linux/amd64 host. Reproduce the run from
 
 | | |
 | --- | --- |
-| Image size | **6.01 GB** uncompressed (base `pgkb/pharmcat:3.4.0` is 5.96 GB; our layers ~45 MB) |
+| Image size | **584 MB** uncompressed, linux/arm64, Phase 9 B4 multi-stage image (was **6.02 GB** on `FROM pgkb/pharmcat:3.4.0`, built from the same commit; audit/phase9/B4.log) |
 | Historical container peak, older workload | **252.8 MiB** (not representative of the later 2.4 MiB compressed real VCF workload) |
 | Idle | 40.2 MiB |
 | Container cold start (image local) | **1.19 s** to healthy `/health` |

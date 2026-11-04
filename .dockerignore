@@ -1,0 +1,12 @@
+# An allowlist: the build context is exactly what infra/Dockerfile COPYs.
+#
+# Render builds from a clean clone, but a local `docker build .` would otherwise
+# send the whole working tree — test data, the Flutter app and multi-GB audit
+# files that never reach the image. backend/tests/test_container_image.py checks
+# that every COPY source is admitted here.
+*
+!backend/requirements.txt
+!backend/app
+!rag-corpus
+**/__pycache__
+**/*.pyc

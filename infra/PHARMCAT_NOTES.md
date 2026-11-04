@@ -5,7 +5,8 @@ Where something is inferred rather than executed, it says so.
 
 - **PharmCAT version:** 3.4.0 (released 2026-07-14)
 - **Allele definition / data version:** `2026-07-13-11-40`, source `CLINPGX`
-- **Docker image:** `pgkb/pharmcat:3.4.0` (~1.97 GB) — pinned, never `:latest`
+- **Docker image:** `pgkb/pharmcat:3.4.0` (~1.97 GB compressed) — pinned by tag and digest,
+  never `:latest`. Since Phase 9 B4 the deployment image copies only the jar from it.
 
 > **How this was verified.** Docker was not available in the environment where
 > this was written, so verification used the *same artifacts the image contains*,

@@ -37,7 +37,8 @@ THIRD-PARTY COMPONENTS
 PharmaGuard calls PharmCAT (https://pharmcat.clinpgx.org/), which is licensed
 under the Mozilla Public License 2.0 and is invoked as a separate process; it
 is not modified or redistributed as part of this source tree, though the
-deployment image includes it via the `pgkb/pharmcat` container.
+deployment image includes its unmodified jar, copied from the `pgkb/pharmcat`
+image and checked against a pinned SHA-256 (infra/Dockerfile).
 
 Clinical recommendation text originates from CPIC (https://cpicpgx.org/) and is
 reproduced via PharmCAT's output. CPIC guidelines are published under their own

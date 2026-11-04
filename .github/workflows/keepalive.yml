@@ -2,7 +2,8 @@
 #
 # WHY
 #   Free-tier hosts sleep when idle. The first request after a nap pays the
-#   whole container start — for a ~2 GB PharmCAT image that is tens of seconds.
+#   whole container start — tens of seconds on the free tier (82.4 s measured in
+#   Phase 9 Part A, with the 6 GB image; the slim image is 584 MB).
 #   A visitor who lands on the site cold sees the "waking up" banner and may
 #   leave before it finishes. Pinging /health every 10 minutes keeps the
 #   container resident so the demo is instant.

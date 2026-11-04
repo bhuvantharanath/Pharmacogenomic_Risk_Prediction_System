@@ -1,0 +1,45 @@
+{
+ "comparison": {
+  "s1_s6_differing": [],
+  "s1_s6_identical": "6/6",
+  "testvcf_differing": [],
+  "testvcf_identical": "74/74"
+ },
+ "java_tool_options": "-Xmx208m -XX:MaxMetaspaceSize=68m",
+ "old": {
+  "image": "pharmaguard-api:b4-old",
+  "image_size_bytes": 1917517885,
+  "served": {
+   "health": {
+    "status": "ok"
+   },
+   "jar_sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741",
+   "java": "Picked up JAVA_TOOL_OPTIONS: -Xmx208m -XX:MaxMetaspaceSize=68m",
+   "memory_peak_bytes": 364916736,
+   "pharmcat_pipeline": "/pharmcat/pharmcat_pipeline",
+   "pid1": "tini -- sh -c exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1",
+   "python": "Python 3.14.6",
+   "ready_seconds": 0.5,
+   "uid": "1000"
+  },
+  "testvcf_reports": 74
+ },
+ "slim": {
+  "image": "pharmaguard-api:b4-slim",
+  "image_size_bytes": 146794226,
+  "served": {
+   "health": {
+    "status": "ok"
+   },
+   "jar_sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741",
+   "java": "Picked up JAVA_TOOL_OPTIONS: -Xmx208m -XX:MaxMetaspaceSize=68m",
+   "memory_peak_bytes": 351318016,
+   "pharmcat_pipeline": "absent",
+   "pid1": "tini -- sh -c exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1",
+   "python": "Python 3.14.6",
+   "ready_seconds": 0.5,
+   "uid": "1000"
+  },
+  "testvcf_reports": 74
+ }
+}

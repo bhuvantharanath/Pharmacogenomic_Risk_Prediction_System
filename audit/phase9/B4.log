@@ -1,0 +1,56 @@
+B4 plan written 2026-11-04T13:29:34Z
+66355c90581ebe97940a0d7824f4331c18c20b384412ccd427d712929f6411df  audit/phase9/B4_PLAN.md
+
+== Images (linux/arm64, colima 4 CPU / 8 GB; both from commit 2fc87c8523b70a202c491d0f37a90c1e8ccc4bfb via git archive) ==
+build old ok in 24s
+build slim ok in 22s
+pharmaguard-api:b4-slim 584MB 6fc8079e82ba
+pharmaguard-api:b4-old 6.02GB 728d34756e1a
+rc=0
+
+== Sabotages ==
+SB4-a: build failed as required: sha256sum: WARNING: 1 computed checksum did NOT match The command '/bin/sh -c echo "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454740  /pharmcat/pharmcat.jar"       | sha256sum -
+SB4-b: build failed as required: /bin/sh: 1: java: not found The command '/bin/sh -c echo "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741  /pharmcat/pharmcat.jar"       | sha256sum -c -  && java -jar /pharmcat/pharmcat.jar -ve
+SB4-c: FAILED tests/test_container_image.py::test_the_build_context_holds_exactly_what_the_image_copies 1 failed, 4 passed in 0.12s 
+restored .dockerignore identical: yes
+Note: the old image is HEAD's tracked files as archived; the slim image is the same archive with the B4 infra/Dockerfile and .dockerignore copied over it. Application code is identical in both.
+
+== Container comparison (audit/phase9/partb/B4/containers.json; b4_containers.py; JAVA_TOOL_OPTIONS -Xmx208m -XX:MaxMetaspaceSize=68m) ==
+size (docker image ls, unpacked):   old 6.02 GB   slim 584 MB
+size (image inspect, compressed):   old 1,917,517,885 B   slim 146,794,226 B   (what a host pulls)
+memory.peak over S1-S6:             old 364,916,736 B (348.0 MiB)   slim 351,318,016 B (335.0 MiB)   ratio 0.963
+S1-S6 JSON identical apart from timestamp/processing_time_ms: 6/6
+74 PharmCAT test VCFs, report.json `genes` identical: 74/74
+slim: pharmcat_pipeline absent (old: /pharmcat/pharmcat_pipeline); jar sha256 9317ef63...; PID 1 "tini -- sh -c exec uvicorn ..."
+      in both; uid 1000 in both; Python 3.14.6 in both; /health {"status":"ok"} in both;
+      /ready HTTP 200 in both: pharmcat ok "jar: java -jar /pharmcat/pharmcat.jar", 6 mechanism documents, 20 explanations,
+      label mapping parsed (audit/phase9/partb/B4/{old,slim}/ready.json)
+
+== Re-bind ==
+test-data/benchmark/current-candidate-2026-11-04-b4, core fc8b7dbd8e6ccee97ad10c89ef617ace75f5753f820f8c052f14053d48d4fdd3,
+0 new caller runs, metrics equal to the B3 package except generation time, F4 true/true, verify PASS.
+compatible_bundle.json now records production_image python:3.14.6-slim-trixie@sha256:7bec7ddc... (the served stage).
+backend suite after re-bind: 1004 passed, 6 skipped. Application code unchanged (git diff HEAD -- backend/app app/lib:
+only the regenerated compatible_bundle.json).
+
+== AC verdicts, local half (2026-11-04) ==
+AC1 PASS  584 MB < 700 MB.
+AC2 PASS  6/6 and 74/74 identical.
+AC3 PASS  335.0 MiB <= 348.0 MiB x 1.05 and < 512 MiB.
+AC4 NOT MET AS WRITTEN  The clause "/health reports PharmCAT available" cannot hold for either image: /health is
+          liveness-only in this codebase and returns {"status":"ok"} in both. PharmCAT availability is reported by /ready,
+          which says so in both images (HTTP 200, jar path). Every other AC4 clause passes (no wrapper, jar digest, tini
+          PID 1, uid 1000). Not adjusted; put to the owner.
+AC5 PASS  SB4-a and SB4-b fail the build; SB4-c turns the static test red; COPY sources == .dockerignore admits.
+AC6-AC8   NOT RUN  Need the owner to authorise pushing and deploying the Part B commits to measure on Render.
+Zero-regression: no application code changed; AC2 shows identical outputs in the served image.
+
+== AC4 amended by owner decision (2026-11-04T14:30:58Z) ==
+6d9bcb089f35be1e61cdf8a3d94db01b9df8d0e82521908d9b725d0b73522da2  audit/phase9/B4_AC4_AMENDMENT.md
+Owner's words: "Amend AC4, push, deploy"
+AC4 (amended) PASS on the measurements above: no wrapper, jar 9317ef63..., tini PID 1, uid 1000, /ready 200 with
+  pharmcat ok via java -jar /pharmcat/pharmcat.jar (audit/phase9/partb/B4/slim/ready.json).
+
+testvcf_genes.json (23 MB each, kept local, not committed):
+dbc48e08ba2801b2fbb6feda3da661088e82687f7f033432cab5a05ebcccf09f  audit/phase9/partb/B4/old/testvcf_genes.json
+dbc48e08ba2801b2fbb6feda3da661088e82687f7f033432cab5a05ebcccf09f  audit/phase9/partb/B4/slim/testvcf_genes.json
