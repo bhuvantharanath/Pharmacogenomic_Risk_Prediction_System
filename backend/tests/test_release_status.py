@@ -194,26 +194,119 @@ def test_mutated_approved_identity_blocks_gate(monkeypatch, mutated_field: str) 
     assert any(f"{mutated_field.split('_')[0]} hash mismatch" in problem for problem in detail["problems"])
 
 
-def test_release_status_describes_fallback_without_declaring_release_ready() -> None:
-    result = _evaluate(
-        manifest={
-            "compatible": True,
-            "all_entries_approved": False,
-            "approved_entries_human_bound": False,
-            "approved_generated_entries": 0,
-            "unapproved_generated_entries": 20,
-            "releasable_generated_entries": 0,
-            "fallback_only_cases": 20,
-            "human_review_complete_for_releasable_set": None,
-            "clinical_expert_review": "NOT_OBTAINED",
-        }
-    )
+#: The real state: 20 stored entries, none approved, so none is servable.
+_WITHHELD_MANIFEST = {
+    "compatible": True,
+    "all_entries_approved": False,
+    "approved_entries_human_bound": False,
+    "approved_generated_entries": 0,
+    "unapproved_generated_entries": 20,
+    "releasable_generated_entries": 0,
+    "fallback_only_cases": 20,
+    "human_review_complete_for_releasable_set": None,
+    "clinical_expert_review": "NOT_OBTAINED",
+}
+_INCOMPLETE_ADJUDICATION = {
+    "human_adjudication_complete": False,
+    "rejected": 0,
+    "outstanding": 19,
+    "clinical_expert_review": "NOT_OBTAINED",
+}
+
+
+def test_template_only_release_is_ready_while_content_review_is_outstanding() -> None:
+    """
+    The amended policy (2026-11-04, audit/phase9/GATE_AMENDMENT_PLAN.md AC1).
+
+    This replaced a test asserting the opposite. The old policy refused any
+    release until every stored entry was human-approved, which kept a build that
+    SERVES all 20 unapproved entries in production because the build that
+    withholds them could not ship. The test changed because the policy did, by
+    owner decision, not because it was failing.
+    """
+    result = _evaluate(manifest=_WITHHELD_MANIFEST, adjudication=_INCOMPLETE_ADJUDICATION)
 
     assert result["effective_explanation_mode"] == "deterministic_template_only"
-    assert result["declared_explanation_release_policy"] == (
-        "human_review_all_stored_generated_entries"
-    )
+    assert result["declared_explanation_release_policy"] == "withhold_unapproved_stored_prose"
+    assert result["prerequisites"]["served_stored_prose_reviewed"] is True
+    assert result["release_ready"] is True
+    # Withheld is not reviewed: the gap is still stated, just not blocking (AC5).
+    assert result["content_review_complete"] is False
+    assert set(result["outstanding_content_review"]) == {
+        "human_adjudication_complete",
+        "no_rejected_or_outstanding_claims",
+        "all_entries_approved",
+        "approved_entries_human_bound",
+    }
+
+
+def test_servable_unreviewed_prose_blocks_release() -> None:
+    """AC2: the moment a stored entry could reach a user, full review is required."""
+    servable = {**_WITHHELD_MANIFEST, "releasable_generated_entries": 1,
+                "approved_generated_entries": 1, "fallback_only_cases": 19}
+
+    result = _evaluate(manifest=servable, adjudication=_INCOMPLETE_ADJUDICATION)
+
+    assert result["effective_explanation_mode"] == "approved_static_with_template_fallback"
+    assert result["prerequisites"]["served_stored_prose_reviewed"] is False
     assert result["release_ready"] is False
+
+
+def test_a_missing_releasable_count_fails_closed() -> None:
+    """No count is not evidence that nothing is served."""
+    unknown = {key: value for key, value in _WITHHELD_MANIFEST.items()
+               if key != "releasable_generated_entries"}
+
+    result = _evaluate(manifest=unknown, adjudication=_INCOMPLETE_ADJUDICATION)
+
+    assert result["prerequisites"]["served_stored_prose_reviewed"] is False
+    assert result["release_ready"] is False
+
+
+@pytest.mark.parametrize(
+    ("prerequisite", "override"),
+    [
+        ("required_checks_passed", {"required_checks": _checks(passed=False)}),
+        ("manifest_compatible", {"manifest": {**_WITHHELD_MANIFEST, "compatible": False}}),
+        ("scientific_bundle_compatible", {"compatible_bundle": {"compatible": False}}),
+        ("artifact_hashes_match", {"candidate_artifact_hash_value": "different"}),
+        ("candidate_revision_matches", {"candidate_revision": "different"}),
+        ("no_clinical_expert_review_claim", {
+            "adjudication": {**_INCOMPLETE_ADJUDICATION, "clinical_expert_review": "OBTAINED"}}),
+        ("provenance_complete", {
+            "review": {"provenance_complete": False, "clinical_expert_review": "NOT_OBTAINED"}}),
+    ],
+)
+def test_every_other_prerequisite_still_blocks_a_template_only_release(
+    prerequisite: str, override: dict
+) -> None:
+    """AC3: withholding stored prose relaxes the content prerequisites and nothing else."""
+    values = {"manifest": _WITHHELD_MANIFEST, "adjudication": _INCOMPLETE_ADJUDICATION}
+    values.update(override)
+
+    result = _evaluate(**values)
+
+    assert result["prerequisites"][prerequisite] is False
+    assert prerequisite in result["blocking_prerequisites"]
+    assert result["release_ready"] is False
+
+
+def test_the_real_store_serves_no_stored_prose_and_says_what_is_outstanding() -> None:
+    """AC5/AC6 on the repository's own data, through the command the gate runs."""
+    code, release = _script_json("release_status.py")
+    text = subprocess.run(
+        [sys.executable, str(SCRIPTS / "release_status.py")],
+        cwd=REPO_ROOT, capture_output=True, text=True, timeout=300, check=False,
+    ).stdout
+
+    assert release["releasable_generated_entries"] == 0
+    assert release["prerequisites"]["served_stored_prose_reviewed"] is True
+    # Required checks are not run without --run-required, so this is not a release.
+    assert release["release_ready"] is False
+    assert code == 1
+    assert "BLOCKED: required_checks_passed" in text
+    assert "OUTSTANDING (blocks only if stored prose is served): human_adjudication_complete" in text
+    assert "BLOCKED: human_adjudication_complete" not in text
 
 
 def test_owner_review_packet_lists_pending_claims_without_deciding_them() -> None:

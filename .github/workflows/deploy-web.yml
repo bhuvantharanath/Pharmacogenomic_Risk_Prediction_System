@@ -91,9 +91,12 @@ jobs:
         run: python scripts/fetch_pinned_artifacts.py
 
       # This is the only final ready/not-ready decision. It runs every required
-      # test, checks human adjudication and the approval manifest, and proves
-      # that the tested source hash is the exact candidate this workflow would
-      # deploy. A failure makes both deploy jobs ineligible.
+      # test, checks the approval manifest, and proves that the tested source
+      # hash is the exact candidate this workflow would deploy. Stored prose
+      # must be fully human-adjudicated before it can be served; a candidate
+      # whose runtime would serve none of it may ship with that review still
+      # outstanding (policy withhold_unapproved_stored_prose, 2026-11-04). A
+      # failure makes both deploy jobs ineligible.
       - name: Evaluate exact release candidate
         run: python scripts/release_status.py --run-required --candidate-sha "${GITHUB_SHA}"
 

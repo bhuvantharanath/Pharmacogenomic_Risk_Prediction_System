@@ -184,15 +184,18 @@ Steps 5, 6, 8, 10 and 11 are safe to re-run at any time.
 | `review_status.py` | no | Provenance and author-read coverage, reported separately |
 | `build_explanation_approvals.py` | no | Projects existing adjudication into exact content/source/context identities; never invents approval |
 | `build_release_review_packet.py` | no | Lists every unresolved or automated-only claim, its exact entry hash, and candidate source span for owner review; records no decision |
-| `release_status.py` | no | **The sole release decision.** Requires tests, human adjudication, compatible approval hashes, and exact candidate identity |
+| `release_status.py` | no | **The sole release decision.** Requires tests, compatible approval and bundle hashes, exact candidate identity, and either no servable stored prose or complete human adjudication |
 
 The release status reports both the current runtime prose path and the declared
-release policy. When all stored entries are unapproved, runtime requests use
-deterministic templates, but that fact does not satisfy this project's existing
-requirement for named human adjudication of every stored claim. The 20 entries
-remain in the approval surface until their review is completed under the current
-policy. Run `python scripts/build_release_review_packet.py` to prepare the
-current owner packet without changing any approval state.
+release policy, `withhold_unapproved_stored_prose` (since 2026-11-04). A build may
+ship when the runtime's own approval function would serve no stored entry — every
+request then gets the deterministic template — or when every stored claim has a
+named human decision. The mixed state stays blocked. Withholding is not review:
+the four content-review prerequisites are still printed as `OUTSTANDING` on every
+run, and `--content-only` still exits non-zero until adjudication is complete.
+Stored entries stay withheld until their review is completed. Run
+`python scripts/build_release_review_packet.py` to prepare the current owner
+packet without changing any approval state.
 
 ### Model id
 

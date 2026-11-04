@@ -1,0 +1,5 @@
+gate amendment plan written 2026-11-04T05:05:26Z
+a34cec605e10c256658417f91845d17244436c6db9a6c5347ae187d1a584648f  audit/phase9/GATE_AMENDMENT_PLAN.md
+SG-a revert amendment: ready = all(prerequisites): pytest rc=1; failing: ['test_template_only_release_is_ready_while_content_review_is_outstanding']
+SG-b served_stored_prose_reviewed always true: pytest rc=1; failing: ['test_servable_unreviewed_prose_blocks_release', 'test_a_missing_releasable_count_fails_closed']
+restored byte-exact: ae714c12561f

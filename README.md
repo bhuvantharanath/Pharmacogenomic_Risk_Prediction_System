@@ -432,9 +432,9 @@ Release prerequisites, each exiting non-zero on failure and combined only by
 | Detector sensitivity | Planted violations still caught |
 | Coverage gate tests | 31 tests incl. sabotage cases |
 | Provenance verification | Clinical sentences traceable |
-| Human adjudication | Every stored sentence decided by a named person — **red** |
+| Human adjudication | Every stored sentence decided by a named person — **red**; required before any stored prose may be served |
 | Approval identity | Exact content, source, drug/gene/phenotype/risk context, and store hashes |
-| Authoritative release status | All required tests plus the exact tested candidate hash |
+| Authoritative release status | All required tests, the exact tested candidate hash, and either no servable stored prose or complete adjudication |
 
 **Invariants contributors must not break:**
 
@@ -464,6 +464,15 @@ Release prerequisites, each exiting non-zero on failure and combined only by
 against a quoted source passage. **19 escalated to a human and left undecided.**
 The authoritative content gate exits non-zero. Unapproved stored prose is not
 served; requests receive the deterministic fallback instead.
+
+Since 2026-11-04 the release gate may deploy a build in this state, because such
+a build serves none of the stored prose: release policy
+`withhold_unapproved_stored_prose`. Until then the gate blocked every release, so
+production kept running a build from 2026-08-14 that did serve the unapproved
+entries. The content gate (`release_status.py --content-only`) is unchanged and
+still exits non-zero, and the gate blocks again the moment any stored entry
+becomes servable without complete adjudication. See
+`audit/phase9/GATE_AMENDMENT_PLAN.md`.
 
 **This is a decision, not an unfinished task.** The 19 are clinical assertions —
 whether a rapid metaboliser carries a higher bleeding risk, whether a normal

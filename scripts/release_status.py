@@ -69,6 +69,32 @@ REQUIRED_COMMANDS = (
 )
 
 
+#: What a release must guarantee about stored generated prose.
+#:
+#: WAS `human_review_all_stored_generated_entries`: every stored entry had to be
+#: adjudicated and approved before ANY build could ship. That needs a clinician
+#: this project does not have, so the gate stayed red indefinitely while the
+#: production build from 2026-08-14 kept serving all 20 unapproved entries
+#: (found by the Phase 9 audit, 2026-11-03). The candidate build withholds every
+#: one of them, so blocking it protected nobody.
+#:
+#: The guarantee is now about what users can actually receive: a build may ship
+#: when the runtime's own approval function would serve NO stored entry, or when
+#: the full content review is complete. The mixed state stays blocked. Changed by
+#: owner decision on 2026-11-04; see audit/phase9/GATE_AMENDMENT_PLAN.md.
+RELEASE_POLICY = "withhold_unapproved_stored_prose"
+
+#: Prerequisites about reviewing stored prose. Reported on every run and
+#: required by `--content-only`, but they block a release only when stored prose
+#: could reach a user.
+CONTENT_REVIEW_PREREQUISITES = (
+    "human_adjudication_complete",
+    "no_rejected_or_outstanding_claims",
+    "all_entries_approved",
+    "approved_entries_human_bound",
+)
+
+
 def candidate_artifact_hash(root: Path = REPO_ROOT) -> str:
     """Hash versioned release inputs with the same portable path encoding."""
     policy = load_hash_policy(root)
@@ -287,11 +313,28 @@ def evaluate_release(
             == approval.NO_EXPERT_REVIEW
         ),
     }
-    ready = all(prerequisites.values())
+    content_review_complete = all(
+        prerequisites[name] for name in CONTENT_REVIEW_PREREQUISITES
+    )
+    # Fail closed: a missing count is not evidence that nothing is served.
+    releasable = manifest.get("releasable_generated_entries")
+    nothing_stored_served = releasable == 0
+    prerequisites["served_stored_prose_reviewed"] = (
+        nothing_stored_served or content_review_complete
+    )
+    blocking = [
+        name for name in prerequisites if name not in CONTENT_REVIEW_PREREQUISITES
+    ]
+    ready = all(prerequisites[name] for name in blocking)
     return {
         "release_ready": ready,
         "state": "ready" if ready else "not-ready",
-        "declared_explanation_release_policy": "human_review_all_stored_generated_entries",
+        "declared_explanation_release_policy": RELEASE_POLICY,
+        "blocking_prerequisites": blocking,
+        "content_review_complete": content_review_complete,
+        "outstanding_content_review": [
+            name for name in CONTENT_REVIEW_PREREQUISITES if not prerequisites[name]
+        ],
         "effective_explanation_mode": (
             "approved_static_with_template_fallback"
             if manifest.get("releasable_generated_entries", 0)
@@ -392,9 +435,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  required checks        {payload['prerequisites']['required_checks_passed']}")
         print(f"  artifact hashes match  {payload['prerequisites']['artifact_hashes_match']}")
         print(f"  clinical expert review {approval.NO_EXPERT_REVIEW}")
-        for name, passed in payload["prerequisites"].items():
-            if not passed:
+        print(f"  release policy         {payload['declared_explanation_release_policy']}")
+        print(f"  explanation mode       {payload['effective_explanation_mode']}")
+        for name in payload["blocking_prerequisites"]:
+            if not payload["prerequisites"][name]:
                 print(f"  BLOCKED: {name}")
+        for name in payload["outstanding_content_review"]:
+            # Still reported on every run: withheld is not the same as reviewed.
+            print(f"  OUTSTANDING (blocks only if stored prose is served): {name}")
 
     return 0 if (content_ready if args.content_only else payload["release_ready"]) else 1
 
