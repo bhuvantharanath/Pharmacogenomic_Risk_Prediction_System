@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 409, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 379, in main
+    prep = prepare_copy(copy)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 113, in prepare_copy
+    core_repo, core_copy = bundle.application_core_hash(R), bundle.application_core_hash(copy)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/scripts/compatible_bundle.py", line 110, in application_core_hash
+    return hash_selected_files(base, policy["core_paths"], policy["hash_domain"])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/scripts/compatible_bundle.py", line 80, in hash_selected_files
+    raise ValueError(f"missing or non-regular scientific input: {relative}")
+ValueError: missing or non-regular scientific input: backend/app/evidence_crosscheck.py
+rebind rc=1
