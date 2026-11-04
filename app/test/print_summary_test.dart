@@ -89,7 +89,14 @@ AnalyzeResponse _response({
     cpicSource: 'CPIC guidelines, retrieved via PharmCAT',
     note:
         'Guidance reflects what CPIC published when this data was captured. '
-        'CPIC revises its guidelines; this build does not monitor for changes.',
+        'CPIC revises its guidelines. A weekly repository check compares this '
+        'build\'s CPIC data with CPIC\'s current release and flags differences '
+        'for review; an analysis does not check at the time it runs.',
+    cpicGuidanceSha256:
+        '5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8',
+    alleleDefinitionsVersion: '2026-07-13-11-40',
+    alleleDefinitionsSha256:
+        '7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f',
   ),
 }) => AnalyzeResponse(
   patientId: 'HG00276',
@@ -256,7 +263,14 @@ void main() {
       expect(html, contains('3.4.0'));
       expect(html, contains('2026-07-13-11-40'));
       expect(html, contains('24 Jul 2026'));
-      expect(html, contains('does not monitor for changes'));
+      expect(html, contains('an analysis does not check at the time it runs'));
+      // The record carries the full hashes, not the footer's short form.
+      expect(html, contains(
+          '5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8'));
+      expect(html, contains(
+          '7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f'));
+      // No PharmVar row is invented when none was sent.
+      expect(html.contains('PharmVar release'), isFalse);
     });
 
     test('results are ordered by consequence here too', () {

@@ -1,0 +1,95 @@
+# Weekly check that the CPIC knowledge this build pins is still CPIC's.
+#
+# WHY
+#   Every recommendation PharmaGuard shows comes from the CPIC tables inside the
+#   pinned PharmCAT jar, frozen when the jar was validated. CPIC revises its
+#   guidelines and PharmCAT ships new data; nothing else in this repository
+#   would notice. This job compares the vendored CPIC snapshot
+#   (`test-data/reference/cpic_snapshot/`, which tests prove agrees with the
+#   jar except for explained rows) with CPIC's live API, and the pinned PharmCAT
+#   version with PharmCAT's latest release.
+#
+# WHAT HAPPENS
+#   No difference  -> green.
+#   A difference   -> red, and ONE open issue titled below gets the report
+#                     (created the first time, commented on after that).
+#   Check failed   -> red, no issue: an unreachable API is not a change, and
+#                     "could not check" must never read as "nothing changed".
+#   Nothing is updated automatically. A person decides what a change means.
+#
+# LIMITS
+#   GitHub disables scheduled workflows after 60 days without repository
+#   activity, and runs them late under load. The app's provenance note calls
+#   this a weekly repository check, which stays true only while it is enabled
+#   (Actions tab -> Knowledge watch).
+
+name: Knowledge watch
+
+on:
+  schedule:
+    - cron: "23 5 * * 1"     # Mondays 05:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: knowledge-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    name: CPIC and PharmCAT vs the pinned data
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Exit 0 unchanged, 1 changed, 2 could not check. Any non-zero fails
+      # this step and so the job.
+      - name: Compare
+        id: check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/cpic_snapshot.py --check-live --report-dir "$RUNNER_TEMP/watch"
+
+      - name: Job summary
+        if: always()
+        run: |
+          set -euo pipefail
+          if [ -f "$RUNNER_TEMP/watch/knowledge-watch.md" ]; then
+            cat "$RUNNER_TEMP/watch/knowledge-watch.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "The check wrote no report; see the Compare step log." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Open or update the issue
+        id: issue
+        if: failure() && steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          status="$(python3 -c 'import json, sys; print(json.load(open(sys.argv[1]))["status"])' \
+            "$RUNNER_TEMP/watch/knowledge-watch.json")"
+          if [ "$status" != "changed" ]; then
+            echo "The check did not complete (status: $status); no issue opened."
+            exit 0
+          fi
+          title="Knowledge watch: CPIC or PharmCAT differs from the pinned data"
+          existing="$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 200 \
+              --json number,title \
+            | python3 -c 'import json, sys; t = sys.argv[1]; m = [i["number"] for i in json.load(sys.stdin) if i["title"] == t]; print(m[0] if m else "")' \
+              "$title")"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" \
+              --body-file "$RUNNER_TEMP/watch/knowledge-watch.md"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" \
+              --body-file "$RUNNER_TEMP/watch/knowledge-watch.md"
+          fi

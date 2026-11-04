@@ -115,8 +115,12 @@ const String _fixture = '''
         "pharmcat_version": "3.4.0",
         "cpic_data_version": "2026-07-13-11-40",
         "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+        "cpic_guidance_sha256": "5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8",
+        "allele_definitions_version": "2026-07-13-11-40",
+        "allele_definitions_sha256": "7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f",
+        "pharmvar_release": "",
         "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
-        "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines; this build does not monitor for changes."
+        "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs."
       }
   }
 }

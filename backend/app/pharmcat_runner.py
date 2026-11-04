@@ -29,11 +29,14 @@ unconditional.
 from __future__ import annotations
 
 import asyncio
+import functools
+import hashlib
 import json
 import os
 import signal
 import shutil
 import tempfile
+import zipfile
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
 from pathlib import Path
@@ -363,6 +366,64 @@ def unavailable_reason() -> str:
 def pharmcat_available() -> bool:
     """True if PharmCAT can be invoked by any strategy (used by /health)."""
     return resolve_invoker() is not None
+
+
+#: The knowledge inside the jar that decides a result: CPIC's recommendation
+#: rows and the allele definitions. The definition list matches the genes whose
+#: definition hashes `backend/app/data/compatible_bundle.json` records, so the
+#: served identity can be compared one-to-one with the validated one.
+GUIDANCE_MEMBER = "org/pharmgkb/pharmcat/reporter/prescribing_guidance.json"
+DEFINITION_GENES: tuple[str, ...] = (
+    "CYP2C19", "CYP2C9", "CYP2D6", "CYP4F2", "DPYD", "NUDT15", "SLCO1B1", "TPMT", "VKORC1",
+)
+
+
+def definitions_digest(member_hashes: dict[str, str]) -> str:
+    """SHA-256 over sorted `<member> <sha256>` lines.
+
+    Defined over per-file hashes rather than raw bytes so the same value can be
+    recomputed from the per-file records in the compatible bundle.
+    """
+    lines = "\n".join(f"{member} {member_hashes[member]}" for member in sorted(member_hashes))
+    return hashlib.sha256(lines.encode()).hexdigest()
+
+
+@functools.lru_cache(maxsize=1)
+def knowledge_identity() -> dict[str, str]:
+    """
+    What the resolved jar knows, identified by content rather than by name.
+
+    PharmCAT's `dataVersion` names the data bundle; these hashes prove which
+    bytes it is. Computed once per process from the jar the runner would invoke.
+    PharmCAT 3.4.0 records no PharmVar release number — its definition files
+    carry only the ClinPGx data version — so none is reported. Empty when no jar
+    can be found or it does not have the expected layout, rather than a guess;
+    provenance must never break a response.
+    """
+    jar = find_jar()
+    if jar is None:
+        return {}
+    members = {
+        f"org/pharmgkb/pharmcat/definition/alleles/{gene}_translation.json": ""
+        for gene in DEFINITION_GENES
+    }
+    versions = set()
+    try:
+        with zipfile.ZipFile(jar) as zf:
+            guidance = hashlib.sha256(zf.read(GUIDANCE_MEMBER)).hexdigest()
+            for member in members:
+                raw = zf.read(member)
+                members[member] = hashlib.sha256(raw).hexdigest()
+                versions.add(str(json.loads(raw).get("version") or ""))
+    except (OSError, KeyError, ValueError, zipfile.BadZipFile):
+        return {}
+    return {
+        "cpic_guidance_sha256": guidance,
+        "allele_definitions_sha256": definitions_digest(members),
+        # One version across every file, or the honest "mixed" rather than
+        # whichever file happened to be read first.
+        "allele_definitions_version": versions.pop() if len(versions) == 1 else "mixed",
+    }
 
 
 # --------------------------------------------------------------------------- #

@@ -4,6 +4,8 @@ A pinned snapshot of CPIC's API, and the diff against what PharmCAT embeds.
 
     python scripts/cpic_snapshot.py --fetch     # refresh the vendored snapshot
     python scripts/cpic_snapshot.py --diff      # vendored snapshot vs the pinned jar
+    python scripts/cpic_snapshot.py --check-live --report-dir out/   # the weekly watch
+    python scripts/cpic_snapshot.py --compare-to DIR [--pharmcat-tag vX.Y.Z]  # same, offline
 
 WHY A SNAPSHOT AT ALL
 
@@ -18,6 +20,17 @@ drugs, fetched from the public PostgREST API with the date and per-file SHA-256.
 are expected — rows PharmCAT synthesises itself, alleles PharmCAT cannot define —
 are enumerated in `EXPECTED_DIFFERENCES`; anything else is new and must be
 explained before it is accepted (tests/test_cpic_snapshot.py).
+
+THE WATCH
+
+`--check-live` fetches CPIC's current tables and PharmCAT's latest release and
+compares them with what this build pins: the vendored snapshot, row by row on
+every fetched field, and the pinned PharmCAT version. It never edits the
+snapshot. Exit 0 means nothing changed, 1 means something did (the report names
+each row), 2 means the check could not be completed — which is not "no change".
+`.github/workflows/knowledge-watch.yml` runs it weekly and opens one issue.
+`--compare-to` runs the same comparison against a directory instead of the
+network, which is how the tests exercise it.
 """
 
 from __future__ import annotations
@@ -27,17 +40,22 @@ import datetime as dt
 import hashlib
 import html
 import json
+import os
 import re
 import sys
+import tempfile
 import urllib.request
 import zipfile
 from pathlib import Path
 
-from _common import REPO_ROOT
+from _common import REPO_ROOT, scrub
 
 API = "https://api.cpicpgx.org/v1"
 SNAPSHOT_DIR = REPO_ROOT / "test-data" / "reference" / "cpic_snapshot"
 JAR = REPO_ROOT / "test-data" / "reference" / "tools" / "pharmcat-3.4.0-all.jar"
+BUNDLE = REPO_ROOT / "backend" / "app" / "data" / "compatible_bundle.json"
+PHARMCAT_LATEST = "https://api.github.com/repos/PharmGKB/PharmCAT/releases/latest"
+USER_AGENT = "PharmaGuard-cpic-snapshot/1 (research; github.com/bhuvantharanath)"
 
 #: The genes PharmaGuard calls from a VCF (CYP2D6 is never called here).
 GENES = ("CYP2C19", "CYP2C9", "SLCO1B1", "TPMT", "NUDT15", "DPYD")
@@ -82,8 +100,7 @@ def _get(path: str) -> bytes:
     # request names itself.
     request = urllib.request.Request(
         f"{API}{path}",
-        headers={"User-Agent": "PharmaGuard-cpic-snapshot/1 (research; github.com/bhuvantharanath)",
-                 "Accept": "application/json"},
+        headers={"User-Agent": USER_AGENT, "Accept": "application/json"},
     )
     with urllib.request.urlopen(request, timeout=120) as response:
         if response.status != 200:
@@ -197,12 +214,215 @@ def verify_manifest(snapshot: Path = SNAPSHOT_DIR) -> list[str]:
     return problems
 
 
+# --------------------------------------------------------------------------- #
+# The watch: the pinned snapshot and PharmCAT release vs what exists now
+# --------------------------------------------------------------------------- #
+
+#: How a row is identified, so an edited row reads as "changed" rather than as
+#: a removal plus an addition. The comparison itself covers every field.
+ROW_KEYS = {
+    "allele.json": ("genesymbol", "name"),
+    "recommendation.json": ("drugname", "guidelinename", "lookupkey", "population"),
+}
+#: Enough of each changed row for the issue to be read without the artifact.
+REPORT_ROW_LIMIT = 40
+REPORT_TEXT_LIMIT = 600
+
+
+def _rows_by_key(path: Path, key_fields: tuple[str, ...]) -> dict[str, list[str]]:
+    rows = json.loads(path.read_text())
+    if not isinstance(rows, list) or not rows:
+        raise ValueError(f"{path}: expected a non-empty JSON list")
+    grouped: dict[str, list[str]] = {}
+    for row in rows:
+        key = json.dumps([row.get(field) for field in key_fields], sort_keys=True)
+        grouped.setdefault(key, []).append(json.dumps(row, sort_keys=True))
+    return {key: sorted(group) for key, group in grouped.items()}
+
+
+def compare_tables(pinned: Path, current: Path) -> list[dict]:
+    """Every row that was added, removed or changed between two snapshots."""
+    changes = []
+    for name, key_fields in ROW_KEYS.items():
+        before = _rows_by_key(pinned / name, key_fields)
+        after = _rows_by_key(current / name, key_fields)
+        for key in sorted(set(before) | set(after)):
+            old, new = before.get(key), after.get(key)
+            if old == new:
+                continue
+            kind = "added" if old is None else "removed" if new is None else "changed"
+            changes.append({
+                "table": name, "kind": kind,
+                "key": dict(zip(key_fields, json.loads(key))),
+                "before": [json.loads(r) for r in old or []],
+                "after": [json.loads(r) for r in new or []],
+            })
+    return changes
+
+
+def _version(tag: str) -> tuple[int, int, int]:
+    match = re.fullmatch(r"v?(\d+)\.(\d+)\.(\d+)", tag.strip())
+    if not match:
+        raise ValueError(f"unrecognised PharmCAT release tag {tag!r}")
+    major, minor, patch = (int(part) for part in match.groups())
+    return major, minor, patch
+
+
+def pinned_pharmcat_version() -> str:
+    return json.loads(BUNDLE.read_text())["pharmcat"]["engine_version"]
+
+
+def release_change(latest_tag: str, pinned: str) -> dict | None:
+    """The newer release, or None when the pinned one is the latest."""
+    if _version(latest_tag) > _version(pinned):
+        return {"pinned": pinned, "latest": latest_tag}
+    return None
+
+
+def latest_pharmcat_tag() -> str:
+    headers = {"User-Agent": USER_AGENT, "Accept": "application/vnd.github+json"}
+    # Unauthenticated calls share a 60-an-hour budget per runner IP; the
+    # workflow's own token avoids failing on someone else's usage.
+    if os.environ.get("GITHUB_TOKEN"):
+        headers["Authorization"] = f"Bearer {os.environ['GITHUB_TOKEN']}"
+    request = urllib.request.Request(PHARMCAT_LATEST, headers=headers)
+    with urllib.request.urlopen(request, timeout=60) as response:
+        if response.status != 200:
+            raise RuntimeError(f"PharmCAT releases: HTTP {response.status}")
+        tag = json.loads(response.read()).get("tag_name")
+    if not tag:
+        raise RuntimeError("PharmCAT releases: no tag_name in the latest release")
+    return tag
+
+
+def _clip(value) -> str:
+    text = json.dumps(value, sort_keys=True)
+    return text if len(text) <= REPORT_TEXT_LIMIT else text[:REPORT_TEXT_LIMIT] + " …"
+
+
+def render_report(result: dict) -> str:
+    """The issue body and job summary: what was compared, and what differs."""
+    manifest = result.get("pinned_manifest") or {}
+    lines = [
+        f"## Knowledge watch — {result['status']}",
+        "",
+        f"- Checked: {result['checked_utc']}",
+        f"- Pinned CPIC snapshot: fetched {manifest.get('fetched_utc', 'unknown')} "
+        f"(`test-data/reference/cpic_snapshot/`)",
+        f"- Compared with: {result['compared_with']}",
+        f"- Pinned PharmCAT: {result.get('pinned_pharmcat') or 'unknown'}; latest release: "
+        f"{result.get('latest_pharmcat') or 'not checked'}",
+        "",
+    ]
+    if result["status"] == "error":
+        lines += ["The check could not be completed, so nothing is known about whether "
+                  "CPIC or PharmCAT changed.", "", f"    {result['error']}", ""]
+        return "\n".join(lines)
+    changes = result["changes"]
+    release = result["release"]
+    if not changes and not release:
+        lines += ["No difference: CPIC's tables match the pinned snapshot on every "
+                  "fetched field, and no newer PharmCAT release exists.", ""]
+        return "\n".join(lines)
+    if release:
+        lines += [f"**PharmCAT {release['latest']} is newer than the pinned {release['pinned']}.**", ""]
+    if changes:
+        counts: dict[str, int] = {}
+        for change in changes:
+            label = f"{change['table']} {change['kind']}"
+            counts[label] = counts.get(label, 0) + 1
+        lines += ["**CPIC rows that differ from the pinned snapshot:** "
+                  + ", ".join(f"{n} {label}" for label, n in sorted(counts.items())), ""]
+        for change in changes[:REPORT_ROW_LIMIT]:
+            lines.append(f"- `{change['table']}` {change['kind']}: `{_clip(change['key'])}`")
+            if change["before"]:
+                lines.append(f"  - before: `{_clip(change['before'])}`")
+            if change["after"]:
+                lines.append(f"  - after: `{_clip(change['after'])}`")
+        if len(changes) > REPORT_ROW_LIMIT:
+            lines.append(f"- … and {len(changes) - REPORT_ROW_LIMIT} more; run the command "
+                         "below for the full list.")
+        lines.append("")
+    lines += [
+        "### What to do",
+        "",
+        "Nothing is changed automatically. A person decides whether the change matters:",
+        "",
+        "1. `python scripts/cpic_snapshot.py --check-live --report-dir out/` reproduces this.",
+        "2. If CPIC changed: `--fetch` refreshes the snapshot and `--diff` shows where the "
+        "pinned jar now disagrees with CPIC. `tests/test_cpic_snapshot.py` fails until "
+        "each new difference is explained in `EXPECTED_DIFFERENCES` or the jar is updated.",
+        "3. If PharmCAT released: upgrading the jar is a scientific-core change and needs "
+        "the full re-validation (label mapping, cohort, adversarial VCFs, evaluation re-bind).",
+        "",
+    ]
+    return "\n".join(lines)
+
+
+def run_watch(compare_to: Path | None, pharmcat_tag: str | None, report_dir: Path | None,
+              save_live: Path | None = None) -> int:
+    """
+    Compare what is pinned with what exists. Returns 0 (no change), 1 (change)
+    or 2 (could not check). Live when `compare_to` is None.
+    """
+    result: dict = {
+        "status": "error",
+        "checked_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+        "compared_with": str(compare_to) if compare_to else f"CPIC API {API} (live)",
+        "pinned_manifest": None, "pinned_pharmcat": None, "latest_pharmcat": None,
+        "changes": [], "release": None, "error": None,
+    }
+    try:
+        problems = verify_manifest()
+        if problems:
+            raise RuntimeError(f"the pinned snapshot is not intact: {problems}")
+        result["pinned_manifest"] = json.loads((SNAPSHOT_DIR / "manifest.json").read_text())
+        result["pinned_pharmcat"] = pinned_pharmcat_version()
+        with tempfile.TemporaryDirectory() as scratch:
+            if compare_to is None:
+                current = save_live or Path(scratch)
+                fetch(current)
+                pharmcat_tag = latest_pharmcat_tag()
+            else:
+                current = compare_to
+            result["changes"] = compare_tables(SNAPSHOT_DIR, current)
+        if pharmcat_tag:
+            result["latest_pharmcat"] = pharmcat_tag
+            result["release"] = release_change(pharmcat_tag, result["pinned_pharmcat"])
+        result["status"] = "changed" if result["changes"] or result["release"] else "unchanged"
+    except Exception as exc:  # noqa: BLE001 — any failure means "not checked", never "no change"
+        result["error"] = scrub(f"{type(exc).__name__}: {exc}")
+    report = render_report(result)
+    print(report)
+    if report_dir is not None:
+        report_dir.mkdir(parents=True, exist_ok=True)
+        (report_dir / "knowledge-watch.md").write_text(report + "\n")
+        (report_dir / "knowledge-watch.json").write_text(json.dumps(result, indent=1) + "\n")
+    return {"unchanged": 0, "changed": 1}.get(result["status"], 2)
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--fetch", action="store_true", help="refresh the vendored snapshot")
     ap.add_argument("--diff", action="store_true", help="snapshot vs the pinned jar")
+    ap.add_argument("--check-live", action="store_true",
+                    help="compare the pinned snapshot and PharmCAT version with what exists now")
+    ap.add_argument("--compare-to", type=Path, metavar="DIR",
+                    help="offline watch: compare the pinned snapshot with the tables in DIR")
+    ap.add_argument("--pharmcat-tag", metavar="TAG",
+                    help="with --compare-to: treat TAG as PharmCAT's latest release")
+    ap.add_argument("--report-dir", type=Path, metavar="DIR",
+                    help="write knowledge-watch.md and knowledge-watch.json here")
+    ap.add_argument("--save-live", type=Path, metavar="DIR",
+                    help="with --check-live: keep the fetched tables in DIR")
     args = ap.parse_args(argv)
+    if args.check_live or args.compare_to:
+        if args.check_live and args.compare_to:
+            ap.error("--check-live and --compare-to are alternatives")
+        if args.pharmcat_tag and not args.compare_to:
+            ap.error("--pharmcat-tag only applies to --compare-to; --check-live asks GitHub")
+        return run_watch(args.compare_to, args.pharmcat_tag, args.report_dir, args.save_live)
     if args.fetch:
         manifest = fetch()
         print(json.dumps(manifest, indent=1))

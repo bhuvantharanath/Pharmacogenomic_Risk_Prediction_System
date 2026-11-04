@@ -142,8 +142,11 @@ class _AboutScreenState extends State<AboutScreen> {
                         'was captured on the date below and has been frozen '
                         'since, so a recommendation here reflects what CPIC '
                         'published then — not necessarily what it publishes '
-                        'today. This build does not watch for changes, and says '
-                        'so rather than implying it is current.'),
+                        'today. Once a week, a check in the project\'s '
+                        'repository compares this data with CPIC\'s current '
+                        'release and flags any difference for review. Running '
+                        'an analysis does not check, so this app never implies '
+                        'a result is current.'),
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
@@ -159,6 +162,21 @@ class _AboutScreenState extends State<AboutScreen> {
                           if (_provenance!.cpicDataVersion.isNotEmpty)
                             _stamp('CPIC data bundle',
                                 _provenance!.cpicDataVersion),
+                          if (_provenance!.cpicGuidanceSha256.isNotEmpty)
+                            _stamp(
+                                'CPIC table hash',
+                                GuidelineProvenance.shortHash(
+                                    _provenance!.cpicGuidanceSha256)),
+                          if (_provenance!.alleleDefinitionsVersion.isNotEmpty)
+                            _stamp('Allele definitions',
+                                _provenance!.alleleDefinitionsVersion),
+                          if (_provenance!.alleleDefinitionsSha256.isNotEmpty)
+                            _stamp(
+                                'Definitions hash',
+                                GuidelineProvenance.shortHash(
+                                    _provenance!.alleleDefinitionsSha256)),
+                          if (_provenance!.pharmvarRelease.isNotEmpty)
+                            _stamp('PharmVar', _provenance!.pharmvarRelease),
                           _stamp('Explanations generated',
                               _provenance!.explanationsDate),
                           _stamp('Source', _provenance!.cpicSource),

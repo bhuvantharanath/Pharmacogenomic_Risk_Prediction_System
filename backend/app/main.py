@@ -66,6 +66,7 @@ from .pharmcat_runner import (
     PINNED_VERSION,
     PharmcatBusyError,
     PharmcatExecutionError,
+    knowledge_identity,
     pharmcat_available,
     resolve_invoker,
     run_pharmcat,
@@ -446,8 +447,9 @@ async def provenance() -> GuidelineProvenance:
 
     A GET because the About screen must be able to state it without an analysis
     having been run — the version behind an answer is not a property of the
-    upload. Reports the pinned PharmCAT release; the data-bundle stamp comes
-    from a real run and so is only present on /analyze.
+    upload. Reports the pinned PharmCAT release and the content hashes of the
+    jar's CPIC data; the data-bundle stamp comes from a real run and so is only
+    present on /analyze.
     """
     return guideline_provenance()
 
@@ -913,9 +915,10 @@ def guideline_provenance(report: PharmcatReport | None = None) -> GuidelineProve
     hand, PharmCAT's self-reported versions — rather than constants, so it
     cannot claim a currency the shipped data does not have. `/coverage` has no
     run, so it names the pinned release and leaves the data-bundle stamp empty
-    instead of guessing at one.
+    instead of guessing at one. The content hashes come from the jar the runner
+    would invoke, so they are the same on every endpoint.
 
-    Deliberately NOT a staleness check; see `GuidelineProvenance`.
+    Deliberately NOT a request-time freshness check; see `GuidelineProvenance`.
     """
     generated = ""
     try:
@@ -925,10 +928,14 @@ def guideline_provenance(report: PharmcatReport | None = None) -> GuidelineProve
         generated = str(raw.get("generated_at") or "")
     except Exception:  # noqa: BLE001 — provenance must never break a response
         generated = ""
+    knowledge = knowledge_identity()
     return GuidelineProvenance(
         pharmcat_version=(report.pharmcat_version if report else PINNED_VERSION),
         cpic_data_version=((report.data_version or "") if report else ""),
         explanations_generated_at=generated,
+        cpic_guidance_sha256=knowledge.get("cpic_guidance_sha256", ""),
+        allele_definitions_version=knowledge.get("allele_definitions_version", ""),
+        allele_definitions_sha256=knowledge.get("allele_definitions_sha256", ""),
     )
 
 

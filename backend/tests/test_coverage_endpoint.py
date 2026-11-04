@@ -284,12 +284,13 @@ def test_the_preview_names_the_pinned_version_and_claims_no_data_bundle() -> Non
 def test_provenance_never_claims_to_detect_staleness() -> None:
     """
     A date stamp is honest; "up to date" would be a claim this build cannot
-    support, because it does not monitor CPIC. Guard the wording.
+    support: the weekly repository check runs on a schedule, not when an
+    analysis does. Guard the wording.
     """
     note = _post(_at_coverage("CYP2C19", 1.0)).json()["guideline_provenance"]["note"]
     lowered = note.lower()
 
-    assert "does not monitor" in lowered
+    assert "an analysis does not check" in lowered
     for forbidden in ("up to date", "up-to-date", "current as of", "latest"):
         assert forbidden not in lowered, f"provenance note claims freshness: {note!r}"
 

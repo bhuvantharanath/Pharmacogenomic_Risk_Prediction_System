@@ -223,13 +223,15 @@ class PerDrugResult(BaseModel):
 
 class GuidelineProvenance(BaseModel):
     """
-    When this guidance was captured. CPIC revises its guidelines, so a frozen
-    explanation store carries an implicit "as of" that would otherwise be
-    invisible.
+    When this guidance was captured, and exactly which data it is. CPIC revises
+    its guidelines, so a frozen explanation store carries an implicit "as of"
+    that would otherwise be invisible.
 
-    Deliberately NOT a staleness check. Claiming to detect guideline changes
-    would require monitoring CPIC; date-stamping is honest, an unverifiable
-    freshness claim is not.
+    Still NOT a freshness check at request time: a running analysis does not ask
+    CPIC anything. The repository's weekly knowledge watch
+    (`.github/workflows/knowledge-watch.yml`) compares this data with CPIC's
+    current release and opens an issue when they differ; the hashes below are
+    what lets that comparison, and the validated bundle, refer to the same bytes.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -241,10 +243,22 @@ class GuidelineProvenance(BaseModel):
     #: /coverage, which does not run PharmCAT and so has not observed one.
     cpic_data_version: str = ""
     explanations_generated_at: str = ""
+    #: SHA-256 of PharmCAT's CPIC recommendation table in the jar actually used.
+    cpic_guidance_sha256: str = ""
+    #: The data version stamped on the allele-definition files, and a SHA-256
+    #: over them (sorted `<member> <sha256>` lines; see pharmcat_runner).
+    allele_definitions_version: str = ""
+    allele_definitions_sha256: str = ""
+    #: Empty: PharmCAT 3.4.0 records no PharmVar release number, and this
+    #: application does not infer one. The definitions are identified by the
+    #: version and hash above instead.
+    pharmvar_release: str = ""
     cpic_source: str = "CPIC guidelines, retrieved via PharmCAT"
     note: str = (
         "Guidance reflects what CPIC published when this data was captured. "
-        "CPIC revises its guidelines; this build does not monitor for changes."
+        "CPIC revises its guidelines. A weekly repository check compares this "
+        "build's CPIC data with CPIC's current release and flags differences "
+        "for review; an analysis does not check at the time it runs."
     )
 
 

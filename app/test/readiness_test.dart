@@ -261,8 +261,66 @@ void main() {
       explanationsGeneratedAt: '2026-07-24T09:53:53.175011+00:00',
       cpicSource: 'CPIC guidelines, retrieved via PharmCAT',
       note: 'Guidance reflects what CPIC published when this data was captured. '
-          'CPIC revises its guidelines; this build does not monitor for changes.',
+          'CPIC revises its guidelines. A weekly repository check compares this '
+          'build\'s CPIC data with CPIC\'s current release and flags differences '
+          'for review; an analysis does not check at the time it runs.',
     );
+
+    // The shape /analyze sends since B2: the version the run reported plus the
+    // content hashes of the jar's CPIC data (values from the pinned 3.4.0 jar).
+    const Map<String, dynamic> analyzeJson = <String, dynamic>{
+      'pharmcat_version': '3.4.0',
+      'cpic_data_version': '2026-07-13-11-40',
+      'explanations_generated_at': '2026-07-24T09:53:53.175011+00:00',
+      'cpic_guidance_sha256':
+          '5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8',
+      'allele_definitions_version': '2026-07-13-11-40',
+      'allele_definitions_sha256':
+          '7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f',
+      'pharmvar_release': '',
+      'cpic_source': 'CPIC guidelines, retrieved via PharmCAT',
+      'note': 'n',
+    };
+
+    test('the knowledge hashes are parsed and survive a round trip', () {
+      final GuidelineProvenance p = GuidelineProvenance.fromJson(analyzeJson);
+      expect(p.cpicGuidanceSha256, analyzeJson['cpic_guidance_sha256']);
+      expect(p.alleleDefinitionsVersion, '2026-07-13-11-40');
+      expect(p.alleleDefinitionsSha256, analyzeJson['allele_definitions_sha256']);
+      expect(p.pharmvarRelease, '');
+      expect(p.toJson(), analyzeJson);
+    });
+
+    test('the footer names the CPIC data and definitions by version and hash',
+        () {
+      final GuidelineProvenance p = GuidelineProvenance.fromJson(analyzeJson);
+      expect(
+        p.summaryLine,
+        'PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 (5010bb81) · '
+        'definitions 2026-07-13-11-40 (7044c876) · explanations 24 Jul 2026',
+      );
+      // No PharmVar number is invented when the backend sends none.
+      expect(p.summaryLine.contains('PharmVar'), isFalse);
+    });
+
+    test('/coverage, with no run, still identifies the CPIC data by hash', () {
+      final GuidelineProvenance p = GuidelineProvenance.fromJson(
+          <String, dynamic>{...analyzeJson, 'cpic_data_version': ''});
+      expect(p.summaryLine, startsWith('PharmCAT 3.4.0 · CPIC data (5010bb81) · '));
+    });
+
+    testWidgets('the results footer shows the hashes', (WidgetTester t) async {
+      await t.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: ProvenanceLine(
+              provenance: GuidelineProvenance.fromJson(analyzeJson)),
+        ),
+      ));
+      expect(find.textContaining('CPIC data 2026-07-13-11-40 (5010bb81)'),
+          findsOneWidget);
+      expect(find.textContaining('definitions 2026-07-13-11-40 (7044c876)'),
+          findsOneWidget);
+    });
 
     test('the summary line drops parts the backend did not send', () {
       const GuidelineProvenance preview = GuidelineProvenance(

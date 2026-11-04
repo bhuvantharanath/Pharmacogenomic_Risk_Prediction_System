@@ -184,6 +184,7 @@ Steps 5, 6, 8, 10 and 11 are safe to re-run at any time.
 | `review_status.py` | no | Provenance and author-read coverage, reported separately |
 | `build_explanation_approvals.py` | no | Projects existing adjudication into exact content/source/context identities; never invents approval |
 | `build_release_review_packet.py` | no | Lists every unresolved or automated-only claim, its exact entry hash, and candidate source span for owner review; records no decision |
+| `cpic_snapshot.py` | no | CPIC's own allele-function and recommendation rows, vendored with hashes; `--diff` against the pinned jar; `--check-live` is the weekly knowledge watch (exit 0 unchanged, 1 changed, 2 could not check) |
 | `release_status.py` | no | **The sole release decision.** Requires tests, compatible approval and bundle hashes, exact candidate identity, and either no servable stored prose or complete human adjudication |
 
 The release status reports both the current runtime prose path and the declared

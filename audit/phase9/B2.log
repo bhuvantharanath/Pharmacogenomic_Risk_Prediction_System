@@ -1,0 +1,76 @@
+B2 plan written 2026-11-04T07:05:30Z
+b3cfc1c5bcfe4a68ebc7b293460a701b64cec3a0f26bbd68d0299acba4afc6e0  audit/phase9/B2_PLAN.md
+== SB2-a: knowledge_identity returns {} ==
+
+tests/test_knowledge_provenance.py:135: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_knowledge_provenance.py::test_provenance_serves_the_identity_recomputed_from_the_jar
+FAILED tests/test_knowledge_provenance.py::test_the_served_identity_is_the_one_the_bundle_validated
+FAILED tests/test_knowledge_provenance.py::test_coverage_carries_the_same_identity
+FAILED tests/test_knowledge_provenance.py::test_analyze_carries_the_same_identity
+4 failed, 6 passed in 1.37s
+== SB2-b: comparison ignores recommendation text ==
+E         
+E         
+E       assert 0 == 1
+
+tests/test_knowledge_watch.py:80: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_knowledge_watch.py::test_a_changed_recommendation_text_is_reported
+1 failed, 17 passed in 0.86s
+== SB2-c1: Dart drops allele_definitions_sha256 entirely ==
+E       assert not ['allele_definitions_sha256']
+
+tests/test_client_parity.py:66: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_client_parity.py::test_every_backend_field_is_read_by_the_client[GuidelineProvenance]
+1 failed, 6 passed in 0.09s
+== SB2-c2: Dart stops reading it in fromJson only (toJson still names it) ==
+.......                                                                  [100%]
+7 passed in 0.07s
+  Expected: '7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f'
+    Actual: ''
+  Expected: 'PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 (5010bb81) · definitions 2026-07-13-11-40 (7044c876) · explanations 24 Jul 2026'
+    Actual: 'PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 (5010bb81) · definitions 2026-07-13-11-40 · explanations 24 Jul 2026'
+            Expected: ... -13-11-40 (7044c876) ...
+              Actual: ... -13-11-40 · explanat ...
+Expected: exactly one matching candidate
+  Actual: _TextContainingWidgetFinder:<Found 0 widgets with text containing definitions
+restored identical: yes
+restored identical after SB2-a/b/c1/c2: yes (sha256 of the three sabotaged files compared before/after)
+Note SB2-c2: the textual parity test cannot see a key dropped from fromJson while toJson still names it;
+  the Dart round-trip/footer tests (readiness_test.dart) went red instead. Recorded, not tuned.
+
+== AC verdicts (2026-11-04) ==
+AC1 PASS  /provenance, /coverage, /analyze serve cpic_guidance_sha256 5010bb813ed6..., allele_definitions_sha256
+          7044c87682de..., allele_definitions_version 2026-07-13-11-40, pharmvar_release ""; equal to an independent
+          recompute from test-data/reference/tools/pharmcat-3.4.0-all.jar and to compatible_bundle.json
+          (tests/test_knowledge_provenance.py, 10 tests). The B2 harness's live uvicorn S1-S6 responses carry the same values.
+AC2 PASS  test_client_parity (GuidelineProvenance) green; readiness_test.dart parses all four fields, round-trips them,
+          and the footer reads "PharmCAT 3.4.0 · CPIC data 2026-07-13-11-40 (5010bb81) · definitions 2026-07-13-11-40
+          (7044c876) · explanations 24 Jul 2026".
+AC3 PASS  offline watch: identical -> exit 0; changed text / changed allele function / added row / removed row -> exit 1,
+          each named; unreadable source -> exit 2 (tests/test_knowledge_watch.py).
+AC4 PASS  --pharmcat-tag v3.4.0 -> exit 0; v3.4.1, v3.5.0, 4.0.0 -> exit 1; "nightly" -> exit 2.
+AC5 PASS  knowledge-watch.yml: weekly cron + workflow_dispatch; permissions exactly contents:read, issues:write; no
+          "|| true", continue-on-error or set +e; Compare step is the bare command; issue step run with a fake gh:
+          first change -> exactly one "issue create", later change -> exactly one "issue comment 7", error -> no gh write.
+AC6 PASS  note: "...A weekly repository check compares this build's CPIC data with CPIC's current release and flags
+          differences for review; an analysis does not check at the time it runs." About screen text updated to match.
+Live run of --check-live (2026-11-04T07:14:29Z): unchanged; PharmCAT latest v3.4.0 = pinned.
+
+== Suites ==
+backend (backend/.venv, Python 3.11.14): 986 passed, 6 skipped (after re-bind). Before re-bind: 982 passed, 4 failed
+  (the four evaluation/bundle identity tests, expected while the core hash was unbound).
+  An earlier run with the system python3 (3.13, no spaCy) also failed 2 TestMechanismVocabularyCheck tests: environment,
+  not B2; and test_exception_sites_are_scrubbed, which was B2's fault (watch error text not scrubbed) and was fixed.
+flutter: analyze no issues; flutter test 224 passed (contract_test fixture updated to the new provenance shape).
+
+== Zero-regression vs B1 (audit/phase9/partb/B2/comparison.json) ==
+S1-S6 6/6 labels; cohort 2400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other;
+74 PharmCAT test VCFs, 148 comparisons, 0 mismatches.
+Note: main.py docstrings and Dart comments/tests were edited while the harness ran; no executable line changed.
+
+== Re-bind ==
+test-data/benchmark/current-candidate-2026-11-04-b2, application core ba8c7a21cad84899e48bb2514ae258a614d8be8361005a61b44576a6870e20b7,
+0 caller runs (208 cached reports), F4 replays true/true, verify_compatible_bundle PASS.

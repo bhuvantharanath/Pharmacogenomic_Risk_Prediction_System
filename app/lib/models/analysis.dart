@@ -470,8 +470,10 @@ class GeneReadiness {
 /// When the guidance behind a result was captured.
 ///
 /// A frozen explanation store carries an implicit "as of" that would otherwise
-/// be invisible. This is a date stamp, NOT a staleness check — the backend does
-/// not monitor CPIC, and the UI must not imply that it does.
+/// be invisible. This is a stamp, NOT a freshness check: an analysis does not
+/// ask CPIC anything, and the UI must not imply that it does. The hashes say
+/// exactly which CPIC data the backend's jar carries; the repository's weekly
+/// knowledge watch, not the app, compares that data with CPIC's current one.
 class GuidelineProvenance {
   const GuidelineProvenance({
     required this.pharmcatVersion,
@@ -479,6 +481,10 @@ class GuidelineProvenance {
     required this.explanationsGeneratedAt,
     required this.cpicSource,
     required this.note,
+    this.cpicGuidanceSha256 = '',
+    this.alleleDefinitionsVersion = '',
+    this.alleleDefinitionsSha256 = '',
+    this.pharmvarRelease = '',
   });
 
   final String pharmcatVersion;
@@ -490,17 +496,49 @@ class GuidelineProvenance {
   final String cpicSource;
   final String note;
 
+  /// SHA-256 of the CPIC recommendation table in the jar the backend runs.
+  /// Present on every endpoint, `/coverage` included.
+  final String cpicGuidanceSha256;
+
+  /// The data version stamped on the allele-definition files, and a SHA-256
+  /// over them.
+  final String alleleDefinitionsVersion;
+  final String alleleDefinitionsSha256;
+
+  /// Empty today: PharmCAT records no PharmVar release number, and the backend
+  /// does not infer one. Shown only if a future backend sends it.
+  final String pharmvarRelease;
+
   /// `2026-07-24T09:53:53Z` -> `24 Jul 2026`. Returns the raw string when it is
   /// not parseable, rather than hiding a value the backend did send.
   String get explanationsDate => _formatDate(explanationsGeneratedAt);
 
-  /// The one-line form for a results footer: versions, comma separated, with
+  /// A hash shortened for display, like a git commit: enough to tell two
+  /// builds apart at a glance; the full value is on the printable summary.
+  static String shortHash(String sha256) =>
+      sha256.length > 8 ? sha256.substring(0, 8) : sha256;
+
+  /// The one-line form for a results footer: versions, dot separated, with
   /// empty parts dropped so `/coverage` does not render a dangling separator.
+  /// A hash rides in brackets after the version it identifies.
   String get summaryLine => <String>[
     if (pharmcatVersion.isNotEmpty) 'PharmCAT $pharmcatVersion',
-    if (cpicDataVersion.isNotEmpty) 'CPIC data $cpicDataVersion',
+    if (cpicDataVersion.isNotEmpty || cpicGuidanceSha256.isNotEmpty)
+      _versioned('CPIC data', cpicDataVersion, cpicGuidanceSha256),
+    if (alleleDefinitionsVersion.isNotEmpty ||
+        alleleDefinitionsSha256.isNotEmpty)
+      _versioned('definitions', alleleDefinitionsVersion,
+          alleleDefinitionsSha256),
+    if (pharmvarRelease.isNotEmpty) 'PharmVar $pharmvarRelease',
     if (explanationsDate.isNotEmpty) 'explanations $explanationsDate',
   ].join(' · ');
+
+  static String _versioned(String label, String version, String sha256) =>
+      <String>[
+        label,
+        if (version.isNotEmpty) version,
+        if (sha256.isNotEmpty) '(${shortHash(sha256)})',
+      ].join(' ');
 
   factory GuidelineProvenance.fromJson(Map<String, dynamic> json) =>
       GuidelineProvenance(
@@ -509,6 +547,10 @@ class GuidelineProvenance {
         explanationsGeneratedAt: _str(json['explanations_generated_at']),
         cpicSource: _str(json['cpic_source']),
         note: _str(json['note']),
+        cpicGuidanceSha256: _str(json['cpic_guidance_sha256']),
+        alleleDefinitionsVersion: _str(json['allele_definitions_version']),
+        alleleDefinitionsSha256: _str(json['allele_definitions_sha256']),
+        pharmvarRelease: _str(json['pharmvar_release']),
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
@@ -517,6 +559,10 @@ class GuidelineProvenance {
     'explanations_generated_at': explanationsGeneratedAt,
     'cpic_source': cpicSource,
     'note': note,
+    'cpic_guidance_sha256': cpicGuidanceSha256,
+    'allele_definitions_version': alleleDefinitionsVersion,
+    'allele_definitions_sha256': alleleDefinitionsSha256,
+    'pharmvar_release': pharmvarRelease,
   };
 }
 

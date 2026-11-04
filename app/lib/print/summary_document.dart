@@ -297,6 +297,14 @@ String _provenance(QualityMetrics m) {
   <tr><td>PharmCAT</td><td class="mono">${esc(g.pharmcatVersion)}</td></tr>
   ${g.cpicDataVersion.isEmpty ? '' : '<tr><td>CPIC data version</td>'
             '<td class="mono">${esc(g.cpicDataVersion)}</td></tr>'}
+  ${g.cpicGuidanceSha256.isEmpty ? '' : '<tr><td>CPIC table SHA-256</td>'
+            '<td class="mono">${esc(g.cpicGuidanceSha256)}</td></tr>'}
+  ${g.alleleDefinitionsVersion.isEmpty ? '' : '<tr><td>allele definitions</td>'
+            '<td class="mono">${esc(g.alleleDefinitionsVersion)}</td></tr>'}
+  ${g.alleleDefinitionsSha256.isEmpty ? '' : '<tr><td>definitions SHA-256</td>'
+            '<td class="mono">${esc(g.alleleDefinitionsSha256)}</td></tr>'}
+  ${g.pharmvarRelease.isEmpty ? '' : '<tr><td>PharmVar release</td>'
+            '<td class="mono">${esc(g.pharmvarRelease)}</td></tr>'}
   <tr><td>explanations generated</td>
       <td class="mono">${esc(g.explanationsDate)}</td></tr>
   <tr><td>source</td><td class="mono">${esc(g.cpicSource)}</td></tr>

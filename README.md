@@ -434,6 +434,7 @@ Release prerequisites, each exiting non-zero on failure and combined only by
 | Provenance verification | Clinical sentences traceable |
 | Human adjudication | Every stored sentence decided by a named person — **red**; required before any stored prose may be served |
 | Approval identity | Exact content, source, drug/gene/phenotype/risk context, and store hashes |
+| Knowledge watch (weekly, `.github/workflows/knowledge-watch.yml`) | CPIC's live tables vs the vendored snapshot on every fetched field, and PharmCAT's latest release vs the pinned 3.4.0; red and one issue on any difference, red without an issue when the check cannot run. Not a release gate: it reports, a person decides |
 | Authoritative release status | All required tests, the exact tested candidate hash, and either no servable stored prose or complete adjudication |
 
 **Invariants contributors must not break:**
@@ -521,6 +522,7 @@ Stated plainly, because declared limitations cost less than concealed ones.
   594 MB against a 512 MB instance, so a second visitor is queued and a third
   is refused with an honest `503 SERVER_BUSY` rather than the container being
   OOM-killed for everyone.
+- **Guidance freshness is checked weekly, not per analysis.** Responses name the CPIC data by version and SHA-256 (`guideline_provenance`), and the knowledge watch compares that data with CPIC's current release once a week. An analysis never asks CPIC anything. GitHub disables scheduled workflows after 60 days without repository activity, so the weekly check holds only while the workflow stays enabled.
 - **iOS App Store distribution out of scope** — requires the paid Apple Developer Program. Simulator and local device only.
 
 ---
