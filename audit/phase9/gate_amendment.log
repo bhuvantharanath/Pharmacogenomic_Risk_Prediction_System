@@ -3,3 +3,9 @@ a34cec605e10c256658417f91845d17244436c6db9a6c5347ae187d1a584648f  audit/phase9/G
 SG-a revert amendment: ready = all(prerequisites): pytest rc=1; failing: ['test_template_only_release_is_ready_while_content_review_is_outstanding']
 SG-b served_stored_prose_reviewed always true: pytest rc=1; failing: ['test_servable_unreviewed_prose_blocks_release', 'test_a_missing_releasable_count_fails_closed']
 restored byte-exact: ae714c12561f
+local gate on 38975d1 (--run-required --candidate-sha): state ready, rc=0, required checks True, artifact hashes match True, mode deterministic_template_only, 4 content items OUTSTANDING (audit/phase9/gate_local_run.stdout)
+pushed a932adc..38975d1 to origin/main 2026-11-04T05:11:48Z; Deploy run 41777609893, test run 41777609859
+Render env at push time: JAVA_TOOL_OPTIONS=-Xmx256m -XX:MaxMetaspaceSize=80m (render.yaml says -Xmx208m -XX:MaxMetaspaceSize=68m; not auto-applied)
+pre-change Render env (rollback value) 2026-11-04T05:19:02Z: JAVA_TOOL_OPTIONS=-Xmx256m -XX:MaxMetaspaceSize=80m
+post-deploy quick check (before env change): /ready commit 38975d1bf71bab5421f233ba88844cdf711bec30; S1 Ineffective *2/*2; explanation source=template; HEAD disclaimer
+AC8 post-deploy 2026-11-04T05:25:25Z: /ready 38975d1; S1-S6 6/6 labels equal local HEAD, explanation source template on all 6, disclaimer equal to HEAD; live /analyze 49.7-54.3 s (audit/phase9/postdeploy_verification.json). JAVA_TOOL_OPTIONS change NOT applied (blocked by session permissions; awaiting owner).

@@ -1,0 +1,14 @@
+release status
+  state                  ready
+  content ready          False
+  required checks        True
+  artifact hashes match  True
+  clinical expert review NOT_OBTAINED
+  release policy         withhold_unapproved_stored_prose
+  explanation mode       deterministic_template_only
+  OUTSTANDING (blocks only if stored prose is served): human_adjudication_complete
+  OUTSTANDING (blocks only if stored prose is served): no_rejected_or_outstanding_claims
+  OUTSTANDING (blocks only if stored prose is served): all_entries_approved
+  OUTSTANDING (blocks only if stored prose is served): approved_entries_human_bound
+env EXPLANATION_MODE=static PATH="$PWD/backend/.venv/bin:$PATH"     "$SHA"  70.12s user 8.34s system 105% cpu 1:14.02 total
+gate rc=0
