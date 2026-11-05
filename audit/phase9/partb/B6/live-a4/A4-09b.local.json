@@ -1,0 +1,4 @@
+{
+  "detail": "At 1 of the 463 required positions in this file, the REF allele is not GRCh38's: chr10:94781859 (rs4244285, CYP2C19): the file has C, GRCh38 has G. A genotype is read relative to its REF allele, so these rows say something other than what they appear to, and a file that disagrees with GRCh38 anywhere cannot be trusted elsewhere: no drug is assessed from it. Check that the file was produced against GRCh38, with the same reference throughout, and upload it again. See docs/input_requirements.md.",
+  "error_code": "REFERENCE_ALLELE_MISMATCH"
+}

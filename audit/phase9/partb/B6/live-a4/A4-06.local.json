@@ -1,0 +1,4 @@
+{
+  "detail": "'A4-06.bcf' is a BCF file, the binary form of VCF, and this analysis reads text VCF. Convert it to a .vcf (or a compressed .vcf.gz) and upload that; the input requirements page gives the command. See docs/input_requirements.md.",
+  "error_code": "NOT_VCF"
+}

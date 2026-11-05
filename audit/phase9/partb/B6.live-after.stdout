@@ -1,0 +1,70 @@
+{"label": "S1_confident", "path": "/analyze", "vcf": "demo_confident.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-05T12:16:51+00:00", "status": 200, "seconds": 64.818, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 62814}
+{"label": "S2_variants_only", "path": "/analyze", "vcf": "demo_variants_only.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-05T12:17:56+00:00", "status": 200, "seconds": 58.185, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 57792}
+{"label": "S3_cyp2d6", "path": "/analyze", "vcf": "demo_na12273_1000g.vcf", "drugs": "codeine", "started_utc": "2026-11-05T12:18:54+00:00", "status": 200, "seconds": 65.102, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 64370}
+{"label": "S4_dpyd", "path": "/analyze", "vcf": "demo_dpyd_indeterminate.vcf", "drugs": "fluorouracil", "started_utc": "2026-11-05T12:19:59+00:00", "status": 200, "seconds": 64.524, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 63999}
+{"label": "S5_normal", "path": "/analyze", "vcf": "demo_normal.vcf", "drugs": "simvastatin", "started_utc": "2026-11-05T12:21:04+00:00", "status": 200, "seconds": 63.922, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 63425}
+{"label": "S6_multidrug", "path": "/analyze", "vcf": "demo_confident.vcf", "drugs": "clopidogrel,simvastatin,fluorouracil,codeine,ibuprofen", "started_utc": "2026-11-05T12:22:08+00:00", "status": 200, "seconds": 67.801, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 63440}
+{
+  "base": "https://pharmaguard-api-baml.onrender.com",
+  "scenarios": {
+    "S1_confident": {
+      "status": 200,
+      "labels": {
+        "clopidogrel": "Ineffective"
+      },
+      "expect": "Ineffective"
+    },
+    "S2_variants_only": {
+      "status": 200,
+      "labels": {
+        "clopidogrel": "Unknown"
+      },
+      "expect": "Unknown"
+    },
+    "S3_cyp2d6": {
+      "status": 200,
+      "labels": {
+        "codeine": "Unknown"
+      },
+      "expect": "Unknown"
+    },
+    "S4_dpyd": {
+      "status": 200,
+      "labels": {
+        "fluorouracil": "Unknown"
+      },
+      "expect": "Unknown"
+    },
+    "S5_normal": {
+      "status": 200,
+      "labels": {
+        "simvastatin": "No PGx-guided adjustment identified"
+      },
+      "expect": "No PGx-guided adjustment identified"
+    },
+    "S6_multidrug": {
+      "status": 200,
+      "labels": {
+        "clopidogrel": "Ineffective",
+        "simvastatin": "No PGx-guided adjustment identified",
+        "fluorouracil": "No PGx-guided adjustment identified",
+        "codeine": "Unknown",
+        "ibuprofen": "Unknown"
+      },
+      "expect": "mixed"
+    }
+  }
+}
+scenarios rc=0
+verify rc=0
+s1s6 fields rc=0
+waiting out the rate-limit window: 12:23:17Z
+{"label": "A4-02", "path": "/analyze", "vcf": "A4-02.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-05T12:53:47+00:00", "status": 400, "seconds": 28.41, "error": "", "retry_after": null, "error_code": "UNSUPPORTED_REFERENCE_BUILD", "server_processing_ms": null}
+{"label": "A4-03", "path": "/analyze", "vcf": "A4-03.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-05T12:54:17+00:00", "status": 200, "seconds": 68.907, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 65385}
+{"label": "A4-06", "path": "/analyze", "vcf": "A4-06.bcf", "drugs": "clopidogrel", "started_utc": "2026-11-05T12:55:26+00:00", "status": 400, "seconds": 1.403, "error": "", "retry_after": null, "error_code": "NOT_VCF", "server_processing_ms": null}
+{"label": "A4-08b", "path": "/analyze", "vcf": "A4-08b.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-05T12:55:28+00:00", "status": 200, "seconds": 64.78, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 60354}
+{"label": "A4-09b", "path": "/analyze", "vcf": "A4-09b.vcf", "drugs": "clopidogrel", "started_utc": "2026-11-05T12:56:33+00:00", "status": 400, "seconds": 1.028, "error": "", "retry_after": null, "error_code": "REFERENCE_ALLELE_MISMATCH", "server_processing_ms": null}
+a4 live checks: 20/20 pass
+a4 rc=0
+bundle rc=0
+rc=0

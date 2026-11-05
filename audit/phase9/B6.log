@@ -170,3 +170,43 @@ Backend suite on 581ead4, run once more for exact totals (partb/B6.backend-suite
 B6 done as amended: AC1-AC7 PASS; zero-regression PASS (A4 as amended by the owner, B6_ZR_AMENDMENT.md); eight
 sabotages caught; re-bind PASS with B5's changes carried forward; release gate ready. Committed 1c02013, 581ead4;
 not pushed.
+
+== Push and live check (owner: "Push and deploy B6", 2026-11-05) ==
+Secret scan over the 79 outgoing files: 5 values checked, 0 flagged. Pushed 5d5bcc0..1360a7c to main (Deploy run
+42024399707, test run 42024399770, both created 2026-11-05T12:06:51Z).
+
+Live criteria, written before any live measurement:
+L1  /ready reports 1360a7cca4ef98047c32531e632096b7d5a3339a, and the Deploy run's gate, Render and Cloudflare jobs succeed.
+L2  verify_postdeploy.py, live S1-S6 against the local B6 run (audit/phase9/partb/B6/s1-s6): commit matches, labels
+    equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local B6 run (so S3 and S4 carry no "assuming
+    GRCh38" warning live).
+L4  Five A4 files rebuilt by backend/tests/a4_inputs.py, drug clopidogrel, posted live after the rate-limit window
+    that S1-S6 used: each response equals a local run of the same file at this commit (EXPLANATION_MODE=static, as
+    the regression harness runs): status, error_code and detail for a 400; clopidogrel's label and the warnings list
+    for a 200. And each shows its rule: A4-02 400 UNSUPPORTED_REFERENCE_BUILD naming GRCh37's chr1; A4-03 200
+    Ineffective with the rename warning; A4-06 400 NOT_VCF naming BCF; A4-08b 200 Unknown with the gVCF warning;
+    A4-09b 400 REFERENCE_ALLELE_MISMATCH naming chr10:94781859.
+L5  The deployed web bundle carries EXPECTED_BACKEND_SHA 1360a7cca4ef98047c32531e632096b7d5a3339a (B6 changes no client code).
+test run 42024399770 on 1360a7c: every step green except "Authoritative explanation-content gate" (F-08, by
+design). pytest 1121 collected: 1100 passed, 21 skipped, 0 failed (15 more skips than locally: F-09). flutter test:
+229 passed.
+Deploy run 42024399707: release gate success (12:06:54-12:12:40Z), Render backend success (12:12:42-12:13:32Z),
+Cloudflare Pages success (12:13:34-12:16:04Z). /ready reported 1360a7c at 12:16:40Z, before the first live request.
+
+Live results (audit/phase9/partb/b6_live_after.sh 1360a7c -> B6.live-after.stdout; evidence under partb/B6/):
+L1 PASS  /ready commit 1360a7cca4ef98047c32531e632096b7d5a3339a (also re-read by verify_postdeploy.py after S1-S6); the
+         gate, Render and Cloudflare jobs succeeded.
+L2 PASS  verify_postdeploy.py (postdeploy_verification.json): commit matches, S1-S6 labels equal the local B6 run,
+         template-only prose, disclaimer equal. S1-S6 warm seconds 64.8, 58.2, 65.1, 64.5, 63.9, 67.8.
+L3 PASS  live_s1s6_fields.json: gene_findings and warnings equal the local B6 run in all six (S3 and S4 carry no
+         "assuming GRCh38" warning live).
+L4 PASS  live_a4.json, 20/20: A4-02 400 UNSUPPORTED_REFERENCE_BUILD naming GRCh37's chr1; A4-03 200 Ineffective with
+         the rename warning; A4-06 400 NOT_VCF naming BCF; A4-08b 200 Unknown with the gVCF warning; A4-09b 400
+         REFERENCE_ALLELE_MISMATCH naming chr10:94781859. Each equals the local run of the same file. The five files
+         sent are kept in partb/B6/live-a4/ and equal backend/tests/a4_inputs.py's output byte for byte.
+L5 PASS  live_bundle.json: the deployed main.dart.js carries 1360a7cca4ef... (and B5's panel text, unchanged).
+Timing, not a criterion: the A4 uploads began at 12:53:47Z instead of about 12:28Z. This Mac slept during the
+305-second wait (macOS power log: wake at 12:50:38Z). Render's logs show the instance shut down for idleness at
+12:38:16Z and started again at 12:54:12Z, woken by A4-02, whose 400 took 28.4 s end to end: a cold start, not a slow
+check. Raw Render logs stay local (they include the proxy lines behind F-04); only these timestamps are recorded.

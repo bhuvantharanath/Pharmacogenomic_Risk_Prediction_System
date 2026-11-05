@@ -1,0 +1,9 @@
+{
+ "checks": {
+  "bundle contains EXPECTED_BACKEND_SHA": true,
+  "bundle contains 'Genes in this result'": true,
+  "bundle contains 'shown for reference only; it does not change this result'": true
+ },
+ "all_pass": true,
+ "bundle_bytes": 2714742
+}

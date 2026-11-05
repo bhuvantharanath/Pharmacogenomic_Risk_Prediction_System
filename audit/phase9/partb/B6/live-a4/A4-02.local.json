@@ -1,0 +1,4 @@
+{
+  "detail": "This file uses an older map of the genome (GRCh37/hg19), and this analysis needs GRCh38/hg38. The two number the same positions differently, so the file cannot be read as it stands. The header gives chr1 a length of 249,250,621 bases, which is GRCh37's chr1; GRCh38's is 248,956,422.\n\nConverting between them is outside what this analysis does. Convert the file to GRCh38 and upload it again \u2014 the input requirements page lists the tools that do this. See docs/input_requirements.md.",
+  "error_code": "UNSUPPORTED_REFERENCE_BUILD"
+}

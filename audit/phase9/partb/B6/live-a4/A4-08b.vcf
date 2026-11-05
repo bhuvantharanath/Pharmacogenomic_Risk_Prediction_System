@@ -1,0 +1,38 @@
+##fileformat=VCFv4.2
+##source=PharmaGuardSyntheticGenerator
+##pharmaguard_synthetic_CYP2C19=*2/*2 (definition CLINPGX 2026-07-13-11-40)
+##pharmaguard_synthetic_CYP2C9=*1/*1 (definition CLINPGX 2026-07-13-11-40)
+##pharmaguard_synthetic_SLCO1B1=*1/*1 (definition CLINPGX 2026-07-13-11-40)
+##pharmaguard_synthetic_TPMT=*1/*1 (definition CLINPGX 2026-07-13-11-40)
+##pharmaguard_synthetic_NUDT15=*1/*1 (definition CLINPGX 2026-07-13-11-40)
+##pharmaguard_synthetic_DPYD=Reference/Reference (definition CLINPGX 2026-07-13-11-40)
+##pharmaguard_synthetic_CYP2D6=*1/*1 (definition CLINPGX 2026-07-13-11-40)
+##contig=<ID=chr1,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr6,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr10,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr12,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr13,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr22,assembly=GRCh38.p14,species="Homo sapiens">
+##INFO=<ID=PX,Number=.,Type=String,Description="Gene">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##ALT=<ID=NON_REF,Description="Represents any possible alternative allele">
+##INFO=<ID=END,Number=1,Type=Integer,Description="End position">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	DEMO_CONFIDENT
+chr1	97078987	.	G	<NON_REF>	.	PASS	PX=DPYD;END=97883368	GT	0/0
+chr6	18130687	.	T	<NON_REF>	.	PASS	PX=TPMT;END=18149127	GT	0/0
+chr10	94761900	.	C	<NON_REF>	.	PASS	PX=CYP2C19;END=94775185	GT	0/0
+chr10	94775367	rs12769205	A	G,<NON_REF>	.	PASS	PX=CYP2C19	GT	1/1
+chr10	94775416	.	T	<NON_REF>	.	PASS	PX=CYP2C19;END=94775489	GT	0/0
+chr10	94775507	rs58973490	G	A,<NON_REF>	.	PASS	PX=CYP2C19	GT	1/1
+chr10	94780544	.	A	<NON_REF>	.	PASS	PX=CYP2C19;END=94781858	GT	0/0
+chr10	94781859	rs4244285	G	A,<NON_REF>	.	PASS	PX=CYP2C19	GT	1/1
+chr10	94781944	.	G	<NON_REF>	.	PASS	PX=CYP2C19;END=94842861	GT	0/0
+chr10	94842866	rs3758581	A	G,<NON_REF>	.	PASS	PX=CYP2C19	GT	1/1
+chr10	94842879	.	G	<NON_REF>	.	PASS	PX=CYP2C9;END=94989023	GT	0/0
+chr12	21141575	.	A	<NON_REF>	.	PASS	PX=SLCO1B1;END=21239158	GT	0/0
+chr13	48037748	.	T	<NON_REF>	.	PASS	PX=NUDT15;END=48045771	GT	0/0
+chr22	42126578	.	C	<NON_REF>	.	PASS	PX=CYP2D6;END=42128812	GT	0/0
+chr22	42128813	rs150163869	G	A,<NON_REF>	.	PASS	PX=CYP2D6	GT	1/1
+chr22	42128814	.	T	<NON_REF>	.	PASS	PX=CYP2D6;END=42129113	GT	0/0
+chr22	42129130	rs1058164	C	G,<NON_REF>	.	PASS	PX=CYP2D6	GT	1/1
+chr22	42129132	.	C	<NON_REF>	.	PASS	PX=CYP2D6;END=42130782	GT	0/0
