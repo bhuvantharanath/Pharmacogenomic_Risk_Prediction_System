@@ -119,3 +119,40 @@ A4 check against the amended clause (B5-after vs B6-after, all six drugs; A4-23 
   400s ['A4-02', 'A4-09a', 'A4-09b', 'A4-22']: True; A4-03 and A4-20 labels equal BASE's {'azathioprine': 'No PGx-guided adjustment identified', 'clopidogrel': 'Ineffective', 'codeine': 'Unknown', 'fluorouracil': 'No PGx-guided adjustment identified', 'simvastatin': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown'}: True
   BASE unchanged from B5: True
 A4 zero-regression (amended): PASS
+
+== Re-bind tool, fixed after the owner's amendment (before the re-bind ran) ==
+rebind_evaluation.py:
+  inherited_changes() reads the previous package's evaluation-comparison.json, only after checking its sha256 against
+  the previous evaluation manifest's outputs, and takes its cumulative changes (B5's package: its declarations).
+  compose() appends this re-bind's declarations to that chain. A declaration on an inherited gene and field must
+  continue it exactly (start at its `to`, same rows); a change reverted to its `from` disappears; anything else stops.
+  Asserts, against the historical benchmark, field counts and exact (gene, field, from, to) -> rows equal to the
+  cumulative chain; against the previous package, equal to this re-bind's own declarations; the same split for
+  discrepancy detail. The comparison records inherited, declared and cumulative changes; the manifest summarises the
+  cumulative ones; the report says which comparison shows which change.
+scripts/compatible_bundle.py comparison_supports_result: the historical difference must equal the cumulative counts,
+  the difference from the previous evaluation must equal this re-bind's declared counts, and every declaration must
+  appear in the chain. A comparison without the cumulative field (B5's) is its own chain.
+Tests (test_compatible_bundle.py, 5 new): an inherited change supports a re-bind that declares nothing; a historical
+  difference missing from the chain is refused; an inherited change reappearing against the previous evaluation is
+  refused; a declaration outside the chain is refused; B5's published comparison still verifies. The helper now
+  defaults the difference-from-previous to the historical one (B5's case), so the six B5 tests keep their meaning.
+compose() controls, run once (the audit script is not in CI): appends a new gene/field, continues a chain
+  (from x to z, both reasons kept), drops a reverted change, refuses a non-continuation and a row-count mismatch,
+  leaves the inherited list untouched. All as expected.
+SB6-g bundle rule ignores the difference from the previous evaluation: 1 red (the reappearing-change test).
+SB6-h bundle rule stops requiring declarations in the chain: 1 red (the outside-the-chain test). Restored identical.
+
+== Re-bind (test-data/benchmark/current-candidate-2026-11-05-b6; rebind-b6.stdout) ==
+rebind_evaluation.py --tag 2026-11-05-b6, no declared changes, base head 1c02013. Result: core
+bce1d795a800f154e355e6b3775ea8313f31d2486b0ea224470e1bdd3f54b135, 0 new caller runs, F4 true/true,
+verify_compatible_bundle PASS.
+Against the previous evaluation (B5's package): vcf_sha256 in 1,456 rows only; equal_to_previous true. B6 changed no
+eligibility field and no discrepancy.
+Against the historical benchmark: vcf_sha256 1,456 plus B5's carried-forward changes, exactly: CYP2C9
+eligibility_reason 208, missing_dependency_genes 208; discrepancy detail 100. Scored metrics, exclusions, truth, lock
+and report manifest unchanged.
+Order of events, recorded because it overlapped: the revert case of the chain rule (in_chain, and one test) was added
+to scripts/compatible_bundle.py while the re-bind ran. Its publish step had already rewritten the file (new package
+path and bundle id) and built the manifest at 10:21:57; my edit landed at 10:22:15 on top of that text, and both
+changes are in the file. verify_compatible_bundle.py, run again afterwards against the final script: PASS.

@@ -176,11 +176,13 @@ _CHANGE = {"gene": "CYP2C9", "field": "missing_dependency_genes", "from": "CYP2C
 
 
 def _comparison(**overrides) -> dict:
+    """A re-bind's comparison; unless told otherwise, the previous package equals history (B5's case)."""
     base = {"all_metric_fields_equal_except_generation_time": True,
             "representative_biological_records_equal": True,
             "differing_eligibility_fields": {"vcf_sha256": 1456},
             "declared_eligibility_changes": []}
     base.update(overrides)
+    base.setdefault("differing_eligibility_fields_vs_previous_evaluation", base["differing_eligibility_fields"])
     return base
 
 
@@ -219,3 +221,59 @@ def test_changed_metrics_are_refused_even_when_declared() -> None:
         all_metric_fields_equal_except_generation_time=False,
         differing_eligibility_fields={"vcf_sha256": 1456, "missing_dependency_genes": 208},
         declared_eligibility_changes=[_CHANGE]))
+
+
+# --------------------------------------------------------------------------- #
+# Re-binds after B5: earlier declarations carried forward (Phase 9 B6)
+# --------------------------------------------------------------------------- #
+
+_AFTER_B5 = {"differing_eligibility_fields": {"vcf_sha256": 1456, "missing_dependency_genes": 208},
+             "differing_eligibility_fields_vs_previous_evaluation": {"vcf_sha256": 1456}}
+
+
+def test_an_inherited_change_supports_a_rebind_that_declares_nothing() -> None:
+    assert bundle.comparison_supports_result(_comparison(**_AFTER_B5, cumulative_eligibility_changes=[_CHANGE]))
+
+
+def test_a_historical_difference_missing_from_the_chain_is_refused() -> None:
+    assert not bundle.comparison_supports_result(_comparison(**_AFTER_B5, cumulative_eligibility_changes=[]))
+
+
+def test_a_difference_from_the_previous_evaluation_must_be_this_rebinds_own() -> None:
+    """An inherited change showing up against the previous package means it changed again, undeclared."""
+    assert not bundle.comparison_supports_result(_comparison(
+        differing_eligibility_fields={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        differing_eligibility_fields_vs_previous_evaluation={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        cumulative_eligibility_changes=[_CHANGE]))
+
+
+def test_a_declaration_outside_the_chain_is_refused() -> None:
+    other = {**_CHANGE, "gene": "CYP2C19", "to": "CYP2C19"}
+    assert not bundle.comparison_supports_result(_comparison(
+        differing_eligibility_fields={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        differing_eligibility_fields_vs_previous_evaluation={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        declared_eligibility_changes=[other], cumulative_eligibility_changes=[_CHANGE]))
+
+
+def test_the_published_b5_comparison_still_verifies() -> None:
+    """The package the bundle points at before B6's re-bind: declarations were its whole chain."""
+    comparison = json.loads((REPO_ROOT / "test-data/benchmark/current-candidate-2026-11-04-b5/"
+                             "evaluation-comparison.json").read_text())
+    assert "cumulative_eligibility_changes" not in comparison
+    assert bundle.comparison_supports_result(comparison)
+
+
+def test_a_declaration_that_reverts_an_inherited_change_is_supported() -> None:
+    """compose() drops a change reverted to its original value; the rule must accept exactly that."""
+    revert = {**_CHANGE, "from": _CHANGE["to"], "to": _CHANGE["from"], "why": "undone"}
+    assert bundle.comparison_supports_result(_comparison(
+        differing_eligibility_fields={"vcf_sha256": 1456},
+        differing_eligibility_fields_vs_previous_evaluation={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        declared_eligibility_changes=[revert], inherited_eligibility_changes=[_CHANGE],
+        cumulative_eligibility_changes=[]))
+    # Not a revert of anything inherited: refused.
+    assert not bundle.comparison_supports_result(_comparison(
+        differing_eligibility_fields={"vcf_sha256": 1456},
+        differing_eligibility_fields_vs_previous_evaluation={"vcf_sha256": 1456, "missing_dependency_genes": 208},
+        declared_eligibility_changes=[revert], inherited_eligibility_changes=[],
+        cumulative_eligibility_changes=[]))

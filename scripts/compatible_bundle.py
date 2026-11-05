@@ -18,7 +18,7 @@ JAR_PATH = REPO_ROOT / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
 HASH_POLICY_RELATIVE = "scripts/scientific_hash_policy.json"
 MIGRATION_RELATIVE = "scripts/application_hash_migration.json"
 CURRENT_EVALUATION_RELATIVE = (
-    "test-data/benchmark/current-candidate-2026-11-04-b5/evaluation_manifest.json"
+    "test-data/benchmark/current-candidate-2026-11-05-b6/evaluation_manifest.json"
 )
 HASH_POLICY_VERSION = 2
 SCOPED_GENES = (
@@ -314,22 +314,53 @@ def comparison_supports_result(comparison: dict) -> bool:
     eligibility wording, e.g. Phase 9 B5). The declaration lives in the
     comparison, which the evaluation manifest hashes, so it cannot be widened
     unseen; the re-bind itself asserts every observed change was declared.
+
+    Against the historical benchmark a re-bind also shows the changes earlier
+    re-binds declared (Phase 9 B6 was the first after B5's). Those arrive as
+    `cumulative_eligibility_changes`: the previous package's verified chain plus
+    this re-bind's declarations. The historical difference must equal the
+    cumulative counts, the difference from the previous evaluation must equal
+    this re-bind's own, and each of its declarations must appear in the chain.
+    A comparison without the cumulative field is one whose declarations were
+    its whole chain (B5's).
     """
     declared = comparison.get("declared_eligibility_changes") or []
-    if not isinstance(declared, list):
+    cumulative = comparison.get("cumulative_eligibility_changes", declared)
+    if not isinstance(declared, list) or not isinstance(cumulative, list):
         return False
-    expected = {"vcf_sha256": 1456}
-    for change in declared:
-        if (not isinstance(change, dict)
-                or not {"gene", "field", "from", "to", "rows", "why"} <= set(change)
-                or change["field"] == "vcf_sha256"
-                or not isinstance(change["rows"], int) or change["rows"] <= 0
-                or not str(change["why"]).strip()):
-            return False
-        expected[change["field"]] = expected.get(change["field"], 0) + change["rows"]
+
+    def counts(changes: list) -> dict | None:
+        expected = {"vcf_sha256": 1456}
+        for change in changes:
+            if (not isinstance(change, dict)
+                    or not {"gene", "field", "from", "to", "rows", "why"} <= set(change)
+                    or change["field"] == "vcf_sha256"
+                    or not isinstance(change["rows"], int) or change["rows"] <= 0
+                    or not str(change["why"]).strip()):
+                return None
+            expected[change["field"]] = expected.get(change["field"], 0) + change["rows"]
+        return expected
+
+    inherited = comparison.get("inherited_eligibility_changes") or []
+    against_history, against_previous = counts(cumulative), counts(declared)
+    if against_history is None or against_previous is None or counts(inherited) is None:
+        return False
+
+    def in_chain(d: dict) -> bool:
+        if any((c["gene"], c["field"], c["to"], c["rows"]) == (d["gene"], d["field"], d["to"], d["rows"])
+               for c in cumulative):
+            return True
+        # A revert: it undoes an inherited change, which then leaves the chain.
+        return (any((i["gene"], i["field"], i["from"], i["to"], i["rows"])
+                    == (d["gene"], d["field"], d["to"], d["from"], d["rows"]) for i in inherited)
+                and not any((c["gene"], c["field"]) == (d["gene"], d["field"]) for c in cumulative))
+
+    chained = all(in_chain(d) for d in declared)
     return bool(
         comparison.get("all_metric_fields_equal_except_generation_time")
-        and comparison.get("differing_eligibility_fields") == expected
+        and comparison.get("differing_eligibility_fields") == against_history
+        and comparison.get("differing_eligibility_fields_vs_previous_evaluation") == against_previous
+        and chained
         and comparison.get("representative_biological_records_equal")
     )
 
@@ -391,7 +422,7 @@ def build_manifest() -> dict[str, Any]:
 
     return {
         "schema_version": 3,
-        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-04-b5",
+        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-05-b6",
         "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
         "application_hash_policy": {
             "version": HASH_POLICY_VERSION,

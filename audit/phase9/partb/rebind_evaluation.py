@@ -21,8 +21,12 @@ compare_evaluation.py, replay_f4.py):
      the copy. The 208 cached PharmCAT reports are reused; no new caller run.
   3. Comparison with the historical benchmark AND the current package: scored
      results equal except generated_at; eligibility rows differ only in vcf_sha256
-     (the path-bearing bcftools header), shown on a representative projection;
-     exclusions, discrepancies, truth, lock and report manifest byte-identical.
+     (the path-bearing bcftools header), shown on a representative projection,
+     and in changes declared in advance with exact values (--declared-changes,
+     since B5). Against the historical benchmark those compose with the previous
+     package's verified chain of earlier declarations (since B6). Exclusions,
+     truth, lock and report manifest byte-identical; discrepancies differ only in
+     declared free-text detail.
   4. F4 replay: the two frozen read-backed VCFs through a local API started from
      this working tree, with the nine checks used since Prompt 5.
   5. Publish test-data/benchmark/current-candidate-<tag>/, point
@@ -156,6 +160,64 @@ def detailed(before: list[dict], after: list[dict]) -> dict:
     return dict(out)
 
 
+def _counts(changes: list[dict]) -> dict:
+    expected = {"vcf_sha256": 1456}
+    for change in changes:
+        expected[change["field"]] = expected.get(change["field"], 0) + change["rows"]
+    return expected
+
+
+def _want(changes: list[dict]) -> dict:
+    return {(c["gene"], c["field"], c["from"], c["to"]): c["rows"] for c in changes}
+
+
+def inherited_changes(previous: Path) -> tuple[list[dict], list[dict]]:
+    """
+    The changes the previous package showed against the historical benchmark.
+
+    Read from its evaluation-comparison.json only after that file's sha256 is
+    checked against the previous evaluation manifest's outputs: what was
+    verified when that package was published is what is inherited. A package
+    from before cumulative records existed (B5's) holds them as its own
+    declarations, which were then also its whole difference from history.
+    """
+    path = previous / "evaluation-comparison.json"
+    manifest = json.loads((previous / "evaluation_manifest.json").read_text())
+    recorded = {output["path"]: output["sha256"] for output in manifest["outputs"]}
+    relative = str(path.relative_to(R))
+    assert recorded.get(relative) == sha(path), f"{relative} does not match the previous evaluation manifest"
+    summary = json.loads(path.read_text())
+    eligibility = summary.get("cumulative_eligibility_changes", summary.get("declared_eligibility_changes", []))
+    detail = summary.get("cumulative_discrepancy_detail_changes",
+                         summary.get("declared_discrepancy_detail_changes", []))
+    return eligibility, detail
+
+
+def compose(inherited: list[dict], declared: list[dict]) -> list[dict]:
+    """
+    Every change against the historical benchmark: the inherited ones, then
+    this re-bind's. A declaration on a gene and field an inherited change
+    already touched must continue it (start from its `to`, cover the same rows);
+    the cumulative entry then runs from the inherited `from` to the new `to`,
+    and disappears if that is no change at all. Anything else stops the re-bind.
+    """
+    out = [dict(c) for c in inherited]
+    for change in declared:
+        same = [c for c in out if (c["gene"], c["field"]) == (change["gene"], change["field"])]
+        if not same:
+            out.append(dict(change))
+            continue
+        prior = [c for c in same if c["to"] == change["from"] and c["rows"] == change["rows"]]
+        if len(prior) != 1:
+            raise SystemExit(f"declared change on {change['gene']} {change['field']} does not continue "
+                             f"exactly one inherited change")
+        prior[0]["to"] = change["to"]
+        prior[0]["why"] = f"{prior[0]['why']} Then: {change['why']}"
+        if prior[0]["from"] == prior[0]["to"]:
+            out.remove(prior[0])
+    return out
+
+
 def compare(copy: Path, previous: Path, why: str, declared: dict | None = None) -> dict:
     strip = lambda d: {k: v for k, v in d.items() if k != "generated_at"}  # noqa: E731
     old = json.loads((R / B / "external_benchmark_results.json").read_text())
@@ -179,22 +241,24 @@ def compare(copy: Path, previous: Path, why: str, declared: dict | None = None) 
     # In discrepancies.tsv only the free-text detail may change; the scored
     # columns (classification, truth, observed) never may.
     assert all(c["field"] == "detail" for c in discrepancy_declared), discrepancy_declared
-    expected = {"vcf_sha256": 1456}
-    for change in eligibility_declared:
-        expected[change["field"]] = expected.get(change["field"], 0) + change["rows"]
-    want = {(c["gene"], c["field"], c["from"], c["to"]): c["rows"] for c in eligibility_declared}
-    assert vs_hist == expected, vs_hist
-    assert vs_prev == expected, vs_prev
-    assert detailed(hist_rows, new_rows) == want, detailed(hist_rows, new_rows)
-    assert detailed(prev_rows, new_rows) == want, detailed(prev_rows, new_rows)
+    # Against the previous evaluation: this re-bind's declarations, exactly.
+    # Against the historical benchmark: those composed onto the previous
+    # package's verified chain (Phase 9 B6, the first re-bind after B5's).
+    inherited, inherited_detail = inherited_changes(previous)
+    cumulative = compose(inherited, eligibility_declared)
+    cumulative_detail = compose(inherited_detail, discrepancy_declared)
+    assert vs_hist == _counts(cumulative), vs_hist
+    assert vs_prev == _counts(eligibility_declared), vs_prev
+    assert detailed(hist_rows, new_rows) == _want(cumulative), detailed(hist_rows, new_rows)
+    assert detailed(prev_rows, new_rows) == _want(eligibility_declared), detailed(prev_rows, new_rows)
     assert len(hist_samples) == 208
     for name in ("exclusions.tsv", "sample_gene_truth.tsv", "cohort_lock.json",
                  "pharmcat_report_manifest.json"):
         assert sha(R / B / name) == sha(copy / B / name), name
     assert sha(previous / "exclusions.tsv") == sha(copy / B / "exclusions.tsv")
-    disc_want = {(c["gene"], c["field"], c["from"], c["to"]): c["rows"] for c in discrepancy_declared}
     new_disc = tsv(copy / B / "discrepancies.tsv")
-    for before_path in (R / B / "discrepancies.tsv", previous / "discrepancies.tsv"):
+    for before_path, disc_want in ((R / B / "discrepancies.tsv", _want(cumulative_detail)),
+                                   (previous / "discrepancies.tsv", _want(discrepancy_declared))):
         before = tsv(before_path)
         assert len(before) == len(new_disc)
         assert [(r["sample_id"], r["gene"], r["layer"]) for r in before] == \
@@ -232,6 +296,10 @@ def compare(copy: Path, previous: Path, why: str, declared: dict | None = None) 
         "differing_eligibility_fields_vs_previous_evaluation": vs_prev,
         "declared_eligibility_changes": eligibility_declared,
         "declared_discrepancy_detail_changes": discrepancy_declared,
+        "inherited_eligibility_changes": inherited,
+        "inherited_discrepancy_detail_changes": inherited_detail,
+        "cumulative_eligibility_changes": cumulative,
+        "cumulative_discrepancy_detail_changes": cumulative_detail,
         "individuals_with_vcf_sha_difference": len(hist_samples),
         "exclusions_sha256": sha(copy / B / "exclusions.tsv"),
         "discrepancies_sha256": sha(copy / B / "discrepancies.tsv"),
@@ -245,12 +313,25 @@ def compare(copy: Path, previous: Path, why: str, declared: dict | None = None) 
                                  "benchmark and the previous evaluation. "
                                  + ("The only differing eligibility field is the hash of each regenerated "
                                     "single-sample VCF, explained by the path-bearing bcftools header shown in "
-                                    "the representative projection. " if not (eligibility_declared or discrepancy_declared) else
+                                    "the representative projection. "
+                                    if not (eligibility_declared or discrepancy_declared or cumulative
+                                            or cumulative_detail) else
+                                    "Against the previous evaluation the only differing eligibility field is the "
+                                    "hash of each regenerated single-sample VCF, explained by the path-bearing "
+                                    "bcftools header shown in the representative projection. Against the "
+                                    "historical benchmark, eligibility and discrepancy detail also differ exactly "
+                                    "as earlier re-binds declared, carried forward from the previous package's "
+                                    "verified comparison (cumulative_eligibility_changes, "
+                                    "cumulative_discrepancy_detail_changes); no scored metric, exclusion or "
+                                    "discrepancy classification changed. "
+                                    if not (eligibility_declared or discrepancy_declared) else
                                     "Eligibility differs in the hash of each regenerated single-sample VCF "
                                     "(the path-bearing bcftools header) and in the changes declared in "
                                     "declared_eligibility_changes, and discrepancies differ only in the free-text "
                                     "detail declared in declared_discrepancy_detail_changes, each with its exact "
-                                    "before and after value, row count and reason; no scored metric, exclusion or "
+                                    "before and after value, row count and reason; against the historical "
+                                    "benchmark they compose with earlier re-binds' declarations "
+                                    "(cumulative_eligibility_changes); no scored metric, exclusion or "
                                     "discrepancy classification changed. ")
                                  + "No new genotype concordance or clinical claim follows."),
     }
@@ -323,12 +404,28 @@ def report_text(evaluation_id: str, core: str, protocol_sha: str, previous_id: s
                 results: dict, summary: dict | None = None) -> str:
     declared = (summary or {}).get("declared_eligibility_changes") or []
     detail = (summary or {}).get("declared_discrepancy_detail_changes") or []
+    cumulative = (summary or {}).get("cumulative_eligibility_changes") or declared
+    cumulative_detail = (summary or {}).get("cumulative_discrepancy_detail_changes") or detail
+    listed = lambda changes: "; ".join(  # noqa: E731
+        f"{c['field']} in {c['rows']} {c['gene']} rows ({c['why']})" for c in changes)
     if declared or detail:
         equality = (
             "Compared with the historical run and the previous evaluation, per-gene metrics, exclusions and "
             "discrepancy classifications are equal. Besides the temporary single-sample VCF SHA-256 in all "
             "1,456 eligibility rows, the changes are exactly those declared before the run: "
-            + "; ".join(f"{c['field']} in {c['rows']} {c['gene']} rows ({c['why']})" for c in declared + detail)
+            + listed(declared + detail)
+            + ". The re-bind asserts that no other value changed.")
+        if (cumulative, cumulative_detail) != (declared, detail):
+            equality += (" Against the historical run they compose with earlier re-binds' declarations: "
+                         + listed(cumulative + cumulative_detail) + ".")
+    elif cumulative or cumulative_detail:
+        equality = (
+            "Compared with the previous evaluation, per-gene metrics, exclusions and discrepancies are equal, "
+            "and the only changed field in all 1,456 eligibility rows is the temporary single-sample VCF "
+            "SHA-256, explained by the path-bearing bcftools header. Compared with the historical run, "
+            "metrics, exclusions and discrepancy classifications are equal, and eligibility and discrepancy "
+            "detail also differ exactly as earlier re-binds declared, carried forward from the previous "
+            "package's verified comparison: " + listed(cumulative + cumulative_detail)
             + ". The re-bind asserts that no other value changed.")
     else:
         equality = (
@@ -408,6 +505,14 @@ def publish(tag: str, copy: Path, summary: dict, f4: list, receipts: list, why: 
             "declared_discrepancy_detail_changes": [
                 {k: c[k] for k in ("gene", "field", "rows", "why")}
                 for c in summary["declared_discrepancy_detail_changes"]
+            ],
+            "cumulative_eligibility_changes": [
+                {k: c[k] for k in ("gene", "field", "rows", "why")}
+                for c in summary["cumulative_eligibility_changes"]
+            ],
+            "cumulative_discrepancy_detail_changes": [
+                {k: c[k] for k in ("gene", "field", "rows", "why")}
+                for c in summary["cumulative_discrepancy_detail_changes"]
             ],
             "representative_biological_records_equal": summary["representative_biological_records_equal"],
         },
