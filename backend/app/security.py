@@ -27,6 +27,7 @@ from dataclasses import dataclass
 
 from fastapi import Request
 from fastapi.responses import JSONResponse
+from starlette.datastructures import Headers, MutableHeaders
 from starlette.middleware.base import BaseHTTPMiddleware
 
 # --------------------------------------------------------------------------- #
@@ -51,23 +52,58 @@ def allowed_origins() -> list[str]:
     return [origin.strip().rstrip("/") for origin in raw.split(",") if origin.strip()]
 
 
+#: `https://<project>.pages.dev`: a Cloudflare Pages production origin.
+_PAGES_PRODUCTION = re.compile(r"https://([a-z0-9-]+)\.pages\.dev")
+
+
+def pages_preview_projects() -> list[str]:
+    """
+    Cloudflare Pages projects whose preview deployments are allowed.
+
+    Every project named by an explicit `https://<project>.pages.dev` origin
+    (Phase 9 B7, finding F-11): a preview, `https://<hash>.<project>.pages.dev`,
+    is a deployment of that same project, which only its owner can publish, so
+    it is as trusted as the production origin. Before B7 the deployed frontend's
+    own previews were refused, and a preview build waited 180 s and then blamed
+    the server. `CORS_ALLOW_PAGES_PREVIEWS` still names a project with no
+    explicit production origin.
+    """
+    projects = {match.group(1) for origin in allowed_origins()
+                if (match := _PAGES_PRODUCTION.fullmatch(origin))}
+    extra = os.environ.get("CORS_ALLOW_PAGES_PREVIEWS", "").strip()
+    if extra:
+        projects.add(extra)
+    return sorted(projects)
+
+
 def allowed_origin_regex() -> str | None:
     """
     Regex for origins that cannot be enumerated.
 
     Localhost always. Cloudflare Pages *preview* deployments get one
-    per-branch subdomain of the project, so they are opt-in via
-    `CORS_ALLOW_PAGES_PREVIEWS` with the project name — still scoped to one
-    project, unlike a bare `*.pages.dev`.
+    per-branch subdomain of the project: exactly one label of
+    `[a-z0-9-]`, then `.<project>.pages.dev`, https, no port, anchored at both
+    ends — scoped to the configured projects, never a bare `*.pages.dev`.
     """
     patterns = [_LOCALHOST_REGEX]
-
-    project = os.environ.get("CORS_ALLOW_PAGES_PREVIEWS", "").strip()
-    if project:
+    for project in pages_preview_projects():
         safe = re.escape(project)
         patterns.append(rf"^https://[a-z0-9-]+\.{safe}\.pages\.dev$")
-
     return "|".join(patterns)
+
+
+def is_allowed_origin(origin: str) -> bool:
+    """
+    The CORS middleware's own decision, for `/health` to report.
+
+    Starlette's CORSMiddleware allows an origin when it is listed exactly or
+    fully matches the regex; this applies the same two rules to the same two
+    sources, and a test checks the two agree.
+    """
+    if origin in allowed_origins():
+        return True
+    regex = allowed_origin_regex()
+    return bool(regex and re.fullmatch(regex, origin))
 
 
 #: Env vars that only exist on a real host. Their presence is how we tell
@@ -142,8 +178,9 @@ def cors_summary() -> dict[str, object]:
     return {
         "explicit_origins": allowed_origins(),
         "localhost_allowed": True,
-        "pages_preview_project": os.environ.get("CORS_ALLOW_PAGES_PREVIEWS") or None,
+        "pages_preview_projects": pages_preview_projects(),
         "wildcard": False,
+        "public_paths": [PublicHealthCorsMiddleware.PATH],
     }
 
 
@@ -337,6 +374,55 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
             "Permissions-Policy", "geolocation=(), microphone=(), camera=()"
         )
         return response
+
+
+class PublicHealthCorsMiddleware:
+    """
+    `/health` answers every origin; nothing else does (Phase 9 B7, F-11).
+
+    A browser on an origin the CORS policy refuses gets no readable response
+    at all, which the client cannot tell from a server that is still asleep: it
+    waited the whole 180 s and then said the server had answered unhealthily.
+    Letting every origin read `/health` lets the client see that the server is
+    up, and `/health` reports whether that origin is allowed, so "blocked" is
+    named in one ping instead of guessed at after three minutes.
+
+    Outermost, so it answers the `/health` preflight before CORSMiddleware can
+    refuse it. `/health` carries no credentials and no request data, and says
+    nothing `/ready` does not already say to curl. Every other path passes
+    through untouched, so the allowlist still governs everything that analyses.
+    """
+
+    PATH = "/health"
+
+    def __init__(self, app) -> None:
+        self.app = app
+
+    async def __call__(self, scope, receive, send) -> None:
+        if scope["type"] != "http" or scope["path"] != self.PATH:
+            await self.app(scope, receive, send)
+            return
+        if scope["method"] == "OPTIONS":
+            requested = Headers(scope=scope).get("access-control-request-headers")
+            headers = [
+                (b"access-control-allow-origin", b"*"),
+                (b"access-control-allow-methods", b"GET, HEAD, OPTIONS"),
+                (b"access-control-max-age", b"600"),
+                (b"x-content-type-options", b"nosniff"),
+                (b"content-length", b"0"),
+            ]
+            if requested:
+                headers.append((b"access-control-allow-headers", requested.encode("latin-1")))
+            await send({"type": "http.response.start", "status": 204, "headers": headers})
+            await send({"type": "http.response.body", "body": b""})
+            return
+
+        async def send_public(message) -> None:
+            if message["type"] == "http.response.start":
+                MutableHeaders(scope=message)["Access-Control-Allow-Origin"] = "*"
+            await send(message)
+
+        await self.app(scope, receive, send_public)
 
 
 class AnalysisMemoryGateMiddleware:

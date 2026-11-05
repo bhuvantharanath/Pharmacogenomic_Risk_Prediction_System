@@ -368,9 +368,24 @@ class AnalyzeResponse(BaseModel):
 
 
 class HealthResponse(BaseModel):
+    """
+    The wake-up ping, readable from any origin (Phase 9 B7).
+
+    `origin_allowed` is what lets the client tell "blocked" from "asleep": a
+    server that answers here but refuses the page's origin everywhere else is a
+    deployment setting, not a cold start. Null when the request names no origin
+    (curl, the host's health checker).
+    """
+
     model_config = ConfigDict(extra="forbid")
 
     status: str = "ok"
+    commit: str = "unknown"
+    commit_short: str = "unknown"
+    #: B2's content identity of the CPIC and allele-definition data; empty when
+    #: no PharmCAT jar is present.
+    data: dict[str, str] = Field(default_factory=dict)
+    origin_allowed: bool | None = None
 
 
 class CapabilityEntry(BaseModel):

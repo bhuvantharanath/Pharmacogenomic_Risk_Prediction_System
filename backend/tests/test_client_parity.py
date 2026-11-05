@@ -30,6 +30,7 @@ from app.models import (
     GeneFinding,
     GeneReadiness,
     GuidelineProvenance,
+    HealthResponse,
     PerDrugResult,
     QualityMetrics,
 )
@@ -46,6 +47,7 @@ SHARED_MODELS = (
     GuidelineProvenance,
     PerDrugResult,
     GeneFinding,
+    HealthResponse,  # Phase 9 B7: read by the wake-up ping
 )
 
 

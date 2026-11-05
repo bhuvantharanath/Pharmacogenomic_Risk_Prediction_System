@@ -33,8 +33,11 @@ import 'package:pharmaguard/widgets/version_notice.dart';
 /// The narrowest width the client claims to support.
 const Size kNarrow = Size(360, 780);
 
-Future<void> _pumpNarrow(WidgetTester tester, Widget child,
-    {bool settle = true}) async {
+Future<void> _pumpNarrow(
+  WidgetTester tester,
+  Widget child, {
+  bool settle = true,
+}) async {
   tester.view.physicalSize = kNarrow;
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.resetPhysicalSize);
@@ -51,9 +54,11 @@ Future<void> _pumpNarrow(WidgetTester tester, Widget child,
   }
 }
 
-Map<String, dynamic> _payload(String scenario) => jsonDecode(
-      File('../test-data/demo/outputs/$scenario.json').readAsStringSync(),
-    ) as Map<String, dynamic>;
+Map<String, dynamic> _payload(String scenario) =>
+    jsonDecode(
+          File('../test-data/demo/outputs/$scenario.json').readAsStringSync(),
+        )
+        as Map<String, dynamic>;
 
 /// A real captured payload with the first analysis's label rewritten.
 ///
@@ -63,10 +68,12 @@ Map<String, dynamic> _payload(String scenario) => jsonDecode(
 AnalyzeResponse _withLabel(RiskLabel label) {
   final Map<String, dynamic> raw = _payload('S1_confident');
   final List<dynamic> analyses = raw['analyses'] as List<dynamic>;
-  final Map<String, dynamic> first =
-      Map<String, dynamic>.from(analyses.first as Map<String, dynamic>);
-  final Map<String, dynamic> risk =
-      Map<String, dynamic>.from(first['risk_assessment'] as Map<String, dynamic>);
+  final Map<String, dynamic> first = Map<String, dynamic>.from(
+    analyses.first as Map<String, dynamic>,
+  );
+  final Map<String, dynamic> risk = Map<String, dynamic>.from(
+    first['risk_assessment'] as Map<String, dynamic>,
+  );
   risk['risk_label'] = label.wireValue;
   first['risk_assessment'] = risk;
   raw['analyses'] = <dynamic>[first];
@@ -84,10 +91,16 @@ void main() {
         await _pumpNarrow(tester, ResultsScreen(response: _withLabel(label)));
 
         // The label itself must be on screen, and nothing may overflow.
-        expect(find.textContaining(label.displayValue), findsWidgets,
-            reason: '${label.wireValue} does not appear in its own result');
-        expect(tester.takeException(), isNull,
-            reason: '${label.wireValue} overflows at 360px');
+        expect(
+          find.textContaining(label.displayValue),
+          findsWidgets,
+          reason: '${label.wireValue} does not appear in its own result',
+        );
+        expect(
+          tester.takeException(),
+          isNull,
+          reason: '${label.wireValue} overflows at 360px',
+        );
       });
     }
   });
@@ -118,11 +131,15 @@ void main() {
 
     scenarios.forEach((String scenario, String what) {
       testWidgets('$scenario — $what', (WidgetTester tester) async {
-        final AnalyzeResponse response =
-            AnalyzeResponse.fromJson(_payload(scenario));
+        final AnalyzeResponse response = AnalyzeResponse.fromJson(
+          _payload(scenario),
+        );
         await _pumpNarrow(tester, ResultsScreen(response: response));
-        expect(tester.takeException(), isNull,
-            reason: '$scenario overflows at 360px');
+        expect(
+          tester.takeException(),
+          isNull,
+          reason: '$scenario overflows at 360px',
+        );
       });
     });
   });
@@ -150,14 +167,18 @@ void main() {
           // checking/waking spin forever by design.
           settle: false,
         );
-        expect(tester.takeException(), isNull,
-            reason: '${phase.name} overflows at 360px');
+        expect(
+          tester.takeException(),
+          isNull,
+          reason: '${phase.name} overflows at 360px',
+        );
       });
     }
   });
 
-  testWidgets('the version-skew notice renders at 360px',
-      (WidgetTester tester) async {
+  testWidgets('the version-skew notice renders at 360px', (
+    WidgetTester tester,
+  ) async {
     await _pumpNarrow(
       tester,
       const Scaffold(
@@ -180,14 +201,27 @@ void main() {
     // Read from the enums, so adding a value breaks this until it is covered
     // above. The count is asserted rather than the names, because names change
     // and the property under test is "all of them", not "these ones".
-    expect(RiskLabel.values.length, 5,
-        reason: 'a risk label was added or removed — add it to the render '
-            'group above, then update this count');
-    expect(UnknownReason.values.length, 6,
-        reason: 'an Unknown reason was added or removed — the render group '
-            'enumerates the enum, but this pins the expected size so the '
-            'change is noticed rather than silently absorbed');
-    expect(BackendPhase.values.length, 4,
-        reason: 'a backend phase was added or removed');
+    expect(
+      RiskLabel.values.length,
+      5,
+      reason:
+          'a risk label was added or removed — add it to the render '
+          'group above, then update this count',
+    );
+    expect(
+      UnknownReason.values.length,
+      6,
+      reason:
+          'an Unknown reason was added or removed — the render group '
+          'enumerates the enum, but this pins the expected size so the '
+          'change is noticed rather than silently absorbed',
+    );
+    // 6 since Phase 9 B7 added `blocked` and `serverError`; both render in
+    // the per-phase group above, which enumerates the enum.
+    expect(
+      BackendPhase.values.length,
+      6,
+      reason: 'a backend phase was added or removed',
+    );
   });
 }

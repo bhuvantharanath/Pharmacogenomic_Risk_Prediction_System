@@ -851,3 +851,46 @@ class AnalyzeResponse {
     'quality_metrics': qualityMetrics.toJson(),
   };
 }
+
+/// `GET /health`, readable from every origin (Phase 9 B7).
+///
+/// `originAllowed` is what separates "blocked" from "asleep": the server
+/// answers here even for a page whose origin it refuses everywhere else, and
+/// says so. Null when the request carried no origin (a native app, curl).
+class HealthReport {
+  const HealthReport({
+    required this.status,
+    required this.commit,
+    required this.commitShort,
+    required this.data,
+    this.originAllowed,
+  });
+
+  final String status;
+  final String commit;
+  final String commitShort;
+
+  /// The content identity of the CPIC and allele-definition data (B2):
+  /// `cpic_guidance_sha256`, `allele_definitions_sha256`,
+  /// `allele_definitions_version`. Empty when the server has no PharmCAT jar.
+  final Map<String, String> data;
+  final bool? originAllowed;
+
+  factory HealthReport.fromJson(Map<String, dynamic> json) {
+    final Object? raw = json['data'];
+    return HealthReport(
+      status: _str(json['status']),
+      commit: _str(json['commit'], 'unknown'),
+      commitShort: _str(json['commit_short'], 'unknown'),
+      data: raw is Map
+          ? <String, String>{
+              for (final MapEntry<dynamic, dynamic> e in raw.entries)
+                '${e.key}': '${e.value}',
+            }
+          : const <String, String>{},
+      originAllowed: json['origin_allowed'] is bool
+          ? json['origin_allowed'] as bool
+          : null,
+    );
+  }
+}

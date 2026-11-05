@@ -59,7 +59,9 @@ class TestHealth:
     def test_health(self) -> None:
         response = TestClient(main.app).get("/health")
         assert response.status_code == 200
-        assert response.json() == {"status": "ok"}
+        # Phase 9 B7 added the build, the data identity and origin_allowed;
+        # test_public_health.py pins them. `status` keeps its meaning.
+        assert response.json()["status"] == "ok"
 
     def test_root_reports_pharmcat_availability(self) -> None:
         body = TestClient(main.app).get("/").json()

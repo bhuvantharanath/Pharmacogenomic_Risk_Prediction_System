@@ -1,0 +1,261 @@
+{
+  "analyses": [
+    {
+      "clinical_recommendation": {
+        "action": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+        "alternatives": [],
+        "cpic_evidence_level": "Unknown",
+        "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure",
+        "dosing_guidance": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines.",
+        "source": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 (via PharmCAT) [label rule: standard_dosing]"
+      },
+      "drug": "simvastatin",
+      "gene_findings": [],
+      "llm_generated_explanation": {
+        "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text. Recommendation text is quoted from CPIC via PharmCAT, and automated source checks are not human review: they cannot show that every statement is supported or that it is correct for you.",
+        "mechanism": "SLCO1B1 encodes OATP1B1, an uptake transporter on the sinusoidal (blood-facing) membrane of liver cells. Its job is to move drugs out of portal blood and into hepatocytes. It is a **transporter, not a metabolising enzyme**, which is why its phenotypes are described as function categories (normal, decreased, poor function) rather than metaboliser categories.\n\nSource: Annotation of CPIC Guideline for simvastatin and SLCO1B1 \u2014 Cooper-DeHoff RM et al. The Clinical Pharmacogenetics Implementation Consortium Guideline for SLCO1B1, ABCG2, and CYP2C9 genotypes and Statin-Associated Musculoskeletal Symptoms. Clin Pharmacol Ther (2022). PMID: 35152405",
+        "patient_friendly": "Your genetic results do not suggest a change to how this medicine is usually prescribed. Your SLCO1B1 gene result shows activity in the usual range, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines.",
+        "summary": "simvastatin: SLCO1B1 *1/*1 (Normal Function) \u2014 No PGx-guided adjustment identified.",
+        "variant_rationale": "PharmCAT called SLCO1B1 as *1/*1, which corresponds to a Normal Function result. The non-reference positions supporting this call were no non-reference variants were detected."
+      },
+      "pharmacogenomic_profile": {
+        "activity_score": null,
+        "candidate_diplotypes": [],
+        "detected_variants": [],
+        "diplotype": "*1/*1",
+        "phenotype": "NM",
+        "primary_gene": "SLCO1B1",
+        "recommendation_diplotype": null
+      },
+      "risk_assessment": {
+        "confidence_score": 0.95,
+        "risk_label": "No PGx-guided adjustment identified",
+        "severity": "none"
+      }
+    }
+  ],
+  "patient_id": "DEMO_NORMAL",
+  "quality_metrics": {
+    "guideline_provenance": {
+      "allele_definitions_sha256": "7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f",
+      "allele_definitions_version": "2026-07-13-11-40",
+      "cpic_data_version": "2026-07-13-11-40",
+      "cpic_guidance_sha256": "5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8",
+      "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+      "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+      "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs.",
+      "pharmcat_version": "3.4.0",
+      "pharmvar_release": ""
+    },
+    "position_coverage": {
+      "CYP2C19": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 31,
+        "decision_critical_required": 31,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 35
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "pharmcat_positions_used": 35,
+        "pharmcat_sufficient": true,
+        "positions_present": 35,
+        "positions_required": 35,
+        "sufficient": true
+      },
+      "CYP2C9": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 69,
+        "decision_critical_required": 69,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 88
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "pharmcat_positions_used": 88,
+        "pharmcat_sufficient": true,
+        "positions_present": 88,
+        "positions_required": 88,
+        "sufficient": true
+      },
+      "CYP2D6": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 140,
+        "decision_critical_required": 140,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 157
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "positions_present": 157,
+        "positions_required": 157,
+        "sufficient": true
+      },
+      "CYP4F2": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 20,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 20,
+        "sufficient": false
+      },
+      "DPYD": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 28,
+        "decision_critical_required": 28,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 83
+        },
+        "minimum_percent": 20,
+        "percent": 100.0,
+        "pharmcat_positions_used": 83,
+        "pharmcat_sufficient": true,
+        "positions_present": 83,
+        "positions_required": 83,
+        "sufficient": true
+      },
+      "NUDT15": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 20,
+        "decision_critical_required": 20,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 20
+        },
+        "minimum_percent": 80,
+        "percent": 100.0,
+        "pharmcat_positions_used": 20,
+        "pharmcat_sufficient": true,
+        "positions_present": 20,
+        "positions_required": 20,
+        "sufficient": true
+      },
+      "SLCO1B1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 26,
+        "decision_critical_required": 26,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 35
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "pharmcat_positions_used": 35,
+        "pharmcat_sufficient": true,
+        "positions_present": 35,
+        "positions_required": 35,
+        "sufficient": true
+      },
+      "TPMT": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 45,
+        "decision_critical_required": 45,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 45
+        },
+        "minimum_percent": 80,
+        "percent": 100.0,
+        "pharmcat_positions_used": 45,
+        "pharmcat_sufficient": true,
+        "positions_present": 45,
+        "positions_required": 45,
+        "sufficient": true
+      },
+      "VKORC1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 1,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 1,
+        "sufficient": false
+      }
+    },
+    "processing_time_ms": 1227,
+    "variants_detected_count": 0,
+    "vcf_parsing_success": true,
+    "warnings": [
+      "The SLCO1B1 genotype (star nomenclature) will be displayed if determinable with the provided VCF based on the SLCO1B1 star allele definition published by CPIC and recommendations are provided based on the genotype.<br><br>In case no genotype can be determined, recommendations are based on the rs4149056 genotype alone as per guideline. The minor C allele at rs4149056 defines SLCO1B1*5.",
+      "The SLCO1B1 *1 allele assignment is characterized by the absence of variants at the positions that are included in the underlying allele definitions.",
+      "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication; unresolved adjudication) Using the deterministic template.",
+      "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+      "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+      "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness."
+    ]
+  },
+  "timestamp": "2026-11-05T13:24:55.130852Z"
+}

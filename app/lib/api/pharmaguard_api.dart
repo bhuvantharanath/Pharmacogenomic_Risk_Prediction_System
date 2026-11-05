@@ -39,8 +39,66 @@ class ApiException implements Exception {
   bool get shouldMarkBackendUnreachable =>
       statusCode == null || isBackendUnavailable;
 
+  /// Whose problem this is, which decides the panel's heading (Phase 9 B7).
+  ///
+  /// One red box used to cover a file the server refused, a server that
+  /// failed, and a request that never arrived — three situations with three
+  /// different next steps (fix the file, try later, check the connection).
+  ApiErrorKind get kind {
+    final int? status = statusCode;
+    if (status == null) return ApiErrorKind.network;
+    if (isBusy) return ApiErrorKind.busy;
+    if (isRateLimited) return ApiErrorKind.rateLimited;
+    if (status >= 500) return ApiErrorKind.serverError;
+    if (status >= 400 && errorCode != null) return ApiErrorKind.declined;
+    return ApiErrorKind.serverError;
+  }
+
   @override
   String toString() => message;
+}
+
+/// Whose problem a failed request is (see [ApiException.kind]).
+enum ApiErrorKind {
+  /// The server read the request and refused the file: fix the file.
+  declined,
+
+  /// The server failed: not the file's fault, try again later.
+  serverError,
+
+  /// No response arrived at all.
+  network,
+
+  /// Another analysis holds the only slot (503 `SERVER_BUSY`).
+  busy,
+
+  /// Too many requests from this client (429).
+  rateLimited,
+}
+
+/// What one `/health` ping established (Phase 9 B7).
+enum HealthOutcome {
+  /// Answered `ok`, and this page's origin is allowed (or none was sent).
+  ready,
+
+  /// Answered `ok`, but the server does not accept this page's origin, so
+  /// every analysis request would be refused. A setting, not a cold start.
+  blocked,
+
+  /// No answer yet: a timeout, a connection error, or the host's gateway
+  /// (502/503/504) while the app starts. This is what a cold start looks like.
+  noAnswer,
+
+  /// Answered with another error status, or with a body that is not `ok`.
+  serverError,
+}
+
+class HealthCheck {
+  const HealthCheck(this.outcome, {this.statusCode, this.report});
+
+  final HealthOutcome outcome;
+  final int? statusCode;
+  final HealthReport? report;
 }
 
 class PharmaGuardApi {
@@ -94,15 +152,43 @@ class PharmaGuardApi {
 
   String get baseUrl => _baseUrl;
 
-  /// Liveness check. Returns true only on a 200 with `{"status": "ok"}`.
-  Future<bool> health() async {
+  /// One `/health` ping, classified (Phase 9 B7, audit finding F-11).
+  ///
+  /// `/health` is readable from every origin, so a page the server refuses
+  /// still gets an answer — `origin_allowed: false` — instead of the silence
+  /// that read as a cold start for the full 180 s and was then reported as
+  /// "responded but did not report healthy". The receive timeout is 10 s on
+  /// every platform: on Android `connectTimeout` covers only the TCP connect,
+  /// so a ping could otherwise be held for the whole 180 s analysis budget.
+  Future<HealthCheck> healthCheck() async {
+    final Response<dynamic> res;
     try {
-      final Response<dynamic> res = await _dio.get<dynamic>('/health');
-      final dynamic body = res.data;
-      return res.statusCode == 200 && body is Map && body['status'] == 'ok';
+      res = await _dio.get<dynamic>(
+        '/health',
+        options: Options(receiveTimeout: const Duration(seconds: 10)),
+      );
     } on DioException {
-      return false;
+      return const HealthCheck(HealthOutcome.noAnswer);
     }
+    final int status = res.statusCode ?? 0;
+    // The host's gateway answers these while the app itself is still starting.
+    if (status == 502 || status == 503 || status == 504) {
+      return HealthCheck(HealthOutcome.noAnswer, statusCode: status);
+    }
+    final dynamic body = res.data;
+    if (status != 200 ||
+        body is! Map<String, dynamic> ||
+        body['status'] != 'ok') {
+      return HealthCheck(HealthOutcome.serverError, statusCode: status);
+    }
+    final HealthReport report = HealthReport.fromJson(body);
+    return HealthCheck(
+      report.originAllowed == false
+          ? HealthOutcome.blocked
+          : HealthOutcome.ready,
+      statusCode: status,
+      report: report,
+    );
   }
 
   /// POST /analyze — multipart upload of [fileBytes] plus a comma-separated

@@ -68,7 +68,11 @@ class TestHealthAndReady:
         monkeypatch.setattr(main, "pharmcat_available", explode)
         response = TestClient(main.app).get("/health")
         assert response.status_code == 200
-        assert response.json() == {"status": "ok"}
+        # Since Phase 9 B7 the body also names the build, the data identity and
+        # whether the asking origin is allowed — still without invoking PharmCAT.
+        body = response.json()
+        assert body["status"] == "ok"
+        assert set(body) == {"status", "commit", "commit_short", "data", "origin_allowed"}
 
     def test_ready_reports_per_dependency_status(self) -> None:
         body = TestClient(main.app).get("/ready").json()
@@ -186,7 +190,10 @@ class TestCors:
         from importlib import reload
 
         reload(main)
-        response = TestClient(main.app).get("/health", headers={"Origin": origin})
+        # Not /health: since Phase 9 B7 it answers every origin by design
+        # (test_public_health.py). `/` is governed by the allowlist like every
+        # endpoint that matters.
+        response = TestClient(main.app).get("/", headers={"Origin": origin})
         return response.headers.get("access-control-allow-origin") is not None
 
     def test_localhost_is_always_allowed(self, monkeypatch: pytest.MonkeyPatch) -> None:
@@ -586,8 +593,9 @@ class TestCorsFailsLoudWhenMisconfigured:
         reload(main)
         client = TestClient(main.app)
 
+        # `/`, not /health, which answers every origin since Phase 9 B7.
         allowed = client.get(
-            "/health", headers={"Origin": "https://pharmaguard.pages.dev"}
+            "/", headers={"Origin": "https://pharmaguard.pages.dev"}
         )
         assert allowed.headers.get("access-control-allow-origin") == (
             "https://pharmaguard.pages.dev"
@@ -597,7 +605,7 @@ class TestCorsFailsLoudWhenMisconfigured:
             "https://evil.example.com",
             "https://attacker-site.pages.dev",  # the old wildcard hole
         ):
-            rejected = client.get("/health", headers={"Origin": bad})
+            rejected = client.get("/", headers={"Origin": bad})
             assert rejected.headers.get("access-control-allow-origin") is None, bad
 
 

@@ -41,6 +41,16 @@ class BackendStatusBanner extends StatelessWidget {
         dark ? const Color(0xFF3B2F12) : const Color(0xFFFFF6E0),
         Icons.bedtime_outlined,
       ),
+      BackendPhase.blocked => (
+        theme.colorScheme.error,
+        theme.colorScheme.errorContainer,
+        Icons.block_outlined,
+      ),
+      BackendPhase.serverError => (
+        theme.colorScheme.error,
+        theme.colorScheme.errorContainer,
+        Icons.report_problem_outlined,
+      ),
       BackendPhase.unreachable => (
         theme.colorScheme.error,
         theme.colorScheme.errorContainer,
@@ -73,7 +83,7 @@ class BackendStatusBanner extends StatelessWidget {
       );
     }
 
-    // Waking and unreachable get a real explanation.
+    // Waking, blocked, server error and unreachable get a real explanation.
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(14),
@@ -98,7 +108,7 @@ class BackendStatusBanner extends StatelessWidget {
                   ),
                 ),
               ),
-              if (status.phase == BackendPhase.unreachable)
+              if (!status.isBusy)
                 TextButton.icon(
                   onPressed: onRetry,
                   icon: const Icon(Icons.refresh, size: 16),
@@ -119,7 +129,9 @@ class BackendStatusBanner extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
-                value: _progress,
+                value: status.budgetFraction == 0
+                    ? null
+                    : status.budgetFraction,
                 minHeight: 5,
                 backgroundColor: fg.withValues(alpha: 0.18),
                 valueColor: AlwaysStoppedAnimation<Color>(fg),
@@ -127,8 +139,10 @@ class BackendStatusBanner extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              'Attempt ${status.attempts} · this is normal for a free-tier '
-              'server and only happens after it has been idle.',
+              'Attempt ${status.attempts} · ${status.secondsLeft}s left of the '
+              '${status.budget.inSeconds}s it waits before saying the server '
+              'cannot be reached. This is normal for a free-tier server and '
+              'only happens after it has been idle.',
               style: theme.textTheme.labelSmall?.copyWith(
                 color: theme.colorScheme.onSurfaceVariant,
               ),
@@ -138,15 +152,4 @@ class BackendStatusBanner extends StatelessWidget {
       ),
     );
   }
-
-  /// Fraction of the wake-up budget spent, capped just below 1 so the bar never
-  /// looks finished while we are still waiting.
-  double get _progress {
-    const double cap = 0.95;
-    final double fraction =
-        status.elapsed.inMilliseconds / _budgetMs;
-    return fraction.clamp(0.02, cap);
-  }
-
-  static const double _budgetMs = 90 * 1000;
 }

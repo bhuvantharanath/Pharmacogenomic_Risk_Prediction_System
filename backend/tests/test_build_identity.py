@@ -123,14 +123,33 @@ def test_an_unknown_commit_does_not_make_the_service_unready(
     assert body["status"] == ("ready" if response.status_code == 200 else "not_ready")
 
 
-def test_health_stays_trivial(client: TestClient) -> None:
+def test_health_stays_trivial(client: TestClient, monkeypatch) -> None:
     """
-    `/health` is the cold-start ping and the platform's health check. Adding a
-    version lookup here would make the cheap probe less cheap for no gain —
-    the client asks `/ready` once on load, not on every poll.
+    `/health` is the cold-start ping and the platform's health check, so it must
+    stay cheap. Phase 9 B7 made it name the build and the data identity, which
+    the brief asked for so a client can tell asleep from blocked from broken:
+    the commit is an environment read, and the data identity is read from the
+    jar once and then cached. This pins that it stays that way — no PharmCAT,
+    no subprocess, and no second read of the jar.
     """
-    body = client.get("/health").json()
-    assert body == {"status": "ok"}
+    import asyncio
+    import subprocess
+
+    from app import pharmcat_runner
+
+    def explode(*_args, **_kwargs):
+        raise AssertionError("/health ran a subprocess")
+
+    monkeypatch.setattr(subprocess, "run", explode)
+    monkeypatch.setattr(subprocess, "Popen", explode)
+    monkeypatch.setattr(asyncio, "create_subprocess_exec", explode)
+    first = client.get("/health").json()
+    misses = pharmcat_runner.knowledge_identity.cache_info().misses
+    for _ in range(3):
+        assert client.get("/health").json() == first
+    assert pharmcat_runner.knowledge_identity.cache_info().misses == misses, (
+        "/health re-read the jar instead of using the cached identity")
+    assert first["status"] == "ok"
 
 
 # --------------------------------------------------------------------------- #

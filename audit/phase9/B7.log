@@ -1,0 +1,93 @@
+B7 — client honesty about connectivity. Plan written before any B7 code.
+plan committed 2026-11-05T13:05:03Z, base 21cdc64 (B6 live at 1360a7c)
+aa4b5ba3d4a5ea4fb7984702a86fd6decb1f93e8554eaace28756edfbab39282  audit/phase9/B7_PLAN.md
+
+== Implementation ==
+backend/app/security.py: pages_preview_projects() derives https://<project>.pages.dev projects from
+  CORS_ALLOWED_ORIGINS (plus CORS_ALLOW_PAGES_PREVIEWS); allowed_origin_regex() adds
+  ^https://[a-z0-9-]+\.<project>\.pages\.dev$ for each; is_allowed_origin() applies the CORS middleware's two rules
+  (exact list, fullmatch of the regex); PublicHealthCorsMiddleware, outermost, answers OPTIONS /health with 204 and *
+  and adds Access-Control-Allow-Origin: * to /health responses; every other path passes through untouched.
+  cors_summary() reports pages_preview_projects and the public path.
+backend/app/models.py HealthResponse: commit, commit_short, data, origin_allowed.
+backend/app/main.py /health: build_commit(), knowledge_identity() (B2's, cached), origin_allowed for the request's
+  Origin (null without one); the middleware is added last, so outermost.
+app/lib/api/pharmaguard_api.dart: healthCheck() replaces health(): 10 s receive timeout on every platform;
+  outcomes ready / blocked (origin_allowed false) / noAnswer (DioException, 502/503/504) / serverError (other
+  status, or a 200 without ok). ApiException.kind: declined (4xx with an error code), serverError (5xx, other
+  4xx), network (no status), busy, rateLimited.
+app/lib/models/analysis.dart: HealthReport (reads every HealthResponse field; HealthResponse joins the parity list).
+app/lib/api/backend_status.dart: phases blocked and serverError, each terminal after one ping; noAnswer keeps
+  waking; budget carried on BackendStatus (budgetFraction, secondsLeft); the give-up message says there was no
+  answer (and names a gateway status when the host's gateway answered), never "responded but did not report
+  healthy".
+app/lib/widgets/backend_status_banner.dart: the bar is elapsed / budget (was / 90 s); the line under it gives the
+  seconds left of the budget; blocked and serverError get their own icons and a retry button.
+app/lib/widgets/error_panel.dart (new): ErrorPanel with a heading per ApiErrorKind; home_screen.dart uses it and
+  records e.kind for both the preview and the analysis; the analysing copy says "about a minute" and that a queued
+  request waits for the running one (was "roughly 50–60 seconds", under the 58–68 s measured live on 2026-11-05).
+app/lib/config.dart kColdStartExpectation: "usually 20–30 seconds, occasionally longer if the server image has to
+  be fetched again" (measured 22.40 s, 22.45 s in B4; 28.4 s end to end in B6).
+Docs: README.md, docs/DEMO_SCRIPT.md (two places), infra/DEPLOY_NOTES.md quote B4's 22.40 s / 22.45 s; the old
+  figures stay only as labelled history. reports/deployment_verification.md keeps its original reading under a
+  dated "Superseded" note. git grep "12.85" outside audit/: only history-labelled lines remain (README, config.dart
+  and backend_status_test comments, DEPLOY_NOTES, the superseded report). DEPLOY_NOTES and backend/.env.example
+  describe the derived preview origins.
+scripts/scientific_hash_policy.json: app/lib/widgets/error_panel.dart enrolled (95 core paths).
+
+== Existing tests changed, each because the planned behaviour changed ==
+- app/test/backend_status_test.dart: the fake now scripts healthCheck(); true/false keep their meaning (false =
+  no answer yet). Eight new tests: blocked, server error, gateway-then-ready, no "responded" on give-up, six distinct
+  headlines, the bar at 90 s of 180 s is 0.5, never full, an injected budget is the one used.
+- app/test/state_census_test.dart: BackendPhase count 4 -> 6 (both new phases render at 360 px in the existing
+  per-phase loop).
+- app/test/wait_states_test.dart: header figures updated to B4's measurements (comment only).
+- backend/tests/test_deployment.py: the CORS allowlist tests asked /health; since /health answers every origin by
+  design they now ask `/`. test_health_is_dependency_free checks status and keys instead of the old exact body.
+- backend/tests/test_analyze_api.py test_health: status only (test_public_health.py pins the rest).
+- backend/tests/test_build_identity.py test_health_stays_trivial: its rule ("keep the probe cheap") is kept and made
+  checkable: no subprocess of any kind, and the jar is not re-read after the first call (knowledge_identity cache).
+New: backend/tests/test_public_health.py (26, by pytest --collect-only), app/test/connectivity_states_test.dart (20, including two banner widget tests added for AC3's countdown).
+
+== Sabotage (audit/phase9/partb/b7_sabotage.py -> B7.sabotage.stdout; every file restored identical) ==
+SB7-a /health stops adding *                2 red.
+SB7-b preview regex loses ^ and $ (planned)  0 red. Not a weakening: Starlette 0.49.3's CORSMiddleware checks the
+                                             regex with fullmatch, and so does is_allowed_origin, so the anchors
+                                             change nothing. Reported as planned, not hidden. The plan's sabotage
+                                             was wrong for this code.
+SB7-b2 preview label may contain dots       1 red (a.b.pharmaguard-web.pages.dev accepted): a real loosening, caught.
+SB7-c * on every path                       7 red.
+SB7-d origin_allowed false read as ready    1 red. (First attempt stopped on the pre-format text of the line; the
+                                             target was corrected to the formatted source and the three client
+                                             sabotages rerun.)
+SB7-e the bar divides by 90 s again         2 red.
+SB7-f a declined 400 maps to server error   1 red.
+
+== Zero-regression vs B6 (run_regression.py B7 --compare-to B6 -> B7.stdout; a4_labels.py B7-after) ==
+S1-S6    6/6 labels; every analysis object and every warning identical to B6. PASS.
+Cohort   2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other; no file refused. PASS.
+74 VCFs  148 comparisons, 0 mismatches. PASS.
+A4       36 cases, all six drugs: status, error code, labels and warnings identical to B6. PASS.
+
+== AC verdicts (2026-11-05) ==
+AC1 PASS  test_public_health.py: /health returns status, commit, commit_short, data (the three identity fields when the
+          jar is present) and origin_allowed (null / true / false); GET answers * for any origin; OPTIONS /health from a
+          refused origin gets 204 with *; for that origin /ready, /, /coverage and /analyze carry no
+          Access-Control-Allow-Origin and the /analyze preflight is refused (400); origin_allowed equals what
+          CORSMiddleware does on /ready for 10 origins.
+AC2 PASS  With CORS_ALLOWED_ORIGINS=https://pharmaguard-web.pages.dev: the production origin, 6bc16810. and main.
+          previews are allowed, by is_allowed_origin and by a real CORSMiddleware built the same way; 11 look-alikes are
+          refused by both (the plan's 8, plus an upper-case label, a path and a missing dot); with no Pages origin
+          configured no preview passes and the summary still says wildcard false.
+AC3 PASS  backend_status_test.dart and connectivity_states_test.dart: ready on the first ping; origin_allowed false ->
+          blocked after one ping, no further pings; HTTP 500 -> serverError after one ping naming 500; 503, 503, 200 ->
+          waking, then ready; silence to the budget -> unreachable, whose text has no "responded"; at 90 s the bar is
+          0.5 of the 180 s budget and the banner reads "90s left of the 180s"; the ping's receiveTimeout is 10 s.
+AC4 PASS  ApiException.kind for 400/413 with codes, 500, 503 PHARMCAT_UNAVAILABLE / SERVER_BUSY, 429, no status;
+          ErrorPanel renders the three headings, distinct, and none for a screen-written message. The home screen's
+          wiring is pinned at source level (ErrorPanel(message: _error!, kind: _errorKind), and e.kind recorded by
+          both handlers): a widget test cannot stage an in-flight request without a backend, as the existing
+          wait-state tests already note.
+AC5 PASS  git grep "12.85" outside audit/ returns only history-labelled lines; kColdStartExpectation quotes 20-30 s,
+          all measured, all within the 180 s budget, and admits the longer case; the analysing copy names the queue
+          (test).

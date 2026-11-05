@@ -200,7 +200,7 @@ Measured against the deployed service, not estimated:
 | --- | ---: | ---: | --- |
 | **Coverage check** (`/coverage`) | **0.35 s** | ~0.3 s | Pure Python over the VCF header and positions. No JVM. |
 | **Full analysis** (`/analyze`) | **~52 s** — p50 51.27 s, p95 53.56 s (n=20) | ~2.6 s | PharmCAT is a Java program on a shared free-tier CPU, ~20× slower than a laptop core |
-| **Cold start** | **12.85 s** | n/a | The instance sleeps after ~15 min idle |
+| **Cold start** | **22.40 s, 22.45 s** (Phase 9 B4, 2026-11-04) | n/a | The instance sleeps after ~15 min idle. On the old 6 GB image it was 82.4 s, and 12.85 s only while that image was still cached on the host |
 
 **The ~20× gap is the hosting, not the pipeline** — the same image, the same
 commit, the same inputs produce byte-identical results in 2.6 s locally. The

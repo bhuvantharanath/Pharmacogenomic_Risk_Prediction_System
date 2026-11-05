@@ -16,6 +16,7 @@ import '../models/analysis.dart';
 import '../theme/tokens.dart';
 import '../widgets/backend_status_banner.dart';
 import '../widgets/disclaimer_banner.dart';
+import '../widgets/error_panel.dart';
 import '../widgets/file_readiness.dart';
 import '../widgets/sample_files.dart';
 import '../widgets/version_notice.dart';
@@ -39,6 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
   PlatformFile? _file;
   bool _loading = false;
   String? _error;
+
+  /// Whose problem [_error] is, when it came from the server (Phase 9 B7):
+  /// the panel heads a declined file, a failed server and a lost request
+  /// differently. Null for the messages this screen writes itself.
+  ApiErrorKind? _errorKind;
 
   /// Seconds since Analyze was pressed, and the ticker that advances it.
   ///
@@ -131,7 +137,10 @@ class _HomeScreenState extends State<HomeScreen> {
       await _checkReadiness();
     } catch (e) {
       if (!mounted) return;
-      setState(() => _error = 'Could not open the file chooser: $e');
+      setState(() {
+        _error = 'Could not open the file chooser: $e';
+        _errorKind = null;
+      });
     }
   }
 
@@ -166,7 +175,10 @@ class _HomeScreenState extends State<HomeScreen> {
       await _analyze();
     } catch (e) {
       if (!mounted) return;
-      setState(() => _error = 'Could not load the sample file: $e');
+      setState(() {
+        _error = 'Could not load the sample file: $e';
+        _errorKind = null;
+      });
     }
   }
 
@@ -208,7 +220,10 @@ class _HomeScreenState extends State<HomeScreen> {
         _checkingReadiness = false;
         // One exception to swallowing: a file the preview rejects is a file
         // /analyze would reject too, so showing it here saves a wasted run.
-        if (e.statusCode == 400 || e.statusCode == 413) _error = e.message;
+        if (e.statusCode == 400 || e.statusCode == 413) {
+          _error = e.message;
+          _errorKind = e.kind;
+        }
       });
     } catch (_) {
       if (!mounted) return;
@@ -219,18 +234,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _analyze() async {
     final PlatformFile? file = _file;
     if (file == null) {
-      setState(() => _error = 'Choose a VCF file first.');
+      setState(() {
+        _error = 'Choose a VCF file first.';
+        _errorKind = null;
+      });
       return;
     }
     if (file.bytes == null) {
-      setState(
-        () => _error =
-            'Could not read the contents of "${file.name}". Try another file.',
-      );
+      setState(() {
+        _error =
+            'Could not read the contents of "${file.name}". Try another file.';
+        _errorKind = null;
+      });
       return;
     }
     if (_drugsController.text.trim().isEmpty) {
-      setState(() => _error = 'Enter at least one drug name.');
+      setState(() {
+        _error = 'Enter at least one drug name.';
+        _errorKind = null;
+      });
       return;
     }
 
@@ -268,6 +290,7 @@ class _HomeScreenState extends State<HomeScreen> {
           _busy = e.message;
         } else {
           _error = e.message;
+          _errorKind = e.kind;
         }
       });
       // A failed call is the most likely moment for the backend to have gone
@@ -282,6 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         _loading = false;
         _error = 'Unexpected error: $e';
+        _errorKind = null;
       });
     }
   }
@@ -492,7 +516,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
                 if (_error != null) ...<Widget>[
                   const SizedBox(height: 16),
-                  _ErrorBox(message: _error!),
+                  ErrorPanel(message: _error!, kind: _errorKind),
                 ],
               ],
             ),
@@ -711,8 +735,10 @@ class _AnalysisProgress extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             'The genotype caller is a Java program running on a free shared '
-            'CPU, so this takes roughly 50–60 seconds. Nothing is stuck. '
-            'Please do not reload — that starts the wait again.',
+            'CPU, so this takes about a minute. If another analysis is '
+            'already running, yours waits for it to finish first. '
+            'Nothing is stuck. Please do not reload — that starts the wait '
+            'again.',
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               height: 1.45,
@@ -782,44 +808,6 @@ class _BusyBox extends StatelessWidget {
                   ),
                 ],
               ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ErrorBox extends StatelessWidget {
-  const _ErrorBox({required this.message});
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.errorContainer,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: theme.colorScheme.error.withValues(alpha: 0.5),
-        ),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Icon(Icons.error_outline, color: theme.colorScheme.onErrorContainer),
-          const SizedBox(width: 10),
-          Expanded(
-            child: SelectableText(
-              message,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: theme.colorScheme.onErrorContainer,
-                height: 1.45,
-              ),
             ),
           ),
         ],

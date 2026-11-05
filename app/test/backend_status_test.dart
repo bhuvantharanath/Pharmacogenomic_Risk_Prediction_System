@@ -16,17 +16,21 @@ import 'package:pharmaguard/config.dart';
 class _ScriptedApi extends PharmaGuardApi {
   _ScriptedApi(this._responses) : super(dio: Dio());
 
-  /// One entry per call: true = healthy, false = down, throw = transport error.
+  /// One entry per call: true = healthy, false = no answer yet (the cold-start
+  /// shape), a [HealthCheck] = exactly that, throw = transport error.
   final List<Object> _responses;
   int calls = 0;
 
   @override
-  Future<bool> health() async {
+  Future<HealthCheck> healthCheck() async {
     final Object response =
         _responses[calls < _responses.length ? calls : _responses.length - 1];
     calls += 1;
     if (response is Exception) throw response;
-    return response as bool;
+    if (response is HealthCheck) return response;
+    return HealthCheck(
+      response as bool ? HealthOutcome.ready : HealthOutcome.noAnswer,
+    );
   }
 }
 
@@ -67,8 +71,9 @@ void main() {
   group('BackendStatusController', () {
     test('reaches ready on the first successful ping', () async {
       final _ScriptedApi api = _ScriptedApi(<Object>[true]);
-      final BackendStatusController controller =
-          BackendStatusController(api: api);
+      final BackendStatusController controller = BackendStatusController(
+        api: api,
+      );
 
       await controller.wake();
 
@@ -86,8 +91,9 @@ void main() {
         false,
         true,
       ]);
-      final BackendStatusController controller =
-          BackendStatusController(api: api);
+      final BackendStatusController controller = BackendStatusController(
+        api: api,
+      );
 
       await controller.wake();
 
@@ -102,8 +108,9 @@ void main() {
         Exception('connection refused'),
         true,
       ]);
-      final BackendStatusController controller =
-          BackendStatusController(api: api);
+      final BackendStatusController controller = BackendStatusController(
+        api: api,
+      );
 
       await controller.wake();
 
@@ -113,8 +120,9 @@ void main() {
 
     test('passes through waking on its way to ready', () async {
       final _ScriptedApi api = _ScriptedApi(<Object>[false, false, true]);
-      final BackendStatusController controller =
-          BackendStatusController(api: api);
+      final BackendStatusController controller = BackendStatusController(
+        api: api,
+      );
 
       final List<BackendPhase> seen = <BackendPhase>[];
       controller.addListener(() => seen.add(controller.status.phase));
@@ -128,8 +136,9 @@ void main() {
 
     test('concurrent wake() calls do not start parallel loops', () async {
       final _ScriptedApi api = _ScriptedApi(<Object>[false, false, true]);
-      final BackendStatusController controller =
-          BackendStatusController(api: api);
+      final BackendStatusController controller = BackendStatusController(
+        api: api,
+      );
 
       // A rebuild or an impatient user must not multiply the ping rate.
       final Future<void> first = controller.wake();
@@ -143,8 +152,9 @@ void main() {
 
     test('markUnreachable reports the failure without re-pinging', () {
       final _ScriptedApi api = _ScriptedApi(<Object>[true]);
-      final BackendStatusController controller =
-          BackendStatusController(api: api);
+      final BackendStatusController controller = BackendStatusController(
+        api: api,
+      );
 
       controller.markUnreachable('Rate limit reached.');
 
@@ -156,8 +166,9 @@ void main() {
 
     test('disposing mid-wake does not throw', () async {
       final _ScriptedApi api = _ScriptedApi(<Object>[false]);
-      final BackendStatusController controller =
-          BackendStatusController(api: api);
+      final BackendStatusController controller = BackendStatusController(
+        api: api,
+      );
 
       final Future<void> pending = controller.wake();
       controller.dispose();
@@ -188,9 +199,13 @@ void main() {
       // A false negative on availability is worse than a longer wait: the wait
       // is honest, and the false negative is not.
       const int measuredWorstColdStart = 83;
-      expect(kWakeupBudget.inSeconds, greaterThan(measuredWorstColdStart * 2),
-          reason: 'the budget must clear the worst observed cold start by a '
-              'wide margin, not by seconds');
+      expect(
+        kWakeupBudget.inSeconds,
+        greaterThan(measuredWorstColdStart * 2),
+        reason:
+            'the budget must clear the worst observed cold start by a '
+            'wide margin, not by seconds',
+      );
     });
 
     test('the promised duration does not undercut the budget', () {
@@ -204,13 +219,20 @@ void main() {
       final Iterable<int> quoted = RegExp(r'(\d+)')
           .allMatches(kColdStartExpectation)
           .map((RegExpMatch m) => int.parse(m.group(1)!));
-      expect(quoted, isNotEmpty,
-          reason: 'the cold-start expectation quotes no duration at all');
+      expect(
+        quoted,
+        isNotEmpty,
+        reason: 'the cold-start expectation quotes no duration at all',
+      );
       for (final int seconds in quoted) {
-        expect(seconds, lessThanOrEqualTo(kWakeupBudget.inSeconds),
-            reason: 'the copy promises $seconds s but the client waits '
-                '${kWakeupBudget.inSeconds} s — the promise must not be '
-                'shorter than the wait');
+        expect(
+          seconds,
+          lessThanOrEqualTo(kWakeupBudget.inSeconds),
+          reason:
+              'the copy promises $seconds s but the client waits '
+              '${kWakeupBudget.inSeconds} s — the promise must not be '
+              'shorter than the wait',
+        );
       }
       // And it must admit the long case rather than quoting only the fast one.
       expect(kColdStartExpectation.toLowerCase(), contains('longer'));
@@ -255,9 +277,13 @@ void main() {
       final BackendStatusController controller = never();
       await controller.wake();
 
-      expect(controller.status.phase, BackendPhase.unreachable,
-          reason: 'still "waking" after the budget would tell the user to keep '
-              'waiting for something that is never going to arrive');
+      expect(
+        controller.status.phase,
+        BackendPhase.unreachable,
+        reason:
+            'still "waking" after the budget would tell the user to keep '
+            'waiting for something that is never going to arrive',
+      );
       controller.dispose();
     });
 
@@ -267,15 +293,21 @@ void main() {
       await controller.wake();
       clock.stop();
 
-      expect(clock.elapsed, lessThan(const Duration(seconds: 5)),
-          reason: 'the wait must be BOUNDED; an unbounded one is '
-              'indistinguishable from a hang');
+      expect(
+        clock.elapsed,
+        lessThan(const Duration(seconds: 5)),
+        reason:
+            'the wait must be BOUNDED; an unbounded one is '
+            'indistinguishable from a hang',
+      );
       controller.dispose();
     });
 
     test('says it is unreachable, NOT still waking', () {
       const BackendStatus dead = BackendStatus(
-        phase: BackendPhase.unreachable, attempts: 12);
+        phase: BackendPhase.unreachable,
+        attempts: 12,
+      );
       // The whole point of bounding the state: an unresolvable condition must
       // stop being presented as a temporary one.
       expect(dead.detail.toLowerCase(), contains('not waking'));
@@ -303,40 +335,48 @@ void main() {
       expect(controller.status.attempts, greaterThan(0));
       // "We tried N times over Ns" is what separates "unreachable" from
       // "we did not really try".
-      expect(controller.status.message, anyOf(contains('attempt'),
-          contains('uvicorn')));
-      controller.dispose();
-    });
-
-    test('a transport exception also ends in unreachable, not a crash',
-        () async {
-      final BackendStatusController controller = never(throwing: true);
-      await controller.wake();
-
-      expect(controller.status.phase, BackendPhase.unreachable);
-      controller.dispose();
-    });
-
-    test('a backend that wakes on the last attempt still reaches ready',
-        () async {
-      // The other side of the bound: it must not give up on something that
-      // WOULD have answered. Cold start measured 12.85 s against a 90 s budget.
-      final BackendStatusController controller = BackendStatusController(
-        api: _ScriptedApi(<Object>[false, false, true]),
-        budget: const Duration(seconds: 5),
-        backoff: const <Duration>[Duration(milliseconds: 20)],
+      expect(
+        controller.status.message,
+        anyOf(contains('attempt'), contains('uvicorn')),
       );
-      await controller.wake();
-
-      expect(controller.status.phase, BackendPhase.ready);
       controller.dispose();
     });
+
+    test(
+      'a transport exception also ends in unreachable, not a crash',
+      () async {
+        final BackendStatusController controller = never(throwing: true);
+        await controller.wake();
+
+        expect(controller.status.phase, BackendPhase.unreachable);
+        controller.dispose();
+      },
+    );
+
+    test(
+      'a backend that wakes on the last attempt still reaches ready',
+      () async {
+        // The other side of the bound: it must not give up on something that
+        // WOULD have answered. Cold starts measured 22.40 s and 22.45 s on the
+        // slim image (Phase 9 B4) against the 180 s budget.
+        final BackendStatusController controller = BackendStatusController(
+          api: _ScriptedApi(<Object>[false, false, true]),
+          budget: const Duration(seconds: 5),
+          backoff: const <Duration>[Duration(milliseconds: 20)],
+        );
+        await controller.wake();
+
+        expect(controller.status.phase, BackendPhase.ready);
+        controller.dispose();
+      },
+    );
   });
 
   group('unreachable is distinguishable from the other three waits', () {
     test('it is not busy, and says something the others do not', () {
-      const BackendStatus unreachable =
-          BackendStatus(phase: BackendPhase.unreachable);
+      const BackendStatus unreachable = BackendStatus(
+        phase: BackendPhase.unreachable,
+      );
       const BackendStatus waking = BackendStatus(phase: BackendPhase.waking);
 
       // `isBusy` drives spinners. Unreachable must not spin — there is nothing
@@ -347,17 +387,156 @@ void main() {
       final Set<String> titles = <String>{
         waking.title,
         unreachable.title,
-        'The server is busy with another analysis',   // 503 SERVER_BUSY
-        'Rate limit reached',                          // 429
+        'The server is busy with another analysis', // 503 SERVER_BUSY
+        'Rate limit reached', // 429
       };
-      expect(titles.length, 4,
-          reason: 'two of the four waits read the same, so the user cannot '
-              'tell whether waiting, retrying, or giving up is the right move');
+      expect(
+        titles.length,
+        4,
+        reason:
+            'two of the four waits read the same, so the user cannot '
+            'tell whether waiting, retrying, or giving up is the right move',
+      );
 
       // And the direction differs: waking says keep waiting, unreachable does
       // not pretend anything is coming.
       expect(unreachable.title.toLowerCase(), contains('cannot reach'));
       expect(waking.title.toLowerCase(), contains('waking'));
+    });
+  });
+
+  // ------------------------------------------------------------------------ #
+  // Phase 9 B7 (finding F-11): every answer but silence ends the wait at once.
+  //
+  // A page the server refuses used to look exactly like a sleeping server for
+  // the whole budget, and was then told the server "responded but did not
+  // report healthy". `/health` now answers every origin and says whether this
+  // one is allowed, so each case gets its own state after one ping.
+  // ------------------------------------------------------------------------ #
+  group('telling blocked and broken from asleep', () {
+    BackendStatusController scripted(List<Object> responses) =>
+        BackendStatusController(
+          api: _ScriptedApi(responses),
+          budget: const Duration(milliseconds: 300),
+          backoff: const <Duration>[Duration(milliseconds: 20)],
+        );
+
+    test(
+      'a refused origin is blocked after one ping, without waiting',
+      () async {
+        final _ScriptedApi api = _ScriptedApi(<Object>[
+          const HealthCheck(HealthOutcome.blocked, statusCode: 200),
+        ]);
+        final BackendStatusController controller = BackendStatusController(
+          api: api,
+        );
+        await controller.wake();
+
+        expect(controller.status.phase, BackendPhase.blocked);
+        expect(
+          api.calls,
+          1,
+          reason: 'a setting does not fix itself by waiting',
+        );
+        expect(controller.status.isBusy, isFalse);
+        expect(controller.status.detail, contains('not a cold start'));
+        expect(
+          controller.status.detail.toLowerCase(),
+          isNot(contains('waking')),
+        );
+        controller.dispose();
+      },
+    );
+
+    test(
+      'an error status is a server error after one ping, naming it',
+      () async {
+        final _ScriptedApi api = _ScriptedApi(<Object>[
+          const HealthCheck(HealthOutcome.serverError, statusCode: 500),
+        ]);
+        final BackendStatusController controller = BackendStatusController(
+          api: api,
+        );
+        await controller.wake();
+
+        expect(controller.status.phase, BackendPhase.serverError);
+        expect(api.calls, 1);
+        expect(controller.status.detail, contains('HTTP 500'));
+        expect(controller.status.detail, contains('Nothing about your file'));
+        controller.dispose();
+      },
+    );
+
+    test(
+      'the gateway standing in for a starting server is still waking',
+      () async {
+        final BackendStatusController controller = scripted(<Object>[
+          const HealthCheck(HealthOutcome.noAnswer, statusCode: 503),
+          const HealthCheck(HealthOutcome.noAnswer, statusCode: 503),
+          true,
+        ]);
+        await controller.wake();
+        expect(controller.status.phase, BackendPhase.ready);
+        controller.dispose();
+      },
+    );
+
+    test(
+      'giving up says there was no answer, never that it responded',
+      () async {
+        final BackendStatusController controller = scripted(<Object>[false]);
+        await controller.wake();
+        expect(controller.status.phase, BackendPhase.unreachable);
+        expect(
+          controller.status.detail.toLowerCase(),
+          isNot(contains('responded')),
+        );
+        controller.dispose();
+      },
+    );
+
+    test('the six phases have six different headlines', () {
+      final Set<String> titles = <String>{
+        for (final BackendPhase phase in BackendPhase.values)
+          BackendStatus(phase: phase).title,
+      };
+      expect(titles.length, BackendPhase.values.length);
+    });
+  });
+
+  group('the wake bar measures the real budget', () {
+    test('90 s into a 180 s budget is half way, not nearly done', () {
+      const BackendStatus halfway = BackendStatus(
+        phase: BackendPhase.waking,
+        elapsed: Duration(seconds: 90),
+      );
+      expect(kWakeupBudget, const Duration(seconds: 180));
+      expect(halfway.budgetFraction, closeTo(0.5, 0.001));
+      expect(halfway.secondsLeft, 90);
+    });
+
+    test('it never reads as finished while still waiting', () {
+      const BackendStatus late = BackendStatus(
+        phase: BackendPhase.waking,
+        elapsed: Duration(seconds: 179),
+      );
+      expect(late.budgetFraction, lessThan(1));
+      expect(
+        const BackendStatus(
+          phase: BackendPhase.waking,
+          elapsed: Duration(seconds: 400),
+        ).secondsLeft,
+        0,
+      );
+    });
+
+    test('an injected budget is the one the bar uses', () {
+      const BackendStatus status = BackendStatus(
+        phase: BackendPhase.waking,
+        elapsed: Duration(seconds: 15),
+        budget: Duration(seconds: 60),
+      );
+      expect(status.budgetFraction, closeTo(0.25, 0.001));
     });
   });
 }

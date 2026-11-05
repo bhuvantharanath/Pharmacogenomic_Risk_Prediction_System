@@ -1,10 +1,13 @@
 /// Three waits, three messages — and none of them a bare spinner.
 ///
-/// Measured against the deployed backend (reports/deployment_verification.md):
+/// Measured against the deployed backend:
 ///
-///   cold start                12.85 s   the container was asleep
-///   analysis running          ~52 s     p50 51.27 s, p95 53.56 s
-///   queued behind another     ~109 s    or 503 SERVER_BUSY at the 90 s bound
+///   cold start                ~22 s     22.40 s, 22.45 s on the 584 MB image
+///                                       (audit/phase9/B4.log; 82.4 s on the
+///                                       old 6 GB image)
+///   analysis running          ~1 min    warm p50 67.3 s (n=5, B4.log); 51.3 s
+///                                       on the older image
+///   queued behind another     longer    or 503 SERVER_BUSY at the queue bound
 ///
 /// One spinner covering all three reads as a hang, and a user who believes it
 /// has hung reloads — which on the first two costs them the whole wait again.
@@ -45,20 +48,32 @@ void main() {
       // localhost and the LOCAL branch is taken. That branch is right to say
       // "is uvicorn running?" — a local backend does not cold-start, so a slow
       // one is not asleep, it is absent.
-      expect(waking.detail, contains('uvicorn'),
-          reason: 'the local branch should diagnose a dev machine, not blame '
-              'a cold start that cannot happen locally');
+      expect(
+        waking.detail,
+        contains('uvicorn'),
+        reason:
+            'the local branch should diagnose a dev machine, not blame '
+            'a cold start that cannot happen locally',
+      );
 
       // The DEPLOYED branch cannot be selected here: it needs a compile-time
       // define this test cannot set. Assert it at source level instead, so the
       // explanation and its elapsed counter cannot quietly disappear.
-      final String source =
-          File('lib/api/backend_status.dart').readAsStringSync();
-      expect(source, contains('sleeps when idle'),
-          reason: 'the deployed cold-start explanation is what stops a 13 s '
-              'wait reading as a broken site');
-      expect(source, contains(r'${elapsed.inSeconds}s elapsed'),
-          reason: 'the cold-start wait shows no progress without it');
+      final String source = File(
+        'lib/api/backend_status.dart',
+      ).readAsStringSync();
+      expect(
+        source,
+        contains('sleeps when idle'),
+        reason:
+            'the deployed cold-start explanation is what stops a 13 s '
+            'wait reading as a broken site',
+      );
+      expect(
+        source,
+        contains(r'${elapsed.inSeconds}s elapsed'),
+        reason: 'the cold-start wait shows no progress without it',
+      );
     });
   });
 
@@ -73,9 +88,13 @@ void main() {
         'do not reload': 'the action that makes the wait worse',
       };
       required.forEach((String phrase, String why) {
-        expect(source.contains(phrase), isTrue,
-            reason: 'the analysis-progress copy no longer says "$phrase" '
-                '($why). A ~52 s wait without it reads as a hang.');
+        expect(
+          source.contains(phrase),
+          isTrue,
+          reason:
+              'the analysis-progress copy no longer says "$phrase" '
+              '($why). A ~52 s wait without it reads as a hang.',
+        );
       });
     });
 
@@ -108,9 +127,13 @@ void main() {
       const String limited = 'Rate limit reached';
 
       final Set<String> distinct = <String>{waking.title, busy, limited};
-      expect(distinct.length, 3,
-          reason: 'two waits share wording, so a user cannot tell which they '
-              'are in, nor whether waiting will help');
+      expect(
+        distinct.length,
+        3,
+        reason:
+            'two waits share wording, so a user cannot tell which they '
+            'are in, nor whether waiting will help',
+      );
     });
   });
 }

@@ -166,9 +166,15 @@ suspend/resume, so the number describes what a visitor actually experiences.
 
 | | |
 | --- | --- |
-| **Cold `/health` after spin-down** | **12.85 s** (first attempt, no retries) |
+| **Cold `/health` after spin-down** | **12.85 s** (first attempt, no retries) — superseded, see the note below |
 | Warm `/health` immediately after | 0.82 s |
 | Local container start, image present | 1.19 s |
+
+> **Superseded (Phase 9, November 2026).** 12.85 s held only while the image
+> was still cached on the Render host. A day later the 6 GB image was re-pulled
+> and cold `/health` took 83 s (82.4 s in the Phase 9 audit). Phase 9 B4 cut the
+> image to 584 MB; verified cold starts are now 22.40 s and 22.45 s
+> (audit/phase9/B4.log). The paragraph below is the original reading.
 
 12.85 s is much better than the ~1 minute `DEPLOY_NOTES` assumed for a ~2 GB
 image — Render keeps the image on the host rather than re-pulling it, so the

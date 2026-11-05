@@ -91,7 +91,7 @@ Render's Linux/amd64 host. Reproduce the run from
 | Historical container peak, older workload | **252.8 MiB** (not representative of the later 2.4 MiB compressed real VCF workload) |
 | Idle | 40.2 MiB |
 | Container cold start (image local) | **1.19 s** to healthy `/health` |
-| **Render cold start after ~15 min idle** | **12.85 s** — much better than the ~1 min assumed; Render keeps the image on the host |
+| **Render cold start after ~15 min idle** | **22.40 s, 22.45 s** on the 584 MB image (Phase 9 B4, 2026-11-04; audit/phase9/B4.log). On the old 6 GB image: 12.85 s once while it was still cached on the host, 82.4 s when it was not |
 | **Warm `/analyze` on Render** | **p50 51.3 s, p95 53.6 s** (n=20) vs ~2.6 s locally — free CPU is ~20× slower |
 | Analysis latency in-container | ~2.6 s |
 | In-container suite | 747 passed, 3 failed, 5 skipped — all 3 are the absent spaCy model, excluded from the production image by design |
@@ -313,7 +313,7 @@ None are required. Set these to lock things down:
 | Variable | Value |
 | --- | --- |
 | `CORS_ALLOWED_ORIGINS` | `https://pharmaguard.pages.dev` |
-| `CORS_ALLOW_PAGES_PREVIEWS` | `pharmaguard` *(optional, for preview branches)* |
+| `CORS_ALLOW_PAGES_PREVIEWS` | *(optional)* only for a Pages project with no explicit origin above. Since Phase 9 B7 the previews of a configured `https://<project>.pages.dev` origin (`https://<hash>.<project>.pages.dev`) are allowed without it |
 | `RATE_LIMIT_REQUESTS` | `10` |
 
 **Do not set `GEMINI_API_KEY`.** The deployed path is `EXPLANATION_MODE=static`,

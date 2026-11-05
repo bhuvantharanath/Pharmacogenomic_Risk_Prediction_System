@@ -91,7 +91,13 @@ const Duration kWakeupBudget = Duration(seconds: 180);
 /// Kept beside the budget so the two cannot drift: the copy quoted "up to a
 /// minute" while the measured worst case was 83 s, which is precisely how a
 /// normal wait comes to read as a hang — the user was promised sixty seconds.
-const String kColdStartExpectation = 'usually 15–90 seconds, occasionally '
+///
+/// MEASURED AGAIN after Phase 9 B4 cut the image from ~6 GB to 584 MB: cold
+/// starts of 22.40 s and 22.45 s on Render (audit/phase9/B4.log), and 28.4 s
+/// end to end for a request that woke the server (audit/phase9/B6.log). The
+/// 83 s case was a re-pull of the old 6 GB image; a re-pull of the slim one
+/// has not been measured, so the long case is admitted without a number.
+const String kColdStartExpectation = 'usually 20–30 seconds, occasionally '
     'longer if the server image has to be fetched again';
 
 /// Backoff schedule for the wake-up ping.

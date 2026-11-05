@@ -235,6 +235,10 @@ app.add_middleware(
 
 app.add_middleware(security.SecurityHeadersMiddleware)
 
+# Added last, so outermost: `/health` must answer its own preflight before
+# CORSMiddleware refuses an origin it does not know (Phase 9 B7).
+app.add_middleware(security.PublicHealthCorsMiddleware)
+
 
 #: How the running build identifies itself.
 #:
@@ -346,9 +350,9 @@ async def _api_error_handler(_: Request, exc: ApiError) -> JSONResponse:
 
 
 @app.get("/health", response_model=HealthResponse, tags=["meta"])
-async def health() -> HealthResponse:
+async def health(request: Request) -> HealthResponse:
     """
-    Liveness. Deliberately trivial — no PharmCAT, no disk, no subprocess.
+    Liveness. Deliberately trivial — no PharmCAT, no subprocess.
 
     This is the wake-up ping. On a scale-to-zero free tier the first request
     after idle pays the whole container cold start, so this endpoint exists to
@@ -356,9 +360,22 @@ async def health() -> HealthResponse:
     keepalive workflow polls it. Adding a dependency check here would make the
     cheap ping expensive and could make a waking container look unhealthy.
 
+    Readable from every origin (security.PublicHealthCorsMiddleware), and it
+    says whether the asking origin is allowed everywhere else, so the client
+    can tell a refused page from a sleeping server (Phase 9 B7). The data
+    identity is B2's, read from the jar once and cached.
+
     Use `/ready` when you need to know whether an analysis would actually work.
     """
-    return HealthResponse(status="ok")
+    commit = build_commit()
+    origin = request.headers.get("origin")
+    return HealthResponse(
+        status="ok",
+        commit=commit,
+        commit_short=commit[:7] if commit != "unknown" else "unknown",
+        data=knowledge_identity(),
+        origin_allowed=security.is_allowed_origin(origin) if origin else None,
+    )
 
 
 @app.get("/capabilities", response_model=CapabilityResponse, tags=["meta"])

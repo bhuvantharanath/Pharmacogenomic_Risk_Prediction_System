@@ -1,0 +1,41 @@
+== SB7-a: the /health middleware stops adding * (backend/app/security.py) ==
+FAILED tests/test_public_health.py::test_every_origin_can_read_health_and_learns_whether_it_is_allowed[http://localhost:5000-True]
+FAILED tests/test_public_health.py::test_every_origin_can_read_health_and_learns_whether_it_is_allowed[https://evil.example-False]
+exit 1; 2 red
+restored identical: yes
+== SB7-b: the preview regex loses its anchors (as planned) (backend/app/security.py) ==
+exit 0; 0 red
+restored identical: yes
+SB7-b NOT CAUGHT
+== SB7-b2: the preview label may contain dots (a real loosening) (backend/app/security.py) ==
+FAILED tests/test_public_health.py::test_a_look_alike_is_rejected[https://a.b.pharmaguard-web.pages.dev]
+exit 1; 1 red
+restored identical: yes
+== SB7-c: the * header is applied to every path (backend/app/security.py) ==
+FAILED tests/test_deployment.py::TestCors::test_arbitrary_pages_dev_is_rejected
+FAILED tests/test_deployment.py::TestCors::test_preview_subdomains_are_scoped_to_one_project
+FAILED tests/test_deployment.py::TestCors::test_unlisted_origin_is_rejected
+FAILED tests/test_deployment.py::TestCorsFailsLoudWhenMisconfigured::test_configured_origin_is_allowed_and_unlisted_is_rejected
+FAILED tests/test_public_health.py::test_nothing_else_opened_for_a_refused_origin
+FAILED tests/test_public_health.py::test_origin_allowed_is_the_cors_middlewares_own_decision[http://127.0.0.1:8080]
+FAILED tests/test_public_health.py::test_origin_allowed_is_the_cors_middlewares_own_decision[http://localhost:5000]
+exit 1; 7 red
+restored identical: yes
+SB7-d: expected text found 0 times in app/lib/api/pharmaguard_api.dart
+sabotage rc=1
+
+== the three client sabotages, rerun after SB7-d's target was corrected to the formatted source ==
+== SB7-d: the client treats origin_allowed false as ready (app/lib/api/pharmaguard_api.dart) ==
+Projects/Pharmacogenomic Risk Prediction System/app/test/connectivity_states_test.dart: one /health ping, classified a refused origin is blocked, not asleep [E]
+exit 1; 1 red
+restored identical: yes
+== SB7-e: the wake bar divides by 90 s again (app/lib/api/backend_status.dart) ==
+enomic Risk Prediction System/app/test/backend_status_test.dart: the wake bar measures the real budget 90 s into a 180 s budget is half way, not nearly done [E]
+s/Pharmacogenomic Risk Prediction System/app/test/backend_status_test.dart: the wake bar measures the real budget an injected budget is the one the bar uses [E]
+exit 1; 2 red
+restored identical: yes
+== SB7-f: a declined 400 maps to the server-error heading (app/lib/api/pharmaguard_api.dart) ==
+uvant/Projects/Pharmacogenomic Risk Prediction System/app/test/connectivity_states_test.dart: whose problem a failed request is each status maps to its kind [E]
+exit 1; 1 red
+restored identical: yes
+sabotage rc=0
