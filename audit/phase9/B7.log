@@ -91,3 +91,10 @@ AC4 PASS  ApiException.kind for 400/413 with codes, 500, 503 PHARMCAT_UNAVAILABL
 AC5 PASS  git grep "12.85" outside audit/ returns only history-labelled lines; kColdStartExpectation quotes 20-30 s,
           all measured, all within the 180 s budget, and admits the longer case; the analysing copy names the queue
           (test).
+
+== Re-bind (test-data/benchmark/current-candidate-2026-11-05-b7; rebind-b7.stdout) ==
+rebind_evaluation.py --tag 2026-11-05-b7, no declared changes, base head d489cf2. Result: core
+5c1df3613fde11c0848c73fbfcb6f94561334dcf7e2f872e3c27d9f1bd07a37e, 0 new caller runs, F4 true/true,
+verify_compatible_bundle PASS. Against B6's package: vcf_sha256 in 1,456 rows only (equal_to_previous true). Against
+the historical benchmark: B5's changes, carried forward from B6's cumulative record (the first re-bind to inherit
+from a package that has one): CYP2C9 eligibility_reason 208, missing_dependency_genes 208; discrepancy detail 100.

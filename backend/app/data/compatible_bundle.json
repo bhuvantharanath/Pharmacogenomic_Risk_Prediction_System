@@ -1,15 +1,15 @@
 {
   "schema_version": 3,
-  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-05-b6",
+  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-05-b7",
   "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
   "application_hash_policy": {
     "version": 2,
     "policy": {
       "path": "scripts/scientific_hash_policy.json",
-      "sha256": "5c872adba928688dde7462203ed60ce3b07dfc0588d38e0938100f7a68d0af5a",
-      "bytes": 4243
+      "sha256": "a30eaba16a40c813a6317b07506556a2f7ea44691037e743d035a0de2a5d2aed",
+      "bytes": 4283
     },
-    "core_file_count": 94,
+    "core_file_count": 95,
     "algorithm": "SHA-256 of UTF-8 domain and NUL, then sorted POSIX relative path, NUL, raw bytes, NUL for every allowlisted file"
   },
   "pharmcat": {
@@ -298,7 +298,7 @@
     "pharmcat_reports": 208,
     "application_eligible_sample_gene_rows": 0,
     "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
-    "application_core_sha256": "bce1d795a800f154e355e6b3775ea8313f31d2486b0ea224470e1bdd3f54b135",
+    "application_core_sha256": "5c1df3613fde11c0848c73fbfcb6f94561334dcf7e2f872e3c27d9f1bd07a37e",
     "application_hash_policy_version": 2,
     "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
     "benchmark_historical_hash_policy_version": 1,
@@ -342,11 +342,11 @@
     "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
   },
   "evaluation_current": {
-    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-05-b6",
-    "application_core_sha256": "bce1d795a800f154e355e6b3775ea8313f31d2486b0ea224470e1bdd3f54b135",
+    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-05-b7",
+    "application_core_sha256": "5c1df3613fde11c0848c73fbfcb6f94561334dcf7e2f872e3c27d9f1bd07a37e",
     "manifest": {
-      "path": "test-data/benchmark/current-candidate-2026-11-05-b6/evaluation_manifest.json",
-      "sha256": "f2ad79f8e5878be87b88208d526e74ab1447c64cf87368c0c20089f218812bc1",
+      "path": "test-data/benchmark/current-candidate-2026-11-05-b7/evaluation_manifest.json",
+      "sha256": "3157fe12ffd3fdad7b08ed2978458e2b4a49868b0458e9c597a3b27f2fb773e6",
       "bytes": 6528
     },
     "historical_benchmark_manifest": {
@@ -365,54 +365,54 @@
     },
     "outputs": [
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/EVALUATION-REPORT.md",
-        "bytes": 2848,
-        "sha256": "6a745deb81928211c2e5e2ef351cf9098d3c6de7e83c4eeca53c4a9df4d10bd3"
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/EVALUATION-REPORT.md",
+        "bytes": 2886,
+        "sha256": "cca339be3d552cb064cdfb3e4d9304c484b12970cf1df0ab5039827cd7ef887e"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/discrepancies.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/discrepancies.tsv",
         "bytes": 236278,
         "sha256": "294915f1163c4593859e20c816dfc577d5e23a0347aace1fa983049ffb6c4886"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/evaluation-comparison.json",
-        "bytes": 10482,
-        "sha256": "0fc885584ca7dea66f8a7a0a9ea3a9a246f99c8c2eeb14109f7a12d0cd1febaf"
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/evaluation-comparison.json",
+        "bytes": 10520,
+        "sha256": "518c1f73eb1e08c1904db993ddf064609ef3db6ac49640833bb990a0078257b2"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/exclusions.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/exclusions.tsv",
         "bytes": 48960,
         "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/external_benchmark_results.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/external_benchmark_results.json",
         "bytes": 33667,
-        "sha256": "faa6830162c15ac7077f30092451139a2d57d83a1e69dfcdf1c63da8d577e641"
+        "sha256": "3bd468f6e807b469ef6e4d0b52bd948e38d3d4af32c142f7b0225a0bb419ebfe"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/f4-fresh-replay.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/f4-fresh-replay.json",
         "bytes": 1767,
-        "sha256": "32dc77c0d555a4b8301cd5ca4fe996b511961b684c69688240fbc59587160ae5"
+        "sha256": "a66b1f00efbf9df2c0cd775db07e99153c79b029230dddb95d7e361d534c685a"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/input_eligibility.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/input_eligibility.tsv",
         "bytes": 600780,
-        "sha256": "ef4c6bde80045cf3117c6d936a82acfedd7cdc0c058bf45ae4ac292cc220491b"
+        "sha256": "96950f2659eccec117002a758df53700f88e2255f13c980b06fb63a6862e5c07"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/raw_benchmark_manifest.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/raw_benchmark_manifest.json",
         "bytes": 7588,
-        "sha256": "f49a5fa45cad7508eb88c75e171674719061be40a9703b442c7cdacf52fb3fe4"
+        "sha256": "672f0602164573385f290e35b8701f05f59574e6efb2c6bd5a228d7d1cb00aee"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/raw_scoring_report.md",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/raw_scoring_report.md",
         "bytes": 11481,
         "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-05-b6/stage-command-receipts.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-05-b7/stage-command-receipts.json",
         "bytes": 3183,
-        "sha256": "e488b7cf23b1ff4fb3e7cab8d26886794734b48a8348337c7f0b083e3f74ddf6"
+        "sha256": "2ea320cae46aa91cee771fd022c147d12dbec636329b4b030e4df32a385a6e78"
       }
     ],
     "evidence_matches": true,

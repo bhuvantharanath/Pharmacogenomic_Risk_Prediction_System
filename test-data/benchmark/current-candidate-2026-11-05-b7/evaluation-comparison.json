@@ -1,0 +1,106 @@
+{
+  "historical_benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "historical_generated_at": "2026-09-25T03:43:38.823412+00:00",
+  "previous_evaluation": "pharmaguard-external-current-candidate-2026-11-05-b6",
+  "previous_generated_at": "2026-11-05T04:51:53.571870+00:00",
+  "new_generated_at": "2026-11-05T13:27:32.865358+00:00",
+  "individuals": 208,
+  "sample_gene_rows": 1456,
+  "evaluable_truth_rows": 596,
+  "all_metric_fields_equal_except_generation_time": true,
+  "equal_to_previous_evaluation_except_generation_time": true,
+  "eligibility_rows": 1456,
+  "differing_eligibility_fields": {
+    "vcf_sha256": 1456,
+    "missing_dependency_genes": 208,
+    "eligibility_reason": 208
+  },
+  "differing_eligibility_fields_vs_previous_evaluation": {
+    "vcf_sha256": 1456
+  },
+  "declared_eligibility_changes": [],
+  "declared_discrepancy_detail_changes": [],
+  "inherited_eligibility_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "eligibility_reason",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 208,
+      "why": "Phase 9 B5: a refusal names the missing genes a file could supply before the limitation, and warfarin's limitation now quotes CPIC's algorithm text."
+    },
+    {
+      "gene": "CYP2C9",
+      "field": "missing_dependency_genes",
+      "from": "CYP2C9",
+      "to": "CYP2C9,VKORC1",
+      "rows": 208,
+      "why": "Phase 9 B5: warfarin depends on CYP2C9 and VKORC1; the benchmark slices carry no chr16 rows, so VKORC1 is missing for every individual."
+    }
+  ],
+  "inherited_discrepancy_detail_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "detail",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 100,
+      "why": "Phase 9 B5: the discrepancy detail repeats the warfarin eligibility reason, which now names CYP2C9 and VKORC1 and quotes CPIC."
+    }
+  ],
+  "cumulative_eligibility_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "eligibility_reason",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 208,
+      "why": "Phase 9 B5: a refusal names the missing genes a file could supply before the limitation, and warfarin's limitation now quotes CPIC's algorithm text."
+    },
+    {
+      "gene": "CYP2C9",
+      "field": "missing_dependency_genes",
+      "from": "CYP2C9",
+      "to": "CYP2C9,VKORC1",
+      "rows": 208,
+      "why": "Phase 9 B5: warfarin depends on CYP2C9 and VKORC1; the benchmark slices carry no chr16 rows, so VKORC1 is missing for every individual."
+    }
+  ],
+  "cumulative_discrepancy_detail_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "detail",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 100,
+      "why": "Phase 9 B5: the discrepancy detail repeats the warfarin eligibility reason, which now names CYP2C9 and VKORC1 and quotes CPIC."
+    }
+  ],
+  "individuals_with_vcf_sha_difference": 208,
+  "exclusions_sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200",
+  "discrepancies_sha256": "294915f1163c4593859e20c816dfc577d5e23a0347aace1fa983049ffb6c4886",
+  "report_manifest_sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8",
+  "representative_projection": [
+    {
+      "label": "historical-path",
+      "path": "historical-path.HG00111.vcf",
+      "sha256": "f013cf4e55d1bce259ab7ea93441360a0801b219c8d48517b1a0e577e687ea2c",
+      "command_lines": [
+        "##bcftools_viewCommand=view -r chr1:97078987-97883368 -S '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_samples.txt' --force-samples -Oz -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/chr1.locked_cohort.vcf.gz' https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr1.filtered.SNV_INDEL_SV_phased_panel.vcf.gz; Date=Thu Sep 24 19:15:21 2026",
+        "##bcftools_viewCommand=view -R '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz' -s HG00111 -Ov -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind/2026-11-05-b7/historical-path.HG00111.vcf' '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_cohort.vcf.gz'; Date=Thu Nov  5 18:57:32 2026"
+      ]
+    },
+    {
+      "label": "isolated-path",
+      "path": "isolated-path.HG00111.vcf",
+      "sha256": "3057ae084a7519f3611a068a926746f6ff5697c1f333c0b6519a7141c966b1e8",
+      "command_lines": [
+        "##bcftools_viewCommand=view -r chr1:97078987-97883368 -S '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_samples.txt' --force-samples -Oz -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/chr1.locked_cohort.vcf.gz' https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr1.filtered.SNV_INDEL_SV_phased_panel.vcf.gz; Date=Thu Sep 24 19:15:21 2026",
+        "##bcftools_viewCommand=view -R '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz' -s HG00111 -Ov -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind/2026-11-05-b7/isolated-path.HG00111.vcf' /private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/58cb9be6-a356-4538-b2eb-9d3c4576645c/scratchpad/evaluation-copy-2026-11-05-b7/test-data/benchmark/external/genomic/locked_cohort.vcf.gz; Date=Thu Nov  5 18:57:33 2026"
+      ]
+    }
+  ],
+  "representative_projection_record_count": 172,
+  "representative_biological_records_equal": true,
+  "interpretation": "Phase 9 B7 changed backend/app (a CORS-permissive /health reporting build, data identity and origin_allowed; derived Pages preview origins) and app/lib (connectivity states and error headings), which the scientific core includes. Its application rerun over the same 208 individuals reproduces every scored metric, exclusion and discrepancy of both the historical benchmark and the previous evaluation. Against the previous evaluation the only differing eligibility field is the hash of each regenerated single-sample VCF, explained by the path-bearing bcftools header shown in the representative projection. Against the historical benchmark, eligibility and discrepancy detail also differ exactly as earlier re-binds declared, carried forward from the previous package's verified comparison (cumulative_eligibility_changes, cumulative_discrepancy_detail_changes); no scored metric, exclusion or discrepancy classification changed. No new genotype concordance or clinical claim follows."
+}
