@@ -98,3 +98,20 @@ rebind_evaluation.py --tag 2026-11-05-b7, no declared changes, base head d489cf2
 verify_compatible_bundle PASS. Against B6's package: vcf_sha256 in 1,456 rows only (equal_to_previous true). Against
 the historical benchmark: B5's changes, carried forward from B6's cumulative record (the first re-bind to inherit
 from a package that has one): CYP2C9 eligibility_reason 208, missing_dependency_genes 208; discrepancy detail 100.
+
+== Release gate on 9345a94 ==
+First run (partb/B7.gate.stdout): state not-ready, "BLOCKED: required_checks_passed", artifact hashes match True. The
+summary output does not name the failing check and the gate keeps no report, so which check failed is not known.
+Each required command run on its own straight afterwards passed: verify_compatible_bundle, verify_provenance
+--no-report, validate_label_mapping, flutter analyze, flutter test; and the backend suite (partb/B7.backend-suite
+.stdout): 1142 passed, 6 skipped, 0 failed.
+Rerun with --json (owner: "Try again"; partb/B7.gate.json): state ready, release_ready true; all six required checks
+passed (compatible-bundle, backend-tests, provenance, label-mapping, flutter-analyze, flutter-tests: 259 passed).
+The first run's failure did not reproduce and is unexplained: recorded here, not hidden. Same code, same tree; a
+timing-dependent test is the likeliest cause, and the gate printing the failing check's name would have settled it.
+Explanation store and approvals unchanged since B6: 0 entries invalidated.
+
+== Result ==
+B7 done: AC1-AC5 PASS; zero-regression PASS; sabotages caught except SB7-b, which is no weakening under fullmatch
+(SB7-b2, a real loosening, caught); re-bind PASS; release gate ready on the rerun. Committed d489cf2, 9345a94; not
+pushed. Live criteria in the plan wait for the owner's deploy decision.
