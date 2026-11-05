@@ -1,0 +1,43 @@
+{
+ "checks": {
+  "a production origin reads /health": true,
+  "a origin_allowed true for production": true,
+  "a commit is the pushed one": true,
+  "a data identity equals /provenance": true,
+  "b the F-11 preview origin may call /analyze": true,
+  "c a refused origin still reads /health": true,
+  "c and is told it is refused": true,
+  "c its /analyze preflight is refused": true
+ },
+ "all_pass": true,
+ "seen": {
+  "health_production": {
+   "status": 200,
+   "acao": "*",
+   "body": {
+    "status": "ok",
+    "commit": "a5c06f278c1b70c8ee6890351d706d3ca25e920a",
+    "commit_short": "a5c06f2",
+    "data": {
+     "cpic_guidance_sha256": "5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8",
+     "allele_definitions_sha256": "7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f",
+     "allele_definitions_version": "2026-07-13-11-40"
+    },
+    "origin_allowed": true
+   }
+  },
+  "preflight_preview": {
+   "status": 200,
+   "acao": "https://6bc16810.pharmaguard-web.pages.dev"
+  },
+  "health_evil": {
+   "status": 200,
+   "acao": "*",
+   "origin_allowed": false
+  },
+  "preflight_evil": {
+   "status": 400,
+   "acao": null
+  }
+ }
+}

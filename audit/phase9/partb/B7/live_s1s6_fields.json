@@ -1,0 +1,44 @@
+{
+ "checks": {
+  "S1_confident gene_findings equal": true,
+  "S1_confident warnings equal": true,
+  "S2_variants_only gene_findings equal": true,
+  "S2_variants_only warnings equal": true,
+  "S3_cyp2d6 gene_findings equal": true,
+  "S3_cyp2d6 warnings equal": true,
+  "S4_dpyd gene_findings equal": true,
+  "S4_dpyd warnings equal": true,
+  "S5_normal gene_findings equal": true,
+  "S5_normal warnings equal": true,
+  "S6_multidrug gene_findings equal": true,
+  "S6_multidrug warnings equal": true,
+  "six scenarios compared": true
+ },
+ "all_pass": true,
+ "scenarios": {
+  "S1_confident": {
+   "warnings": 5,
+   "drugs_with_findings": []
+  },
+  "S2_variants_only": {
+   "warnings": 9,
+   "drugs_with_findings": []
+  },
+  "S3_cyp2d6": {
+   "warnings": 8,
+   "drugs_with_findings": []
+  },
+  "S4_dpyd": {
+   "warnings": 12,
+   "drugs_with_findings": []
+  },
+  "S5_normal": {
+   "warnings": 6,
+   "drugs_with_findings": []
+  },
+  "S6_multidrug": {
+   "warnings": 16,
+   "drugs_with_findings": []
+  }
+ }
+}

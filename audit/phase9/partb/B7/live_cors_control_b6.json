@@ -1,0 +1,35 @@
+{
+ "checks": {
+  "a production origin reads /health": false,
+  "a origin_allowed true for production": false,
+  "a commit is the pushed one": false,
+  "a data identity equals /provenance": false,
+  "b the F-11 preview origin may call /analyze": false,
+  "c a refused origin still reads /health": false,
+  "c and is told it is refused": false,
+  "c its /analyze preflight is refused": true
+ },
+ "all_pass": false,
+ "seen": {
+  "health_production": {
+   "status": 200,
+   "acao": "https://pharmaguard-web.pages.dev",
+   "body": {
+    "status": "ok"
+   }
+  },
+  "preflight_preview": {
+   "status": 400,
+   "acao": null
+  },
+  "health_evil": {
+   "status": 200,
+   "acao": null,
+   "origin_allowed": null
+  },
+  "preflight_evil": {
+   "status": 400,
+   "acao": null
+  }
+ }
+}

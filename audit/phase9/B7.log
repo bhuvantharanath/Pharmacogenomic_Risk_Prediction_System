@@ -115,3 +115,54 @@ Explanation store and approvals unchanged since B6: 0 entries invalidated.
 B7 done: AC1-AC5 PASS; zero-regression PASS; sabotages caught except SB7-b, which is no weakening under fullmatch
 (SB7-b2, a real loosening, caught); re-bind PASS; release gate ready on the rerun. Committed d489cf2, 9345a94; not
 pushed. Live criteria in the plan wait for the owner's deploy decision.
+
+== Push and live check (owner: "Push and deploy B7", 2026-11-05) ==
+Secret scan over the 74 outgoing files: 5 values checked, 0 flagged. Pushed 21cdc64..a5c06f2 to main (Deploy run
+42055281016, test run 42055280101, created 2026-11-05T15:28:11-12Z).
+
+Live criteria, written before any live measurement (L4 is the plan's "After deploy" list):
+L1  /ready reports a5c06f278c1b70c8ee6890351d706d3ca25e920a, and the Deploy run's gate, Render and Cloudflare jobs succeed.
+L2  verify_postdeploy.py, live S1-S6 against the local B7 run (audit/phase9/partb/B7/s1-s6): commit matches, labels
+    equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local B7 run.
+L4  a. GET /health with Origin https://pharmaguard-web.pages.dev: 200, Access-Control-Allow-Origin *, origin_allowed
+       true, commit a5c06f278c1b70c8ee6890351d706d3ca25e920a, and its data identity equal to /provenance's cpic_guidance_sha256,
+       allele_definitions_sha256 and allele_definitions_version.
+    b. OPTIONS /analyze with Origin https://6bc16810.pharmaguard-web.pages.dev (the F-11 origin), method POST: 200
+       and Access-Control-Allow-Origin equal to that origin.
+    c. With Origin https://evil.example: GET /health answers * with origin_allowed false; OPTIONS /analyze is refused
+       (400) with no Access-Control-Allow-Origin.
+    d. In the built-in browser, the production page reaches "Analysis server ready".
+L5  The deployed web bundle carries EXPECTED_BACKEND_SHA a5c06f278c1b70c8ee6890351d706d3ca25e920a and B7's client text ("This page cannot use the
+    analysis server", "This file was not analysed").
+test run 42055280101 on a5c06f2: every step green except "Authoritative explanation-content gate" (F-08, by
+design). pytest 1148 collected: 1127 passed, 21 skipped, 0 failed (15 more skips than locally: F-09). flutter: 259.
+Deploy run 42055281016: release gate success (15:28:15-15:34:08Z), Render backend success (15:34:11-15:35:01Z),
+Cloudflare Pages success (15:35:03-15:37:41Z). /ready reported a5c06f2 at 15:38:23Z, before the first live request.
+Positive control, run before the deploy reached Render (live commit 1360a7c, B6): the same CORS checks passed 1 of 8
+(live_cors_control_b6.json): B6's /health gave a refused origin no Access-Control-Allow-Origin and no
+origin_allowed, and refused the F-11 preview origin's /analyze preflight with 400. The one that passed, the refused
+origin's /analyze preflight, is the same in both builds.
+
+Live results (audit/phase9/partb/b7_live_after.sh a5c06f2 -> B7.live-after.stdout; evidence under partb/B7/):
+L1 PASS  /ready commit a5c06f278c1b70c8ee6890351d706d3ca25e920a (re-read after S1-S6); gate, Render, Cloudflare ok.
+L2 PASS  verify_postdeploy.py: commit matches, S1-S6 labels equal the local B7 run, template-only prose, disclaimer
+         equal. Warm seconds 62.4, 57.8, 63.4, 63.6, 63.1, 61.5.
+L3 PASS  live_s1s6_fields.json: gene_findings and warnings equal the local B7 run in all six.
+L4 PASS  a-c live_cors.json, 8/8: production origin reads /health with * and origin_allowed true, commit a5c06f2,
+         data identity equal to /provenance; the F-11 preview origin's /analyze preflight 200 with its own origin
+         echoed; https://evil.example reads /health with * and origin_allowed false, and its /analyze preflight is
+         refused (400, no header).
+         d In the built-in browser the production page shows "Analysis server ready" (live_web_ready.jpg). As with B5,
+         the first load ran a client cached by an earlier service worker ("This page expects f8fc84d; the server is
+         running a5c06f2"); one reload brought the B7 client (main.dart.js 2,719,310 bytes, the size the bundle check
+         read), and the notice was gone.
+L5 PASS  live_bundle.json: main.dart.js carries a5c06f2... and both new strings.
+
+Observation, a consequence of AC2 for the owner: the old preview build https://6bc16810.pharmaguard-web.pages.dev (the
+origin Part A found refused) now reaches "Analysis server ready" in seconds (live_old_preview_ready.jpg) — F-11 (b)
+fixed — and is a fully working client again. It is the Part A-era build: its copy still says "explanations are
+pre-generated and checked against their source" and "it will say Safe", wording the project has since retracted.
+It does show the version notice ("This page expects 0a8b129; the server is running a5c06f2";
+live_old_preview_version_notice.jpg). Every stale preview deployment of the project is now usable the same way;
+removing old preview deployments from the Cloudflare Pages project is the owner's call and an owner action.

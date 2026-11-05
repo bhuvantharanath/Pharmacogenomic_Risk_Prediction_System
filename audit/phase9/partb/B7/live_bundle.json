@@ -1,0 +1,9 @@
+{
+ "checks": {
+  "bundle contains EXPECTED_BACKEND_SHA": true,
+  "bundle contains 'This page cannot use the analysis server'": true,
+  "bundle contains 'This file was not analysed'": true
+ },
+ "all_pass": true,
+ "bundle_bytes": 2719310
+}
