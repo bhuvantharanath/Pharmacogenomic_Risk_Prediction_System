@@ -156,3 +156,17 @@ Order of events, recorded because it overlapped: the revert case of the chain ru
 to scripts/compatible_bundle.py while the re-bind ran. Its publish step had already rewritten the file (new package
 path and bundle id) and built the manifest at 10:21:57; my edit landed at 10:22:15 on top of that text, and both
 changes are in the file. verify_compatible_bundle.py, run again afterwards against the final script: PASS.
+
+== Release gate on 581ead4 (scripts/release_status.py --run-required -> partb/B6.gate.stdout) ==
+state ready; required checks True (compatible bundle, backend tests, provenance, label mapping, flutter analyze,
+flutter tests); artifact hashes match True; release policy withhold_unapproved_stored_prose, explanation mode
+deterministic_template_only. Content ready False on the same four outstanding human-review items as before B6,
+each non-blocking while stored prose is withheld. Explanation store and approvals manifest unchanged since B5
+(git diff 5d5bcc0 on explanations.json and explanation_approvals.json is empty): 0 entries invalidated.
+Backend suite on 581ead4, run once more for exact totals (partb/B6.backend-suite.stdout): 1115 passed, 6 skipped,
+0 failed (B5: 1022 passed, 6 skipped). Flutter: analyze clean, 229 passed. CI has not run B6 (nothing pushed).
+
+== Result ==
+B6 done as amended: AC1-AC7 PASS; zero-regression PASS (A4 as amended by the owner, B6_ZR_AMENDMENT.md); eight
+sabotages caught; re-bind PASS with B5's changes carried forward; release gate ready. Committed 1c02013, 581ead4;
+not pushed.
