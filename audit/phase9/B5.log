@@ -99,3 +99,54 @@ AC4  PASS  PerDrugResult and GeneFinding in the parity test; gene_findings_test.
 AC5' PASS  (as amended) synthetic VCFs through the real PharmCAT: *1/*1+C/C, *3/*3+T/T+CYP4F2 *1/*3,
            *3/*3+T/T+CYP4F2 *1/*1, VKORC1 removed, CYP2C9 removed.
 Zero-regression PASS; sabotages SB5-a..d caught, files restored identical.
+
+== Push and live check (owner: "Push and deploy B5", 2026-11-05) ==
+Secret scan over the 70 outgoing files: 5 values checked, 0 flagged. Pushed 316cae4..f8fc84d to main
+(Deploy run 41961006286, test run 41961006276, both created 2026-11-05T03:20:45Z).
+test run on f8fc84d: every step green except "Authoritative explanation-content gate" (release_status.py
+--content-only), the by-design red step of finding F-08 (not in Part B). pytest 1028 collected: 1007 passed,
+21 skipped, 0 failed (15 more skips than locally: F-09's clean-checkout skips). flutter test: 229 passed.
+
+Live criteria, written before any live measurement:
+L1  /ready reports f8fc84da032048704645b98cc76e441860919785, and the Deploy run's gate, Render and Cloudflare
+    jobs succeed.
+L2  verify_postdeploy.py, live S1-S6 against the local B5 run (audit/phase9/partb/B5/s1-s6): commit matches,
+    labels equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, every drug's gene_findings and the quality_metrics.warnings list equal the local B5 run
+    exactly (so the scoping of warnings to the requested drugs' genes is what is live).
+L4  Live warfarin with a synthetic file, CYP2C9 *3/*3 + VKORC1 T/T + CYP4F2 *1/*3 (generate_synthetic_vcf.py
+    --from-jar, file kept): label Unknown; CYP2C9 *3/*3 and VKORC1 T/T assessed, CYP4F2 *1/*3 with role
+    reference; the action contains the pinned CPIC text; no dose pattern anywhere in the result; label, action and
+    gene_findings equal a local run of the same file at f8fc84d. The same file without its chr16 rows: Unknown,
+    action starts "Required genomic evidence is incomplete for VKORC1.", VKORC1 not assessed with no call, and
+    again equal to the local run.
+L5  The deployed web bundle (pharmaguard-web.pages.dev) contains EXPECTED_BACKEND_SHA f8fc84da0320...
+    and the panel text "Genes in this result" and "shown for reference only; it does not change this result".
+    In the browser, warfarin on the bundled "Reduced-function result" sample shows the panel with one row per
+    gene_finding of the local run of that sample, with the same calls and "not assessed" rows.
+
+Live results (audit/phase9/partb/b5_live_after.sh f8fc84d -> B5.live-after.stdout; evidence under partb/B5/):
+Deploy run 41961006286: release gate success (03:20:48-03:25:04Z), Render backend success (03:25:20-03:26:10Z),
+Cloudflare Pages success (03:26:12-03:28:28Z). /ready reported f8fc84d at 03:26:30Z, before the first live request.
+L1 PASS  /ready commit f8fc84da032048704645b98cc76e441860919785; gate, Render and Cloudflare jobs succeeded.
+L2 PASS  verify_postdeploy.py (postdeploy_verification.json): commit matches, S1-S6 labels equal to the local B5
+         run, template-only prose, disclaimer equal. S1-S6 warm seconds 66.3, 57.9, 64.2, 64.1, 63.5, 66.5.
+L3 PASS  live_s1s6_fields.json: gene_findings and warnings equal the local B5 run in all six scenarios. Positive
+         control run beforehand: the same check, B3's S1-S6 against B5's, fails on S2, S3 and S4 warnings only.
+L4 PASS  live_warfarin.json (14 checks; the captured stdout with its two request lines is live_warfarin.stdout):
+         *3/*3 + T/T + CYP4F2 *1/*3 -> Unknown, CYP2C9 *3/*3 and VKORC1 T/T assessed, CYP4F2 *1/*3 reference,
+         CPIC text quoted, no dose; without chr16 -> Unknown, action opens "Required genomic evidence is incomplete
+         for VKORC1.", VKORC1 not assessed with no call. Both equal the local run of the same file (label, action,
+         gene_findings). Input files kept in partb/B5/live-warfarin/.
+L5 PASS  live_bundle.json: main.dart.js (2,714,742 bytes) contains f8fc84da0320... and both panel strings. The first
+         attempt stopped with HTTP 403: Cloudflare refuses Python-urllib's default User-Agent (traceback kept in
+         B5.live-after.stdout); the re-run names the client and passed. Browser (built-in, 03:38Z): the first load
+         ran a cached older client (its notice: "This page expects 38975d1; the server is running f8fc84d"), served
+         by a Flutter service worker registered on an earlier visit; the CDN itself served the new bundle
+         (max-age=0, must-revalidate). After one reload the new service worker was active and the notice gone.
+         Warfarin on the "Reduced-function result" sample: the card shows "Genes in this result" with CYP2C9 *1/*1
+         Normal Metabolizer, VKORC1 not assessed, CYP4F2 not assessed and reference only, the same rows as the
+         local run (partb/B5/live-sample/), and the CPIC text in "Result withheld". Screenshot
+         partb/B5/live_web_warfarin_panel.jpg.
+Observation, not a B5 criterion: returning visitors run the previous client until a reload, behind the version
+notice. That notice is what the client is built to show here; it is noted for B7 (client honesty).

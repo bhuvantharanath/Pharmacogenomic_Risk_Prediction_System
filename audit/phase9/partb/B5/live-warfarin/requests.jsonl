@@ -1,0 +1,2 @@
+{"label": "b5_live_pm_tt_cyp4f2", "path": "/analyze", "vcf": "b5_live_pm_tt_cyp4f2.vcf", "drugs": "warfarin", "started_utc": "2026-11-05T03:33:07+00:00", "status": 200, "seconds": 58.991, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 58600}
+{"label": "b5_live_no_vkorc1", "path": "/analyze", "vcf": "b5_live_no_vkorc1.vcf", "drugs": "warfarin", "started_utc": "2026-11-05T03:34:07+00:00", "status": 200, "seconds": 59.537, "error": "", "retry_after": null, "error_code": null, "server_processing_ms": 59143}

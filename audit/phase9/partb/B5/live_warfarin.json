@@ -1,0 +1,81 @@
+{
+ "checks": {
+  "b5_live_pm_tt_cyp4f2 live status 200": true,
+  "b5_live_pm_tt_cyp4f2 live equals local (label, action, gene_findings)": true,
+  "b5_live_pm_tt_cyp4f2 label Unknown": true,
+  "b5_live_pm_tt_cyp4f2 no dose in result": true,
+  "b5_live_no_vkorc1 live status 200": true,
+  "b5_live_no_vkorc1 live equals local (label, action, gene_findings)": true,
+  "b5_live_no_vkorc1 label Unknown": true,
+  "b5_live_no_vkorc1 no dose in result": true,
+  "full: CPIC text in action": true,
+  "full: CYP2C9 *3/*3 assessed": true,
+  "full: VKORC1 T/T assessed": true,
+  "full: CYP4F2 *1/*3 reference": true,
+  "no chr16: action names VKORC1": true,
+  "no chr16: VKORC1 not assessed, no call": true
+ },
+ "all_pass": true,
+ "live": {
+  "b5_live_pm_tt_cyp4f2": {
+   "risk_label": "Unknown",
+   "action": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+   "gene_findings": [
+    {
+     "gene": "CYP2C9",
+     "role": "required",
+     "assessed": true,
+     "call": "*3/*3",
+     "phenotype": "Poor Metabolizer",
+     "note": ""
+    },
+    {
+     "gene": "VKORC1",
+     "role": "required",
+     "assessed": true,
+     "call": "rs9923231 variant (T)/rs9923231 variant (T)",
+     "phenotype": "",
+     "note": ""
+    },
+    {
+     "gene": "CYP4F2",
+     "role": "reference",
+     "assessed": true,
+     "call": "*1/*3",
+     "phenotype": "",
+     "note": ""
+    }
+   ]
+  },
+  "b5_live_no_vkorc1": {
+   "risk_label": "Unknown",
+   "action": "Required genomic evidence is incomplete for VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+   "gene_findings": [
+    {
+     "gene": "CYP2C9",
+     "role": "required",
+     "assessed": true,
+     "call": "*3/*3",
+     "phenotype": "Poor Metabolizer",
+     "note": ""
+    },
+    {
+     "gene": "VKORC1",
+     "role": "required",
+     "assessed": false,
+     "call": "",
+     "phenotype": "",
+     "note": "Coverage of this gene's positions is below what it needs; see the coverage panel."
+    },
+    {
+     "gene": "CYP4F2",
+     "role": "reference",
+     "assessed": true,
+     "call": "*1/*3",
+     "phenotype": "",
+     "note": ""
+    }
+   ]
+  }
+ }
+}
