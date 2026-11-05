@@ -1,0 +1,224 @@
+{
+ "all_equal": true,
+ "rows": [
+  {
+   "id": "BASE",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "d9ad8dab7dca48eb8cf337089d3ac8b6096d619a9d63dba7b71b1f9f87d7bfa7"
+  },
+  {
+   "id": "A4-01",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "e6c0ab7354a60f306b316f22baaaceb15c67828ee0cc7cea442af292c2d85b9b"
+  },
+  {
+   "id": "A4-02",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "2ddf5e68ca6650374020160e84a6f4517a6a7349cfc4e15e7e9d447426f07801"
+  },
+  {
+   "id": "A4-03",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "a17e45ec6c44aa81f76756a328dc7645ce0e8f9c82d06b3c1dcd4db9178f2e9a"
+  },
+  {
+   "id": "A4-04",
+   "verdict": "equal",
+   "how": "after decompression",
+   "sha256": "545290535fb09c79083a9c329916442f37e46896fa863082e74994ab34c633de"
+  },
+  {
+   "id": "A4-05",
+   "verdict": "equal",
+   "how": "after decompression",
+   "sha256": "1342cb3997e0cd792627ada0b6467b2c6aca18c0787dcc372d3ec25d6cb323f5"
+  },
+  {
+   "id": "A4-06",
+   "verdict": "equal",
+   "how": "records (bcftools view -H)",
+   "sha256": "dffd9b618f319bdbc1dd7dcbcc27488522608be076f6489e3784545bc82b5e67"
+  },
+  {
+   "id": "A4-07",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "5dab1a983243ef3be70d4de4c4e1cf836e4765b075e1be6e273122717af9d959"
+  },
+  {
+   "id": "A4-08a",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "26c3b6a490d02cb51a9626467e8b530f519bf5477c1037a270e1d1b1ca9b4a67"
+  },
+  {
+   "id": "A4-08b",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "b085c648e1c79c0c143a6148305bb29dc8ff6ba4457ecb4ca9945b6db0699db7"
+  },
+  {
+   "id": "A4-09a",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "0e4500a9e2a2332adeb36dc03315068b9c80e04ccf5b9014baa1eb041896231c"
+  },
+  {
+   "id": "A4-09b",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "0a1d85ffe759f5e50f5f9905fabece5b8b899406cb62275c42350f9e124b4faf"
+  },
+  {
+   "id": "A4-10",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "98b8008cdecb44ea1f9cc4ddb08f6b816435b8e7cbc5fc707f83ad817c7774de"
+  },
+  {
+   "id": "A4-11",
+   "verdict": "same file",
+   "how": "test-data/demo/demo_variants_only.vcf itself"
+  },
+  {
+   "id": "A4-12a",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+   "id": "A4-12b",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "ee24fc30afc4fbc51ba0bdc86c7ec842eb1ec01fbd5a39b5292656644729c358"
+  },
+  {
+   "id": "A4-12c",
+   "verdict": "equal",
+   "how": "Part A's file is README.md at a932adc; the rebuild is today's README.md",
+   "sha256": "15285181fd0b91bc673dcb4630c773d85ca059fdcb4074887957bdb1b0c5d834"
+  },
+  {
+   "id": "A4-12d",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "8a911a5d8bff517f07c6ee25b7748ec421d8bd498c748620e70022ed39d6f240"
+  },
+  {
+   "id": "A4-12e",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "d01e3c76e3edb52f203afcb7d138d8ca30a4c394178f21b1f7894cff64a30823"
+  },
+  {
+   "id": "A4-13a",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "8dba0756521fb13043773746bc349aa5e85e9612092006f824d91106ea80509d"
+  },
+  {
+   "id": "A4-13b",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "5640277c8c7a89faed468c83727342cb28eb4729d79bd869d89f6484f163d698"
+  },
+  {
+   "id": "A4-14a",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "8106e3ca59097af3d3e48745b22e82c39f1f1af0088b3382a94c9af0978d0fc5"
+  },
+  {
+   "id": "A4-14b",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "d3206bf7ab5f9ad118940af827504576fe90e05fdb7d9cf722568e4534a9c781"
+  },
+  {
+   "id": "A4-15a",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "d9ad8dab7dca48eb8cf337089d3ac8b6096d619a9d63dba7b71b1f9f87d7bfa7"
+  },
+  {
+   "id": "A4-15b",
+   "verdict": "equal",
+   "how": "Part A's file is README.md at a932adc; the rebuild is today's README.md",
+   "sha256": "15285181fd0b91bc673dcb4630c773d85ca059fdcb4074887957bdb1b0c5d834"
+  },
+  {
+   "id": "A4-16",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "cdfde514452a61470a0cb1abd81b2db1e5a20b0b5f21f8da2eb7ca5d039d001c"
+  },
+  {
+   "id": "A4-17",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "55eb090042ad243d56a526a8b948ed000796b29684ed418d6899bf61d710a41f"
+  },
+  {
+   "id": "A4-18",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "7dab25d9245d35a9856b4672d852f85c7b0ffc1c5e32f716e0a41b263ea0d8dd"
+  },
+  {
+   "id": "A4-19",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "cf389805f9acdd91c23b1ca296a5c776a15ea6cf48b9a063707251b091613b40"
+  },
+  {
+   "id": "A4-20",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "766bd36e65e927769f06fa196cdc6171643500841572d0385c723312e5268c49"
+  },
+  {
+   "id": "A4-21",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "7f0f89d6beee789b6eefa741d09a197edaabbb895018f36bbcd7ded3fb06ccfd"
+  },
+  {
+   "id": "A4-22",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "dbdd926ccc97ac77259134c015cefb2fe5d83155ae192d24cfd4fbe4666b9654"
+  },
+  {
+   "id": "A4-23",
+   "verdict": "same input as A4-22",
+   "how": "A4-22's file, four drugs"
+  },
+  {
+   "id": "A4-24",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "9d13bb7df7e6ee2c20d928b757e704edf5767862997de47f60fcafa36a45d99e"
+  },
+  {
+   "id": "A4-25",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "3223b90f147f448405c34a6f50a2b4d99a20eca81834276a0cf08447a496f7d7"
+  },
+  {
+   "id": "A4-26",
+   "verdict": "equal",
+   "how": "byte for byte",
+   "sha256": "8095ff571ef33563ba9cf2063081a42908043b1e1da25f3b83dbad433213ca3a"
+  },
+  {
+   "id": "A4-12f",
+   "verdict": "equal",
+   "how": "expanded bytes (157,287,550)"
+  }
+ ]
+}

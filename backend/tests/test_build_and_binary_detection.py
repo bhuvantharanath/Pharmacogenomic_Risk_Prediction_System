@@ -24,8 +24,10 @@ WHERE THE BUILD EVIDENCE COMES FROM
 based inference verified against PharmCAT's data; that data does not exist —
 `chr_build_mapping.tsv` carries RefSeq accessions, the positions VCF header
 carries assembly and species with no `length=`, and there is no .fai/.dict in
-the jar. Lengths could only have come from memory. Accessions are what PharmCAT
-actually ships and are strictly stronger: `NC_000001.11` IS GRCh38 chr1.
+the jar. Accessions are what PharmCAT actually ships and are strictly
+stronger: `NC_000001.11` IS GRCh38 chr1. Since Phase 9 B6 the lengths come
+from NCBI's assembly reports, whose accessions must equal PharmCAT's, never
+from memory (`test_a4_inputs.py` covers them).
 """
 
 from __future__ import annotations
@@ -147,14 +149,22 @@ def test_grch38_by_accession_is_accepted() -> None:
 
 def test_a_headerless_grch38_vcf_still_works() -> None:
     """
-    Nothing to infer from -> warn, do not refuse. Most real VCFs declare
-    nothing, and refusing them would reject the common case to catch the rare
-    one.
+    Nothing declared -> do not refuse. Most real VCFs declare nothing, and
+    refusing them would reject the common case to catch the rare one. Since B6
+    the REF alleles speak for the file: ROW sits on a required position with
+    GRCh38's base, so the build is read from that and the warning says so.
     """
     meta = validate_vcf(_vcf(), filename="bare.vcf")
-    assert meta.reference_build is ReferenceBuild.UNKNOWN
-    assert any("build" in w.lower() or "grch38" in w.lower()
+    assert meta.reference_build is ReferenceBuild.GRCH38
+    assert any("REF alleles at all 1 required positions in this file match GRCh38" in w
                for w in meta.warnings), meta.warnings
+
+
+def test_a_headerless_vcf_with_nothing_to_check_is_assumed_grch38_and_says_so() -> None:
+    """No declaration and no required position to compare: warn, do not refuse."""
+    meta = validate_vcf(_vcf(row="chr10\t100\t.\tA\tG\t.\tPASS\t.\tGT\t0/1\n"), filename="bare.vcf")
+    assert meta.reference_build is ReferenceBuild.UNKNOWN
+    assert any("assuming GRCh38" in w for w in meta.warnings), meta.warnings
 
 
 def test_accessions_from_two_builds_are_not_treated_as_a_build() -> None:

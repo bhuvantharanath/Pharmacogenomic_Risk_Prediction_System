@@ -202,6 +202,10 @@ class CoverageReport:
     #: positions — the variants-only shape.
     variants_only: bool = False
     positions_seen: int = 0
+    #: Required positions with no row of their own that lie inside a gVCF
+    #: reference block. Not covered — PharmCAT reads them as no-calls — but the
+    #: reason is the file's format, not a filtered or array export.
+    gvcf_block_positions: int = 0
 
     def insufficient(self) -> list[GeneCoverage]:
         return [c for c in self.genes.values() if not c.sufficient]
@@ -242,6 +246,7 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
     cfg = requirements or load_requirements()
     evidence: dict[tuple[str, int], EvidenceStatus] = {}
     genotypes: dict[tuple[str, int], str] = {}
+    blocks: dict[str, list[tuple[int, int]]] = {}
 
     for line in vcf_text.splitlines():
         if not line or line.startswith("#"):
@@ -255,6 +260,9 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
         except ValueError:
             continue
         key = (_norm_chrom(parts[0]), position)
+        block_end = _reference_block_end(parts, position)
+        if block_end:
+            blocks.setdefault(key[0], []).append((position + 1, block_end))
         status, genotype = _sample_evidence(parts)
         previous = evidence.get(key)
         if previous is None or _STATUS_PRIORITY[status] > _STATUS_PRIORITY[previous]:
@@ -295,13 +303,55 @@ def assess(vcf_text: str, requirements: dict | None = None) -> CoverageReport:
             threshold_measured=bool(spec.get("threshold_measured", True)),
         )
 
+    # A gVCF states "reference from POS to END" in one record. PharmCAT, like
+    # this gate, reads a position without its own row as untested, so these stay
+    # uncovered; they are counted so the response can name the format instead of
+    # blaming a filtered or array export (A4-08b; finding F-06).
+    if blocks:
+        wanted_all = {(_norm_chrom(c), p) for spec in cfg["genes"].values() for c, p in spec["positions"]}
+        report.gvcf_block_positions = sum(
+            1 for chrom, pos in wanted_all
+            if (chrom, pos) not in evidence
+            and any(start <= pos <= end for start, end in blocks.get(chrom, ()))
+        )
+
     # THE COMMON CASE, not an edge case. Most VCFs in the wild omit
     # homozygous-reference calls entirely, and such a file is indistinguishable
     # from one where those positions were never assayed. Flagged separately from
     # generic low coverage because the remedy is different: the user needs to
-    # re-call with all sites emitted, not sequence more.
-    report.variants_only = total_hom_ref == 0 and report.positions_seen > 0
+    # re-call with all sites emitted, not sequence more. A gVCF's missing
+    # positions are inside its reference blocks, which is a different remedy.
+    report.variants_only = (total_hom_ref == 0 and report.positions_seen > 0
+                            and report.gvcf_block_positions == 0)
     return report
+
+
+#: `<NON_REF>` (GATK) and `<*>` (bcftools) mark gVCF reference-block records.
+_GVCF_ALT = ("<NON_REF>", "<*>")
+_END = re.compile(r"(?:^|;)END=(\d+)(?:;|$)")
+
+
+def _reference_block_end(parts: list[str], position: int) -> int:
+    """END of a gVCF reference block that spans past POS, else 0."""
+    if not any(marker in parts[4] for marker in _GVCF_ALT):
+        return 0
+    match = _END.search(parts[7])
+    end = int(match.group(1)) if match else 0
+    return end if end > position else 0
+
+
+def gvcf_warning(report: "CoverageReport") -> str:
+    n = report.gvcf_block_positions
+    positions = "required position lies" if n == 1 else "required positions lie"
+    return (
+        f"This file is a gVCF: {n} {positions} "
+        f"inside reference blocks (records whose END= spans several positions) "
+        f"rather than on rows of their own. PharmCAT reads a position without "
+        f"its own row as not tested, so these count as missing, and genes that "
+        f"need them are reported as Unknown. Export a VCF that gives every "
+        f"required position its own row, then upload it again; the input "
+        f"requirements page gives the commands. See docs/input_requirements.md."
+    )
 
 
 def variants_only_warning() -> str:

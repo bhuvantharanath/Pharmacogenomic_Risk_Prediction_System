@@ -1,0 +1,121 @@
+B6 — input robustness. Plan written before any B6 code.
+plan committed 2026-11-05T03:37:12Z, base f8fc84d (B5, live)
+8150d8ef7eecdead5d09edb7c3a661d86035180927fbf945453191be3240370d  audit/phase9/B6_PLAN.md
+
+== Data, derived before any check used it (2026-11-05) ==
+NCBI assembly reports, committed under test-data/reference/ncbi/ (downloaded 2026-11-05 from the URLs recorded in
+build_evidence.json contig_length_sources):
+  GCF_000001405.40_GRCh38.p14_assembly_report.txt  79,172 bytes  sha256 04e40091e427dae4f0c7dcc1b67792b8d4d5413903ea6b1d171840664e2da989
+  GCF_000001405.25_GRCh37.p13_assembly_report.txt  28,669 bytes  sha256 0097e6b24cc9ae5cb4fb5c075dffbae36b4ec0c90a61d428f039eb82e64e4a17
+scripts/derive_build_evidence.py: lengths of chr1-22, X, Y for both builds; derivation stops unless each report's
+RefSeq accession equals PharmCAT's chr_build_mapping.tsv for that chromosome and build (all 48 agreed) and unless
+every chromosome's length differs between builds (all 24 do). The accession part of build_evidence.json is
+unchanged (only contig_lengths, contig_length_sources and _comment were added); --check passes.
+scripts/derive_reference_alleles.py: 484 GRCh38 bases, one per required position of the nine genes, from PharmCAT's
+positions VCF; every one equals the first base of the jar definition's ref (no disagreement). jar and positions VCF
+sha256: 9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741 01a28fe31675c9e8a8b18bcab4afb82a62abdfea6606856aeca0e0378e7d6b58. --check passes.
+
+== Implementation ==
+backend/app/vcf_validation.py: canonical_contig/normalize_contigs (primary chromosomes only; a chr-named file is
+  returned as the same string object); contig_length_evidence (GRCh38 / GRCh37 / neither); lengths join the
+  declared-build set, so a GRCh37 length is refused as GRCh37 (message names the contig and both lengths) and a
+  GRCh38/GRCh37 mix is CONFLICTING; a length that is neither is refused; BCF magic refused as NOT_VCF naming BCF;
+  REF check after the row count: any mismatch refuses the file (REFERENCE_ALLELE_MISMATCH, or
+  UNSUPPORTED_REFERENCE_BUILD when >=10 compared and >=half differ); a silent header with >=1 verified position is
+  read as GRCh38 and the warning states the count; rename warning last.
+backend/app/reference_check.py (new): the comparison; first base, upper-cased; a position counts once.
+backend/app/coverage.py: gVCF reference blocks (<NON_REF> or <*>, END beyond POS) counted as
+  gvcf_block_positions; variants_only is false for such a file; gvcf_warning.
+backend/app/main.py: /analyze and /coverage give the gVCF warning; /analyze withholds the all-genes-gated
+  (research-format/SNP-array) diagnosis when it applies.
+scripts/scientific_hash_policy.json: reference_check.py and reference_alleles.json enrolled (94 core paths).
+docs/input_requirements.md: how the build is recognised; REF, gVCF, BCF, chromosome-name and multi-sample sections,
+  each with its command. User-facing messages name no tool (test_no_developer_strings): my first BCF and gVCF
+  messages named bcftools and GATK, failed that guard, and now point to the input requirements page instead.
+
+== Existing tests changed, each because the planned behaviour changed ==
+- test_build_and_binary_detection: a headerless file whose one row is a required position with GRCh38's REF is now
+  read as GRCh38 with the evidence warning (design item 3); a new test keeps the "assuming GRCh38" path for a file
+  with nothing to compare.
+- test_vcf_validation TestAccepts.test_missing_build_warns_but_accepts: same change.
+- test_coverage_endpoint, test_coverage_gate, test_evidence_validity: their generated files wrote REF A at every
+  required position, which no GRCh38 file does; they now write GRCh38's base (tests/grch38.py, from the same data
+  file). No expectation changed.
+- test_evidence_crosscheck: B3's adversarial files no longer reach PharmCAT. Its fixture now switches off the REF
+  check and the contig rename, so its tests still prove B3's second line on its own; a new test checks the front
+  door (wrong-REF files 400, the 10-named file answered as the base). Clients are built per call because
+  test_deployment.py reloads app.main, which strands a client built at import (its 400s lost error_code).
+
+== AC6 fidelity (audit/phase9/partb/b6_a4_fidelity.py -> B6.a4_fidelity.json) ==
+all_equal true: every input rebuilt by backend/tests/a4_inputs.py equals Part A's local file (plain byte for byte;
+A4-04/05 after decompression; A4-06 by records, bcftools view -H; the bomb by its 157,287,550 expanded bytes;
+A4-12c/A4-15b against README.md at a932adc, which Part A copied). The BCF fixture was remade with
+bcftools view --no-version from the same base because Part A's header named a local path; records identical.
+Count: A4_PRECOMMIT.md has 36 rows (31 + 2 + 3), 35 distinct inputs (A4-23 reuses A4-22's file), plus BASE. The
+plan's "33 inputs" is a miscount in the plan; every row is under test (test_every_a4_row_has_a_case_and_an_expectation).
+
+== Sabotage (audit/phase9/partb/b6_sabotage.py -> B6.sabotage.stdout; every file restored identical) ==
+SB6-a REF check off          6 red: A4-09a, A4-09b, three REF unit tests, the front-door test. As planned except
+                              A4-22, listed in the plan, stays green: its GRCh37 lengths refuse it first. The
+                              REF rule's wrong-build case is red instead (6 of 12 positions; ref_every_snv).
+SB6-b GRCh37 lengths removed 8 red: A4-02, A4-22, A4-23, the two conflict tests, three derivation tests. The first
+                              run stopped at collection (module-level KeyError); the module now reads the table with
+                              .get so the run shows which tests fail.
+SB6-c contig rename off      5 red: A4-03 and A4-20 (judge and B6 tests), the front-door test.
+SB6-d gVCF blocks off        3 red: A4-08b, both block tests.
+SB6-e rs4244285 base flipped 22 red, including the derivation test.
+SB6-f BCF check off          1 red: A4-06.
+
+== Zero-regression vs B5 (run_regression.py B6 --compare-to B5 -> B6.stdout; a4_labels.py B6-after) ==
+S1-S6     6/6 labels; every analysis object identical to B5. Warnings identical except S3 and S4, which lose
+          "The VCF header does not state a reference build; assuming GRCh38..." because their 24 contig lengths
+          are GRCh38's. As the plan allows. PASS.
+Cohort    2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other. 0 files refused: the
+          harness calls validate_vcf for all 400 samples with no exception handling and exited 0. PASS.
+74 VCFs   148 comparisons, 0 mismatches. That harness runs PharmCAT directly and never meets validate_vcf, so
+          acceptance was measured separately (b6_testvcf_acceptance.py, B6/testvcf_acceptance_b5.json and _b6.json,
+          validate_vcf from f8fc84d and from the working tree): 74/74 accepted by both, warnings identical. PASS.
+A4        Every row PASS under A4_PRECOMMIT.md (test_a4_inputs.py). All six drugs, B5-after vs B6-after:
+            A4-02           200 all Unknown -> 400 UNSUPPORTED_REFERENCE_BUILD            (planned)
+            A4-09a, A4-09b  200, three confident labels -> 400 REFERENCE_ALLELE_MISMATCH  (planned)
+            A4-22           200 all Unknown -> 400 UNSUPPORTED_REFERENCE_BUILD            (planned)
+            A4-03, A4-20    200 all Unknown -> clopidogrel Ineffective                    (planned)
+                            and azathioprine, fluorouracil, simvastatin Unknown ->
+                            "No PGx-guided adjustment identified"                         (NOT in the plan's list)
+          Each A4-03/A4-20 response equals the base file's for all four drugs: label, gene, diplotype, phenotype,
+          CPIC text and source (TPMT *1/*1 standard_dosing, DPYD Reference/Reference standard_dosing, SLCO1B1
+          *1/*1 standard_dosing). The plan's clause lists only clopidogrel's change ("The only label changes
+          allowed: A4-03 and A4-20 move from Unknown to Ineffective ..."), because A4 asked about clopidogrel; the
+          all-drug harness shows three more. As written: FAIL. Stopped here for the owner, per the standing rule.
+Suites    backend: everything passes except the four evaluation/bundle identity tests, which need the re-bind;
+          flutter: analyze clean, 229 passed.
+Re-bind   not run. Found first: rebind_evaluation.py asserts one declaration set against both the historical
+          benchmark and the previous package. After B5 they differ (B5's declared warfarin changes are in the
+          historical comparison only), so no declaration can satisfy both. Proposed fix: inherit the previous
+          package's verified declarations for the historical comparison, keep the previous comparison to this
+          run's own, and make compatible_bundle accept only that cumulative chain.
+
+== AC verdicts (as measured, 2026-11-05) ==
+AC1 PASS  A4-03 and A4-20: clopidogrel Ineffective, CYP2C19 *2/*2, rename warning, /coverage lists clopidogrel
+          answerable; a chr-named file reaches PharmCAT as the same string (test).
+AC2 PASS  build_evidence --check passes; A4-02 400 naming GRCh37's chr1 (249,250,621 vs 248,956,422); GRCh38+GRCh37
+          lengths and declaration+length -> CONFLICTING; a length that is neither -> refused; GRCh38 lengths alone ->
+          accepted with no build warning.
+AC3 PASS  484 bases, re-derived by test; A4-09a "At 10 of the 463 required positions"; A4-09b names chr10:94781859,
+          rs4244285, "GRCh38 has G"; A4-22/23 400; /coverage gives the same status and code for all four.
+AC4 PASS  A4-08b Unknown with "This file is a gVCF: 445 required positions lie inside reference blocks ...", no
+          SNP-array diagnosis, no variants-only warning; A4-08a Ineffective.
+AC5 PASS  A4-06 400 NOT_VCF, "is a BCF file ... Convert it to a .vcf".
+AC6 PASS  locally: 37 parametrised rows (BASE + 36), fidelity all_equal; CI not yet run (nothing pushed).
+AC7 PASS  A4-07 400 UNSUPPORTED_MULTISAMPLE.
+Zero-regression: S1-S6, cohort, 74 VCFs PASS; A4 FAIL as written (above).
+
+== Owner decision (2026-11-05): "Accept, amend clause" ==
+amendment recorded 2026-11-05T04:46:55Z, before the re-bind; plan left unedited:
+11f153e521c31c78ffa77aa38696b0674a420f54ae189fd18ca13cd8679fc42e  audit/phase9/B6_ZR_AMENDMENT.md
+8150d8ef7eecdead5d09edb7c3a661d86035180927fbf945453191be3240370d  audit/phase9/B6_PLAN.md
+A4 check against the amended clause (B5-after vs B6-after, all six drugs; A4-23 is A4-22's file):
+  changed cases ['A4-02', 'A4-03', 'A4-09a', 'A4-09b', 'A4-20', 'A4-22']
+  400s ['A4-02', 'A4-09a', 'A4-09b', 'A4-22']: True; A4-03 and A4-20 labels equal BASE's {'azathioprine': 'No PGx-guided adjustment identified', 'clopidogrel': 'Ineffective', 'codeine': 'Unknown', 'fluorouracil': 'No PGx-guided adjustment identified', 'simvastatin': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown'}: True
+  BASE unchanged from B5: True
+A4 zero-regression (amended): PASS

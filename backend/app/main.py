@@ -782,6 +782,8 @@ def build_response(
     # engine sees them. This is the only check that can catch a confidently-wrong
     # call, because the wrongness is in the input, not the output.
     if cov is not None:
+        if cov.gvcf_block_positions:
+            warnings.append(coverage_mod.gvcf_warning(cov))
         if cov.variants_only:
             warnings.append(coverage_mod.variants_only_warning())
         if any(
@@ -794,9 +796,10 @@ def build_response(
         # coverage message per gene buries the useful part — that this is a
         # property of the file, and which kinds of file behave this way. It is
         # also the most likely first experience for a visitor who downloads a
-        # public research VCF or a consumer SNP export.
+        # public research VCF or a consumer SNP export. A gVCF has its own,
+        # already given, and is neither of those kinds.
         all_gated = bool(cov.genes) and len(insufficient) == len(cov.genes)
-        if all_gated:
+        if all_gated and not cov.gvcf_block_positions:
             warnings.append(coverage_mod.all_genes_gated_warning(cov))
 
         for gene_cov in insufficient:
@@ -1054,6 +1057,8 @@ async def coverage_preview(
     data = coverage_mod.readiness(cov)
 
     warnings = list(metadata.warnings)
+    if cov.gvcf_block_positions:
+        warnings.append(coverage_mod.gvcf_warning(cov))
     if cov.variants_only:
         warnings.append(coverage_mod.variants_only_warning())
     if any(

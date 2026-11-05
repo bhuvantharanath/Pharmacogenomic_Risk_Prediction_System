@@ -19,6 +19,7 @@ from app import cpic_engine
 from app.pharmcat_models import PharmcatReport
 from app.pharmcat_runner import parse_report
 from app.vcf_validation import VcfErrorCode, VcfValidationError, validate_vcf
+from tests.grch38 import alt, ref
 
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -185,7 +186,7 @@ def _thiopurine_vcf(*, omit: str | None = None) -> bytes:
         if gene == omit:
             continue
         rows.extend(
-            f"{chrom}\t{pos}\t.\tA\tG\t.\tPASS\t.\tGT\t0/0"
+            f"{chrom}\t{pos}\t.\t{ref(chrom, pos)}\t{alt(chrom, pos)}\t.\tPASS\t.\tGT\t0/0"
             for chrom, pos in _positions(gene)
         )
     return (

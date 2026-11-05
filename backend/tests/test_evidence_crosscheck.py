@@ -22,6 +22,7 @@ from fastapi.testclient import TestClient
 
 import app.evidence_crosscheck as crosscheck
 import app.main as main
+import app.vcf_validation as vcf_validation
 from app.capabilities import capability_for
 from app.coverage import DrugEligibility
 from app.pharmcat_models import CallStatus, PharmcatGeneCall, PharmcatReport, PharmcatVariant
@@ -34,8 +35,6 @@ CALLED = ("CYP2C19", "CYP2C9", "SLCO1B1", "TPMT", "NUDT15", "DPYD")
 SWAP = {"A": "C", "C": "G", "G": "T", "T": "A"}
 CONFIDENT = {"Ineffective", "Toxic", "Adjust Dosage", "No PGx-guided adjustment identified"}
 REQUIREMENTS = json.loads((REPO_ROOT / "backend/app/data/position_requirements.json").read_text())
-
-client = TestClient(main.app)
 
 
 # --------------------------------------------------------------------------- #
@@ -107,20 +106,55 @@ CASES = {
 }
 
 
+def _post(name: str, payload: bytes):
+    # A client per call: test_deployment.py reloads app.main, after which a
+    # client built at import time serves the old app, whose ApiError handler no
+    # longer matches the reloaded class and drops `error_code` from 400s.
+    return TestClient(main.app).post(
+        "/analyze",
+        files={"file": (f"{name}.vcf", io.BytesIO(payload), "text/plain")},
+        data={"drugs": DRUGS},
+    )
+
+
 @pytest.fixture(scope="module")
 def responses() -> dict[str, dict]:
+    """
+    Every case, analysed with B6's two front-door steps switched off.
+
+    Since B6 (Phase 9) the REF check refuses the wrong-REF files before PharmCAT
+    sees them, and contig renaming lets PharmCAT read `10`. Both are switched
+    off here, so these tests keep proving what B3 proves on its own: PharmCAT's
+    discards decline the drug even when nothing upstream caught the file.
+    `test_b6_stops_these_files_before_pharmcat` checks the front door itself.
+    """
     if find_jar() is None:  # pragma: no cover — no jar in this environment
         pytest.skip("PharmCAT jar not found")
     out = {}
-    for name, build in CASES.items():
-        response = client.post(
-            "/analyze",
-            files={"file": (f"{name}.vcf", io.BytesIO(build()), "text/plain")},
-            data={"drugs": DRUGS},
-        )
-        assert response.status_code == 200, (name, response.text[:300])
-        out[name] = response.json()
+    with pytest.MonkeyPatch.context() as mp:
+        mp.setattr(vcf_validation.reference_check, "check",
+                   lambda text: vcf_validation.reference_check.ReferenceCheck())
+        mp.setattr(vcf_validation, "normalize_contigs", lambda text: (text, {}))
+        for name, build in CASES.items():
+            response = _post(name, build())
+            assert response.status_code == 200, (name, response.text[:300])
+            out[name] = response.json()
     return out
+
+
+def test_b6_stops_these_files_before_pharmcat() -> None:
+    """With the front door on: wrong REFs are refused whole, `10` is read as `chr10`."""
+    if find_jar() is None:  # pragma: no cover
+        pytest.skip("PharmCAT jar not found")
+    for name in ("ref_critical", "ref_ten", "ref_every_snv"):
+        response = _post(name, CASES[name]())
+        assert response.status_code == 400, (name, response.text[:200])
+        assert response.json().get("error_code") in {"REFERENCE_ALLELE_MISMATCH", "UNSUPPORTED_REFERENCE_BUILD"}, (
+            name, response.text[:300])
+    renamed = _post("no_chr", CASES["no_chr"]())
+    assert renamed.status_code == 200
+    assert _labels(renamed.json())["clopidogrel"] == "Ineffective"
+    assert _crosscheck_warnings(renamed.json()) == []
 
 
 def _labels(body: dict) -> dict[str, str]:

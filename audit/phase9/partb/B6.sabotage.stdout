@@ -1,0 +1,75 @@
+== SB6-a: the REF check reports no mismatches (backend/app/reference_check.py) ==
+FAILED tests/test_a4_inputs.py::test_a_ref_that_contradicts_grch38_declines_the_whole_file[A4-09a-REFERENCE_ALLELE_MISMATCH-says0]
+FAILED tests/test_a4_inputs.py::test_a_ref_that_contradicts_grch38_declines_the_whole_file[A4-09b-REFERENCE_ALLELE_MISMATCH-says1]
+FAILED tests/test_input_robustness.py::test_an_indel_is_checked_on_its_anchor_base
+FAILED tests/test_input_robustness.py::test_a_position_with_two_rows_counts_once
+FAILED tests/test_input_robustness.py::test_the_wording_turns_to_build_only_when_most_of_many_positions_differ
+FAILED tests/test_evidence_crosscheck.py::test_b6_stops_these_files_before_pharmcat
+pytest exit 1; 6 red
+restored identical: yes
+== SB6-b: GRCh37 lengths removed from build_evidence.json (backend/app/data/build_evidence.json) ==
+FAILED tests/test_a4_inputs.py::test_a_grch37_length_names_the_build_and_the_contig
+FAILED tests/test_a4_inputs.py::test_a_ref_that_contradicts_grch38_declines_the_whole_file[A4-22-UNSUPPORTED_REFERENCE_BUILD-says2]
+FAILED tests/test_a4_inputs.py::test_a_ref_that_contradicts_grch38_declines_the_whole_file[A4-23-UNSUPPORTED_REFERENCE_BUILD-says3]
+FAILED tests/test_input_robustness.py::test_every_primary_chromosome_has_a_length_that_differs_between_builds
+FAILED tests/test_input_robustness.py::test_part_as_recalled_grch37_lengths_match_ncbi
+FAILED tests/test_input_robustness.py::test_build_evidence_rederives_from_its_sources
+FAILED tests/test_input_robustness.py::test_a_grch37_and_a_grch38_length_conflict
+FAILED tests/test_input_robustness.py::test_a_declaration_and_a_contradicting_length_conflict
+pytest exit 1; 8 red
+restored identical: yes
+== SB6-c: contig rewrite disabled (backend/app/vcf_validation.py) ==
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-03]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-20]
+FAILED tests/test_a4_inputs.py::test_unprefixed_and_capitalised_contigs_are_read_as_chr[A4-03]
+FAILED tests/test_a4_inputs.py::test_unprefixed_and_capitalised_contigs_are_read_as_chr[A4-20]
+FAILED tests/test_evidence_crosscheck.py::test_b6_stops_these_files_before_pharmcat
+pytest exit 1; 5 red
+restored identical: yes
+== SB6-d: gVCF block detection disabled (backend/app/coverage.py) ==
+FAILED tests/test_a4_inputs.py::test_a_gvcf_is_named_as_one
+FAILED tests/test_input_robustness.py::test_required_positions_inside_a_reference_block_are_counted[<NON_REF>]
+FAILED tests/test_input_robustness.py::test_required_positions_inside_a_reference_block_are_counted[<*>]
+pytest exit 1; 3 red
+restored identical: yes
+== SB6-e: one base in reference_alleles.json flipped (rs4244285 G -> A) (backend/app/data/reference_alleles.json) ==
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-04]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-05]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-10]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-11]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-15a]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-21]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-24]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-25]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[A4-26]
+FAILED tests/test_a4_inputs.py::test_a4_row_meets_its_precommitted_expectation[BASE]
+FAILED tests/test_a4_inputs.py::test_unprefixed_and_capitalised_contigs_are_read_as_chr[A4-03]
+FAILED tests/test_a4_inputs.py::test_unprefixed_and_capitalised_contigs_are_read_as_chr[A4-20]
+FAILED tests/test_a4_inputs.py::test_a_ref_that_contradicts_grch38_declines_the_whole_file[A4-09a-REFERENCE_ALLELE_MISMATCH-says0]
+FAILED tests/test_a4_inputs.py::test_a_ref_that_contradicts_grch38_declines_the_whole_file[A4-09b-REFERENCE_ALLELE_MISMATCH-says1]
+FAILED tests/test_a4_inputs.py::test_a_gvcf_is_named_as_one
+FAILED tests/test_input_robustness.py::test_reference_alleles_rederive_from_pharmcat
+FAILED tests/test_input_robustness.py::test_every_required_position_has_a_reference_base
+FAILED tests/test_input_robustness.py::test_a_chr_named_file_reaches_pharmcat_byte_identical
+FAILED tests/test_input_robustness.py::test_a_lowercase_ref_is_still_grch38s_base
+FAILED tests/test_input_robustness.py::test_a_position_with_two_rows_counts_once
+FAILED tests/test_input_robustness.py::test_a_silent_header_with_verified_refs_says_how_the_build_was_read
+FAILED tests/test_evidence_crosscheck.py::test_b6_stops_these_files_before_pharmcat
+pytest exit 1; 22 red
+restored identical: yes
+== SB6-f: BCF magic check removed (backend/app/vcf_validation.py) ==
+FAILED tests/test_a4_inputs.py::test_a_bcf_is_named_as_one
+pytest exit 1; 1 red
+restored identical: yes
+sabotage rc=0
+
+== chain sabotages, after the owner's amendment ==
+== SB6-g: bundle rule ignores the difference from the previous evaluation (scripts/compatible_bundle.py) ==
+FAILED tests/test_compatible_bundle.py::test_a_difference_from_the_previous_evaluation_must_be_this_rebinds_own
+pytest exit 1; 1 red
+restored identical: yes
+== SB6-h: bundle rule stops requiring declarations to be in the chain (scripts/compatible_bundle.py) ==
+FAILED tests/test_compatible_bundle.py::test_a_declaration_outside_the_chain_is_refused
+pytest exit 1; 1 red
+restored identical: yes
+sabotage rc=0

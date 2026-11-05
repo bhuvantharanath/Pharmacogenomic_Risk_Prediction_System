@@ -9,8 +9,10 @@ with a stack trace 90 seconds later.
 Every rejection carries a `VcfErrorCode` so clients can branch on the reason
 without string-matching the human message.
 
-What this module does NOT do: call variants, interpret genotypes, or check that
-positions are biologically sensible. That is PharmCAT's job.
+What this module does NOT do: call variants or interpret genotypes. That is
+PharmCAT's job. It does check one biological fact, because nothing downstream
+does: that the REF allele at each required position is GRCh38's
+(`reference_check`, Phase 9 B6).
 """
 
 from __future__ import annotations
@@ -23,6 +25,8 @@ import zlib
 from dataclasses import dataclass, field
 from enum import Enum
 from pathlib import Path
+
+from . import reference_check
 
 # --------------------------------------------------------------------------- #
 # Limits
@@ -58,6 +62,7 @@ class VcfErrorCode(str, Enum):
     CONFLICTING_REFERENCE_BUILD = "CONFLICTING_REFERENCE_BUILD"
     NON_HUMAN_GENOME = "NON_HUMAN_GENOME"
     UNSUPPORTED_MULTISAMPLE = "UNSUPPORTED_MULTISAMPLE"
+    REFERENCE_ALLELE_MISMATCH = "REFERENCE_ALLELE_MISMATCH"
 
 
 class ReferenceBuild(str, Enum):
@@ -132,14 +137,15 @@ _GRCH37_PATTERNS = (
 @functools.lru_cache(maxsize=1)
 def _build_evidence() -> dict:
     """
-    PharmCAT's own build-to-RefSeq-accession mapping, vendored.
+    PharmCAT's own build-to-RefSeq-accession mapping, plus contig lengths.
 
-    NOT contig lengths — PharmCAT ships none. Checked: `chr_build_mapping.tsv`
-    carries accessions, the positions VCF header carries assembly and species
-    but no `length=`, and there is no .fai/.dict/chrom.sizes in the jar. A
-    length table could only have come from memory, which is what a derived
-    check is supposed to avoid. An accession is stronger anyway:
-    `NC_000001.11` IS GRCh38 chr1, with nothing to match against.
+    PharmCAT ships no lengths (no .fai/.dict/chrom.sizes in the jar, no
+    `length=` in its positions VCF). The lengths come from NCBI's GRCh38.p14
+    and GRCh37.p13 assembly reports, committed with their sha256, and
+    derivation stops unless each report's accessions equal PharmCAT's — never
+    from memory. An accession is still the stronger signal: `NC_000001.11` IS
+    GRCh38 chr1. A length is what the commonest real header carries instead
+    (`##contig=<ID=10,length=135534747>`; Phase 9 B6, finding F-06).
 
     See `scripts/derive_build_evidence.py`.
     """
@@ -147,6 +153,104 @@ def _build_evidence() -> dict:
     if not path.exists():
         return {"accession_to_build": {}, "required_build": "GRCh38"}
     return json.loads(path.read_text())
+
+
+# --------------------------------------------------------------------------- #
+# Contig names
+#
+# PharmCAT matches CHROM against GRCh38's `chr`-prefixed names and nothing
+# else; its own preprocessor renames, but the jar path used here has none. A
+# file saying `10` or `Chr10` was therefore previewed as answerable by the
+# coverage gate (which compared without the prefix) and then analysed as if
+# every position were missing (A4-03, A4-20; finding F-05).
+# --------------------------------------------------------------------------- #
+
+_PRIMARY_CONTIG = re.compile(r"(?:chr)?(\d{1,2}|X|Y|M|MT)", re.IGNORECASE)
+_CONTIG_ID = re.compile(r"^(##contig=<ID=)([^,>]+)")
+_CONTIG_FIELD = re.compile(r'(\w+)=("[^"]*"|[^,>]*)')
+
+
+def canonical_contig(name: str) -> str:
+    """`10`, `Chr10`, `CHR10` -> `chr10`; `M`/`MT` -> `chrM`; anything else unchanged."""
+    match = _PRIMARY_CONTIG.fullmatch(name)
+    if match is None:
+        return name
+    core = match.group(1).upper()
+    if core in ("M", "MT"):
+        return "chrM"
+    if core in ("X", "Y"):
+        return f"chr{core}"
+    number = int(core)
+    return f"chr{number}" if 1 <= number <= 22 else name
+
+
+def normalize_contigs(text: str) -> tuple[str, dict[str, str]]:
+    """
+    Rewrite primary-chromosome names to `chrN` in the rows and `##contig` IDs.
+
+    Returns the text and {old: new} for every name changed. A file that already
+    uses `chrN` comes back as the very same string, so PharmCAT reads it
+    byte-identical. Splitting on "\\n" alone keeps every other byte, CRs
+    included, exactly where it was.
+    """
+    renamed: dict[str, str] = {}
+    canonical: dict[str, str] = {}
+    lines = text.split("\n")
+    changed = False
+    for i, line in enumerate(lines):
+        if line.startswith("#"):
+            match = _CONTIG_ID.match(line) if line.startswith("##contig") else None
+            if match is None:
+                continue
+            head, old, cut = match.group(1), match.group(2), match.end()
+        else:
+            cut = line.find("\t")
+            if cut <= 0:
+                continue
+            head, old = "", line[:cut]
+        new = canonical.get(old)
+        if new is None:
+            new = canonical[old] = canonical_contig(old)
+        if new != old:
+            renamed[old] = new
+            lines[i] = head + new + line[cut:]
+            changed = True
+    return ("\n".join(lines) if changed else text), renamed
+
+
+def contig_rename_warning(renamed: dict[str, str]) -> str:
+    pairs = sorted(renamed.items(), key=lambda kv: kv[1])
+    shown = ", ".join(f"'{old}' as '{new}'" for old, new in pairs[:3])
+    more = f" and {len(pairs) - 3} more" if len(pairs) > 3 else ""
+    return (
+        f"Chromosome names were read in GRCh38's 'chr' form: {shown}{more}. "
+        "PharmCAT recognises only names that begin with 'chr'; the positions "
+        "themselves are unchanged."
+    )
+
+
+def contig_length_evidence(header_lines: list[str]) -> list[tuple[str, int, str]]:
+    """
+    (contig, length, verdict) for each primary chromosome whose `##contig` line
+    gives a length; the verdict is "GRCh38", "GRCh37" or "neither". Every
+    primary chromosome's length differs between the two builds, which
+    `derive_build_evidence.py` asserts, so a length is never ambiguous.
+    """
+    lengths = _build_evidence().get("contig_lengths", {})
+    grch38, grch37 = lengths.get("GRCh38", {}), lengths.get("GRCh37", {})
+    found = []
+    for line in header_lines:
+        if not line.startswith("##contig=<"):
+            continue
+        fields = dict(_CONTIG_FIELD.findall(line[len("##contig=<"):]))
+        name = canonical_contig(fields.get("ID", "").strip('"'))
+        if name not in grch38 or not fields.get("length", "").isdigit():
+            continue
+        length = int(fields["length"])
+        verdict = ("GRCh38" if length == grch38[name]
+                   else "GRCh37" if length == grch37.get(name) else "neither")
+        found.append((name, length, verdict))
+    return found
 
 
 #: `species="Mus musculus"` and friends. A VCF that names a non-human species
@@ -219,6 +323,9 @@ def _declared_builds(header_lines: list[str]) -> set[str]:
         seen.add("GRCh37")
     if any(pattern.search(blob) for pattern in _GRCH38_PATTERNS):
         seen.add("GRCh38")
+    # A length that is neither build's is refused on its own in validate_vcf.
+    seen.update(verdict for _c, _l, verdict in contig_length_evidence(relevant)
+                if verdict != "neither")
     return seen
 
 
@@ -298,6 +405,40 @@ def _decompress(raw: bytes) -> bytes:
 
 
 # --------------------------------------------------------------------------- #
+# REF identity
+# --------------------------------------------------------------------------- #
+
+#: At least this many positions compared, and at least half of them wrong, reads
+#: as a different build rather than a damaged file. Wording only: either way
+#: the whole file is declined.
+_WRONG_BUILD_MIN_COMPARED = 10
+
+
+def _reference_mismatch(ref: reference_check.ReferenceCheck) -> tuple[VcfErrorCode, str]:
+    wrong, compared = len(ref.mismatches), ref.compared
+    examples = "; ".join(m.describe() for m in ref.mismatches[:5])
+    more = f"; and {wrong - 5} more" if wrong > 5 else ""
+    if compared >= _WRONG_BUILD_MIN_COMPARED and 2 * wrong >= compared:
+        return VcfErrorCode.UNSUPPORTED_REFERENCE_BUILD, (
+            f"The REF alleles at {wrong} of the {compared} required positions in "
+            f"this file differ from GRCh38 (for example {examples}). A file this "
+            "far from GRCh38 was almost certainly aligned to a different build, "
+            "such as GRCh37/hg19, and its genotypes cannot be read at GRCh38 "
+            "positions. Re-export it against GRCh38 and upload it again. "
+            "See docs/input_requirements.md."
+        )
+    return VcfErrorCode.REFERENCE_ALLELE_MISMATCH, (
+        f"At {wrong} of the {compared} required positions in this file, the REF "
+        f"allele is not GRCh38's: {examples}{more}. A genotype is read relative to "
+        "its REF allele, so these rows say something other than what they appear "
+        "to, and a file that disagrees with GRCh38 anywhere cannot be trusted "
+        "elsewhere: no drug is assessed from it. Check that the file was produced "
+        "against GRCh38, with the same reference throughout, and upload it again. "
+        "See docs/input_requirements.md."
+    )
+
+
+# --------------------------------------------------------------------------- #
 # Main entry point
 # --------------------------------------------------------------------------- #
 
@@ -344,6 +485,19 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
     was_gzipped = _looks_gzipped(raw)
     data = _decompress(raw) if was_gzipped else raw
 
+    # BCF is VCF's binary form, BGZF-compressed like a .vcf.gz, so it decompresses
+    # cleanly and then fails as "not text". Naming the format turns a dead end
+    # into a known conversion (A4-06); the command itself is on the input
+    # requirements page, as every tool name is.
+    if data[:3] == b"BCF":
+        raise VcfValidationError(
+            VcfErrorCode.NOT_VCF,
+            f"'{filename}' is a BCF file, the binary form of VCF, and this "
+            "analysis reads text VCF. Convert it to a .vcf (or a compressed "
+            ".vcf.gz) and upload that; the input requirements page gives the "
+            "command. See docs/input_requirements.md.",
+        )
+
     # A binary (non-VCF) upload usually fails here rather than on the header
     # check, and "is not valid UTF-8" is a clearer diagnosis than "no header".
     try:
@@ -372,6 +526,11 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
             f"a text VCF file. This usually means the file was truncated mid-"
             f"write or corrupted in transfer. Re-export it and upload again.",
         )
+
+    # --- contig names --------------------------------------------------------
+    # Before anything reads a row, so the coverage gate, the REF check and
+    # PharmCAT all see the same `chrN` names.
+    text, renamed = normalize_contigs(text)
 
     # --- header ------------------------------------------------------------
     head = text[:_HEADER_SCAN_BYTES]
@@ -435,21 +594,36 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
         )
 
     build = _detect_reference_build(header_lines)
+    lengths = contig_length_evidence(header_lines)
+    grch38_lengths = _build_evidence().get("contig_lengths", {}).get("GRCh38", {})
     if build is ReferenceBuild.GRCH37:
+        grch37 = next(((c, n) for c, n, verdict in lengths if verdict == "GRCh37"), None)
+        evidence = (
+            f" The header gives {grch37[0]} a length of {grch37[1]:,} bases, which "
+            f"is GRCh37's {grch37[0]}; GRCh38's is {grch38_lengths[grch37[0]]:,}."
+            if grch37 else ""
+        )
         raise VcfValidationError(
             VcfErrorCode.UNSUPPORTED_REFERENCE_BUILD,
             "This file uses an older map of the genome (GRCh37/hg19), and this analysis "
             "needs GRCh38/hg38. The two number the same positions differently, "
-            "so the file cannot be read as it stands.\n\n"
+            "so the file cannot be read as it stands."
+            f"{evidence}\n\n"
             "Converting between them is outside what this analysis does. "
             "Convert the file to GRCh38 and upload it again — the input "
             "requirements page lists the tools that do this. "
             "See docs/input_requirements.md.",
         )
-    if build is ReferenceBuild.UNKNOWN:
-        warnings.append(
-            "The VCF header does not state a reference build; assuming GRCh38. "
-            "If it is actually GRCh37/hg19, the results will be wrong."
+    unknown_length = next(((c, n) for c, n, verdict in lengths if verdict == "neither"), None)
+    if unknown_length is not None:
+        contig, length = unknown_length
+        raise VcfValidationError(
+            VcfErrorCode.UNSUPPORTED_REFERENCE_BUILD,
+            f"The header gives {contig} a length of {length:,} bases. GRCh38's "
+            f"{contig} is {grch38_lengths[contig]:,} bases, so this file was "
+            "aligned to a different reference, and its positions cannot be read "
+            "as GRCh38 positions. Re-export the file against GRCh38 and upload it "
+            "again. See docs/input_requirements.md.",
         )
 
     # --- #CHROM line and samples -------------------------------------------
@@ -504,6 +678,32 @@ def validate_vcf(raw: bytes, filename: str = "upload.vcf") -> VcfMetadata:
             "The VCF has a valid header but contains no variant rows, so there is "
             "nothing to analyse.",
         )
+
+    # --- REF identity --------------------------------------------------------
+    # The whole file, not the rows: a REF that contradicts GRCh38 says the file
+    # was made against another reference, which cannot be confined to the rows
+    # where it happens to show (A4-09a/b, A4-22; finding F-02).
+    ref = reference_check.check(text)
+    if ref.mismatches:
+        raise VcfValidationError(*_reference_mismatch(ref))
+
+    if build is ReferenceBuild.UNKNOWN:
+        if ref.compared:
+            # The header is silent, but the file is not: every REF it gives at a
+            # required position is GRCh38's.
+            build = ReferenceBuild.GRCH38
+            warnings.append(
+                "The VCF header does not state a reference build. The REF alleles "
+                f"at all {ref.compared} required positions in this file match "
+                "GRCh38, so it is read as GRCh38."
+            )
+        else:
+            warnings.append(
+                "The VCF header does not state a reference build; assuming GRCh38. "
+                "If it is actually GRCh37/hg19, the results will be wrong."
+            )
+    if renamed:
+        warnings.append(contig_rename_warning(renamed))
 
     return VcfMetadata(
         sample_ids=sample_ids,

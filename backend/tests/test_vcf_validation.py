@@ -72,12 +72,14 @@ class TestAccepts:
         assert "one sample at a time" in message
 
     def test_missing_build_warns_but_accepts(self) -> None:
+        """Since B6 the file's one row (rs4244285, REF G as in GRCh38) is the evidence."""
         vcf = MINIMAL_VCF.replace(
             '##contig=<ID=chr10,assembly=GRCh38.p14,species="Homo sapiens">\n', ""
         )
         meta = validate_vcf(vcf.encode())
-        assert meta.reference_build is ReferenceBuild.UNKNOWN
-        assert any("does not state a reference build" in w for w in meta.warnings)
+        assert meta.reference_build is ReferenceBuild.GRCH38
+        assert any("does not state a reference build" in w and "match GRCh38" in w
+                   for w in meta.warnings)
 
     def test_vcf_4_3_warns_but_accepts(self) -> None:
         meta = validate_vcf(MINIMAL_VCF.replace("VCFv4.2", "VCFv4.3").encode())

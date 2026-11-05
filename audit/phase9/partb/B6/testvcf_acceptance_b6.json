@@ -1,0 +1,418 @@
+{
+ "DPYD/c1129-5923c2846.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "DPYD/c1156het.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "DPYD/c1679c1156.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "DPYD/c2846het.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "DPYD/c557c703.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "DPYD/novariant.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "DPYD/s1s2b.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "NUDT15/refref.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "NUDT15/s2ref.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "NUDT15/s3ref.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/SLCO1B1_s14_s19_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/SLCO1B1_s15_s45_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/SLCO1B1_s19_s37_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/SLCO1B1_s1_s14_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/SLCO1B1_s1_s15_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/SLCO1B1_s1_s25_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/SLCO1B1_s37_s40_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/SLCO1B1_s5_s14_t1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/multi.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "SLCO1B1/s1as15s1bs5missing.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/s1as15s1bs5twomissing.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/s1s1.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/s1s15.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/s1s44.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/s2s2.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/s5s15.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "SLCO1B1/s5s45.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.3; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/het3a.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/hom1s_het3a.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/s15offdata.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/s16s22.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/s1s1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/s1s1s.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/s1ss1ss3.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/s3as3b.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/s3bs3c.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/unexpected.allele.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "TPMT/unexpected.allele.with.s9.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/noCall.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/rs12769205call.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/rs12769205missingrs4244285het.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/rs12769205only.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/rs12769205ref.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s15s28.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s1.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "cyp2c19/s1s17.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s17s1s4bmissing.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s17s1s4bmissingmore.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s1rs12248560missing.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s2.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s28.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s2rs3758581missing.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s2rs3758581missingRs58973490het.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s2rs58973490het.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s35.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s4b.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s1s4s17.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s2s2.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s2s3.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s4as4b.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s4bs17.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s4bs17rs28399504missing.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/s4s17het.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "cyp2c19/s4s17missingS1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c19/sUnks17.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c9/s1s1.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c9/s1s61.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c9/s24s24.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c9/s24s2pluss24.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "cyp2c9/s2s24.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c9/s2s24only.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c9/s2s25.vcf": {
+  "accepted": true,
+  "warnings": []
+ },
+ "cyp2c9/s2s3.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ },
+ "cyp2c9/s3s18m94981296.vcf": {
+  "accepted": true,
+  "warnings": [
+   "VCF is VCFv4.1; PharmCAT targets VCFv4.2. Processing anyway, but check results carefully."
+  ]
+ }
+}

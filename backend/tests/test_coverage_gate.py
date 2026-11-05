@@ -22,6 +22,7 @@ import pytest
 
 from app import coverage
 from app.models import Phenotype, RiskLabel
+from tests.grch38 import alt, ref
 
 REQUIREMENTS = Path(__file__).resolve().parents[1] / "app/data/position_requirements.json"
 
@@ -30,7 +31,7 @@ def _vcf(rows: list[tuple[str, int, str]]) -> str:
     """A minimal single-sample VCF. `rows` are (chrom, pos, genotype)."""
     head = ["##fileformat=VCFv4.2", "##reference=GRCh38",
             "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE"]
-    body = [f"{c}\t{p}\t.\tA\tG\t.\tPASS\t.\tGT\t{gt}" for c, p, gt in rows]
+    body = [f"{c}\t{p}\t.\t{ref(c, p)}\t{alt(c, p)}\t.\tPASS\t.\tGT\t{gt}" for c, p, gt in rows]
     return "\n".join(head + body) + "\n"
 
 

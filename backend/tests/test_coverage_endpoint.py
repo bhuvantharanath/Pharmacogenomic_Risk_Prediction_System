@@ -28,6 +28,7 @@ from fastapi.testclient import TestClient
 
 from app import coverage
 from app.main import app
+from tests.grch38 import alt, ref
 
 client = TestClient(app)
 
@@ -35,7 +36,7 @@ client = TestClient(app)
 def _vcf(rows: list[tuple[str, int, str]]) -> bytes:
     head = ["##fileformat=VCFv4.2", "##reference=GRCh38",
             "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\tSAMPLE"]
-    body = [f"{c}\t{p}\t.\tA\tG\t.\tPASS\t.\tGT\t{gt}" for c, p, gt in rows]
+    body = [f"{c}\t{p}\t.\t{ref(c, p)}\t{alt(c, p)}\t.\tPASS\t.\tGT\t{gt}" for c, p, gt in rows]
     return ("\n".join(head + body) + "\n").encode()
 
 

@@ -213,6 +213,75 @@ picard LiftoverVcf I=input.vcf O=lifted.vcf CHAIN=hg19ToHg38.over.chain.gz \
 Check the reject file. Positions that fail to lift are silently absent from the
 output, which puts you straight back into the variants-only failure above.
 
+How the build is recognised, strongest evidence first:
+
+1. a RefSeq accession in a `##contig` line (`NC_000010.11` is GRCh38 chr10);
+2. a `##contig` line's `length=` for a chromosome: every chromosome's length
+   differs between GRCh37 and GRCh38 (NCBI's assembly reports for GRCh38.p14
+   and GRCh37.p13), and a length that is neither build's is refused too;
+3. a `##reference` or `assembly=` declaration;
+4. failing all of those, the REF alleles themselves (next section).
+
+### "The REF allele is not GRCh38's"
+
+Every genotype is written relative to its REF allele. At the positions this
+analysis reads, the REF must be GRCh38's base — checked against PharmCAT's own
+reference alleles. One disagreement declines the whole file, not just that
+gene: it means the file was made against a different reference, and that cannot
+be confined to the rows where it happens to show. When most positions disagree,
+the file was almost certainly aligned to another build (see above).
+
+Find the rows, then re-export the file against GRCh38, with the same FASTA
+throughout:
+
+```bash
+# Report every REF that disagrees with the reference, without changing anything
+bcftools norm --check-ref w -f GRCh38.fa -Ou input.vcf.gz > /dev/null
+```
+
+### "This file is a gVCF"
+
+A gVCF states "reference from here to `END=`" in one record. PharmCAT reads a
+position without a row of its own as not tested, and so does this analysis, so
+required positions inside those blocks count as missing. Convert the gVCF to a
+VCF with every site, then restrict it as in the file-size section:
+
+```bash
+# GATK
+gatk GenotypeGVCFs -R GRCh38.fa -V input.g.vcf.gz -O all-sites.vcf.gz \
+  --include-non-variant-sites
+
+# bcftools
+bcftools convert --gvcf2vcf -f GRCh38.fa input.g.vcf.gz -Oz -o all-sites.vcf.gz
+```
+
+A gVCF-shaped file whose required positions each have their own row is read
+normally.
+
+### "This is a BCF file"
+
+BCF is VCF's binary form. Convert it to text VCF:
+
+```bash
+bcftools view -Ov -o sample.vcf sample.bcf
+```
+
+### Chromosome names
+
+`10`, `Chr10` and `CHR10` are read as `chr10` (likewise X, Y and M/MT), and the
+response says so. PharmCAT recognises only `chr`-prefixed names, so before this
+the file was previewed as answerable and then analysed as if every position
+were missing. Other names, such as RefSeq accessions used as chromosome names,
+are not renamed.
+
+### "This file contains more than one sample"
+
+Upload one sample at a time:
+
+```bash
+bcftools view -s SAMPLE_ID -Oz -o one-sample.vcf.gz input.vcf.gz
+```
+
 ### "This file looks compressed but could not be opened"
 
 A `.vcf.gz` produced by plain `gzip` is not the same thing as one produced by
