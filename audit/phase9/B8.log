@@ -142,3 +142,98 @@ Zero-regression PASS (S1-S6, cohort, 74 VCFs, A4 identical to B7; re-bind: no el
           against B7's package). Sabotage: SB8-a..f all caught, files restored identical; SB8-g (beyond the plan)
           caught.
 Not done, by design: the live L4 checks need the deploy and the owner-approved Render environment change.
+
+== Push and live check (owner: "Push, deploy, set env", 2026-11-06) ==
+Live criteria, written before any live measurement. Stage 1 is the code deploy with today's environment; stage 2 the
+environment change, then a Deploy workflow re-run on the same commit. L4 is the plan's "After deploy" list; L5 is
+added beyond the plan, before measuring.
+
+Stage 1, code (push 3afb82e..6d0e964):
+L1  The Deploy run's gate, Render and Cloudflare jobs succeed; /ready reports 6d0e964f28463271485c29f10c128af784c02123.
+L2  verify_postdeploy.py, live S1-S6 against the local B8 run (audit/phase9/partb/B8/s1-s6): commit matches, labels
+    equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local B8 run.
+
+Stage 2, environment (owner-approved Render API write):
+E1  Before the write: the values of CLIENT_IP_HEADER, MAX_WAITING_UPLOADS and TRUSTED_PROXY_CIDRS (none is a secret),
+    and one sha256 over every other key and value (no other value printed).
+E2  Written in this order: CLIENT_IP_HEADER=cf-connecting-ip, MAX_WAITING_UPLOADS=2, then TRUSTED_PROXY_CIDRS=
+    10.0.0.0/8 last, because with the CIDR set and no header the code keys on the first X-Forwarded-For entry, which
+    a client can forge. Read back: the three values exactly; the digest over every other key and value unchanged.
+E3  Render's deploy list read before and after the write: whether the write itself started a deploy is recorded,
+    not assumed.
+E4  The Deploy workflow re-run (workflow_dispatch on main, 6d0e964): gate, Render and Cloudflare succeed; /ready
+    reports 6d0e964f28463271485c29f10c128af784c02123.
+Then, with no upload from this machine since that deploy went live (the limiter lives in the process, so a new
+deploy starts it empty):
+L4-i   Eleven /coverage uploads from this machine, one after another, within 300 s: the eleventh gets 429. Every
+       status is recorded; the first ten are expected to answer 200.
+L4-ii  Then one more with a forged CF-Connecting-IP: 192.0.2.77 (TEST-NET-1): still 429.
+L4-iii The same with a forged X-Forwarded-For: 192.0.2.78: still 429.
+L4-iv  If L4-i fails, the header is absent; if L4-ii fails, it is forgeable. Either way the environment change is
+       rolled back (TRUSTED_PROXY_CIDRS removed first, which alone restores today's keys, then the other two to their
+       E1 values), the Deploy workflow re-run, and it is reported; never left half-working.
+L5 (beyond the plan) L4-i to iii would also pass if the key were one Render hop that every request happened to
+       share. So, positively: after at least 300 s with no upload from this machine, while one /analyze of S1 runs,
+       a /coverage from this machine gets 429 ONE_AT_A_TIME with Retry-After. The server answers that only when the
+       peer is a trusted proxy and CF-Connecting-IP holds exactly one valid address. If it does not, L4-iv applies.
+No address is logged or recorded: only statuses, error codes and Retry-After.
+(B8.log sha256 with the criteria above as its last section, before any live measurement:
+5a2ce2ca9073dd22ba7a82bcc6abbbfeb1e0026bb4f7b8bd55d6a88d7e4fe623.)
+
+Live results.
+Secret scan over the 71 outgoing files: 5 values checked, 0 flagged. Pushed 3afb82e..6d0e964 to main (Deploy run
+42163893209, test run 42163893519, both created 2026-11-06T04:40:29Z).
+test run 42163893519 on 6d0e964: every step green except "Authoritative explanation-content gate" (F-08, by design).
+pytest, counted from its -q progress characters (it prints no summary line): 1172 results, 1151 passed, 21 skipped,
+0 failed (15 more skips than locally, as at B7: F-09). flutter: 259 tests passed.
+L1 PASS  Deploy run 42163893209: release gate success (04:40:32-04:45:51Z), Render backend success (04:45:53-04:46:43Z),
+         Cloudflare Pages success (04:46:45-04:49:28Z). /ready build.commit 6d0e964f28463271485c29f10c128af784c02123 at
+         04:49:57Z, before the first live upload, and again after S1-S6 (B8/live_ready_after_s1s6.json).
+L2 PASS  verify_postdeploy.py (B8/postdeploy_verification.json): commit matches; S1-S6 labels equal the local B8 run,
+         template-only prose, disclaimer equal. Seconds 64.8, 58.5, 62.9, 62.9, 63.4, 61.9; all 200.
+L3 PASS  B8/live_s1s6_fields.json: gene_findings and warnings equal the local B8 run in all six.
+E1 PASS  Render API, read twice before the write, equal both times: CLIENT_IP_HEADER, MAX_WAITING_UPLOADS and
+         TRUSTED_PROXY_CIDRS all unset; 6 other keys.
+E2 PASS  Written 2026-11-06T04:57:26Z in the logged order, each PUT 200: CLIENT_IP_HEADER=cf-connecting-ip,
+         MAX_WAITING_UPLOADS=2, TRUSTED_PROXY_CIDRS=10.0.0.0/8. Read back exactly; the other 6 keys and their values
+         unchanged by digest (B8/live_env_change.json; no other value recorded).
+E3       No deploy started in the 17 s between the write and the re-run (04:57:26-04:57:43Z): the deploy list read
+         before, straight after, and again just before the re-run shows only the push's deploy (live, 6d0e964).
+         Whether Render would have applied the values without a deploy is not established; the re-run made it moot.
+E4 PASS  Deploy re-run 42165543496 (workflow_dispatch, main 6d0e964): release gate success (04:57:46-05:03:25Z), Render
+         backend success (05:03:28-05:04:17Z), Cloudflare Pages success (05:04:19-05:07:00Z). Render deploy
+         dep-dbmlv8bm8hqs73ari1og live 05:04:03Z on 6d0e964. /ready build.commit 6d0e964f28463271485c29f10c128af784c02123
+         at 05:07:16Z (B8/live_ready_after_env.json). No upload from this machine between that deploy and L4.
+L4 (b8_live_checks.py limit -> B8/live_limit.json, B8.live-limit.stdout; started 2026-11-06T05:07:24Z):
+L4-i   PASS  uploads 1-10 answered 200; the eleventh 429 RATE_LIMITED, Retry-After 297, 3.6 s after the first.
+L4-ii  FAIL as written. The upload with a forged CF-Connecting-IP: 192.0.2.77 got 403, not 429: not JSON, 0.08 s
+             against 0.31 s for the app's answers. One diagnostic request (B8/live_forged_edge_diagnostic.json):
+             Server cloudflare, text/plain, 17 bytes, Cloudflare error code 1000, no Render or application header.
+             Cloudflare refused it before Render, so the forged value cannot have reached the key. But the criterion
+             says "still 429", and L4-iv reads a failed L4-ii as "forgeable", which this outcome is not.
+L4-iii PASS  the upload with a forged X-Forwarded-For: 192.0.2.78: 429 RATE_LIMITED, Retry-After 297 (the same bucket).
+Stopped here under the Part B rule (acceptance failed as written: stop and ask). L5 not run. The environment change is
+left as written while the owner decides: rolling back would restore the F-04 keys, and nothing measured shows the
+header forgeable or absent.
+
+== L4-ii amended by the owner ("Accept, amend L4-ii", 2026-11-06) ==
+be2bab44d5067c583c7e95ea2735d63ef0993884b64cc07149ed3fc7dab94c1e  audit/phase9/B8_L4_AMENDMENT.md
+Written after measurement at the owner's instruction; the plan and the criteria above are unedited. Amended L4-ii
+passes if the forged value does not reach the key: (a) 429 RATE_LIMITED as JSON from the application, or (b) a
+refusal at Cloudflare's edge before Render (not JSON, Server cloudflare, no rndr-id, no x-content-type-options).
+Positive control for (b)'s absent headers (B8/live_app_headers_control.json, 09:57:24Z): GET /health through the same
+path is JSON with rndr-id and x-content-type-options present. Server is cloudflare on application answers too, so it is
+the absent headers and the non-JSON body that place the 403 at the edge.
+L4-ii PASS as amended, by (b).
+L5     PASS  (B8/live_one_at_a_time.json, B8.live-one-at-a-time.stdout; 2026-11-06T09:58Z, after a cold start at
+             09:57Z, 4 h 49 min after the last upload): while the S1 /analyze ran (200 in 63.1 s), a /coverage from
+             this machine got 429 ONE_AT_A_TIME, Retry-After 90, in 0.59 s. The server gives that only when the peer
+             is a trusted proxy and CF-Connecting-IP holds exactly one valid address: it keyed both on the visitor.
+
+Live verdict: L1-L3, E1, E2, E4, L4-i, L4-ii (as amended), L4-iii and L5 PASS; E3 recorded. F-04 is fixed live: one key
+per visitor, from Cloudflare's header, which a visitor cannot forge (Cloudflare refuses a supplied one) and which
+X-Forwarded-For does not reach. The Render environment stays as written: CLIENT_IP_HEADER=cf-connecting-ip,
+MAX_WAITING_UPLOADS=2, TRUSTED_PROXY_CIDRS=10.0.0.0/8.
+B8 done as amended: AC1-AC7 PASS; zero-regression PASS; live PASS with L4-ii as amended by the owner
+(B8_L4_AMENDMENT.md); SB8-a..f caught, SB8-g beyond the plan caught; 0 explanation entries invalidated.

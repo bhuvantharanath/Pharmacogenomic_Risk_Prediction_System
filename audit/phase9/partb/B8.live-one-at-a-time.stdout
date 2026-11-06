@@ -1,0 +1,5 @@
+{"second": {"path": "/coverage", "forged": [], "status": 429, "error_code": "ONE_AT_A_TIME", "retry_after": "90", "json": true, "seconds": 0.59}}
+{"first": {"path": "/analyze", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 63.06}}
+PASS  L5 /coverage during the analysis: 429 ONE_AT_A_TIME with Retry-After
+PASS  L5 (recorded) the analysis itself answers 200
+one-at-a-time rc=0

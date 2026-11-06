@@ -1,0 +1,17 @@
+{
+ "utc": "2026-11-06T05:08:04Z",
+ "request": "POST /coverage with CF-Connecting-IP: 192.0.2.77",
+ "status": 403,
+ "server": "cloudflare",
+ "content_type": "text/plain; charset=UTF-8",
+ "cf_ray_header_present": true,
+ "app_headers_present": {
+  "x-content-type-options": false,
+  "x-request-id": false,
+  "rndr-id": false
+ },
+ "body_bytes": 17,
+ "body_is_json": false,
+ "cloudflare_error_code": "1000",
+ "note": "body text and any address in it deliberately not recorded"
+}

@@ -1,0 +1,35 @@
+{
+ "watched_before": {
+  "CLIENT_IP_HEADER": null,
+  "MAX_WAITING_UPLOADS": null,
+  "TRUSTED_PROXY_CIDRS": null
+ },
+ "writes_in_order": [
+  {
+   "key": "CLIENT_IP_HEADER",
+   "status": 200,
+   "value_returned": "cf-connecting-ip",
+   "at": "2026-11-06T04:57:26Z"
+  },
+  {
+   "key": "MAX_WAITING_UPLOADS",
+   "status": 200,
+   "value_returned": "2",
+   "at": "2026-11-06T04:57:26Z"
+  },
+  {
+   "key": "TRUSTED_PROXY_CIDRS",
+   "status": 200,
+   "value_returned": "10.0.0.0/8",
+   "at": "2026-11-06T04:57:26Z"
+  }
+ ],
+ "watched_after": {
+  "CLIENT_IP_HEADER": "cf-connecting-ip",
+  "MAX_WAITING_UPLOADS": "2",
+  "TRUSTED_PROXY_CIDRS": "10.0.0.0/8"
+ },
+ "other_keys": 6,
+ "other_keys_and_values_unchanged": true,
+ "deploys_started_by_the_write": []
+}

@@ -1,0 +1,18 @@
+{"n": 1, "at": 0.0, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.31}
+{"n": 2, "at": 0.31, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.33}
+{"n": 3, "at": 0.64, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.31}
+{"n": 4, "at": 0.95, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.31}
+{"n": 5, "at": 1.26, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.4}
+{"n": 6, "at": 1.67, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.31}
+{"n": 7, "at": 1.98, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.29}
+{"n": 8, "at": 2.27, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.42}
+{"n": 9, "at": 2.69, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.32}
+{"n": 10, "at": 3.01, "path": "/coverage", "forged": [], "status": 200, "error_code": null, "retry_after": null, "json": true, "seconds": 0.32}
+{"n": 11, "at": 3.33, "path": "/coverage", "forged": [], "status": 429, "error_code": "RATE_LIMITED", "retry_after": "297", "json": true, "seconds": 0.31}
+{"n": 12, "at": 3.64, "path": "/coverage", "forged": ["CF-Connecting-IP"], "status": 403, "error_code": null, "retry_after": null, "json": false, "seconds": 0.08}
+{"n": 13, "at": 3.72, "path": "/coverage", "forged": ["X-Forwarded-For"], "status": 429, "error_code": "RATE_LIMITED", "retry_after": "297", "json": true, "seconds": 0.31}
+PASS  L4-i the eleventh gets 429, within 300 s
+PASS  L4-i (expected) the first ten answer 200
+FAIL  L4-ii forged CF-Connecting-IP: still 429
+PASS  L4-iii forged X-Forwarded-For: still 429
+limit rc=1
