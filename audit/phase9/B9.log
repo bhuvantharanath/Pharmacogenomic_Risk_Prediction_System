@@ -140,3 +140,42 @@ tests live. Fixed (scrub imported from _common, the one print wrapped); the hygi
 outside the scientific core, so the re-bind stands. The full backend suite is rerun before the fix is committed.
 Backend suite after the fix (partb/B9.backend-suite.stdout): 1172 collected; 1166 passed, 6 skipped, 0 failed (B8's
 six skips; B9 adds no backend test).
+
+== Release gate, rerun on 1e2e38a (partb/B9.gate.json, B9.gate.rc) ==
+rc 0, state ready, release_ready true; candidate and tested revision 1e2e38a, artifact hashes match. All seven
+required checks passed: compatible-bundle (PASS), backend-tests, provenance, label-mapping (13 divergences, all in the
+accepted baseline), flutter-analyze (no issues), flutter-tests (369 passed), fhir-validation (PASS: 7 bundles,
+positive control rejected with 2 errors). Every content field equals B8's gate; the four content-review items stay
+outstanding (non-blocking under withhold_unapproved_stored_prose); explanation mode deterministic_template_only;
+clinical expert review NOT_OBTAINED.
+Explanation store: git diff 3b1755a..1e2e38a on explanations.json and explanation_approvals.json is empty: 0 entries
+invalidated. backend/app: only compatible_bundle.json changed (the re-bind's record).
+
+== AC verdicts (2026-11-06) ==
+AC1 PASS  validator 7.0.2 (pin verified) on the seven fixture bundles: 0 errors, 0 fatal each; every warning listed
+          above, grouped by message; the positive control has 2 errors.
+AC2 PASS  fhir_report_test, every fixture: one Therapeutic Implication per analysed drug, every Unknown included;
+          every derivedFrom, specimen and result reference resolves in the bundle; result lists every Observation once.
+AC3 PASS  (a) medication = served drug, (b) note label = served label, (c) conclusion-string = served action for CPIC
+          entries and the app's unknownExplanation for Unknowns, (d) related artifact citing the served source exactly
+          when a CPIC entry matched, (e) phenotype = served phenotype, Unknown for an Unknown; genotypes "<gene>
+          <diplotype>" from the served profile; an Unknown with served gene Unknown never gets a value: capability genes
+          get dataAbsentReason, ibuprofen none at all (the reading logged above).
+AC4 PASS  report partial and every Observation preliminary (no "final" anywhere); the test-disclaimer note and the
+          narrative carry the printable summary's disclaimer, equal to the HTML's text nodes; the test-methodology note
+          is provenanceText of the served guideline_provenance and contains every non-empty served field; no Patient;
+          the sample name appears only on the Specimen.
+AC5 PASS  every fixture: a PDF; the placed strings equal the HTML summary's text nodes in order (running header apart);
+          the header on every page; every character in its font; every font static. Independently, pypdf found every
+          HTML text node and the header on every page of all seven PDFs.
+AC6 PASS  download_report_test: "Download report" offers both items; the PDF reaches the seam as application/pdf
+          bytes starting %PDF- with a .pdf name; the FHIR file as application/fhir+json, a Bundle, .fhir.json; Printable
+          summary, Export JSON and Copy JSON still present.
+AC7 PASS  locally: validate_fhir_exports.py is the gate's seventh required check and passed there after verifying the
+          pinned jar; backend 1166 passed / 0 failed, Flutter 369 passed, gate ready (on the rerun). Its test.yml step
+          runs only on a push; that run, and the Deploy gate's first CI run of fhir-validation, are recorded after the
+          push.
+Zero-regression PASS: S1-S6 bodies, cohort, 74 VCFs, A4 identical to B8; the HTML summaries byte-identical; re-bind:
+          no eligibility or discrepancy change against B8's package.
+Sabotage: SB9-a..h all caught; files restored identical.
+Recorded, not hidden: the first gate run failed on my unscrubbed exception (above); fixed in 1e2e38a.
