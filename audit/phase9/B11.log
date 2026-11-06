@@ -140,3 +140,49 @@ equal_to_previous_evaluation_except_generation_time is true. Against the histori
 B5's CYP2C9 and B10's CYP2D6 declarations, inherited from B10's verified package, not re-declared here. Every scored
 metric, exclusion and discrepancy classification equal. Zero-regression, external evaluation: PASS.
 scripts/compatible_bundle.py and backend/app/data/compatible_bundle.json repointed to the b11 package.
+
+== Found while measuring AC4: a gene with a figure that no card can reach ==
+The table holds six genes; the capability registry has six primary genes, and they are not the same six. NUDT15 has a
+measured figure (78/601, 13.0% [10.5, 15.9]) but is no drug's primary gene, so no card shows it. It is not an
+irrelevant gene: backend/app/data/capabilities.json lists NUDT15 among azathioprine's relevant_genes and
+evidence_dependencies, and that drug's own limitation says a complete interpretation needs acceptable evidence for
+both TPMT and NUDT15. So the azathioprine card shows TPMT's 3.3% and withholds the higher NUDT15 figure for the same
+drug. Warfarin is the same shape in the other direction: VKORC1 and CYP4F2 are relevant to it but were never
+measured, so there is nothing to show for them.
+This is not a defect against AC4, which says each card shows "its own primary gene's figure and no other" - showing
+NUDT15 beside TPMT would fail AC4 as written. It is a limit of the design the plan pre-committed to, recorded here
+rather than fixed silently, and it is a decision for the owner: leave the panel keyed on the primary gene, or widen it
+to a drug's measured relevant genes (which needs AC4 amended before any code).
+The Flutter suite now pins the fact rather than leaving it implicit: a test asserts every capability's primary gene is
+exercised by some fixture, so the gap is visible if the registry changes.
+
+== Release gate on 1cf2d75 (partb/B11.gate.json, B11.gate.rc) ==
+First run: rc 0, state ready, release_ready true; candidate and tested revision both
+1cf2d754e750867e38ca4bc38cbc5cb6cbb09cd6, artifact hashes match. All seven required checks passed: compatible-bundle
+(PASS), backend-tests, provenance, label-mapping, flutter-analyze, flutter-tests, fhir-validation (0 errors and 0
+fatal per bundle). Against B10's gate the only differing fields are the ones that must differ: candidate_revision,
+tested_revision, the two artifact hashes and compatible_bundle. The check set is identical.
+Backend suite on 1cf2d75 (partb/B11.backend-suite.stdout): 1222 passed, 6 skipped, 0 failed - the four identity tests
+that failed before the re-bind now pass against the b11 package (B10 on its re-bound head: 1218).
+
+== AC verdicts (2026-11-06) ==
+AC1 PASS  the committed table equals the generator's output byte for byte, and the generator's CYP2C19 pooled and
+          per-cohort figures equal the ones parsed out of reports/sas_cohort_expansion.md itself: pooled 57.1
+          [53.1, 61.0]; STU 64.0 [54.9, 72.3]; ITU 60.7 [51.3, 69.5]; BEB 57.3 [48.7, 65.4]; PJL 54.1 [46.0, 62.0];
+          GIH 49.5 [40.1, 59.0]. The test reads the report, so a figure edited in either place fails it.
+AC2 PASS  all 18 printable-HTML and FHIR files for the nine fixtures byte-identical to B10's, with a positive
+          control; a test asserts neither export mentions the context for any fixture; no backend/app file changed.
+AC3 PASS  for each of the six genes with a figure the open panel carries the label, n 601, all five cohorts, the
+          lower-bound wording with that gene's positions (DPYD "was not measured"), the research-format and
+          outside-India caveats, and that a frequency is not an outcome. Checked again on a real opened card (S1
+          clopidogrel, clinician mode) rather than only on the panel pumped alone, including "Measured 2026-08-14".
+AC4 PASS  for every analysis of all nine fixtures the open card shows its own gene's headline and no other gene's;
+          CYP2D6 and a drug with no gene assessed show their sentence and no percent anywhere. See the NUDT15
+          finding above for what this criterion, as written, keeps off the card.
+AC5 PASS  backend 1222 passed 0 failed; Flutter 477 passed, analyze clean; release gate ready on the first run.
+Zero-regression PASS  S1-S6 bodies, 2,400 cohort results, 74 VCFs, A4 and the 18 exports all unchanged, each absence
+          check with its own positive control; the external evaluation differs from B10's only in the path-bearing
+          vcf_sha256. Nothing was declared, because nothing served changed.
+Sabotage NOT RUN (owner decision; see the section above). Standing rule 4 is unsatisfied for B11 alone.
+Explanation entries invalidated: 0.
+Not done, by design: the live checks need a deploy.
