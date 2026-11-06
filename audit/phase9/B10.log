@@ -137,3 +137,36 @@ scored metric equal. Against B9's package: vcf_sha256 1,456 rows and CYP2D6 elig
 discrepancy detail CYP2D6 117 rows (declared); nothing else. Cumulative against the historical benchmark: B5's CYP2C9
 changes and B10's CYP2D6 changes. Zero-regression, external evaluation, as amended: PASS.
 The first attempt's output is kept as partb/rebind-b10.attempt1-undeclared.stdout.
+
+== Release gate on b0a106e (partb/B10.gate.json, B10.gate.rc) ==
+First run: rc 0, state ready, release_ready true; candidate and tested revision b0a106e, artifact hashes match. All
+seven required checks passed: compatible-bundle (PASS), backend-tests, provenance, label-mapping ("PASS: 4
+divergence(s), all of them in the accepted baseline"), flutter-analyze (no issues), flutter-tests (438 passed),
+fhir-validation (9 bundles; positive control rejected with 2 errors). Every content field equals B9's gate.
+Backend suite on b0a106e (partb/B10.backend-suite.stdout): 1218 passed, 6 skipped, 0 failed (B9: 1166; +52
+test_outside_calls).
+Explanation store: git diff 34f40db..HEAD on explanations.json and explanation_approvals.json is empty: 0 entries
+invalidated.
+
+== AC verdicts (2026-11-06) ==
+AC1 PASS  without a supplied call codeine is Unknown for NA12273 and every S1-S6 file (test; regression 6/6 labels).
+AC2 PASS  real PharmCAT on NA12273: *4/*4 Ineffective; *4/*10 (IM) and *1/*2 (NM) No PGx-guided adjustment identified;
+          *1/*1x2 (URM) Toxic; *1xN/*4 and *999/*1 Unknown; each with the CPIC text PharmCAT returned.
+AC3 PASS  supplied_by is the caller on every supplied result; "CYP2D6 supplied by <caller>, not called by PharmaGuard."
+          in the API warnings (with the diplotype as supplied), the results row (the card's header, shown open or
+          closed; inside the grid the card has no verdict panel of its own), the printable page, the PDF (parity test
+          and pypdf) and the FHIR Genotype and implication notes. The served explanation says "supplied by <caller>, not
+          called by PharmaGuard" and never "PharmCAT called" or "PharmaGuard called".
+AC4 PASS  a tab, a newline adding a second gene, a lowercase or bare allele, more than 80 characters, a caller off
+          the list, and one field without the other: 400 before PharmCAT runs (the recording stand-in is never
+          called). No PharmCAT command carries -research.
+AC5 PASS  S1 and S6 files with *1/*2 from Cyrius: every analysis but codeine identical to the run without.
+AC6 PASS  101/105 agree (was 92); the nine codeine IM and NM rows now agree; the four rows still divergent keep their
+          actual labels, and the 92 that agreed still agree, so no other row's actual label changed; baseline 13 -> 4;
+          the mapping diff is one phrase (with its comment).
+AC7 PASS  backend 1218 passed, 0 failed; Flutter 438 passed; FHIR validation 9 bundles 0 errors (X2 and X3
+          included); release gate ready.
+Zero-regression PASS as declared and amended: labels unchanged everywhere; S1-S6 bodies differ from B9 only by the
+          three declared changes; the external evaluation only by the amended text change (B10_ZR_AMENDMENT.md).
+Sabotage: SB10-a..i caught; files restored identical.
+Not done, by design: the live checks need a deploy.
