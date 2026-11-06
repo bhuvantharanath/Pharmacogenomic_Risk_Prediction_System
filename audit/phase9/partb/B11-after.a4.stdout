@@ -1,0 +1,36 @@
+A4-01   400 UNSUPPORTED_REFERENCE_BUILD
+A4-02   400 UNSUPPORTED_REFERENCE_BUILD
+A4-03   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-04   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-05   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-06   400 NOT_VCF
+A4-07   400 UNSUPPORTED_MULTISAMPLE
+A4-08a  200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-08b  200 {'clopidogrel': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'Unknown', 'azathioprine': 'Unknown', 'fluorouracil': 'Unknown'}
+A4-09a  400 REFERENCE_ALLELE_MISMATCH
+A4-09b  400 REFERENCE_ALLELE_MISMATCH
+A4-10   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-11   200 {'clopidogrel': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'Unknown', 'azathioprine': 'Unknown', 'fluorouracil': 'Unknown'}
+A4-12a  400 EMPTY_FILE
+A4-12b  400 NO_VARIANTS
+A4-12c  400 NOT_VCF
+A4-12d  400 NOT_VCF
+A4-12e  413 FILE_TOO_LARGE
+A4-12f  400 DECOMPRESSED_TOO_LARGE
+A4-13a  200 {'clopidogrel': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-13b  200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-14a  200 {'clopidogrel': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-14b  200 {'clopidogrel': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-15a  200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-15b  400 NOT_VCF
+A4-16   200 {'clopidogrel': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-17   200 {'clopidogrel': 'Unknown', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-18   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-19   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-20   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-21   200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-22   400 UNSUPPORTED_REFERENCE_BUILD
+A4-24   200 {'clopidogrel': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'Toxic', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-25   200 {'clopidogrel': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'Adjust Dosage', 'fluorouracil': 'No PGx-guided adjustment identified'}
+A4-26   200 {'clopidogrel': 'No PGx-guided adjustment identified', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'Adjust Dosage', 'fluorouracil': 'No PGx-guided adjustment identified'}
+BASE    200 {'clopidogrel': 'Ineffective', 'warfarin': 'Unknown', 'codeine': 'Unknown', 'simvastatin': 'No PGx-guided adjustment identified', 'azathioprine': 'No PGx-guided adjustment identified', 'fluorouracil': 'No PGx-guided adjustment identified'}

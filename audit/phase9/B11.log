@@ -1,0 +1,127 @@
+B11 — South Asian population context (display only)
+Started 2026-11-06 on main at b036f36, after B10's live record (b036f36, pushed).
+
+== Plan, hashed before any B11 code ==
+4b2dbb0930148daa11030aa440cbdf6a5e43b1146f66994ef14f3258708f1fe5  audit/phase9/B11_PLAN.md
+
+== State before any edit ==
+reports/sas_frequencies.json pooled phenotypes (n=601): CYP2C19 PM 95, IM 248; CYP2C9 PM 16, IM 159 (+4 Indeterminate,
+1 No Result); SLCO1B1 Poor 2, Decreased 44 (+37 n/a, 9 No Result); TPMT IM 20; NUDT15 PM 3, IM 75; DPYD PM 1, IM 12
+(+129 Indeterminate); CYP2D6 No Result 601. reports/sas_deviation_filtered.json input_artifacts: positions present
+CYP2C19 16/35, CYP2C9 17/88, SLCO1B1 20/35, TPMT 9/45, NUDT15 5/20; DPYD not in that analysis.
+
+== Export baseline (before any app edit; export_fixtures_test into scratch) ==
+sha256 of the nine fixtures' printable HTML summaries and FHIR bundles (exportedAt fixed):
+  803171a9cfc545201430af6bf0376cc92b123bbdd0e84b2498a2f8234f3939ad  S1_confident.summary.html
+  afc133d53f76cde151c47fec1517648ed3a5f0e6fd9bc703caffa11e79338f76  S2_variants_only.summary.html
+  1d0710173848d81d44f2ee554948176b291251e83e89ae817ec3c3974c4f31f0  S3_cyp2d6.summary.html
+  139646d79685b600f338ada6942d6d0615b051b9861a29da37446de9e8cc8873  S4_dpyd.summary.html
+  b3698ac12f34aaf8ce20f25d94ad89b2ec6f2360b94fc7ffd65d2b644b1b5a11  S5_normal.summary.html
+  c4ea0ac9144a02f6a63272f3f522f41622dc3a120c268be69ab917bc25ff5b85  S6_multidrug.summary.html
+  1b65ec58d12d5b3979ea14773379cfbf8233f7a9ff24b312d3312ac4d8c3b69e  X1_all_drugs.summary.html
+  708b45a22dfa06020dbea1ce3afdec86ce903ad5547ade83ceb3e566898bbc76  X2_supplied_cyp2d6.summary.html
+  3bd838674ac943edfceee64512b21691a2f2bfccdebe313bf1caa81d463d8214  X3_supplied_xn.summary.html
+  61169b11e53b4a63eeb08756f64a9d701a242b45ac5c10532ba50c37d188e8b1  S1_confident.fhir.json
+  048288ff038b173a0bffb2b5842cef1fd45e021b006dd0dda127e0d41068f9af  S2_variants_only.fhir.json
+  660f3c11192466558e56ab2271ff4872b1783c2fef61e74630727400e95d69c8  S3_cyp2d6.fhir.json
+  0be69b8119f955997484693d14bebb666665b87e7000d323c8e51c89a32caed6  S4_dpyd.fhir.json
+  70e71349aaf6d03cc9b5b9ac6564e6e9bee80dc843630c20149c9308a8f602f6  S5_normal.fhir.json
+  83a8046053be3d5112fa7ba45c12680e3107219cc3ffedc49ec62a5f7259c57c  S6_multidrug.fhir.json
+  554121d7a1d105a24544cc0569b3811700b504d409766c4409ad87faeded4f43  X1_all_drugs.fhir.json
+  501bd32206222e27c6c4d41286c1959200f870d2e8bee2a7290d64a1af1569a1  X2_supplied_cyp2d6.fhir.json
+  394e7b051a7e2fbd424cf06c3774d41f22ac0120446eb5c221b83dcb7604c8d0  X3_supplied_xn.fhir.json
+
+== Generator and table (2026-11-06) ==
+scripts/generate_population_context.py reads reports/sas_frequencies.json (pooled and per-cohort phenotype counts,
+n_reports), reports/sas_deviation_filtered.json (input_artifacts: positions present and required) and the measurement
+date from reports/sas_cohort_expansion.md. It writes app/lib/generated/population_context.g.dart, one JSON string the
+client parses; --check exits 1 if the committed file differs. Reduced function is Poor plus Intermediate Metabolizer,
+for SLCO1B1 Poor plus Decreased Function. Indeterminate, No Result and n/a stay in the denominator. 95% Wilson,
+z 1.96. No figure is typed in the generator.
+
+Read back from the generated table (measured 2026-08-14, n 601, cohorts PJL BEB STU ITU GIH):
+  CYP2C19 343/601 57.1 [53.1, 61.0]  positions 16/35  No Result 1, n/a 15 in the total
+  CYP2C9  175/601 29.1 [25.6, 32.9]  positions 17/88  Indeterminate 4, No Result 1
+  SLCO1B1  46/601  7.7 [5.8, 10.1]   positions 20/35  No Result 9, n/a 37
+  TPMT     20/601  3.3 [2.2, 5.1]    positions 9/45
+  NUDT15   78/601 13.0 [10.5, 15.9]  positions 5/20
+  DPYD     13/601  2.2 [1.3, 3.7]    positions not measured, Indeterminate 129
+  CYP2C19 cohorts: PJL 79/146 54.1 [46.0, 62.0]; BEB 75/131 57.3 [48.7, 65.4]; STU 73/114 64.0 [54.9, 72.3];
+  ITU 65/107 60.7 [51.3, 69.5]; GIH 51/103 49.5 [40.1, 59.0]. These are the report's own documented figures.
+
+== Client ==
+lib/models/population_context.dart  parses the table; southAsianContextFor(gene) returns null for CYP2D6 and any gene
+not measured. Percent and interval are displayed as the generator wrote them, never recomputed.
+lib/widgets/population_context_panel.dart  the row title is "South Asian context - not used for this result". The
+panel gives the pooled headline ("At least P% (95% CI L-H%) of 601 people in five South Asian 1000 Genomes cohorts
+were called <reduced> for <gene>."), the five cohort lines with n, then the caveats: context only, nothing here was
+used to reach the result; a lower bound, with positions present out of required (DPYD: not measured) and the reason;
+the Indeterminate or no-result count, in the total and not as reduced; PharmCAT's calls on research-format data this
+application would itself decline; four of the five cohorts collected outside India; a frequency is not an outcome;
+the measurement date and its report. With no figure: "No South Asian figure was measured for <gene>, so none is
+shown.", or for a drug with no gene assessed, the no-gene sentence. No number is shown in either case.
+lib/widgets/verdict_card.dart  one DisclosureRow, last in both the patient and clinician bodies, closed by default.
+No other client file changed. No backend/app file changed.
+scripts/scientific_hash_policy.json  the three new served files added to core_paths (102 -> 105), sorted, no
+duplicates: app/lib/generated/population_context.g.dart, app/lib/models/population_context.dart,
+app/lib/widgets/population_context_panel.dart.
+
+== Tests ==
+backend/tests/test_population_context.py (4 passed): the committed table equals the generator's output byte for byte;
+the generator's CYP2C19 pooled and per-cohort percent and interval equal the figures parsed out of
+reports/sas_cohort_expansion.md itself (the test reads the report's table, it does not hold the numbers); every gene's
+denominator is 601 pooled and 601 across the cohorts, and DPYD's 129 Indeterminate are in the total and not reduced;
+coverage is 16/35 for CYP2C19 and null for DPYD. It adds no backend/app code; it sits beside the existing generated-
+file check in tests/test_capability_scope.py.
+app/test/population_context_test.dart (39 passed): the table parses, six genes, CYP2D6 absent; for each of the six
+genes the open panel carries the headline with n 601, all five cohorts, and every caveat, with the positions wording
+matching that gene's coverage (DPYD "was not measured"); DPYD names its 129 Indeterminate; CYP2D6 and a drug with no
+gene show their sentence and no percent; for every analysis of all nine fixtures the open card shows its own gene's
+headline and no other gene's, and where there is no figure the right sentence and no "At least" anywhere; a guard
+that the fixtures cover both kinds of figureless card (CYP2D6 and Unknown) and every drug capability's primary gene;
+and for all nine fixtures the printable HTML and the FHIR bundle contain neither "South Asian" nor "1000 Genomes
+cohorts".
+The card test asserts the row label as literal words as well as through the constant, so renaming the constant's text
+cannot pass unnoticed.
+flutter analyze: No issues found.
+
+== Exports unchanged (AC2) ==
+export_fixtures_test into a scratch directory after the client edits, then sha256 over the nine fixtures' printable
+HTML summaries and FHIR bundles: all 18 equal the baseline recorded above, file for file, before any B11 edit.
+Positive control, because this is an absence check: one space appended to a copy of S5_normal.summary.html changes
+its sha256 and the same comparison reports that one file and exits 1. So the comparison does detect a one-byte
+change. No backend/app file changed, so no served response can carry the context either.
+
+== Sabotage NOT RUN (owner decision, 2026-11-06) ==
+The plan's SB11-a..f were not run. Writing audit/phase9/partb/b11_sabotage.py was stopped twice by the assistant's
+own safety classifier (an environment limitation, not a test or tool failure); the script does not exist and no
+sabotage was performed. Offered to the owner: run them yourself, or log the gap and continue. Owner: "Log the gap,
+continue".
+What this leaves unverified, stated plainly: that each of the six rules is actually load-bearing in a test. The
+positive tests above pass, and the export comparison has its own positive control, but nothing here demonstrates that
+a hand-edited figure (SB11-a), z = 1.645 (SB11-b), a dropped "not used for this result" label (SB11-c), a dropped
+lower-bound caveat (SB11-d), a wrong-gene lookup (SB11-e) or a leak into the printable summary (SB11-f) would turn a
+test red. Standing rule 4 ("every fix gets sabotage") is therefore not satisfied for B11, by owner decision, and this
+is the only Part B item so far with no sabotage evidence. The six cases stay written in B11_PLAN.md so they can be run
+later; audit/phase9/partb/b10_sabotage.py is the pattern.
+
+== Suites before commit ==
+Backend (full, 2026-11-06): 1218 passed, 6 skipped, 4 failed - the same four identity tests the re-bind refreshes
+(test_compatible_bundle, two in test_current_candidate_evaluation, test_portable_scientific_hash), exactly as at B10.
+B10 passed 1214; the 4 added are tests/test_population_context.py.
+Flutter: flutter analyze no issues; flutter test 477 passed (B10: 438; +39 population_context_test).
+Explanation store: git diff b036f36..HEAD on explanations.json and explanation_approvals.json is empty, so 0 entries
+invalidated. The store was not touched.
+
+== Zero-regression vs B10 (run_regression.py B11 --compare-to B10 -> B11.stdout; a4_labels.py B11-after) ==
+S1-S6    6/6 labels. Every one of the six response bodies is identical to B10's once timestamp and
+         processing_time_ms are stripped - not "equal after declared changes" as at B10, but unchanged, because no
+         backend file was touched. Positive control: a risk_label flipped in a copy is detected. PASS.
+Cohort   2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other confident. PASS.
+74 VCFs  148 field comparisons, 0 mismatches, match rate 1.0. PASS.
+A4       36 rows, identical to B10-after once seconds are stripped. Positive controls: a flipped label in one row and
+         an appended warning are both detected (A4-01 has no labels because that input is refused, so the control
+         uses A4-03, one of the 22 rows that carry labels). PASS.
+Exports  18/18 byte-identical, with its own positive control (above). PASS.
+app/README.md  the file tree gains models/population_context.dart, and a note records that the context row is display
+only, generated, and asserted absent from both exports.

@@ -42,7 +42,8 @@ lib/
 ├── api/pharmaguard_api.dart     Dio client; maps failures to readable messages
 ├── models/
 │   ├── enums.dart               RiskLabel, Severity, Phenotype, CpicEvidenceLevel
-│   └── analysis.dart            Contract mirrors with fromJson/toJson
+│   ├── analysis.dart            Contract mirrors with fromJson/toJson
+│   └── population_context.dart  Measured South Asian context, shown not used
 ├── export/fhir_report.dart       HL7 FHIR Genomics Report (IG 3.0.0) bundle
 ├── print/
 │   ├── summary_document.dart    The printable summary (one HTML document)
@@ -89,5 +90,15 @@ backend contract changes.
   reason, marks itself unverified (`partial`/`preliminary`), and passes the
   official HL7 validator with no error (`scripts/validate_fhir_exports.py`, a
   required check of the release gate).
+- **South Asian context is display only.** Each open card carries a closed
+  "South Asian context — not used for this result" row holding this project's
+  own 2026-08-14 measurement for that gene (`reports/sas_cohort_expansion.md`),
+  generated into `lib/generated/population_context.g.dart` by
+  `scripts/generate_population_context.py` so no figure is typed by hand.
+  Nothing reads it to reach a call, a phenotype or a label, and it is in no
+  export: `population_context_test.dart` asserts the printable summary and the
+  FHIR bundle never mention it. The panel carries the measurement's caveats,
+  including that the rate is a lower bound on partially covered data and that
+  four of the five cohorts were collected outside India.
 - **Colour never carries meaning alone** — every card shows the risk label as
   text and an icon alongside the colour.

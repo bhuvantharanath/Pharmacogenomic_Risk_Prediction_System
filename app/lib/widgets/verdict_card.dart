@@ -19,6 +19,7 @@ import '../models/unknown_reason.dart';
 import '../theme/tokens.dart';
 import 'coverage_census.dart';
 import 'disclosure_row.dart';
+import 'population_context_panel.dart';
 import 'gene_findings.dart';
 import 'unknown_reason_panel.dart';
 import 'view_mode.dart';
@@ -116,6 +117,13 @@ class _VerdictCardState extends State<VerdictCard> {
     );
   }
 
+  /// South Asian context for the result's gene (Phase 9 B11): last, closed,
+  /// and titled with what it is not, because it is about other people.
+  Widget _populationContext(PerDrugResult r) => DisclosureRow(
+    title: kPopulationContextTitle,
+    child: PopulationContextPanel(gene: geneForResult(r)),
+  );
+
   /// Prose surfaced; genotype and CPIC's own text one tap away.
   List<Widget> _patientBody(PerDrugResult r, PharmacogenomicProfile p) =>
       <Widget>[
@@ -134,6 +142,7 @@ class _VerdictCardState extends State<VerdictCard> {
           title: 'What was found in your file',
           child: _foundBody(p, r),
         ),
+        _populationContext(r),
       ];
 
   /// Genotype and guideline surfaced; the plain-language reading demoted.
@@ -158,6 +167,7 @@ class _VerdictCardState extends State<VerdictCard> {
             title: 'Positions reported in your file',
             child: _variants(p),
           ),
+        _populationContext(r),
       ];
 
   Widget _verdictPanel(PerDrugResult r, Color fg, Color bg) {
