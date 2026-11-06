@@ -103,3 +103,42 @@ verify_compatible_bundle PASS. Against B7's package: vcf_sha256 in 1,456 rows on
 (equal_to_previous_evaluation_except_generation_time true). Against the historical benchmark: B5's changes carried
 forward from B7's cumulative record: CYP2C9 eligibility_reason 208, missing_dependency_genes 208; discrepancy detail
 100. Zero-regression, external evaluation: no eligibility or discrepancy change against B7's package. PASS.
+
+== Release gate on 9c785be (partb/B8.gate.json, B8.gate.rc) ==
+First run, with --json: rc 0, state ready, release_ready true; candidate and tested revision 9c785be, artifact hashes
+match. All six required checks passed: compatible-bundle (PASS), backend-tests, provenance, label-mapping (13
+divergences, all in the accepted baseline), flutter-analyze (no issues), flutter-tests (259 passed). The four content-
+review items stay outstanding (non-blocking under withhold_unapproved_stored_prose); explanation mode
+deterministic_template_only; clinical expert review NOT_OBTAINED. Every content field equals B7's gate (approved 0,
+unapproved 20, fallback-only 20, adjudication and review counts); only the bundle id and manifest hash moved.
+Backend suite on 9c785be (partb/B8.backend-suite.stdout): 1172 collected; 1166 passed, 6 skipped, 0 failed. B7 had
+1142 passed, 6 skipped; the 24 more are test_abuse_privacy.py. The skips are B7's six (four need a backend on
+127.0.0.1:8000, one README count, one glossary decision log).
+Explanation store: git diff 3afb82e..9c785be on explanations.json and explanation_approvals.json is empty: 0 entries
+invalidated.
+
+== AC verdicts (2026-11-06) ==
+AC1 PASS  test_abuse_privacy.py: peer 10.1.2.3 with CF-Connecting-IP 198.51.100.7 is keyed 198.51.100.7; the header
+          from an untrusted peer is ignored; a list, junk, a missing or a doubled header falls back to the peer;
+          X-Forwarded-For is never read when a header is named; without the setting, the pre-B8 keys exactly; the
+          startup summary names a source, never an address.
+AC2 PASS  through the real gate: the same client's second concurrent upload gets 429 ONE_AT_A_TIME with Retry-After
+          in under 1 s while another client's upload queues and completes; without a trusted identity both queue and
+          no 429 is given.
+AC3 PASS  max_waiting 2, slot held, two waiting: the third gets 503 SERVER_BUSY with Retry-After in under 1 s; the
+          three admitted complete in arrival order.
+AC4 PASS  a stand-in PharmCAT exiting 3 after writing a report: PharmcatExecutionError naming status 3, and /analyze
+          answers 503 PHARMCAT_UNAVAILABLE.
+AC5 PASS  no pharmaguard_pharmcat_* directory survives no engine (before PharmCAT starts), a non-zero exit with a
+          report, a timeout, a cancellation, an unreadable report, a failure while building the response (real
+          PharmCAT), or a real successful run (also: no output); a failing delete is retried once, then logged by
+          directory name only.
+AC6 PASS  the success path and all six failure paths, each confirmed by its status, leave no rsID, diplotype,
+          genotype, uploaded filename or sample ID in any record (message or traceback) or in stdout/stderr; records
+          were captured; the positive controls find planted leaks in a message, a traceback and raw output.
+AC7 PASS  pip-audit 0 advisories (was 11); backend suite 1166 passed, 0 failed; Flutter suite 259 passed; the image
+          rebuilt with the new pins serves /ready and S1-S6 equal to local.
+Zero-regression PASS (S1-S6, cohort, 74 VCFs, A4 identical to B7; re-bind: no eligibility or discrepancy change
+          against B7's package). Sabotage: SB8-a..f all caught, files restored identical; SB8-g (beyond the plan)
+          caught.
+Not done, by design: the live L4 checks need the deploy and the owner-approved Render environment change.
