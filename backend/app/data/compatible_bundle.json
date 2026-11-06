@@ -1,15 +1,15 @@
 {
   "schema_version": 3,
-  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-06-b10",
+  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-06-b11",
   "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
   "application_hash_policy": {
     "version": 2,
     "policy": {
       "path": "scripts/scientific_hash_policy.json",
-      "sha256": "a681947ec9bf6ab946b3fb1d3a302b511583d9136c06db4c0c1d2d37dd8db62a",
-      "bytes": 4570
+      "sha256": "fc61d9c9666dd65c542dd3e10ba7717f0a82c66de713b344d4adfa75cfe35bfe",
+      "bytes": 4720
     },
-    "core_file_count": 102,
+    "core_file_count": 105,
     "algorithm": "SHA-256 of UTF-8 domain and NUL, then sorted POSIX relative path, NUL, raw bytes, NUL for every allowlisted file"
   },
   "pharmcat": {
@@ -298,7 +298,7 @@
     "pharmcat_reports": 208,
     "application_eligible_sample_gene_rows": 0,
     "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
-    "application_core_sha256": "7da41669dceeedc78c72d6b08344ef947423c9b1712f93feec47688902a127aa",
+    "application_core_sha256": "9729275ad07ebad7bbe4e0649f3d262651978e2791048270b1ff83261b0139e0",
     "application_hash_policy_version": 2,
     "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
     "benchmark_historical_hash_policy_version": 1,
@@ -342,12 +342,12 @@
     "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
   },
   "evaluation_current": {
-    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-06-b10",
-    "application_core_sha256": "7da41669dceeedc78c72d6b08344ef947423c9b1712f93feec47688902a127aa",
+    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-06-b11",
+    "application_core_sha256": "9729275ad07ebad7bbe4e0649f3d262651978e2791048270b1ff83261b0139e0",
     "manifest": {
-      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/evaluation_manifest.json",
-      "sha256": "c8e9dba02d857341cb7c7a7b3bef0c87df9ab8e02427a5566a41115712efff62",
-      "bytes": 8138
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b11/evaluation_manifest.json",
+      "sha256": "876476c3db7008ed975774a5bcdcd13a97120476e3e2bc6686d59dbf781eade2",
+      "bytes": 7335
     },
     "historical_benchmark_manifest": {
       "path": "test-data/benchmark/external/benchmark_manifest.json",
@@ -365,54 +365,54 @@
     },
     "outputs": [
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/EVALUATION-REPORT.md",
-        "bytes": 4186,
-        "sha256": "f85008117f658498f61775273ee89ffef708d417ebad7d56cd6cfdbc6447f8d6"
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/EVALUATION-REPORT.md",
+        "bytes": 3510,
+        "sha256": "753d48d16367fa1c19d974a3440e59e83d8bb4231ae79fd698bd95c4d840f3a9"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/discrepancies.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/discrepancies.tsv",
         "bytes": 247276,
         "sha256": "339d9fcd9f3d1981b44003808c3db74f53357ec694bc06d5480b61e050f8528b"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/evaluation-comparison.json",
-        "bytes": 13902,
-        "sha256": "89f7a02c454ce8e675ad924aae2ca98e6b4b0bc05f1188c146d2c3df9b6372bf"
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/evaluation-comparison.json",
+        "bytes": 13679,
+        "sha256": "ccabdc49a1263260d7c3f523d9df0316f6222cd90ab3bbf629edf2d771925c7e"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/exclusions.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/exclusions.tsv",
         "bytes": 48960,
         "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/external_benchmark_results.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/external_benchmark_results.json",
         "bytes": 33667,
-        "sha256": "46a45976b4a28a167a500d16c14b5f5a1ac1763ddea3c549323fd77d0756762a"
+        "sha256": "d20b3820d6a09ebb9a5aea2bb9bdf2ddd0713c3f51fde2b9d2909fabc36c5a6f"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/f4-fresh-replay.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/f4-fresh-replay.json",
         "bytes": 1767,
-        "sha256": "78ce0df46813d3e454de04b16c9680dceff8780c3a284d23b2666e4611264f9c"
+        "sha256": "f2dab11cb9248aa59aad98d44426930e0e41e03ae2205392b74e4985fe9b5598"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/input_eligibility.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/input_eligibility.tsv",
         "bytes": 620332,
-        "sha256": "349ff0d96129334e0a729e37996e24281cc7c796335f75007811e01be1fe326e"
+        "sha256": "7c37fe2b48b66e859b182c73ec1a4ecdd2d35817cd38f598400e19341dc2d75f"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/raw_benchmark_manifest.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/raw_benchmark_manifest.json",
         "bytes": 7588,
-        "sha256": "5d0647a19a8e6bdcc8d2a538c144f85636c6f5fba12c3d6062579349c171b9bd"
+        "sha256": "5923fa9a4b7f95634e2c4a12ddaeddfe352e4b065a0fba7345eca26561a95261"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/raw_scoring_report.md",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/raw_scoring_report.md",
         "bytes": 11481,
         "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b10/stage-command-receipts.json",
-        "bytes": 3330,
-        "sha256": "104c465d38a80fc6b838d6f674a476b71b6b3fe7f8a5e179e2bb63a43fcba5f5"
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b11/stage-command-receipts.json",
+        "bytes": 3302,
+        "sha256": "cccbafcbca8bd1cc9f2fb1c2ae5dbb7bdbc9407de5b787306e1288224c874785"
       }
     ],
     "evidence_matches": true,
