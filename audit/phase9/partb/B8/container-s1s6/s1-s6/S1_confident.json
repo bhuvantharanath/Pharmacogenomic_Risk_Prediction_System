@@ -1,0 +1,291 @@
+{
+  "analyses": [
+    {
+      "clinical_recommendation": {
+        "action": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+        "alternatives": [
+          "CPIC indicates an alternative drug is available \u2014 see the recommendation text above for the specific agents."
+        ],
+        "cpic_evidence_level": "Unknown",
+        "cpic_recommendation": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events",
+        "dosing_guidance": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.",
+        "source": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]"
+      },
+      "drug": "clopidogrel",
+      "gene_findings": [],
+      "llm_generated_explanation": {
+        "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text. Recommendation text is quoted from CPIC via PharmCAT, and automated source checks are not human review: they cannot show that every statement is supported or that it is correct for you.",
+        "mechanism": "CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 gene carries common variants that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of CPIC Guideline for clopidogrel and CYP2C19 \u2014 Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
+        "patient_friendly": "Your genetic results suggest this medicine may not work as well for you as intended. Your CYP2C19 gene result shows much lower activity than most people, which is what this medicine's handling depends on. The clinical recommendation shown with this result comes from published CPIC guidance, not from this tool. Discuss this with your doctor or pharmacist before making any change to your medicines.",
+        "summary": "clopidogrel: CYP2C19 *2/*2 (Poor Metabolizer) \u2014 Ineffective.",
+        "variant_rationale": "PharmCAT called CYP2C19 as *2/*2, which corresponds to a Poor Metabolizer result. The non-reference positions supporting this call were rs12769205 (G/G), rs58973490 (A/A), rs4244285 (A/A) and rs3758581 (G/G)."
+      },
+      "pharmacogenomic_profile": {
+        "activity_score": null,
+        "candidate_diplotypes": [],
+        "detected_variants": [
+          {
+            "function": "Contributes to named allele(s): *1, *2, *35",
+            "gene": "CYP2C19",
+            "genotype": "G/G",
+            "rsid": "rs12769205",
+            "star_allele": null
+          },
+          {
+            "function": "Contributes to named allele(s): *1, *2, *11",
+            "gene": "CYP2C19",
+            "genotype": "A/A",
+            "rsid": "rs58973490",
+            "star_allele": null
+          },
+          {
+            "function": "Contributes to named allele(s): *1, *2",
+            "gene": "CYP2C19",
+            "genotype": "A/A",
+            "rsid": "rs4244285",
+            "star_allele": null
+          },
+          {
+            "function": "Contributes to named allele(s): *1, *2, *3, *4, *5, *6, *7, *8, *9, *10, *11, *12, *13, *14, *15, *17, *18, *19, *22, *23, *24, *25, *26, *28, *29, *31, *32, *33, *35, *39, *40, *41",
+            "gene": "CYP2C19",
+            "genotype": "G/G",
+            "rsid": "rs3758581",
+            "star_allele": null
+          }
+        ],
+        "diplotype": "*2/*2",
+        "phenotype": "PM",
+        "primary_gene": "CYP2C19",
+        "recommendation_diplotype": null
+      },
+      "risk_assessment": {
+        "confidence_score": 0.95,
+        "risk_label": "Ineffective",
+        "severity": "critical"
+      }
+    }
+  ],
+  "patient_id": "DEMO_CONFIDENT",
+  "quality_metrics": {
+    "guideline_provenance": {
+      "allele_definitions_sha256": "7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f",
+      "allele_definitions_version": "2026-07-13-11-40",
+      "cpic_data_version": "2026-07-13-11-40",
+      "cpic_guidance_sha256": "5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8",
+      "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+      "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+      "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs.",
+      "pharmcat_version": "3.4.0",
+      "pharmvar_release": ""
+    },
+    "position_coverage": {
+      "CYP2C19": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 31,
+        "decision_critical_required": 31,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 35
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "pharmcat_positions_used": 35,
+        "pharmcat_sufficient": true,
+        "positions_present": 35,
+        "positions_required": 35,
+        "sufficient": true
+      },
+      "CYP2C9": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 69,
+        "decision_critical_required": 69,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 88
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "pharmcat_positions_used": 88,
+        "pharmcat_sufficient": true,
+        "positions_present": 88,
+        "positions_required": 88,
+        "sufficient": true
+      },
+      "CYP2D6": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 140,
+        "decision_critical_required": 140,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 157
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "positions_present": 157,
+        "positions_required": 157,
+        "sufficient": true
+      },
+      "CYP4F2": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 20,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 20,
+        "sufficient": false
+      },
+      "DPYD": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 28,
+        "decision_critical_required": 28,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 83
+        },
+        "minimum_percent": 20,
+        "percent": 100.0,
+        "pharmcat_positions_used": 83,
+        "pharmcat_sufficient": true,
+        "positions_present": 83,
+        "positions_required": 83,
+        "sufficient": true
+      },
+      "NUDT15": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 20,
+        "decision_critical_required": 20,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 20
+        },
+        "minimum_percent": 80,
+        "percent": 100.0,
+        "pharmcat_positions_used": 20,
+        "pharmcat_sufficient": true,
+        "positions_present": 20,
+        "positions_required": 20,
+        "sufficient": true
+      },
+      "SLCO1B1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 26,
+        "decision_critical_required": 26,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 35
+        },
+        "minimum_percent": 100,
+        "percent": 100.0,
+        "pharmcat_positions_used": 35,
+        "pharmcat_sufficient": true,
+        "positions_present": 35,
+        "positions_required": 35,
+        "sufficient": true
+      },
+      "TPMT": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 45,
+        "decision_critical_required": 45,
+        "evidence_counts": {
+          "absent_position": 0,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 45
+        },
+        "minimum_percent": 80,
+        "percent": 100.0,
+        "pharmcat_positions_used": 45,
+        "pharmcat_sufficient": true,
+        "positions_present": 45,
+        "positions_required": 45,
+        "sufficient": true
+      },
+      "VKORC1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 1,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 1,
+        "sufficient": false
+      }
+    },
+    "processing_time_ms": 1568,
+    "variants_detected_count": 4,
+    "vcf_parsing_success": true,
+    "warnings": [
+      "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+      "Pre-generated explanation was not served because its approval or semantic identity did not match (Explanation approval status is unresolved: automated decision awaiting human adjudication) Using the deterministic template.",
+      "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+      "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+      "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness."
+    ]
+  },
+  "timestamp": "2026-11-06T01:13:45.376111Z"
+}

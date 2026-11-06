@@ -1,0 +1,97 @@
+B8 — abuse and privacy hardening. Plan written before any B8 code.
+Owner, on B7's preview side effect (2026-11-05): "Leave them, start B8" — old preview deployments stay.
+plan committed 2026-11-05T15:53:29Z, base 3afb82e (B7 live at a5c06f2)
+243ad4c66ea252f8f97df8fd5dd35593ea28316bbd60d25e3ba89e4c2274ebcb  audit/phase9/B8_PLAN.md
+pip-audit 2.10.1 on backend/requirements.txt before B8: partb/B8.pip-audit-before.json (python-multipart 0.0.20: 6 advisories; starlette 0.49.3: 5)
+
+== Progress at the usage limit (2026-11-05, nothing committed for B8) ==
+Done in the working tree (uncommitted):
+  backend/requirements.txt  fastapi 0.162.0, starlette 1.10.0 (now pinned), python-multipart 0.0.33; installed in
+                            backend/.venv. Upgrade alone, before any other B8 code: 1140 passed, 6 skipped, 2 failed
+                            (the bundle/environment identity tests, refreshed by the re-bind).
+  backend/app/security.py   CLIENT_IP_HEADER (client_ip_header, _header_client, identity_is_trusted, client_key);
+                            proxy_trust_summary names the identity source; AnalysisMemoryGateMiddleware: queue cap
+                            (MAX_WAITING_UPLOADS, default 2 -> 503 SERVER_BUSY) and one upload in flight per trusted
+                            client (429 ONE_AT_A_TIME), both with Retry-After.
+  backend/app/pharmcat_runner.py  non-zero exit -> PharmcatExecutionError (F-16); remove_workdir: one retry, operator
+                            log line with the directory name only; module logger pharmaguard.pharmcat.
+  backend/app/main.py       max_waiting passed to the gate.
+  render.yaml, infra/DEPLOY_NOTES.md  document MAX_WAITING_UPLOADS, TRUSTED_PROXY_CIDRS=10.0.0.0/8,
+                            CLIENT_IP_HEADER=cf-connecting-ip (not auto-applied; owner-approved change at deploy).
+NOT yet done: the AC1-AC6 tests, sabotage SB8-a..f, pip-audit after the upgrade, regression (S1-S6, cohort, 74 VCFs,
+A4), container rebuild check, re-bind, gate, commits.
+Correction, 2026-11-06: there was no hang. The command that ran the suite exceeded its 600 s shell timeout, but
+pytest itself reported 127.41 s: 1137 passed, 6 skipped, 5 failed. Four are the identity tests the re-bind
+refreshes; the fifth, test_hostile_input.py::test_ten_concurrent_uploads, accepted only <500 or 429 from ten
+simultaneous uploads, and the queue cap now answers the over-cap ones 503 SERVER_BUSY with Retry-After, as AC3
+intends. That test now also accepts exactly that answer (503, SERVER_BUSY, Retry-After present) and still fails on
+any other 5xx. Rerun (partb/B8.suite-wip.stdout): 1138 passed, 6 skipped, 4 failed, all identity tests.
+
+== Implementation (2026-11-06) ==
+backend/requirements.txt: fastapi 0.162.0, starlette 1.10.0 (pinned, was transitive), python-multipart 0.0.33.
+backend/app/security.py: client_ip_header(), _header_client() (exactly one header line holding one valid IP),
+  identity_is_trusted(), client_key() consults only CLIENT_IP_HEADER when it is set (X-Forwarded-For is then never
+  read) and only from a TRUSTED_PROXY_CIDRS peer; proxy_trust_summary() adds "client_identity" (a source, never an
+  address). AnalysisMemoryGateMiddleware: max_waiting (MAX_WAITING_UPLOADS, default 2) -> 503 SERVER_BUSY with
+  Retry-After for an upload that would wait behind that many; with a trusted identity, a client with an upload
+  waiting or running gets 429 ONE_AT_A_TIME with Retry-After; keys held in memory per ticket and dropped in the
+  finally.
+backend/app/pharmcat_runner.py: non-zero exit -> PharmcatExecutionError (503 PHARMCAT_UNAVAILABLE), operator log
+  line with the status only (PharmCAT's stdout/stderr never logged); remove_workdir(): rmtree, one retry, warning per
+  failed attempt and an error if the tree survives, naming only the random directory name; module logger
+  pharmaguard.pharmcat.
+backend/app/main.py: max_waiting passed to the gate.
+render.yaml / infra/DEPLOY_NOTES.md: MAX_WAITING_UPLOADS=2, TRUSTED_PROXY_CIDRS=10.0.0.0/8,
+  CLIENT_IP_HEADER=cf-connecting-ip documented as intended production values, not auto-applied.
+The client needs no change: it shows the server's own sentence for a 429, under the existing heading.
+
+== Tests ==
+New backend/tests/test_abuse_privacy.py (24): identity (7), one in flight and the queue cap through the real gate
+with httpx.ASGITransport (3), exit status and deletion through the real Invoker path with a stand-in PharmCAT script
+(non-zero exit with a report, no output, unreadable report, timeout, no engine, cancellation, a failure while
+building the response, success), the delete retry and its logging, and the log guard with its positive control.
+Changed: test_hostile_input.py test_ten_concurrent_uploads also accepts exactly the queue cap's answer (see the
+correction above).
+
+== Sabotage (audit/phase9/partb/b8_sabotage.py -> B8.sabotage.stdout; every file restored identical) ==
+SB8-a header trusted from any peer        1 red (the untrusted-peer test).
+SB8-b in-flight check removed             1 red.
+SB8-c queue cap removed                   1 red.
+SB8-d exit status ignored                 2 red.
+SB8-e delete swallows errors, no retry    1 red.
+SB8-f a log line carries the filename     1 red (the log guard).
+
+== Dependencies after (partb/B8.pip-audit-after.json) ==
+pip-audit 2.10.1 on backend/requirements.txt: 21 packages, 0 advisories (before: 11, on python-multipart and
+starlette). The upgrade adds one warning to the suite: StarletteDeprecationWarning, httpx with starlette.testclient
+(a test-only dependency; nothing in the served app uses it).
+
+== Zero-regression vs B7 (run_regression.py B8 --compare-to B7 -> B8.stdout; a4_labels.py B8-after) ==
+S1-S6    6/6 labels; every analysis object and every warning identical to B7. PASS.
+Cohort   2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other. PASS.
+74 VCFs  148 comparisons, 0 mismatches. PASS.
+A4       36 cases, all six drugs: status, error code, labels and warnings identical to B7. PASS.
+
+== Container (audit/phase9/partb/b8_container.py -> B8/container.json, B8.container.stdout) ==
+infra/Dockerfile rebuilt as pharmaguard-api:b8 (9.5 s with cached layers; docker image inspect Size 147,088,753);
+inside it fastapi 0.162.0, starlette 1.10.0, python-multipart 0.0.33; /ready 200 "ready"; S1-S6 through the
+container, every body equal to the local B8 run apart from timestamp and processing_time_ms (6/6). PASS.
+
+
+== Correction before commit: the log test did not yet cover what the plan says ==
+Checking the verdicts against B8_PLAN.md before committing: design section 6 says the log test covers a successful
+analysis and each failure path of section 5. test_no_log_line_carries_a_genotype_or_an_identifier covered the success
+path and three failures (non-zero exit with a report, no output, unreadable report). A verdict drafted on that test was
+withdrawn before commit. The test now covers, with the uploaded filename and a planted sample ID in play:
+  through /analyze: success (real PharmCAT, 200); a failure while building the response (real PharmCAT, 500); no engine,
+  i.e. before PharmCAT starts; a non-zero exit with a report; an unreadable report; no output; a timeout (all 503);
+  through the runner: a cancellation, with the sample hint /analyze passes (TestClient cannot cancel a request).
+It asserts each of those statuses, so a path that silently did not run fails the test. It checks each record as an
+operator log shows it (message and any traceback), and everything written to stdout/stderr during the run (capfd). The
+positive control now plants a leak in a message (5 found), in a traceback only (1) and in raw output only (1).
+Sabotage re-run on the extended test (partb/B8.sabotage.stdout, replacing the earlier run): SB8-a..f all caught, every
+file restored identical; SB8-d now turns 3 tests red (the log test's status check is the third). SB8-g, added beyond the
+plan, has main.py print the uploaded filename: caught by the log test (1 red), restored identical.
+The application code is unchanged by this; the zero-regression and container runs above stand.
+Note: partb/B8.suite-wip.stdout predates test_abuse_privacy.py (1148 collected, as at B7). With it the suite collects
+1172 (pytest --collect-only, 2026-11-06). The full run comes after the re-bind, below.

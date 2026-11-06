@@ -32,6 +32,7 @@ import asyncio
 import functools
 import hashlib
 import json
+import logging
 import os
 import signal
 import shutil
@@ -49,6 +50,9 @@ from .pharmcat_models import (
     PharmcatReport,
     PharmcatVariant,
 )
+
+#: Operator lines only: exit statuses and temp-directory names, never content.
+_log = logging.getLogger("pharmaguard.pharmcat")
 
 # --------------------------------------------------------------------------- #
 # Configuration
@@ -474,6 +478,19 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
                 invoker.build(vcf_path, output_dir), cwd=workdir
             )
 
+            # A non-zero exit is a failed run even when a report was written
+            # (Phase 9 B8, finding F-16): the status used to be recorded and
+            # then ignored, so a run that died part-way could still be served.
+            # The operator line carries the status only — PharmCAT's own output
+            # can name samples and positions, and must not reach the logs.
+            if invocation.returncode != 0:
+                _log.warning("pharmcat exited with status %s; no result served",
+                             invocation.returncode)
+                raise PharmcatExecutionError(
+                    UNAVAILABLE_USER_MESSAGE,
+                    detail=f"PharmCAT exited with status {invocation.returncode}",
+                )
+
             report_path = output_dir / f"{base}.report.json"
             if not report_path.is_file():
                 raise PharmcatExecutionError(
@@ -495,7 +512,33 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
             return parse_report(raw, sample_hint=sample_hint)
         finally:
             # This executes before the slot context releases its permit.
-            shutil.rmtree(workdir, ignore_errors=True)
+            remove_workdir(workdir)
+
+
+def remove_workdir(workdir: Path) -> bool:
+    """
+    Delete a request's temporary tree — the uploaded VCF, PharmCAT's output
+    and its logs — and say whether it is gone (Phase 9 B8).
+
+    Was `shutil.rmtree(workdir, ignore_errors=True)`: correct on every path
+    measured, but a delete that failed did so silently, leaving a genome on
+    disk with nobody told. Now one retry, then an operator line naming the
+    directory (a random name; never its contents). Never raises: it runs in a
+    `finally`, and an exception here would replace the real one.
+    """
+    for attempt in (1, 2):
+        try:
+            shutil.rmtree(workdir)
+        except FileNotFoundError:
+            pass
+        except OSError as exc:
+            _log.warning("temp tree %s not removed on attempt %d: %s",
+                         workdir.name, attempt, type(exc).__name__)
+        if not workdir.exists():
+            return True
+    _log.error("temp tree %s could not be removed; it may hold an uploaded VCF",
+               workdir.name)
+    return False
 
 
 @asynccontextmanager

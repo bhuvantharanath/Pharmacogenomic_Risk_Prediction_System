@@ -282,18 +282,66 @@ def is_loopback(request: Request) -> bool:
     return host in _LOOPBACK
 
 
+def client_ip_header() -> str:
+    """
+    `CLIENT_IP_HEADER`: the one header that names the visitor, lower-cased;
+    empty when not configured (Phase 9 B8, finding F-04).
+
+    Behind Render the direct peer is an internal hop, and Part A saw one client
+    arrive through four of them in 16 minutes, so a key on the peer splits one
+    client and merges strangers. `X-Forwarded-For` is no fix there: Render
+    appends to a value the client sent, so its first entry is the client's
+    choice. A header the edge itself sets (Cloudflare's `CF-Connecting-IP`) is
+    named here instead, and is honoured only from a trusted proxy.
+    """
+    return os.environ.get("CLIENT_IP_HEADER", "").strip().lower()
+
+
+def _header_client(request: Request) -> str | None:
+    """The configured header's address, if it holds exactly one valid IP."""
+    header = client_ip_header()
+    if not header:
+        return None
+    values = request.headers.getlist(header)
+    if len(values) != 1:
+        return None
+    value = values[0].strip()
+    try:
+        ipaddress.ip_address(value)
+    except ValueError:
+        return None
+    return value
+
+
+def identity_is_trusted(request: Request) -> bool:
+    """
+    Whether `client_key` names the visitor rather than a hop: a configured
+    `CLIENT_IP_HEADER`, a trusted direct peer, and one valid address in it.
+    Per-client limits that would wrong a stranger (one upload in flight) apply
+    only then.
+    """
+    client = request.client
+    peer = client.host if client else "unknown"
+    return _peer_is_trusted_proxy(peer) and _header_client(request) is not None
+
+
 def client_key(request: Request) -> str:
     """
     Identify the caller for rate-limiting purposes.
 
     Forwarding headers are honored only when the direct peer is inside an
     explicitly configured `TRUSTED_PROXY_CIDRS` network. With the safe default
-    (empty), caller-controlled forwarding headers are ignored.
+    (empty), caller-controlled forwarding headers are ignored. When
+    `CLIENT_IP_HEADER` names a header, that header is the only one consulted,
+    and anything but one valid address in it falls back to the peer.
     """
     client = request.client
     peer = client.host if client else "unknown"
     if not _peer_is_trusted_proxy(peer):
         return peer
+
+    if client_ip_header():
+        return _header_client(request) or peer
 
     forwarded = request.headers.get("x-forwarded-for", "")
     if forwarded:
@@ -342,9 +390,13 @@ def _peer_is_trusted_proxy(host: str) -> bool:
 
 def proxy_trust_summary() -> dict[str, object]:
     networks = trusted_proxy_networks()
+    header = client_ip_header()
     return {
         "forwarded_headers": "trusted-peers-only" if networks else "ignored",
         "trusted_proxy_cidrs": [str(network) for network in networks],
+        # The source of the client key, never an address.
+        "client_identity": (f"header {header} from trusted peers" if header and networks
+                            else "direct peer"),
     }
 
 
@@ -425,22 +477,52 @@ class PublicHealthCorsMiddleware:
         await self.app(scope, receive, send_public)
 
 
+#: Uploads allowed to wait behind the one being analysed (Phase 9 B8). At about
+#: a minute per analysis and a 90 s queue timeout, a third in line could not
+#: start in time, so it is told at once instead of after the whole timeout.
+DEFAULT_MAX_WAITING_UPLOADS = int(os.environ.get("MAX_WAITING_UPLOADS", "2"))
+
+
 class AnalysisMemoryGateMiddleware:
     """Admit one upload before multipart parsing and VCF decompression.
 
     The PharmCAT semaphore still owns JVM execution and cleanup. This outer
     gate covers both /analyze and /coverage: either can expand a real-sized
     VCF while a JVM consumes the container's remaining memory.
+
+    First come, first served, one at a time. Since Phase 9 B8 (finding F-04)
+    it also refuses at once, rather than holding a connection for the whole
+    queue timeout:
+
+    * a third upload in line (`max_waiting`): 503 SERVER_BUSY, Retry-After;
+    * a second upload from a client that already has one waiting or running:
+      429 ONE_AT_A_TIME, Retry-After — only when `identity_is_trusted`, since a
+      key on a shared proxy hop would turn strangers away together.
+
+    With one upload per client and first-come service, a client sending back
+    to back can no longer hold the only slot: every other waiter goes next.
     """
 
-    def __init__(self, app, wait_seconds: float):
+    def __init__(self, app, wait_seconds: float,
+                 max_waiting: int = DEFAULT_MAX_WAITING_UPLOADS):
         self.app = app
         self.wait_seconds = wait_seconds
+        self.max_waiting = max_waiting
         # A process-wide lock is safe across the separate event loops used by
         # embedded ASGI clients, while never blocking the server's event loop.
         self._state_lock = threading.Lock()
         self._waiters = deque()
         self._busy = False
+        #: ticket -> client key, for uploads waiting or running whose sender
+        #: is identified (identity_is_trusted). Keys stay in memory only.
+        self._clients: dict[object, str] = {}
+
+    def _refusal(self, scope, *, status: int, code: str, detail: str):
+        return JSONResponse(
+            status_code=status,
+            content={"detail": detail, "error_code": code},
+            headers={"Retry-After": str(max(1, int(self.wait_seconds)))},
+        )
 
     async def __call__(self, scope, receive, send):
         if (scope["type"] != "http" or scope.get("method") != "POST"
@@ -448,9 +530,32 @@ class AnalysisMemoryGateMiddleware:
             await self.app(scope, receive, send)
             return
 
+        request = Request(scope)
+        key = client_key(request) if identity_is_trusted(request) else None
         ticket = object()
+        refusal = None
         with self._state_lock:
-            self._waiters.append(ticket)
+            if key is not None and key in self._clients.values():
+                refusal = self._refusal(
+                    scope, status=429, code="ONE_AT_A_TIME",
+                    detail=("You already have an analysis in progress on this "
+                            "server, which runs one upload per visitor at a "
+                            "time. Wait for that one to finish, then try "
+                            "again. Nothing is wrong with your file."))
+            elif (self._busy or self._waiters) and len(self._waiters) >= self.max_waiting:
+                refusal = self._refusal(
+                    scope, status=503, code="SERVER_BUSY",
+                    detail=("The server is busy: other analyses are already "
+                            "waiting for its single analysis slot, so yours "
+                            "would not start in time. Nothing is wrong with "
+                            "your file. Please try again in a minute or two."))
+            else:
+                self._waiters.append(ticket)
+                if key is not None:
+                    self._clients[ticket] = key
+        if refusal is not None:
+            await refusal(scope, receive, send)
+            return
         acquired = False
         deadline = time.monotonic() + self.wait_seconds
         try:
@@ -485,6 +590,7 @@ class AnalysisMemoryGateMiddleware:
                     self._busy = False
                 else:
                     self._waiters.remove(ticket)
+                self._clients.pop(ticket, None)
 
 
 def should_rate_limit(request: Request) -> bool:

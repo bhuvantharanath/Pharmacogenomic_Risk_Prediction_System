@@ -315,6 +315,9 @@ None are required. Set these to lock things down:
 | `CORS_ALLOWED_ORIGINS` | `https://pharmaguard.pages.dev` |
 | `CORS_ALLOW_PAGES_PREVIEWS` | *(optional)* only for a Pages project with no explicit origin above. Since Phase 9 B7 the previews of a configured `https://<project>.pages.dev` origin (`https://<hash>.<project>.pages.dev`) are allowed without it |
 | `RATE_LIMIT_REQUESTS` | `10` |
+| `MAX_WAITING_UPLOADS` | `2` *(Phase 9 B8)* — uploads allowed to wait behind the running one; a third is refused at once |
+| `TRUSTED_PROXY_CIDRS` | `10.0.0.0/8` on Render *(Phase 9 B8)* — the internal hops in front of the app |
+| `CLIENT_IP_HEADER` | `cf-connecting-ip` on Render *(Phase 9 B8)* — honoured only from a trusted proxy; enables one upload in flight per visitor. Verify live before relying on it (audit/phase9/B8_PLAN.md, L4) |
 
 **Do not set `GEMINI_API_KEY`.** The deployed path is `EXPLANATION_MODE=static`,
 which makes no API call. The app logs a warning if it finds a key it does not

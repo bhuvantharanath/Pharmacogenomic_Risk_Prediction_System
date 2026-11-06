@@ -293,8 +293,14 @@ def test_ten_concurrent_uploads(client: TestClient) -> None:
 
     for i, (r, elapsed) in enumerate(results):
         # 429 is a correct answer here, not a failure: the rate limiter doing
-        # its job is the opposite of a defect.
-        assert r.status_code < 500 or r.status_code == 429, (
+        # its job is the opposite of a defect. So, since Phase 9 B8, is the
+        # queue cap's answer: with one upload running and two waiting, the rest
+        # are told at once that the server is busy — 503 SERVER_BUSY with a
+        # Retry-After — instead of holding a connection for the whole timeout.
+        # Any other 5xx is still a failure.
+        designed_busy = (r.status_code == 503 and r.json().get("error_code") == "SERVER_BUSY"
+                         and r.headers.get("retry-after"))
+        assert r.status_code < 500 or r.status_code == 429 or designed_busy, (
             f"concurrent[{i}]: {r.status_code}\n{r.text[:300]}")
         assert elapsed < MAX_SECONDS, f"concurrent[{i}] took {elapsed:.1f}s"
 

@@ -1,0 +1,30 @@
+== SB8-a: client_key trusts the header from any peer (backend/app/security.py) ==
+FAILED tests/test_abuse_privacy.py::test_the_header_is_ignored_from_an_untrusted_peer
+exit 1; 1 red
+restored identical: yes
+== SB8-b: the in-flight check is removed (backend/app/security.py) ==
+FAILED tests/test_abuse_privacy.py::test_a_second_upload_from_the_same_client_is_refused_at_once
+exit 1; 1 red
+restored identical: yes
+== SB8-c: the queue cap is removed (backend/app/security.py) ==
+FAILED tests/test_abuse_privacy.py::test_a_third_upload_in_line_is_told_at_once_and_the_line_stays_in_order
+exit 1; 1 red
+restored identical: yes
+== SB8-d: the exit status is ignored again (backend/app/pharmcat_runner.py) ==
+FAILED tests/test_abuse_privacy.py::test_a_nonzero_exit_is_not_served_even_with_a_report
+FAILED tests/test_abuse_privacy.py::test_the_api_answers_a_nonzero_exit_as_unavailable
+FAILED tests/test_abuse_privacy.py::test_no_log_line_carries_a_genotype_or_an_identifier
+exit 1; 3 red
+restored identical: yes
+== SB8-e: the delete swallows errors again and skips the retry (backend/app/pharmcat_runner.py) ==
+FAILED tests/test_abuse_privacy.py::test_a_failed_delete_is_retried_then_reported
+exit 1; 1 red
+restored identical: yes
+== SB8-f: a log line carries the uploaded filename (backend/app/main.py) ==
+FAILED tests/test_abuse_privacy.py::test_no_log_line_carries_a_genotype_or_an_identifier
+exit 1; 1 red
+restored identical: yes
+== SB8-g: a print carries the uploaded filename (beyond the plan) (backend/app/main.py) ==
+FAILED tests/test_abuse_privacy.py::test_no_log_line_carries_a_genotype_or_an_identifier
+exit 1; 1 red
+restored identical: yes

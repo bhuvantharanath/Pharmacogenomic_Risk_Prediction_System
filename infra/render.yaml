@@ -93,6 +93,26 @@ services:
       - key: PHARMCAT_QUEUE_TIMEOUT_SECONDS
         value: "90"
 
+      # Phase 9 B8: at about a minute per analysis, a third upload in line could
+      # not start within the 90 s above, so it is refused at once (503
+      # SERVER_BUSY, Retry-After) instead of after the whole wait.
+      - key: MAX_WAITING_UPLOADS
+        value: "2"
+
+      # Phase 9 B8 (finding F-04): who the visitor is. The direct peer is a
+      # Render-internal 10.x hop (one client was seen through four of them), and
+      # X-Forwarded-For's first entry is the client's own choice, because Render
+      # appends to it. CF-Connecting-IP is set by the Cloudflare edge in front of
+      # Render; it is honoured only from a peer inside TRUSTED_PROXY_CIDRS.
+      # NOT AUTO-APPLIED: this file documents the values; the live service gets
+      # them only by an owner-approved environment change, after which the B8
+      # live check (audit/phase9/B8_PLAN.md, L4) confirms the header is present
+      # and cannot be forged, or the change is rolled back.
+      - key: TRUSTED_PROXY_CIDRS
+        value: "10.0.0.0/8"
+      - key: CLIENT_IP_HEADER
+        value: "cf-connecting-ip"
+
       # ------------------------------------------------------------------ #
       # Wiring
       # ------------------------------------------------------------------ #

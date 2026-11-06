@@ -1,0 +1,267 @@
+{
+  "analyses": [
+    {
+      "clinical_recommendation": {
+        "action": "Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+        "alternatives": [],
+        "cpic_evidence_level": "Unknown",
+        "cpic_recommendation": "Annotation of CPIC Guideline for fluorouracil and DPYD",
+        "dosing_guidance": "No CPIC dosing guidance is available for this gene-drug-phenotype combination.",
+        "source": "PharmCAT (no matching CPIC entry)"
+      },
+      "drug": "fluorouracil",
+      "gene_findings": [],
+      "llm_generated_explanation": {
+        "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text. Recommendation text is quoted from CPIC via PharmCAT, and automated source checks are not human review: they cannot show that every statement is supported or that it is correct for you.",
+        "mechanism": "DPYD encodes dihydropyrimidine dehydrogenase (DPD), the rate-limiting enzyme of pyrimidine catabolism. DPD is expressed widely, with high activity in the liver, and is responsible for breaking down the great majority of an administered fluoropyrimidine dose into inactive metabolites.\n\nSource: Annotation of CPIC Guideline for fluorouracil and DPYD \u2014 Amstutz U et al. Clinical Pharmacogenetics Implementation Consortium (CPIC) Guideline for Dihydropyrimidine Dehydrogenase Genotype and Fluoropyrimidine Dosing: 2017 Update. Clin Pharmacol Ther (2018). PMID: 29152729",
+        "patient_friendly": "This tool could not reach a conclusion about this medicine for you. That is not a reassuring result or a worrying one \u2014 it means this tool has nothing to say, and the question is still open. Discuss this with your doctor or pharmacist before making any change to your medicines.",
+        "summary": "fluorouracil: no pharmacogenomic result (Unknown).",
+        "variant_rationale": "No genotype was called for fluorouracil in this analysis, so there is no variant-level rationale to report."
+      },
+      "pharmacogenomic_profile": {
+        "activity_score": null,
+        "candidate_diplotypes": [],
+        "detected_variants": [],
+        "diplotype": "Unknown",
+        "phenotype": "Unknown",
+        "primary_gene": "Unknown",
+        "recommendation_diplotype": null
+      },
+      "risk_assessment": {
+        "confidence_score": 0.0,
+        "risk_label": "Unknown",
+        "severity": "none"
+      }
+    }
+  ],
+  "patient_id": "NA19042",
+  "quality_metrics": {
+    "guideline_provenance": {
+      "allele_definitions_sha256": "7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f",
+      "allele_definitions_version": "2026-07-13-11-40",
+      "cpic_data_version": "2026-07-13-11-40",
+      "cpic_guidance_sha256": "5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8",
+      "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+      "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+      "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs.",
+      "pharmcat_version": "3.4.0",
+      "pharmvar_release": ""
+    },
+    "position_coverage": {
+      "CYP2C19": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 15,
+        "decision_critical_required": 31,
+        "evidence_counts": {
+          "absent_position": 19,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 16,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 45.7,
+        "pharmcat_positions_used": 16,
+        "pharmcat_sufficient": false,
+        "positions_present": 16,
+        "positions_required": 35,
+        "sufficient": false
+      },
+      "CYP2C9": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 15,
+        "decision_critical_required": 69,
+        "evidence_counts": {
+          "absent_position": 71,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 17,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 19.3,
+        "pharmcat_positions_used": 17,
+        "pharmcat_sufficient": false,
+        "positions_present": 17,
+        "positions_required": 88,
+        "sufficient": false
+      },
+      "CYP2D6": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 63,
+        "decision_critical_required": 140,
+        "evidence_counts": {
+          "absent_position": 90,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 67,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 42.7,
+        "positions_present": 67,
+        "positions_required": 157,
+        "sufficient": false
+      },
+      "CYP4F2": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 20,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 20,
+        "sufficient": false
+      },
+      "DPYD": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 8,
+        "decision_critical_required": 28,
+        "evidence_counts": {
+          "absent_position": 52,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 31,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 20,
+        "percent": 37.3,
+        "pharmcat_positions_used": 31,
+        "pharmcat_sufficient": false,
+        "positions_present": 31,
+        "positions_required": 83,
+        "sufficient": false
+      },
+      "NUDT15": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 5,
+        "decision_critical_required": 20,
+        "evidence_counts": {
+          "absent_position": 15,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 5,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 80,
+        "percent": 25.0,
+        "pharmcat_positions_used": 5,
+        "pharmcat_sufficient": false,
+        "positions_present": 5,
+        "positions_required": 20,
+        "sufficient": false
+      },
+      "SLCO1B1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 15,
+        "decision_critical_required": 26,
+        "evidence_counts": {
+          "absent_position": 15,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 20,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 57.1,
+        "pharmcat_positions_used": 20,
+        "pharmcat_sufficient": false,
+        "positions_present": 20,
+        "positions_required": 35,
+        "sufficient": false
+      },
+      "TPMT": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 9,
+        "decision_critical_required": 45,
+        "evidence_counts": {
+          "absent_position": 36,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 9,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 80,
+        "percent": 20.0,
+        "pharmcat_positions_used": 9,
+        "pharmcat_sufficient": false,
+        "positions_present": 9,
+        "positions_required": 45,
+        "sufficient": false
+      },
+      "VKORC1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 1,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 1,
+        "sufficient": false
+      }
+    },
+    "processing_time_ms": 1628,
+    "variants_detected_count": 0,
+    "vcf_parsing_success": true,
+    "warnings": [
+      "Input quality was not established for required positions marked FILTER=. in: CYP2C19 (16), CYP2C9 (17), CYP2D6 (67), DPYD (31), NUDT15 (5), SLCO1B1 (20), TPMT (9). These complete genotypes were retained because the VCF does not explicitly mark them as failed and this application does not invent assay-independent DP/GQ/QUAL thresholds. Confirm the upstream caller's quality policy before relying on them.",
+      "Every gene (9 of 9) was declined, at 0\u201357% position coverage. That pattern is a property of the FILE, not of 9 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+      "DPYD: 8 of 28 positions that could indicate reduced function carry an explicit genotype in this VCF. The gene met its 20% coverage minimum (37%), but percentage is a proxy: a file can clear it while omitting every position capable of showing a variant. Reported as Unknown rather than assuming the missing positions match the reference \u2014 which is what would make a reduced-function result read as normal.",
+      "The two lowest activity values (variant activity scores, see CPIC guideline PMID:29152729) are used for unphased data and the lowest activity value per allele is used for phased data to determine the gene activity score and phenotype to retrieve prescribing recommendations.",
+      "The DPYD gene is on the negative chromosomal strand, all genotype calls for DPYD in this report refer to the positive chromosomal strand.  Therefore, genotype calls are complemented from gene bases.",
+      "DPYD: PharmCAT returned 'Indeterminate', which is not a phenotype this build can act on. Reported as Unknown rather than assuming one of the possibilities.",
+      "fluorouracil: Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+      "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; outside diplotype input planned",
+      "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+      "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+      "No usable pharmacogenomic result for: fluorouracil."
+    ]
+  },
+  "timestamp": "2026-11-06T01:13:50.328101Z"
+}

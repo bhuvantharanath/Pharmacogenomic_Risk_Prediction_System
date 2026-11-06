@@ -212,6 +212,9 @@ app = FastAPI(
 app.add_middleware(
     security.AnalysisMemoryGateMiddleware,
     wait_seconds=PHARMCAT_QUEUE_TIMEOUT_SECONDS,
+    # Phase 9 B8: a third upload in line is refused at once, and a client with
+    # an upload in flight is refused a second when its identity is trusted.
+    max_waiting=security.DEFAULT_MAX_WAITING_UPLOADS,
 )
 
 
