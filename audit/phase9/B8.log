@@ -95,3 +95,11 @@ plan, has main.py print the uploaded filename: caught by the log test (1 red), r
 The application code is unchanged by this; the zero-regression and container runs above stand.
 Note: partb/B8.suite-wip.stdout predates test_abuse_privacy.py (1148 collected, as at B7). With it the suite collects
 1172 (pytest --collect-only, 2026-11-06). The full run comes after the re-bind, below.
+
+== Re-bind (test-data/benchmark/current-candidate-2026-11-06-b8; rebind-b8.stdout) ==
+rebind_evaluation.py --tag 2026-11-06-b8, no declared changes, base head 8cd126e; the frozen cohort reused (208 samples
+x 7 genes). Result: core 60d2617ef9bc43d4a152fb7303a58248d90dc766a157bd301043848578af5f54, F4 true/true,
+verify_compatible_bundle PASS. Against B7's package: vcf_sha256 in 1,456 rows only
+(equal_to_previous_evaluation_except_generation_time true). Against the historical benchmark: B5's changes carried
+forward from B7's cumulative record: CYP2C9 eligibility_reason 208, missing_dependency_genes 208; discrepancy detail
+100. Zero-regression, external evaluation: no eligibility or discrepancy change against B7's package. PASS.
