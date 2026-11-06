@@ -50,6 +50,7 @@ from .pharmcat_models import (
     PharmcatReport,
     PharmcatVariant,
 )
+from .outside_calls import OutsideCall
 
 #: Operator lines only: exit statuses and temp-directory names, never content.
 _log = logging.getLogger("pharmaguard.pharmcat")
@@ -191,14 +192,12 @@ UNAVAILABLE_USER_MESSAGE = (
 
 CYP2D6_WARNING = (
     "CYP2D6 structural/copy-number variation cannot be resolved from unphased "
-    "VCF; outside diplotype input planned"
+    "VCF; a CYP2D6 diplotype from a dedicated caller can be supplied"
 )
 
-# TODO(phase5): accept an external CYP2D6 diplotype from a caller (e.g. from
-# Stargazer, Cyrius or a lab report) and pass it to PharmCAT via its outside-call
-# file: `pharmcat_pipeline ... -po outside_calls.tsv`. That flag is already
-# available in 3.4.0; we simply have no trustworthy source for the call yet.
-# Do NOT enable `-research cyp2d6` for this: PharmCAT documents research mode as
+# A CYP2D6 diplotype from a dedicated caller reaches PharmCAT as an outside call
+# (`-po`, Phase 9 B10; app/outside_calls.py is the one door for it). Do NOT
+# enable `-research cyp2d6` instead: PharmCAT documents research mode as
 # unvalidated, and a research-grade call rendered in a clinical-looking UI would
 # be worse than an honest "Unknown".
 
@@ -286,7 +285,12 @@ class Invoker:
     version_args: list[str]
     describe: str
 
-    def build(self, vcf_path: Path, output_dir: Path) -> list[str]:
+    def build(
+        self, vcf_path: Path, output_dir: Path, outside_calls: Path | None = None
+    ) -> list[str]:
+        # The outside-call file (Phase 9 B10) is the one optional flag, passed
+        # the same way on both paths. `-research` is never passed.
+        extra = ["-po", str(outside_calls)] if outside_calls is not None else []
         if self.kind == "jar":
             # -vcf runs the full pipeline: matcher -> phenotyper -> reporter.
             return [
@@ -294,6 +298,7 @@ class Invoker:
                 "-vcf", str(vcf_path),
                 "-o", str(output_dir),
                 "-reporterJson",
+                *extra,
             ]
         # The wrapper takes the VCF positionally. Flags are otherwise identical,
         # deliberately: the two paths must not diverge in what they ask for.
@@ -302,6 +307,7 @@ class Invoker:
             str(vcf_path),
             "-o", str(output_dir),
             "-reporterJson",
+            *extra,
         ]
 
 
@@ -443,7 +449,12 @@ def knowledge_identity() -> dict[str, str]:
 # --------------------------------------------------------------------------- #
 
 
-async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> PharmcatReport:
+async def run_pharmcat(
+    vcf_text: str,
+    *,
+    sample_hint: str = "sample",
+    outside_call: OutsideCall | None = None,
+) -> PharmcatReport:
     """
     Run PharmCAT over `vcf_text` and return the parsed report.
 
@@ -465,6 +476,14 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
             vcf_path = input_dir / f"{base}.vcf"
             vcf_path.write_text(vcf_text, encoding="utf-8")
 
+            # A supplied CYP2D6 call (Phase 9 B10), kept in the owned temp tree
+            # so the same finally removes it. Its one line was validated by
+            # app/outside_calls.py: the gene is never the user's.
+            outside_path = None
+            if outside_call is not None:
+                outside_path = workdir / "outside_calls.tsv"
+                outside_path.write_text(outside_call.file_line(), encoding="utf-8")
+
             invoker = resolve_invoker()
             if invoker is None:
                 raise PharmcatExecutionError(
@@ -474,8 +493,15 @@ async def run_pharmcat(vcf_text: str, *, sample_hint: str = "sample") -> Pharmca
             # PharmCAT/logback uses the process working directory for log files.
             # Keep those logs inside the owned temp tree so the same finally
             # removes VCFs, reports and tool logs together.
+            # The third argument only when a call was supplied, so a request
+            # without one builds exactly the command it built before B10.
+            build_args = (
+                (vcf_path, output_dir)
+                if outside_path is None
+                else (vcf_path, output_dir, outside_path)
+            )
             invocation = await _exec_unguarded(
-                invoker.build(vcf_path, output_dir), cwd=workdir
+                invoker.build(*build_args), cwd=workdir
             )
 
             # A non-zero exit is a failed run even when a report was written
@@ -876,6 +902,7 @@ def _parse_gene(symbol: str, block: dict) -> PharmcatGeneCall:
         allele_functions=[f for f in allele_functions if f],
         variants=variants,
         warnings=warnings,
+        call_source=call_source if isinstance(call_source, str) else None,
     )
 
 

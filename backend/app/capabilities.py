@@ -29,6 +29,10 @@ class DrugCapability:
     explanation_available: bool
     ui_available: bool
     export_available: bool
+    #: The gene an accepted outside call may supply for this drug (Phase 9 B10).
+    #: When PharmCAT reports that gene as supplied, the abstention it caused is
+    #: lifted for this request only. CYP2D6 for codeine; None elsewhere.
+    outside_call_gene: str | None = None
 
     def public_dict(self) -> dict[str, object]:
         return {
@@ -64,6 +68,10 @@ def load_registry(path: Path | None = None) -> tuple[DrugCapability, ...]:
             explanation_available=bool(raw["explanation_available"]),
             ui_available=bool(raw["ui_available"]),
             export_available=bool(raw["export_available"]),
+            outside_call_gene=(
+                str(raw["outside_call_gene"]).strip().upper()
+                if raw.get("outside_call_gene") else None
+            ),
         )
         for raw in raw_entries
     )

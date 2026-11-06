@@ -174,6 +174,7 @@ pw.Widget _result(_Page p, PerDrugResult r) {
       ('phenotype', profile.phenotype.wireValue),
       ('evidence level', c.cpicEvidenceLevel.wireValue),
     ]),
+    if (profile.provenanceLine != null) p.note(profile.provenanceLine!),
     if (r.llmGeneratedExplanation.summary.isNotEmpty)
       p.paragraph(r.llmGeneratedExplanation.summary),
     // The quotation keeps its attribution, as on the HTML page.
@@ -209,6 +210,13 @@ List<pw.Widget> _unknownSection(
       'about the file itself — missing positions or unusable genotypes — are '
       'something the sample provider can act on.',
     ),
+    if (unknowns.any(
+      (PerDrugResult r) =>
+          classifyUnknown(r, m) == UnknownReason.suppliedNotInterpretable,
+    ))
+      p.note(
+        'A CYP2D6 call supplied with the file is an input too, and can be corrected.',
+      ),
     for (final PerDrugResult r in unknowns) _unknown(p, r, m),
   ];
 }

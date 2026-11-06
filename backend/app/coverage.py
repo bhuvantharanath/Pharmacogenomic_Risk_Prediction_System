@@ -47,7 +47,7 @@ from __future__ import annotations
 import functools
 import json
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from enum import Enum
 from pathlib import Path
 
@@ -534,6 +534,21 @@ class DrugEligibility:
             + "Available partner findings are partial evidence only; no complete "
               "drug-level PGx recommendation is made."
         )
+
+
+def with_outside_call(eligibility: DrugEligibility, gene: str) -> DrugEligibility:
+    """
+    The same decision when `gene` came from an accepted outside call (Phase 9
+    B10). The VCF's positions for it are irrelevant: PharmCAT documents that an
+    outside call trumps VCF data for that gene. The caller applies this only
+    when PharmCAT reported the gene as supplied and the drug's capability names
+    it as the one an outside call may supply.
+    """
+    return replace(
+        eligibility,
+        failed_genes=tuple(g for g in eligibility.failed_genes if g != gene),
+        guidance_capable=True,
+    )
 
 
 def drug_eligibility(

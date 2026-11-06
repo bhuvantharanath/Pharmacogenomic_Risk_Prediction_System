@@ -102,6 +102,20 @@ def _variant_rationale(context: ExplanationContext) -> str:
             "variant-level rationale to report."
         )
 
+    if context.supplied_by:
+        # NOT A CALL (Phase 9 B10): a supplied diplotype has no VCF positions
+        # behind it, and neither PharmCAT nor PharmaGuard called it.
+        sentences = [
+            "{gene} {diplotype} was supplied by "
+            f"{context.supplied_by}, not called by PharmaGuard. PharmCAT reads it "
+            "as a {phenotype} result."
+        ]
+        if context.activity_score is not None:
+            sentences.append(
+                f"The reported activity score is {context.activity_score}."
+            )
+        return " ".join(sentences)
+
     sentences = [
         "PharmCAT called {gene} as {diplotype}, which corresponds to a "
         "{phenotype} result."

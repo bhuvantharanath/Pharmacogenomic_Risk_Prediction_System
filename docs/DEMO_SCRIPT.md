@@ -191,8 +191,8 @@ present. Percentage alone cannot establish acceptable evidence.
 python scripts/validate_label_mapping.py
 ```
 
-> "92 of 105 — exhaustive, every phenotype combination for all six drugs, not a
-> sample. The 13 are documented divergences."
+> "101 of 105 — exhaustive, every phenotype combination for all six drugs, not a
+> sample. The 4 are documented divergences."
 
 ```bash
 python scripts/release_status.py --content-only

@@ -87,6 +87,13 @@ class UnknownReasonPanel extends StatelessWidget {
           'There is nothing to report here rather than nothing to find.',
       null,
     ),
+    // The headline, explanation and remedy are the model's own, so the panel,
+    // the printed page and the FHIR export say the same thing.
+    UnknownReason.suppliedNotInterpretable => (
+      UnknownReason.suppliedNotInterpretable.headline,
+      UnknownReason.suppliedNotInterpretable.explanation,
+      UnknownReason.suppliedNotInterpretable.callToAction,
+    ),
     UnknownReason.unspecified => (
       'Result withheld',
       fallbackReason?.trim().isNotEmpty == true
@@ -105,6 +112,7 @@ class UnknownReasonPanel extends StatelessWidget {
     UnknownReason.notCallable => Icons.biotech_outlined,
     UnknownReason.ambiguous => Icons.alt_route_outlined,
     UnknownReason.noGuidance => Icons.menu_book_outlined,
+    UnknownReason.suppliedNotInterpretable => Icons.edit_note_outlined,
     UnknownReason.unspecified => Icons.help_outline,
   };
 

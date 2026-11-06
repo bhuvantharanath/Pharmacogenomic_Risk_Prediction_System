@@ -90,10 +90,18 @@ class PharmcatGeneCall(BaseModel):
     variants: list[PharmcatVariant] = Field(default_factory=list)
     # PharmCAT's own messages plus any we add while parsing.
     warnings: list[str] = Field(default_factory=list)
+    # PharmCAT's `callSource`: "MATCHER" for a call from the VCF, "OUTSIDE" for
+    # one supplied in an outside-call file (Phase 9 B10), "NONE" when PharmCAT
+    # did not try (CYP2D6 from a VCF).
+    call_source: str | None = None
 
     @property
     def is_called(self) -> bool:
         return self.status in (CallStatus.DEFINITE, CallStatus.AMBIGUOUS)
+
+    @property
+    def is_outside_call(self) -> bool:
+        return self.call_source == "OUTSIDE"
 
 
 class CpicAnnotation(BaseModel):

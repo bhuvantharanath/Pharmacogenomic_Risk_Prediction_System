@@ -1,0 +1,320 @@
+{
+  "resourceType": "Bundle",
+  "id": "20dda979-259a-546e-8c47-f8594be91ed1",
+  "type": "collection",
+  "timestamp": "2026-11-06T00:00:00.000Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:3a4595c9-a64d-56ed-a842-8d8f19499e64",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "3a4595c9-a64d-56ed-a842-8d8f19499e64",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE</p><p>This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page.</p><p>Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from.</p><p>Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.</p><p>Results, most serious first:</p><p>codeine: Unknown</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-disclaimer"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page. Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from. Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional."
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-methodology"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "PharmCAT 3.4.0; CPIC data version 2026-07-13-11-40; CPIC table SHA-256 5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8; allele definitions 2026-07-13-11-40; definitions SHA-256 7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f; explanations generated 24 Jul 2026; source: CPIC guidelines, retrieved via PharmCAT. Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs."
+            }
+          }
+        ],
+        "status": "partial",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "51969-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T12:28:48.527399Z",
+        "issued": "2026-11-06T00:00:00.000Z",
+        "specimen": [
+          {
+            "reference": "urn:uuid:34ea84c2-9a8e-57d9-a16c-8acc051a93db"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:40550e48-df03-56ff-8fe2-05e135490a13"
+          },
+          {
+            "reference": "urn:uuid:c43eecb2-c287-5fad-a7fd-964056143082"
+          }
+        ],
+        "conclusion": "RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE. Results, most serious first: codeine: Unknown."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:34ea84c2-9a8e-57d9-a16c-8acc051a93db",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "34ea84c2-9a8e-57d9-a16c-8acc051a93db",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Sample \"NA12273\" in the uploaded VCF.</p></div>"
+        },
+        "identifier": [
+          {
+            "value": "NA12273"
+          }
+        ],
+        "note": [
+          {
+            "text": "The sample name in the uploaded VCF. It names a sample, not a person."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:10d4e222-6c80-54d3-8baf-c02ff4dd8578",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "10d4e222-6c80-54d3-8baf-c02ff4dd8578",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>The uploaded VCF file. It is not included in this export.</p></div>"
+        },
+        "status": "current",
+        "description": "The uploaded VCF file. It is not included in this export.",
+        "content": [
+          {
+            "attachment": {
+              "title": "Uploaded VCF"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:40550e48-df03-56ff-8fe2-05e135490a13",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "40550e48-df03-56ff-8fe2-05e135490a13",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genotype"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>CYP2D6 *1xN/*4</p><p>CYP2D6 supplied by Cyrius, not called by PharmaGuard.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T12:28:48.527399Z",
+        "specimen": {
+          "reference": "urn:uuid:34ea84c2-9a8e-57d9-a16c-8acc051a93db"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:10d4e222-6c80-54d3-8baf-c02ff4dd8578"
+          }
+        ],
+        "note": [
+          {
+            "text": "CYP2D6 supplied by Cyrius, not called by PharmaGuard."
+          }
+        ],
+        "valueCodeableConcept": {
+          "text": "CYP2D6 *1xN/*4"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "CYP2D6"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c43eecb2-c287-5fad-a7fd-964056143082",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c43eecb2-c287-5fad-a7fd-964056143082",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>codeine: Unknown</p><p>PharmCAT could not give the supplied diplotype a CPIC phenotype — for example a copy number written as xN, or an allele it does not define — so no CPIC recommendation applies. The call was used exactly as supplied.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T12:28:48.527399Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:40550e48-df03-56ff-8fe2-05e135490a13"
+          },
+          {
+            "reference": "urn:uuid:10d4e222-6c80-54d3-8baf-c02ff4dd8578"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: Unknown"
+          },
+          {
+            "text": "CYP2D6 supplied by Cyrius, not called by PharmaGuard."
+          },
+          {
+            "text": "Why Unknown: The supplied call has no CPIC phenotype"
+          },
+          {
+            "text": "What would fix it: Check the diplotype against the caller's own output, and give copy numbers as a number (x2, x3) rather than xN."
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "codeine"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "Unknown"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "PharmCAT could not give the supplied diplotype a CPIC phenotype — for example a copy number written as xN, or an allele it does not define — so no CPIC recommendation applies. The call was used exactly as supplied."
+          }
+        ]
+      }
+    }
+  ]
+}

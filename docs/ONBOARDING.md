@@ -65,7 +65,7 @@ has to decide what to do with absent information.
 ```bash
 cd backend && python -m pytest                      # the whole backend suite
 cd app && flutter test && flutter analyze           # client
-python scripts/validate_label_mapping.py            # 92/105, exhaustive
+python scripts/validate_label_mapping.py            # 101/105, exhaustive
 python scripts/verify_provenance.py                 # explanation -> CPIC
 python scripts/adjudication_status.py               # adjudication detail
 python scripts/release_status.py --content-only     # authoritative content gate

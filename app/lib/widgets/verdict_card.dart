@@ -184,6 +184,13 @@ class _VerdictCardState extends State<VerdictCard> {
             r.riskAssessment.riskLabel.displayValue,
             style: Tokens.verdictText.copyWith(color: fg),
           ),
+          if (r.pharmacogenomicProfile.provenanceLine != null) ...<Widget>[
+            const SizedBox(height: 4),
+            Text(
+              r.pharmacogenomicProfile.provenanceLine!,
+              style: Tokens.monoSm.copyWith(color: fg),
+            ),
+          ],
           const SizedBox(height: 7),
           Wrap(
             spacing: 14,

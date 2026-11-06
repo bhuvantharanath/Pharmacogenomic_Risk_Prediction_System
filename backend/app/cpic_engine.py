@@ -722,7 +722,15 @@ def evaluate(
     gene_call = report.gene(fallback_gene)
     guideline = report.drug(key)
 
-    if not capability.guidance_capable:
+    # An abstention caused by a gene no VCF can supply is lifted when that gene
+    # came from an accepted outside call (Phase 9 B10): PharmCAT reports it as
+    # OUTSIDE only when this request supplied it.
+    supplied = (
+        capability.outside_call_gene is not None
+        and (outside := report.gene(capability.outside_call_gene)) is not None
+        and outside.is_outside_call
+    )
+    if not capability.guidance_capable and not supplied:
         warnings.append(f"{key}: {capability.limitation}")
         return (
             RiskAssessment(

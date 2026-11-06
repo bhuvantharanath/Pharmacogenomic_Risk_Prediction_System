@@ -208,9 +208,11 @@ void main() {
           'a risk label was added or removed — add it to the render '
           'group above, then update this count',
     );
+    // 7 since Phase 9 B10 added `suppliedNotInterpretable` (a supplied CYP2D6
+    // call with no CPIC phenotype); the render group enumerates the enum.
     expect(
       UnknownReason.values.length,
-      6,
+      7,
       reason:
           'an Unknown reason was added or removed — the render group '
           'enumerates the enum, but this pins the expected size so the '

@@ -37,8 +37,9 @@ import 'view_mode.dart';
 List<PerDrugResult> orderByConsequence(List<PerDrugResult> analyses) {
   final List<PerDrugResult> ordered = List<PerDrugResult>.of(analyses);
   ordered.sort((PerDrugResult a, PerDrugResult b) {
-    final int band = a.riskAssessment.riskLabel.consequenceRank
-        .compareTo(b.riskAssessment.riskLabel.consequenceRank);
+    final int band = a.riskAssessment.riskLabel.consequenceRank.compareTo(
+      b.riskAssessment.riskLabel.consequenceRank,
+    );
     if (band != 0) return band;
 
     // Alphabetical within a band, so the order never depends on the
@@ -105,7 +106,9 @@ class _SummaryGridState extends State<SummaryGrid>
             open: _open.contains(r.drug),
             onToggle: () {
               setState(() {
-                _open.contains(r.drug) ? _open.remove(r.drug) : _open.add(r.drug);
+                _open.contains(r.drug)
+                    ? _open.remove(r.drug)
+                    : _open.add(r.drug);
               });
               updateKeepAlive();
             },
@@ -160,15 +163,17 @@ class _Row extends StatelessWidget {
                     Container(width: 4, color: bg),
                     Expanded(
                       child: Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(12, 11, 8, 11),
+                        padding: const EdgeInsets.fromLTRB(12, 11, 8, 11),
                         child: _content(fg, risk),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(right: 11),
-                      child: Icon(open ? Icons.remove : Icons.add,
-                          size: 17, color: Tokens.ink3),
+                      child: Icon(
+                        open ? Icons.remove : Icons.add,
+                        size: 17,
+                        color: Tokens.ink3,
+                      ),
                     ),
                   ],
                 ),
@@ -195,15 +200,29 @@ class _Row extends StatelessWidget {
   Widget _content(Color fg, RiskAssessment risk) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text(result.drug.toLowerCase(),
-          style: Tokens.monoLabel, overflow: TextOverflow.ellipsis),
+      Text(
+        result.drug.toLowerCase(),
+        style: Tokens.monoLabel,
+        overflow: TextOverflow.ellipsis,
+      ),
       const SizedBox(height: 3),
-      Text(risk.riskLabel.displayValue,
-          style: Tokens.verdictRow.copyWith(color: fg)),
+      Text(
+        risk.riskLabel.displayValue,
+        style: Tokens.verdictRow.copyWith(color: fg),
+      ),
       if (risk.severity != Severity.none) ...<Widget>[
         const SizedBox(height: 3),
         Text(
           'PGx interpretation only',
+          style: Tokens.monoSm.copyWith(color: Tokens.ink2),
+        ),
+      ],
+      // A supplied call is named as such even before the row is opened: the
+      // verdict rests on it (Phase 9 B10).
+      if (result.pharmacogenomicProfile.provenanceLine != null) ...<Widget>[
+        const SizedBox(height: 3),
+        Text(
+          result.pharmacogenomicProfile.provenanceLine!,
           style: Tokens.monoSm.copyWith(color: Tokens.ink2),
         ),
       ],

@@ -76,7 +76,7 @@ The system's design is a response to that finding. It is built to decline rather
 
 | Result | Value |
 |---|---|
-| CPIC label-mapping validation | **92/105** combinations, exhaustive (not sampled); 13 documented divergences, all erring toward caution |
+| CPIC label-mapping validation | **101/105** combinations, exhaustive (not sampled); 4 documented divergences, all erring toward caution |
 | Historical integration fidelity (self-consistency, **not** accuracy) | **100.0000%** — 400 samples, 2,800 gene-pairs, 5,600 field comparisons, 0 mismatches against the same PharmCAT caller. Version-specific and blind to input adequacy |
 | Independent external benchmark | **208 individuals**, 1,456 sample×gene rows, **596 evaluable truth diplotypes** across seven genes. Results are reported per gene with denominators; no pooled “accuracy” is claimed |
 | PharmCAT adversarial test VCFs | **0 mismatches** across all 74 files |

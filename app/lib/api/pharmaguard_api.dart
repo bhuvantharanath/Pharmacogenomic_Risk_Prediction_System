@@ -200,10 +200,15 @@ class PharmaGuardApi {
     required Uint8List fileBytes,
     required String fileName,
     required String drugs,
+    String? cyp2d6Diplotype,
+    String? cyp2d6Caller,
   }) async {
     final FormData form = FormData.fromMap(<String, dynamic>{
       'file': MultipartFile.fromBytes(fileBytes, filename: fileName),
       'drugs': drugs,
+      // A CYP2D6 call from a dedicated caller (Phase 9 B10), only when given.
+      'cyp2d6_diplotype': ?cyp2d6Diplotype,
+      'cyp2d6_caller': ?cyp2d6Caller,
     });
 
     final Response<dynamic> res;

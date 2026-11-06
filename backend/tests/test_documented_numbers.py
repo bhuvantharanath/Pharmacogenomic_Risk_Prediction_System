@@ -286,7 +286,7 @@ def test_the_documented_test_counts_match_the_suite() -> None:
 
 
 def test_the_label_mapping_figures_match_the_validator() -> None:
-    """`92/105` and `13 divergences` appear in README and PROJECT_STATUS."""
+    """The validator's current agreement and divergence counts are documented."""
     result = subprocess.run(
         [sys.executable, str(REPO / "scripts/validate_label_mapping.py"), "--json"],
         cwd=REPO, capture_output=True, text=True, timeout=900)

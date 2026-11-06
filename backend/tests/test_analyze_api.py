@@ -97,6 +97,9 @@ class TestContractCompatibility:
                 "phenotype",
                 "activity_score",
                 "detected_variants",
+                # Added Phase 9 B10, additive and nullable: the dedicated caller
+                # that supplied a CYP2D6 diplotype PharmaGuard did not call.
+                "supplied_by",
             }
             assert set(analysis["clinical_recommendation"]) == {
                 "action",

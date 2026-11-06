@@ -69,7 +69,8 @@
       "evidence_dependencies": ["CYP2D6"],
       "implementation_status": "explicit_abstention",
       "guidance_capable": false,
-      "limitation": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "limitation": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+      "outside_call_gene": "CYP2D6",
       "explanation_available": true,
       "ui_available": true,
       "export_available": true

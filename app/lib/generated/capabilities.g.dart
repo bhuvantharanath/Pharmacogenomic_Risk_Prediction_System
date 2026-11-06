@@ -115,7 +115,7 @@ const List<DrugCapability> kDrugCapabilities = <DrugCapability>[
     implementationStatus: 'explicit_abstention',
     guidanceCapable: false,
     limitation:
-        'CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.',
+        'CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).',
     explanationAvailable: true,
     uiAvailable: true,
     exportAvailable: true,

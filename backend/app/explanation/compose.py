@@ -49,6 +49,20 @@ def compose_variant_rationale(context: ExplanationContext) -> str:
             "there is no variant-level rationale to report."
         )
 
+    if context.supplied_by:
+        # NOT A CALL. A supplied diplotype has no VCF positions behind it, and
+        # neither PharmCAT nor PharmaGuard called it (Phase 9 B10).
+        sentences = [
+            f"{context.gene} {context.diplotype_display} was supplied by "
+            f"{context.supplied_by}, not called by PharmaGuard. PharmCAT reads it "
+            f"as a {context.phenotype_display} result."
+        ]
+        if context.activity_score is not None:
+            sentences.append(
+                f"The reported activity score is {context.activity_score}."
+            )
+        return " ".join(sentences)
+
     if context.diplotype_is_ambiguous:
         # FUNCTION KNOWN, EXACT GENOTYPE NOT.
         #

@@ -192,10 +192,13 @@ void main() {
       expect(texts.length, UnknownReason.values.length);
     });
 
-    test('only the file-evidence reasons are actionable', () {
+    test('only reasons the user can correct are actionable', () {
+      // The file-evidence reasons, and since Phase 9 B10 a supplied CYP2D6 call
+      // PharmCAT could not interpret: an input the user gave, and can fix.
       const Set<UnknownReason> actionable = <UnknownReason>{
         UnknownReason.lowCoverage,
         UnknownReason.unusableGenotypes,
+        UnknownReason.suppliedNotInterpretable,
       };
       for (final UnknownReason r in UnknownReason.values) {
         expect(r.isActionable, actionable.contains(r), reason: '$r');
@@ -257,7 +260,10 @@ void main() {
           profile: _profile(gene: 'CYP2D6'),
         ),
       );
-      expect(find.textContaining('this application does not perform'), findsOneWidget);
+      expect(
+        find.textContaining('this application does not perform'),
+        findsOneWidget,
+      );
       expect(
         find.byIcon(Icons.lightbulb_outline),
         findsNothing,

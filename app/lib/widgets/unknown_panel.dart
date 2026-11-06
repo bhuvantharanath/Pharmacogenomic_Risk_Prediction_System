@@ -40,6 +40,7 @@ class UnknownPanel extends StatelessWidget {
       UnknownReason.notCallable => Icons.biotech_outlined,
       UnknownReason.ambiguous => Icons.alt_route,
       UnknownReason.noGuidance => Icons.menu_book_outlined,
+      UnknownReason.suppliedNotInterpretable => Icons.edit_note_outlined,
       UnknownReason.unspecified => Icons.help_outline,
     };
 

@@ -115,6 +115,7 @@ Map<String, Object?> buildFhirReport(
         id: id(key),
         gene: gene,
         diplotype: called ? p.diplotype : null,
+        provenance: called ? p.provenanceLine : null,
         effective: effective,
         specimen: ref(specimenId),
         document: ref(documentId),
@@ -300,6 +301,7 @@ Map<String, Object?> _genotype({
   required String id,
   required String gene,
   required String? diplotype,
+  required String? provenance,
   required String? effective,
   required String specimen,
   required String document,
@@ -314,6 +316,7 @@ Map<String, Object?> _genotype({
     diplotype == null
         ? '$gene: genotype not determined by this analysis.'
         : '$gene $diplotype',
+    ?provenance,
   ]),
   'status': 'preliminary',
   'category': _observationCategory,
@@ -321,6 +324,11 @@ Map<String, Object?> _genotype({
   'effectiveDateTime': ?effective,
   'specimen': _reference(specimen),
   'derivedFrom': <Object?>[_reference(document)],
+  // A supplied call (Phase 9 B10): named as supplied, not called.
+  if (provenance != null)
+    'note': <Object?>[
+      <String, Object?>{'text': provenance},
+    ],
   if (diplotype != null)
     'valueCodeableConcept': <String, Object?>{'text': '$gene $diplotype'}
   else
@@ -364,6 +372,7 @@ Map<String, Object?> _implication({
 
   final List<String> notes = <String>[
     'PharmaGuard result: ${label.wireValue}',
+    ?result.pharmacogenomicProfile.provenanceLine,
     if (reason == null && !c.hasMatchedCpicEntry)
       'Application limitation — not a CPIC quote.',
     if (c.hasMatchedCpicEntry &&

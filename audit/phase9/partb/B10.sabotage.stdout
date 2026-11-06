@@ -1,0 +1,68 @@
+== SB10-a: the diplotype grammar lets a newline through (backend/app/outside_calls.py) ==
+  FAILED tests/test_outside_calls.py::test_anything_else_is_refused[a newline adding a second gene]
+  FAILED tests/test_outside_calls.py::test_anything_else_is_refused[a shell suffix]
+  FAILED tests/test_outside_calls.py::test_anything_else_is_refused[a tab]
+  FAILED tests/test_outside_calls.py::test_anything_else_is_refused[a trailing newline]
+  FAILED tests/test_outside_calls.py::test_anything_else_is_refused[three haplotypes]
+  FAILED tests/test_outside_calls.py::test_the_api_refuses_before_pharmcat_runs[*1/*4\nCYP2C19\t*1/*1-Cyrius-OUTSIDE_CALL_INVALID]
+  FAILED tests/test_outside_calls.py::test_the_api_refuses_before_pharmcat_runs[*1/*4\t-Cyrius-OUTSIDE_CALL_INVALID]
+exit 1; 7 red
+restored identical: yes
+== SB10-b: codeine's gate opens for a CYP2D6 call that did not come OUTSIDE (backend/app/cpic_engine.py) ==
+  FAILED tests/test_outside_calls.py::test_only_an_outside_call_opens_codeine
+exit 1; 1 red
+restored identical: yes
+== SB10-c: supplied_by is not set for an outside call (backend/app/main.py) ==
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*4/*4-Cyrius-Ineffective-PM-Avoid codeine use because of possibilit
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*4/*10-Aldy-No PGx-guided adjustment identified-IM-Use codeine labe
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1/*2-StellarPGx-No PGx-guided adjustment identified-NM-Use codeine
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1/*1x2-BCyrius-Toxic-URM-Avoid codeine use because of potential fo
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1xN/*4-Cyrius-Unknown-Unknown-None]
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*999/*1-Cyrius-Unknown-Unknown-None]
+  FAILED tests/test_outside_calls.py::test_the_supplied_gene_is_named_only_for_the_request_that_supplied_it
+exit 1; 7 red
+restored identical: yes
+== SB10-d: the template says PharmCAT called a supplied diplotype (backend/app/explanation/generator_template.py) ==
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*4/*4-Cyrius-Ineffective-PM-Avoid codeine use because of possibilit
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*4/*10-Aldy-No PGx-guided adjustment identified-IM-Use codeine labe
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1/*2-StellarPGx-No PGx-guided adjustment identified-NM-Use codeine
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1/*1x2-BCyrius-Toxic-URM-Avoid codeine use because of potential fo
+exit 1; 4 red
+restored identical: yes
+== SB10-e: the new phrase is removed from standard_dosing (backend/app/data/label_mapping.yaml) ==
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*4/*10-Aldy-No PGx-guided adjustment identified-IM-Use codeine labe
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1/*2-StellarPGx-No PGx-guided adjustment identified-NM-Use codeine
+exit 1; 2 red
+restored identical: yes
+== SB10-f: the caller list accepts any name (backend/app/outside_calls.py) ==
+  FAILED tests/test_outside_calls.py::test_only_the_named_callers_are_accepted[cyrius]
+  FAILED tests/test_outside_calls.py::test_only_the_named_callers_are_accepted[Stargazer]
+  FAILED tests/test_outside_calls.py::test_only_the_named_callers_are_accepted[Aldy 4]
+  FAILED tests/test_outside_calls.py::test_only_the_named_callers_are_accepted[ Cyrius]
+  FAILED tests/test_outside_calls.py::test_the_api_refuses_before_pharmcat_runs[*1/*4-Stargazer-OUTSIDE_CALL_INVALID]
+exit 1; 5 red
+restored identical: yes
+== SB10-g: -research cyp2d6 is added to the PharmCAT command (backend/app/pharmcat_runner.py) ==
+  FAILED tests/test_outside_calls.py::test_the_command_carries_the_file_and_never_research_mode
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*4/*4-Cyrius-Ineffective-PM-Avoid codeine use because of possibilit
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*4/*10-Aldy-No PGx-guided adjustment identified-IM-Use codeine labe
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1/*2-StellarPGx-No PGx-guided adjustment identified-NM-Use codeine
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1/*1x2-BCyrius-Toxic-URM-Avoid codeine use because of potential fo
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*1xN/*4-Cyrius-Unknown-Unknown-None]
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_answers_codeine_from_cpic[*999/*1-Cyrius-Unknown-Unknown-None]
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_changes_only_cyp2d6_drugs[vcf0-clopidogrel]
+  FAILED tests/test_outside_calls.py::test_a_supplied_call_changes_only_cyp2d6_drugs[vcf1-clopidogrel,simvastatin,fluorouracil,codeine,ibuprofen]
+  FAILED tests/test_outside_calls.py::test_only_an_outside_call_opens_codeine
+  ... 1 more
+exit 1; 11 red
+restored identical: yes
+== SB10-h: the results row drops the provenance line (app/lib/widgets/summary_grid.dart) ==
+  every view names a supplied call the results screen
+exit 1; 1 red
+restored identical: yes
+== SB10-i: the printable summary drops the provenance line (app/lib/print/summary_document.dart) ==
+  /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app/test/outside_call_test.dart: every view names a supplied call the printed page, onc
+  /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app/test/summary_pdf_test.dart: X2_supplied_cyp2d6 places exactly the HTML summary's te
+  /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/app/test/summary_pdf_test.dart: X3_supplied_xn places exactly the HTML summary's text, 
+exit 1; 3 red
+restored identical: yes

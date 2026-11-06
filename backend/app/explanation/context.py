@@ -72,6 +72,11 @@ class ExplanationContext:
     # must state rather than paper over by naming one of them.
     candidate_diplotypes: list[str] = field(default_factory=list)
 
+    # The dedicated caller that supplied the diplotype, when PharmaGuard did not
+    # call it (Phase 9 B10). The prose must then say so, and must not describe
+    # a call from VCF positions that never happened.
+    supplied_by: str | None = None
+
     @property
     def diplotype_is_ambiguous(self) -> bool:
         return len(self.candidate_diplotypes) > 1

@@ -173,6 +173,11 @@ class PharmacogenomicProfile(BaseModel):
     # DPYD). Null everywhere else — do not coerce to 0.0, that means something.
     activity_score: float | None = None
     detected_variants: list[DetectedVariant] = Field(default_factory=list)
+    #: The dedicated caller that supplied this diplotype, when PharmaGuard did not
+    #: call it (Phase 9 B10: CYP2D6 from Cyrius, BCyrius, Aldy or StellarPGx).
+    #: Null for every call PharmCAT made from the VCF. Every view of a result
+    #: with this set says "supplied by <caller>, not called by PharmaGuard".
+    supplied_by: str | None = None
 
 
 class ClinicalRecommendation(BaseModel):

@@ -110,6 +110,7 @@ class PharmacogenomicProfile {
     required this.phenotype,
     required this.activityScore,
     required this.detectedVariants,
+    this.suppliedBy,
   });
 
   final String primaryGene;
@@ -137,6 +138,17 @@ class PharmacogenomicProfile {
   final double? activityScore;
   final List<DetectedVariant> detectedVariants;
 
+  /// The dedicated caller that supplied this diplotype, when PharmaGuard did
+  /// not call it (Phase 9 B10: CYP2D6 from Cyrius, BCyrius, Aldy or
+  /// StellarPGx). Null for every call made from the VCF.
+  final String? suppliedBy;
+
+  /// The one sentence every view shows for a supplied call — card, printed
+  /// page, PDF and FHIR export — so none of them can word it differently.
+  String? get provenanceLine => suppliedBy == null
+      ? null
+      : '$primaryGene supplied by $suppliedBy, not called by PharmaGuard.';
+
   factory PharmacogenomicProfile.fromJson(Map<String, dynamic> json) {
     final Object? raw = json['detected_variants'];
     return PharmacogenomicProfile(
@@ -156,6 +168,7 @@ class PharmacogenomicProfile {
                 .map(DetectedVariant.fromJson)
                 .toList(growable: false)
           : const <DetectedVariant>[],
+      suppliedBy: json['supplied_by'] as String?,
     );
   }
 
@@ -169,6 +182,8 @@ class PharmacogenomicProfile {
     'detected_variants': detectedVariants
         .map((DetectedVariant v) => v.toJson())
         .toList(),
+    // Only when set: a response from before B10 round-trips unchanged.
+    'supplied_by': ?suppliedBy,
   };
 }
 

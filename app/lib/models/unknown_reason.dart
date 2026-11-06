@@ -49,6 +49,11 @@ enum UnknownReason {
   /// CPIC has no recommendation for this combination.
   noGuidance,
 
+  /// A diplotype supplied by a dedicated caller (Phase 9 B10) that PharmCAT
+  /// could not give a CPIC phenotype — a copy number written as xN, or an
+  /// allele it does not define. The user's to fix.
+  suppliedNotInterpretable,
+
   /// Unknown for a reason the response does not explain. Shown as such rather
   /// than guessed at.
   unspecified;
@@ -60,13 +65,16 @@ enum UnknownReason {
     UnknownReason.unusableGenotypes => 'Required genotypes could not be used',
     UnknownReason.ambiguous => 'Several genotypes fit this data',
     UnknownReason.noGuidance => 'No CPIC guidance for this combination',
+    UnknownReason.suppliedNotInterpretable =>
+      'The supplied call has no CPIC phenotype',
     UnknownReason.unspecified => 'Result withheld',
   };
 
   /// Whether the *user* can do something about it. Drives the call to action.
   bool get isActionable =>
       this == UnknownReason.lowCoverage ||
-      this == UnknownReason.unusableGenotypes;
+      this == UnknownReason.unusableGenotypes ||
+      this == UnknownReason.suppliedNotInterpretable;
 
   String get explanation => switch (this) {
     UnknownReason.notCallable =>
@@ -95,6 +103,11 @@ enum UnknownReason {
       'The genotype was determined successfully. CPIC simply publishes no dosing '
           'recommendation for this particular gene, drug and phenotype combination — '
           'so there is nothing to report rather than nothing to find.',
+    UnknownReason.suppliedNotInterpretable =>
+      'PharmCAT could not give the supplied diplotype a CPIC phenotype — for '
+          'example a copy number written as xN, or an allele it does not '
+          'define — so no CPIC recommendation applies. The call was used '
+          'exactly as supplied.',
     UnknownReason.unspecified =>
       'The system could not support a confident result here and did not record a '
           'specific reason. It declines rather than assert something it cannot back.',
@@ -111,6 +124,9 @@ enum UnknownReason {
       'Check the genotype and FILTER values your caller wrote at the affected '
           'positions, and re-call them so each carries a complete genotype that '
           'passed its filters.',
+    UnknownReason.suppliedNotInterpretable =>
+      "Check the diplotype against the caller's own output, and give copy "
+          'numbers as a number (x2, x3) rather than xN.',
     _ => null,
   };
 }
@@ -120,6 +136,12 @@ enum UnknownReason {
 UnknownReason classifyUnknown(PerDrugResult result, QualityMetrics metrics) {
   final String gene = geneForResult(result);
   final DrugCapability? capability = capabilityForDrug(result.drug);
+
+  // A call the user supplied (Phase 9 B10) is not a gene this app failed to
+  // call: PharmCAT read it and found no CPIC phenotype for it.
+  if (result.pharmacogenomicProfile.suppliedBy != null) {
+    return UnknownReason.suppliedNotInterpretable;
+  }
 
   // No uploaded VCF enables this app's CYP2D6 calling or its unsupported
   // warfarin dosing. These limits take precedence over a short position census.

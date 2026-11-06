@@ -408,6 +408,9 @@ risk_label_rules:
       - "normal starting dose"
       - "label-recommended dosage"
       - "label recommended dosage"
+      # CPIC's codeine wording for CYP2D6 NM and IM (Phase 9 B10, owner
+      # decision): reachable once CYP2D6 can be supplied by a dedicated caller.
+      - "label recommended age- or weight-specific dosing"
       - "prescribe desired starting dose"
       - "no indication to change dose"
       - "no reason to selectively adjust"

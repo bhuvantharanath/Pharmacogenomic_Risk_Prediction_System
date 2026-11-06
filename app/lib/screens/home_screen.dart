@@ -14,6 +14,7 @@ import '../config.dart';
 import '../glossary/glossary_text.dart';
 import '../models/analysis.dart';
 import '../theme/tokens.dart';
+import '../widgets/outside_call_field.dart';
 import '../widgets/backend_status_banner.dart';
 import '../widgets/disclaimer_banner.dart';
 import '../widgets/error_panel.dart';
@@ -36,6 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
   final TextEditingController _drugsController = TextEditingController(
     text: 'codeine,warfarin,clopidogrel',
   );
+
+  /// An optional CYP2D6 call from a dedicated caller (Phase 9 B10).
+  final TextEditingController _cyp2d6Controller = TextEditingController();
+  String? _cyp2d6Caller;
 
   PlatformFile? _file;
   bool _loading = false;
@@ -112,6 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
     _backend.removeListener(_onBackendChanged);
     _backend.dispose();
     _drugsController.dispose();
+    _cyp2d6Controller.dispose();
     super.dispose();
   }
 
@@ -255,6 +261,15 @@ class _HomeScreenState extends State<HomeScreen> {
       });
       return;
     }
+    final String cyp2d6 = _cyp2d6Controller.text.trim();
+    final String? cyp2d6Error = outsideCallError(cyp2d6, _cyp2d6Caller);
+    if (cyp2d6Error != null) {
+      setState(() {
+        _error = cyp2d6Error;
+        _errorKind = null;
+      });
+      return;
+    }
 
     setState(() {
       _loading = true;
@@ -272,6 +287,8 @@ class _HomeScreenState extends State<HomeScreen> {
         fileBytes: file.bytes!,
         fileName: file.name,
         drugs: _drugsController.text.trim(),
+        cyp2d6Diplotype: cyp2d6.isEmpty ? null : cyp2d6,
+        cyp2d6Caller: cyp2d6.isEmpty ? null : _cyp2d6Caller,
       );
       if (!mounted) return;
       _ticker?.cancel();
@@ -432,11 +449,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  // Warfarin and codeine are in scope only as explicit
-                  // abstentions (capability registry), so they are not listed as
-                  // drugs this build gives guidance for.
-                  'Drugs in this build’s scope — warfarin and codeine always '
-                  'return "Unknown" here, as does any other drug:',
+                  // Warfarin is in scope only as an explicit abstention, and
+                  // codeine is unless a CYP2D6 call is supplied below
+                  // (capability registry; Phase 9 B10).
+                  'Drugs in this build’s scope — warfarin returns "Unknown" '
+                  'here, as does any other drug, and codeine does unless a '
+                  'CYP2D6 call from a dedicated caller is supplied below:',
                   style: theme.textTheme.labelSmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
@@ -453,6 +471,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         onPressed: _loading ? null : () => _addDrug(drug),
                       ),
                   ],
+                ),
+                const SizedBox(height: 20),
+                OutsideCallField(
+                  controller: _cyp2d6Controller,
+                  caller: _cyp2d6Caller,
+                  onCallerChanged: (String? c) =>
+                      setState(() => _cyp2d6Caller = c),
+                  enabled: !_loading,
                 ),
                 const SizedBox(height: 24),
 

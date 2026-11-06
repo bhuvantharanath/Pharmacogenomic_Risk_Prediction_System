@@ -1,0 +1,108 @@
+B10 — CYP2D6 from outside calls (and the codeine label mapping, by owner decision)
+Started 2026-11-06 on main at 34f40db, after B9's live record (34f40db, pushed).
+Owner decision before the plan: "Fix codeine mapping" (offered: fix it; keep it; label only PM and UM).
+
+== Plan, hashed before any B10 code ==
+1f557a8a69c4c95792ba48d490a92502bf38d499e930345dbf070b52b88be595  audit/phase9/B10_PLAN.md
+
+== Research before the plan (scratch, not evidence) ==
+PharmCAT 3.4.0 (the pinned jar) on test-data/demo/demo_na12273_1000g.vcf with -po: callSource OUTSIDE for every call;
+*4/*4 Poor Metabolizer 0.0, *1x2/*1 Ultrarapid 3.0, *1/*2 Normal 2.0, *1xN/*4 and *999/*1 Indeterminate ("No
+recommendation"). validate_label_mapping.py: 10 of the 13 accepted divergences are codeine (IM 4, NM 5, xN 1).
+BCyrius: NCBI E-utilities esummary for PMID 39901590 gives "BCyrius: An Upgraded Version of Cyrius for Accurate CYP2D6
+Genotyping From Short-Read Sequencing Data." (Pharmacology research & perspectives, 2025 Feb; Halman A, Conyers R).
+
+== Backend (2026-11-06, in progress) ==
+backend/app/outside_calls.py  the one door: CALLERS (Cyrius, BCyrius, Aldy, StellarPGx, exact), GENE CYP2D6, strict
+  DIPLOTYPE grammar (star alleles, x2-x19/xN/≥3, + tandems, [a + b] combinations), MAX_LENGTH 80, nothing trimmed;
+  OutsideCallError codes OUTSIDE_CALL_INCOMPLETE / OUTSIDE_CALL_INVALID.
+pharmcat_runner  -po <workdir>/outside_calls.tsv (one line "CYP2D6<TAB><diplotype>") only when supplied; build() and
+  run_pharmcat() unchanged for a request without one; -research never passed; CYP2D6_WARNING reworded (keeps
+  "structural/copy-number"); _parse_gene keeps callSource. pharmcat_models: call_source, is_outside_call.
+capabilities.json  codeine: outside_call_gene CYP2D6; limitation reworded. capabilities.py loads it.
+  app/lib/generated/capabilities.g.dart regenerated (generator, then dart format): one line, the limitation.
+cpic_engine  the abstention is lifted only when the capability's outside_call_gene came back OUTSIDE.
+coverage.with_outside_call  drops the supplied gene from failed_genes for that drug only.
+main.py  /analyze cyp2d6_diplotype + cyp2d6_caller, refused with 400 before the upload is read; supplied_by and the
+  warning "CYP2D6 <diplotype as supplied> supplied by <caller>, not called by PharmaGuard." only when PharmCAT
+  reported the gene OUTSIDE. models.PharmacogenomicProfile.supplied_by.
+Explanation: generator_template and compose both say "<gene> <diplotype> was supplied by <caller>, not called by
+  PharmaGuard. PharmCAT reads it as a <phenotype> result." (the served mode uses generator_template; the stored-prose
+  path uses compose); no "positions supporting this call" sentence. explanations.json untouched.
+label_mapping.yaml  standard_dosing + "label recommended age- or weight-specific dosing" (3 lines with the comment).
+  validate_label_mapping.py: 101/105 agree (was 92); "9 baselined divergence(s) no longer diverge"; --write-baseline:
+  accepted 13 -> 4 (removed: the nine codeine IM/NM rows). The four kept entries differ only in "expected": the
+  old label name "Safe", left by an earlier rename, is now written "No PGx-guided adjustment identified".
+Docs quoting the figures: README, PROJECT_STATUS, docs/DEMO_SCRIPT, docs/ONBOARDING, test.yml comment -> 101/105, 4.
+Tests changed for declared contract changes: test_analyze_api (profile keys + supplied_by), test_pharmcat_parser
+  (pinned CYP2D6 warning), test_documented_numbers (docstring). New: tests/test_outside_calls.py, 50 passed, including
+  the real-PharmCAT AC2 table (PM Ineffective, IM and NM No PGx-guided adjustment identified, UM Toxic, xN and *999
+  Unknown, each with PharmCAT's CPIC text) and AC5 isolation on the S1 and S6 files.
+
+== Gate tests added before the sabotages (a test gap found while designing SB10-b) ==
+Without a supplied call PharmCAT makes no CYP2D6 call, so codeine is Unknown whatever the gates do: the negative
+control alone cannot show the gates work. Two direct tests: (1) a real report with a supplied PM call, its CYP2D6
+call relabelled callSource MATCHER (as research mode would make one): cpic_engine abstains; (2) build_response with a
+report holding an OUTSIDE call but without this request's outside call: codeine Unknown, supplied_by null (the
+eligibility layer). Both pass; each layer holds alone.
+
+== Client ==
+lib/models/analysis.dart  PharmacogenomicProfile.suppliedBy ('supplied_by', written only when set, so responses
+  without it round-trip unchanged) and provenanceLine, the one sentence every view shows.
+lib/api/pharmaguard_api.dart  analyze(cyp2d6Diplotype, cyp2d6Caller), sent only when given.
+lib/widgets/outside_call_field.dart (new)  the optional section: what it is, the diplotype field, the caller list,
+  the server's grammar mirrored, and once a valid call is entered "Codeine will be answered from this call. The
+  coverage preview above still lists it as Unknown, because the preview reads only the VCF."
+lib/screens/home_screen.dart  the field under the drug list; outsideCallError checked before upload; scope text
+  "warfarin returns Unknown here, as does any other drug, and codeine does unless a CYP2D6 call from a dedicated
+  caller is supplied below".
+Provenance: summary_grid row (the line under the verdict, open or closed); verdict_card panel (only shown outside the
+  grid, kept consistent); summary_document.dart and summary_pdf.dart one note line per supplied result (B9's seven
+  fixtures have none, so their HTML is byte-identical, below); fhir_report.dart a Genotype note and a Therapeutic
+  Implication note.
+unknown_reason.dart  new reason suppliedNotInterpretable (headline "The supplied call has no CPIC phenotype",
+  explanation and fix name xN and unknown alleles; actionable). Without it an xN call was explained as "No VCF
+  uploaded here will resolve it". The printable page adds "A CYP2D6 call supplied with the file is an input too, and
+  can be corrected." only when such a result is on it (mirrored in the PDF).
+Fixtures: partb/b10_fixtures.py (backend in-process, real PharmCAT, NA12273): X2_supplied_cyp2d6 (codeine
+  Ineffective, supplied_by Cyrius; clopidogrel Unknown, supplied_by null), X3_supplied_xn (codeine Unknown,
+  supplied_by Cyrius).
+Tests changed for the new reason: unknown_reason_test (actionable set gains the user-correctable supplied call),
+  state_census_test (UnknownReason count 6 -> 7, the census's own purpose). New: test/outside_call_test.dart (37):
+  the grammar on the backend test's own accept/refuse lists, outsideCallError, the field's text, the request fields
+  sent and not sent, the model, the results screen (the line once, in codeine's row), the printed page (once per
+  supplied result), the FHIR Genotype and implication notes, the X3 reason and its page sentence (absent from S3).
+
+== Exports (scripts/validate_fhir_exports.py; export_fixtures_test into scratch; partb/b9_pdf_text.py) ==
+Validator 7.0.2: nine bundles (B9's seven, X2, X3), 0 errors and 0 fatal each; positive control 2 errors.
+B9's seven printable HTML summaries: sha256 equal to B9's baseline, file for file (7/7).
+pypdf, every HTML text node and the header on every page, all nine PDFs: X2 125/125 (3 pages), X3 111/111 (2), the
+B9 seven as at B9. X2 and X3 exports kept in partb/B10/exports; verdict partb/B10/pdf_text.json.
+
+== Tests (local) ==
+Backend tests/test_outside_calls.py: 52 passed. Flutter: flutter analyze no issues; flutter test 438 passed (B9:
+369; +32 from X2 and X3 through the per-fixture tests, +37 outside_call_test).
+
+== Sabotage (partb/b10_sabotage.py -> B10.sabotage.stdout) ==
+SB10-a grammar lets a newline through          7 red
+SB10-b gate opens for a non-OUTSIDE CYP2D6 call 1 red (the direct gate test)
+SB10-c supplied_by not set                      7 red
+SB10-d template says "PharmCAT called"          4 red
+SB10-e the codeine phrase removed               2 red (IM, NM)
+SB10-f any caller name accepted                 5 red
+SB10-g -research cyp2d6 added to the command   11 red
+SB10-h the results row drops the provenance     1 red (outside_call_test, after it was made to expect exactly one)
+SB10-i the printable page drops the provenance  3 red (outside_call_test and the PDF parity test)
+All nine caught; every file restored identical.
+
+== Zero-regression vs B9 (run_regression.py B10 --compare-to B9 -> B10.stdout; a4_labels.py B10-after) ==
+S1-S6    6/6 labels. Each body equals B9's once exactly the three declared changes are applied: supplied_by null
+         in every analysis; the reworded CYP2D6 not-attempted warning (all six); the codeine limitation (S3, S6).
+         Nothing else differs. PASS.
+Cohort   2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other. PASS.
+74 VCFs  148 comparisons, 0 mismatches. PASS.
+A4       rows identical to B9. PASS.
+scripts/scientific_hash_policy.json  backend/app/outside_calls.py and app/lib/widgets/outside_call_field.dart added to
+  core_paths (100 -> 102); every other tracked backend/app and app/lib source was already in it.
+Backend suite before commit (partb/B10.suite-precommit.stdout): 1214 passed, 6 skipped, 4 failed: the four identity
+  tests the re-bind refreshes. The validator evidence run (B10/fhir_validation.json): 9 bundles, 0 errors; control 2.

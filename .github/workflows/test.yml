@@ -100,7 +100,7 @@ jobs:
       # only guard for the match-field scoping fix (F1b), which produces no
       # observable payload change on any fixture.
       #
-      # The 13 known divergences are pinned in
+      # The 4 known divergences are pinned in
       # reports/label_mapping_accepted_divergences.json. Exit 0 when only those
       # are present; non-zero on anything new.
       - name: Label-mapping validation (exhaustive, 105 combinations)

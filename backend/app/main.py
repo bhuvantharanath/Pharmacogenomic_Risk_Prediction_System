@@ -37,7 +37,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from . import coverage as coverage_mod
-from . import capabilities, cpic_engine, evidence_crosscheck, security
+from . import capabilities, cpic_engine, evidence_crosscheck, outside_calls, security
 from .explanation import ExplanationMode, generate_explanation
 from .explanation import static_store as explanation_store
 from .explanation.context import ExplanationContext
@@ -582,7 +582,11 @@ def _detected_variants(call: PharmcatGeneCall | None) -> list[DetectedVariant]:
     return variants
 
 
-def _profile(call: PharmcatGeneCall | None, phenotype: Phenotype) -> PharmacogenomicProfile:
+def _profile(
+    call: PharmcatGeneCall | None,
+    phenotype: Phenotype,
+    supplied_by: str | None = None,
+) -> PharmacogenomicProfile:
     if call is None:
         return PharmacogenomicProfile(
             primary_gene="Unknown",
@@ -617,6 +621,7 @@ def _profile(call: PharmcatGeneCall | None, phenotype: Phenotype) -> Pharmacogen
         phenotype=phenotype,
         activity_score=call.activity_score,
         detected_variants=_detected_variants(call),
+        supplied_by=supplied_by,
     )
 
 
@@ -626,6 +631,7 @@ def _build_context(
     phenotype: Phenotype,
     assessment: RiskAssessment,
     recommendation: ClinicalRecommendation,
+    supplied_by: str | None = None,
 ) -> ExplanationContext:
     """
     Assemble the closed set of facts the explanation layer may use.
@@ -657,6 +663,7 @@ def _build_context(
         mechanism=retrieve_mechanism(gene, drug),
         phenotype_label=(call.phenotype_raw or "") if call else "",
         candidate_diplotypes=list(call.candidate_diplotypes) if call else [],
+        supplied_by=supplied_by,
     )
 
 
@@ -717,6 +724,7 @@ def build_result(
     drug: str,
     report: PharmcatReport,
     eligibility: "coverage_mod.DrugEligibility | None" = None,
+    supplied_by: str | None = None,
 ) -> tuple[PerDrugResult, list[str], str]:
     """
     Map one drug through the engine and assemble its contract object.
@@ -758,9 +766,13 @@ def build_result(
     # This is the object the client renders in the card, and it is what every
     # value injected into the explanation gets cross-checked against — so the
     # sentence and the card above it cannot disagree.
-    profile = _profile(call, phenotype)
+    # Only a call PharmCAT took from the outside file is named as supplied.
+    supplier = supplied_by if call is not None and call.is_outside_call else None
+    profile = _profile(call, phenotype, supplied_by=supplier)
 
-    context = _build_context(drug, call, phenotype, assessment, recommendation)
+    context = _build_context(
+        drug, call, phenotype, assessment, recommendation, supplied_by=supplier
+    )
     # Never raises: every mode degrades to the deterministic template.
     explained = generate_explanation(context, profile=profile)
     warnings.extend(explained.notes)
@@ -786,11 +798,23 @@ def build_response(
     metadata: VcfMetadata,
     elapsed_ms: int,
     cov: "coverage_mod.CoverageReport | None" = None,
+    outside_call: "outside_calls.OutsideCall | None" = None,
 ) -> AnalyzeResponse:
     """Assemble the full contract response from a parsed PharmCAT report."""
     analyses: list[PerDrugResult] = []
     warnings: list[str] = list(metadata.warnings)
     provenances: list[str] = []
+
+    # A supplied CYP2D6 call counts only if PharmCAT used it (callSource
+    # OUTSIDE), and is named as supplied wherever it shows (Phase 9 B10).
+    supplied = report.gene(outside_call.gene) if outside_call is not None else None
+    supplied_by = (
+        outside_call.caller
+        if outside_call is not None and supplied is not None and supplied.is_outside_call
+        else None
+    )
+    if supplied_by is not None:
+        warnings.append(outside_call.warning)
 
     # Per-gene warnings name only genes a requested drug depends on or shows.
     # Every gene stays in `position_coverage`; this only keeps a clopidogrel
@@ -859,8 +883,13 @@ def build_response(
             if cov is not None
             else None
         )
+        capability = capabilities.capability_for(drug)
+        if (eligibility is not None and supplied_by is not None
+                and capability is not None
+                and capability.outside_call_gene == outside_call.gene):
+            eligibility = coverage_mod.with_outside_call(eligibility, outside_call.gene)
         result, drug_warnings, provenance = build_result(
-            drug, report, eligibility=eligibility
+            drug, report, eligibility=eligibility, supplied_by=supplied_by
         )
         if cov is not None:
             result = result.model_copy(update={
@@ -1104,6 +1133,15 @@ async def analyze(
     request: Request,
     file: UploadFile = File(..., description="VCF upload (.vcf or .vcf.gz, GRCh38)"),
     drugs: str = Form(..., description='Comma-separated, e.g. "codeine,warfarin"'),
+    cyp2d6_diplotype: str | None = Form(
+        None,
+        description="Optional: a CYP2D6 diplotype from a dedicated caller run on "
+                    "BAM/CRAM, e.g. *1/*4. Used as given, never called here.",
+    ),
+    cyp2d6_caller: str | None = Form(
+        None,
+        description="Required with cyp2d6_diplotype: " + ", ".join(outside_calls.CALLERS),
+    ),
 ) -> AnalyzeResponse:
     """
     Analyse one VCF against a list of drugs.
@@ -1141,6 +1179,13 @@ async def analyze(
             f"Too many drugs ({len(requested)}); the limit is "
             f"{MAX_DRUGS_PER_REQUEST} per request.",
         )
+    # A supplied CYP2D6 call is refused here, before the upload is read and
+    # long before PharmCAT runs (Phase 9 B10).
+    try:
+        outside_call = outside_calls.parse(cyp2d6_diplotype, cyp2d6_caller)
+    except outside_calls.OutsideCallError as exc:
+        await file.close()
+        raise ApiError(400, exc.code, exc.message) from exc
 
     contents = await _read_upload_limited(file)
 
@@ -1160,9 +1205,12 @@ async def analyze(
     cov = await asyncio.to_thread(coverage_mod.assess, metadata.text)
 
     try:
+        # Passed only when supplied, so a request without one runs PharmCAT
+        # exactly as before B10.
         report = await run_pharmcat(
             metadata.text,
             sample_hint=metadata.sample_ids[0] if metadata.sample_ids else "sample",
+            **({"outside_call": outside_call} if outside_call is not None else {}),
         )
     except PharmcatBusyError as exc:
         # ALSO 503, but a different error_code and a Retry-After, because this
@@ -1178,4 +1226,6 @@ async def analyze(
         raise ApiError(503, "PHARMCAT_UNAVAILABLE", exc.message) from exc
 
     elapsed_ms = int((time.perf_counter() - started) * 1000)
-    return build_response(report, requested, metadata, elapsed_ms, cov=cov)
+    return build_response(
+        report, requested, metadata, elapsed_ms, cov=cov, outside_call=outside_call
+    )

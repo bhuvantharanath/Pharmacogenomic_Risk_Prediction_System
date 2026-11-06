@@ -75,10 +75,16 @@ class TestCyp2d6:
         assert CYP2D6_WARNING in cyp2c19_pm_report.gene("CYP2D6").warnings
 
     def test_warning_wording_is_pinned(self) -> None:
-        """The Phase 2 spec pins this string; changing it is a contract change."""
+        """The Phase 2 spec pins this string; changing it is a contract change.
+
+        Changed in Phase 9 B10, declared in its plan: the outside input it said
+        was planned now exists. "structural/copy-number" is kept, because the
+        client matches it to explain a CYP2D6 Unknown.
+        """
         assert CYP2D6_WARNING == (
             "CYP2D6 structural/copy-number variation cannot be resolved from "
-            "unphased VCF; outside diplotype input planned"
+            "unphased VCF; a CYP2D6 diplotype from a dedicated caller can be "
+            "supplied"
         )
 
 

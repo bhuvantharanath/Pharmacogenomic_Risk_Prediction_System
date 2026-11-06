@@ -1080,7 +1080,7 @@ Validation. Every number below is measured and traceable to an artifact under
 
 | Measurement | Result | Scope |
 | --- | ---: | --- |
-| **Label-mapping correctness** | **92 / 105** | Exhaustive over every phenotype combination for all 6 drugs. 13 accepted divergences, individually justified |
+| **Label-mapping correctness** | **101 / 105** | Exhaustive over every phenotype combination for all 6 drugs. 4 accepted divergences, individually justified (13 until Phase 9 B10 matched CPIC's codeine standard-dosing wording) |
 | **Integration fidelity — 1000 Genomes** | **100.0000%** | 400 samples · 2 800 (sample, gene) pairs · **5 600 field comparisons** · 0 mismatches · 0 parser errors. **Self-consistency, not external validation, and blind to input adequacy by construction**: two systems reading the same input agree on answers neither can justify. These samples carried 8 of DPYD's 28 decision-critical positions and both returned Normal Metabolizer |
 | **Integration fidelity — adversarial VCFs** | **0 mismatches** | All 74 of PharmCAT's own unit-test VCFs for our genes, 148 field comparisons |
 | **CYP2D6 negative control** | **400 / 400 declined** | Not one fabricated call across the whole cohort |

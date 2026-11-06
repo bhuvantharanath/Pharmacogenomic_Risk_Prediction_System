@@ -166,6 +166,11 @@ String _results(List<PerDrugResult> ordered) {
       '${esc(c.cpicEvidenceLevel.wireValue)}</td></tr>'
       '</table>',
     );
+    // A supplied call, named as such on the page that leaves the app (B10).
+    final String? provenance = p.provenanceLine;
+    if (provenance != null) {
+      b.writeln('<p class="note">${esc(provenance)}</p>');
+    }
 
     if (r.llmGeneratedExplanation.summary.isNotEmpty) {
       b.writeln(
@@ -210,6 +215,15 @@ String _unknownSection(List<PerDrugResult> unknowns, QualityMetrics m) {
       'one. Only the reasons about the file itself — missing positions or '
       'unusable genotypes — are something the sample provider can act on.</p>',
     );
+  // Only when it applies, so a page without a supplied call is unchanged (B10).
+  if (unknowns.any(
+    (PerDrugResult r) =>
+        classifyUnknown(r, m) == UnknownReason.suppliedNotInterpretable,
+  )) {
+    b.writeln(
+      '<p class="note">A CYP2D6 call supplied with the file is an input too, and can be corrected.</p>',
+    );
+  }
 
   for (final PerDrugResult r in unknowns) {
     final UnknownReason reason = classifyUnknown(r, m);
