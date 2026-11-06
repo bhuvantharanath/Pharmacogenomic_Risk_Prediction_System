@@ -1,0 +1,11 @@
+{
+ "package": "test-data/benchmark/current-candidate-2026-11-06-b9",
+ "core": "42d907f51e31b65fb86db621ec3f8449c8119ec0eba2bc94b733cdabb2c46616",
+ "f4": [
+  true,
+  true
+ ],
+ "verify_rc": 0,
+ "verify": "compatible scientific bundle: PASS"
+}
+rebind rc=0

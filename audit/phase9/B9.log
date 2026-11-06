@@ -121,3 +121,11 @@ control (DiagnosticReport.code removed): 2 errors. Every warning, grouped by mes
   10  "No code provided ... HGNC"                   gene carried as text, same reason
    7  "Attachments have data and/or url, or else SHOULD have either contentType and/or language"   the uploaded
       VCF is described, not included, and its media type is not asserted (it may be gzipped)
+
+== Re-bind (test-data/benchmark/current-candidate-2026-11-06-b9; rebind-b9.stdout) ==
+rebind_evaluation.py --tag 2026-11-06-b9, no declared changes, base head 5e6c123; the frozen cohort reused (208 samples
+x 7 genes). Result: core 42d907f51e31b65fb86db621ec3f8449c8119ec0eba2bc94b733cdabb2c46616, F4 true/true,
+verify_compatible_bundle PASS. Against B8's package: vcf_sha256 in 1,456 rows only
+(equal_to_previous_evaluation_except_generation_time true). Against the historical benchmark: B5's changes carried
+forward from B8's cumulative record: CYP2C9 eligibility_reason 208, missing_dependency_genes 208; discrepancy detail
+100. Zero-regression, external evaluation: no eligibility or discrepancy change against B8's package. PASS.

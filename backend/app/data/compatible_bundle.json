@@ -1,15 +1,15 @@
 {
   "schema_version": 3,
-  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-06-b8",
+  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-06-b9",
   "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
   "application_hash_policy": {
     "version": 2,
     "policy": {
       "path": "scripts/scientific_hash_policy.json",
-      "sha256": "a30eaba16a40c813a6317b07506556a2f7ea44691037e743d035a0de2a5d2aed",
-      "bytes": 4283
+      "sha256": "fd5fdb7bfe9f9d67a8dbaaee6f38c4445c595afb64e6bd881caf1277839665b6",
+      "bytes": 4487
     },
-    "core_file_count": 95,
+    "core_file_count": 100,
     "algorithm": "SHA-256 of UTF-8 domain and NUL, then sorted POSIX relative path, NUL, raw bytes, NUL for every allowlisted file"
   },
   "pharmcat": {
@@ -298,7 +298,7 @@
     "pharmcat_reports": 208,
     "application_eligible_sample_gene_rows": 0,
     "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
-    "application_core_sha256": "60d2617ef9bc43d4a152fb7303a58248d90dc766a157bd301043848578af5f54",
+    "application_core_sha256": "42d907f51e31b65fb86db621ec3f8449c8119ec0eba2bc94b733cdabb2c46616",
     "application_hash_policy_version": 2,
     "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
     "benchmark_historical_hash_policy_version": 1,
@@ -342,11 +342,11 @@
     "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
   },
   "evaluation_current": {
-    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-06-b8",
-    "application_core_sha256": "60d2617ef9bc43d4a152fb7303a58248d90dc766a157bd301043848578af5f54",
+    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-06-b9",
+    "application_core_sha256": "42d907f51e31b65fb86db621ec3f8449c8119ec0eba2bc94b733cdabb2c46616",
     "manifest": {
-      "path": "test-data/benchmark/current-candidate-2026-11-06-b8/evaluation_manifest.json",
-      "sha256": "b12c4da7056793cb0cb91219c148e030710effd5cc6a3dd95910e15f7644373e",
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b9/evaluation_manifest.json",
+      "sha256": "a16034f5ad4cd979434744fb81d4116f4f35434f35c4d6aae47bb9f1c97fd5ab",
       "bytes": 6528
     },
     "historical_benchmark_manifest": {
@@ -365,54 +365,54 @@
     },
     "outputs": [
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/EVALUATION-REPORT.md",
-        "bytes": 2886,
-        "sha256": "8cf8c7ebb11cfa30f76cda94b1408f039b8d1b2365bd2728c096772d7fa9323e"
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/EVALUATION-REPORT.md",
+        "bytes": 2935,
+        "sha256": "4bf8e6a9190839d4092f6c704f42da71bd42932d879a436d168e0c80fb858167"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/discrepancies.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/discrepancies.tsv",
         "bytes": 236278,
         "sha256": "294915f1163c4593859e20c816dfc577d5e23a0347aace1fa983049ffb6c4886"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/evaluation-comparison.json",
-        "bytes": 10520,
-        "sha256": "f063b9489f08ba9cc95dd2b27b1108b624bb2e5b20aa7c3b2a872c310a25e2e6"
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/evaluation-comparison.json",
+        "bytes": 10569,
+        "sha256": "96d9f03a514ecc44a78c5bd23af582fb2f15e58089531a0ad8c6aab0cf896070"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/exclusions.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/exclusions.tsv",
         "bytes": 48960,
         "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/external_benchmark_results.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/external_benchmark_results.json",
         "bytes": 33667,
-        "sha256": "7a6d35c6f43780f1098e7c7eb5dbed8fdb83eba37aedacfa6f10ef5def2bb2fe"
+        "sha256": "94459f3388768e86f00a7b09456bd631b41ea44477fa68e500a97cec0c07ef61"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/f4-fresh-replay.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/f4-fresh-replay.json",
         "bytes": 1767,
-        "sha256": "180471a5879eb2b654521f09fc4a86417d5488cb29f488d638387279a0276979"
+        "sha256": "099436ca6ed2fc6e09e9d18be4e918962e5646d6637cae22ff8834851c125376"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/input_eligibility.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/input_eligibility.tsv",
         "bytes": 600780,
-        "sha256": "3745bc2d6931c07b3d47afc7060bf9dfb33a5b07849df9939feaca95ce162bfc"
+        "sha256": "e9e2762261e46b6a40c4475caf0cd4fcb32a61560af178f1c62664563b135fa1"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/raw_benchmark_manifest.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/raw_benchmark_manifest.json",
         "bytes": 7588,
-        "sha256": "3db8a3ca03f0800b839c3839bfa9f03263e93ca00982d6024d251fbfe7f72a86"
+        "sha256": "8fef5a15be2cebce9c4170d3c71a17e7dd33092c11f4feabce10168fc3da0864"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/raw_scoring_report.md",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/raw_scoring_report.md",
         "bytes": 11481,
         "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-06-b8/stage-command-receipts.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-06-b9/stage-command-receipts.json",
         "bytes": 3183,
-        "sha256": "f437c44cbd92cd69a96a2f3bb9f814376ea98d43fd42b1fe9c819a697b1c48e5"
+        "sha256": "19d36de2f92b8c5bc1e35b9eb21d612c56f0908ec6ec23e236f87de6ccdf218b"
       }
     ],
     "evidence_matches": true,
@@ -507,8 +507,8 @@
     },
     "flutter_lock": {
       "path": "app/pubspec.lock",
-      "sha256": "c42c6ef42ad2bbe1fba9c0589db3ae5afee0212a5cb52c6197831c9bbaf2732d",
-      "bytes": 12558
+      "sha256": "36253c6037c569df7628595090dc47fee94661e0d19adb02e8a7456dcde20e6a",
+      "bytes": 12561
     },
     "manifest_verifier_python": ">=3.11 (CI uses 3.12; the production image runs 3.14.6)"
   },
