@@ -1,0 +1,123 @@
+B9 — Standards-based export (PDF summary + HL7 FHIR Genomics Reporting bundle)
+Started 2026-11-06 on main at 3b1755a, after B8's live record (3b1755a, pushed).
+
+== Plan, hashed before any B9 code ==
+999214817668e6b21abf1e3397fa331b3c7e3f51c165157811342e0710ae3100  audit/phase9/B9_PLAN.md
+
+== State before any edit ==
+Validator: test-data/reference/tools/validator_cli-7.0.2.jar (gitignored), 204,412,235 bytes, sha256
+e3e50f06b806437821b7aef8189a1b790415cb96c5036e0812ed62981452b377, downloaded from
+https://github.com/hapifhir/org.hl7.fhir.core/releases/download/7.0.2/validator_cli.jar (size equal to GitHub's
+asset listing). Running it locally was approved by the owner ("Allow the validator") after auto mode first blocked it.
+Research runs (scratch, not evidence): the IG's TxImp01 and GenotypeExamplePharmVar, as published and with subject,
+performer and specimen removed and status preliminary: 0 errors each (-version 4.0.1 -ig
+hl7.fhir.uv.genomics-reporting#3.0.0 -tx n/a). IG packages cached under ~/.fhir/packages.
+
+== Fixtures and HTML baseline (before any app/lib or pubspec edit) ==
+app/test/fixtures/responses/: S1-S6 copied from the local B8 run (partb/B8/s1-s6/s1-s6), and X1_all_drugs made by
+partb/b9_fixtures.py (the B8 backend in-process, real PharmCAT, demo_confident.vcf; clopidogrel Ineffective;
+fluorouracil, azathioprine, simvastatin No PGx-guided adjustment identified; warfarin Unknown with a called CYP2C9
+*1/*1; codeine and ibuprofen Unknown with served gene Unknown). app/test/export_fixtures_test.dart writes each
+fixture's printable HTML summary (printedAt fixed at 2026-11-06Z) when PHARMAGUARD_EXPORT_DIR is set. sha256 before:
+  803171a9cfc545201430af6bf0376cc92b123bbdd0e84b2498a2f8234f3939ad  S1_confident.summary.html
+  afc133d53f76cde151c47fec1517648ed3a5f0e6fd9bc703caffa11e79338f76  S2_variants_only.summary.html
+  1d0710173848d81d44f2ee554948176b291251e83e89ae817ec3c3974c4f31f0  S3_cyp2d6.summary.html
+  139646d79685b600f338ada6942d6d0615b051b9861a29da37446de9e8cc8873  S4_dpyd.summary.html
+  b3698ac12f34aaf8ce20f25d94ad89b2ec6f2360b94fc7ffd65d2b644b1b5a11  S5_normal.summary.html
+  c4ea0ac9144a02f6a63272f3f522f41622dc3a120c268be69ab917bc25ff5b85  S6_multidrug.summary.html
+  1b65ec58d12d5b3979ea14773379cfbf8233f7a9ff24b312d3312ac4d8c3b69e  X1_all_drugs.summary.html
+
+== Implementation (2026-11-06) ==
+app/lib/export/fhir_report.dart  buildFhirReport(response, exportedAt) -> Bundle (collection): Genomic Report
+  (DiagnosticReport, partial; LOINC 51969-4; GE; test-disclaimer and test-methodology notes; conclusion lists every drug
+  with its label), Specimen (VCF sample name as identifier; no Patient), DocumentReference (the uploaded VCF, not
+  included), one Genotype per gene called (LOINC 84413-4, value "<gene> <diplotype>"), a not-determined genotype
+  observation per capability gene of an Unknown, one Therapeutic Implication per analysed drug (medication text,
+  phenotype text, conclusion-string = served CPIC action or the app's unknownExplanation, note "PharmaGuard result:
+  <label>", workflow-relatedArtifact citing the served source when a CPIC entry matched). Observations preliminary,
+  effectiveDateTime = analysis time. Ids: version-5-shaped UUIDs from sha256(sample|timestamp|key): same response,
+  same bundle. crypto ^3.0.7 named in pubspec (already locked through pdf; the lock changes only "direct main").
+app/lib/print/summary_pdf.dart  buildSummaryPdf: the HTML summary's text, node for node, in a pdf MultiPage; running
+  header on every page; every placed string reported to a sink; onHeader from the function that draws the header.
+app/lib/utils/file_download*.dart  one download seam (web blob / io temp file), split like json_export.
+app/lib/screens/results_screen.dart  "Download report" (MenuAnchor): "PDF summary (.pdf)", "FHIR Genomics Report
+  (.json)"; optional downloader for tests. Printable summary, Export JSON and Copy JSON untouched.
+scripts/fhir_validator.json  the pin: validator 7.0.2 (path, bytes, sha256, URL), FHIR 4.0.1, IG
+  hl7.fhir.uv.genomics-reporting#3.0.0, terminology server n/a.
+scripts/validate_fhir_exports.py  ensure() the pinned jar (fetch_pinned_artifacts: refuse a mismatch), flutter test
+  writes the bundles, a positive control (report code removed), one validator run, fail on any error/fatal or an
+  unreported bundle, or a control with no error.
+scripts/release_status.py  seventh required check "fhir-validation". .github/workflows/test.yml  Java 17 and the same
+  script in the Flutter job. app/README.md  the new files and Download report.
+Tests: app/test/fhir_report_test.dart (AC2-AC4, 70), summary_pdf_test.dart (AC5, 29), download_report_test.dart (AC6,
+  3), export_fixtures_test.dart (writer, 8); support/fixtures.dart shared.
+
+== Design changes found by measurement (logged before commit; acceptance criteria unchanged) ==
+1. Not-determined genotypes. Design section 1 put the Genotype profile on them. First validator run on the seven
+   bundles: 5 errors, all "Observation.value[x]: minimum required = 1 ... (from genotype|3.0.0)": the profile requires
+   a value, and a not-determined genotype has none. They are now the same LOINC 84413-4 observation without claiming the
+   profile: dataAbsentReason "unknown", no value, gene as the gene-studied component. Called genotypes keep the profile.
+2. PDF fonts. Design section 2 said Newsreader for prose. The independent pypdf check (below) found the prose text layer
+   without spaces ("drugschecked", "Itwasproducedbyafinal-year..."): 88/104 HTML nodes found in S1, the misses all
+   multi-word prose. The pdf package draws words without space glyphs; a reader infers the gaps, and with a variable
+   font it did not. Probes, prose font only changed: PublicSans-Variable 89/104 (S1), also failing; IBMPlexMono-Regular
+   104/104 and every fixture complete. The PDF is now all static IBM Plex Mono. A test now requires every PDF font to
+   be static (no fvar table); positive control: pointing prose back at Newsreader fails it ("not contains 'fvar'").
+3. Found while writing the sabotages: the per-page header check took the page from the MultiPage header callback, not
+   from the code that draws the header text, so a header dropped in the callback would have passed if the callback
+   still reported. runningHeader(page) now reports from where it draws. SB9-g is that sabotage.
+4. Found by SB9-c: the validation script's positive control did `del report["code"]`, so a bundle already missing the
+   code crashed the script (exit 1) before the validator ran: red for the wrong reason, which the sabotage harness
+   counted as not caught. Now pop(..., None); SB9-c is caught by validator errors.
+
+== How AC3's last sentence is read ==
+"An Unknown whose served gene is Unknown gets dataAbsentReason and never a value", with design section 1 (the
+not-determined genotype is for "an Unknown drug with a capability gene"): codeine (CYP2D6), S2 clopidogrel (CYP2C19)
+and S4 fluorouracil (DPYD) each get a not-determined observation with dataAbsentReason and no value. Ibuprofen has no
+gene in the response or in the capability table: it gets no genotype observation, so never a value, and its
+Therapeutic Implication derives from the DocumentReference alone. Stated here rather than assumed; the test asserts
+exactly this.
+
+== Tests (local) ==
+Flutter: flutter analyze no issues; flutter test 369 passed (B8: 259; +110: fhir_report 70, summary_pdf 29,
+export_fixtures 8, download_report 3).
+
+== Sabotage (partb/b9_sabotage.py -> B9.sabotage.stdout) ==
+SB9-a skips Unknown results                15 red (fhir_report_test)
+SB9-b drops the CPIC text's last char       4 red
+SB9-c report loses LOINC 51969-4           14 validator errors ("DiagnosticReport.code: minimum required = 1"),
+                                            validate_fhir_exports.py exit 1
+SB9-d related artifact off matched entries  7 red
+SB9-e report status final                   7 red
+SB9-f PDF leaves out the Unknown section    7 red (summary_pdf_test parity)
+SB9-g PDF header only on page 1             7 red (every fixture's PDF has 2-5 pages)
+SB9-h download control loses the FHIR item  2 red (download_report_test)
+All eight caught; every file restored identical.
+
+== AC5 independent check (partb/b9_pdf_text.py with pypdf 6.21.1 in a scratch venv -> B9/pdf_text.json) ==
+PDFs written by export_fixtures_test into partb/B9/exports (with the HTML and the FHIR bundles). Every HTML body text
+node found in the PDF's extracted text, and the header on every page: S1 104/104 (2 pages), S2 109/109 (2), S3 108/108
+(2), S4 109/109 (2), S5 104/104 (2), S6 172/172 (4), X1 206/206 (5). all_pass true.
+
+== Zero-regression: printable HTML summary ==
+sha256 of all seven fixtures' summaries after the B9 edits equal the baseline above, file for file (7/7).
+scripts/scientific_hash_policy.json  the five new app/lib files added to core_paths (95 -> 100), as B7 added
+  error_panel.dart: every served app/lib file is in the scientific core. The diff is those five lines.
+
+== Zero-regression vs B8 (run_regression.py B9 --compare-to B8 -> B9.stdout; a4_labels.py B9-after) ==
+S1-S6    6/6 labels; every response body identical to B8's apart from timestamp and processing_time_ms. PASS.
+Cohort   2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other. PASS.
+74 VCFs  148 comparisons, 0 mismatches. PASS.
+A4       36 rows identical to B8. PASS.
+(The backend is unchanged by B9; these show that, they do not test the export.)
+
+== AC1: the official validator (validate_fhir_exports.py --report B9/fhir_validation.json -> B9.validation.stdout) ==
+Validator 7.0.2 present, size and SHA-256 equal to the pin; IG hl7.fhir.uv.genomics-reporting#3.0.0, FHIR 4.0.1,
+-tx n/a. Seven bundles, 0 errors and 0 fatal each (warnings: S1 7, S2 6, S3 6, S4 6, S5 7, S6 27, X1 39). Positive
+control (DiagnosticReport.code removed): 2 errors. Every warning, grouped by message, with the choice behind it:
+  32  "all observations should have a subject"     no Patient is made up (AC4 d)
+  32  "all observations should have a performer"   no performing organisation exists to name
+  17  "No code provided ... Genetic Therapeutic Implications"   phenotype carried as text (design: no authored codes)
+  10  "No code provided ... HGNC"                   gene carried as text, same reason
+   7  "Attachments have data and/or url, or else SHOULD have either contentType and/or language"   the uploaded
+      VCF is described, not included, and its media type is not asserted (it may be gzipped)

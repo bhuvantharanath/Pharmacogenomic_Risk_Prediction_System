@@ -1,0 +1,84 @@
+== SB9-a: the FHIR builder skips Unknown results (app/lib/export/fhir_report.dart) ==
+  S2_variants_only carries each drug's served label, text and citation exactly
+  S2_variants_only gives each genotype the served call, and an undetermined gene no value
+  S2_variants_only has one Therapeutic Implication per analysed drug, Unknowns included
+  S3_cyp2d6 carries each drug's served label, text and citation exactly
+  S3_cyp2d6 gives each genotype the served call, and an undetermined gene no value
+  S3_cyp2d6 has one Therapeutic Implication per analysed drug, Unknowns included
+  S4_dpyd carries each drug's served label, text and citation exactly
+  S4_dpyd gives each genotype the served call, and an undetermined gene no value
+  S4_dpyd has one Therapeutic Implication per analysed drug, Unknowns included
+  S6_multidrug carries each drug's served label, text and citation exactly
+  S6_multidrug gives each genotype the served call, and an undetermined gene no value
+  S6_multidrug has one Therapeutic Implication per analysed drug, Unknowns included
+  ... 3 more
+exit 1; 15 red
+restored identical: yes
+== SB9-b: the conclusion-string drops the last character of the CPIC text (app/lib/export/fhir_report.dart) ==
+  S1_confident carries each drug's served label, text and citation exactly
+  S5_normal carries each drug's served label, text and citation exactly
+  S6_multidrug carries each drug's served label, text and citation exactly
+  X1_all_drugs carries each drug's served label, text and citation exactly
+exit 1; 4 red
+restored identical: yes
+== SB9-c: the Genomic Report loses its LOINC code (app/lib/export/fhir_report.dart) ==
+  error Bundle.entry[0].resource/*DiagnosticReport/ccb9cfb4-0379-5960-9ee4-3ce54e3cb6d1*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/ccb9cfb4-0379-5960-9ee4-3ce54e3cb6d1*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/53af3a40-d78b-5c8c-a0f1-f339564dfa02*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/53af3a40-d78b-5c8c-a0f1-f339564dfa02*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/256246ad-92ee-5aed-99eb-f09402298917*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/256246ad-92ee-5aed-99eb-f09402298917*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/00a1e3b2-bbeb-5339-99d6-a72de1ddc0bc*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/00a1e3b2-bbeb-5339-99d6-a72de1ddc0bc*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/9f6f7335-b093-5d72-8eb0-f9ea7f96c90e*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/9f6f7335-b093-5d72-8eb0-f9ea7f96c90e*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/bd710f6e-aeb5-51ea-bf5b-6ef1e9e67114*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  error Bundle.entry[0].resource/*DiagnosticReport/bd710f6e-aeb5-51ea-bf5b-6ef1e9e67114*/: DiagnosticReport.code: minimum required = 1, but only found 0
+  ... 2 more
+exit 1; 14 red
+restored identical: yes
+== SB9-d: the related artifact is left off a matched CPIC entry (app/lib/export/fhir_report.dart) ==
+  S1_confident carries each drug's served label, text and citation exactly
+  S2_variants_only carries each drug's served label, text and citation exactly
+  S3_cyp2d6 carries each drug's served label, text and citation exactly
+  S4_dpyd carries each drug's served label, text and citation exactly
+  S5_normal carries each drug's served label, text and citation exactly
+  S6_multidrug carries each drug's served label, text and citation exactly
+  X1_all_drugs carries each drug's served label, text and citation exactly
+exit 1; 7 red
+restored identical: yes
+== SB9-e: the report status becomes final (app/lib/export/fhir_report.dart) ==
+  S1_confident says unverified: report partial, observations preliminary
+  S2_variants_only says unverified: report partial, observations preliminary
+  S3_cyp2d6 says unverified: report partial, observations preliminary
+  S4_dpyd says unverified: report partial, observations preliminary
+  S5_normal says unverified: report partial, observations preliminary
+  S6_multidrug says unverified: report partial, observations preliminary
+  X1_all_drugs says unverified: report partial, observations preliminary
+exit 1; 7 red
+restored identical: yes
+== SB9-f: the PDF builder leaves out the Unknown section (app/lib/print/summary_pdf.dart) ==
+  S1_confident places exactly the HTML summary's text, in order
+  S2_variants_only places exactly the HTML summary's text, in order
+  S3_cyp2d6 places exactly the HTML summary's text, in order
+  S4_dpyd places exactly the HTML summary's text, in order
+  S5_normal places exactly the HTML summary's text, in order
+  S6_multidrug places exactly the HTML summary's text, in order
+  X1_all_drugs places exactly the HTML summary's text, in order
+exit 1; 7 red
+restored identical: yes
+== SB9-g: the PDF's running header is left off pages after the first (app/lib/print/summary_pdf.dart) ==
+  S1_confident carries the disclaimer header on every page
+  S2_variants_only carries the disclaimer header on every page
+  S3_cyp2d6 carries the disclaimer header on every page
+  S4_dpyd carries the disclaimer header on every page
+  S5_normal carries the disclaimer header on every page
+  S6_multidrug carries the disclaimer header on every page
+  X1_all_drugs carries the disclaimer header on every page
+exit 1; 7 red
+restored identical: yes
+== SB9-h: the download control loses the FHIR item (app/lib/screens/results_screen.dart) ==
+  the FHIR report reaches the download seam as a FHIR bundle
+  the PDF summary reaches the download seam as a PDF
+exit 1; 2 red
+restored identical: yes

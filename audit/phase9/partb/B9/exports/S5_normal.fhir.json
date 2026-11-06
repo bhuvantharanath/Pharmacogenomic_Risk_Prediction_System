@@ -1,0 +1,318 @@
+{
+  "resourceType": "Bundle",
+  "id": "246598d7-7cef-54d8-8448-2c70e3115b53",
+  "type": "collection",
+  "timestamp": "2026-11-06T00:00:00.000Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:9f6f7335-b093-5d72-8eb0-f9ea7f96c90e",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "9f6f7335-b093-5d72-8eb0-f9ea7f96c90e",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE</p><p>This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page.</p><p>Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from.</p><p>Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.</p><p>Results, most serious first:</p><p>simvastatin: No PGx-guided adjustment identified</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-disclaimer"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page. Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from. Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional."
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-methodology"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "PharmCAT 3.4.0; CPIC data version 2026-07-13-11-40; CPIC table SHA-256 5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8; allele definitions 2026-07-13-11-40; definitions SHA-256 7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f; explanations generated 24 Jul 2026; source: CPIC guidelines, retrieved via PharmCAT. Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs."
+            }
+          }
+        ],
+        "status": "partial",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "51969-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T01:12:38.621025Z",
+        "issued": "2026-11-06T00:00:00.000Z",
+        "specimen": [
+          {
+            "reference": "urn:uuid:0bdead3f-3922-5c42-a9ba-7f678c510e2b"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:ecfcc3c1-a70a-50bc-87a2-c215ef91e434"
+          },
+          {
+            "reference": "urn:uuid:0ccd1ae3-8df7-5546-a50a-b6ea6ee927c3"
+          }
+        ],
+        "conclusion": "RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE. Results, most serious first: simvastatin: No PGx-guided adjustment identified."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0bdead3f-3922-5c42-a9ba-7f678c510e2b",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "0bdead3f-3922-5c42-a9ba-7f678c510e2b",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Sample \"DEMO_NORMAL\" in the uploaded VCF.</p></div>"
+        },
+        "identifier": [
+          {
+            "value": "DEMO_NORMAL"
+          }
+        ],
+        "note": [
+          {
+            "text": "The sample name in the uploaded VCF. It names a sample, not a person."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:058b05a6-da3f-58b9-8f13-26ae54542fba",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "058b05a6-da3f-58b9-8f13-26ae54542fba",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>The uploaded VCF file. It is not included in this export.</p></div>"
+        },
+        "status": "current",
+        "description": "The uploaded VCF file. It is not included in this export.",
+        "content": [
+          {
+            "attachment": {
+              "title": "Uploaded VCF"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ecfcc3c1-a70a-50bc-87a2-c215ef91e434",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ecfcc3c1-a70a-50bc-87a2-c215ef91e434",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genotype"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>SLCO1B1 *1/*1</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T01:12:38.621025Z",
+        "specimen": {
+          "reference": "urn:uuid:0bdead3f-3922-5c42-a9ba-7f678c510e2b"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:058b05a6-da3f-58b9-8f13-26ae54542fba"
+          }
+        ],
+        "valueCodeableConcept": {
+          "text": "SLCO1B1 *1/*1"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "SLCO1B1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0ccd1ae3-8df7-5546-a50a-b6ea6ee927c3",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "0ccd1ae3-8df7-5546-a50a-b6ea6ee927c3",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>simvastatin: No PGx-guided adjustment identified</p><p>Prescribe desired starting dose and adjust doses based on disease-specific guidelines.</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact",
+            "valueRelatedArtifact": {
+              "type": "citation",
+              "citation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 (via PharmCAT) [label rule: standard_dosing]"
+            }
+          }
+        ],
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T01:12:38.621025Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:ecfcc3c1-a70a-50bc-87a2-c215ef91e434"
+          },
+          {
+            "reference": "urn:uuid:058b05a6-da3f-58b9-8f13-26ae54542fba"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: No PGx-guided adjustment identified"
+          },
+          {
+            "text": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "simvastatin"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "NM"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines."
+          }
+        ]
+      }
+    }
+  ]
+}

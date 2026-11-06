@@ -6,6 +6,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../export/fhir_report.dart';
 import '../glossary/glossary_text.dart';
 import '../models/analysis.dart';
 import '../models/enums.dart';
@@ -13,6 +14,8 @@ import '../theme/risk_style.dart';
 import '../theme/tokens.dart';
 import '../print/print_summary.dart';
 import '../print/summary_document.dart';
+import '../print/summary_pdf.dart';
+import '../utils/file_download.dart';
 import '../utils/json_export.dart';
 import '../widgets/disclaimer_banner.dart';
 import '../widgets/coverage_summary.dart';
@@ -34,9 +37,13 @@ String? _variantsOnlyWarning(QualityMetrics metrics) {
 }
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.response});
+  const ResultsScreen({super.key, required this.response, this.downloader});
 
   final AnalyzeResponse response;
+
+  /// Where "Download report" sends its files. The platform download unless a
+  /// test supplies its own.
+  final FileDownloader? downloader;
 
   /// Pretty-printed user export, used by both Copy and Export.
   ///
@@ -57,9 +64,7 @@ class ResultsScreen extends StatelessWidget {
   Future<void> _copyJson(BuildContext context) async {
     final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
     await Clipboard.setData(ClipboardData(text: _prettyJson));
-    messenger.showSnackBar(
-      const SnackBar(content: Text('Result data copied')),
-    );
+    messenger.showSnackBar(const SnackBar(content: Text('Result data copied')));
   }
 
   Future<void> _exportJson(BuildContext context) async {
@@ -69,6 +74,50 @@ class ResultsScreen extends StatelessWidget {
       messenger.showSnackBar(SnackBar(content: Text(message)));
     } catch (e) {
       messenger.showSnackBar(SnackBar(content: Text('Export failed: $e')));
+    }
+  }
+
+  /// The PDF summary: the printable page as a file, for a browser that can
+  /// otherwise only offer a print dialog. Same text as the HTML page; see
+  /// `summary_pdf.dart`.
+  Future<void> _downloadPdf(BuildContext context) async {
+    final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+    try {
+      final Uint8List bytes = await buildSummaryPdf(
+        response,
+        fonts: await SummaryPdfFonts.load(),
+      );
+      final String message = await (downloader ?? downloadFile)(
+        _fileName.replaceAll('.json', '.pdf'),
+        bytes,
+        kPdfMediaType,
+      );
+      messenger.showSnackBar(SnackBar(content: Text(message)));
+    } catch (e) {
+      messenger.showSnackBar(
+        SnackBar(content: Text('Could not build the PDF: $e')),
+      );
+    }
+  }
+
+  /// The HL7 FHIR Genomics Report, for a system rather than a person. See
+  /// `fhir_report.dart` for what it claims and what it does not.
+  Future<void> _downloadFhir(BuildContext context) async {
+    final ScaffoldMessengerState messenger = ScaffoldMessenger.of(context);
+    try {
+      final String bundle = encodeFhirReport(
+        buildFhirReport(response, exportedAt: DateTime.now()),
+      );
+      final String message = await (downloader ?? downloadFile)(
+        _fileName.replaceAll('.json', '.fhir.json'),
+        utf8.encode(bundle),
+        kFhirMediaType,
+      );
+      messenger.showSnackBar(SnackBar(content: Text(message)));
+    } catch (e) {
+      messenger.showSnackBar(
+        SnackBar(content: Text('Could not build the FHIR report: $e')),
+      );
     }
   }
 
@@ -207,6 +256,39 @@ class ResultsScreen extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                 ),
+                const SizedBox(height: 10),
+                // The same page as a PDF file, and the analysis as an HL7 FHIR
+                // Genomics Report. Both carry every Unknown with its reason.
+                MenuAnchor(
+                  menuChildren: <Widget>[
+                    MenuItemButton(
+                      leadingIcon: const Icon(Icons.picture_as_pdf_outlined),
+                      onPressed: () => _downloadPdf(context),
+                      child: const Text('PDF summary (.pdf)'),
+                    ),
+                    MenuItemButton(
+                      leadingIcon: const Icon(Icons.data_object),
+                      onPressed: () => _downloadFhir(context),
+                      child: const Text('FHIR Genomics Report (.json)'),
+                    ),
+                  ],
+                  builder:
+                      (
+                        BuildContext context,
+                        MenuController controller,
+                        Widget? child,
+                      ) => OutlinedButton.icon(
+                        onPressed: () => controller.isOpen
+                            ? controller.close()
+                            : controller.open(),
+                        icon: const Icon(Icons.file_download_outlined),
+                        label: const Text('Download report'),
+                        style: OutlinedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          minimumSize: const Size.fromHeight(48),
+                        ),
+                      ),
+                ),
 
                 // Unobtrusive by design, and at the foot rather than the head: the
                 // versions behind a result are context a reader wants when they go
@@ -337,9 +419,13 @@ class _RunSummary extends StatelessWidget {
               DisclosureRow(
                 padding: EdgeInsets.zero,
                 rule: false,
-                leading: Icon(Icons.warning_amber_rounded,
-                    size: 18, color: theme.colorScheme.tertiary),
-                title: '${q.warnings.length} pipeline '
+                leading: Icon(
+                  Icons.warning_amber_rounded,
+                  size: 18,
+                  color: theme.colorScheme.tertiary,
+                ),
+                title:
+                    '${q.warnings.length} pipeline '
                     '${q.warnings.length == 1 ? 'warning' : 'warnings'}',
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

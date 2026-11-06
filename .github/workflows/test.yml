@@ -197,6 +197,17 @@ jobs:
         working-directory: app
         run: flutter test
 
+      # The FHIR export (Phase 9 B9) against the official HL7 validator, which
+      # is a Java program. The script fetches the pinned jar and refuses one
+      # that does not match; see scripts/validate_fhir_exports.py.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: FHIR export validation (HL7 validator)
+        run: python3 scripts/validate_fhir_exports.py
+
   honesty:
     name: no artifact claims clinical approval
     runs-on: ubuntu-latest

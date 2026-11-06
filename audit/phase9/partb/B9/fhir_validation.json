@@ -1,0 +1,81 @@
+{
+ "validator": "7.0.2",
+ "ig": "hl7.fhir.uv.genomics-reporting#3.0.0",
+ "fhir_version": "4.0.1",
+ "terminology_server": "n/a",
+ "files": {
+  "S1_confident.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 0,
+   "warning": 7,
+   "information": 4,
+   "errors": []
+  },
+  "S2_variants_only.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 0,
+   "warning": 6,
+   "information": 4,
+   "errors": []
+  },
+  "S3_cyp2d6.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 0,
+   "warning": 6,
+   "information": 4,
+   "errors": []
+  },
+  "S4_dpyd.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 0,
+   "warning": 6,
+   "information": 4,
+   "errors": []
+  },
+  "S5_normal.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 0,
+   "warning": 7,
+   "information": 4,
+   "errors": []
+  },
+  "S6_multidrug.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 0,
+   "warning": 27,
+   "information": 18,
+   "errors": []
+  },
+  "X1_all_drugs.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 0,
+   "warning": 39,
+   "information": 26,
+   "errors": []
+  },
+  "positive-control.fhir.json": {
+   "reported": true,
+   "fatal": 0,
+   "error": 2,
+   "warning": 7,
+   "information": 4
+  }
+ },
+ "warnings": {
+  "Best Practice Recommendation: In general, all observations should have a subject": 32,
+  "Best Practice Recommendation: In general, all observations should have a performer": 32,
+  "No code provided, and a code should be provided from the value set 'Genetic Therapeutic Implications' (http://hl7.org/fhir/uv/genomics-reporting/ValueSet/genetic-therapeutic-implications-vs|3.0.0)": 17,
+  "No code provided, and a code should be provided from the value set 'HUGO Gene Nomenclature Committee Gene Names (HGNC)' (http://hl7.org/fhir/uv/genomics-reporting/ValueSet/hgnc-vs|3.0.0)": 10,
+  "Attachments have data and/or url, or else SHOULD have either contentType and/or language": 7
+ },
+ "passed": true,
+ "bundles": 7,
+ "control_errors": 2
+}

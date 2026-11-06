@@ -1,0 +1,313 @@
+{
+  "resourceType": "Bundle",
+  "id": "7b72fa50-0750-584d-8dd6-9adae55cbd1d",
+  "type": "collection",
+  "timestamp": "2026-11-06T00:00:00.000Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:53af3a40-d78b-5c8c-a0f1-f339564dfa02",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "53af3a40-d78b-5c8c-a0f1-f339564dfa02",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE</p><p>This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page.</p><p>Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from.</p><p>Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.</p><p>Results, most serious first:</p><p>clopidogrel: Unknown</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-disclaimer"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page. Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from. Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional."
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-methodology"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "PharmCAT 3.4.0; CPIC data version 2026-07-13-11-40; CPIC table SHA-256 5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8; allele definitions 2026-07-13-11-40; definitions SHA-256 7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f; explanations generated 24 Jul 2026; source: CPIC guidelines, retrieved via PharmCAT. Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs."
+            }
+          }
+        ],
+        "status": "partial",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "51969-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T01:12:34.071646Z",
+        "issued": "2026-11-06T00:00:00.000Z",
+        "specimen": [
+          {
+            "reference": "urn:uuid:ec2e34a8-c76d-5f48-a9dd-2e36f0f30624"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:7dae4a73-0cee-5deb-95da-b89e5c4b5d2b"
+          },
+          {
+            "reference": "urn:uuid:e3292b4a-60f8-512b-b3c0-c19e2fbf0449"
+          }
+        ],
+        "conclusion": "RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE. Results, most serious first: clopidogrel: Unknown."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:ec2e34a8-c76d-5f48-a9dd-2e36f0f30624",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "ec2e34a8-c76d-5f48-a9dd-2e36f0f30624",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Sample \"DEMO_CONFIDENT\" in the uploaded VCF.</p></div>"
+        },
+        "identifier": [
+          {
+            "value": "DEMO_CONFIDENT"
+          }
+        ],
+        "note": [
+          {
+            "text": "The sample name in the uploaded VCF. It names a sample, not a person."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:97cae8ca-986f-57a7-a160-ec8c36e59c11",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "97cae8ca-986f-57a7-a160-ec8c36e59c11",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>The uploaded VCF file. It is not included in this export.</p></div>"
+        },
+        "status": "current",
+        "description": "The uploaded VCF file. It is not included in this export.",
+        "content": [
+          {
+            "attachment": {
+              "title": "Uploaded VCF"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:7dae4a73-0cee-5deb-95da-b89e5c4b5d2b",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "7dae4a73-0cee-5deb-95da-b89e5c4b5d2b",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>CYP2C19: genotype not determined by this analysis.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T01:12:34.071646Z",
+        "specimen": {
+          "reference": "urn:uuid:ec2e34a8-c76d-5f48-a9dd-2e36f0f30624"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:97cae8ca-986f-57a7-a160-ec8c36e59c11"
+          }
+        ],
+        "dataAbsentReason": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+              "code": "unknown"
+            }
+          ],
+          "text": "Not determined by this analysis"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "CYP2C19"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:e3292b4a-60f8-512b-b3c0-c19e2fbf0449",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e3292b4a-60f8-512b-b3c0-c19e2fbf0449",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>clopidogrel: Unknown</p><p>Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-function result could be reported as safe. The system declines rather than risk that.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T01:12:34.071646Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:7dae4a73-0cee-5deb-95da-b89e5c4b5d2b"
+          },
+          {
+            "reference": "urn:uuid:97cae8ca-986f-57a7-a160-ec8c36e59c11"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: Unknown"
+          },
+          {
+            "text": "Why Unknown: Your file is missing required positions"
+          },
+          {
+            "text": "What would fix it: Upload a VCF that reports ALL positions, including those matching the reference — a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here."
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "clopidogrel"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "Unknown"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-function result could be reported as safe. The system declines rather than risk that."
+          }
+        ]
+      }
+    }
+  ]
+}

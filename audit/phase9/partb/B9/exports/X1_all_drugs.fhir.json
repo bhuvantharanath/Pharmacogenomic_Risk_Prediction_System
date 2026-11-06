@@ -1,0 +1,1329 @@
+{
+  "resourceType": "Bundle",
+  "id": "9b9acd12-0945-5b0d-b661-c38e24813306",
+  "type": "collection",
+  "timestamp": "2026-11-06T00:00:00.000Z",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:20e8f687-a561-5d2e-905d-a37e39410b3d",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "20e8f687-a561-5d2e-905d-a37e39410b3d",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE</p><p>This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page.</p><p>Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from.</p><p>Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional.</p><p>Results, most serious first:</p><p>clopidogrel: Ineffective</p><p>azathioprine: No PGx-guided adjustment identified</p><p>fluorouracil: No PGx-guided adjustment identified</p><p>simvastatin: No PGx-guided adjustment identified</p><p>codeine: Unknown</p><p>ibuprofen: Unknown</p><p>warfarin: Unknown</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-disclaimer"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "This is not a clinical report. It was produced by a final-year student project for research and education. It has not been clinically validated, and no qualified clinical expert has reviewed the explanatory text on this page. Recommendation text on this page is quoted from published CPIC guidance via PharmCAT. Automated source checks are not human review: they cannot show that every statement here is supported, or that any of it is correct for the person this sample came from. Do not change a medicine on the strength of this page. Take it to a qualified healthcare professional."
+            }
+          },
+          {
+            "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genomic-report-note",
+            "valueAnnotation": {
+              "extension": [
+                {
+                  "url": "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/annotation-code",
+                  "valueCodeableConcept": {
+                    "coding": [
+                      {
+                        "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/coded-annotation-types-cs",
+                        "code": "test-methodology"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "text": "PharmCAT 3.4.0; CPIC data version 2026-07-13-11-40; CPIC table SHA-256 5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8; allele definitions 2026-07-13-11-40; definitions SHA-256 7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f; explanations generated 24 Jul 2026; source: CPIC guidelines, retrieved via PharmCAT. Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs."
+            }
+          }
+        ],
+        "status": "partial",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "51969-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "issued": "2026-11-06T00:00:00.000Z",
+        "specimen": [
+          {
+            "reference": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6"
+          }
+        ],
+        "result": [
+          {
+            "reference": "urn:uuid:91f038ca-d5fc-559f-9947-fb0c547e459c"
+          },
+          {
+            "reference": "urn:uuid:c5758311-ea30-5f73-93cb-129e9900fb0d"
+          },
+          {
+            "reference": "urn:uuid:1969089e-e64e-5837-9489-3e2348093a84"
+          },
+          {
+            "reference": "urn:uuid:b9144004-8efa-55a1-90b9-d071629c32ca"
+          },
+          {
+            "reference": "urn:uuid:afbccfe4-8bbd-5ec7-bdaa-0b977bf09c2c"
+          },
+          {
+            "reference": "urn:uuid:401b9a08-2049-5ef7-992c-6e57348d5176"
+          },
+          {
+            "reference": "urn:uuid:4433d891-271b-556e-8792-5952cecb164a"
+          },
+          {
+            "reference": "urn:uuid:0a0dd27f-fd0e-5f84-ae2d-d1fa18cf42e9"
+          },
+          {
+            "reference": "urn:uuid:aee5709f-042c-52a2-8eb6-ec5e8017c356"
+          },
+          {
+            "reference": "urn:uuid:a9da039b-e061-557a-b7a6-14cd6921810c"
+          },
+          {
+            "reference": "urn:uuid:c3b06cc3-6d93-5903-907f-2e5234c09acd"
+          },
+          {
+            "reference": "urn:uuid:44a48db8-3613-5fec-ba7d-e1faab37dc23"
+          },
+          {
+            "reference": "urn:uuid:5343bf07-d2bf-5051-ab8c-77c074fccf3e"
+          }
+        ],
+        "conclusion": "RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE. Results, most serious first: clopidogrel: Ineffective; azathioprine: No PGx-guided adjustment identified; fluorouracil: No PGx-guided adjustment identified; simvastatin: No PGx-guided adjustment identified; codeine: Unknown; ibuprofen: Unknown; warfarin: Unknown."
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6",
+      "resource": {
+        "resourceType": "Specimen",
+        "id": "fba1c773-ac09-5072-b93a-bd514b7dcbf6",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Sample \"DEMO_CONFIDENT\" in the uploaded VCF.</p></div>"
+        },
+        "identifier": [
+          {
+            "value": "DEMO_CONFIDENT"
+          }
+        ],
+        "note": [
+          {
+            "text": "The sample name in the uploaded VCF. It names a sample, not a person."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7",
+      "resource": {
+        "resourceType": "DocumentReference",
+        "id": "6c325991-777d-5934-a75c-9254b758cea7",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>The uploaded VCF file. It is not included in this export.</p></div>"
+        },
+        "status": "current",
+        "description": "The uploaded VCF file. It is not included in this export.",
+        "content": [
+          {
+            "attachment": {
+              "title": "Uploaded VCF"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:91f038ca-d5fc-559f-9947-fb0c547e459c",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "91f038ca-d5fc-559f-9947-fb0c547e459c",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genotype"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>CYP2C19 *2/*2</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "specimen": {
+          "reference": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "valueCodeableConcept": {
+          "text": "CYP2C19 *2/*2"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "CYP2C19"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c5758311-ea30-5f73-93cb-129e9900fb0d",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c5758311-ea30-5f73-93cb-129e9900fb0d",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genotype"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>TPMT *1/*1</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "specimen": {
+          "reference": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "valueCodeableConcept": {
+          "text": "TPMT *1/*1"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "TPMT"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:1969089e-e64e-5837-9489-3e2348093a84",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "1969089e-e64e-5837-9489-3e2348093a84",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genotype"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>DPYD Reference/Reference</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "specimen": {
+          "reference": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "valueCodeableConcept": {
+          "text": "DPYD Reference/Reference"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "DPYD"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:b9144004-8efa-55a1-90b9-d071629c32ca",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "b9144004-8efa-55a1-90b9-d071629c32ca",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genotype"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>SLCO1B1 *1/*1</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "specimen": {
+          "reference": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "valueCodeableConcept": {
+          "text": "SLCO1B1 *1/*1"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "SLCO1B1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:afbccfe4-8bbd-5ec7-bdaa-0b977bf09c2c",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "afbccfe4-8bbd-5ec7-bdaa-0b977bf09c2c",
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>CYP2D6: genotype not determined by this analysis.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "specimen": {
+          "reference": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "dataAbsentReason": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/data-absent-reason",
+              "code": "unknown"
+            }
+          ],
+          "text": "Not determined by this analysis"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "CYP2D6"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:401b9a08-2049-5ef7-992c-6e57348d5176",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "401b9a08-2049-5ef7-992c-6e57348d5176",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/genotype"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>CYP2C9 *1/*1</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "84413-4"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "specimen": {
+          "reference": "urn:uuid:fba1c773-ac09-5072-b93a-bd514b7dcbf6"
+        },
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "valueCodeableConcept": {
+          "text": "CYP2C9 *1/*1"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "48018-6"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "CYP2C9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:4433d891-271b-556e-8792-5952cecb164a",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "4433d891-271b-556e-8792-5952cecb164a",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>clopidogrel: Ineffective</p><p>Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication.</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact",
+            "valueRelatedArtifact": {
+              "type": "citation",
+              "citation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19 (via PharmCAT) [label rule: avoid_for_lack_of_efficacy]"
+            }
+          }
+        ],
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:91f038ca-d5fc-559f-9947-fb0c547e459c"
+          },
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: Ineffective"
+          },
+          {
+            "text": "CPIC strength of recommendation: Strong. Population: CVI ACS PCI. Implications: CYP2C19: Significantly reduced clopidogrel active metabolite formation; increased on-treatment platelet reactivity; increased risk for adverse cardiac and cerebrovascular events"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "clopidogrel"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "PM"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "Avoid clopidogrel if possible. Use prasugrel or ticagrelor at standard dose if no contraindication."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:0a0dd27f-fd0e-5f84-ae2d-d1fa18cf42e9",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "0a0dd27f-fd0e-5f84-ae2d-d1fa18cf42e9",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>azathioprine: No PGx-guided adjustment identified</p><p>Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment.</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact",
+            "valueRelatedArtifact": {
+              "type": "citation",
+              "citation": "Annotation of CPIC Guideline for azathioprine and NUDT15, TPMT (via PharmCAT) [label rule: standard_dosing]"
+            }
+          }
+        ],
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:c5758311-ea30-5f73-93cb-129e9900fb0d"
+          },
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: No PGx-guided adjustment identified"
+          },
+          {
+            "text": "CPIC strength of recommendation: Strong. Population: general. Implications: Normal risk of thiopurine-related leukopenia, neutropenia and myelosuppression. TPMT NMs have lower erythrocyte concentrations of TGN metabolites and higher concentrations of MeMPNs compared to TPMT IMs and TPMT PMs. This is the 'normal' pattern."
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "azathioprine"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "NM"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "Initiate therapy with standard starting dose (e.g., 2 mg/kg/day for autoimmune diseases). During therapy, adjust doses of azathioprine based on disease-specific guidelines. It usually takes at least 2 weeks to reach steady state after each dose adjustment."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:aee5709f-042c-52a2-8eb6-ec5e8017c356",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "aee5709f-042c-52a2-8eb6-ec5e8017c356",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>fluorouracil: No PGx-guided adjustment identified</p><p>Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration.</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact",
+            "valueRelatedArtifact": {
+              "type": "citation",
+              "citation": "Annotation of CPIC Guideline for fluorouracil and DPYD (via PharmCAT) [label rule: standard_dosing]"
+            }
+          }
+        ],
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:1969089e-e64e-5837-9489-3e2348093a84"
+          },
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: No PGx-guided adjustment identified"
+          },
+          {
+            "text": "CPIC strength of recommendation: Strong. Population: general. Implications: DPYD: Normal DPD activity and \"normal\" risk for fluoropyrimidine toxicity"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "fluorouracil"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "NM"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "Based on genotype, there is no indication to change dose or therapy. Use label-recommended dosage and administration."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:a9da039b-e061-557a-b7a6-14cd6921810c",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "a9da039b-e061-557a-b7a6-14cd6921810c",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>simvastatin: No PGx-guided adjustment identified</p><p>Prescribe desired starting dose and adjust doses based on disease-specific guidelines.</p></div>"
+        },
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/workflow-relatedArtifact",
+            "valueRelatedArtifact": {
+              "type": "citation",
+              "citation": "Annotation of CPIC Guideline for simvastatin and SLCO1B1 (via PharmCAT) [label rule: standard_dosing]"
+            }
+          }
+        ],
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:b9144004-8efa-55a1-90b9-d071629c32ca"
+          },
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: No PGx-guided adjustment identified"
+          },
+          {
+            "text": "CPIC strength of recommendation: Strong. Population: general. Implications: SLCO1B1: Typical myopathy risk and statin exposure"
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "simvastatin"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "NM"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "Prescribe desired starting dose and adjust doses based on disease-specific guidelines."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:c3b06cc3-6d93-5903-907f-2e5234c09acd",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "c3b06cc3-6d93-5903-907f-2e5234c09acd",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>codeine: Unknown</p><p>This gene’s result depends on structural and copy-number changes that need specialised analysis of the sequencing reads, which this application does not perform. No VCF uploaded here will resolve it — it needs a specialised test or caller. The system declines to guess rather than report a genotype it cannot support.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:afbccfe4-8bbd-5ec7-bdaa-0b977bf09c2c"
+          },
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: Unknown"
+          },
+          {
+            "text": "Why Unknown: Not called from an uploaded VCF"
+          },
+          {
+            "text": "Nothing about the uploaded file would change this result."
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "codeine"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "Unknown"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "This gene’s result depends on structural and copy-number changes that need specialised analysis of the sequencing reads, which this application does not perform. No VCF uploaded here will resolve it — it needs a specialised test or caller. The system declines to guess rather than report a genotype it cannot support."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:44a48db8-3613-5fec-ba7d-e1faab37dc23",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "44a48db8-3613-5fec-ba7d-e1faab37dc23",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>ibuprofen: Unknown</p><p>This drug is outside the audited application scope; no application guidance is produced.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: Unknown"
+          },
+          {
+            "text": "Why Unknown: Result withheld"
+          },
+          {
+            "text": "Nothing about the uploaded file would change this result."
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "ibuprofen"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "Unknown"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "This drug is outside the audited application scope; no application guidance is produced."
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "urn:uuid:5343bf07-d2bf-5051-ab8c-77c074fccf3e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "5343bf07-d2bf-5051-ab8c-77c074fccf3e",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/uv/genomics-reporting/StructureDefinition/therapeutic-implication"
+          ]
+        },
+        "text": {
+          "status": "generated",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>warfarin: Unknown</p><p>Required genomic evidence is incomplete for VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.</p></div>"
+        },
+        "status": "preliminary",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "laboratory"
+              }
+            ]
+          },
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+                "code": "GE"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+              "code": "therapeutic-implication"
+            }
+          ]
+        },
+        "effectiveDateTime": "2026-11-06T10:18:45.884495Z",
+        "derivedFrom": [
+          {
+            "reference": "urn:uuid:401b9a08-2049-5ef7-992c-6e57348d5176"
+          },
+          {
+            "reference": "urn:uuid:6c325991-777d-5934-a75c-9254b758cea7"
+          }
+        ],
+        "note": [
+          {
+            "text": "PharmaGuard result: Unknown"
+          },
+          {
+            "text": "Why Unknown: Result withheld"
+          },
+          {
+            "text": "Nothing about the uploaded file would change this result."
+          }
+        ],
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "51963-7"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "warfarin"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "therapeutic-implication"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "text": "Unknown"
+            }
+          },
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://hl7.org/fhir/uv/genomics-reporting/CodeSystem/tbd-codes-cs",
+                  "code": "conclusion-string"
+                }
+              ]
+            },
+            "valueString": "Required genomic evidence is incomplete for VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only."
+          }
+        ]
+      }
+    }
+  ]
+}

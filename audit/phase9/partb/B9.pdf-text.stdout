@@ -1,0 +1,8 @@
+S1_confident: 2 pages, header on every page True, 104/104 HTML text nodes found
+S2_variants_only: 2 pages, header on every page True, 109/109 HTML text nodes found
+S3_cyp2d6: 2 pages, header on every page True, 108/108 HTML text nodes found
+S4_dpyd: 2 pages, header on every page True, 109/109 HTML text nodes found
+S5_normal: 2 pages, header on every page True, 104/104 HTML text nodes found
+S6_multidrug: 4 pages, header on every page True, 172/172 HTML text nodes found
+X1_all_drugs: 5 pages, header on every page True, 206/206 HTML text nodes found
+all_pass: True

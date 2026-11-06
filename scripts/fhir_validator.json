@@ -1,0 +1,14 @@
+{
+ "purpose": "The official HL7 FHIR validator, and the IG that scripts/validate_fhir_exports.py checks PharmaGuard's FHIR export against (Phase 9 B9).",
+ "validator": {
+  "version": "7.0.2",
+  "released": "2026-10-15",
+  "path": "test-data/reference/tools/validator_cli-7.0.2.jar",
+  "bytes": 204412235,
+  "sha256": "e3e50f06b806437821b7aef8189a1b790415cb96c5036e0812ed62981452b377",
+  "url": "https://github.com/hapifhir/org.hl7.fhir.core/releases/download/7.0.2/validator_cli.jar"
+ },
+ "fhir_version": "4.0.1",
+ "ig": "hl7.fhir.uv.genomics-reporting#3.0.0",
+ "terminology_server": "n/a"
+}

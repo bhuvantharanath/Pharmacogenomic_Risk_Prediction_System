@@ -43,14 +43,19 @@ lib/
 ├── models/
 │   ├── enums.dart               RiskLabel, Severity, Phenotype, CpicEvidenceLevel
 │   └── analysis.dart            Contract mirrors with fromJson/toJson
+├── export/fhir_report.dart       HL7 FHIR Genomics Report (IG 3.0.0) bundle
+├── print/
+│   ├── summary_document.dart    The printable summary (one HTML document)
+│   └── summary_pdf.dart         The same summary as a PDF file
 ├── screens/
 │   ├── home_screen.dart         File picker + drugs field + Analyze
-│   └── results_screen.dart      Cards, run summary, Copy/Export JSON
+│   └── results_screen.dart      Cards, run summary, Copy/Export JSON, Download report
 ├── theme/risk_style.dart        RiskLabel → colour/icon (light + dark)
 ├── utils/
 │   ├── json_export.dart         Conditional export barrel
 │   ├── json_export_web.dart     Browser download via package:web
-│   └── json_export_io.dart      Writes to a temp file on native
+│   ├── json_export_io.dart      Writes to a temp file on native
+│   └── file_download*.dart      The same, for the PDF and FHIR downloads
 └── widgets/
     ├── disclaimer_banner.dart   Persistent banner + BannerScaffold
     └── result_card.dart         The colour-coded expandable card
@@ -77,5 +82,12 @@ backend contract changes.
 - **Export JSON** downloads a real file on web; on native it writes to a temp
   directory and reports the path. See the TODO in `json_export_io.dart` for the
   nicer mobile share story.
+- **Download report** offers the printable summary as a PDF file and the
+  analysis as an HL7 FHIR Genomics Report (Genomics Reporting IG 3.0.0, FHIR
+  R4). The PDF places exactly the HTML summary's text (`summary_pdf_test.dart`
+  compares them node for node). The FHIR bundle carries every Unknown with its
+  reason, marks itself unverified (`partial`/`preliminary`), and passes the
+  official HL7 validator with no error (`scripts/validate_fhir_exports.py`, a
+  required check of the release gate).
 - **Colour never carries meaning alone** — every card shows the risk label as
   text and an icon alongside the colour.

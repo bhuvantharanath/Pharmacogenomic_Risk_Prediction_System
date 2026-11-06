@@ -1,0 +1,55 @@
+{
+ "pypdf": "6.21.1",
+ "files": {
+  "S1_confident": {
+   "pages": 2,
+   "header_on_every_page": true,
+   "html_nodes": 104,
+   "html_nodes_missing_from_pdf": [],
+   "pass": true
+  },
+  "S2_variants_only": {
+   "pages": 2,
+   "header_on_every_page": true,
+   "html_nodes": 109,
+   "html_nodes_missing_from_pdf": [],
+   "pass": true
+  },
+  "S3_cyp2d6": {
+   "pages": 2,
+   "header_on_every_page": true,
+   "html_nodes": 108,
+   "html_nodes_missing_from_pdf": [],
+   "pass": true
+  },
+  "S4_dpyd": {
+   "pages": 2,
+   "header_on_every_page": true,
+   "html_nodes": 109,
+   "html_nodes_missing_from_pdf": [],
+   "pass": true
+  },
+  "S5_normal": {
+   "pages": 2,
+   "header_on_every_page": true,
+   "html_nodes": 104,
+   "html_nodes_missing_from_pdf": [],
+   "pass": true
+  },
+  "S6_multidrug": {
+   "pages": 4,
+   "header_on_every_page": true,
+   "html_nodes": 172,
+   "html_nodes_missing_from_pdf": [],
+   "pass": true
+  },
+  "X1_all_drugs": {
+   "pages": 5,
+   "header_on_every_page": true,
+   "html_nodes": 206,
+   "html_nodes_missing_from_pdf": [],
+   "pass": true
+  }
+ },
+ "all_pass": true
+}

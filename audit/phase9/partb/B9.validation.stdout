@@ -1,0 +1,16 @@
+validator 7.0.2: present, size and SHA-256 match the pin
+  S1_confident.fhir.json: 0 errors, 0 fatal, 7 warnings
+  S2_variants_only.fhir.json: 0 errors, 0 fatal, 6 warnings
+  S3_cyp2d6.fhir.json: 0 errors, 0 fatal, 6 warnings
+  S4_dpyd.fhir.json: 0 errors, 0 fatal, 6 warnings
+  S5_normal.fhir.json: 0 errors, 0 fatal, 7 warnings
+  S6_multidrug.fhir.json: 0 errors, 0 fatal, 27 warnings
+  X1_all_drugs.fhir.json: 0 errors, 0 fatal, 39 warnings
+  positive-control.fhir.json: 2 errors, 0 fatal, 7 warnings
+  warning x32: Best Practice Recommendation: In general, all observations should have a subject
+  warning x32: Best Practice Recommendation: In general, all observations should have a performer
+  warning x17: No code provided, and a code should be provided from the value set 'Genetic Therapeutic Implications' (http://hl7.org/fhir/uv/genomics-reporting/ValueSet/genetic-therapeutic-implications-vs|3.0.0)
+  warning x10: No code provided, and a code should be provided from the value set 'HUGO Gene Nomenclature Committee Gene Names (HGNC)' (http://hl7.org/fhir/uv/genomics-reporting/ValueSet/hgnc-vs|3.0.0)
+  warning x7: Attachments have data and/or url, or else SHOULD have either contentType and/or language
+FHIR validation: PASS (7 bundles; positive control rejected with 2 errors)
+rc=0

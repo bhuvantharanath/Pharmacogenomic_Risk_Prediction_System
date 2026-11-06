@@ -67,6 +67,13 @@ REQUIRED_COMMANDS = (
     ),
     ("flutter-analyze", ("flutter", "analyze"), REPO_ROOT / "app"),
     ("flutter-tests", ("flutter", "test"), REPO_ROOT / "app"),
+    # The FHIR export against the official HL7 validator and the Genomics
+    # Reporting IG (Phase 9 B9), with a positive control that must fail.
+    (
+        "fhir-validation",
+        (sys.executable, "scripts/validate_fhir_exports.py"),
+        REPO_ROOT,
+    ),
 )
 
 

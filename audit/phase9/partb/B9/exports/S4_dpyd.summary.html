@@ -1,0 +1,160 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PharmaGuard summary — NA19042</title>
+<style>@page { margin: 14mm 12mm 12mm; }
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0;
+  font: 10.5pt/1.45 Georgia, 'Times New Roman', serif;
+  color: #000; background: #fff;
+}
+.mono { font-family: 'IBM Plex Mono', Menlo, Consolas, monospace; }
+
+/* The repeated header. A thead row is reprinted on every page by every print
+   engine, including the OS HTML-to-PDF renderers on iOS and Android. */
+table.page { width: 100%; border-collapse: collapse; }
+table.page > thead { display: table-header-group; }
+table.page > tbody { display: table-row-group; }
+table.page > thead > tr > th, table.page > tbody > tr > td {
+  padding: 0; text-align: left; font-weight: 400;
+}
+.running {
+  font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
+  font-size: 7.5pt; letter-spacing: 0.06em;
+  padding-bottom: 3pt; margin-bottom: 10pt;
+  border-bottom: 0.5pt solid #000;
+}
+@media screen {
+  main { padding: 0 16px 48px; max-width: 800px; margin: 0 auto; }
+  .running { padding: 8px 16px 4px; }
+}
+
+.banner {
+  font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
+  font-size: 8.5pt; letter-spacing: 0.06em; font-weight: 700;
+  border: 1pt solid #000; padding: 5pt 7pt; margin: 0 0 10pt;
+}
+h1 { font-size: 15pt; margin: 0 0 8pt; font-weight: 600; }
+h2 {
+  font-size: 11pt; margin: 16pt 0 5pt; font-weight: 600;
+  border-bottom: 0.5pt solid #000; padding-bottom: 2pt;
+}
+p { margin: 0 0 6pt; }
+.note { font-size: 9pt; color: #333; }
+.small { font-size: 9pt; }
+.prose { max-width: 46em; }
+
+.warn { border: 0.5pt solid #000; padding: 7pt 9pt; margin: 8pt 0 4pt; }
+.warn p { font-size: 9.5pt; }
+
+table.kv { border-collapse: collapse; margin: 0 0 7pt; }
+table.kv td { padding: 1pt 12pt 1pt 0; vertical-align: top; font-size: 9.5pt; }
+table.kv td:first-child { color: #333; width: 12em; }
+
+article.result, article.unknown {
+  border-top: 0.5pt solid #000; padding: 7pt 0 9pt;
+  /* Never split a drug's result across a page break: half a recommendation is
+     worse than a page with white space at the bottom. */
+  break-inside: avoid; page-break-inside: avoid;
+}
+.head { display: flex; gap: 10pt; align-items: baseline; margin-bottom: 5pt; }
+.drug { font-size: 9pt; letter-spacing: 0.05em; }
+.verdict { font-size: 13pt; font-weight: 600; }
+
+.quote { border: 0.5pt solid #666; padding: 6pt 8pt; margin: 6pt 0 0; }
+.qlabel {
+  font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
+  font-size: 7.5pt; letter-spacing: 0.06em; color: #333; margin-bottom: 4pt;
+}
+.quote p { font-size: 9.5pt; margin-bottom: 4pt; }
+.attrib { font-size: 8.5pt; color: #333; margin: 0; }
+
+table.census { border-collapse: collapse; width: 100%; margin: 4pt 0 6pt; }
+table.census th, table.census td {
+  border-bottom: 0.5pt solid #999; padding: 2pt 6pt 2pt 0;
+  text-align: left; font-size: 9pt;
+}
+table.census th {
+  font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
+  font-size: 7.5pt; letter-spacing: 0.05em; border-bottom-width: 1pt;
+}
+</style>
+</head><body>
+<table class="page"><thead><tr><th>
+<div class="running">RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE</div>
+</th></tr></thead><tbody><tr><td>
+<main>
+<div class="banner">RESEARCH AND EDUCATIONAL USE ONLY — NOT A MEDICAL DEVICE</div>
+<h1>Pharmacogenomic analysis summary</h1>
+<table class="kv">
+  <tr><td>sample</td><td class="mono">NA19042</td></tr>
+  <tr><td>analysed</td><td class="mono">2026-11-06T01:12:37.093873Z</td></tr>
+  <tr><td>printed</td><td class="mono">2026-11-06</td></tr>
+  <tr><td>drugs checked</td><td class="mono">1</td></tr>
+</table>
+<section class="warn">
+  <p><strong>This is not a clinical report.</strong> It was produced by a
+  final-year student project for research and education. It has not been
+  clinically validated, and no qualified clinical expert has reviewed the
+  explanatory text on this page.</p>
+  <p>Recommendation text on this page is quoted from published CPIC guidance via
+  PharmCAT. Automated source checks are not human review: they cannot show that
+  every statement here is supported, or that any of it is correct for the person
+  this sample came from.</p>
+  <p>Do not change a medicine on the strength of this page. Take it to a
+  qualified healthcare professional.</p>
+</section>
+<h2>Results</h2>
+<p class="note">Ordered by consequence, not alphabetically.</p>
+<article class="result">
+<div class="head"><span class="drug mono">fluorouracil</span><span class="verdict">Unknown</span></div>
+<table class="kv"><tr><td>gene</td><td class="mono">Unknown</td></tr><tr><td>diplotype</td><td class="mono">Unknown</td></tr><tr><td>phenotype</td><td class="mono">Unknown</td></tr><tr><td>evidence level</td><td class="mono">Unknown</td></tr></table>
+<p class="prose">fluorouracil: no pharmacogenomic result (Unknown).</p>
+<div class="quote">
+<div class="qlabel">APPLICATION LIMITATION — NOT A CPIC QUOTE</div>
+<p class="mono">Required genomic evidence is incomplete for DPYD. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.</p>
+<p class="mono small">Annotation of CPIC Guideline for fluorouracil and DPYD</p>
+<p class="attrib mono">— PharmCAT (no matching CPIC entry)</p>
+</div>
+</article>
+
+<h2>Unknown results (1)</h2>
+<p class="note">An Unknown is a declined answer, not a missing one. Only the reasons about the file itself — missing positions or unusable genotypes — are something the sample provider can act on.</p>
+<article class="unknown">
+<div class="head"><span class="drug mono">fluorouracil</span><span class="verdict">Your file is missing required positions</span></div>
+<p class="prose">Some of the positions needed to identify this gene carry no genotype in your file. That is not a small gap: a change whose key position is absent is invisible, so the genotype would read as normal and a reduced-function result could be reported as safe. The system declines rather than risk that.</p>
+<p class="prose"><strong>What would fix it:</strong> Upload a VCF that reports ALL positions, including those matching the reference — a clinical pharmacogenomic panel, or data covering all your genes, produced with every position reported. A variants-only file cannot work here.</p>
+</article>
+
+<h2>Input coverage</h2>
+<p class="note">How many of the positions each gene needs carried a usable genotype in the uploaded file. A genotype caller reads an absent position as matching the reference, so missing data can produce confident results rather than uncertain ones — which is why the count is printed whether or not it passed, and why a gene below its minimum is reported as Unknown.</p>
+<table class="census"><thead><tr><th>gene</th><th>usable</th><th>required</th><th>minimum</th><th>sufficient</th></tr></thead><tbody>
+<tr><td class="mono">CYP2C19</td><td class="mono">16</td><td class="mono">35</td><td class="mono">100%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">CYP2C9</td><td class="mono">17</td><td class="mono">88</td><td class="mono">100%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">CYP2D6</td><td class="mono">67</td><td class="mono">157</td><td class="mono">100%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">CYP4F2</td><td class="mono">0</td><td class="mono">20</td><td class="mono">100%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">DPYD</td><td class="mono">31</td><td class="mono">83</td><td class="mono">20%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">NUDT15</td><td class="mono">5</td><td class="mono">20</td><td class="mono">80%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">SLCO1B1</td><td class="mono">20</td><td class="mono">35</td><td class="mono">100%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">TPMT</td><td class="mono">9</td><td class="mono">45</td><td class="mono">80%</td><td class="mono">NO</td></tr>
+<tr><td class="mono">VKORC1</td><td class="mono">0</td><td class="mono">1</td><td class="mono">100%</td><td class="mono">NO</td></tr>
+</tbody></table>
+<p class="note"><strong>Not resolved from this file:</strong> CYP2C19, CYP2C9, CYP2D6, CYP4F2, DPYD, NUDT15, SLCO1B1, TPMT, VKORC1. Any drug keyed to these genes was reported as Unknown rather than assumed normal.</p>
+
+<h2>Where this guidance came from</h2>
+<table class="kv">
+  <tr><td>PharmCAT</td><td class="mono">3.4.0</td></tr>
+  <tr><td>CPIC data version</td><td class="mono">2026-07-13-11-40</td></tr>
+  <tr><td>CPIC table SHA-256</td><td class="mono">5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8</td></tr>
+  <tr><td>allele definitions</td><td class="mono">2026-07-13-11-40</td></tr>
+  <tr><td>definitions SHA-256</td><td class="mono">7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f</td></tr>
+  
+  <tr><td>explanations generated</td>
+      <td class="mono">24 Jul 2026</td></tr>
+  <tr><td>source</td><td class="mono">CPIC guidelines, retrieved via PharmCAT</td></tr>
+</table>
+<p class="note">Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs.</p>
+</main>
+</td></tr></tbody></table>
+</body></html>
