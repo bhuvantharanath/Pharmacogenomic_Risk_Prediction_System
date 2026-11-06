@@ -1,0 +1,10 @@
+{
+ "checks": {
+  "bundle contains EXPECTED_BACKEND_SHA": true,
+  "bundle contains 'Download report'": true,
+  "bundle contains 'PDF summary (.pdf)'": true,
+  "bundle contains 'FHIR Genomics Report (.json)'": true
+ },
+ "all_pass": true,
+ "bundle_bytes": 3699747
+}

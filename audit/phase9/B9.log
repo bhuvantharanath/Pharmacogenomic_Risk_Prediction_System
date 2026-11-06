@@ -179,3 +179,50 @@ Zero-regression PASS: S1-S6 bodies, cohort, 74 VCFs, A4 identical to B8; the HTM
           no eligibility or discrepancy change against B8's package.
 Sabotage: SB9-a..h all caught; files restored identical.
 Recorded, not hidden: the first gate run failed on my unscrubbed exception (above); fixed in 1e2e38a.
+
+== Push and live check (owner: "Push and deploy B9", 2026-11-06) ==
+Live criteria, written before any live measurement (the plan's "After deploy" list, made concrete):
+L0  The test workflow on 8274f4d5d05c56ce0a66d0583459c82fcb9cb023: its new step "FHIR export validation (HL7 validator)" succeeds (AC7's CI half);
+    every other step as at B8 (red only at the F-08 explanation-content gate, by design).
+L1  The Deploy run's gate (fhir-validation now included, its first CI run), Render and Cloudflare jobs succeed; /ready
+    reports 8274f4d5d05c56ce0a66d0583459c82fcb9cb023.
+L2  verify_postdeploy.py, live S1-S6 against the local B9 run (audit/phase9/partb/B9/s1-s6): commit matches, labels
+    equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local B9 run.
+L4  The deployed web bundle (main.dart.js) carries EXPECTED_BACKEND_SHA 8274f4d5d05c56ce0a66d0583459c82fcb9cb023 and the strings
+    "Download report", "PDF summary (.pdf)" and "FHIR Genomics Report (.json)".
+L5  The six live S1-S6 responses, exported by the same code (validate_fhir_exports.py --responses), validate with 0
+    errors and 0 fatal each, and the positive control is rejected.
+L6  In the built-in browser, after one analysis on the production page, the results page shows "Download report", and
+    opening it shows "PDF summary (.pdf)" and "FHIR Genomics Report (.json)". Nothing is downloaded there.
+(B9.log sha256 with the criteria above as its last section, before any live measurement:
+d000d481479bf1351249728a7cfa1ca1685271e893c0ac0e956a980e2d70c2e8.)
+
+Live results.
+Secret scan over the 105 outgoing files: 5 values checked, 0 flagged. Pushed 3b1755a..8274f4d to main (Deploy run
+42206565764, test run 42206565898, both created 2026-11-06T10:57:21Z).
+L0 PASS  test run 42206565898: "FHIR export validation (HL7 validator)" succeeded. In CI the validator was fetched,
+         matched the pin, and found 0 errors in all seven bundles; the positive control had 2 errors; the same warnings
+         as locally. flutter: 369 tests passed. pytest, counted from its -q progress characters: 1172 results, 1151
+         passed, 21 skipped, 0 failed (as at B8, F-09). Every step green except "Authoritative explanation-content gate"
+         (F-08, by design).
+L1 PASS  Deploy run 42206565764: release gate success (10:57:23-11:02:39Z; its first CI run of fhir-validation; the
+         gate printed state ready, required checks True), Render backend success (11:02:41-11:03:30Z), Cloudflare Pages
+         success (11:03:33-11:06:15Z). /ready build.commit 8274f4d5d05c56ce0a66d0583459c82fcb9cb023 at 11:07:04Z,
+         before the first live upload, and again after S1-S6 (B9/live_ready_after_s1s6.json).
+L2 PASS  verify_postdeploy.py (B9/postdeploy_verification.json): commit matches; S1-S6 labels equal the local B9 run,
+         template-only prose, disclaimer equal. Seconds 70.1, 57.7, 66.4, 66.5, 63.8, 64.3; all 200.
+L3 PASS  B9/live_s1s6_fields.json: gene_findings and warnings equal the local B9 run in all six (13/13 checks).
+L4 PASS  B9/live_bundle.json: main.dart.js carries 8274f4d... and "Download report", "PDF summary (.pdf)", "FHIR
+         Genomics Report (.json)" (4/4). The bundle is 3,699,747 bytes; at B7 it was 2,719,310: the pdf package's
+         widgets now ship to the web build, about 0.98 MB more for every first load.
+L5 PASS  B9/live_exports_validation.json: the six live S1-S6 responses exported by the same code: 0 errors, 0 fatal
+         each; the positive control rejected with 2 errors.
+L6 PASS  Built-in browser, production page (one reload first, for the service worker): "Analysis server ready"
+         (B9/live_web_ready.jpg). The built-in "Reduced-function result" sample (Try this; codeine, warfarin,
+         clopidogrel) gave clopidogrel Ineffective, codeine Unknown, warfarin Unknown; "Download report" opened to "PDF
+         summary (.pdf)" and "FHIR Genomics Report (.json)" (B9/live_download_menu.jpg). Closed with Escape; nothing
+         downloaded.
+Live verdict: L0-L6 PASS. AC7's CI half holds: the step runs and passes in test.yml, and fhir-validation passed in
+the Deploy gate.
+B9 done: AC1-AC7 PASS; zero-regression PASS; live PASS; SB9-a..h caught; 0 explanation entries invalidated.
