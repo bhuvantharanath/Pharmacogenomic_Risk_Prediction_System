@@ -1,0 +1,17 @@
+{
+ "criterion": "L6 - the printable summary the live app itself produces does not mention the South Asian context",
+ "how": "On the production page, after a real analysis, the browser's print() was stubbed before clicking 'Printable summary' so no print dialog opened. The app writes the summary into a hidden iframe and calls print() on it; the stub recorded the call and captured that iframe's own document, which is exactly the HTML the app would have printed.",
+ "print_calls_intercepted": 1,
+ "summary_html_chars": 12850,
+ "checks": {
+  "does NOT contain 'South Asian'": true,
+  "does NOT contain '1000 Genomes cohorts'": true,
+  "does NOT contain '57.1'": true,
+  "does NOT contain 'not used for this result'": true,
+  "does NOT contain 'PJL'": true,
+  "positive control: contains 'clopidogrel'": true,
+  "positive control: contains 'Ineffective'": true
+ },
+ "all_pass": true,
+ "note": "The positive controls matter: without them an empty or failed capture would pass every absence check."
+}

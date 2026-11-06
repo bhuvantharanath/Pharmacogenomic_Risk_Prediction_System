@@ -186,3 +186,72 @@ Zero-regression PASS  S1-S6 bodies, 2,400 cohort results, 74 VCFs, A4 and the 18
 Sabotage NOT RUN (owner decision; see the section above). Standing rule 4 is unsatisfied for B11 alone.
 Explanation entries invalidated: 0.
 Not done, by design: the live checks need a deploy.
+
+== Push and live check (owner: "Push and deploy", 2026-11-06) ==
+Live criteria, written before any live measurement (the plan's "After deploy" list, made concrete):
+L0  The test workflow on 3ebd7bbb7f320ac13d48855cd11968fb5371044f: every step green except the F-08
+    explanation-content gate (by design), the FHIR export validation step included.
+L1  The Deploy run's gate, Render and Cloudflare jobs succeed; /ready reports
+    3ebd7bbb7f320ac13d48855cd11968fb5371044f, read before the first live upload.
+L2  verify_postdeploy.py, live S1-S6 against the local B11 run (audit/phase9/partb/B11/s1-s6): commit matches,
+    labels equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local B11 run. Because B11 changed no backend
+    file, the live bodies must also equal B10's live bodies once timestamp and processing_time_ms are stripped: a
+    served response that differs would mean a display-only item reached the server.
+L4  The deployed web bundle (main.dart.js) carries EXPECTED_BACKEND_SHA 3ebd7bbb7f320ac13d48855cd11968fb5371044f and
+    the strings "South Asian context", "not used for this result" and "1000 Genomes cohorts", and the pooled CYP2C19
+    figure 57.1 from the generated table.
+L5  In the built-in browser, on the production page (one reload first, for the service worker): an opened result card
+    shows the "South Asian context - not used for this result" row; opening it shows the gene's own figure with its
+    interval, the five cohort lines, and the caveats (context only, the lower bound with positions, research-format,
+    outside India, not an outcome). The browser's uploads wait until this machine's rate-limit window allows them.
+    Nothing is downloaded.
+L6  The printable summary reached from that same live result does not mention the context: checked in the browser on
+    the page the app itself produces, not only in the local test.
+Negative control for L4, since three of its four checks are presence checks on a 3.7 MB file: a string that must not
+be there ("GenomeIndia", never implemented, and "IndiGen", explicitly out of scope) is searched for in the same
+bundle with the same matcher and must be absent.
+(B11.log sha256 with the criteria above as its last section, before any live measurement:
+d4fd15ae12759ee8954a3afbfb5a82f30673dbaaada2b12f1dccdbc2db41c792.)
+
+Live results.
+Secret scan over the 57 outgoing files: 5 values checked, 0 flagged. Pushed b036f36..3ebd7bb to main (Deploy run
+42263934280, test run 42263934425, created 2026-11-06T17:41:29Z).
+L0 PASS  test run 42263934425: every step green except "Authoritative explanation-content gate" (F-08, by design).
+         pytest, flutter analyze, flutter test, "FHIR export validation (HL7 validator)" and the exhaustive
+         label-mapping validation all success.
+L1 PASS  Deploy run 42263934280: release gate success (17:41:31-17:47:42Z), Render backend success (17:47:45-
+         17:48:35Z), Cloudflare Pages success (17:48:37-17:51:24Z). /ready build.commit
+         3ebd7bbb7f320ac13d48855cd11968fb5371044f read at 17:51:56Z, before the first live upload (17:52:09Z);
+         B11/live_ready_before.json.
+L2 PASS  verify_postdeploy.py (B11/postdeploy_verification.json): commit matches; S1-S6 labels equal the local B11
+         run, template-only prose, disclaimer equal; all six pass. Seconds 62.4, 56.5, 62.6, 63.7, 62.5, 62.7; all 200.
+L3 PASS  B11/live_s1s6_fields.json, 19/19: gene_findings and warnings equal the local B11 run in all six, and each
+         live body equals B10's live body once timestamp and processing_time_ms are stripped. That is the criterion
+         that would have caught a display-only item reaching the server, and it did not. The comparator was checked
+         against a flipped risk_label before the live data arrived, so the equality is not vacuous.
+L4 PASS  B11/live_bundle.json, 12/12: main.dart.js (3,751,994 bytes) carries the commit, "South Asian context",
+         "not used for this result", "1000 Genomes cohorts", and fragments only the generated table has
+         ("reduced_definition", "positions_required", "PJL", the reduced-function definition, and "57.1" quoted as
+         the table writes it, with 53.1 and 61.0 within 400 characters of it). Negative controls: "GenomeIndia" and
+         "IndiGen", both out of scope and never implemented, are absent from the same fetch by the same matcher.
+         The criterion as first written checked a bare "57.1", which is weak evidence in a 3.7 MB bundle; it was
+         strengthened before the verdict was recorded, not after, and the weaker form also passed.
+L5 PASS  Built-in browser, production page (one reload first, for the service worker). The built-in reduced-function
+         sample, run from the page itself: clopidogrel Ineffective, codeine and warfarin Unknown. The open card's
+         last row is "South Asian context - not used for this result", closed by default; opened it shows "At least
+         57.1% (95% CI 53.1-61.0%) of 601 people in five South Asian 1000 Genomes cohorts were called poor
+         metabolizer or intermediate metabolizer for CYP2C19.", the five cohort lines (PJL 54.1% 46.0-62.0 n=146;
+         BEB 57.3% 48.7-65.4 n=131; STU 64.0% 54.9-72.3 n=114; ITU 60.7% 51.3-69.5 n=107; GIH 49.5% 40.1-59.0
+         n=103), and every caveat: context only, the lower bound with 16 of 35 positions, "16 more were No Result or
+         n/a", research-format, four of five cohorts outside India, a frequency is not an outcome, measured
+         2026-08-14. Every figure equals the committed table. B11/live_context_panel.jpg. Nothing downloaded.
+L6 PASS  B11/live_printable_summary.json, 7/7: the summary the live app itself produced (12,850 characters) contains
+         neither "South Asian", "1000 Genomes cohorts", "57.1", "not used for this result" nor "PJL", while
+         containing "clopidogrel" and "Ineffective" - the positive controls, without which an empty capture would
+         have passed every absence check. window.print() was stubbed before the click, so no print dialog opened and
+         nothing was downloaded; the stub captured the hidden iframe's own document, which is exactly what the app
+         would have printed.
+Live verdict: L0-L6 PASS.
+B11 done: AC1-AC5 PASS; zero-regression PASS with nothing to declare; live PASS; 0 explanation entries invalidated.
+Sabotage SB11-a..f NOT RUN (owner decision) - the one standing-rule obligation this item does not meet.

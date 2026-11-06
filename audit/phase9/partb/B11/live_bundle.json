@@ -1,0 +1,18 @@
+{
+ "checks": {
+  "bundle contains EXPECTED_BACKEND_SHA": true,
+  "bundle contains 'South Asian context'": true,
+  "bundle contains 'not used for this result'": true,
+  "bundle contains '1000 Genomes cohorts'": true,
+  "bundle contains '\"reduced_definition\"'": true,
+  "bundle contains '\"positions_required\"'": true,
+  "bundle contains '\"PJL\"'": true,
+  "bundle contains 'Poor Metabolizer or Intermediate Metabolizer'": true,
+  "bundle contains '\"57.1\"'": true,
+  "negative control: bundle does NOT contain 'GenomeIndia'": true,
+  "negative control: bundle does NOT contain 'IndiGen'": true,
+  "CYP2C19 57.1 sits beside its interval 53.1-61.0": true
+ },
+ "all_pass": true,
+ "bundle_bytes": 3751994
+}

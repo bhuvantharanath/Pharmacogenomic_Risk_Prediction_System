@@ -1,0 +1,50 @@
+{
+ "checks": {
+  "all six scenarios present": true,
+  "S1_confident: gene_findings equal the local B11 run": true,
+  "S1_confident: warnings equal the local B11 run": true,
+  "S1_confident: body equals B10's live body": true,
+  "S2_variants_only: gene_findings equal the local B11 run": true,
+  "S2_variants_only: warnings equal the local B11 run": true,
+  "S2_variants_only: body equals B10's live body": true,
+  "S3_cyp2d6: gene_findings equal the local B11 run": true,
+  "S3_cyp2d6: warnings equal the local B11 run": true,
+  "S3_cyp2d6: body equals B10's live body": true,
+  "S4_dpyd: gene_findings equal the local B11 run": true,
+  "S4_dpyd: warnings equal the local B11 run": true,
+  "S4_dpyd: body equals B10's live body": true,
+  "S5_normal: gene_findings equal the local B11 run": true,
+  "S5_normal: warnings equal the local B11 run": true,
+  "S5_normal: body equals B10's live body": true,
+  "S6_multidrug: gene_findings equal the local B11 run": true,
+  "S6_multidrug: warnings equal the local B11 run": true,
+  "S6_multidrug: body equals B10's live body": true
+ },
+ "all_pass": true,
+ "detail": {
+  "S1_confident": {
+   "compared_to_b10_live": "audit/phase9/partb/B10/live-after-s1s6/s1-s6/S1_confident.json",
+   "equal": true
+  },
+  "S2_variants_only": {
+   "compared_to_b10_live": "audit/phase9/partb/B10/live-after-s1s6/s1-s6/S2_variants_only.json",
+   "equal": true
+  },
+  "S3_cyp2d6": {
+   "compared_to_b10_live": "audit/phase9/partb/B10/live-after-s1s6/s1-s6/S3_cyp2d6.json",
+   "equal": true
+  },
+  "S4_dpyd": {
+   "compared_to_b10_live": "audit/phase9/partb/B10/live-after-s1s6/s1-s6/S4_dpyd.json",
+   "equal": true
+  },
+  "S5_normal": {
+   "compared_to_b10_live": "audit/phase9/partb/B10/live-after-s1s6/s1-s6/S5_normal.json",
+   "equal": true
+  },
+  "S6_multidrug": {
+   "compared_to_b10_live": "audit/phase9/partb/B10/live-after-s1s6/s1-s6/S6_multidrug.json",
+   "equal": true
+  }
+ }
+}
