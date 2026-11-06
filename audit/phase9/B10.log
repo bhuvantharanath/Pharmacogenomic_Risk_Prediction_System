@@ -106,3 +106,34 @@ scripts/scientific_hash_policy.json  backend/app/outside_calls.py and app/lib/wi
   core_paths (100 -> 102); every other tracked backend/app and app/lib source was already in it.
 Backend suite before commit (partb/B10.suite-precommit.stdout): 1214 passed, 6 skipped, 4 failed: the four identity
   tests the re-bind refreshes. The validator evidence run (B10/fhir_validation.json): 9 bundles, 0 errors; control 2.
+
+== Committed 3967886 (B10 code, tests, docs, evidence; 72 files, secret scan 0 flagged) ==
+
+== Re-bind, first attempt (tag 2026-11-06-b10; rebind-b10.stdout): STOPPED by its own check ==
+rebind_evaluation.py asserts that only declared eligibility changes appear. It stopped at
+"assert vs_hist == _counts(cumulative)": against the historical benchmark eligibility_reason differs in 416 rows,
+where B5's inherited chain accounts for 208. Scored results had already been asserted unchanged. Measured with the
+tool's own functions on the evaluation copy, against B9's package: vcf_sha256 1,456 rows and eligibility_reason 208
+rows, all one change: CYP2D6, from "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in
+this application, so codeine guidance is not produced." to "... so codeine guidance is produced only from a CYP2D6
+diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx)." The evaluation records the codeine
+capability limitation as CYP2D6's eligibility reason; the plan declared that rewording for S1-S6 bodies but not here.
+This fails the plan's zero-regression clause ("no eligibility or discrepancy change against B9's package") as
+written. Stopped and asked, per the Part B rule. No package was written and no tracked file changed.
+
+== Zero-regression amended by the owner ("Accept, declare it", 2026-11-06) ==
+a02aa26c482b60475e4b25ccf522a062c2f23100ea8249a9574a2b67104debbf  audit/phase9/B10_ZR_AMENDMENT.md
+244371f6a36ab77d925cc13d4b58ec39549736a0807f2e53e1b46331574ec42e  audit/phase9/partb/rebind/declared-changes-2026-11-06-b10.json
+Written after measurement at the owner's instruction; the plan is unedited. The external-evaluation clause now allows
+exactly the rewording of codeine's limitation in 208 CYP2D6 eligibility_reason rows and, found while preparing the
+declaration (the first attempt stopped before comparing it), the same text in 117 CYP2D6 discrepancy detail rows.
+Nothing else may change, and the re-bind enforces it both ways.
+
+== Re-bind, second attempt, with the declaration (test-data/benchmark/current-candidate-2026-11-06-b10; rebind-b10.stdout) ==
+rebind_evaluation.py --tag 2026-11-06-b10 --declared-changes partb/rebind/declared-changes-2026-11-06-b10.json, base
+head 3967886, a fresh copy root (the tool refuses to reuse the first attempt's copy, which is kept). Result: core
+7da41669dceeedc78c72d6b08344ef947423c9b1712f93feec47688902a127aa, F4 true/true, verify_compatible_bundle PASS, every
+scored metric equal. Against B9's package: vcf_sha256 1,456 rows and CYP2D6 eligibility_reason 208 rows (declared);
+discrepancy detail CYP2D6 117 rows (declared); nothing else. Cumulative against the historical benchmark: B5's CYP2C9
+changes and B10's CYP2D6 changes. Zero-regression, external evaluation, as amended: PASS.
+The first attempt's output is kept as partb/rebind-b10.attempt1-undeclared.stdout.

@@ -1,0 +1,183 @@
+{
+  "schema_version": 2,
+  "evaluation_id": "pharmaguard-external-current-candidate-2026-11-06-b10",
+  "created_at": "2026-11-06T15:24:44.536106+00:00",
+  "candidate_application_core_sha256": "7da41669dceeedc78c72d6b08344ef947423c9b1712f93feec47688902a127aa",
+  "application_hash_policy_version": 2,
+  "base_head_metadata_only": "39678864aa20e1908ac58b124f6b4af804033ce2",
+  "previous_evaluation": {
+    "path": "test-data/benchmark/current-candidate-2026-11-06-b9/evaluation_manifest.json",
+    "bytes": 6528,
+    "sha256": "a16034f5ad4cd979434744fb81d4116f4f35434f35c4d6aae47bb9f1c97fd5ab"
+  },
+  "historical_benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "frozen_protocol": {
+    "path": "test-data/benchmark/external/protocol.json",
+    "bytes": 9677,
+    "sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e"
+  },
+  "frozen_cohort_lock": {
+    "path": "test-data/benchmark/external/cohort_lock.json",
+    "bytes": 45274,
+    "sha256": "88bc2da84b930493bd4db715b627a6b6fc61440969b1aecb2c287ebacecbb5dc"
+  },
+  "independent_truth_workbook": {
+    "path": "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "bytes": 162599,
+    "sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109"
+  },
+  "independent_truth_table": {
+    "path": "test-data/benchmark/external/sample_gene_truth.tsv",
+    "bytes": 287825,
+    "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601"
+  },
+  "frozen_combined_vcf": {
+    "path": "test-data/benchmark/external/genomic/locked_cohort.vcf.gz",
+    "bytes": 3266038,
+    "sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba"
+  },
+  "pinned_jar": {
+    "path": "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+    "bytes": 32292707,
+    "sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741"
+  },
+  "upstream_report_manifest": {
+    "path": "test-data/benchmark/external/pharmcat_report_manifest.json",
+    "bytes": 54176,
+    "sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8"
+  },
+  "historical_benchmark_manifest": {
+    "path": "test-data/benchmark/external/benchmark_manifest.json",
+    "bytes": 7588,
+    "sha256": "e19f995579482b152271c2c4eadc7b4fbe4b89832299b3111b761985484d0e92"
+  },
+  "upstream_reuse": {
+    "verified_report_count": 208,
+    "new_caller_executions_for_208_person_cohort": 0,
+    "source_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+    "report_manifest_source_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+    "reason": "same hashed source VCF, pinned JAR/definitions, 208 individually verified report hashes and frozen truth"
+  },
+  "fresh_stages": {
+    "application_individuals": 208,
+    "scored_sample_gene_rows": 1456,
+    "f4_local_api_cases": 2
+  },
+  "denominators": {
+    "unique_individuals": 208,
+    "sample_gene_rows": 1456,
+    "truth_evaluable_rows": 596,
+    "pharmcat_reports": 208
+  },
+  "comparison": {
+    "all_metrics_equal_except_generation_time": true,
+    "equal_to_previous_evaluation_except_generation_time": false,
+    "differing_eligibility_field": "vcf_sha256",
+    "differing_eligibility_rows": 1456,
+    "declared_eligibility_changes": [
+      {
+        "gene": "CYP2D6",
+        "field": "eligibility_reason",
+        "rows": 208,
+        "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+      }
+    ],
+    "declared_discrepancy_detail_changes": [
+      {
+        "gene": "CYP2D6",
+        "field": "detail",
+        "rows": 117,
+        "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason, and the discrepancy detail repeats it. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+      }
+    ],
+    "cumulative_eligibility_changes": [
+      {
+        "gene": "CYP2C9",
+        "field": "eligibility_reason",
+        "rows": 208,
+        "why": "Phase 9 B5: a refusal names the missing genes a file could supply before the limitation, and warfarin's limitation now quotes CPIC's algorithm text."
+      },
+      {
+        "gene": "CYP2C9",
+        "field": "missing_dependency_genes",
+        "rows": 208,
+        "why": "Phase 9 B5: warfarin depends on CYP2C9 and VKORC1; the benchmark slices carry no chr16 rows, so VKORC1 is missing for every individual."
+      },
+      {
+        "gene": "CYP2D6",
+        "field": "eligibility_reason",
+        "rows": 208,
+        "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+      }
+    ],
+    "cumulative_discrepancy_detail_changes": [
+      {
+        "gene": "CYP2C9",
+        "field": "detail",
+        "rows": 100,
+        "why": "Phase 9 B5: the discrepancy detail repeats the warfarin eligibility reason, which now names CYP2C9 and VKORC1 and quotes CPIC."
+      },
+      {
+        "gene": "CYP2D6",
+        "field": "detail",
+        "rows": 117,
+        "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason, and the discrepancy detail repeats it. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+      }
+    ],
+    "representative_biological_records_equal": true
+  },
+  "outputs": [
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/EVALUATION-REPORT.md",
+      "bytes": 4186,
+      "sha256": "f85008117f658498f61775273ee89ffef708d417ebad7d56cd6cfdbc6447f8d6"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/discrepancies.tsv",
+      "bytes": 247276,
+      "sha256": "339d9fcd9f3d1981b44003808c3db74f53357ec694bc06d5480b61e050f8528b"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/evaluation-comparison.json",
+      "bytes": 13902,
+      "sha256": "89f7a02c454ce8e675ad924aae2ca98e6b4b0bc05f1188c146d2c3df9b6372bf"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/exclusions.tsv",
+      "bytes": 48960,
+      "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/external_benchmark_results.json",
+      "bytes": 33667,
+      "sha256": "46a45976b4a28a167a500d16c14b5f5a1ac1763ddea3c549323fd77d0756762a"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/f4-fresh-replay.json",
+      "bytes": 1767,
+      "sha256": "78ce0df46813d3e454de04b16c9680dceff8780c3a284d23b2666e4611264f9c"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/input_eligibility.tsv",
+      "bytes": 620332,
+      "sha256": "349ff0d96129334e0a729e37996e24281cc7c796335f75007811e01be1fe326e"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/raw_benchmark_manifest.json",
+      "bytes": 7588,
+      "sha256": "5d0647a19a8e6bdcc8d2a538c144f85636c6f5fba12c3d6062579349c171b9bd"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/raw_scoring_report.md",
+      "bytes": 11481,
+      "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-06-b10/stage-command-receipts.json",
+      "bytes": 3330,
+      "sha256": "104c465d38a80fc6b838d6f674a476b71b6b3fe7f8a5e179e2bb63a43fcba5f5"
+    }
+  ],
+  "self_reference": "This manifest hashes its outputs, not itself. The bundle manifest separately hashes this file.",
+  "clinical_review": "NOT_OBTAINED"
+}

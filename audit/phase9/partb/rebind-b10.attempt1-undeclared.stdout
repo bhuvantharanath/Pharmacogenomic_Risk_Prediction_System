@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 583, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 561, in main
+    summary = compare(copy, previous, args.why, declared)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/audit/phase9/partb/rebind_evaluation.py", line 250, in compare
+    assert vs_hist == _counts(cumulative), vs_hist
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'vcf_sha256': 1456, 'missing_dependency_genes': 208, 'eligibility_reason': 416}
+rebind rc=1

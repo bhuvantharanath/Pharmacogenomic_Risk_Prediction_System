@@ -1,0 +1,22 @@
+{
+ "input_eligibility.tsv": [
+  {
+   "gene": "CYP2D6",
+   "field": "eligibility_reason",
+   "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+   "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+   "rows": 208,
+   "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+  }
+ ],
+ "discrepancies.tsv": [
+  {
+   "gene": "CYP2D6",
+   "field": "detail",
+   "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+   "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+   "rows": 117,
+   "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason, and the discrepancy detail repeats it. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+  }
+ ]
+}
