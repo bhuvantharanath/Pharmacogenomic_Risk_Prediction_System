@@ -129,3 +129,14 @@ verify_compatible_bundle PASS. Against B8's package: vcf_sha256 in 1,456 rows on
 (equal_to_previous_evaluation_except_generation_time true). Against the historical benchmark: B5's changes carried
 forward from B8's cumulative record: CYP2C9 eligibility_reason 208, missing_dependency_genes 208; discrepancy detail
 100. Zero-regression, external evaluation: no eligibility or discrepancy change against B8's package. PASS.
+
+== Release gate, first run on 5c77126 (partb/B9.gate-run1.json, B9.gate-run1.rc): NOT READY ==
+rc 1, state not-ready. compatible-bundle passed; backend-tests failed, and the gate stops at the first failed check, so
+the other five did not run. The failure: tests/test_phase5a_tooling.py::TestKeyHygiene::
+test_exception_sites_are_scrubbed. scripts/validate_fhir_exports.py printed a caught exception as {exc} without
+scrub(). The repo's rule: every script that renders an exception scrubs it first, because third-party error text can
+carry a secret. My error: before committing B9 I ran the Flutter suite but not the backend suite, where the scripts/
+tests live. Fixed (scrub imported from _common, the one print wrapped); the hygiene tests pass (28/28). scripts/ is
+outside the scientific core, so the re-bind stands. The full backend suite is rerun before the fix is committed.
+Backend suite after the fix (partb/B9.backend-suite.stdout): 1172 collected; 1166 passed, 6 skipped, 0 failed (B8's
+six skips; B9 adds no backend test).

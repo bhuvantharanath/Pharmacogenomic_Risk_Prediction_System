@@ -1,0 +1,117 @@
+{
+ "release_ready": false,
+ "state": "not-ready",
+ "declared_explanation_release_policy": "withhold_unapproved_stored_prose",
+ "blocking_prerequisites": [
+  "required_checks_passed",
+  "provenance_complete",
+  "manifest_compatible",
+  "scientific_bundle_compatible",
+  "artifact_hashes_match",
+  "candidate_revision_matches",
+  "no_clinical_expert_review_claim",
+  "served_stored_prose_reviewed"
+ ],
+ "content_review_complete": false,
+ "outstanding_content_review": [
+  "human_adjudication_complete",
+  "no_rejected_or_outstanding_claims",
+  "all_entries_approved",
+  "approved_entries_human_bound"
+ ],
+ "effective_explanation_mode": "deterministic_template_only",
+ "approved_generated_entries": 0,
+ "unapproved_generated_entries": 20,
+ "releasable_generated_entries": 0,
+ "fallback_only_cases": 20,
+ "human_review_complete_for_releasable_set": null,
+ "clinical_expert_review": "NOT_OBTAINED",
+ "candidate_revision": "5c771267e7ff90b9b8d1f17b9456161787678852",
+ "tested_revision": "5c771267e7ff90b9b8d1f17b9456161787678852",
+ "candidate_artifact_hash": "b3f9cb69b3bc9db7c5525d191103c9e833abbb81289bb9838c062de1f5bc8683",
+ "tested_artifact_hash": "b3f9cb69b3bc9db7c5525d191103c9e833abbb81289bb9838c062de1f5bc8683",
+ "prerequisites": {
+  "required_checks_passed": false,
+  "human_adjudication_complete": false,
+  "no_rejected_or_outstanding_claims": false,
+  "provenance_complete": true,
+  "manifest_compatible": true,
+  "scientific_bundle_compatible": true,
+  "all_entries_approved": false,
+  "approved_entries_human_bound": false,
+  "artifact_hashes_match": true,
+  "candidate_revision_matches": true,
+  "no_clinical_expert_review_claim": true,
+  "served_stored_prose_reviewed": true
+ },
+ "required_checks": [
+  {
+   "name": "compatible-bundle",
+   "passed": true,
+   "exit_code": 0,
+   "output_tail": "compatible scientific bundle: PASS"
+  },
+  {
+   "name": "backend-tests",
+   "passed": false,
+   "exit_code": 1,
+   "output_tail": "::test_resume_skips_exactly_what_is_already_present\ntests/test_phase5a_tooling.py::TestGuardExperimentIsolation::test_refuses_the_real_store_by_exact_path\ntests/test_phase5a_tooling.py::TestKeyHygiene::test_redact_never_reveals_the_middle\ntests/test_privacy.py::TestBuildTimePayloadCarriesNoPatientData::test_no_case_sends_a_concrete_diplotype\n  /Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/lib/python3.11/site-packages/_pytest/fixtures.py:1313: PytestRemovedIn10Warning: Class-scoped fixture defined as instance method is deprecated.\n  Instance attributes set in this fixture will NOT be visible to test methods,\n  as each test gets a new instance while the fixture runs only once per class.\n  Use @classmethod decorator and set attributes on cls instead.\n  See https://docs.pytest.org/en/stable/deprecations.html#class-scoped-fixture-as-instance-method\n    fixturefunc = resolve_fixture_function(fixturedef, request)\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n=========================== short test summary info ============================\nFAILED backend/tests/test_phase5a_tooling.py::TestKeyHygiene::test_exception_sites_are_scrubbed"
+  }
+ ],
+ "adjudication": {
+  "entries": 20,
+  "flagged_sentences": 179,
+  "adjudicated": 160,
+  "adjudicated_by_human": 124,
+  "adjudicated_by_automation": 36,
+  "escalated_awaiting_human": 19,
+  "outstanding": 19,
+  "rejected": 0,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "state": "incomplete",
+  "adjudication_complete": false,
+  "human_adjudication_complete": false,
+  "exit_code": 1
+ },
+ "review": {
+  "total": 20,
+  "provenance_verified": 20,
+  "provenance_unverified": 0,
+  "read_by_author": 0,
+  "unread": 20,
+  "author_concerns": 0,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "fallback": 0,
+  "guard_failed": 0,
+  "provenance_complete": true,
+  "exit_code": 0
+ },
+ "manifest": {
+  "compatible": true,
+  "all_entries_approved": false,
+  "approved_entries_human_bound": false,
+  "stored_generated_entries": 20,
+  "approved_generated_entries": 0,
+  "unapproved_generated_entries": 20,
+  "releasable_generated_entries": 0,
+  "fallback_only_cases": 20,
+  "human_review_complete_for_releasable_set": null,
+  "clinical_expert_review": "NOT_OBTAINED",
+  "counts": {
+   "approved": 0,
+   "unresolved": 20,
+   "rejected": 0
+  },
+  "store_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+  "manifest_store_sha256": "35cb17a98fd2a885da9f14264da647b9923c75481bc7e02eff9c433fea2c59e8",
+  "problems": []
+ },
+ "compatible_bundle": {
+  "compatible": true,
+  "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-06-b9",
+  "manifest_sha256": "3d27dfb51ec05351d50e1685d70381df6caace8d81140b4070b932a799954e1c",
+  "problems": [],
+  "exit_code": 0
+ },
+ "content_ready": false
+}

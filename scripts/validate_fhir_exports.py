@@ -39,7 +39,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from _common import REPO_ROOT
+from _common import REPO_ROOT, scrub
 from fetch_pinned_artifacts import Pin, PinError, ensure
 
 PIN_FILE = REPO_ROOT / "scripts" / "fhir_validator.json"
@@ -138,7 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         state = ensure(pin)
     except PinError as exc:
-        print(f"fhir validation: {exc}", file=sys.stderr)
+        print(f"fhir validation: {scrub(exc)}", file=sys.stderr)
         return 2
     print(f"validator {config['validator']['version']}: {state}, size and SHA-256 match the pin")
 
