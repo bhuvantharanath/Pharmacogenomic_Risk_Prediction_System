@@ -170,3 +170,54 @@ Zero-regression PASS as declared and amended: labels unchanged everywhere; S1-S6
           three declared changes; the external evaluation only by the amended text change (B10_ZR_AMENDMENT.md).
 Sabotage: SB10-a..i caught; files restored identical.
 Not done, by design: the live checks need a deploy.
+
+== Push and live check (owner: "Push and deploy B10", 2026-11-06) ==
+Live criteria, written before any live measurement (the plan's "After deploy" list, made concrete):
+L0  The test workflow on e9b75db1531cdafad1a98202b7c1a08f34b6bfe0: every step green except the F-08 explanation-content gate (by design), the FHIR export
+    validation step included (now 9 bundles).
+L1  The Deploy run's gate, Render and Cloudflare jobs succeed; /ready reports e9b75db1531cdafad1a98202b7c1a08f34b6bfe0.
+L2  verify_postdeploy.py, live S1-S6 against the local B10 run (audit/phase9/partb/B10/s1-s6): commit matches, labels
+    equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local B10 run.
+L4  NA12273 demo VCF with codeine: without a call, 200, Unknown, supplied_by null, no supplied warning; with *4/*4 from
+    Cyrius, 200, Ineffective with CPIC's PM text, supplied_by Cyrius, the warning "CYP2D6 *4/*4 supplied by Cyrius, not
+    called by PharmaGuard.", and an explanation that says supplied, not called.
+L5  The deployed web bundle (main.dart.js) carries EXPECTED_BACKEND_SHA e9b75db1531cdafad1a98202b7c1a08f34b6bfe0 and the strings "CYP2D6 from a dedicated
+    caller" and "not called by PharmaGuard".
+L6  In the built-in browser, the production home screen shows the "CYP2D6 from a dedicated caller" section; a sample
+    analysis run with a supplied call shows "CYP2D6 supplied by <caller>, not called by PharmaGuard." on codeine's row.
+    The browser's uploads wait until this machine's rate-limit window allows them. Nothing is downloaded.
+(B10.log sha256 with the criteria above as its last section, before any live measurement:
+b5cabdacbfd1aebe2487bd5288b45195f9559002492c9119be0a8243409dbf41.)
+
+Live results.
+Secret scan over the 106 outgoing files: 5 values checked, 0 flagged. Pushed 34f40db..e9b75db to main (Deploy run
+42244994109, test run 42244994388, created 2026-11-06T15:38:55-56Z).
+L0 PASS  test run 42244994388: every step green except "Authoritative explanation-content gate" (F-08, by design). FHIR
+         export validation: validator fetched in CI, size and SHA-256 equal to the pin, "FHIR validation: PASS (9
+         bundles; positive control rejected with 2 errors)". flutter: 438 tests passed. pytest, counted from its -q
+         progress characters: 1224 results, 1203 passed, 21 skipped, 0 failed (15 more skips than locally, F-09).
+L1 PASS  Deploy run 42244994109: release gate success (15:38:59-15:45:20Z), Render backend success (15:45:22-
+         15:46:27Z), Cloudflare Pages success (15:46:29-15:49:01Z). /ready build.commit
+         e9b75db1531cdafad1a98202b7c1a08f34b6bfe0 at 15:49:27Z, before the first live upload (15:49:38Z), and again
+         after S1-S6 (B10/live_ready_after_s1s6.json).
+L2 PASS  verify_postdeploy.py (B10/postdeploy_verification.json): commit matches; S1-S6 labels equal the local B10 run,
+         template-only prose, disclaimer equal. Seconds 70.5, 64.8, 66.3, 70.0, 67.0, 67.2; all 200.
+L3 PASS  B10/live_s1s6_fields.json: gene_findings and warnings equal the local B10 run in all six (13/13).
+L4 PASS  B10/live_codeine.json: NA12273 with codeine, no call: 200, Unknown, supplied_by null, no supplied warning;
+         with *4/*4 from Cyrius: 200, Ineffective with CPIC's PM text, supplied_by Cyrius, the warning, and the
+         explanation "CYP2D6 *4/*4 was supplied by Cyrius, not called by PharmaGuard. PharmCAT reads it as a Poor
+         Metabolizer result. The reported activity score is 0.0."
+L5 PASS  B10/live_bundle.json: main.dart.js carries e9b75db... and both strings (3/3); 3,742,053 bytes (B9:
+         3,699,747).
+L6 PASS  Built-in browser, production page (one reload first, for the service worker): the "Optional: CYP2D6 from a
+         dedicated caller" section under the drug list, and the new scope text (B10/live_cyp2d6_section.jpg). With
+         *4/*4 entered and BCyrius chosen (the list's second click selected it; any caller satisfies L6), the note
+         "Codeine will be answered from this call..." appeared. The built-in NA12273 sample (Try this; codeine,
+         warfarin, clopidogrel; at least 5 min after the scripted run's first upload) gave codeine Ineffective with
+         "CYP2D6 supplied by BCyrius, not called by PharmaGuard." on its row; clopidogrel and warfarin Unknown; the
+         coverage preview still listed codeine as Unknown, as the section says it will
+         (B10/live_supplied_result.jpg). Nothing downloaded.
+Live verdict: L0-L6 PASS.
+B10 done: AC1-AC7 PASS; zero-regression PASS as declared and as amended by the owner (B10_ZR_AMENDMENT.md); live PASS;
+SB10-a..i caught; 0 explanation entries invalidated.

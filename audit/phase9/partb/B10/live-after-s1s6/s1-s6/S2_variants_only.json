@@ -1,0 +1,265 @@
+{
+  "analyses": [
+    {
+      "clinical_recommendation": {
+        "action": "Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+        "alternatives": [],
+        "cpic_evidence_level": "Unknown",
+        "cpic_recommendation": "Annotation of CPIC Guideline for clopidogrel and CYP2C19",
+        "dosing_guidance": "No CPIC dosing guidance is available for this gene-drug-phenotype combination.",
+        "source": "PharmCAT (no matching CPIC entry)"
+      },
+      "drug": "clopidogrel",
+      "gene_findings": [],
+      "llm_generated_explanation": {
+        "disclaimer": "Research/educational decision support only. Not a medical device. Not for clinical use. No qualified clinical expert has reviewed this text. Recommendation text is quoted from CPIC via PharmCAT, and automated source checks are not human review: they cannot show that every statement is supported or that it is correct for you.",
+        "mechanism": "CYP2C19 is a cytochrome P450 enzyme, expressed mainly in the liver, that oxidises a wide range of drug substrates. Its activity varies substantially between people because the CYP2C19 gene carries common variants that abolish, reduce, or increase enzyme production.\n\nSource: Annotation of CPIC Guideline for clopidogrel and CYP2C19 \u2014 Lee CR et al. Clinical Pharmacogenetics Implementation Consortium Guideline for CYP2C19 Genotype and Clopidogrel Therapy: 2022 Update. Clin Pharmacol Ther (2022). PMID: 35034351",
+        "patient_friendly": "This tool could not reach a conclusion about this medicine for you. That is not a reassuring result or a worrying one \u2014 it means this tool has nothing to say, and the question is still open. Discuss this with your doctor or pharmacist before making any change to your medicines.",
+        "summary": "clopidogrel: no pharmacogenomic result (Unknown).",
+        "variant_rationale": "No genotype was called for clopidogrel in this analysis, so there is no variant-level rationale to report."
+      },
+      "pharmacogenomic_profile": {
+        "activity_score": null,
+        "candidate_diplotypes": [],
+        "detected_variants": [],
+        "diplotype": "Unknown",
+        "phenotype": "Unknown",
+        "primary_gene": "Unknown",
+        "recommendation_diplotype": null,
+        "supplied_by": null
+      },
+      "risk_assessment": {
+        "confidence_score": 0.0,
+        "risk_label": "Unknown",
+        "severity": "none"
+      }
+    }
+  ],
+  "patient_id": "DEMO_CONFIDENT",
+  "quality_metrics": {
+    "guideline_provenance": {
+      "allele_definitions_sha256": "7044c87682de18646a74b890739e2cc145ef0a3a21718a17b371dc013c7afe8f",
+      "allele_definitions_version": "2026-07-13-11-40",
+      "cpic_data_version": "2026-07-13-11-40",
+      "cpic_guidance_sha256": "5010bb813ed6aaacf504c689e1f74924ddc7c58383d5e35604074d299345d6a8",
+      "cpic_source": "CPIC guidelines, retrieved via PharmCAT",
+      "explanations_generated_at": "2026-07-24T09:53:53.175011+00:00",
+      "note": "Guidance reflects what CPIC published when this data was captured. CPIC revises its guidelines. A weekly repository check compares this build's CPIC data with CPIC's current release and flags differences for review; an analysis does not check at the time it runs.",
+      "pharmcat_version": "3.4.0",
+      "pharmvar_release": ""
+    },
+    "position_coverage": {
+      "CYP2C19": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 4,
+        "decision_critical_required": 31,
+        "evidence_counts": {
+          "absent_position": 31,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 4
+        },
+        "minimum_percent": 100,
+        "percent": 11.4,
+        "pharmcat_positions_used": 4,
+        "pharmcat_sufficient": false,
+        "positions_present": 4,
+        "positions_required": 35,
+        "sufficient": false
+      },
+      "CYP2C9": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 69,
+        "evidence_counts": {
+          "absent_position": 88,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 88,
+        "sufficient": false
+      },
+      "CYP2D6": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 2,
+        "decision_critical_required": 140,
+        "evidence_counts": {
+          "absent_position": 155,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 2
+        },
+        "minimum_percent": 100,
+        "percent": 1.3,
+        "positions_present": 2,
+        "positions_required": 157,
+        "sufficient": false
+      },
+      "CYP4F2": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 20,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 20,
+        "sufficient": false
+      },
+      "DPYD": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 0,
+        "decision_critical_required": 28,
+        "evidence_counts": {
+          "absent_position": 83,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 20,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 83,
+        "sufficient": false
+      },
+      "NUDT15": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 0,
+        "decision_critical_required": 20,
+        "evidence_counts": {
+          "absent_position": 20,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 80,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 20,
+        "sufficient": false
+      },
+      "SLCO1B1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 26,
+        "evidence_counts": {
+          "absent_position": 35,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 35,
+        "sufficient": false
+      },
+      "TPMT": {
+        "decision_critical_enforced": true,
+        "decision_critical_present": 0,
+        "decision_critical_required": 45,
+        "evidence_counts": {
+          "absent_position": 45,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 80,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 45,
+        "sufficient": false
+      },
+      "VKORC1": {
+        "decision_critical_enforced": false,
+        "decision_critical_present": 0,
+        "decision_critical_required": 1,
+        "evidence_counts": {
+          "absent_position": 1,
+          "filter_failed": 0,
+          "gt_not_provided": 0,
+          "malformed_genotype": 0,
+          "no_call": 0,
+          "partial_genotype": 0,
+          "quality_not_established": 0,
+          "valid_observed_genotype": 0
+        },
+        "minimum_percent": 100,
+        "percent": 0.0,
+        "pharmcat_positions_used": 0,
+        "pharmcat_sufficient": false,
+        "positions_present": 0,
+        "positions_required": 1,
+        "sufficient": false
+      }
+    },
+    "processing_time_ms": 64466,
+    "variants_detected_count": 0,
+    "vcf_parsing_success": true,
+    "warnings": [
+      "This VCF contains no homozygous-reference genotypes at any of PharmCAT's required positions, which means it is almost certainly a variants-only file. Such a file is indistinguishable from one where those positions were never tested. For a genotype caller that reads a missing position as reference, the consequence is NOT a missing result \u2014 it is a confident WRONG result: a change whose key position is missing is invisible, so a reduced-function patient is reported as normal. Measured rate of confidently-wrong calls at 60% position coverage: up to 28.6%. This application therefore reports genes without their required positions as Unknown rather than as normal. Produce the file again with EVERY position reported \u2014 including the ones that match the reference \u2014 so each required position carries an explicit genotype. The input requirements page gives the exact commands. See docs/input_requirements.md.",
+      "Every gene (9 of 9) was declined, at 0\u201311% position coverage. That pattern is a property of the FILE, not of 9 separate genes \u2014 and it has two common causes.\n\nThis looks like a research-format or SNP-array export.\n\n\u2022 A research VCF (1000 Genomes, gnomAD, most sequencing pipelines) is POLYMORPHIC-FILTERED: it lists only positions where someone differed from the reference. The positions that matched are simply absent, and absent is indistinguishable from never-tested.\n\u2022 A consumer export (23andMe, AncestryDNA) is a GENOTYPING ARRAY, not sequencing. It reports a few hundred thousand chosen positions across the whole genome, which is not the same as reporting every position one gene needs.\n\nNeither is a bad file. Both are the wrong shape for this question. What works is a clinical pharmacogenomic panel, or a sequencing pipeline re-run to emit every position including the reference matches. The input requirements page lists the specific sources.",
+      "CPIC gives 3 population-specific recommendations for clopidogrel (CVI ACS PCI, CVI non-ACS non-PCI, NVI). The strongest one is shown (CVI ACS PCI); review the population that matches the patient.",
+      "clopidogrel: Required genomic evidence is incomplete for CYP2C19. Available partner findings are partial evidence only; no complete drug-level PGx recommendation is made.",
+      "Pre-generated explanation was not served because its approval or semantic identity did not match (No approval exists for this drug, gene, and phenotype context.) Using the deterministic template.",
+      "CYP2D6 structural/copy-number variation cannot be resolved from unphased VCF; a CYP2D6 diplotype from a dedicated caller can be supplied",
+      "explanation mode=static, source=template, guard=n/a (deterministic), slots=verified",
+      "No qualified clinical expert has reviewed these explanations. Recommendation text is quoted from CPIC annotations issued by PharmCAT; explanatory wording is generated by this application. Automated checks can flag stored wording that does not trace to a CPIC recommendation or a cited mechanism document, but they are not human review and cannot show that every statement is supported: they check provenance, not correctness.",
+      "No usable pharmacogenomic result for: clopidogrel."
+    ]
+  },
+  "timestamp": "2026-11-06T15:51:54.093994Z"
+}

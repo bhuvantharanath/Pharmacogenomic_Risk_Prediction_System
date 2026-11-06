@@ -1,0 +1,29 @@
+{
+ "checks": {
+  "without a call: 200, codeine Unknown, supplied_by null, no supplied warning": true,
+  "with *4/*4 from Cyrius: 200, codeine Ineffective with the CPIC PM text": true,
+  "with the call: supplied_by Cyrius and the provenance warning": true,
+  "with the call: the explanation says supplied, not called": true
+ },
+ "all_pass": true,
+ "runs": {
+  "without": {
+   "status": 200,
+   "label": "Unknown",
+   "supplied_by": null,
+   "diplotype": "Unknown",
+   "action": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+   "warning_present": false,
+   "rationale": "No genotype was called for codeine in this analysis, so there is no variant-level rationale to report."
+  },
+  "with": {
+   "status": 200,
+   "label": "Ineffective",
+   "supplied_by": "Cyrius",
+   "diplotype": "*4/*4",
+   "action": "Avoid codeine use because of possibility of diminished analgesia. If opioid use is warranted, consider a non-tramadol opioid.",
+   "warning_present": true,
+   "rationale": "CYP2D6 *4/*4 was supplied by Cyrius, not called by PharmaGuard. PharmCAT reads it as a Poor Metabolizer result. The reported activity score is 0.0."
+  }
+ }
+}
