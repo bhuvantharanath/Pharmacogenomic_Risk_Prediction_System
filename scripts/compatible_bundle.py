@@ -18,7 +18,7 @@ JAR_PATH = REPO_ROOT / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
 HASH_POLICY_RELATIVE = "scripts/scientific_hash_policy.json"
 MIGRATION_RELATIVE = "scripts/application_hash_migration.json"
 CURRENT_EVALUATION_RELATIVE = (
-    "test-data/benchmark/current-candidate-2026-11-07-b12/evaluation_manifest.json"
+    "test-data/benchmark/current-candidate-2026-11-07-f20/evaluation_manifest.json"
 )
 HASH_POLICY_VERSION = 2
 SCOPED_GENES = (
@@ -422,7 +422,7 @@ def build_manifest() -> dict[str, Any]:
 
     return {
         "schema_version": 3,
-        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-07-b12",
+        "bundle_id": "pharmaguard-scientific-current-candidate-2026-11-07-f20",
         "purpose": "Frozen compatible research/evaluation bundle; not clinical validation or prescribing authority.",
         "application_hash_policy": {
             "version": HASH_POLICY_VERSION,

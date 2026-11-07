@@ -90,3 +90,16 @@ Exports  18/18 byte-identical (above). PASS.
 The new warning appears in none of the stored S1-S6 or A4 outputs: consistent with the measurement that the runtime
 never reaches the no-match branch on a real input, which is why nothing moved.
 Explanation store and case matrix: untouched.
+
+== Committed 3811e51 (fix, tests, sabotage, regression evidence; 22 files, secret scan 5 values 0 flagged) ==
+Excluded deliberately: partb/F20/server.log and F20-after/a4-server.log (local server logs).
+
+== Re-bind (tag 2026-11-07-f20; rebind-f20.stdout), first and only attempt ==
+Pre-check: neither the old warning ("showing the strongest available row") nor its first clause appears in any file of
+B12's evaluation package, so no discrepancy detail could change on the warning's wording.
+rebind_evaluation.py --tag 2026-11-07-f20, base head 3811e51, no --declared-changes. Result: core
+d4b90eaaea5707d2d643a3fd336675d6c45b34d84f3033739a27532670968baa, F4 true/true, verify_compatible_bundle PASS.
+Against B12's package: vcf_sha256 alone, 1,456 rows (the path-bearing bcftools header), biological records equal,
+equal_to_previous_evaluation_except_generation_time true, both declared-change lists empty. Cumulative chain against
+the historical benchmark still exactly B5's CYP2C9 and B10's CYP2D6. Every scored metric, exclusion and discrepancy
+classification equal. Zero-regression, external evaluation: PASS.
