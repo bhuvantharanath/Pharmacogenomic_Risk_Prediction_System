@@ -254,8 +254,11 @@ def test_the_conservative_direction_is_stated_not_just_the_divergence() -> None:
 
 def test_the_documented_test_counts_match_the_suite() -> None:
     """
-    README quotes both suites. These drift every time anyone adds a test, which
-    is exactly why they need a check rather than a habit.
+    If README quotes a backend count, it must match the suite. These drift every
+    time anyone adds a test, which is exactly why they need a check rather than a
+    habit. (This used to say README quotes both suites; it only ever checked the
+    backend one, which is how the client row stayed at 198 while the Flutter
+    suite grew past it — see the next test, Phase 9 F-19.)
     """
     documented = re.search(r"\|\s*Backend tests\s*\|\s*\*?\*?(\d+)",
                            _text("README.md"))
@@ -283,6 +286,26 @@ def test_the_documented_test_counts_match_the_suite() -> None:
     # would fail on an environment-dependent skip.
     assert abs(claimed - actual) <= 10, (
         f"README says {claimed} backend tests; the suite collects {actual}")
+
+
+def test_the_readme_quotes_no_client_test_count() -> None:
+    """
+    The backend count can be checked from here; the Flutter count cannot, since
+    this suite does not run Flutter. A number nobody can check is a number that
+    goes stale, and this one did: README said 198 while the suite reached 496
+    (Phase 9 F-19). So the client row states where the count lives instead, as
+    the backend row already does.
+
+    Absence checks pass vacuously when the thing is missing, so the row itself
+    must be found first.
+    """
+    row = re.search(r"^\|\s*Client tests\s*\|(.*)\|\s*$", _text("README.md"), re.M)
+    assert row is not None, (
+        "README has no 'Client tests' row, so this check would pass by finding "
+        "nothing; restore the row or retire the check deliberately")
+    assert not re.match(r"\s*\*{0,2}\d", row.group(1)), (
+        f"README quotes a client test count ({row.group(1).strip()!r}) that no "
+        "check here can verify; say where the count lives instead")
 
 
 def test_the_label_mapping_figures_match_the_validator() -> None:

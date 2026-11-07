@@ -1,0 +1,7 @@
+== F19-a: the stale count is put back ==
+  FAILED backend/tests/test_documented_numbers.py::test_the_readme_quotes_no_client_test_count
+exit 1; 1 red; restored identical: yes
+== F19-b: the row is deleted, so an absence check could pass vacuously ==
+  FAILED backend/tests/test_documented_numbers.py::test_the_readme_quotes_no_client_test_count
+exit 1; 1 red; restored identical: yes
+all caught

@@ -1,0 +1,59 @@
+F-19 and F-20 — owner instruction "Yes, fix both" (2026-11-07), after Part B was complete.
+Started on main at e7a0a43 (B12's live record, pushed).
+
+== Scope, as approved ==
+The offer was "fix the stale README count and add the missing F-20 tests". Checked against HEAD before any change,
+F-19 is wider than that one row: five of its items are still stale (README client count; README and DEMO_SCRIPT
+warm-latency p50 51.27 s; reports/validation_report.md "2 of 2 exact"; the YOURNAME placeholder in build-apk.yml;
+README:516's retracted "every clinical statement is provenance-verified"). Only the client count was approved, so
+only it is changed here. The others are reported, not fixed, rather than widening the scope unasked.
+
+== F-19 criteria, written before the change ==
+C1  README.md's "Client tests" row quotes no number, matching the policy the "Backend tests" row already follows
+    ("counts change as ... are added"). A count the backend suite cannot check is a count that goes stale: 198 was
+    written when the suite was smaller and read 198 while it grew to 496.
+C2  A backend test fails if that row quotes a count. The guard must not pass vacuously, so it also fails if the
+    row is missing altogether (the positive control for an absence check).
+C3  Sabotage, each restored byte-identical: putting "198 passing" back turns the guard red; deleting the row turns
+    it red.
+C4  The full backend suite passes. Nothing under backend/app or app/lib changes, so the scientific core does not
+    move and no re-bind is needed.
+criteria sha256: dea890eb70c562a0ac0e054a40b263038fbf6f4a53a8f7a308dcc61a5f83ba73  audit/phase9/F19_F20.log
+
+== F-19 (the approved part): done ==
+README.md "Client tests" row: "198 passing" -> "See the current phase report/test run; counts change as tests are
+added", the policy the "Backend tests" row already follows.
+backend/tests/test_documented_numbers.py: new test_the_readme_quotes_no_client_test_count, which first requires the
+row to exist (the positive control) and then requires it to quote no number. The neighbouring test's docstring said
+"README quotes both suites"; it only ever checked the backend one, which is how this row went stale, and now says so.
+C1 PASS  the row quotes no number.
+C2 PASS  the guard passes on the fixed README.
+C3 PASS  partb/F19.sabotage.stdout: the stale count put back -> red; the row deleted -> red; README restored
+         byte-identical after each.
+C4 PASS  full backend suite 1223 passed, 6 skipped, 0 failed (was 1222; +1, the guard). Nothing under backend/app or
+         app/lib changed, so the scientific core did not move and no re-bind was needed.
+Not fixed, by scope: the other four stale F-19 items listed under "Scope" above.
+
+== F-20: stopped, a defect rather than a missing test ==
+Research before writing any test, because a test that pins unsafe behaviour as correct is worse than no test.
+Path 1 (cpic_engine.select_annotation, "candidates = matched or usable"). A constructed probe, not an observed
+event: the real CYP2C19 Poor Metabolizer report fixture, with clopidogrel's guideline left holding only CPIC's real
+Normal Metabolizer row (classification Strong, wording from test-data/reference/cpic_expectations.json). The real
+report, untouched, gives Ineffective with "Avoid clopidogrel if possible...". The probe gives "No PGx-guided
+adjustment identified", action "If considering clopidogrel, use at standard dose (75 mg/day)", label rule
+standard_dosing. The only safeguard was the warning "showing the strongest available row. Treat with extra
+caution."; the request-time contradiction check did not degrade it. "Strongest" ranks evidence strength, not
+caution, so when the fallback fires on an asserted phenotype it can serve the reassuring row of a different
+phenotype - the false-reassurance direction.
+Whether it happens on real data: over the 400 cached cohort reports x 6 drugs (2,400 evaluations) the fallback fires
+309 times (fluorouracil 98, simvastatin 209, clopidogrel 2), and evaluate() returns Unknown in all 309, because in
+each the phenotype was not asserted and the earlier gate returned before the fallback could produce a label. S1-S6
+and the A4 rows never reached it (Part A). So it is latent, not observed: on real data the protection comes from a
+different layer, not from the fallback. A CPIC or PharmCAT wording change that leaves an asserted phenotype with no
+matching row would reach it.
+Path 2 (an Unknown result carrying a CPIC directive in action): NOT MEASURED. Reading the code, two engine
+sub-paths label Unknown while still building the recommendation from the CPIC row (the fallback_unmatched rule and
+the request-time contradiction downgrade), and main.py rebuilds without CPIC text only in the coverage-gate case.
+The measurement that would show whether either occurs was stopped before it ran; no result exists.
+No F-20 test or engine change is committed. Fixing path 1 changes backend/app/cpic_engine.py, which is in the
+scientific core, so it needs its own plan, zero-regression and a re-bind, and the owner's decision.

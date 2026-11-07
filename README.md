@@ -86,7 +86,7 @@ The system's design is a response to that finding. It is built to decline rather
 | South Asian frequency analysis, **n=601** | Historical descriptive analysis of 1000 Genomes diaspora/regional samples; not representative population prevalence and not a performance metric |
 | Compatible scientific record | PharmCAT 3.4.0 and its data, rules, corpus, explanations, review state, sources, benchmark, and runtime are hash-bound in `compatible_bundle.json` |
 | Backend tests | See the current phase report/test run; counts change as regressions are added |
-| Client tests | 198 passing |
+| Client tests | See the current phase report/test run; counts change as tests are added |
 
 ### The eight findings
 
