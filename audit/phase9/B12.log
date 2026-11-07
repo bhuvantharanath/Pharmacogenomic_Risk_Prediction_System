@@ -131,3 +131,16 @@ A4       36 rows identical to B11-after once seconds are stripped. Positive cont
 Exports  18/18 printable-HTML and FHIR files byte-identical to the baseline taken before the first B12 edit. This
          is the check that a contrast change must not move an export, and it did not: neither summary_document.dart
          nor fhir_report.dart imports the theme. PASS.
+
+== Committed 26ec1b2 (B12 code, tests, sabotage, docs, regression evidence; 35 files, secret scan 5 values 0 flagged) ==
+Excluded deliberately: audit/phase9/partb/B12/server.log and B12-after/a4-server.log (local server logs).
+
+== Re-bind (tag 2026-11-07-b12; rebind-b12.stdout), first and only attempt ==
+rebind_evaluation.py --tag 2026-11-07-b12, base head 26ec1b2, copy root outside the repository, no
+--declared-changes: nothing needed declaring, because no backend file changed. Result: core
+ca00fc8620167d87cb6ba8a550429c8da8614c4a6e0be49d1ecad062f45f7e49, F4 true/true, verify_compatible_bundle PASS.
+Against B11's package: vcf_sha256 alone, 1,456 rows, the path-bearing bcftools header, with
+representative_biological_records_equal true and equal_to_previous_evaluation_except_generation_time true; both
+declared-change lists empty. Against the historical benchmark the cumulative chain is still exactly B5's CYP2C9 and
+B10's CYP2D6, inherited from B11's verified package and not re-declared. Every scored metric, exclusion and
+discrepancy classification equal. Zero-regression, external evaluation: PASS.
