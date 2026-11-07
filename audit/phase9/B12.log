@@ -179,3 +179,90 @@ Explanation entries invalidated: 0.
 Not claimed, and said so in the plan: keyboard focus order and TalkBack (both "not measured" in A8, needing a real
 device or a manual pass) and a dark theme (not wired at all).
 Not done, by design: the live checks need a deploy.
+
+== Push and live check (owner: "Push and deploy", 2026-11-07) ==
+Live criteria, written before any live measurement (the plan's "After deploy" list, made concrete):
+L0  The test workflow on bc5c3964b301af6d7b23107bf0522db95f4f408a: every step green except the F-08
+    explanation-content gate (by design), with flutter analyze, flutter test, pytest, the FHIR export validation
+    and the exhaustive label-mapping validation all success.
+L1  The Deploy run's gate, Render and Cloudflare jobs succeed; /ready reports
+    bc5c3964b301af6d7b23107bf0522db95f4f408a, read before the first live upload.
+L2  verify_postdeploy.py, live S1-S6 against the local B12 run (audit/phase9/partb/B12/s1-s6): commit matches,
+    labels equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local B12 run, and each live body equals B11's
+    live body once timestamp and processing_time_ms are stripped. B12 is a client-only item, so a served response
+    that differs would mean an accessibility change reached the server.
+L4  The deployed web bundle (main.dart.js) carries EXPECTED_BACKEND_SHA bc5c3964b301af6d7b23107bf0522db95f4f408a
+    and the three new token values 646E67, 848A80 and 968398. Its own negative control, needing no extra fetch:
+    the superseded ink3 value 7D8A81 must be ABSENT, because the only reason it was in the bundle was the defect
+    B12 fixed. "GenomeIndia" and "IndiGen" must also still be absent, as at B11.
+L5  In the built-in browser, on the production page (one reload first, for the service worker), at 360px wide: a
+    real analysis run from the page shows a verdict with its icon beside the word, and no text is clipped at the
+    default text size. The browser's uploads wait until this machine's rate-limit window allows them. Nothing is
+    downloaded.
+L6  Text scale at 360px: the page is re-rendered with the document's root font size doubled, the way a browser's
+    own "very large text" setting presents itself to Flutter web, and no text is clipped. If the engine does not
+    pick the change up live, that is recorded as "not measured live" rather than passed or quietly dropped: AC5's
+    widget-level measurement at 1.0x, 1.5x and 2.0x stands either way, and it is the stronger evidence, because it
+    fails the build on overflow.
+L7  Semantic names, live: with Flutter's accessibility placeholder activated, the eight sample buttons expose eight
+    distinct accessible names, each naming its sample. Positive control: before B12 these were four "Try this" and
+    four "Download", so the check must find no duplicate pair.
+(B12.log sha256 with the criteria above as its last section, before any live measurement:
+4570341f846c2c1ec3b43affc39363ed98f1210a97b47b4aec7350072ec3c461.)
+
+Live results.
+Secret scan over the 66 outgoing files: 5 values checked, 0 flagged. Pushed bcfe650..bc5c396 to main (Deploy run
+42338425095, test run 42338425052, created 2026-11-07T04:25:51Z).
+L0 PASS  test run 42338425052: every step green except "Authoritative explanation-content gate" (F-08, by design);
+         pytest, flutter analyze, flutter test, "FHIR export validation (HL7 validator)" and the exhaustive
+         label-mapping validation all success.
+L1 PASS  Deploy run 42338425095: release gate success (04:25:53-04:31:50Z), Render success (04:31:52-04:32:41Z),
+         Cloudflare Pages success (04:32:43-04:35:19Z). /ready build.commit bc5c396 read at 04:35:53Z, before the
+         first live upload at 04:35:59Z (B12/live_ready_before.json).
+L2 PASS  verify_postdeploy.py (B12/postdeploy_verification.json): commit matches; all six scenarios pass - labels
+         equal the local B12 run, template-only prose, disclaimer equal. Seconds 64.2, 58.3, 61.3, 63.9, 63.9,
+         63.7; all 200.
+L3 PASS  B12/live_s1s6_fields.json, 19/19: gene_findings and warnings equal the local B12 run in all six, and each
+         live body equals B11's live body once timestamp and processing_time_ms are stripped. For a client-only
+         item that is the criterion that would have caught an accessibility change reaching the server.
+
+L4 STOPPED AS WRITTEN, then amended by the owner ("Amend L4", 2026-11-07).
+         As written it asked for the hex strings 646E67, 848A80 and 968398 in the bundle. All three were absent,
+         and so was rule #D3DACE, a token B12 never touched and therefore one that must be present if the method
+         works: the bundle holds zero 0xffRRGGBB-shaped literals, because Flutter's Color stores channels as
+         doubles. The criterion could not have passed for a correct deployment. Worse, its negative control
+         (7D8A81 absent) reported PASS and was vacuous - it would have reported PASS whatever was deployed,
+         including a bundle still carrying the failing ink3. Stopped and asked, per the Part B rule; no verdict was
+         recorded first. The first measurement is kept as B12/live_bundle.attempt1-wrong-encoding.json.
+         Amendment: 2026-11-07, after measurement, at the owner's instruction; the plan and the pre-committed
+         criteria above are unedited.
+         d4d0328d63f3bcc4d2576ac747c593a0f0f1ba9354090cde201d13ac80ecaa3b  audit/phase9/B12_L4_AMENDMENT.md
+L4 PASS (as amended; B12/live_bundle.json, 10/10) colours checked in the encoding dart2js emits - the three channel
+         literals co-occurring within 300 characters, since one channel alone is only "some channel equal to 100".
+         Present: rule and accent (both unchanged by B12, the positive controls that show the method works), ink3
+         #646E67, controlEdge #848A80, accentControlEdge #968398. Absent: ink3's superseded #7D8A81 (the real
+         negative control - it was in the bundle only because of the defect), #123456 (never used, so the probe is
+         not trivially true), "GenomeIndia" and "IndiGen". Two positive and four negative controls, discriminating
+         both ways. The bundle also carries EXPECTED_BACKEND_SHA bc5c396.
+L5 PASS  Built-in browser, production page at 360x900 (one reload first, for the service worker). The built-in
+         reduced-function sample, run from the page: clopidogrel Ineffective with the block icon beside the word,
+         codeine and warfarin Unknown with the help icon. No clipped text at the default size.
+         B12/live_results_360_100pct.jpg. Nothing downloaded.
+L6 PASS  Text scale, measured rather than recorded as not measured: the document's root font size was doubled to
+         32px, which is how a browser's large-text setting reaches Flutter web, and the engine re-rendered live.
+         At 360px and 200% there is no overflow and no clipped text: the patient id wraps to two lines instead of
+         running off the edge, the legend reflows to three lines, and the verdict keeps its icon - the three rows
+         B12 made Flexible. B12/live_results_360_200pct.jpg.
+         Honest caveat, recorded because "L6 PASS" should not imply the screen is flawless at 200%: two labels
+         truncate with an ellipsis there - the app bar title and the two view-toggle options. That is
+         TextOverflow.ellipsis working, not a RenderFlex overflow; both toggle options stay visible and
+         distinguishable, which is what view_toggle.dart's own comment aims for. B12 did not claim to remove it.
+L7 PASS  With Flutter's accessibility placeholder activated, the eight sample buttons expose eight distinct
+         accessible names, each naming its sample, and zero bare "Try this" or "Download" remain - A8 found four of
+         each, so the pairing is the control and the defect is gone rather than merely joined by new strings. The
+         fourth card had to be scrolled into view before Flutter built it. B12/live_browser_checks.json.
+Live verdict: L0-L3 and L5-L7 PASS as written; L4 PASS as amended (B12_L4_AMENDMENT.md).
+B12 done: AC1-AC6 PASS; zero-regression PASS with nothing to declare; live PASS; SB12-a..f all caught; 0 explanation
+entries invalidated. Not claimed: keyboard focus order and TalkBack (A8 "not measured", needing a real device or a
+manual pass) and a dark theme (not wired).

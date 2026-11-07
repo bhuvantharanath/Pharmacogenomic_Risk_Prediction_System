@@ -1,0 +1,16 @@
+{
+ "checks": {
+  "bundle contains EXPECTED_BACKEND_SHA": true,
+  "bundle carries rule (unchanged by B12) #D3DACE": true,
+  "bundle carries accent (unchanged by B12) #5A3A5F": true,
+  "bundle carries ink3, the new value #646E67": true,
+  "bundle carries controlEdge #848A80": true,
+  "bundle carries accentControlEdge #968398": true,
+  "negative control: bundle does NOT carry ink3, the superseded failing value #7D8A81": true,
+  "negative control: bundle does NOT carry a colour never used in the app #123456": true,
+  "negative control: bundle does NOT contain 'GenomeIndia'": true,
+  "negative control: bundle does NOT contain 'IndiGen'": true
+ },
+ "all_pass": true,
+ "bundle_bytes": 3752900
+}

@@ -1,0 +1,13 @@
+{
+ "checks": {
+  "bundle contains EXPECTED_BACKEND_SHA": true,
+  "bundle contains the new token 646E67": false,
+  "bundle contains the new token 848A80": false,
+  "bundle contains the new token 968398": false,
+  "negative control: bundle does NOT contain '7D8A81'": true,
+  "negative control: bundle does NOT contain 'GenomeIndia'": true,
+  "negative control: bundle does NOT contain 'IndiGen'": true
+ },
+ "all_pass": false,
+ "bundle_bytes": 3752900
+}

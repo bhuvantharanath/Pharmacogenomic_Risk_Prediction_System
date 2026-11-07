@@ -1,0 +1,43 @@
+{
+ "measured": "2026-11-07, built-in browser, https://pharmaguard-web.pages.dev, one reload first for the service worker",
+ "L5_verdict_icon_and_360px": {
+  "viewport": "360x900",
+  "sample": "built-in reduced-function sample, run from the page itself",
+  "labels": {"clopidogrel": "Ineffective", "codeine": "Unknown", "warfarin": "Unknown"},
+  "icon_beside_the_word": true,
+  "icons_seen": {"Ineffective": "block", "Unknown": "help_outline"},
+  "text_clipped_at_default_scale": false,
+  "evidence": "audit/phase9/partb/B12/live_results_360_100pct.jpg",
+  "pass": true
+ },
+ "L6_text_scale": {
+  "method": "document.documentElement.style.fontSize set to 32px, which is how a browser's large-text setting reaches Flutter web; the engine picked the change up live, so this was measured rather than recorded as not measured",
+  "engine_rerendered": true,
+  "viewport": "360x900",
+  "renderflex_overflow_or_clipped_text": false,
+  "observed": "the patient id wraps to two lines instead of running off the edge, the legend reflows to three lines, and the verdict keeps its icon beside the word - the three rows B12 made Flexible",
+  "honest_caveat": "two labels truncate with an ellipsis at 200%: the app bar title ('Analysis re...') and the two view-toggle options ('For a pati...', 'For a clini...'). That is TextOverflow.ellipsis doing its job, not a RenderFlex overflow, and both toggle options stay visible and distinguishable, which is what view_toggle.dart's own comment aims for. It is a readability limit at 200%, not clipped-away text, and B12 did not claim to remove it.",
+  "evidence": "audit/phase9/partb/B12/live_results_360_200pct.jpg",
+  "pass": true
+ },
+ "L7_semantic_names": {
+  "method": "Flutter's hidden 'Enable accessibility' placeholder activated, then every [role=button] accessible name read from the live DOM",
+  "try_names": [
+   "Try this sample: Reduced-function result",
+   "Try this sample: Normal result",
+   "Try this sample: Variants-only file",
+   "Try this sample: Real 1000 Genomes sample"
+  ],
+  "download_names": [
+   "Download the sample file: Reduced-function result",
+   "Download the sample file: Normal result",
+   "Download the sample file: Variants-only file",
+   "Download the sample file: Real 1000 Genomes sample"
+  ],
+  "all_eight_distinct": true,
+  "bare_old_names_found": [],
+  "note": "The positive control is the pairing: A8 found four 'Try this' and four 'Download'. Zero bare names remain, so the defect is gone rather than merely joined by new strings. The fourth card had to be scrolled into view before Flutter built it.",
+  "pass": true
+ },
+ "nothing_downloaded": true
+}

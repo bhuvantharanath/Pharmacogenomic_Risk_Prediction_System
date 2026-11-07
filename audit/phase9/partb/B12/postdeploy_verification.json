@@ -1,0 +1,105 @@
+{
+ "ready_commit": "bc5c3964b301af6d7b23107bf0522db95f4f408a",
+ "commit_matches": true,
+ "scenarios": {
+  "S1_confident": {
+   "labels_live": {
+    "clopidogrel": "Ineffective"
+   },
+   "labels_local_head": {
+    "clopidogrel": "Ineffective"
+   },
+   "labels_equal": true,
+   "explanation_sources": [
+    "template"
+   ],
+   "no_stored_prose_served": true,
+   "disclaimer_equals_head": true,
+   "pass": true
+  },
+  "S2_variants_only": {
+   "labels_live": {
+    "clopidogrel": "Unknown"
+   },
+   "labels_local_head": {
+    "clopidogrel": "Unknown"
+   },
+   "labels_equal": true,
+   "explanation_sources": [
+    "template"
+   ],
+   "no_stored_prose_served": true,
+   "disclaimer_equals_head": true,
+   "pass": true
+  },
+  "S3_cyp2d6": {
+   "labels_live": {
+    "codeine": "Unknown"
+   },
+   "labels_local_head": {
+    "codeine": "Unknown"
+   },
+   "labels_equal": true,
+   "explanation_sources": [
+    "template"
+   ],
+   "no_stored_prose_served": true,
+   "disclaimer_equals_head": true,
+   "pass": true
+  },
+  "S4_dpyd": {
+   "labels_live": {
+    "fluorouracil": "Unknown"
+   },
+   "labels_local_head": {
+    "fluorouracil": "Unknown"
+   },
+   "labels_equal": true,
+   "explanation_sources": [
+    "template"
+   ],
+   "no_stored_prose_served": true,
+   "disclaimer_equals_head": true,
+   "pass": true
+  },
+  "S5_normal": {
+   "labels_live": {
+    "simvastatin": "No PGx-guided adjustment identified"
+   },
+   "labels_local_head": {
+    "simvastatin": "No PGx-guided adjustment identified"
+   },
+   "labels_equal": true,
+   "explanation_sources": [
+    "template"
+   ],
+   "no_stored_prose_served": true,
+   "disclaimer_equals_head": true,
+   "pass": true
+  },
+  "S6_multidrug": {
+   "labels_live": {
+    "clopidogrel": "Ineffective",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "codeine": "Unknown",
+    "ibuprofen": "Unknown"
+   },
+   "labels_local_head": {
+    "clopidogrel": "Ineffective",
+    "simvastatin": "No PGx-guided adjustment identified",
+    "fluorouracil": "No PGx-guided adjustment identified",
+    "codeine": "Unknown",
+    "ibuprofen": "Unknown"
+   },
+   "labels_equal": true,
+   "explanation_sources": [
+    "template"
+   ],
+   "no_stored_prose_served": true,
+   "disclaimer_equals_head": true,
+   "pass": true
+  }
+ },
+ "all_pass": true
+}
