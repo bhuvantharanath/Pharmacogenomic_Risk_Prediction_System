@@ -22,6 +22,7 @@ library;
 import 'package:flutter/material.dart';
 
 import '../config.dart';
+import 'message_text.dart';
 
 /// The comparison itself, separated from the widget so it can be tested
 /// without a render tree.
@@ -73,8 +74,11 @@ class VersionNotice extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Icon(Icons.sync_problem_outlined,
-              size: 20, color: theme.colorScheme.onTertiaryContainer),
+          Icon(
+            Icons.sync_problem_outlined,
+            size: 20,
+            color: theme.colorScheme.onTertiaryContainer,
+          ),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
@@ -88,11 +92,13 @@ class VersionNotice extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 4),
-                SelectableText(
+                MessageText(
                   'This page expects ${skew.expectedShort}; the server is '
                   'running ${skew.actualShort}. Results are still real and '
                   'still come from the server — but if something looks wrong, '
                   'this is the first thing to check.',
+                  kind: 'Version mismatch',
+                  liveRegion: false,
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onTertiaryContainer,
                     height: 1.45,

@@ -19,6 +19,7 @@ import '../widgets/backend_status_banner.dart';
 import '../widgets/disclaimer_banner.dart';
 import '../widgets/error_panel.dart';
 import '../widgets/file_readiness.dart';
+import '../widgets/message_text.dart';
 import '../widgets/sample_files.dart';
 import '../widgets/version_notice.dart';
 import '../utils/text_export.dart';
@@ -818,8 +819,9 @@ class _BusyBox extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SelectableText(
+                MessageText(
                   message,
+                  kind: 'Server busy',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSecondaryContainer,
                     height: 1.45,

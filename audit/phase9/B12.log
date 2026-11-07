@@ -1,0 +1,133 @@
+B12 — Accessibility fixes (from A8)
+Started 2026-11-07 on main at bcfe650, after B11's live record (bcfe650, pushed).
+Owner instruction: "Start B12" (2026-11-07), after B11 went live.
+
+== Plan, hashed before any B12 code ==
+e3737625e29b5faf4ab5adbcc519ed473d316da9da18ece412c92ea25c636007  audit/phase9/B12_PLAN.md
+
+== State before any edit ==
+Measured at HEAD today, not taken from A8: A8 examined the live 0a8b129 build, which predates B1-B11, and its line
+numbers are stale. The WCAG 2.2 arithmetic was re-implemented from the definition and reproduces every published A8
+figure to two decimals, so the two measurements are comparable (ink3/paper 3.13, ink3/card 3.43, accent/paper 8.28,
+rule 1.36, rule2 1.64, accentRule 1.96, ink2/paper 5.50, adjust/card 5.63).
+Tokens now: paper EDF0EA, card F8FAF6, ink 18211C, ink2 55635A, ink3 7D8A81, rule D3DACE, rule2 BFC8BA,
+accent 5A3A5F, accentBg EDE4EE, accentRule C6ADC8, safe 34633F, safeBg E3EDE1, adjust 8A5A10, adjustBg F5EAD6,
+danger 8A2E29, dangerBg F5E2DF.
+Light only: main.dart:25 sets theme: and no darkTheme:, so the Brightness.dark branches in six widgets never run.
+Failing in use: ink3 as text at coverage_census.dart:125, file_readiness.dart:173, verdict_card.dart:281;
+rule/rule2/accentRule as an interactive control's only boundary at file_readiness.dart:63, view_toggle.dart:27 and
+:82, summary_grid.dart:145, verdict_card.dart:77.
+Semantics: sample_files.dart:227 and :232 give four "Try this" and four "Download" the same names; four
+SelectableText status/error messages (error_panel.dart:67, home_screen.dart:821, backend_status_banner.dart:121,
+version_notice.dart:91) are unlabelled textboxes.
+200% text scale, measured today (A8: "not measured"), S6_multidrug with every card opened: at 360px, 1.0x clean,
+1.5x 2 overflows, 2.0x 4 distinct overflows up to 176px, at results_screen.dart:366, :461 and :487; at 1440px clean
+at 1.0x, 1.5x and 2.0x.
+Not defects, recorded so they are not "fixed" for show: ink3 as icon/underline is non-text and clears 3.0; every
+Tokens.verdict() text pair passes (4.96 to 7.68); legend swatches 4.08-6.54 and white on badges 4.69-6.54 clear 3.0;
+RiskStyle is read only by the results-screen legend, and .onContainer and .container are unused; risk already is not
+colour-only, because every verdict shows its label as text; the row's accessible name no longer carries
+"severity critical" (that was the 0a8b129 build).
+
+== Export baseline (before any app edit; export_fixtures_test into scratch) ==
+sha256 of the nine fixtures' printable HTML summaries and FHIR bundles (exportedAt fixed):
+  803171a9cfc545201430af6bf0376cc92b123bbdd0e84b2498a2f8234f3939ad  S1_confident.summary.html
+  afc133d53f76cde151c47fec1517648ed3a5f0e6fd9bc703caffa11e79338f76  S2_variants_only.summary.html
+  1d0710173848d81d44f2ee554948176b291251e83e89ae817ec3c3974c4f31f0  S3_cyp2d6.summary.html
+  139646d79685b600f338ada6942d6d0615b051b9861a29da37446de9e8cc8873  S4_dpyd.summary.html
+  b3698ac12f34aaf8ce20f25d94ad89b2ec6f2360b94fc7ffd65d2b644b1b5a11  S5_normal.summary.html
+  c4ea0ac9144a02f6a63272f3f522f41622dc3a120c268be69ab917bc25ff5b85  S6_multidrug.summary.html
+  1b65ec58d12d5b3979ea14773379cfbf8233f7a9ff24b312d3312ac4d8c3b69e  X1_all_drugs.summary.html
+  708b45a22dfa06020dbea1ce3afdec86ce903ad5547ade83ceb3e566898bbc76  X2_supplied_cyp2d6.summary.html
+  3bd838674ac943edfceee64512b21691a2f2bfccdebe313bf1caa81d463d8214  X3_supplied_xn.summary.html
+  61169b11e53b4a63eeb08756f64a9d701a242b45ac5c10532ba50c37d188e8b1  S1_confident.fhir.json
+  048288ff038b173a0bffb2b5842cef1fd45e021b006dd0dda127e0d41068f9af  S2_variants_only.fhir.json
+  660f3c11192466558e56ab2271ff4872b1783c2fef61e74630727400e95d69c8  S3_cyp2d6.fhir.json
+  0be69b8119f955997484693d14bebb666665b87e7000d323c8e51c89a32caed6  S4_dpyd.fhir.json
+  70e71349aaf6d03cc9b5b9ac6564e6e9bee80dc843630c20149c9308a8f602f6  S5_normal.fhir.json
+  83a8046053be3d5112fa7ba45c12680e3107219cc3ffedc49ec62a5f7259c57c  S6_multidrug.fhir.json
+  554121d7a1d105a24544cc0569b3811700b504d409766c4409ad87faeded4f43  X1_all_drugs.fhir.json
+  501bd32206222e27c6c4d41286c1959200f870d2e8bee2a7290d64a1af1569a1  X2_supplied_cyp2d6.fhir.json
+  394e7b051a7e2fbd424cf06c3774d41f22ac0120446eb5c221b83dcb7604c8d0  X3_supplied_xn.fhir.json
+
+== Implementation (2026-11-07) ==
+Tokens. ink3 7D8A81 -> 646E67, the same hue darkened until it clears AA on the worse of the two surfaces: 4.60 on
+paper, 5.04 on card (was 3.13 / 3.43). One token, not a second "ink3 for text": a split would be a trap for the next
+edit. New controlEdge 848A80 (paper 3.08, card 3.37) and accentControlEdge 968398 (3.04 / 3.33), for a border that is
+the only thing saying where an interactive control begins. rule, rule2 and accentRule keep their values with a
+comment saying why: they separate rows, and WCAG 1.4.11 asks 3:1 of what identifies a component, not of every line.
+Control edges moved to the new tokens: file_readiness (the file box, both the ordinary and the nothing-passes
+border), view_toggle (the outer border and the divider between the two halves), summary_grid (the card), verdict_card
+(the standalone card). Nothing decorative was touched.
+Semantics. sample_files: the two buttons keep their short visible words and gain semanticsLabel "Try this sample:
+<title>" and "Download the sample file: <title>", so the eight buttons no longer share two names.
+New app/lib/widgets/message_text.dart: one named, read-only, live-region node around the SelectableText used for
+status and error messages, replacing the subtree's semantics. Applied at all four sites A8's one finding generalises
+to: error_panel (kind = the panel's heading, else "Error"), backend_status_banner ("Server status"), home_screen's
+503 queue notice ("Server busy") and version_notice ("Version mismatch", liveRegion false because it stays on
+screen). The trade is written in the file: excludeSemantics drops the inner textbox's selection semantics, which is
+the right way round, because an unlabelled editable field that cannot be identified is worse than a named message
+that cannot be selected by gesture, and pointer selection still works.
+200% text scale. The three rows measured as overflowing are Row(mainAxisSize: min) holding a Text that cannot shrink;
+each Text is now Flexible, the idiom view_toggle.dart already used for the same reason. results_screen: the patient
+id, the icon+label meta row, the legend row.
+Risk icon (the plan's I1, an improvement, not a WCAG failure). New top-level riskIcon(RiskLabel) in risk_style.dart
+is now the one place the icon is decided, and RiskStyle.of uses it so the two cannot drift. Drawn beside the verdict
+in the grid row and in the standalone card's panel, in the verdict's own ink. Toxic and Ineffective share
+danger/dangerBg, so before this the two most serious verdicts differed only by the word.
+scripts/scientific_hash_policy.json: app/lib/widgets/message_text.dart added to core_paths (105 -> 106), sorted, no
+duplicates; every tracked app/lib and backend/app source is in it.
+No backend file changed.
+
+== Tests ==
+app/test/accessibility_test.dart, 19 passed. It recomputes WCAG 2.2 from the tokens rather than trusting a number
+typed into a test:
+  AC1 the arithmetic first reproduces the twelve A8 figures for the tokens B12 does not change (14.34, 5.50, 6.03,
+      8.28, 7.68, 5.82, 4.96, 5.63, 6.72, 1.36, 1.64, 1.96) to two decimals. If that drifts the two measurements are
+      no longer comparable and nothing else in the file means much, so it is asserted first.
+  AC1 every colour used as text clears 4.5 on paper and on card; every verdict ink clears 4.5 on its own tint, on
+      card and on paper; both control-edge tokens clear 3.0 on both surfaces; ink3 as an icon and every verdict ink
+      as an icon clear 3.0.
+  AC1 a source check, because a colour-only check can never catch a new control drawn with a decorative hairline:
+      the four control-boundary sites must mention a controlEdge token within five lines of the border they draw.
+  AC2 with semantics on, every ButtonStyleButton's accessible name on the samples card is unique, and each sample's
+      title appears in exactly two of them.
+  AC3 MessageText.nameFor is pinned both ways; a pumped MessageText matches a named, read-only, live-region node;
+      and none of the four message files contains SelectableText( any more.
+  AC4 for every ordered pair of distinct RiskLabels the word differs and the icon differs; Toxic and Ineffective are
+      asserted to share a colour, which is the reason the icon has to differ; and every fixture verdict's icon is
+      found on the rendered results screen.
+  AC5 at 360px and 1440px, at 1.0x, 1.5x and 2.0x, opening every card produces no RenderFlex overflow. The test
+      fails on overflow; the scratch measurement that found the defect only printed it.
+flutter analyze: No issues found. The first draft of the semantics test walked the tree through pipelineOwner and
+hasFlag, both deprecated, which analyze reports and the gate would have failed; it reads each button's own node
+instead.
+Flutter suite: 496 passed (B11: 477; +19). Backend suite: 1218 passed, 6 skipped, 4 failed - the same four identity
+tests the re-bind refreshes, exactly as at B11 before its re-bind. B12 adds no backend test and changes no backend
+file.
+
+== Sabotage (partb/b12_sabotage.py -> B12.sabotage.stdout) ==
+SB12-a ink3 back to the failing value        1 red (AC1 text)
+SB12-b a control edge back to the hairline   1 red (AC1 source check)
+SB12-c a sample button loses its name        1 red (AC2)
+SB12-d a status message back to a textbox    1 red (AC3)
+SB12-e Ineffective given Toxic's icon        2 red (AC4, both)
+SB12-f a Flexible removed                    1 red (AC5, at 2.0x and 360px only, which is where it overflows)
+All six caught, each by the criterion it targets; every file restored byte-identical.
+
+== A documentation claim that was ahead of the code ==
+app/README.md said "every card shows the risk label as text and an icon alongside the colour". Before B12 the cards
+drew no risk icon at all: the icon existed only in the results-screen legend. The sentence is true as of this item,
+and the README now says it was not true before, rather than quietly becoming correct. The same file claimed a
+"Material 3 theme (light and dark)"; only light is wired, and it now says so.
+
+== Zero-regression vs B11 (run_regression.py B12 --compare-to B11 -> B12.stdout; a4_labels.py B12-after) ==
+S1-S6    6/6 labels, and all six whole bodies identical to B11's once timestamp and processing_time_ms are
+         stripped. Positive control: a flipped risk_label in a copy is detected. PASS.
+Cohort   2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other confident. PASS.
+74 VCFs  148 field comparisons, 0 mismatches, match rate 1.0. PASS.
+A4       36 rows identical to B11-after once seconds are stripped. Positive controls: a flipped label and an
+         appended warning are both detected. PASS.
+Exports  18/18 printable-HTML and FHIR files byte-identical to the baseline taken before the first B12 edit. This
+         is the check that a contrast change must not move an export, and it did not: neither summary_document.dart
+         nor fhir_report.dart imports the theme. PASS.

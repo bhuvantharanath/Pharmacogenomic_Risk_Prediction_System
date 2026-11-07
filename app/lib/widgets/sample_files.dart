@@ -60,7 +60,8 @@ const List<SampleFile> kSampleFiles = <SampleFile>[
     fileName: 'pharmaguard_sample_reduced_function.vcf',
     title: 'Reduced-function result',
     outcome: 'Answers confidently',
-    detail: 'Complete coverage, CYP2C19 *2/*2. Clopidogrel comes back '
+    detail:
+        'Complete coverage, CYP2C19 *2/*2. Clopidogrel comes back '
         'Ineffective — the case this system exists to catch.',
     gated: false,
   ),
@@ -69,7 +70,8 @@ const List<SampleFile> kSampleFiles = <SampleFile>[
     fileName: 'pharmaguard_sample_normal.vcf',
     title: 'Normal result',
     outcome: 'Answers confidently',
-    detail: 'Complete coverage, all genes at reference. Shows the system is '
+    detail:
+        'Complete coverage, all genes at reference. Shows the system is '
         'not merely cautious — it will state when no PGx-guided adjustment was '
         'identified from the assessed evidence.',
     gated: false,
@@ -79,7 +81,8 @@ const List<SampleFile> kSampleFiles = <SampleFile>[
     fileName: 'pharmaguard_sample_variants_only.vcf',
     title: 'Variants-only file',
     outcome: 'Declines every gene',
-    detail: 'The SAME patient as the first sample, with reference rows '
+    detail:
+        'The SAME patient as the first sample, with reference rows '
         'removed — the common output of most pipelines. The genotype is '
         'unchanged; what is lost is the evidence that it was measured.',
     gated: true,
@@ -89,7 +92,8 @@ const List<SampleFile> kSampleFiles = <SampleFile>[
     fileName: 'pharmaguard_sample_1000genomes.vcf',
     title: 'Real 1000 Genomes sample',
     outcome: 'Declines every gene',
-    detail: 'Genuine public research data (NA12273), not synthetic. '
+    detail:
+        'Genuine public research data (NA12273), not synthetic. '
         'Polymorphic-filtered, so it is declined — which is what happens to '
         'most research VCFs, and why.',
     gated: true,
@@ -122,9 +126,12 @@ class SampleFilesCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('No genome file? Use a sample',
-              style: theme.textTheme.titleSmall
-                  ?.copyWith(fontWeight: FontWeight.w600)),
+          Text(
+            'No genome file? Use a sample',
+            style: theme.textTheme.titleSmall?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           const SizedBox(height: 4),
           Text(
             'Run one here, or download it and upload it yourself. Two of these '
@@ -186,7 +193,9 @@ class _SampleRow extends StatelessWidget {
           Row(
             children: <Widget>[
               Icon(
-                sample.gated ? Icons.block_outlined : Icons.check_circle_outline,
+                sample.gated
+                    ? Icons.block_outlined
+                    : Icons.check_circle_outline,
                 size: 18,
                 color: accent,
               ),
@@ -194,8 +203,9 @@ class _SampleRow extends StatelessWidget {
               Expanded(
                 child: Text(
                   sample.title,
-                  style: theme.textTheme.bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w600),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ],
@@ -221,15 +231,26 @@ class _SampleRow extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: <Widget>[
+              // The visible labels stay short, because four cards of
+              // "Try the reduced-function result" is a wall of words. The
+              // accessible names carry the sample, because a screen-reader
+              // user hears the buttons as a list, away from the card that
+              // would have said which sample this is (Phase 9 B12, A8/F-17).
               FilledButton.tonalIcon(
                 onPressed: busy ? null : onTry,
                 icon: const Icon(Icons.play_arrow, size: 18),
-                label: const Text('Try this'),
+                label: Text(
+                  'Try this',
+                  semanticsLabel: 'Try this sample: ${sample.title}',
+                ),
               ),
               OutlinedButton.icon(
                 onPressed: busy ? null : onDownload,
                 icon: const Icon(Icons.download_outlined, size: 18),
-                label: const Text('Download'),
+                label: Text(
+                  'Download',
+                  semanticsLabel: 'Download the sample file: ${sample.title}',
+                ),
               ),
             ],
           ),

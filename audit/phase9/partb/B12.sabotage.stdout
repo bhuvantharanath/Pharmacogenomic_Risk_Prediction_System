@@ -1,0 +1,25 @@
+== SB12-a: ink3 is put back to the value that fails AA as text (app/lib/theme/tokens.dart) ==
+  AC1: contrast every colour used as text clears AA on both surfaces
+exit 1; 1 red
+restored identical: yes
+== SB12-b: a control's edge goes back to the decorative hairline (app/lib/widgets/view_toggle.dart) ==
+  AC1: contrast no control boundary still uses a decorative hairline
+exit 1; 1 red
+restored identical: yes
+== SB12-c: a sample's button loses the name that distinguishes it (app/lib/widgets/sample_files.dart) ==
+  AC2: control names are unique each sample's buttons name that sample
+exit 1; 1 red
+restored identical: yes
+== SB12-d: a status message goes back to a bare textbox (app/lib/screens/home_screen.dart) ==
+  AC3: messages are named, not bare textboxes every status or error message in the app uses it
+exit 1; 1 red
+restored identical: yes
+== SB12-e: Ineffective is given Toxic's icon, leaving colour and word only (app/lib/theme/risk_style.dart) ==
+  AC4: risk is never colour alone any two verdicts differ by word and by icon
+  AC4: risk is never colour alone toxic and ineffective share a colour, which is why
+exit 1; 2 red
+restored identical: yes
+== SB12-f: a Flexible is removed, restoring the 200% overflow (app/lib/screens/results_screen.dart) ==
+  AC5: 200% text scale no overflow at 2.0x, 360px
+exit 1; 1 red
+restored identical: yes

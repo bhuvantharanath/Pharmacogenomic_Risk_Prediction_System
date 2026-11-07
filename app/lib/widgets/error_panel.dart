@@ -11,6 +11,7 @@ library;
 import 'package:flutter/material.dart';
 
 import '../api/pharmaguard_api.dart';
+import 'message_text.dart';
 
 class ErrorPanel extends StatelessWidget {
   const ErrorPanel({super.key, required this.message, this.kind});
@@ -64,8 +65,9 @@ class ErrorPanel extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                 ],
-                SelectableText(
+                MessageText(
                   message,
+                  kind: heading ?? 'Error',
                   style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onErrorContainer,
                     height: 1.45,

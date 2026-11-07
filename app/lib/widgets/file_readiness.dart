@@ -60,7 +60,7 @@ class FileReadinessPanel extends StatelessWidget {
         color: Tokens.card,
         borderRadius: Tokens.radiusLg,
         border: Border.all(
-          color: nothingPasses ? Tokens.accentRule : Tokens.rule,
+          color: nothingPasses ? Tokens.accentControlEdge : Tokens.controlEdge,
           width: Tokens.hairline,
         ),
       ),
@@ -191,14 +191,19 @@ class _VariantsOnlyNote extends StatelessWidget {
       children: <Widget>[
         Row(
           children: <Widget>[
-            const Icon(Icons.report_problem_outlined,
-                size: 17, color: Tokens.adjust),
+            const Icon(
+              Icons.report_problem_outlined,
+              size: 17,
+              color: Tokens.adjust,
+            ),
             const SizedBox(width: 7),
             Flexible(
               child: Text(
                 'This file lists variants only',
                 style: Tokens.uiMd.copyWith(
-                    fontWeight: FontWeight.w600, color: Tokens.adjust),
+                  fontWeight: FontWeight.w600,
+                  color: Tokens.adjust,
+                ),
               ),
             ),
           ],
@@ -220,7 +225,11 @@ class _VariantsOnlyNote extends StatelessWidget {
 }
 
 class _DrugList extends StatelessWidget {
-  const _DrugList({required this.label, required this.drugs, required this.tone});
+  const _DrugList({
+    required this.label,
+    required this.drugs,
+    required this.tone,
+  });
 
   final String label;
   final List<String> drugs;

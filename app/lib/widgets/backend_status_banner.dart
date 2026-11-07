@@ -9,6 +9,7 @@ library;
 import 'package:flutter/material.dart';
 
 import '../api/backend_status.dart';
+import 'message_text.dart';
 
 class BackendStatusBanner extends StatelessWidget {
   const BackendStatusBanner({
@@ -118,8 +119,9 @@ class BackendStatusBanner extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 6),
-          SelectableText(
+          MessageText(
             status.detail,
+            kind: 'Server status',
             style: theme.textTheme.bodySmall?.copyWith(height: 1.4),
           ),
           if (status.phase == BackendPhase.waking) ...<Widget>[

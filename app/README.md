@@ -37,7 +37,7 @@ flutter build web --release \
 
 ```
 lib/
-├── main.dart                    App + Material 3 theme (light and dark)
+├── main.dart                    App + Material 3 theme (light only; see Notes)
 ├── config.dart                  Base URL, disclaimer text, demo drug list
 ├── api/pharmaguard_api.dart     Dio client; maps failures to readable messages
 ├── models/
@@ -51,7 +51,7 @@ lib/
 ├── screens/
 │   ├── home_screen.dart         File picker + drugs field + Analyze
 │   └── results_screen.dart      Cards, run summary, Copy/Export JSON, Download report
-├── theme/risk_style.dart        RiskLabel → colour/icon (light + dark)
+├── theme/risk_style.dart        RiskLabel → colour/icon; riskIcon() is the icon
 ├── utils/
 │   ├── json_export.dart         Conditional export barrel
 │   ├── json_export_web.dart     Browser download via package:web
@@ -101,4 +101,22 @@ backend contract changes.
   including that the rate is a lower bound on partially covered data and that
   four of the five cohorts were collected outside India.
 - **Colour never carries meaning alone** — every card shows the risk label as
-  text and an icon alongside the colour.
+  text and an icon alongside the colour. The icon is not decoration: Toxic and
+  Ineffective resolve to the same red, so it is what separates them without
+  reading the word. `riskIcon()` in `theme/risk_style.dart` is the single place
+  it is decided, and `accessibility_test.dart` asserts that no two verdicts
+  share both a word and an icon. Until Phase 9 B12 this sentence was ahead of
+  the code — the cards drew no icon at all.
+- **Contrast is measured, not eyeballed.** `accessibility_test.dart` recomputes
+  WCAG 2.2 ratios from the tokens: every colour used as text clears 4.5 on both
+  surfaces, and a border that is the only cue to an interactive control's
+  extent clears 3.0. Hairlines that merely separate rows are left quiet on
+  purpose. The same test first reproduces the figures the Phase 9 A8 audit
+  published, so the two measurements stay comparable.
+- **Messages are named for a screen reader.** Status and error text uses
+  `MessageText`, which replaces the selectable-text subtree with one named,
+  read-only live region — A8 found the busy message announced as an unlabelled
+  textbox.
+- **The theme is light only.** `main.dart` sets `theme:` and no `darkTheme:`,
+  so the `Brightness.dark` branches a few widgets still carry never run. Wiring
+  a dark theme would need its own contrast pass before it could be trusted.

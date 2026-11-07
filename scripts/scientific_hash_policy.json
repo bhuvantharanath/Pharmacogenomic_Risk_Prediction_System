@@ -44,6 +44,7 @@
     "app/lib/widgets/error_panel.dart",
     "app/lib/widgets/file_readiness.dart",
     "app/lib/widgets/gene_findings.dart",
+    "app/lib/widgets/message_text.dart",
     "app/lib/widgets/outside_call_field.dart",
     "app/lib/widgets/population_context_panel.dart",
     "app/lib/widgets/sample_files.dart",

@@ -26,6 +26,7 @@ import 'package:flutter/material.dart';
 
 import '../models/analysis.dart';
 import '../models/enums.dart';
+import '../theme/risk_style.dart';
 import '../theme/tokens.dart';
 import 'verdict_card.dart';
 import 'view_mode.dart';
@@ -142,7 +143,7 @@ class _Row extends StatelessWidget {
       decoration: BoxDecoration(
         color: Tokens.card,
         borderRadius: Tokens.radiusLg,
-        border: Border.all(color: Tokens.rule, width: Tokens.hairline),
+        border: Border.all(color: Tokens.controlEdge, width: Tokens.hairline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -206,9 +207,24 @@ class _Row extends StatelessWidget {
         overflow: TextOverflow.ellipsis,
       ),
       const SizedBox(height: 3),
-      Text(
-        risk.riskLabel.displayValue,
-        style: Tokens.verdictRow.copyWith(color: fg),
+      // Icon as well as word. Toxic and Ineffective resolve to the same red,
+      // so without it the two most serious verdicts differ only by reading
+      // the label (B12). The icon is decorative to a screen reader: the row's
+      // accessible name already says the verdict.
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(top: 2, right: 5),
+            child: Icon(riskIcon(risk.riskLabel), size: 15, color: fg),
+          ),
+          Flexible(
+            child: Text(
+              risk.riskLabel.displayValue,
+              style: Tokens.verdictRow.copyWith(color: fg),
+            ),
+          ),
+        ],
       ),
       if (risk.severity != Severity.none) ...<Widget>[
         const SizedBox(height: 3),

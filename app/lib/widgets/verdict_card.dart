@@ -16,6 +16,7 @@ import '../glossary/glossary_text.dart';
 import '../models/analysis.dart';
 import '../models/enums.dart';
 import '../models/unknown_reason.dart';
+import '../theme/risk_style.dart';
 import '../theme/tokens.dart';
 import 'coverage_census.dart';
 import 'disclosure_row.dart';
@@ -74,7 +75,7 @@ class _VerdictCardState extends State<VerdictCard> {
         borderRadius: Tokens.radiusLg,
         border: widget.inGrid
             ? null
-            : Border.all(color: Tokens.rule, width: Tokens.hairline),
+            : Border.all(color: Tokens.controlEdge, width: Tokens.hairline),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,9 +191,25 @@ class _VerdictCardState extends State<VerdictCard> {
             style: Tokens.monoLabel.copyWith(color: fg),
           ),
           const SizedBox(height: 4),
-          Text(
-            r.riskAssessment.riskLabel.displayValue,
-            style: Tokens.verdictText.copyWith(color: fg),
+          // Icon as well as word: Toxic and Ineffective share a colour (B12).
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 3, right: 6),
+                child: Icon(
+                  riskIcon(r.riskAssessment.riskLabel),
+                  size: 18,
+                  color: fg,
+                ),
+              ),
+              Flexible(
+                child: Text(
+                  r.riskAssessment.riskLabel.displayValue,
+                  style: Tokens.verdictText.copyWith(color: fg),
+                ),
+              ),
+            ],
           ),
           if (r.pharmacogenomicProfile.provenanceLine != null) ...<Widget>[
             const SizedBox(height: 4),

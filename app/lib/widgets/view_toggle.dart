@@ -19,12 +19,13 @@ class ViewToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-    label: 'Reading view. Both views show the same result; they differ only in '
+    label:
+        'Reading view. Both views show the same result; they differ only in '
         'what is shown first.',
     child: Container(
       decoration: BoxDecoration(
         borderRadius: Tokens.radius,
-        border: Border.all(color: Tokens.rule2, width: Tokens.hairline),
+        border: Border.all(color: Tokens.controlEdge, width: Tokens.hairline),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -32,14 +33,15 @@ class ViewToggle extends StatelessWidget {
           // Flexible, not fixed: at 360px with a large system font the two
           // labels together exceed the width, and a control that clips is a
           // control whose second option is invisible.
-          for (final ViewMode m in ViewMode.values) Flexible(
-            child: _Option(
-            mode: m,
-            selected: m == mode,
-              first: m == ViewMode.values.first,
-              onTap: () => onChanged(m),
+          for (final ViewMode m in ViewMode.values)
+            Flexible(
+              child: _Option(
+                mode: m,
+                selected: m == mode,
+                first: m == ViewMode.values.first,
+                onTap: () => onChanged(m),
+              ),
             ),
-          ),
         ],
       ),
     ),
@@ -79,7 +81,11 @@ class _Option extends StatelessWidget {
           border: first
               ? null
               : const Border(
-                  left: BorderSide(color: Tokens.rule2, width: Tokens.hairline)),
+                  left: BorderSide(
+                    color: Tokens.controlEdge,
+                    width: Tokens.hairline,
+                  ),
+                ),
         ),
         child: Text(
           mode.label,

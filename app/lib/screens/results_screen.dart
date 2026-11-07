@@ -372,10 +372,16 @@ class _RunSummary extends StatelessWidget {
                       color: theme.colorScheme.primary,
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      response.patientId,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
+                    // Flexible, not fixed: at 360px and 200% text the id alone
+                    // is wider than the column, and a Row with min size cannot
+                    // shrink below its children (B12; same reason as
+                    // view_toggle.dart).
+                    Flexible(
+                      child: Text(
+                        response.patientId,
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
                   ],
@@ -463,7 +469,7 @@ class _Metric extends StatelessWidget {
       children: <Widget>[
         Icon(icon, size: 15, color: theme.colorScheme.onSurfaceVariant),
         const SizedBox(width: 5),
-        Text(label, style: theme.textTheme.labelMedium),
+        Flexible(child: Text(label, style: theme.textTheme.labelMedium)),
         const SizedBox(width: 6),
       ],
     );
@@ -496,9 +502,11 @@ class _Legend extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  Text(
-                    label.displayValue,
-                    style: Theme.of(context).textTheme.labelSmall,
+                  Flexible(
+                    child: Text(
+                      label.displayValue,
+                      style: Theme.of(context).textTheme.labelSmall,
+                    ),
                   ),
                 ],
               );

@@ -41,16 +41,33 @@ class Tokens {
   // --- text -------------------------------------------------------------- //
   static const Color ink = Color(0xFF18211C);
   static const Color ink2 = Color(0xFF55635A);
-  static const Color ink3 = Color(0xFF7D8A81);
+
+  /// Was #7D8A81 until Phase 9 B12: 3.13 on paper and 3.43 on card, which is
+  /// legible enough as an icon but fails AA 4.5 as the small mono text it also
+  /// carries. Darkened along the same hue to 4.60 / 5.04.
+  static const Color ink3 = Color(0xFF646E67);
 
   // --- lines ------------------------------------------------------------- //
+  //
+  // `rule` and `rule2` separate rows. A line that only separates is decorative:
+  // WCAG 1.4.11 asks 3:1 of what identifies a component, not of every line, and
+  // raising these would turn a quiet page into a grid of wires.
   static const Color rule = Color(0xFFD3DACE);
   static const Color rule2 = Color(0xFFBFC8BA);
+
+  /// The edge of an interactive control, where the border is the only thing
+  /// saying where the control begins and ends — the file box, the view toggle,
+  /// a card that opens. 3.08 on paper and 3.37 on card, so it clears the 3:1
+  /// non-text minimum against both surfaces it can sit between (B12).
+  static const Color controlEdge = Color(0xFF848A80);
 
   // --- brand ------------------------------------------------------------- //
   static const Color accent = Color(0xFF5A3A5F);
   static const Color accentBg = Color(0xFFEDE4EE);
+
+  /// Decorative plum hairline. [accentControlEdge] is its control-edge pair.
   static const Color accentRule = Color(0xFFC6ADC8);
+  static const Color accentControlEdge = Color(0xFF968398);
 
   // --- verdicts ---------------------------------------------------------- //
   static const Color safe = Color(0xFF34633F);
@@ -89,48 +106,97 @@ class Tokens {
 
   /// Machine output. Anything PharmCAT or CPIC produced renders in this.
   static const TextStyle monoSm = TextStyle(
-    fontFamily: mono, fontSize: 12, height: 1.45, color: ink2);
+    fontFamily: mono,
+    fontSize: 12,
+    height: 1.45,
+    color: ink2,
+  );
   static const TextStyle monoMd = TextStyle(
-    fontFamily: mono, fontSize: 13, height: 1.45, color: ink);
+    fontFamily: mono,
+    fontSize: 13,
+    height: 1.45,
+    color: ink,
+  );
   static const TextStyle monoLg = TextStyle(
-    fontFamily: mono, fontSize: 15, height: 1.4,
-    fontWeight: FontWeight.w500, color: ink);
+    fontFamily: mono,
+    fontSize: 15,
+    height: 1.4,
+    fontWeight: FontWeight.w500,
+    color: ink,
+  );
 
   /// A small mono label above machine output, e.g. "CPIC guideline — quoted
   /// exactly". Letter-spaced so it reads as a caption, not as content.
   static const TextStyle monoLabel = TextStyle(
-    fontFamily: mono, fontSize: 11, height: 1.4, letterSpacing: 0.6,
-    fontWeight: FontWeight.w500, color: ink3);
+    fontFamily: mono,
+    fontSize: 11,
+    height: 1.4,
+    letterSpacing: 0.6,
+    fontWeight: FontWeight.w500,
+    color: ink3,
+  );
 
   /// Prose written for a person to read.
   static const TextStyle prose = TextStyle(
-    fontFamily: serif, fontSize: 16, height: 1.6, color: ink);
+    fontFamily: serif,
+    fontSize: 16,
+    height: 1.6,
+    color: ink,
+  );
   static const TextStyle proseSm = TextStyle(
-    fontFamily: serif, fontSize: 14.5, height: 1.6, color: ink2);
+    fontFamily: serif,
+    fontSize: 14.5,
+    height: 1.6,
+    color: ink2,
+  );
 
   /// The verdict word itself — large serif, because it is the one thing the
   /// reader must take away.
   static const TextStyle verdictText = TextStyle(
-    fontFamily: serif, fontSize: 30, height: 1.15,
-    fontWeight: FontWeight.w600, letterSpacing: -0.4);
+    fontFamily: serif,
+    fontSize: 30,
+    height: 1.15,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.4,
+  );
 
   /// The verdict at row scale, for the summary grid. Same serif and weight as
   /// `verdictText` so a scanned row and an opened card read as the same object.
   static const TextStyle verdictRow = TextStyle(
-    fontFamily: serif, fontSize: 19, height: 1.2,
-    fontWeight: FontWeight.w600, letterSpacing: -0.2);
+    fontFamily: serif,
+    fontSize: 19,
+    height: 1.2,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.2,
+  );
 
   /// Interface chrome.
   static const TextStyle uiLg = TextStyle(
-    fontFamily: sans, fontSize: 19, height: 1.3,
-    fontWeight: FontWeight.w600, color: ink);
+    fontFamily: sans,
+    fontSize: 19,
+    height: 1.3,
+    fontWeight: FontWeight.w600,
+    color: ink,
+  );
   static const TextStyle uiMd = TextStyle(
-    fontFamily: sans, fontSize: 14.5, height: 1.4, color: ink);
+    fontFamily: sans,
+    fontSize: 14.5,
+    height: 1.4,
+    color: ink,
+  );
   static const TextStyle uiSm = TextStyle(
-    fontFamily: sans, fontSize: 13, height: 1.4, color: ink2);
+    fontFamily: sans,
+    fontSize: 13,
+    height: 1.4,
+    color: ink2,
+  );
   static const TextStyle uiTiny = TextStyle(
-    fontFamily: sans, fontSize: 11.5, height: 1.35,
-    letterSpacing: 0.4, color: ink3);
+    fontFamily: sans,
+    fontSize: 11.5,
+    height: 1.35,
+    letterSpacing: 0.4,
+    color: ink3,
+  );
 
   // --- geometry ---------------------------------------------------------- //
   /// A hairline border is the only permitted elevation. No shadows.
@@ -152,7 +218,10 @@ class Tokens {
         error: danger,
       ),
       textTheme: base.textTheme.apply(
-        fontFamily: sans, bodyColor: ink, displayColor: ink),
+        fontFamily: sans,
+        bodyColor: ink,
+        displayColor: ink,
+      ),
       dividerColor: rule,
       // Focus must be visible for keyboard users; the default is too faint on
       // a paper background.
