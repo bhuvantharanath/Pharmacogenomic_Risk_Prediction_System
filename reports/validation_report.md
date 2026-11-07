@@ -80,10 +80,12 @@ sliced and cached; `bcftools` pulls only the indexed byte ranges.
 | Gene | GeT-RM consensus | PharmaGuard / PharmCAT | Class |
 | --- | --- | --- | --- |
 | CYP2C19 | `*1/*2` | `*1/*2` — Intermediate Metabolizer | **exact match** |
-| CYP2C9 | `*1/*2` | `*1/*2` — Intermediate Metabolizer | **exact match** |
+| CYP2C9 | `*1/*2` | `Undetermined` — declined | **conservative refusal** |
 | CYP2D6 | `*1/*1` | *not called* — No Result | **no-call (by design)** |
 
-2 of 2 exact on the genes where consensus exists and VCF calling is possible.
+1 of 2 exact on the genes where consensus exists and VCF calling is possible: CYP2C19 matches; CYP2C9 is a
+conservative refusal — `Undetermined` where GeT-RM says `*1/*2`, neither a match nor a wrong call (see the note
+below).
 
 ### The CYP2D6 negative control, strengthened by reference data
 

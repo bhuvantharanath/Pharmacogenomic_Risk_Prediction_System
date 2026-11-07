@@ -57,3 +57,70 @@ the request-time contradiction downgrade), and main.py rebuilds without CPIC tex
 The measurement that would show whether either occurs was stopped before it ran; no result exists.
 No F-20 test or engine change is committed. Fixing path 1 changes backend/app/cpic_engine.py, which is in the
 scientific core, so it needs its own plan, zero-regression and a re-bind, and the owner's decision.
+
+== F-19, the remaining four items (owner: "continue", 2026-11-07, after F-20 went live at e68e56f) ==
+Criteria, written before any change. Each claim is replaced with what an artifact on disk says, and each gets a guard
+so it cannot go stale silently again. Docs and tests only: nothing under backend/app or app/lib, so no re-bind.
+D1  Latency. README.md:202 ("~52 s - p50 51.27 s, p95 53.56 s (n=20)", "~2.6 s", "~20x") and docs/DEMO_SCRIPT.md:19
+    are stale in all three numbers, not only the live one. Replaced from one same-day, same-input measurement:
+    F-20's six demo files, run locally (audit/phase9/partb/F20/s1-s6/requests.jsonl) and live
+    (audit/phase9/partb/F20/live-after-s1s6/requests.jsonl), 2026-11-07: local median 1.37 s, live median 64.61 s,
+    live range 60.8-65.5 s, median live/local ratio 46.7x. Guard: a test re-derives both medians from those two
+    files and requires README and DEMO_SCRIPT to quote them, and requires 51.27 and 53.56 not to be stated as fact.
+D2  Concordance. reports/validation_report.md contradicts itself: its table calls CYP2C9 an "exact match" and its
+    summary says "2 of 2 exact", while its own note further down (and PROJECT_STATUS.md:1090) says CYP2C9 is a
+    conservative refusal, Undetermined where GeT-RM says *1/*2. The table row and the summary are aligned with that
+    correction; CYP2C19 is left as it stands. No new factual claim is introduced. Guard: "2 of 2 exact" joins the
+    existing spelling list, and a regex catches any CYP2C9 line that calls it an exact match.
+D3  Placeholder. .github/workflows/build-apk.yml:29 names https://YOURNAME-pharmaguard.hf.space as API_BASE_URL; the
+    backend is https://pharmaguard-api-baml.onrender.com, as deploy-web.yml already documents. Comment only; the
+    workflow runs on version tags and manual dispatch, so a push to main does not trigger it. Guard: no workflow
+    names YOURNAME.
+D4  Provenance. README.md:516 says "every clinical statement is provenance-verified to a CPIC source". main.py's own
+    comment says served wording may be the deterministic template, "which no provenance check reads, so nothing here
+    may claim every statement was verified". The bullet is rewritten to say what the served disclosure says. Guard:
+    README must not assert that every clinical statement is provenance-verified.
+S   Sabotage, each restored byte-identical: put each stale claim back, and quote a wrong median, and its guard must
+    turn red.
+C   The full backend suite passes.
+criteria sha256 (part 2): a22c87bb508855cc17d83f47237ca136b013445650fdcc4c10f34f9f11d02688  audit/phase9/F19_F20.log
+
+== F-19 remaining items: done ==
+D1 PASS  README.md:202 and docs/DEMO_SCRIPT.md:19 quote the same-day, same-input pair: local median 1.37 s, live
+         median 64.61 s, live range 60.8-65.5 s, about 47x, citing audit/phase9/partb/F20/.
+         Found after the criteria were written, and fixed under D1 because leaving them would have had README
+         contradict itself (47x in one row, ~20x three lines below): README.md:205 ("The ~20x gap"), README.md:524
+         ("~52 s ... ~20x the local 2.6 s") and infra/DEPLOY_NOTES.md:95 ("p50 51.3 s, p95 53.6 s (n=20) vs ~2.6 s
+         locally"). That last one used a rounded spelling the D1 guard as first conceived (literal 51.27/53.56) would
+         have missed, so the guard covers it. Two local baselines exist and are kept apart: README:205's "the same
+         image ... 2.6 s" referred to the in-container figure in DEPLOY_NOTES.md:96, which was not re-measured and is
+         left as it is; only the same-day pair is quoted for the ratio. DEPLOY_NOTES also cites B4's repeated-input
+         p50 67.30 s (n=5) on this image. That live and local results are identical, timestamps aside, rests on the
+         S1-S6 comparisons (B12 local = B11 live; F-20 live = B12 live).
+D2 PASS  reports/validation_report.md: the CYP2C9 row now reads `Undetermined` - declined, conservative refusal, and
+         the summary "1 of 2 exact ... CYP2C19 matches; CYP2C9 is a conservative refusal", matching the report's own
+         note and PROJECT_STATUS.md:1090. CYP2C19 untouched; no new factual claim.
+D3 PASS  build-apk.yml names https://pharmaguard-api-baml.onrender.com, as deploy-web.yml does. Comment only.
+D4 PASS  README.md:516 now says what main.py's served disclosure says: CPIC text is quoted, explanatory wording is
+         generated, automated checks check provenance not correctness, and the served template is text no provenance
+         check reads, "so not every statement is verified".
+Guards (backend/tests/test_documented_numbers.py): "2 of 2 exact" added to the concordance spellings, plus a regex for
+any CYP2C9 line calling it an exact match; test_the_documented_latency_is_the_measured_one re-derives both medians
+from the two cited requests.jsonl files and requires README, DEMO_SCRIPT and DEPLOY_NOTES to quote them;
+test_no_document_states_the_superseded_latency covers 51.27, 53.56, 51.3 s, 53.6 s, ~52 s and ~20x;
+test_no_document_claims_every_statement_is_provenance_verified exempts the honest "not every statement is verified"
+(the passing run on the fixed README is that exemption's control); test_no_workflow_names_a_placeholder_backend.
+Each guard first requires its subject to exist, so none can pass on nothing.
+S  PASS  partb/F19b.sabotage.stdout, 7 of 7 caught, each by its own guard, every file restored byte-identical: the old
+         README row (2 red), DEPLOY_NOTES' rounded spelling alone (1), a wrong median in DEMO_SCRIPT (1), "2 of 2
+         exact" (1), the CYP2C9 "exact match" row (1), YOURNAME (1), the retracted provenance sentence (1).
+C  PASS  backend suite 1232 passed, 6 skipped, 0 failed (+4 guards). Nothing under backend/app or app/lib changed.
+
+== Found while doing this, not fixed: a stale claim F-19 predates ==
+README.md:515 says "the sole authoritative release status remains not ready". Every gate since B8 has reported state
+ready (F20.gate.json: "state ready", release_ready true), because the release policy withholds unapproved stored prose
+and serves only the template; what remains outstanding is content review (content_ready false). The sentence most
+likely means the content-review state, but as written it is false. Not changed here: wording about release readiness
+deserves the owner's eye, and test_no_document_claims_the_gate_is_green_or_the_review_complete has a docstring ("The
+gate is red BY DECISION") that is stale in the same way, though its phrase list (adjudication complete, clinically
+reviewed, ...) remains correct and enforces nothing false.

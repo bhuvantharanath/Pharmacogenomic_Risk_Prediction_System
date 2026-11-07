@@ -1,0 +1,23 @@
+== D1a: README's old latency row put back (README.md) ==
+  test_the_documented_latency_is_the_measured_one
+  test_no_document_states_the_superseded_latency
+exit 1; 2 red; restored identical: yes
+== D1b: DEPLOY_NOTES' old row, in its rounded spelling (infra/DEPLOY_NOTES.md) ==
+  test_no_document_states_the_superseded_latency
+exit 1; 1 red; restored identical: yes
+== D1c: a wrong median quoted in DEMO_SCRIPT (docs/DEMO_SCRIPT.md) ==
+  test_the_documented_latency_is_the_measured_one
+exit 1; 1 red; restored identical: yes
+== D2a: '2 of 2 exact' put back (reports/validation_report.md) ==
+  test_no_document_claims_na12273_is_fully_concordant
+exit 1; 1 red; restored identical: yes
+== D2b: the CYP2C9 'exact match' row put back (reports/validation_report.md) ==
+  test_no_document_claims_na12273_is_fully_concordant
+exit 1; 1 red; restored identical: yes
+== D3: the YOURNAME placeholder put back (.github/workflows/build-apk.yml) ==
+  test_no_workflow_names_a_placeholder_backend
+exit 1; 1 red; restored identical: yes
+== D4: the retracted provenance claim put back (README.md) ==
+  test_no_document_claims_every_statement_is_provenance_verified
+exit 1; 1 red; restored identical: yes
+all caught

@@ -195,13 +195,21 @@ def test_no_document_claims_na12273_is_fully_concordant() -> None:
     concordant; CYP2C9 is a REFUSAL — we report `Undetermined` where consensus
     asserts `*1/*2`. It is neither a match nor an error.
     """
-    for phrase in ("2/2 exact", "2 / 2 exact", "2/2 concordant",
+    # "2 of 2 exact" is the spelling this list missed: reports/validation_report.md
+    # said it in its summary line until Phase 9 F-19.
+    for phrase in ("2/2 exact", "2 / 2 exact", "2/2 concordant", "2 of 2 exact",
                    "CYP2C9 `*1/*2` exact"):
         stated = _asserts(phrase)
         assert not stated, (
             f"{phrase!r} is stated as fact. NA12273 CYP2C9 is a conservative "
             f"refusal, not a match — see reports/predeploy_audit_a.md:\n  "
             + "\n  ".join(stated))
+    # A spelling list only covers the spellings already found; the same report's
+    # table row called CYP2C9 an "exact match" in a form none of them matched.
+    stated = _asserts_matching(r"\bCYP2C9\b.*\bexact match\b")
+    assert not stated, (
+        "NA12273 CYP2C9 is called an exact match. It is a conservative refusal:\n  "
+        + "\n  ".join(stated))
 
 
 def test_the_guard_distinguishes_a_claim_from_a_retraction() -> None:
@@ -306,6 +314,81 @@ def test_the_readme_quotes_no_client_test_count() -> None:
     assert not re.match(r"\s*\*{0,2}\d", row.group(1)), (
         f"README quotes a client test count ({row.group(1).strip()!r}) that no "
         "check here can verify; say where the count lives instead")
+
+
+# --------------------------------------------------------------------------- #
+# Latency, provenance and placeholders (Phase 9 F-19, the remaining items)
+# --------------------------------------------------------------------------- #
+
+#: One same-day, same-input measurement: the six demo files run locally and
+#: live on 2026-11-07 (Phase 9 F-20). Quoting a newer measurement means pointing
+#: these at it, which is the point: a latency figure is tied to its source.
+_LATENCY_LOCAL = "audit/phase9/partb/F20/s1-s6/requests.jsonl"
+_LATENCY_LIVE = "audit/phase9/partb/F20/live-after-s1s6/requests.jsonl"
+_LATENCY_DOCS = ("README.md", "docs/DEMO_SCRIPT.md", "infra/DEPLOY_NOTES.md")
+
+
+def _median_seconds(rel: str) -> float:
+    import json
+    import statistics
+    rows = [json.loads(line) for line in (REPO / rel).read_text().splitlines() if line.strip()]
+    assert rows, f"{rel} holds no requests"
+    return statistics.median(row["seconds"] for row in rows)
+
+
+def test_the_documented_latency_is_the_measured_one() -> None:
+    """
+    README said ~52 s live, ~2.6 s local and ~20x, from an n=20 run long since
+    superseded; it went stale the way the others in this file did. The figures
+    are now re-derived from the cited requests and must appear where they are
+    quoted.
+    """
+    local, live = _median_seconds(_LATENCY_LOCAL), _median_seconds(_LATENCY_LIVE)
+    for name in _LATENCY_DOCS:
+        text = _text(name)
+        assert text, f"{name} is missing, so this check would pass on nothing"
+        for figure in (f"{local:.2f}", f"{live:.2f}"):
+            assert figure in text, (
+                f"{name} does not quote {figure} s, the median measured in "
+                f"{_LATENCY_LOCAL if figure == f'{local:.2f}' else _LATENCY_LIVE}")
+
+
+def test_no_document_states_the_superseded_latency() -> None:
+    """
+    The old figures in every spelling they appeared in, including the rounded
+    ones in DEPLOY_NOTES that a literal "51.27" would have missed.
+    """
+    stale = re.compile(r"51\.27|53\.56|51\.3 s|53\.6 s|~52 s|~20×")
+    hits = []
+    for name in _LATENCY_DOCS:
+        for sentence in re.split(r"(?<=[.!?])\s+|\n", _text(name)):
+            if stale.search(sentence) and not any(m in sentence.lower() for m in _RETRACTION):
+                hits.append(f"{name}: {sentence.strip()[:140]}")
+    assert not hits, "superseded latency stated as fact:\n  " + "\n  ".join(hits)
+
+
+def test_no_document_claims_every_statement_is_provenance_verified() -> None:
+    """
+    The served wording may be the deterministic template, which no provenance
+    check reads (main.py says so where the disclosure is built), so no document
+    may claim every statement was verified. "Not every statement is verified"
+    is the honest form and must not trip this.
+    """
+    stated = _asserts_matching(
+        r"(?<!not )\bevery (clinical )?statement (is|was) (provenance[- ]?)?verified")
+    assert not stated, (
+        "claims every statement is provenance-verified:\n  " + "\n  ".join(stated))
+
+
+def test_no_workflow_names_a_placeholder_backend() -> None:
+    """build-apk.yml named https://YOURNAME-pharmaguard.hf.space as the API."""
+    workflows = sorted((REPO / ".github" / "workflows").glob("*.yml"))
+    assert workflows, "no workflows found, so this check would pass on nothing"
+    offenders = [f"{path.name}:{number}"
+                 for path in workflows
+                 for number, line in enumerate(path.read_text().splitlines(), 1)
+                 if "YOURNAME" in line]
+    assert not offenders, f"placeholder backend named in {offenders}"
 
 
 def test_the_label_mapping_figures_match_the_validator() -> None:

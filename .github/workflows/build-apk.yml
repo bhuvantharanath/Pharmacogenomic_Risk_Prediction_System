@@ -26,7 +26,7 @@
 #   ANDROID_KEY_PASSWORD
 #
 # REQUIRED VARIABLE:
-#   API_BASE_URL              https://YOURNAME-pharmaguard.hf.space
+#   API_BASE_URL              https://pharmaguard-api-baml.onrender.com
 #
 # See infra/DEPLOY_NOTES.md for keystore generation and local signing.
 

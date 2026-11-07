@@ -16,7 +16,7 @@ Both exist and both work. They are not interchangeable for a five-minute slot:
 
 | | local | deployed |
 | --- | ---: | ---: |
-| One analysis | **~2.6 s** | **~52 s** (p50 51.27 s, p95 53.56 s, n=20) |
+| One analysis | **~1.4 s** (median 1.37 s) | **~65 s** (median 64.61 s, range 60.8–65.5 s) — the six demo files, 2026-11-07 |
 | Coverage check | ~0.3 s | **0.35 s** |
 | Cold start | n/a | **~22 s** after ~15 min idle (22.40 s, 22.45 s; Phase 9 B4) |
 | S1–S6 end to end | well under a minute | **~5 minutes of waiting** |
