@@ -1,0 +1,19 @@
+== SBF20-a: the fallback is restored: candidates = matched or usable (backend/app/cpic_engine.py) ==
+  FAILED tests/test_no_borrowed_row.py::test_a_poor_metabolizer_is_not_given_the_normal_metabolizer_row
+  FAILED tests/test_no_borrowed_row.py::test_no_fixture_borrows_a_label_from_another_phenotypes_row
+  FAILED tests/test_no_borrowed_row.py::test_the_explanation_builder_does_not_ground_on_a_borrowed_row[fluorouracil]
+  FAILED tests/test_no_borrowed_row.py::test_the_explanation_builder_does_not_ground_on_a_borrowed_row[capecitabine]
+exit 1; 4 red
+restored identical: yes
+== SBF20-b: a different borrowing: the first usable row when none matches (backend/app/cpic_engine.py) ==
+  FAILED tests/test_no_borrowed_row.py::test_a_poor_metabolizer_is_not_given_the_normal_metabolizer_row
+  FAILED tests/test_no_borrowed_row.py::test_no_fixture_borrows_a_label_from_another_phenotypes_row
+  FAILED tests/test_no_borrowed_row.py::test_the_explanation_builder_does_not_ground_on_a_borrowed_row[fluorouracil]
+  FAILED tests/test_no_borrowed_row.py::test_the_explanation_builder_does_not_ground_on_a_borrowed_row[capecitabine]
+exit 1; 4 red
+restored identical: yes
+== SBF20-c: no row is returned, but the warning is dropped (backend/app/cpic_engine.py) ==
+  FAILED tests/test_no_borrowed_row.py::test_a_poor_metabolizer_is_not_given_the_normal_metabolizer_row
+  FAILED tests/test_no_borrowed_row.py::test_no_fixture_borrows_a_label_from_another_phenotypes_row
+exit 1; 2 red
+restored identical: yes

@@ -1,0 +1,92 @@
+F-20 — no borrowed CPIC row when none matches the called phenotype
+Started 2026-11-07 on main at 12dc819 (F-19, committed, not pushed). Owner instruction: "Plan the engine fix".
+
+== Plan, hashed before any F-20 code ==
+c7f1db4e4c11de4edc908061ad98c9ef8b9fca8ae6df6e54cf0938d65669a5f3  audit/phase9/F20_PLAN.md
+
+== State before any edit ==
+All measured today, read-only; figures are in F20_PLAN.md "State at 12dc819".
+Exemplar (constructed): CYP2C19 PM + only CPIC's Normal Metabolizer row -> "No PGx-guided adjustment identified",
+"If considering clopidogrel, use at standard dose (75 mg/day)", rule standard_dosing. Untouched report: Ineffective.
+Generalised (constructed): 16 fixtures x every real CPIC row except those matching the called phenotypes -> 63 cases
+reach the fallback, 63/63 confident labels borrowed from another phenotype's row.
+Runtime reach (real inputs): evaluate() reaches the fallback on 0 of the 16 fixtures and 0 of 2,400 cohort
+evaluations; the fallback warning is in none of S1-S6 local/live, A4, demo outputs or client fixtures.
+Build-time reach: enumerate_cases.cpic_text_for and pregenerate_explanations.find_annotation take CPIC's DPYD
+activity score 2.0 row for fluorouracil and capecitabine on dpyd_compound_het (DPYD Indeterminate -> Unknown).
+Frozen store not affected (generated 2026-07-24; fixture added 2026-08-11 in e1ed0b8; the stored fluorouracil ·
+DPYD · Unknown entry carries none of that row's wording). The case matrix stores no CPIC text.
+
+== Export baseline (before any edit; export_fixtures_test into scratch) ==
+  803171a9cfc545201430af6bf0376cc92b123bbdd0e84b2498a2f8234f3939ad  S1_confident.summary.html
+  afc133d53f76cde151c47fec1517648ed3a5f0e6fd9bc703caffa11e79338f76  S2_variants_only.summary.html
+  1d0710173848d81d44f2ee554948176b291251e83e89ae817ec3c3974c4f31f0  S3_cyp2d6.summary.html
+  139646d79685b600f338ada6942d6d0615b051b9861a29da37446de9e8cc8873  S4_dpyd.summary.html
+  b3698ac12f34aaf8ce20f25d94ad89b2ec6f2360b94fc7ffd65d2b644b1b5a11  S5_normal.summary.html
+  c4ea0ac9144a02f6a63272f3f522f41622dc3a120c268be69ab917bc25ff5b85  S6_multidrug.summary.html
+  1b65ec58d12d5b3979ea14773379cfbf8233f7a9ff24b312d3312ac4d8c3b69e  X1_all_drugs.summary.html
+  708b45a22dfa06020dbea1ce3afdec86ce903ad5547ade83ceb3e566898bbc76  X2_supplied_cyp2d6.summary.html
+  3bd838674ac943edfceee64512b21691a2f2bfccdebe313bf1caa81d463d8214  X3_supplied_xn.summary.html
+  61169b11e53b4a63eeb08756f64a9d701a242b45ac5c10532ba50c37d188e8b1  S1_confident.fhir.json
+  048288ff038b173a0bffb2b5842cef1fd45e021b006dd0dda127e0d41068f9af  S2_variants_only.fhir.json
+  660f3c11192466558e56ab2271ff4872b1783c2fef61e74630727400e95d69c8  S3_cyp2d6.fhir.json
+  0be69b8119f955997484693d14bebb666665b87e7000d323c8e51c89a32caed6  S4_dpyd.fhir.json
+  70e71349aaf6d03cc9b5b9ac6564e6e9bee80dc843630c20149c9308a8f602f6  S5_normal.fhir.json
+  83a8046053be3d5112fa7ba45c12680e3107219cc3ffedc49ec62a5f7259c57c  S6_multidrug.fhir.json
+  554121d7a1d105a24544cc0569b3811700b504d409766c4409ad87faeded4f43  X1_all_drugs.fhir.json
+  501bd32206222e27c6c4d41286c1959200f870d2e8bee2a7290d64a1af1569a1  X2_supplied_cyp2d6.fhir.json
+  394e7b051a7e2fbd424cf06c3774d41f22ac0120446eb5c221b83dcb7604c8d0  X3_supplied_xn.fhir.json
+
+== Implementation (2026-11-07) ==
+backend/app/cpic_engine.py select_annotation: when no usable row matches the called phenotypes it now returns no
+row, with the warning "No CPIC row for <drug> matches the called phenotypes, so none is shown: a row written for a
+different result could give the opposite advice. Reported as Unknown." evaluate()'s existing `annotation is None`
+branch then reports Unknown with its existing reason. The old line `candidates = matched or usable` and its warning
+("showing the strongest available row") are gone. The docstring's step 2 said "the strongest classification (most
+cautious)"; that conflation of evidence strength with caution is the misconception the fallback rested on, and it now
+says strength measures evidence, not caution. Nothing else in the engine changed: the population choice among rows
+that do match, _annotation_matches_calls, evaluate, derive_label and the label mapping are untouched.
+The two build-time scripts are not edited: they call the same selector, so they stop grounding on a borrowed row
+because it no longer returns one.
+
+== Tests (backend/tests/test_no_borrowed_row.py, 5 passed) ==
+Control  the untouched cyp2c19_pm fixture is Ineffective with "Avoid clopidogrel", so the exemplar starts from the
+         case it claims to.
+AC1      that fixture with clopidogrel's guideline holding only CPIC's Normal Metabolizer row: Unknown; the action is
+         evaluate()'s no-match reason and does not contain "use at standard dose"; the no-match warning is present.
+AC2      all 16 fixtures, each drug's guideline given every real CPIC row except those matching the called phenotypes:
+         every case that reaches the no-match branch is Unknown, and no borrowed row's text reaches its action. The
+         positive control requires the warning in each counted case and at least 63 cases, the number measured before
+         the fix, so the test cannot pass by never reaching the branch.
+AC3      for dpyd_compound_het, pregenerate_explanations.find_annotation and enumerate_cases.cpic_text_for no longer
+         return the DPYD activity score 2.0 row for fluorouracil or capecitabine at phenotype Unknown; the runtime is
+         asserted Unknown for the same report.
+The CPIC wording comes from test-data/reference/cpic_expectations.json; none of it is invented.
+
+== Sabotage (partb/f20_sabotage.py -> F20.sabotage.stdout) ==
+SBF20-a the fallback restored (candidates = matched or usable)   4 red (AC1, AC2, AC3 x2)
+SBF20-b a different borrowing (the first usable row)              4 red (AC1, AC2, AC3 x2)
+SBF20-c no row, but the warning dropped (a silent Unknown)        2 red (AC1's warning check; AC2's positive control,
+                                                                  which counts 0 cases reached); AC3 correctly stays
+                                                                  green, since no row is borrowed
+All three caught; cpic_engine.py restored byte-identical after each. SBF20-a is the decisive one: with the original
+code back, every test aimed at the defect fails, so they detect it rather than merely pass.
+
+== Suites before commit ==
+Backend (partb/F20.suite-precommit.stdout): 1224 passed, 6 skipped, 4 failed - the four identity tests the re-bind
+refreshes, exactly as at B11 and B12 before theirs. 1223 + the 5 new tests = 1228 = 1224 + 4. Every existing test
+passes unmodified, including label-path parity and the compound-row tests.
+Exports: the 18 printable-HTML and FHIR files byte-identical to the baseline above (18 hashes each side; positive
+control: one byte added to a copy is detected).
+
+== Zero-regression vs B12 (run_regression.py F20 --compare-to B12 -> F20.stdout; a4_labels.py F20-after) ==
+S1-S6    6/6 labels, and all six whole bodies identical to B12's once timestamp and processing_time_ms are
+         stripped. Positive control: a flipped risk_label is detected. PASS.
+Cohort   2,400 results, 0 confident->Unknown, 0 Unknown->confident, 0 confident->other confident. PASS.
+74 VCFs  148 field comparisons, 0 mismatches. PASS.
+A4       36 rows identical to B12-after once seconds are stripped. Positive control: a flipped label is detected.
+         PASS.
+Exports  18/18 byte-identical (above). PASS.
+The new warning appears in none of the stored S1-S6 or A4 outputs: consistent with the measurement that the runtime
+never reaches the no-match branch on a real input, which is why nothing moved.
+Explanation store and case matrix: untouched.

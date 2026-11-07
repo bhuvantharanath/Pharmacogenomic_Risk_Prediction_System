@@ -1,0 +1,8 @@
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_compatible_bundle.py::test_checked_manifest_matches_declared_environment
+FAILED tests/test_current_candidate_evaluation.py::test_current_evaluation_requires_exact_candidate_and_evidence
+FAILED tests/test_current_candidate_evaluation.py::test_current_evidence_is_portable_and_tampering_fails_closed
+FAILED tests/test_portable_scientific_hash.py::test_clean_isolated_copy_passes_bundle_verification
+4 failed, 1224 passed, 6 skipped, 10 warnings in 142.57s (0:02:22)

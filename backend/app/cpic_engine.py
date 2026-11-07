@@ -529,8 +529,11 @@ def select_annotation(
     different patient populations (clopidogrel has three: "CVI ACS PCI",
     "CVI non-ACS non-PCI", "NVI"). We cannot know the patient's indication, so:
 
-      1. keep only rows whose full lookup key matches the called phenotypes;
-      2. among those, take the strongest classification (most cautious);
+      1. keep only rows whose full lookup key matches the called phenotypes,
+         and if none does, return none;
+      2. among those, take the strongest classification — CPIC's strength of
+         recommendation, which says how well-evidenced a row is, not how
+         cautious it is;
       3. warn that other populations exist, naming them.
 
     Returns (annotation, warnings).
@@ -549,12 +552,20 @@ def select_annotation(
         return None, warnings
 
     matched = [a for a in usable if _annotation_matches_calls(a, report)]
-    candidates = matched or usable
     if not matched:
+        # No row was written for this result. The strongest row of any phenotype
+        # used to stand in, but strength ranks evidence, not caution, so the
+        # stand-in was in effect the first row in the list: with only CPIC's
+        # Normal Metabolizer row present, a CYP2C19 Poor Metabolizer was told to
+        # use clopidogrel at standard dose (Phase 9 F-20). Returning nothing
+        # sends `evaluate` down its existing Unknown branch.
         warnings.append(
-            f"No CPIC row for {guideline.drug} matched the called phenotypes exactly; "
-            "showing the strongest available row. Treat with extra caution."
+            f"No CPIC row for {guideline.drug} matches the called phenotypes, so "
+            "none is shown: a row written for a different result could give the "
+            "opposite advice. Reported as Unknown."
         )
+        return None, warnings
+    candidates = matched
 
     chosen = max(
         candidates,
