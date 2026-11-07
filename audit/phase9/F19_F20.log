@@ -124,3 +124,30 @@ likely means the content-review state, but as written it is false. Not changed h
 deserves the owner's eye, and test_no_document_claims_the_gate_is_green_or_the_review_complete has a docstring ("The
 gate is red BY DECISION") that is stale in the same way, though its phrase list (adjudication complete, clinically
 reviewed, ...) remains correct and enforces nothing false.
+
+== Push (owner: "Push it", 2026-11-07) ==
+Live criteria, written before any live measurement. e2a8382 changes docs, one workflow comment and backend tests only:
+no file under backend/app or app/lib differs from b3eafe9, the deployed and live-verified commit, so nothing served can
+change and S1-S6 are not re-run - the diff, not a request, is the evidence for that.
+P0  The test workflow on e2a83822d0f2c2adc57d106f89e3d0c0b2dbad22: every step green except the F-08 explanation-content gate (by design),
+    pytest included, so the five new guards pass in CI where the audit files they read are checked out.
+P1  The Deploy run's gate, Render and Cloudflare jobs succeed, and /ready reports e2a83822d0f2c2adc57d106f89e3d0c0b2dbad22.
+(F19_F20.log sha256 with the criteria above as its last section, before any live measurement:
+219cb633b6d28e77c273543d57d3598ab247ac86db6b627fdea224ffa2bc0a2c.)
+
+Results.
+Secret scan over the 9 outgoing files: 5 values checked, 0 flagged. Pushed e68e56f..e2a8382 to main (Deploy run
+42375600001, test run 42375600016).
+P0 PASS  test run 42375600016: completed, conclusion failure, and the only step not succeeding is "Authoritative
+         explanation-content gate" (F-08, by design); pytest success, so the new guards pass in CI with the audit
+         files they read checked out. A correction to P0's own wording, which is hashed and so left as written: it
+         says "the five new guards"; there are four new test functions plus two additions to an existing one ("2 of 2
+         exact" and the CYP2C9 regex). What P0 measures, pytest passing in CI, is unaffected.
+P1 PASS  Deploy run 42375600001: release gate success (13:08:43-13:14:20Z), Render success (13:14:22-13:14:57Z),
+         Cloudflare Pages success (13:14:59-13:17:32Z). /ready build.commit e2a83822d0f2c2adc57d106f89e3d0c0b2dbad22
+         read at 13:18:08Z.
+The status loop retried failed gh calls this time (the previous one had been broken by a network timeout); it read
+both runs cleanly.
+F-19 done: all five of its stale items fixed, guarded and live (the client count in 12dc819, the other four in
+e2a8382). Still open from F-19's neighbourhood: README.md:515's "release status remains not ready", recorded above
+and left for the owner.
