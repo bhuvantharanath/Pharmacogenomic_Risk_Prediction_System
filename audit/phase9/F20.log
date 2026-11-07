@@ -103,3 +103,32 @@ Against B12's package: vcf_sha256 alone, 1,456 rows (the path-bearing bcftools h
 equal_to_previous_evaluation_except_generation_time true, both declared-change lists empty. Cumulative chain against
 the historical benchmark still exactly B5's CYP2C9 and B10's CYP2D6. Every scored metric, exclusion and discrepancy
 classification equal. Zero-regression, external evaluation: PASS.
+
+== Release gate on 1a7ba89 (partb/F20.gate.json, F20.gate.rc) ==
+First run: rc 0, state ready, release_ready true; candidate and tested revision both 1a7ba89, artifact hashes match.
+All seven required checks passed. label-mapping: "PASS: 4 divergence(s), all of them in the accepted baseline" - the
+same four as before, so 101/105 still agree. flutter-tests: 496 passed, as at B12. Against B12's gate only the
+revision, artifact-hash and compatible_bundle fields differ.
+Backend suite on 1a7ba89 (partb/F20.backend-suite.stdout): 1228 passed, 6 skipped, 0 failed (B12: 1222; +1 F-19
+guard, +5 F-20 tests).
+Explanation store: git diff 12dc819..HEAD on explanations.json and explanation_approvals.json is empty: 0 entries
+invalidated.
+
+== AC verdicts (2026-11-07) ==
+AC1 PASS  CYP2C19 Poor Metabolizer with only CPIC's Normal Metabolizer row: Unknown, with the no-match reason and no
+          "use at standard dose"; the warning is present. Before the fix (measured): "No PGx-guided adjustment
+          identified", "use at standard dose". The untouched fixture is asserted Ineffective as the control.
+AC2 PASS  over the 16 fixtures and every real CPIC row, every case reaching the no-match branch is Unknown with no
+          borrowed text in its action, and at least the 63 measured cases are reached. Before: 63 of 63 confident.
+AC3 PASS  find_annotation and cpic_text_for no longer return the DPYD activity score 2.0 row for fluorouracil or
+          capecitabine at Unknown on dpyd_compound_het; the runtime is Unknown for the same report.
+AC4 PASS  every existing backend and Flutter test passes unmodified, label-path parity and the compound-row tests
+          included; the validator reports the same 4 accepted divergences (101/105).
+AC5 PASS  backend 1228 passed 0 failed; Flutter 496 passed; release gate ready on the first run.
+Zero-regression PASS  S1-S6 bodies, 2,400 cohort results, 74 VCFs, A4 and the 18 exports unchanged, each with a
+          positive control; the external evaluation differs from B12's only in the path-bearing vcf_sha256, with
+          nothing declared.
+Sabotage SBF20-a..c all caught; cpic_engine.py restored byte-identical after each.
+Explanation entries invalidated: 0.
+Not done, by design: the live checks need a deploy. Still out of scope: F-20 path 2 (not measured) and the four
+other stale F-19 items.
