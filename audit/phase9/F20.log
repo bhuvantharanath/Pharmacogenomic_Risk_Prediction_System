@@ -132,3 +132,53 @@ Sabotage SBF20-a..c all caught; cpic_engine.py restored byte-identical after eac
 Explanation entries invalidated: 0.
 Not done, by design: the live checks need a deploy. Still out of scope: F-20 path 2 (not measured) and the four
 other stale F-19 items.
+
+== Push and live check (owner: "Push and deploy", 2026-11-07; covers F-19 12dc819 and F-20) ==
+Live criteria, written before any live measurement (the plan's "After deploy" list, made concrete):
+L0  The test workflow on b3eafe9701732a5e1261ab75cc95d1b815d78cad: every step green except the F-08
+    explanation-content gate (by design), with pytest, flutter analyze, flutter test, the FHIR export validation and
+    the exhaustive label-mapping validation all success.
+L1  The Deploy run's gate, Render and Cloudflare jobs succeed. The gate job runs the full backend suite, so
+    test_no_borrowed_row.py (AC1-AC3) and the F-19 guard pass on the deployed commit inside it. /ready reports
+    b3eafe9701732a5e1261ab75cc95d1b815d78cad, read before the first live upload.
+L2  verify_postdeploy.py, live S1-S6 against the local F20 run (audit/phase9/partb/F20/s1-s6): commit matches,
+    labels equal, template-only prose, disclaimer equal.
+L3  For each of S1-S6, gene_findings and the warnings list equal the local F20 run, and each live body equals B12's
+    live body once timestamp and processing_time_ms are stripped. Nothing served may change, because the branch F-20
+    closes is reached by no real input.
+What the live check cannot show, stated in advance so it is not quietly passed over: the fixed branch cannot be
+exercised against production. No input PharmCAT accepts yields an asserted phenotype with no matching CPIC row -
+that is why the runtime was measured never to reach it. So L0-L3 prove the commit is deployed and that nothing served
+moved; the fix's behaviour itself is proven by AC1-AC3, which run inside L1's gate on this commit, not by a live
+request.
+(F20.log sha256 with the criteria above as its last section, before any live measurement:
+2f72cadea128563f872250f1ce72244feb9c853b101be409e147e428fbea99d5.)
+
+Live results.
+Secret scan over the 58 outgoing files: 5 values checked, 0 flagged; no Part A or private file in the set. Pushed
+e7a0a43..b3eafe9 to main (Deploy run 42365185072, test run 42365185062, created 2026-11-07T10:43:56Z).
+L0 PASS  test run 42365185062: completed, conclusion failure, and the only step not succeeding is "Authoritative
+         explanation-content gate" (F-08, by design). pytest, flutter analyze, flutter test, "FHIR export validation
+         (HL7 validator)" and "Label-mapping validation (exhaustive, 105 combinations)" all success.
+L1 PASS  Deploy run 42365185072: release gate success (10:43:58-10:51:13Z), Render success (10:51:15-10:52:04Z),
+         Cloudflare Pages success (10:52:06-10:54:16Z). The gate step ran release_status.py --run-required against
+         the deployed SHA and printed "state ready", "required checks True", "artifact hashes match True",
+         "explanation mode deterministic_template_only". It prints a summary, not test names: the evidence that
+         test_no_borrowed_row.py and the F-19 guard passed there is that both sit in the backend suite that the
+         backend-tests check runs, and the check passed - not a named line in the log. /ready build.commit b3eafe9
+         read at 12:33:16Z, before the first live upload at 12:33:24Z (F20/live_ready_before.json).
+         (One gh status call in the wait loop timed out on the network, so the loop's summary line is empty; both runs'
+         conclusions were then read directly.)
+L2 PASS  verify_postdeploy.py (F20/postdeploy_verification.json): commit matches; all six scenarios pass - labels
+         equal the local F20 run, template-only prose, disclaimer equal. Seconds 64.9, 60.8, 65.5, 64.6, 64.6, 63.8;
+         all 200.
+L3 PASS  F20/live_s1s6_fields.json, 19/19: gene_findings and warnings equal the local F20 run in all six, and every
+         live body equals B12's live body once timestamp and processing_time_ms are stripped. The comparator was
+         checked against a flipped label before the live data arrived. The new no-match warning appears in no live
+         body, as the measurement predicted.
+Live verdict: L0-L3 PASS as written.
+As recorded with the criteria, the live check cannot exercise the fixed branch, because no input PharmCAT accepts
+reaches it; it proves the commit is deployed and nothing served moved. The fix's behaviour rests on AC1-AC3.
+F-20 path 1 done: AC1-AC5 PASS; zero-regression PASS with nothing to declare; live PASS; SBF20-a..c caught; 0
+explanation entries invalidated. F-19's client count is live in the same push. Still open: F-20 path 2 (not
+measured) and four stale F-19 items.
