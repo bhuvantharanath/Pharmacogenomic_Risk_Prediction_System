@@ -144,3 +144,38 @@ representative_biological_records_equal true and equal_to_previous_evaluation_ex
 declared-change lists empty. Against the historical benchmark the cumulative chain is still exactly B5's CYP2C9 and
 B10's CYP2D6, inherited from B11's verified package and not re-declared. Every scored metric, exclusion and
 discrepancy classification equal. Zero-regression, external evaluation: PASS.
+
+== Release gate on b0e1e3c (partb/B12.gate.json, B12.gate.rc) ==
+First run: rc 0, state ready, release_ready true; candidate and tested revision both b0e1e3c, artifact hashes match.
+All seven required checks passed: compatible-bundle, backend-tests, provenance, label-mapping, flutter-analyze,
+flutter-tests, fhir-validation. Against B11's gate the only differing fields are the ones that must differ:
+candidate_revision, tested_revision, the two artifact hashes and compatible_bundle.
+Backend suite on b0e1e3c (partb/B12.backend-suite.stdout): 1222 passed, 6 skipped, 0 failed, the same as B11's
+re-bound head. B12 adds no backend test.
+Explanation store: git diff bcfe650..HEAD on explanations.json and explanation_approvals.json is empty: 0 entries
+invalidated.
+
+== AC verdicts (2026-11-07) ==
+AC1 PASS  the test recomputes WCAG 2.2 from the tokens, reproduces A8's twelve published figures for the unchanged
+          tokens, and then asserts the thresholds: ink3 4.60 on paper and 5.04 on card (was 3.13 / 3.43);
+          controlEdge 3.08 / 3.37 and accentControlEdge 3.04 / 3.33; every verdict ink clears 4.5 on its tint, on
+          card and on paper; ink3 and every verdict ink clear 3.0 as an icon. The source check holds the four
+          control-boundary sites to a controlEdge token, so a new control drawn with a decorative hairline fails.
+          The same figures were re-derived independently in Python and agree.
+AC2 PASS  every ButtonStyleButton name on the samples card is unique, and each sample's title appears in exactly
+          two of them. Before: four "Try this" and four "Download".
+AC3 PASS  MessageText.nameFor pinned both ways; a pumped MessageText matches a named, read-only, live-region node;
+          none of the four message files contains SelectableText( any more.
+AC4 PASS  no two verdicts share both a word and an icon; Toxic and Ineffective are asserted to share a colour,
+          which is why the icon must differ; every fixture verdict's icon is found on the rendered results screen.
+AC5 PASS  no RenderFlex overflow at 360px or 1440px, at 1.0x, 1.5x and 2.0x, with every card opened. Before:
+          2 overflows at 1.5x/360px and 4 at 2.0x/360px, up to 176px.
+AC6 PASS  backend 1222 passed 0 failed; Flutter 496 passed; flutter analyze no issues; release gate ready first run.
+Zero-regression PASS  S1-S6 bodies, 2,400 cohort results, 74 VCFs, A4 and the 18 exports all unchanged, each
+          absence check with its own positive control; the external evaluation differs from B11's only in the
+          path-bearing vcf_sha256, with nothing declared.
+Sabotage SB12-a..f all caught, each by the criterion it targets; every file restored byte-identical.
+Explanation entries invalidated: 0.
+Not claimed, and said so in the plan: keyboard focus order and TalkBack (both "not measured" in A8, needing a real
+device or a manual pass) and a dark theme (not wired at all).
+Not done, by design: the live checks need a deploy.
