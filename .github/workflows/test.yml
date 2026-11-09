@@ -83,6 +83,27 @@ jobs:
       - name: Fetch and verify pinned binaries
         run: python scripts/fetch_pinned_artifacts.py
 
+      # The four demo tests (test_demo_script.py) run S1-S6 against a live
+      # backend and skip when nothing answers on :8000 — which in CI was always,
+      # so the demo assertions had never run here (Phase 9 F-09). Start it the
+      # way the README does, from the committed env example, and wait on /ready,
+      # the same check the tests use. The process lives until the job ends.
+      - name: Start the backend for the demo tests
+        working-directory: backend
+        run: |
+          set -a && source ../infra/local-dev.env.example && set +a
+          nohup python -m uvicorn app.main:app --port 8000 > "$RUNNER_TEMP/uvicorn.log" 2>&1 &
+          for attempt in $(seq 1 60); do
+            if curl --silent --fail http://127.0.0.1:8000/ready > /dev/null; then
+              echo "backend answered /ready after ${attempt} s"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "::error::the backend did not answer /ready within 60 s"
+          cat "$RUNNER_TEMP/uvicorn.log"
+          exit 1
+
       - name: pytest
         working-directory: backend
         env:

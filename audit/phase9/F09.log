@@ -1,0 +1,48 @@
+F-09 — fifteen tests run only on the developer's machine
+Started 2026-11-09 on main at 3041430 (F-08's changes uncommitted alongside). Owner instruction: "continue".
+
+== What the fifteen need, checked today ==
+test_demo_script.py x4 (TestAgainstBackend)  skip unless GET 127.0.0.1:8000/ready answers 200; nothing listens there
+    in CI, so the S1-S6 demo assertions have never run in CI. Fixable here: start the backend in the CI job.
+test_absence_controls.py x3  need test-data/reference/cohort/cohort_n601.vcf, the SAS slice: 93,946,598 bytes,
+    gitignored (.gitignore:94). Running them in CI means publishing it as a pinned, hash-bound artifact, as the
+    locked cohort VCF is - an outward action, and the owner's call. Not done here.
+test_guard_real_outputs.py x11  need captured experiment output from the model and a guard event log, both
+    gitignored. Running them in CI means committing generated text publicly - the owner's call. Not done here.
+test_phase5a_tooling.py x1  needs a backend/.env. CI must never have one (assert_no_baked_secrets), so this skip is
+    correct by design and stays.
+No other test binds port 8000.
+
+== Criteria for the part done here, written before the change ==
+D1  test.yml's backend job starts the backend before pytest, the way the README does (sourcing the committed env
+    example, uvicorn on :8000), waits for /ready to answer 200 - the demo tests' own up-check - and fails the job,
+    printing the server log, if it never does.
+D2  Proven locally first, since only CI can prove the CI half: the same commands start a server that /ready answers,
+    and with it up the four demo tests run and pass rather than skip.
+D3  Guard: test.yml's backend job must start a backend before its pytest step, so the demo tests cannot silently go
+    back to skipping in CI. Sabotage: delete the step, and move it after pytest; both must turn the guard red.
+D4  After a push, if the owner approves one: the CI pytest run shows the four demo tests passed, not skipped.
+criteria sha256: 03e280d557c07b0fd013a183206f235975fcb11d0993727c40a9d0f5c9a9d67c  audit/phase9/F09.log
+
+== Done for the demo tests (2026-11-09) ==
+D1 PASS  test.yml's backend job: "Start the backend for the demo tests", after the pinned binaries and before pytest -
+         sources infra/local-dev.env.example, starts uvicorn on :8000 in the background, waits up to 60 s for /ready
+         to answer, and fails the job with the server log if it never does.
+D2 PASS  locally, the same commands: /ready answered after 2 s; with it up, test_demo_script.py ran 9 passed (the
+         five that need no server and the four that do), partb/F09/demo-with-backend.stdout. Control, no server: 5
+         passed, 4 skipped. Server stopped afterwards.
+D3 PASS  test_the_backend_starts_before_pytest_so_the_demo_tests_run; partb/F09/F09.sabotage.stdout: the step deleted
+         -> red; moved after pytest -> red; test.yml restored byte-identical each time.
+D4 pending: needs a push.
+Backend suite: 1243 passed, 6 skipped, 0 failed (partb/F09/backend-suite.stdout). Locally the four demo tests still
+skip, since nothing runs on :8000 here; that is unchanged and expected.
+Not done here, and why, as recorded above: the SAS slice (x3) and the captured model output (x11) are decisions for
+the owner; the .env test (x1) is correct to skip.
+
+== Correction (appended; the hashed criteria above are left as written) ==
+The section headed "What the fifteen need" lists four groups totalling 19 tests, and the first commit message for this
+item said "the other eleven of F-09's fifteen". Both are wrong about which tests are which. Part A's fifteen are
+test_guard_real_outputs.py x11, test_absence_controls.py x3 and test_phase5a_tooling.py x1 (11 + 3 + 1). The four
+demo tests are a further skip Part A recorded "in addition". So this item fixed none of the fifteen: it made the four
+demo tests run in CI. The fifteen are unchanged, for the reasons given above. The commit message was amended before
+any push; this note records that the criteria text carries the same error.

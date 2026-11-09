@@ -59,6 +59,21 @@ def test_the_content_gate_runs_in_its_own_workflow() -> None:
     assert gates, "the content gate was dropped rather than moved"
 
 
+def test_the_backend_starts_before_pytest_so_the_demo_tests_run() -> None:
+    """
+    test_demo_script.py's four backend tests skip when nothing answers on :8000.
+    In CI nothing did, so the S1-S6 demo assertions never ran there (Phase 9
+    F-09). The backend job must start one before its pytest step.
+    """
+    steps = _workflow("test.yml")["jobs"]["backend"]["steps"]
+    starts = [i for i, step in enumerate(steps)
+              if "uvicorn app.main:app" in step.get("run", "") and "--port 8000" in step.get("run", "")]
+    pytest_steps = [i for i, step in enumerate(steps) if step.get("name") == "pytest"]
+    assert pytest_steps, "the backend job has no pytest step"
+    assert starts, "the backend job no longer starts a backend, so the demo tests skip in CI"
+    assert starts[0] < pytest_steps[0], "the backend starts after pytest, so the demo tests skip"
+
+
 def test_the_detail_reports_must_produce_their_output() -> None:
     detail = [run for _job, name, run in _runs(_workflow("content-review.yml"))
               if name == "Explanation review detail"]

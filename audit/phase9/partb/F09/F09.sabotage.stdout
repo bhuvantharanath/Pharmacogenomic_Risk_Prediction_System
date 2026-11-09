@@ -1,0 +1,7 @@
+== D3a: the start step deleted ==
+  test_the_backend_starts_before_pytest_so_the_demo_tests_run
+exit 1; 1 red; restored identical: yes
+== D3b: the start step moved after pytest ==
+  test_the_backend_starts_before_pytest_so_the_demo_tests_run
+exit 1; 1 red; restored identical: yes
+all caught
