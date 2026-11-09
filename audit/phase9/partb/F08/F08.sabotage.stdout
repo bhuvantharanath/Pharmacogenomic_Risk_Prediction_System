@@ -1,0 +1,13 @@
+== C5a: `|| true` put back on a detail report (.github/workflows/content-review.yml) ==
+  test_no_workflow_swallows_a_return_code
+exit 1; 1 red; restored identical: yes
+== C5b: the content gate put back into test.yml (.github/workflows/test.yml) ==
+  test_the_test_workflow_does_not_carry_the_always_red_gate
+exit 1; 1 red; restored identical: yes
+== C5c: the gate deleted from content-review.yml (.github/workflows/content-review.yml) ==
+  test_the_content_gate_runs_in_its_own_workflow
+exit 1; 1 red; restored identical: yes
+== C5d: the detail step stops checking for a report (.github/workflows/content-review.yml) ==
+  test_the_detail_reports_must_produce_their_output
+exit 1; 1 red; restored identical: yes
+all caught

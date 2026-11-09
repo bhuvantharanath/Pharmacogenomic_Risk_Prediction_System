@@ -120,17 +120,11 @@ jobs:
           EXPLANATION_MODE: static
         run: python -m pytest tests/test_coverage_gate.py tests/test_phenotype_label_invariant.py -q
 
-      # Detail reports do not make an independent release decision. The
-      # authoritative status below consumes the same data together with the
-      # exact approval-manifest/store hashes.
-      - name: Explanation review detail
-        if: always()
-        run: |
-          python scripts/adjudication_status.py --json || true
-          python scripts/review_status.py --json || true
-
-      - name: Authoritative explanation-content gate
-        run: python scripts/release_status.py --content-only
+      # The explanation content gate and its detail reports used to run here,
+      # last in this job. The gate is red BY DECISION while review is
+      # incomplete, so this workflow was red on every push whether or not a
+      # test had failed, and the steps below never ran. They now have their own
+      # workflow, content-review.yml, so `test` means the tests (Phase 9 F-08).
 
       # Glossary coverage: does every domain term a user meets have an answer?
       #

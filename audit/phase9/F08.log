@@ -1,0 +1,55 @@
+F-08 — CI is red on main by design, so a real regression is indistinguishable from the expected red
+Started 2026-11-09 on main at 3041430. Owner instruction: "continue".
+
+== State before any change ==
+The "Authoritative explanation-content gate" (release_status.py --content-only) is a step at the END of test.yml's
+backend job, after pytest. It exits 1 while content review is incomplete (measured today: exit 1, "content ready
+False"), so the backend job, and with it the `test` workflow, fails on every push whether or not pytest passed - the
+red the B8-F-20 live checks have had to read past as "every step green except the F-08 gate". A side effect: every
+step after it is skipped, so the advisory glossary report (scripts/glossary_status.py, measured exit 0) has never run
+in CI. The "Explanation review detail" step runs `adjudication_status.py --json || true` and
+`review_status.py --json || true`; standing rule 3 forbids `|| true`, and here it also hides a crash, because a
+Python traceback exits 1, the same code adjudication_status uses for "incomplete" (measured: adjudication exit 1,
+review exit 0).
+Already resolved by other work: the Deploy workflow no longer fails the same way (the gate amendment; every Deploy
+since B8 succeeded).
+Kept, with the reason: deploy-web.yml's `... 2>/dev/null || echo ""` in the /ready confirmation loop. Under
+`set -euo pipefail` it turns a failed curl into "not confirmed yet"; the loop retries ten times, then errors. The
+return code is handled and the step fails closed - it is not swallowed.
+test.yml is read by scripts/compatible_bundle.py, but only its flutter-version value, which this change leaves alone,
+so the bundle is unaffected.
+
+== Criteria, written before the change ==
+C1  The content gate and the detail reports leave test.yml and run in their own workflow, content-review.yml, with
+    the setup the backend job gave them (dependencies, the spaCy model, JDK 17, the pinned binaries), so their result
+    means what it meant before. `test` then reflects the tests alone.
+C2  No `|| true` in any workflow. The detail reports' exit codes are captured and printed, and each run must produce
+    a parseable JSON report, so a crash fails the step instead of passing as "incomplete".
+C3  Guards: no workflow contains `|| true`; test.yml runs no `release_status.py --content-only`; content-review.yml
+    does (it was moved, not deleted); its detail step validates the JSON.
+C4  Both workflows parse as YAML; verify_compatible_bundle.py still passes; the backend suite passes.
+C5  Sabotage, each restored byte-identical: `|| true` put back; the content gate put back into test.yml; the gate
+    deleted from content-review.yml. Each turns a guard red.
+C6  After a push, if the owner approves one: the test workflow concludes success, and content-review concludes
+    failure on the content gate step alone. That is the property F-08 asks for, and only CI can show it.
+criteria sha256: 5f17c2b17270a16f8a668541d62b420ee52a838a0613cc3b0c1ab930f58dbd00  audit/phase9/F08.log
+
+== Done (2026-11-09) ==
+C1 PASS  .github/workflows/content-review.yml (new) carries the detail reports and the content gate, with the setup
+         the backend job gave them: dependencies, the spaCy model, JDK 17, the pinned binaries. test.yml's backend job
+         now ends with the coverage tests, the glossary report (exit 0, measured) and the provenance upload; a comment
+         says where the gate went. The `test` workflow can therefore go green.
+C2 PASS  no `|| true` in any workflow. The detail step captures and prints each report's exit code and requires a
+         parseable JSON report. Run locally under `bash -eo pipefail`, GitHub's own shell: the real reports exit the
+         step 0 (adjudication's by-design exit 1 is printed, not hidden); a report that crashes exits the step 1.
+         (A first attempt to measure those step exit codes read an empty PIPESTATUS because of how the command was
+         wrapped; it was re-measured with the codes captured directly.)
+C3 PASS  backend/tests/test_ci_workflows.py: no workflow uses `|| true` outside a comment; test.yml runs no
+         `release_status.py --content-only`; content-review.yml runs it and triggers on push; its detail step
+         validates the JSON. The workflows are parsed as YAML, not grepped; every guard first requires its file.
+C4 PASS  both workflows parse; verify_compatible_bundle.py PASS (it reads only test.yml's flutter-version, untouched);
+         backend suite 1243 passed, 6 skipped, 0 failed (with F-09's guard also present).
+C5 PASS  partb/F08/F08.sabotage.stdout, 4 of 4 caught, each restored byte-identical: `|| true` put back, the gate put
+         back into test.yml, the gate deleted from content-review.yml, and the detail step reduced to a file-exists
+         check.
+C6 pending: needs a push. Only CI can show `test` green and content-review red on the gate alone.
