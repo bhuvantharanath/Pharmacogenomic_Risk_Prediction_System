@@ -151,3 +151,35 @@ both runs cleanly.
 F-19 done: all five of its stale items fixed, guarded and live (the client count in 12dc819, the other four in
 e2a8382). Still open from F-19's neighbourhood: README.md:515's "release status remains not ready", recorded above
 and left for the owner.
+
+== The release-status sentence (owner: "continue", 2026-11-09) ==
+Recorded above as found and not fixed. Criteria, written before the change:
+R1  README.md:516 says "the sole authoritative release status remains not ready". The authoritative status is
+    release_status.py --run-required, the Deploy gate's own invocation, and it has reported state ready on every
+    run since B8 (F20.gate.json). Without --run-required it reports not-ready, but only because that invocation
+    runs no required checks. What is true: content review is incomplete (content_ready false, four items
+    outstanding, clinical expert NOT_OBTAINED), and it does not hold up a release because the declared policy,
+    withhold_unapproved_stored_prose, serves the deterministic template instead of stored prose. The sentence is
+    rewritten to say exactly that, naming the policy.
+R2  A guard reads the gate's own JSON (release_status.py --json, about a second, no checks run) and requires: the
+    declared policy is the one README names; none of the outstanding content-review items is a blocking
+    prerequisite; and no document says the release status "remains not ready". If the policy ever changes so that
+    content review does block release, the guard fails and says README needs rewriting, rather than passing.
+R3  The neighbouring guard's docstring ("The gate is red BY DECISION") is stale in the same way and is corrected;
+    its phrase list, which forbids claiming the review is complete, is unchanged.
+R4  Sabotage, restored byte-identical: put the stale sentence back -> red; name a different policy in README -> red.
+R5  The backend suite passes. Docs and tests only.
+criteria sha256 (release-status sentence): 921e5717ce4c76052833cd125780e37fee87f82277d7de94b5e5a5e57a9b2077  audit/phase9/F19_F20.log
+R1 PASS  README.md:516 now says content review is incomplete and does not hold up a release only because the policy,
+         `withhold_unapproved_stored_prose`, serves the template; the authoritative status is ready while content
+         review is not. README.md:478 already said the policy ended the gate's blocking of every release, so the two
+         now agree.
+R2 PASS  test_the_documented_release_status_is_the_gates: reads release_status.py --json (about a second, no checks
+         run), requires README to name the declared policy, requires no outstanding content-review item to be a
+         blocking prerequisite (and at least one to be outstanding), and forbids "release status remains not ready".
+R3 PASS  the neighbouring guard's docstring now says content review is incomplete by decision; its phrase list is
+         unchanged.
+R4 PASS  partb/F19c.sabotage.stdout: the stale sentence put back -> red; README naming a different policy -> red. The
+         first R4b attempt stopped at its own anchor check before writing, because the policy name appears twice in
+         README; re-run replacing both, it was caught. README restored byte-identical each time.
+R5 PASS  backend suite 1238 passed, 6 skipped, 0 failed (+1 here; run with F-10's guards also present, +5 there).

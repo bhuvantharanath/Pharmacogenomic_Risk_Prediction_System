@@ -1,0 +1,10 @@
+== R4a: the stale sentence put back ==
+  test_the_documented_release_status_is_the_gates
+exit 1; 1 red; restored identical: yes
+Traceback (most recent call last):
+  File "<stdin>", line 16, in <module>
+AssertionError: R4b: anchor x2
+== R4b: README names a different policy (all 2 mentions) ==
+  test_the_documented_release_status_is_the_gates
+exit 1; 1 red; restored identical: yes
+caught

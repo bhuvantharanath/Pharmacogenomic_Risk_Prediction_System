@@ -560,9 +560,12 @@ def test_the_documented_adjudication_counts_are_current() -> None:
 
 def test_no_document_claims_the_gate_is_green_or_the_review_complete() -> None:
     """
-    The gate is red BY DECISION: there is no qualified clinical reviewer on the
-    project, so clearing it would assert a review that did not happen. Prose
-    must not quietly promote "escalated" into "done".
+    Content review is incomplete BY DECISION: there is no qualified clinical
+    reviewer on the project, so clearing it would assert a review that did not
+    happen. Prose must not quietly promote "escalated" into "done". (This used
+    to say the gate is red. The release gate has reported ready since the
+    withhold-unapproved-prose policy, which serves only the template; it is the
+    content review that remains incomplete — see the next test, Phase 9 F-19.)
     """
     for phrase in ("adjudication complete", "fully adjudicated",
                    "all sentences decided", "clinically reviewed",
@@ -572,6 +575,44 @@ def test_no_document_claims_the_gate_is_green_or_the_review_complete() -> None:
             f"{phrase!r} is stated as fact. 19 sentences are escalated and "
             f"undecided, and the gate records clinical expert NOT_OBTAINED:\n  "
             + "\n  ".join(stated))
+
+
+def test_the_documented_release_status_is_the_gates() -> None:
+    """
+    README said the authoritative release status "remains not ready". The
+    Deploy gate (release_status.py --run-required) has reported ready since
+    the withhold-unapproved-prose policy: content review is incomplete, but it
+    blocks a release only if stored prose is served, and none is.
+
+    This reads the gate's own JSON without running the required checks, which
+    is enough: the policy and which prerequisites block are declared, not
+    measured. If the policy changes so content review does block, this fails
+    and README needs rewriting, rather than quietly passing.
+    """
+    import json
+    result = subprocess.run(
+        [sys.executable, str(REPO / "scripts/release_status.py"), "--json"],
+        cwd=REPO, capture_output=True, text=True, timeout=300)
+    try:
+        gate = json.loads(result.stdout)
+    except json.JSONDecodeError as exc:
+        raise AssertionError(
+            "release_status.py --json produced no JSON; this must fail loudly "
+            f"rather than skip.\nexit={result.returncode}\n{result.stderr[-400:]}") from exc
+
+    policy = gate["declared_explanation_release_policy"]
+    assert f"`{policy}`" in _text("README.md"), (
+        f"README does not name the gate's declared release policy {policy!r}")
+    blocking = set(gate["blocking_prerequisites"])
+    outstanding = set(gate["outstanding_content_review"])
+    assert outstanding, "no outstanding content review: if review is done, README should say so"
+    assert not outstanding & blocking, (
+        f"content review now blocks release ({sorted(outstanding & blocking)}); "
+        "README's release-status sentence needs rewriting")
+    stated = _asserts("release status remains not ready")
+    assert not stated, (
+        "says the release status remains not ready, but under this policy content "
+        "review does not hold a release:\n  " + "\n  ".join(stated))
 
 
 def test_the_gate_still_reports_no_clinical_reviewer() -> None:
