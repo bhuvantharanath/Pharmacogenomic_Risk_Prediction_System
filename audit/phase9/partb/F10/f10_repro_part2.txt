@@ -1,0 +1,9 @@
+== dev dependencies, but no spaCy model (README never mentions it) ==
+
+OSError: [E050] Can't find model 'en_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.
+
+== the mechanism-vocabulary tests ==
+=========================== short test summary info ============================
+FAILED tests/test_provenance_policy.py::TestMechanismVocabularyCheck::test_it_detects_a_fabricated_mechanism_entity
+FAILED tests/test_provenance_policy.py::TestMechanismVocabularyCheck::test_it_does_not_gate
+2 failed, 4 passed in 0.42s

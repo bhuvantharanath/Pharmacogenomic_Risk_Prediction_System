@@ -1,0 +1,12 @@
+== fresh clone of committed HEAD ==
+af4cc68 Record F-19's push: deployed, guards passing in CI
+
+== README Quickstart, verbatim: venv + requirements.txt ==
+Python 3.11.14
+[notice] A new release of pip is available: 25.3 -> 26.3
+[notice] To update, run: pip install --upgrade pip
+pip rc=0
+
+== README Testing: 'cd backend && pytest' -- which pytest does that run? ==
+which pytest -> /Library/Frameworks/Python.framework/Versions/3.13/bin/pytest
+/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/58cb9be6-a356-4538-b2eb-9d3c4576645c/scratchpad/f10_repro/clone/backend/.venv/bin/python: No module named pytest

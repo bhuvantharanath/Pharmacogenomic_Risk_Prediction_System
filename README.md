@@ -169,7 +169,7 @@ Plus a **contradiction guard**: the mapping reads CPIC recommendation *text*, an
 ## Tech stack
 
 **Backend**
-- Python 3.11 · FastAPI · Uvicorn · Pydantic v2
+- Python 3.11+ · FastAPI · Uvicorn · Pydantic v2
 - PharmCAT 3.4.0, invoked **directly via JAR** (not the `pharmcat_pipeline` wrapper, which can be silently absent)
 - JDK 17 (satisfies both PharmCAT and the Android Gradle build)
 - `bcftools` / `tabix` for remote region slicing of reference genomes
@@ -322,14 +322,14 @@ Full detail: `docs/input_requirements.md`.
 
 ## Quickstart
 
-**Prerequisites:** Python 3.11, JDK 17, Flutter SDK, `bcftools`, PharmCAT 3.4.0 JAR.
+**Prerequisites:** Python 3.11 or newer (CI tests on 3.12; the production image runs 3.14), JDK 17, Flutter SDK, `bcftools`, PharmCAT 3.4.0 JAR.
 
 > JDK 17 is required. Gradle rejects JDK 25, and JDK 17 also runs PharmCAT — one version serves both.
 
 ```bash
 # Backend
 cd backend
-python3.11 -m venv .venv && source .venv/bin/activate
+python3.11 -m venv .venv && source .venv/bin/activate   # or any Python 3.11+, e.g. python3.12
 pip install -r requirements.txt
 
 # PharmCAT is a Java app, not a pip package — fetch the pinned 3.4.0 JAR:
@@ -339,7 +339,7 @@ python ../scripts/fetch_reference_data.py --fetch-tools
 # binary and refuses any whose SHA-256 differs from the manifests. CI runs it too:
 python ../scripts/fetch_pinned_artifacts.py
 
-cp ../infra/local-dev.env.example ../infra/local-dev.env   # then edit
+cp ../infra/local-dev.env.example ../infra/local-dev.env   # works as is; edit JAVA_HOME only if JDK 17 is not your default java
 set -a && source ../infra/local-dev.env && set +a          # the app reads env, not the file
 uvicorn app.main:app --reload --port 8000
 ```
@@ -421,9 +421,19 @@ Presenter runbook: `docs/DEMO_SCRIPT.md`.
 ## Testing and release gates
 
 ```bash
-cd backend && pytest          # backend suite
-cd app && flutter test        # client suite
+# Backend: from the repo root, in the Quickstart's venv, after its fetch steps.
+cd backend
+pip install -r requirements-dev.txt        # includes requirements.txt; adds pytest and spaCy
+python -m spacy download en_core_web_sm    # the model, not just the library: without it two tests fail
+python -m pytest                           # the venv's pytest, not whichever pytest is first on PATH
+
+# Client: from the repo root.
+cd app && flutter test
 ```
+
+These are the steps CI runs (`.github/workflows/test.yml`). A bare `pytest` can
+resolve to a different Python's pytest outside the venv, which is how this
+section used to fail on a clean clone.
 
 Counts are in [Key results](#key-results); they are a snapshot of the last run,
 not a target.

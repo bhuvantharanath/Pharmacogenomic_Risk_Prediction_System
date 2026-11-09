@@ -200,7 +200,7 @@ def preflight(base: str) -> bool:
     except Exception as exc:  # noqa: BLE001
         print(f"{RED}  UNREACHABLE: {type(exc).__name__}: {scrub(exc)}{RESET}")
         print(f"{DIM}  Start it with:{RESET}")
-        print(f"{DIM}    set -a && source backend/.env && set +a{RESET}")
+        print(f"{DIM}    set -a && source infra/local-dev.env && set +a{RESET}")
         print(f"{DIM}    cd backend && uvicorn app.main:app --port 8000{RESET}")
         print(f"{DIM}  Then re-run, or set PHARMAGUARD_API to the printed URL.{RESET}")
         return False

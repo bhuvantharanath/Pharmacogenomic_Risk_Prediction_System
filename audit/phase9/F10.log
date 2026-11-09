@@ -1,0 +1,53 @@
+F-10 — following only the README, the test suite cannot be run as written
+Started 2026-11-09 on main at af4cc68. Owner instruction: "continue".
+
+== Reproduced before any change (fresh clone of af4cc68, fresh python3.11 venv, README steps verbatim) ==
+Part 1 (partb/F10/f10_repro_part1.txt): after the Quickstart's `pip install -r requirements.txt`, the Testing step's
+  `cd backend && pytest` resolves `pytest` to /Library/Frameworks/Python.framework/Versions/3.13/bin/pytest, a global
+  interpreter outside the venv, and the venv's own Python reports "No module named pytest". pytest is only in
+  requirements-dev.txt, which the README never installs.
+Part 2 (partb/F10/f10_repro_part2.txt): with requirements-dev.txt installed but no spaCy model (the README never
+  downloads it), TestMechanismVocabularyCheck: 2 failed, 4 passed - the same two tests Part A recorded.
+Part 3: README says Python 3.11; CI (test.yml) uses 3.12; the production image (infra/Dockerfile) is
+  python:3.14.6-slim-trixie. The local venv is 3.11 and the full suite passes there, so 3.11 is not wrong, only one
+  of three versions in use, and unstated as a minimum.
+Part 4: scripts/run_demo.py:203, on an unreachable backend, prints `set -a && source backend/.env && set +a` - the
+  one file assert_no_baked_secrets refuses to start with. infra/local-dev.env.example's own header gives the right
+  pair: `source infra/local-dev.env`, then `cd backend && uvicorn ...`.
+Part 5: the Quickstart's `cp ../infra/local-dev.env.example ../infra/local-dev.env   # then edit` does not say what
+  to edit. The example already sets CORS_ALLOWED_ORIGINS and EXPLANATION_MODE; the only line meant for editing is a
+  commented JAVA_HOME, needed only when JDK 17 is not the default java.
+
+== Criteria, written before the change ==
+T1  README's Testing section installs what CI installs - requirements-dev.txt (which includes requirements.txt) and
+    the en_core_web_sm model - and runs `python -m pytest`, so the venv's pytest runs, not whichever is first on
+    PATH. Guard: the two install commands are read from test.yml and must appear in README; the bare
+    `cd backend && pytest` must not.
+T2  README's Python prerequisite says 3.11 or newer and names CI's version and the production image's. Guard: the
+    versions are read from test.yml and infra/Dockerfile and must appear in README.
+T3  run_demo.py's recovery hint sources infra/local-dev.env. Guard: it must not name backend/.env and must name
+    infra/local-dev.env.
+T4  The Quickstart says what to edit in local-dev.env: JAVA_HOME, and only if JDK 17 is not the default. Guard:
+    the copy line names JAVA_HOME.
+T5  Verified the way F-10 was found: a fresh clone of the fixed commit, a fresh venv, the README's Testing steps
+    verbatim - `python -m pytest` resolves inside the venv and the vocabulary tests pass 6 of 6.
+S   Sabotage, each restored byte-identical: revert each of T1-T4 and its guard must turn red.
+C   The backend suite passes. scripts/ and docs only; nothing in the scientific core.
+criteria sha256: 429b2080e1af0d840cddca3a3907b54142a69a9f0d82dfda852fec17a1995aa7  audit/phase9/F10.log
+
+== Done (2026-11-09) ==
+T1 PASS  README's Testing section: from the repo root, in the Quickstart's venv, `pip install -r requirements-dev.txt`
+         (which includes requirements.txt), `python -m spacy download en_core_web_sm`, `python -m pytest`; then the
+         client separately (the old block's second `cd app` was relative to backend/). A note says these are CI's
+         steps and why a bare `pytest` failed.
+T2 PASS  "Python 3.11 or newer (CI tests on 3.12; the production image runs 3.14)"; the venv line notes any 3.11+;
+         the tech-stack line says 3.11+.
+T3 PASS  run_demo.py's hint: `set -a && source infra/local-dev.env && set +a`, as the env example's own header has it.
+T4 PASS  the copy step: "works as is; edit JAVA_HOME only if JDK 17 is not your default java".
+Guards (backend/tests/test_readme_steps.py, 5): each reads its fact from where it lives - test.yml's install steps and
+python-version, the Dockerfile's python base image, the env example - and requires README (or run_demo.py) to agree;
+each first requires its subject to exist.
+S  PASS  partb/F10/F10.sabotage.stdout, 5 of 5 caught, each by its own guard, every file restored byte-identical.
+C  PASS  partb/F10/F10.backend-suite.stdout: 1238 passed, 6 skipped, 0 failed (+5 here, +1 the release-status guard).
+         scripts/run_demo.py and docs only; nothing in the scientific core.
+T5 is measured after the commit, on a fresh clone of it.

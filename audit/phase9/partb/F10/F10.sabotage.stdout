@@ -1,0 +1,16 @@
+== T1a: README stops installing the dev requirements (README.md) ==
+  test_the_readme_installs_what_ci_installs
+exit 1; 1 red; restored identical: yes
+== T1b: the bare `cd backend && pytest` comes back (README.md) ==
+  test_the_readme_runs_the_venvs_pytest
+exit 1; 1 red; restored identical: yes
+== T2: the prerequisite goes back to plain 'Python 3.11' (README.md) ==
+  test_the_readme_names_the_python_versions_in_use
+exit 1; 1 red; restored identical: yes
+== T3: the demo hint sources backend/.env again (scripts/run_demo.py) ==
+  test_the_demo_points_at_the_env_file_startup_accepts
+exit 1; 1 red; restored identical: yes
+== T4: '# then edit' comes back (README.md) ==
+  test_the_quickstart_says_what_to_edit
+exit 1; 1 red; restored identical: yes
+all caught
