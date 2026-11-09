@@ -1,0 +1,17 @@
+== fresh clone of the fixed commit ==
+b79cb8f F-10: the README's setup and test steps, made to work as written
+
+== Quickstart: venv + requirements.txt ==
+Python 3.11.14
+
+
+== Testing section, verbatim ==
+
+Successfully installed en-core-web-sm-3.8.0
+[38;5;2m✔ Download and installation successful[0m
+
+-- python -m pytest resolves to:
+  /private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/58cb9be6-a356-4538-b2eb-9d3c4576645c/scratchpad/f10_verify/clone/backend/.venv | pytest 8.4.2 | inside the venv: True
+
+-- the two tests that failed without the model:
+6 passed in 0.57s

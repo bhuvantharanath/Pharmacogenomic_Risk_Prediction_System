@@ -51,3 +51,12 @@ S  PASS  partb/F10/F10.sabotage.stdout, 5 of 5 caught, each by its own guard, ev
 C  PASS  partb/F10/F10.backend-suite.stdout: 1238 passed, 6 skipped, 0 failed (+5 here, +1 the release-status guard).
          scripts/run_demo.py and docs only; nothing in the scientific core.
 T5 is measured after the commit, on a fresh clone of it.
+
+== Committed b79cb8f; T5 measured on a fresh clone of it (partb/F10/f10_verify.txt) ==
+T5 PASS  fresh clone of b79cb8f, fresh python3.11 venv, the Quickstart's `pip install -r requirements.txt`, then the
+         Testing section verbatim: requirements-dev.txt installed, en-core-web-sm 3.8.0 installed, `python -m pytest`
+         resolved to pytest 8.4.2 inside the venv (sys.prefix is the clone's .venv), and TestMechanismVocabularyCheck
+         passed 6 of 6 where the same clone state without the model failed 2 of 6.
+Not measured on the fresh clone: the whole backend suite. That needs the Quickstart's fetch steps (the PharmCAT jar
+and the locked cohort VCF), which T5 did not ask for; the suite passes in this checkout (1238) and in CI.
+F-10 done: T1-T5 PASS, 5 of 5 sabotages caught.
