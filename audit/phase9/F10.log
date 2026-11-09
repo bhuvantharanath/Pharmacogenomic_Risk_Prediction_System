@@ -60,3 +60,26 @@ T5 PASS  fresh clone of b79cb8f, fresh python3.11 venv, the Quickstart's `pip in
 Not measured on the fresh clone: the whole backend suite. That needs the Quickstart's fetch steps (the PharmCAT jar
 and the locked cohort VCF), which T5 did not ask for; the suite passes in this checkout (1238) and in CI.
 F-10 done: T1-T5 PASS, 5 of 5 sabotages caught.
+
+== Push (owner: "Push them", 2026-11-09) ==
+Covers five commits: a0be5ff (the release-status sentence), b79cb8f and 1ddb55b (F-10), f2b1a36 and 69517a4 (the
+hosting decision). Live criteria, written before any live measurement. No file under backend/app or app/lib differs
+from af4cc68, the commit currently live, so nothing served can change and S1-S6 are not re-run; the diff is the
+evidence for that. scripts/run_demo.py changed, but it is a local demo driver, not served.
+P0  The test workflow on 69517a467338c23b2d40486f9ae5a2c15fb068c6: every step green except the F-08 explanation-content gate (by design), pytest
+    included - so test_readme_steps.py and the release-status guard pass in CI, where the release-status guard runs
+    scripts/release_status.py --json against a fresh checkout.
+P1  The Deploy run's gate, Render and Cloudflare jobs succeed, and /ready reports 69517a467338c23b2d40486f9ae5a2c15fb068c6.
+(F10.log sha256 with the criteria above as its last section, before any live measurement:
+b0caf5c1e52d88427fd1ee11589b2ccdccb76eecf8feb94475ce2bb4ac23fa11.)
+
+Results.
+Secret scan over the 13 outgoing files: 5 values checked, 0 flagged; no Part A or private file in the set. Pushed
+af4cc68..69517a4 to main (Deploy run 42591876684, test run 42591876823).
+P0 PASS  test run 42591876823: completed, conclusion failure, and the only step not succeeding is "Authoritative
+         explanation-content gate" (F-08, by design); pytest success - so test_readme_steps.py and the release-status
+         guard, which runs scripts/release_status.py --json on the fresh checkout, pass in CI.
+P1 PASS  Deploy run 42591876684: release gate success (09:14:38-09:21:55Z), Render success (09:21:57-09:22:46Z),
+         Cloudflare Pages success (09:22:48-09:25:10Z). /ready build.commit 69517a467338c23b2d40486f9ae5a2c15fb068c6
+         read at 09:25:35Z.
+Live: the release-status sentence, F-10's steps and the hosting decision, with the owner's choice to stay on Render.
