@@ -81,4 +81,6 @@ and only a trial would show how often it happens.
 
 ## Owner's decision
 
-*(not yet made)*
+**Stay on Render** (owner, 2026-11-09: "Stay on Render"). Option A. No trial and
+no migration. If analysis time later becomes the priority, the recommendation
+above still applies: a measured trial on another host before any move.
