@@ -46,3 +46,5 @@ test_guard_real_outputs.py x11, test_absence_controls.py x3 and test_phase5a_too
 demo tests are a further skip Part A recorded "in addition". So this item fixed none of the fifteen: it made the four
 demo tests run in CI. The fifteen are unchanged, for the reasons given above. The commit message was amended before
 any push; this note records that the criteria text carries the same error.
+D4 PASS  (recorded in F08.log, push section, Q3): in CI the four demo tests ran - 4 fewer skipped and 4 more passed,
+         alongside the 5 new guards - and the backend answered /ready after 2 s.

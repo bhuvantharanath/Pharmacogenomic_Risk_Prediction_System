@@ -53,3 +53,38 @@ C5 PASS  partb/F08/F08.sabotage.stdout, 4 of 4 caught, each restored byte-identi
          back into test.yml, the gate deleted from content-review.yml, and the detail step reduced to a file-exists
          check.
 C6 pending: needs a push. Only CI can show `test` green and content-review red on the gate alone.
+
+== Push (owner: "Push them", 2026-11-09; covers F-08 4cacab8 and F-09 5ff0022) ==
+Criteria, written before any measurement. These are F-08's C6 and F-09's D4, made concrete, plus the deploy.
+No file under backend/app or app/lib differs from 69517a4, the commit currently live, so nothing served can change.
+Q1 (C6, F-08's point)  The test workflow on 5ff00226d61811af9d37e03f0b8695ff4b017094 concludes SUCCESS - every job green. Every test run since
+    Part A has concluded failure.
+Q2 (C6)  The content review workflow on the same commit concludes failure, and the only step that fails is
+    "Authoritative explanation-content gate"; "Explanation review detail" succeeds, meaning both reports produced
+    their JSON.
+Q3 (D4)  The four demo tests run in CI: the "Start the backend for the demo tests" step succeeds, and the pytest
+    summary line, against the last test run before this change (run 42591876823 on 69517a4), shows 4 fewer skipped
+    and 9 more passed - the 4 demo tests plus the 5 new CI guards, and no other test changed.
+Q4  The Deploy run's gate, Render and Cloudflare jobs succeed, and /ready reports 5ff00226d61811af9d37e03f0b8695ff4b017094.
+(F08.log sha256 with the criteria above as its last section, before any measurement:
+f64eec2dd5358390a42d41aa5e808b5bb78c4e819a34ea43fbebd67745779a95.)
+
+Results.
+Secret scan over the 9 outgoing files: 5 values checked, 0 flagged. Pushed 3041430..5ff0022 to main. Three runs fired:
+test 42640058767, content review 42640058862 (the new workflow, triggered on push as designed), Deploy 42640058664.
+Q1 PASS  test run 42640058767 concluded SUCCESS: backend, flutter and honesty jobs all success, no step failing. Every
+         test run from Part A until this one concluded failure.
+Q2 PASS  content review run 42640058862 concluded failure, and the only failing step is "Authoritative
+         explanation-content gate"; "Explanation review detail" succeeded, so both reports produced their JSON. Its
+         red now means one thing: content review is incomplete.
+Q3 PASS  "Start the backend for the demo tests" succeeded ("backend answered /ready after 2 s"). pytest, counted from
+         its progress characters (it prints no summary line under -q twice), first run only:
+           run 42591876823 on 69517a4 (before): passed 1223, skipped 21, total 1244
+           run 42640058767 on 5ff0022 (after):  passed 1232, skipped 17, total 1249
+         +9 passed (the 4 demo tests and the 5 new CI guards), -4 skipped, +5 total: exactly as predicted. The baseline
+         reconciles with this checkout (1238 passed + 6 skipped = 1244); CI's 15 extra skips are F-09's fifteen.
+         The glossary report, skipped on every earlier run because it came after the always-red gate, ran and succeeded.
+Q4 PASS  Deploy run 42640058664: release gate success (14:59:25-15:04:27Z), Render success (15:04:29-15:05:18Z),
+         Cloudflare Pages success (15:05:20-15:08:41Z). /ready build.commit 5ff00226d61811af9d37e03f0b8695ff4b017094
+         read at 15:09:35Z.
+F-08 done: C1-C6 PASS. F-09's demo half done: D1-D4 PASS. F-09's fifteen remain, as recorded in F09.log.
