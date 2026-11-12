@@ -61,3 +61,27 @@ Nothing is published and no test changes. The fifteenth, test_phase5a_tooling.py
 correct to skip in CI by design. So CI skips these fifteen on purpose; the four demo tests, which Part A recorded
 alongside them, now run in CI (Q3 in F08.log).
 F-09 closed as far as it goes: the demo path runs in CI; the rest is local-only by decision, recorded here.
+
+== Push (owner: "Push them", 2026-11-12; covers 2b665ae and 3b1f522, two audit-log notes) ==
+Criteria, written before any measurement. Only audit/phase9/B11.log and F09.log change, so nothing served or tested
+can move. Since F-08 the bar is higher than "green except the gate": test must conclude success.
+R1  The test workflow on 3b1f52276991447db0a7d9d41b4ab23fb13e78ba concludes success, every job green.
+R2  The content review workflow concludes failure on "Authoritative explanation-content gate" alone.
+R3  The Deploy run's gate, Render and Cloudflare jobs succeed, and /ready reports 3b1f52276991447db0a7d9d41b4ab23fb13e78ba.
+(F09.log sha256 with the criteria above as its last section, before any measurement:
+b30d18288d88d27914c14f73dfd4110f296603678748832059923b9f0274d3f3.)
+
+Results.
+Secret scan over the 2 outgoing files: 5 values checked, 0 flagged. Pushed 52a3ffd..3b1f522 to main (test run
+43158733476, content review run 43158733390).
+R1 PASS  test concluded success: backend, flutter and honesty jobs all success.
+R2 PASS  content review concluded failure, and "Authoritative explanation-content gate" is the only step not
+         succeeding.
+R3 FAILED AS WRITTEN. No Deploy run started for 3b1f522: deploy-web.yml triggers only on changes under app/,
+         backend/, scripts/, rag-corpus/, infra/Dockerfile, infra/render.yaml or the workflow itself, and this push
+         changes two audit logs. /ready, read at 2026-11-12T05:04:32Z, reports 5ff00226d61811af9d37e03f0b8695ff4b017094,
+         the last deployed commit, and no file under backend/app or app/lib differs between it and 3b1f522, so what
+         is live already serves exactly this commit's code. The behaviour is right; the criterion was wrong - it
+         assumed every push to main deploys. Recorded as failed rather than re-read as passed. The same was true of
+         the earlier record-only pushes (af4cc68, e68e56f, 3041430, 52a3ffd): none deployed, and none was claimed to.
+         Future criteria for an audit-only push should say no Deploy is expected.
