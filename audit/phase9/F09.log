@@ -48,3 +48,16 @@ demo tests run in CI. The fifteen are unchanged, for the reasons given above. Th
 any push; this note records that the criteria text carries the same error.
 D4 PASS  (recorded in F08.log, push section, Q3): in CI the four demo tests ran - 4 fewer skipped and 4 more passed,
          alongside the 5 new guards - and the backend answered /ready after 2 s.
+
+== Owner's decision on the fourteen (2026-11-12) ==
+"Keep local-only". The fourteen of F-09's fifteen that could only run in CI by publishing something stay local-only,
+for the reasons the repo's own ignore rules give:
+  test_guard_real_outputs.py x11  need reports/guard_experiment_raw.json (11,724 bytes), gitignored because it
+      "deliberately contains fabricated clinical text" - reports/guard_experiment.md is the committed write-up - and
+      logs/guard_events.jsonl (65 lines), gitignored as per-run telemetry whose distilled numbers are committed.
+  test_absence_controls.py x3  need the 93,946,598-byte SAS slice, which CI could only have as a published pinned
+      artifact.
+Nothing is published and no test changes. The fifteenth, test_phase5a_tooling.py x1, needs a backend/.env and is
+correct to skip in CI by design. So CI skips these fifteen on purpose; the four demo tests, which Part A recorded
+alongside them, now run in CI (Q3 in F08.log).
+F-09 closed as far as it goes: the demo path runs in CI; the rest is local-only by decision, recorded here.
