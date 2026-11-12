@@ -85,3 +85,9 @@ R3 FAILED AS WRITTEN. No Deploy run started for 3b1f522: deploy-web.yml triggers
          assumed every push to main deploys. Recorded as failed rather than re-read as passed. The same was true of
          the earlier record-only pushes (af4cc68, e68e56f, 3041430, 52a3ffd): none deployed, and none was claimed to.
          Future criteria for an audit-only push should say no Deploy is expected.
+
+== Owner's decision on R3 (2026-11-12) ==
+"Accept it". R3 is accepted as not applicable to an audit-only push. The Deploy workflow is path-filtered, so a push
+that changes no served or build path has nothing to deploy, and the live commit, 5ff0022, already serves exactly this
+code. The criteria text and its hash are unedited; this records the owner's reading, as B8's L4-ii and B12's L4
+amendments did. From here on, criteria for an audit-only push state that no Deploy is expected.
