@@ -255,3 +255,8 @@ L6 PASS  B11/live_printable_summary.json, 7/7: the summary the live app itself p
 Live verdict: L0-L6 PASS.
 B11 done: AC1-AC5 PASS; zero-regression PASS with nothing to declare; live PASS; 0 explanation entries invalidated.
 Sabotage SB11-a..f NOT RUN (owner decision) - the one standing-rule obligation this item does not meet.
+
+== Owner's decision on the NUDT15 finding (2026-11-12) ==
+"Leave it as is". The South Asian context row stays keyed on each drug's primary gene, as AC4 requires, so
+azathioprine's card shows TPMT's measured figure (3.3%) and not NUDT15's (13.0%). AC4 is not amended. The finding
+above stays recorded so the choice remains visible; nothing about it is pending.
