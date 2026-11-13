@@ -248,12 +248,34 @@ DRAGEN, not called by PharmaGuard."*
 
 | Symptom | What it is | What to do |
 |---|---|---|
+| **Fewer than 6 drug cards, or a promised result missing** | **a cached build** — see below | Hard reload, or open a private window |
 | Banner counts past 60 s | cold start | Let it run; the budget is 180 s |
 | `SERVER_BUSY` (503) | one analysis slot, someone else is in it | Wait and retry; it is a queue, not a fault |
 | Every gene Unknown on an uploaded file | almost always a variants-only or array file | That is the demo — show the coverage panel |
 | codeine Unknown from a sample card | expected — no CYP2D6 call was supplied | Section 3, last subsection |
 | `OUTSIDE_CALL_INVALID` (400) | the caller name is not one of the five accepted | Use `DRAGEN` exactly, with a diplotype like `*4/*5` |
 | Live site unreachable | Pages or Render | Section 5, offline |
+
+### The cached-build trap, which bit this project once already
+
+The client is a Flutter web app with a **service worker**, so a browser that
+visited the site before a deploy can keep serving the old build indefinitely —
+including after a normal reload. On 2026-11-13 this made a freshly deployed fix
+look like it had not shipped: the deployed `main.dart.js` provably contained
+the new code, and the browser kept running the old one.
+
+**Before presenting, on the machine you will present from**, open the site and
+confirm a sample run shows **6 drug cards**. If it shows 3, you are on a cached
+build. Either hard reload (Cmd+Shift+R / Ctrl+Shift+R), open a private window,
+or run this in the browser console:
+
+```js
+(await navigator.serviceWorker.getRegistrations()).forEach(r => r.unregister());
+(await caches.keys()).forEach(k => caches.delete(k));
+location.reload();
+```
+
+A private window is the simplest insurance and costs nothing.
 
 ## 8. Do not claim
 
