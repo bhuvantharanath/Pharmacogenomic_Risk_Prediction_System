@@ -18,7 +18,7 @@ JAR_PATH = REPO_ROOT / "test-data/reference/tools/pharmcat-3.4.0-all.jar"
 HASH_POLICY_RELATIVE = "scripts/scientific_hash_policy.json"
 MIGRATION_RELATIVE = "scripts/application_hash_migration.json"
 CURRENT_EVALUATION_RELATIVE = (
-    "test-data/benchmark/current-candidate-2026-11-12-phase10s5/evaluation_manifest.json"
+    "test-data/benchmark/current-candidate-2026-11-12-phase10s6/evaluation_manifest.json"
 )
 HASH_POLICY_VERSION = 2
 SCOPED_GENES = (

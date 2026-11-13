@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import '../api/backend_status.dart';
 import '../api/pharmaguard_api.dart';
 import '../config.dart';
+import '../generated/capabilities.g.dart';
 import '../glossary/glossary_text.dart';
 import '../models/analysis.dart';
 import '../theme/tokens.dart';
@@ -33,10 +34,31 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+/// Every drug this build can present, derived from the capability registry.
+///
+/// WAS `codeine,warfarin,clopidogrel`, WHICH BROKE THE SAMPLES.
+///
+/// Two of those three cannot produce a confident label by design — codeine
+/// needs a CYP2D6 call supplied alongside, and warfarin is an explicit
+/// abstention — so the default checked exactly one answerable drug. That was
+/// survivable while the bundled samples were CYP2C19 cases. It stopped being
+/// survivable in Phase 10 §5: the sample cards now promise a Toxic
+/// fluorouracil on HG02684 and a Toxic simvastatin on HG00525, and neither
+/// drug was in the list, so one tap on either card returned three cards that
+/// did not include the result the card had just promised.
+///
+/// Derived from `kDrugCapabilities` rather than written out again, so the
+/// default cannot drift from what the application actually supports. A drug
+/// added to the registry with `uiAvailable` appears here by itself.
+final String kDefaultDrugs = kDrugCapabilities
+    .where((DrugCapability c) => c.uiAvailable)
+    .map((DrugCapability c) => c.drug)
+    .join(',');
+
 class _HomeScreenState extends State<HomeScreen> {
   final PharmaGuardApi _api = PharmaGuardApi();
   final TextEditingController _drugsController = TextEditingController(
-    text: 'codeine,warfarin,clopidogrel',
+    text: kDefaultDrugs,
   );
 
   /// An optional CYP2D6 call from a dedicated caller (Phase 9 B10).
@@ -441,11 +463,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   enabled: !_loading,
                   textInputAction: TextInputAction.done,
                   onSubmitted: (_) => _loading ? null : _analyze(),
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     labelText: 'Drugs (comma-separated)',
-                    hintText: 'codeine,warfarin,clopidogrel',
-                    prefixIcon: Icon(Icons.medication_outlined),
-                    border: OutlineInputBorder(),
+                    hintText: kDefaultDrugs,
+                    prefixIcon: const Icon(Icons.medication_outlined),
+                    border: const OutlineInputBorder(),
                   ),
                 ),
                 const SizedBox(height: 10),

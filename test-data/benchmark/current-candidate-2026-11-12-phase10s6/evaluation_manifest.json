@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "evaluation_id": "pharmaguard-external-current-candidate-2026-11-12-phase10s6",
+  "created_at": "2026-11-13T05:21:13.045514+00:00",
+  "candidate_application_core_sha256": "4e34250123515a1f38aba593b0fd23060ba54d2e7337b6a423a387459b9470e8",
+  "application_hash_policy_version": 2,
+  "base_head_metadata_only": "f49eb0efe16ac352b7bd81ad4bc0a3fc1ff71942",
+  "previous_evaluation": {
+    "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/evaluation_manifest.json",
+    "bytes": 5859,
+    "sha256": "af023a3fa435705870d75a774cd84a4406aac7024b358c5d67ab0959ea477c44"
+  },
+  "historical_benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "frozen_protocol": {
+    "path": "test-data/benchmark/external/protocol.json",
+    "bytes": 9677,
+    "sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e"
+  },
+  "frozen_cohort_lock": {
+    "path": "test-data/benchmark/external/cohort_lock.json",
+    "bytes": 45274,
+    "sha256": "88bc2da84b930493bd4db715b627a6b6fc61440969b1aecb2c287ebacecbb5dc"
+  },
+  "independent_truth_workbook": {
+    "path": "test-data/benchmark/external/Consolidated_PGx-HLA_table_1-22-25-V4.xlsx",
+    "bytes": 162599,
+    "sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109"
+  },
+  "independent_truth_table": {
+    "path": "test-data/benchmark/external/sample_gene_truth.tsv",
+    "bytes": 287825,
+    "sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601"
+  },
+  "frozen_combined_vcf": {
+    "path": "test-data/benchmark/external/genomic/locked_cohort.vcf.gz",
+    "bytes": 3266038,
+    "sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba"
+  },
+  "pinned_jar": {
+    "path": "test-data/reference/tools/pharmcat-3.4.0-all.jar",
+    "bytes": 32292707,
+    "sha256": "9317ef632bf6c9786ff0d9d455d4c9f6d2882ebd66ad7256b4ae958ddf454741"
+  },
+  "upstream_report_manifest": {
+    "path": "test-data/benchmark/external/pharmcat_report_manifest.json",
+    "bytes": 54176,
+    "sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8"
+  },
+  "historical_benchmark_manifest": {
+    "path": "test-data/benchmark/external/benchmark_manifest.json",
+    "bytes": 7588,
+    "sha256": "e19f995579482b152271c2c4eadc7b4fbe4b89832299b3111b761985484d0e92"
+  },
+  "upstream_reuse": {
+    "verified_report_count": 208,
+    "new_caller_executions_for_208_person_cohort": 0,
+    "source_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+    "report_manifest_source_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+    "reason": "same hashed source VCF, pinned JAR/definitions, 208 individually verified report hashes and frozen truth"
+  },
+  "fresh_stages": {
+    "application_individuals": 208,
+    "scored_sample_gene_rows": 1456,
+    "f4_local_api_cases": 2
+  },
+  "denominators": {
+    "unique_individuals": 208,
+    "sample_gene_rows": 1456,
+    "truth_evaluable_rows": 596,
+    "pharmcat_reports": 208
+  },
+  "comparison": {
+    "all_metrics_equal_except_generation_time": true,
+    "equal_to_previous_evaluation_except_generation_time": true,
+    "differing_eligibility_field": "vcf_sha256",
+    "differing_eligibility_rows": 1456,
+    "representative_biological_records_equal": true
+  },
+  "change_scope": "one entry added to the accepted CYP2D6 outside-call list and the matching client string; no gate, grammar, mapping or phenotype logic touched, and no eligibility change declared",
+  "outputs": [
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/EVALUATION-REPORT.md",
+      "bytes": 3318,
+      "sha256": "ccdf41525f8d659cd58994d0c173b37f8cadecd9deed7cd484a47c09ac146472"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/discrepancies.tsv",
+      "bytes": 248212,
+      "sha256": "dc9efc199160b477732b5fbaf73941e1ba6fa6ff105c04b346c19e50299ed041"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/evaluation-comparison.json",
+      "bytes": 15000,
+      "sha256": "61f83ecd7c0860b49a2567c662001a929dbb910fe9cd3a97adbffa6273719a14"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/exclusions.tsv",
+      "bytes": 48960,
+      "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/external_benchmark_results.json",
+      "bytes": 33667,
+      "sha256": "93704615be1ad88082af55b6bbba5c911bcd28acee69e453bdbd49f741bcfa20"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/f4-fresh-replay.json",
+      "bytes": 1767,
+      "sha256": "18ee1c7afaf2ac6be25153377ae4918b4ad9b82271d7b656e776cc8dcc6a9cea"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/input_eligibility.tsv",
+      "bytes": 621996,
+      "sha256": "db7c6bbdd213d65492b19912d4f89f18a3f009c5092faf916dd70b5dcfc26583"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/raw_benchmark_manifest.json",
+      "bytes": 7588,
+      "sha256": "e36965861491b4a81de2d3810001f2db6b4688c9f5fb0fb3540794df64982ce1"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/raw_scoring_report.md",
+      "bytes": 11481,
+      "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
+    },
+    {
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/stage-command-receipts.json",
+      "bytes": 4707,
+      "sha256": "d84bb71a25ae98c0bf0d8d5047b262d16f98a009434feb1628a76731a4b3bc7a"
+    }
+  ],
+  "self_reference": "This manifest hashes its outputs, not itself. The bundle manifest separately hashes this file.",
+  "clinical_review": "NOT_OBTAINED"
+}

@@ -298,7 +298,7 @@
     "pharmcat_reports": 208,
     "application_eligible_sample_gene_rows": 0,
     "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
-    "application_core_sha256": "b747d41c71f38e59be8935e4cfa03b3887e695a74bfc8255b8982f09ed1f1afb",
+    "application_core_sha256": "4e34250123515a1f38aba593b0fd23060ba54d2e7337b6a423a387459b9470e8",
     "application_hash_policy_version": 2,
     "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
     "benchmark_historical_hash_policy_version": 1,
@@ -342,11 +342,11 @@
     "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
   },
   "evaluation_current": {
-    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-12-phase10s5",
-    "application_core_sha256": "b747d41c71f38e59be8935e4cfa03b3887e695a74bfc8255b8982f09ed1f1afb",
+    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-12-phase10s6",
+    "application_core_sha256": "4e34250123515a1f38aba593b0fd23060ba54d2e7337b6a423a387459b9470e8",
     "manifest": {
-      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/evaluation_manifest.json",
-      "sha256": "af023a3fa435705870d75a774cd84a4406aac7024b358c5d67ab0959ea477c44",
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/evaluation_manifest.json",
+      "sha256": "f953ecd3faa27f24be44b7c4b51d7d4edea69c36bfef88d1fdbad948bf74bda0",
       "bytes": 5859
     },
     "historical_benchmark_manifest": {
@@ -365,54 +365,54 @@
     },
     "outputs": [
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/EVALUATION-REPORT.md",
-        "bytes": 2976,
-        "sha256": "000f977ee128d03435f0740bce5025a3508f7052ef5587cd8b5446099fe4e78a"
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/EVALUATION-REPORT.md",
+        "bytes": 3318,
+        "sha256": "ccdf41525f8d659cd58994d0c173b37f8cadecd9deed7cd484a47c09ac146472"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/discrepancies.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/discrepancies.tsv",
         "bytes": 248212,
         "sha256": "dc9efc199160b477732b5fbaf73941e1ba6fa6ff105c04b346c19e50299ed041"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/evaluation-comparison.json",
-        "bytes": 15961,
-        "sha256": "5dc34dbaca4e015ce3191155448abd49e1f39394b0b33516e466474b7d601394"
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/evaluation-comparison.json",
+        "bytes": 15000,
+        "sha256": "61f83ecd7c0860b49a2567c662001a929dbb910fe9cd3a97adbffa6273719a14"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/exclusions.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/exclusions.tsv",
         "bytes": 48960,
         "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/external_benchmark_results.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/external_benchmark_results.json",
         "bytes": 33667,
-        "sha256": "b10e3373876c9de98bd853635c36f8dbe17b2cae58ad0afa78472810d44b1f76"
+        "sha256": "93704615be1ad88082af55b6bbba5c911bcd28acee69e453bdbd49f741bcfa20"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/f4-fresh-replay.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/f4-fresh-replay.json",
         "bytes": 1767,
-        "sha256": "067ebef493d85f48b85dccf943063a6766d45a0b11965ac256f1fab031e83767"
+        "sha256": "18ee1c7afaf2ac6be25153377ae4918b4ad9b82271d7b656e776cc8dcc6a9cea"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/input_eligibility.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/input_eligibility.tsv",
         "bytes": 621996,
-        "sha256": "6358008f012b4c3dfd923107293bdfadf4c18abb74c42e599c3a900d5e1da493"
+        "sha256": "db7c6bbdd213d65492b19912d4f89f18a3f009c5092faf916dd70b5dcfc26583"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/raw_benchmark_manifest.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/raw_benchmark_manifest.json",
         "bytes": 7588,
-        "sha256": "d64ddf113ae600564089cf3ab117335255b4831f7e5b0c62d3bfde61b5e28433"
+        "sha256": "e36965861491b4a81de2d3810001f2db6b4688c9f5fb0fb3540794df64982ce1"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/raw_scoring_report.md",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/raw_scoring_report.md",
         "bytes": 11481,
         "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/stage-command-receipts.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s6/stage-command-receipts.json",
         "bytes": 4707,
-        "sha256": "ca3d0a8d7a556cc01912efb17974105022cf449a5421e396ca9a560681570de2"
+        "sha256": "d84bb71a25ae98c0bf0d8d5047b262d16f98a009434feb1628a76731a4b3bc7a"
       }
     ],
     "evidence_matches": true,
