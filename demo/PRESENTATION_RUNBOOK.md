@@ -4,21 +4,26 @@ Everything below was measured on 2026-11-12 against the working tree. Timings
 are from this laptop; re-time on the presentation machine before relying on
 them.
 
-## 0. Read this first — one thing is not deployed
+## 0. Everything in this runbook is live
 
-The public API is running commit `5ff0022`, which **predates §4**. On the
-public URL today:
+Deployed 2026-11-13 from commit `ac69e14`. Verified on the public URL after
+the deploy, not assumed:
 
-- Everything in section 3 works **except codeine**, which is Unknown on every
-  sample.
-- Supplying a CYP2D6 call to the live API returns HTTP 400
-  (`OUTSIDE_CALL_INVALID`), because the deployed code accepts only four
-  callers and the new one is DRAGEN.
+| | |
+|---|---|
+| `GET /health` reports commit | **`ac69e14`** |
+| Codeine with a supplied DRAGEN call | **Ineffective** — `*4/*5`, Poor Metaboliser, activity score 0.0, `supplied_by: DRAGEN` |
+| The four real sample files | served, byte counts matching local |
+| The three old authored files | gone — those paths now return the site's fallback page, byte-identical to a nonsense filename |
 
-So: **either deploy before presenting, or present codeine from the local
-backend** (section 5), or leave codeine out and say it is a capability landing
-in the next deploy. Do not promise the codeine result on the live site without
-checking it first.
+The release gate ran in CI on this exact commit and passed, which is what let
+Render and Cloudflare deploy. The `content review` workflow is red, as it is on
+every push: it is named "red until adjudicated" and its four outstanding items
+are the unapproved stored prose, which the release policy withholds rather than
+serving. It does not block the deploy and it is not a regression.
+
+A good habit anyway: run the health check in section 1 before you present, and
+confirm it still says `ac69e14`.
 
 ## 1. Before the room
 
@@ -107,7 +112,13 @@ Same person as the first card, with the reference-matching rows removed.
 Every gene declined. This is what happens to most public research VCFs, and it
 is why the other files had to be built from a different kind of source.
 
-### If you are presenting codeine locally (not deployed)
+### Codeine, which needs a CYP2D6 diplotype supplied alongside
+
+The web picker does not supply one, so codeine reads Unknown from a sample card
+alone — correctly, because no VCF establishes CYP2D6. To show it answering you
+need the optional second input, which the API takes as `cyp2d6_diplotype` and
+`cyp2d6_caller`. The per-sample values are in
+`demo/samples/<ID>.cyp2d6.json`.
 
 | Sample | CYP2D6 supplied | codeine |
 |---|---|---|
@@ -115,9 +126,18 @@ is why the other files had to be built from a different kind of source.
 | HG01502 | `*2/*4` | Safe |
 | HG00525 | `*10+*36x2/*49` | **Unknown** — PharmCAT returns Indeterminate |
 
-NA20863 is the one to show. HG00525 is the honest one: a diplotype is in hand
-and the system still declines, because PharmCAT assigns that tandem no
-phenotype.
+NA20863 is the one to show, and it works on the live API:
+
+```bash
+curl -F "file=@demo/samples/NA20863.vcf" -F "drugs=codeine" \
+     -F "cyp2d6_diplotype=*4/*5" -F "cyp2d6_caller=DRAGEN" \
+     https://pharmaguard-api-baml.onrender.com/analyze
+```
+
+HG00525 is the honest one: a diplotype is in hand and the system still
+declines, because PharmCAT assigns that tandem no phenotype. Every result that
+rests on a supplied call is labelled *"CYP2D6 supplied by DRAGEN, not called by
+PharmaGuard"* wherever it appears.
 
 ## 4. The contrast — what to say
 
@@ -231,7 +251,8 @@ DRAGEN, not called by PharmaGuard."*
 | Banner counts past 60 s | cold start | Let it run; the budget is 180 s |
 | `SERVER_BUSY` (503) | one analysis slot, someone else is in it | Wait and retry; it is a queue, not a fault |
 | Every gene Unknown on an uploaded file | almost always a variants-only or array file | That is the demo — show the coverage panel |
-| codeine Unknown on the live site | the deploy predates §4 | Section 0 |
+| codeine Unknown from a sample card | expected — no CYP2D6 call was supplied | Section 3, last subsection |
+| `OUTSIDE_CALL_INVALID` (400) | the caller name is not one of the five accepted | Use `DRAGEN` exactly, with a diplotype like `*4/*5` |
 | Live site unreachable | Pages or Render | Section 5, offline |
 
 ## 8. Do not claim

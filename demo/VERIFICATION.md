@@ -133,7 +133,14 @@ StellarPGx)". The deployed commit is `5ff0022`, which predates §4.
 Every genotype, phenotype, risk label, confidence, severity, CPIC
 recommendation text, warning and per-gene coverage figure is **identical**.
 
-### The supplied-CYP2D6 path is local-only until a deploy
+> **Superseded 2026-11-13.** Both differences below were the pending deploy,
+> and `ac69e14` has since shipped: the live API reports that commit, and
+> codeine with a supplied DRAGEN call returns **Ineffective** on NA20863 on the
+> public URL. The measurement is kept as it was taken, because it is what the
+> parity check actually found at the time and it is the reason the deploy was
+> known to be needed.
+
+### The supplied-CYP2D6 path was local-only until a deploy
 
 Running the same samples with `cyp2d6_caller=DRAGEN` against the live instance
 returns **HTTP 400** on all seven:
