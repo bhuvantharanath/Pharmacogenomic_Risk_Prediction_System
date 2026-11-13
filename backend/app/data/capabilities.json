@@ -5,8 +5,12 @@
     {
       "drug": "clopidogrel",
       "primary_gene": "CYP2C19",
-      "relevant_genes": ["CYP2C19"],
-      "evidence_dependencies": ["CYP2C19"],
+      "relevant_genes": [
+        "CYP2C19"
+      ],
+      "evidence_dependencies": [
+        "CYP2C19"
+      ],
       "implementation_status": "implemented",
       "guidance_capable": true,
       "limitation": "Guidance is bounded to the CPIC annotation and the genomic evidence assessed by this application.",
@@ -17,8 +21,12 @@
     {
       "drug": "fluorouracil",
       "primary_gene": "DPYD",
-      "relevant_genes": ["DPYD"],
-      "evidence_dependencies": ["DPYD"],
+      "relevant_genes": [
+        "DPYD"
+      ],
+      "evidence_dependencies": [
+        "DPYD"
+      ],
       "implementation_status": "implemented",
       "guidance_capable": true,
       "limitation": "Guidance is bounded to the CPIC annotation and the genomic evidence assessed by this application.",
@@ -29,8 +37,14 @@
     {
       "drug": "azathioprine",
       "primary_gene": "TPMT",
-      "relevant_genes": ["TPMT", "NUDT15"],
-      "evidence_dependencies": ["TPMT", "NUDT15"],
+      "relevant_genes": [
+        "TPMT",
+        "NUDT15"
+      ],
+      "evidence_dependencies": [
+        "TPMT",
+        "NUDT15"
+      ],
       "implementation_status": "implemented",
       "guidance_capable": true,
       "limitation": "A complete drug-level interpretation requires acceptable evidence for both TPMT and NUDT15.",
@@ -41,8 +55,12 @@
     {
       "drug": "simvastatin",
       "primary_gene": "SLCO1B1",
-      "relevant_genes": ["SLCO1B1"],
-      "evidence_dependencies": ["SLCO1B1"],
+      "relevant_genes": [
+        "SLCO1B1"
+      ],
+      "evidence_dependencies": [
+        "SLCO1B1"
+      ],
       "implementation_status": "implemented",
       "guidance_capable": true,
       "limitation": "SLCO1B1 is a transporter; the result must not be described as a metabolizer phenotype.",
@@ -53,8 +71,15 @@
     {
       "drug": "warfarin",
       "primary_gene": "CYP2C9",
-      "relevant_genes": ["CYP2C9", "VKORC1", "CYP4F2"],
-      "evidence_dependencies": ["CYP2C9", "VKORC1"],
+      "relevant_genes": [
+        "CYP2C9",
+        "VKORC1",
+        "CYP4F2"
+      ],
+      "evidence_dependencies": [
+        "CYP2C9",
+        "VKORC1"
+      ],
       "implementation_status": "explicit_abstention",
       "guidance_capable": false,
       "limitation": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
@@ -65,11 +90,15 @@
     {
       "drug": "codeine",
       "primary_gene": "CYP2D6",
-      "relevant_genes": ["CYP2D6"],
-      "evidence_dependencies": ["CYP2D6"],
+      "relevant_genes": [
+        "CYP2D6"
+      ],
+      "evidence_dependencies": [
+        "CYP2D6"
+      ],
       "implementation_status": "explicit_abstention",
       "guidance_capable": false,
-      "limitation": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+      "limitation": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy, StellarPGx or DRAGEN).",
       "outside_call_gene": "CYP2D6",
       "explanation_available": true,
       "ui_available": true,

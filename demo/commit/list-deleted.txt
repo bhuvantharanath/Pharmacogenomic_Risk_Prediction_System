@@ -1,0 +1,3 @@
+app/assets/samples/pharmaguard_sample_normal.vcf
+app/assets/samples/pharmaguard_sample_reduced_function.vcf
+app/assets/samples/pharmaguard_sample_variants_only.vcf

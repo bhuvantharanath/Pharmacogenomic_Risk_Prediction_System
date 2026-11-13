@@ -4,9 +4,9 @@ CYP2D6 from a dedicated caller, passed to PharmCAT as an outside call (Phase 9 B
 PharmaGuard does not call CYP2D6 from a VCF, and still will not: the gene's
 star alleles depend on structural and copy-number variation a VCF does not
 express, and PharmCAT itself advises against it. A caller that reads the
-sequencing reads (Cyrius, BCyrius, Aldy, StellarPGx) can call it, and PharmCAT
-accepts such a call as an "outside call" (`-po`). This module is the one door
-for that call.
+sequencing reads (Cyrius, BCyrius, Aldy, StellarPGx, DRAGEN) can call it, and
+PharmCAT accepts such a call as an "outside call" (`-po`). This module is the
+one door for that call.
 
 WHY THE GRAMMAR IS STRICT
 
@@ -31,7 +31,19 @@ import re
 from dataclasses import dataclass
 
 #: The callers the brief names, as offered to the user. Aldy is version 4.
-CALLERS: tuple[str, ...] = ("Cyrius", "BCyrius", "Aldy", "StellarPGx")
+#:
+#: DRAGEN was added in Phase 10 §4. It belongs here on the same ground as the
+#: other four and on no weaker one: DRAGEN v4.x ships a targeted CYP2D6 caller
+#: that works from the reads and reports a total copy number alongside the
+#: diplotype, which is exactly the capability a VCF cannot supply and the
+#: reason this door exists. The alternative considered and rejected was to pass
+#: a DRAGEN call under one of the existing names, which would put a false
+#: statement in the provenance line every view of the result carries.
+#:
+#: Adding a name here widens nothing else. The grammar, the pinned gene, and
+#: the refusal to call CYP2D6 from a VCF are untouched, and a supplied call is
+#: still labelled as supplied wherever it appears.
+CALLERS: tuple[str, ...] = ("Cyrius", "BCyrius", "Aldy", "StellarPGx", "DRAGEN")
 
 #: The only gene an outside call may supply.
 GENE = "CYP2D6"

@@ -1,0 +1,44 @@
+[
+  {
+    "sample": "NA18526",
+    "source_accession": "ERR3239353",
+    "observed_vcf_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+    "historical_frozen_artifact_sha256": "9829ae37bb8d5ecb5b5e93cc720ee795df8a5efcb850f5b8ca2b47d65d246548",
+    "response_sha256": "5ba317fb78146b46ecddee7b478823fe6ad54cac0b56aa42b5c6e07379cec72d",
+    "latency_ms": 1514,
+    "checks": {
+      "independent_truth": true,
+      "profile_diplotype": true,
+      "phenotype": true,
+      "label": true,
+      "acs_pci_qualifier_retained": true,
+      "deterministic_fallback": true,
+      "no_static_prose": true,
+      "no_clinical_review_claim": true,
+      "no_invention_guarantee": true
+    },
+    "passed": true,
+    "scope": "fresh current API/PharmCAT replay of a previously frozen read-backed VCF; not a new raw-read extraction or independent genotype call"
+  },
+  {
+    "sample": "NA12878",
+    "source_accession": "ERR3239334",
+    "observed_vcf_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+    "historical_frozen_artifact_sha256": "92d54bcaafb1ae065cbe38f1c333f5d72fd40ee263161ee431643975c9cca1a7",
+    "response_sha256": "0a7a9413d35b4b66dc8a03d88af174128355c0f31934815a31b6649c1a76094d",
+    "latency_ms": 1368,
+    "checks": {
+      "independent_truth": true,
+      "profile_diplotype": true,
+      "phenotype": true,
+      "label": true,
+      "acs_pci_qualifier_retained": true,
+      "deterministic_fallback": true,
+      "no_static_prose": true,
+      "no_clinical_review_claim": true,
+      "no_invention_guarantee": true
+    },
+    "passed": true,
+    "scope": "fresh current API/PharmCAT replay of a previously frozen read-backed VCF; not a new raw-read extraction or independent genotype call"
+  }
+]

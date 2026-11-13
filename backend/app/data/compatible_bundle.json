@@ -257,8 +257,8 @@
     },
     "capability_registry": {
       "path": "backend/app/data/capabilities.json",
-      "sha256": "6018c8748ad1e1bf8e4341dbc97651a7a7ddc35eb80164865a7e249ce3e0410c",
-      "bytes": 3757
+      "sha256": "b808cb1658d1ac65cbddc940b09c49be628e24b95d1aa9d2ede03b2880434608",
+      "bytes": 3997
     }
   },
   "explanations": {
@@ -298,7 +298,7 @@
     "pharmcat_reports": 208,
     "application_eligible_sample_gene_rows": 0,
     "limitation": "Polymorphic-only 1000 Genomes slices did not satisfy the application evidence contract; Layer B therefore abstained.",
-    "application_core_sha256": "d4b90eaaea5707d2d643a3fd336675d6c45b34d84f3033739a27532670968baa",
+    "application_core_sha256": "b747d41c71f38e59be8935e4cfa03b3887e695a74bfc8255b8982f09ed1f1afb",
     "application_hash_policy_version": 2,
     "benchmark_historical_application_sha256": "05ea05686782c0644c39b71fa728959d8a2efce0aebc51cae3172912d0206d5a",
     "benchmark_historical_hash_policy_version": 1,
@@ -342,12 +342,12 @@
     "declared_truth_version": "Consolidated_PGx-HLA_table_1-22-25-V4.xlsx"
   },
   "evaluation_current": {
-    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-07-f20",
-    "application_core_sha256": "d4b90eaaea5707d2d643a3fd336675d6c45b34d84f3033739a27532670968baa",
+    "evaluation_id": "pharmaguard-external-current-candidate-2026-11-12-phase10s5",
+    "application_core_sha256": "b747d41c71f38e59be8935e4cfa03b3887e695a74bfc8255b8982f09ed1f1afb",
     "manifest": {
-      "path": "test-data/benchmark/current-candidate-2026-11-07-f20/evaluation_manifest.json",
-      "sha256": "f87fbffb3454809fbcce458e4fc01c88477a0a3628beacba5b7388d93c7bcf62",
-      "bytes": 7335
+      "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/evaluation_manifest.json",
+      "sha256": "af023a3fa435705870d75a774cd84a4406aac7024b358c5d67ab0959ea477c44",
+      "bytes": 5859
     },
     "historical_benchmark_manifest": {
       "path": "test-data/benchmark/external/benchmark_manifest.json",
@@ -365,54 +365,54 @@
     },
     "outputs": [
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/EVALUATION-REPORT.md",
-        "bytes": 3513,
-        "sha256": "a81c08a29e548ee92cf5fef55676cff069de9a69d915cde5b520440a2cbb4640"
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/EVALUATION-REPORT.md",
+        "bytes": 2976,
+        "sha256": "000f977ee128d03435f0740bce5025a3508f7052ef5587cd8b5446099fe4e78a"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/discrepancies.tsv",
-        "bytes": 247276,
-        "sha256": "339d9fcd9f3d1981b44003808c3db74f53357ec694bc06d5480b61e050f8528b"
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/discrepancies.tsv",
+        "bytes": 248212,
+        "sha256": "dc9efc199160b477732b5fbaf73941e1ba6fa6ff105c04b346c19e50299ed041"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/evaluation-comparison.json",
-        "bytes": 13682,
-        "sha256": "395aac945fecc49b8de7c95e5dc622ff5dccfa951fcbc321d1df004f4e884e8a"
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/evaluation-comparison.json",
+        "bytes": 15961,
+        "sha256": "5dc34dbaca4e015ce3191155448abd49e1f39394b0b33516e466474b7d601394"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/exclusions.tsv",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/exclusions.tsv",
         "bytes": 48960,
         "sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/external_benchmark_results.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/external_benchmark_results.json",
         "bytes": 33667,
-        "sha256": "68654937bade6034b57a13dde6615a501f850368397f50de913ad128e016195e"
+        "sha256": "b10e3373876c9de98bd853635c36f8dbe17b2cae58ad0afa78472810d44b1f76"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/f4-fresh-replay.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/f4-fresh-replay.json",
         "bytes": 1767,
-        "sha256": "4c2e30046582024de37e2a56c778b3a8fac6de7d2e176aa347a26f00e101df1b"
+        "sha256": "067ebef493d85f48b85dccf943063a6766d45a0b11965ac256f1fab031e83767"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/input_eligibility.tsv",
-        "bytes": 620332,
-        "sha256": "629469b0142af59ea174a36782e825d088787302f982ca351fba759aedb5e0b5"
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/input_eligibility.tsv",
+        "bytes": 621996,
+        "sha256": "6358008f012b4c3dfd923107293bdfadf4c18abb74c42e599c3a900d5e1da493"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/raw_benchmark_manifest.json",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/raw_benchmark_manifest.json",
         "bytes": 7588,
-        "sha256": "27bcf5992e8ee826c1a6bd5a0082adfe8d15dd1a0521adf998795724ad43c2fc"
+        "sha256": "d64ddf113ae600564089cf3ab117335255b4831f7e5b0c62d3bfde61b5e28433"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/raw_scoring_report.md",
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/raw_scoring_report.md",
         "bytes": 11481,
         "sha256": "3c6eb5f051f2cccf7da7c3230b48853178c6d00750b86e80df061b850d3794a9"
       },
       {
-        "path": "test-data/benchmark/current-candidate-2026-11-07-f20/stage-command-receipts.json",
-        "bytes": 3302,
-        "sha256": "6ef31267779376637ac22fa90cc55508d96471eef4c926ec38adef3b7e958a2f"
+        "path": "test-data/benchmark/current-candidate-2026-11-12-phase10s5/stage-command-receipts.json",
+        "bytes": 4707,
+        "sha256": "ca3d0a8d7a556cc01912efb17974105022cf449a5421e396ca9a560681570de2"
       }
     ],
     "evidence_matches": true,

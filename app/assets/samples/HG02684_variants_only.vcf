@@ -1,0 +1,30 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##source=PharmaGuard showcase input, transcribed from a public DRAGEN gVCF
+##pharmaguard_source_bucket=s3://1000genomes-dragen-v4-4-7
+##pharmaguard_source_object=data/individuals/hg38-alt_masked.cnv.graph.hla.methyl_cg.rna-11-r5.0-2/HG02684/HG02684.hard-filtered.gvcf.gz
+##pharmaguard_source_caller=DRAGEN v4.4.7
+##pharmaguard_source_retrieved=2026-11-12
+##pharmaguard_transcription=reference blocks expanded to one row per required position; genotypes and FILTER carried from the source; no position inferred as reference
+##reference=GRCh38
+##contig=<ID=chr1,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr6,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr10,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr12,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr13,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr16,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr19,assembly=GRCh38.p14,species="Homo sapiens">
+##contig=<ID=chr22,assembly=GRCh38.p14,species="Homo sapiens">
+##INFO=<ID=PX,Number=.,Type=String,Description="Gene">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	HG02684
+chr1	97450058	rs3918290	C	T	.	PASS	PX=DPYD	GT	1/1
+chr10	94842866	rs3758581	A	G	.	PASS	PX=CYP2C19	GT	0/1
+chr10	94981296	rs1057910	A	C	.	PASS	PX=CYP2C9	GT	0/1
+chr12	21176804	rs2306283	A	G	.	PASS	PX=SLCO1B1	GT	1/1
+chr19	15879621	rs2108622	C	T	.	PASS	PX=CYP4F2	GT	0/1
+chr22	42126611	rs1135840	C	G	.	PASS	PX=CYP2D6	GT	0/1
+chr22	42126938	rs769157652	C	T	.	PASS	PX=CYP2D6	GT	0/1
+chr22	42127803	rs28371725	C	T	.	PASS	PX=CYP2D6	GT	0/1
+chr22	42127941	rs16947	G	A	.	PASS	PX=CYP2D6	GT	0/1
+chr22	42129130	rs1058164	C	G	.	PASS	PX=CYP2D6	GT	0/1

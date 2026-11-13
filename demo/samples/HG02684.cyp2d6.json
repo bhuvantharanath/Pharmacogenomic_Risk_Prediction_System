@@ -1,0 +1,12 @@
+{
+ "gene": "CYP2D6",
+ "diplotype": "*1/*41",
+ "caller": "DRAGEN",
+ "caller_version": "dragen v13.021.779.4.4.7",
+ "genotype_quality": 150,
+ "total_copy_number": 4,
+ "filter": "PASS",
+ "source_object": "data/individuals/hg38-alt_masked.cnv.graph.hla.methyl_cg.rna-11-r5.0-2/HG02684/HG02684.targeted.json",
+ "source_url": "https://1000genomes-dragen-v4-4-7.s3.amazonaws.com/data/individuals/hg38-alt_masked.cnv.graph.hla.methyl_cg.rna-11-r5.0-2/HG02684/HG02684.targeted.json",
+ "not_called_by_pharmaguard": "This diplotype was produced by DRAGEN's targeted CYP2D6 caller from the sequencing reads. PharmaGuard did not call it, does not call CYP2D6 from a VCF, and labels every result that rests on it as supplied."
+}

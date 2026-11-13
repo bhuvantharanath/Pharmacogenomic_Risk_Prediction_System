@@ -1,0 +1,96 @@
+[
+  {
+    "name": "prepare-evaluation-copy",
+    "started_at": "2026-11-12T16:05:59.459325+00:00",
+    "ended_at": "2026-11-12T16:05:59.459453+00:00",
+    "exit_code": 0,
+    "detail": {
+      "copy_root": "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind-copy",
+      "candidate_files": 2534,
+      "candidate_source": "git ls-files over the working tree (includes uncommitted candidate changes)",
+      "copied_candidate": "<listed in evaluation-copy-inputs.json>",
+      "application_core_sha256_repo_and_copy": "b747d41c71f38e59be8935e4cfa03b3887e695a74bfc8255b8982f09ed1f1afb",
+      "historical_benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+      "frozen_protocol_sha256": "093fda85438a7b5408fb3fbc338962251a599c1f27aaf12c8c1dd5223968367e",
+      "frozen_truth_workbook_sha256": "c66174befa7a7bbb6cfaf174cc500a269565407807467204bd7bc6eaae3be109",
+      "frozen_truth_table_sha256": "11e6daf64791d0304f1816589a3ed05b2f47adbd65d9b9d60755e9d2114f6601",
+      "frozen_cohort_lock_sha256": "88bc2da84b930493bd4db715b627a6b6fc61440969b1aecb2c287ebacecbb5dc",
+      "combined_vcf_sha256": "f54a547758e17c53bfa338f67617d18b587396c90e7bc71310290f74d9df95ba",
+      "upstream_reports_reused_after_hash_verification": 208,
+      "upstream_caller_executions_in_this_run": 0
+    }
+  },
+  {
+    "name": "cohort-prepare",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/benchmark_external.py",
+      "prepare"
+    ],
+    "cwd": "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind-copy",
+    "started_at": "2026-11-12T16:05:59.484293+00:00",
+    "ended_at": "2026-11-12T16:05:59.525203+00:00",
+    "exit_code": 0,
+    "stdout": "cohort-prepare.stdout",
+    "stderr": "cohort-prepare.stderr"
+  },
+  {
+    "name": "cohort-fetch-resume",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/benchmark_external.py",
+      "fetch",
+      "--resume"
+    ],
+    "cwd": "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind-copy",
+    "started_at": "2026-11-12T16:05:59.546976+00:00",
+    "ended_at": "2026-11-12T16:05:59.654997+00:00",
+    "exit_code": 0,
+    "stdout": "cohort-fetch-resume.stdout",
+    "stderr": "cohort-fetch-resume.stderr"
+  },
+  {
+    "name": "cohort-evaluate-resume",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "scripts/benchmark_external.py",
+      "evaluate",
+      "--resume"
+    ],
+    "cwd": "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind-copy",
+    "started_at": "2026-11-12T16:05:59.676553+00:00",
+    "ended_at": "2026-11-12T16:06:41.745242+00:00",
+    "exit_code": 0,
+    "stdout": "cohort-evaluate-resume.stdout",
+    "stderr": "cohort-evaluate-resume.stderr"
+  },
+  {
+    "name": "compare-evaluation",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind2/compare.py",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind-copy",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-11-12T16:07:38.844134+00:00",
+    "ended_at": "2026-11-12T16:07:39.249818+00:00",
+    "exit_code": 0,
+    "stdout": "compare-evaluation.stdout",
+    "stderr": "compare-evaluation.stderr"
+  },
+  {
+    "name": "f4-fresh-replay",
+    "argv": [
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/backend/.venv/bin/python",
+      "/private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind2/replay_f4.py",
+      "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System"
+    ],
+    "cwd": "/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System",
+    "started_at": "2026-11-12T16:07:59.563611+00:00",
+    "ended_at": "2026-11-12T16:08:02.352784+00:00",
+    "exit_code": 0,
+    "stdout": "f4-fresh-replay.stdout",
+    "stderr": "f4-fresh-replay.stderr"
+  }
+]

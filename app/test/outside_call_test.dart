@@ -109,11 +109,16 @@ void main() {
       expect(outsideCallError('', 'Cyrius'), contains('or neither'));
       expect(outsideCallError('*1/*4;rm', 'Cyrius'), contains('star-allele'));
       expect(outsideCallError('*1/*4', 'Cyrius'), isNull);
+      // Pinned deliberately, and in the server's order: this list is a copy of
+      // `app.outside_calls.CALLERS`, so a name added on one side and not the
+      // other would offer the user a caller the server refuses, or hide one it
+      // accepts. DRAGEN joined in Phase 10 §4.
       expect(kCyp2d6Callers, <String>[
         'Cyrius',
         'BCyrius',
         'Aldy',
         'StellarPGx',
+        'DRAGEN',
       ]);
     });
 

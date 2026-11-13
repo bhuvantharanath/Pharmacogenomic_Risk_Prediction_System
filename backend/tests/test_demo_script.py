@@ -101,6 +101,35 @@ class TestDemoDefinition:
         for s in demo.SCENARIOS:
             assert s.expect, f"S{s.number} declares no expected label"
 
+    def test_every_authored_genotype_is_declared_synthetic(self) -> None:
+        """
+        A demo may use authored genotypes. It may not do so quietly.
+
+        The three files the generator wrote carry
+        `##source=PharmaGuardSyntheticGenerator`, so the file itself is the
+        authority on what it is -- and the scenario's own flag must agree with
+        it. Marking a real file synthetic, or a synthetic one real, fails here
+        rather than at the moment someone is presenting an authored Toxic
+        result as though it came from a person.
+        """
+        wrong: list[str] = []
+        for s in demo.SCENARIOS:
+            header = (DEMO_DIR / s.vcf).read_text()[:2000]
+            authored = "PharmaGuardSyntheticGenerator" in header
+            if authored != s.synthetic:
+                wrong.append(
+                    f"S{s.number} ({s.vcf}): file says "
+                    f"{'authored' if authored else 'real'}, scenario says "
+                    f"{'synthetic' if s.synthetic else 'real'}"
+                )
+        assert not wrong, wrong
+
+    def test_the_synthetic_marker_reaches_the_screen(self) -> None:
+        """The flag is worth nothing if the presenter never sees it."""
+        source = (REPO_ROOT / "scripts" / "run_demo.py").read_text()
+        assert "SYNTHETIC" in source, "no synthetic marker is rendered"
+        assert "s.synthetic" in source, "the marker does not read the flag"
+
     def test_narration_exists_so_runbook_cannot_drift(self) -> None:
         for s in demo.SCENARIOS:
             assert len(s.narration) > 60, f"S{s.number} has no usable narration"

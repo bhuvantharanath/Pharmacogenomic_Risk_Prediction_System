@@ -17,11 +17,17 @@
 /// input requirements mean in a way no prose achieves. It is also the only way
 /// to compare their own file against one that works.
 ///
-/// THE FOURTH SAMPLE IS DELIBERATELY ONE THAT FAILS
+/// TWO SAMPLES ARE DELIBERATELY ONES THAT FAIL
 ///
-/// Three samples produce answers; `variants_only` is gated on every gene. It is
-/// offered on equal footing because the coverage gate is the project's central
-/// claim, and a demo that only shows successes hides it.
+/// Three produce answers; two are gated on every gene. They are offered on
+/// equal footing because the coverage gate is the project's central claim, and
+/// a demo that only shows successes hides it.
+///
+/// The pair that matters is the first and the fourth: the same real person,
+/// once with every required position reported and once with only the
+/// non-reference rows. Same genotype, same pipeline, and the Toxic
+/// fluorouracil result vanishes. Nothing about the code differs between those
+/// two runs — only the shape of the file.
 library;
 
 import 'package:flutter/material.dart';
@@ -54,48 +60,76 @@ class SampleFile {
   Future<String> load() => rootBundle.loadString(asset);
 }
 
+/// Every bundled sample is a real, named public genome.
+///
+/// They were transcribed from the Illumina/AWS DRAGEN v4.4.7 reanalysis of the
+/// 1000 Genomes Project — one row per required position, reference blocks
+/// expanded, genotypes and FILTER carried from the caller, nothing inferred.
+/// `scripts/build_showcase_inputs.py` made them and refuses to write a file
+/// that does not carry an observed genotype at every position it needs.
+///
+/// They replaced four hand-built files. Those were honest about their alleles,
+/// which came from PharmCAT's own definitions, but the genotypes were chosen
+/// to produce a chosen answer, and the card never said so. A demo whose good
+/// results are authored is not evidence of anything.
 const List<SampleFile> kSampleFiles = <SampleFile>[
   SampleFile(
-    asset: 'assets/samples/pharmaguard_sample_reduced_function.vcf',
-    fileName: 'pharmaguard_sample_reduced_function.vcf',
-    title: 'Reduced-function result',
+    asset: 'assets/samples/HG02684.vcf',
+    fileName: 'HG02684.vcf',
+    title: 'HG02684 — a dangerous result',
     outcome: 'Answers confidently',
     detail:
-        'Complete coverage, CYP2C19 *2/*2. Clopidogrel comes back '
-        'Ineffective — the case this system exists to catch.',
+        'Real genome, Punjabi in Lahore (1000 Genomes). DPYD '
+        'c.1905+1G>A on both copies: this person cannot clear fluorouracil, '
+        'and the result is Toxic. Two other callers and the family pedigree '
+        'agree on that genotype.',
     gated: false,
   ),
   SampleFile(
-    asset: 'assets/samples/pharmaguard_sample_normal.vcf',
-    fileName: 'pharmaguard_sample_normal.vcf',
-    title: 'Normal result',
+    asset: 'assets/samples/HG00525.vcf',
+    fileName: 'HG00525.vcf',
+    title: 'HG00525 — two findings at once',
     outcome: 'Answers confidently',
     detail:
-        'Complete coverage, all genes at reference. Shows the system is '
-        'not merely cautious — it will state when no PGx-guided adjustment was '
-        'identified from the assessed evidence.',
+        'Real genome, Southern Han Chinese. CYP2C19 *2/*2 makes '
+        'clopidogrel Ineffective, and SLCO1B1 *45/*45 makes simvastatin '
+        'Toxic — from one upload, on two unrelated drugs.',
     gated: false,
   ),
   SampleFile(
-    asset: 'assets/samples/pharmaguard_sample_variants_only.vcf',
-    fileName: 'pharmaguard_sample_variants_only.vcf',
-    title: 'Variants-only file',
+    asset: 'assets/samples/HG02661.vcf',
+    fileName: 'HG02661.vcf',
+    title: 'HG02661 — nothing to flag',
+    outcome: 'Answers confidently',
+    detail:
+        'Real genome, Punjabi in Lahore. Normal function across every '
+        'gene read. Shows the system is not merely cautious: it will say when '
+        'no PGx-guided adjustment was identified.',
+    gated: false,
+  ),
+  SampleFile(
+    asset: 'assets/samples/HG02684_variants_only.vcf',
+    fileName: 'HG02684_variants_only.vcf',
+    title: 'HG02684 again, variants only',
     outcome: 'Declines every gene',
     detail:
-        'The SAME patient as the first sample, with reference rows '
-        'removed — the common output of most pipelines. The genotype is '
-        'unchanged; what is lost is the evidence that it was measured.',
+        'The SAME person as the first sample, with the '
+        'reference-matching rows removed — the ordinary output of most '
+        'pipelines. The DPYD variant is still there. What is gone is the '
+        'evidence that anything else was measured, so the Toxic result '
+        'disappears.',
     gated: true,
   ),
   SampleFile(
     asset: 'assets/samples/pharmaguard_sample_1000genomes.vcf',
     fileName: 'pharmaguard_sample_1000genomes.vcf',
-    title: 'Real 1000 Genomes sample',
+    title: 'A research VCF, as published',
     outcome: 'Declines every gene',
     detail:
-        'Genuine public research data (NA12273), not synthetic. '
+        'NA12273 from the 1000 Genomes phased panel. '
         'Polymorphic-filtered, so it is declined — which is what happens to '
-        'most research VCFs, and why.',
+        'most research VCFs, and why the file above had to be built from a '
+        'different kind of source.',
     gated: true,
   ),
 ];
@@ -134,8 +168,10 @@ class SampleFilesCard extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           Text(
-            'Run one here, or download it and upload it yourself. Two of these '
-            'are declined on purpose — that is the behaviour, not a fault.',
+            'Every one is a real, named public genome from the 1000 Genomes '
+            'Project — none is made up. Run one here, or download it and '
+            'upload it yourself. Two are declined on purpose; that is the '
+            'behaviour, not a fault.',
             style: theme.textTheme.bodySmall?.copyWith(
               color: theme.colorScheme.onSurfaceVariant,
               height: 1.4,

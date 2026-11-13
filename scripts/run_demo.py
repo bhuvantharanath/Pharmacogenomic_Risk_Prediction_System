@@ -73,6 +73,15 @@ class Scenario:
     #: cannot drift — there is one source for what this demonstrates.
     narration: str
     expect: str
+    #: True when the file's GENOTYPES were authored rather than sequenced.
+    #:
+    #: Said out loud on screen, because a demo that shows an authored result
+    #: without saying so is making the claim this project exists to refuse.
+    #: These files are here because each one isolates ONE guard — the
+    #: DPYD-indeterminate case in particular has no convenient real
+    #: counterpart — not because the real data was unavailable. The real
+    #: cohort is in `demo/samples/` and is what the web client ships.
+    synthetic: bool = False
 
 
 SCENARIOS: tuple[Scenario, ...] = (
@@ -81,7 +90,7 @@ SCENARIOS: tuple[Scenario, ...] = (
              "Complete-coverage VCF. CYP2C19 *2/*2 — a poor metaboliser. Clopidogrel "
              "is a prodrug this patient never activates, so it is Ineffective, and "
              "the recommendation text is CPIC's own words.",
-             "Ineffective"),
+             "Ineffective", synthetic=True),
     Scenario(2, "S2_variants_only", "demo_variants_only.vcf", "clopidogrel",
              "THE CENTREPIECE — same patient, and the system declines",
              "Same non-reference genotypes. The pinned PharmCAT caller still reports "
@@ -91,7 +100,7 @@ SCENARIOS: tuple[Scenario, ...] = (
              "indistinguishable from one never tested, so missing data reads as "
              "normal, not as uncertainty. We measured up to 28.6% confidently-wrong "
              "calls at 60% coverage, every one reporting reduced function as normal.",
-             "Unknown"),
+             "Unknown", synthetic=True),
     Scenario(3, "S3_cyp2d6", "demo_na12273_1000g.vcf", "codeine",
              "Declining what cannot be known from this data type",
              "Real 1000 Genomes sample, and it is in GeT-RM — which records its "
@@ -110,14 +119,14 @@ SCENARIOS: tuple[Scenario, ...] = (
              "All-reference control, complete coverage. SLCO1B1 *1/*1, normal "
              "transporter function; no PGx-guided adjustment is identified from "
              "the assessed evidence.",
-             "No PGx-guided adjustment identified"),
+             "No PGx-guided adjustment identified", synthetic=True),
     Scenario(6, "S6_multidrug", "demo_confident.vcf",
              "clopidogrel,simvastatin,fluorouracil,codeine,ibuprofen",
              "Breadth, and graceful degradation",
              "Five drugs in one request. Ibuprofen is outside the audited "
              "application scope and returns Unknown rather "
              "than inheriting generic upstream guidance.",
-             "mixed"),
+             "mixed", synthetic=True),
 )
 
 
@@ -232,7 +241,12 @@ def show(result: Result) -> None:
     s = result.scenario
     print()
     print(f"{BOLD}── S{s.number} · {s.headline} ──{RESET}")
-    print(f"{DIM}  {s.vcf}  +  {s.drugs}{RESET}")
+    origin = (
+        f"{AMBER}SYNTHETIC genotypes{RESET}{DIM} — authored to isolate one guard"
+        if s.synthetic
+        else f"{DIM}real public genome"
+    )
+    print(f"{DIM}  {s.vcf}  +  {s.drugs}   [{origin}{DIM}]{RESET}")
     if not result.ok:
         print(f"{RED}  FAILED  HTTP {result.status}  {result.error[:300]}{RESET}")
         return

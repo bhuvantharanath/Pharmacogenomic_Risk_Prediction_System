@@ -1,0 +1,160 @@
+{
+  "historical_benchmark_id": "pharmaguard-external-analytical-benchmark-v1",
+  "historical_generated_at": "2026-09-25T03:43:38.823412+00:00",
+  "previous_evaluation": "pharmaguard-external-current-candidate-2026-11-12-phase10s4",
+  "previous_generated_at": "2026-11-12T15:36:41.279455+00:00",
+  "new_generated_at": "2026-11-12T16:06:41.717944+00:00",
+  "individuals": 208,
+  "sample_gene_rows": 1456,
+  "evaluable_truth_rows": 596,
+  "all_metric_fields_equal_except_generation_time": true,
+  "equal_to_previous_evaluation_except_generation_time": true,
+  "eligibility_rows": 1456,
+  "differing_eligibility_fields": {
+    "vcf_sha256": 1456,
+    "missing_dependency_genes": 208,
+    "eligibility_reason": 416
+  },
+  "differing_eligibility_fields_vs_previous_evaluation": {
+    "vcf_sha256": 1456,
+    "eligibility_reason": 208
+  },
+  "declared_eligibility_changes": [
+    {
+      "gene": "CYP2D6",
+      "field": "eligibility_reason",
+      "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+      "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy, StellarPGx or DRAGEN).",
+      "rows": 208,
+      "why": "Phase 10 \u00a75: codeine's capability limitation names the accepted CYP2D6 callers, and \u00a74 added a fifth (DRAGEN). The limitation string is repeated verbatim into the eligibility reason and the discrepancy detail, so naming the fifth caller changes those rows and nothing else."
+    }
+  ],
+  "declared_discrepancy_detail_changes": [
+    {
+      "gene": "CYP2D6",
+      "field": "detail",
+      "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+      "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy, StellarPGx or DRAGEN).",
+      "rows": 117,
+      "why": "Phase 10 \u00a75: codeine's capability limitation names the accepted CYP2D6 callers, and \u00a74 added a fifth (DRAGEN). The limitation string is repeated verbatim into the eligibility reason and the discrepancy detail, so naming the fifth caller changes those rows and nothing else."
+    }
+  ],
+  "inherited_eligibility_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "eligibility_reason",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 208,
+      "why": "Phase 9 B5: a refusal names the missing genes a file could supply before the limitation, and warfarin's limitation now quotes CPIC's algorithm text."
+    },
+    {
+      "gene": "CYP2C9",
+      "field": "missing_dependency_genes",
+      "from": "CYP2C9",
+      "to": "CYP2C9,VKORC1",
+      "rows": 208,
+      "why": "Phase 9 B5: warfarin depends on CYP2C9 and VKORC1; the benchmark slices carry no chr16 rows, so VKORC1 is missing for every individual."
+    },
+    {
+      "gene": "CYP2D6",
+      "field": "eligibility_reason",
+      "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+      "rows": 208,
+      "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+    }
+  ],
+  "inherited_discrepancy_detail_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "detail",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 100,
+      "why": "Phase 9 B5: the discrepancy detail repeats the warfarin eligibility reason, which now names CYP2C9 and VKORC1 and quotes CPIC."
+    },
+    {
+      "gene": "CYP2D6",
+      "field": "detail",
+      "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy or StellarPGx).",
+      "rows": 117,
+      "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason, and the discrepancy detail repeats it. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md)."
+    }
+  ],
+  "cumulative_eligibility_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "eligibility_reason",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 208,
+      "why": "Phase 9 B5: a refusal names the missing genes a file could supply before the limitation, and warfarin's limitation now quotes CPIC's algorithm text."
+    },
+    {
+      "gene": "CYP2C9",
+      "field": "missing_dependency_genes",
+      "from": "CYP2C9",
+      "to": "CYP2C9,VKORC1",
+      "rows": 208,
+      "why": "Phase 9 B5: warfarin depends on CYP2C9 and VKORC1; the benchmark slices carry no chr16 rows, so VKORC1 is missing for every individual."
+    },
+    {
+      "gene": "CYP2D6",
+      "field": "eligibility_reason",
+      "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy, StellarPGx or DRAGEN).",
+      "rows": 208,
+      "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md). Phase 10 \u00a75: codeine's capability limitation names the accepted CYP2D6 callers, and \u00a74 added a fifth (DRAGEN). The limitation string is repeated verbatim into the eligibility reason and the discrepancy detail, so naming the fifth caller changes those rows and nothing else."
+    }
+  ],
+  "cumulative_discrepancy_detail_changes": [
+    {
+      "gene": "CYP2C9",
+      "field": "detail",
+      "from": "No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation.",
+      "to": "Required genomic evidence is incomplete for CYP2C9, VKORC1. No validated automated warfarin-dose implementation is provided by this application; a gene call alone is not a complete dosing recommendation. CPIC's warfarin guidance is a dosing algorithm rather than a recommendation for each genotype: \"CPIC Guideline for Pharmacogenetics-Guided Warfarin Dosing: 2017 Update [Article: 28198005 ] recommends that pharmacogenetic warfarin dosing be accomplished through the use of one of the pharmacogenetic dosing algorithms, as summarized in Figure 2. See CPIC guideline annotation for details.\" That flow chart depends in part on ancestry, which this application does not collect, so rs12777823 is not assessed. The CYP2C9, VKORC1 and CYP4F2 results are shown for reference only.",
+      "rows": 100,
+      "why": "Phase 9 B5: the discrepancy detail repeats the warfarin eligibility reason, which now names CYP2C9 and VKORC1 and quotes CPIC."
+    },
+    {
+      "gene": "CYP2D6",
+      "field": "detail",
+      "from": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is not produced.",
+      "to": "CYP2D6 copy-number and structural variation is not called from the uploaded VCF in this application, so codeine guidance is produced only from a CYP2D6 diplotype supplied by a dedicated caller (Cyrius, BCyrius, Aldy, StellarPGx or DRAGEN).",
+      "rows": 117,
+      "why": "Phase 9 B10: codeine's capability limitation now says guidance comes only from a CYP2D6 diplotype supplied by a dedicated caller; the evaluation records that limitation as CYP2D6's reason, and the discrepancy detail repeats it. Owner decision: \"Accept, declare it\" (audit/phase9/B10_ZR_AMENDMENT.md). Phase 10 \u00a75: codeine's capability limitation names the accepted CYP2D6 callers, and \u00a74 added a fifth (DRAGEN). The limitation string is repeated verbatim into the eligibility reason and the discrepancy detail, so naming the fifth caller changes those rows and nothing else."
+    }
+  ],
+  "differing_discrepancy_detail_fields_vs_previous_evaluation": {
+    "detail": 117
+  },
+  "individuals_with_vcf_sha_difference": 208,
+  "exclusions_sha256": "e9e0f7a50ddb761017d72095f4da29a34ecafa2bca0a7d6e710d95d597ee0200",
+  "discrepancies_sha256": "dc9efc199160b477732b5fbaf73941e1ba6fa6ff105c04b346c19e50299ed041",
+  "report_manifest_sha256": "ade777b009160b59a1a70e5051084eb35ac9483dfcd1a9663b9e2b0bf45cb8b8",
+  "representative_projection": [
+    {
+      "label": "historical-path",
+      "path": "historical-path.HG00111.vcf",
+      "sha256": "6e82520b7732b7b4dad527a6e0ab5f1cb8e92eed0d6beb53cd47f5a6fda8dd75",
+      "command_lines": [
+        "##bcftools_viewCommand=view -r chr1:97078987-97883368 -S '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_samples.txt' --force-samples -Oz -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/chr1.locked_cohort.vcf.gz' https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr1.filtered.SNV_INDEL_SV_phased_panel.vcf.gz; Date=Thu Sep 24 19:15:21 2026",
+        "##bcftools_viewCommand=view -R '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz' -s HG00111 -Ov -o /private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind2/historical-path.HG00111.vcf '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_cohort.vcf.gz'; Date=Thu Nov 12 21:37:38 2026"
+      ]
+    },
+    {
+      "label": "isolated-path",
+      "path": "isolated-path.HG00111.vcf",
+      "sha256": "861c35104a6f339fa09fb5bf4f74da958833ccc81b67f95053ab2b20093de6a4",
+      "command_lines": [
+        "##bcftools_viewCommand=view -r chr1:97078987-97883368 -S '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/locked_samples.txt' --force-samples -Oz -o '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/benchmark/external/genomic/chr1.locked_cohort.vcf.gz' https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/working/20220422_3202_phased_SNV_INDEL_SV/1kGP_high_coverage_Illumina.chr1.filtered.SNV_INDEL_SV_phased_panel.vcf.gz; Date=Thu Sep 24 19:15:21 2026",
+        "##bcftools_viewCommand=view -R '/Users/bhuvant/Projects/Pharmacogenomic Risk Prediction System/test-data/reference/tools/pharmcat_positions_3.4.0.vcf.bgz' -s HG00111 -Ov -o /private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind2/isolated-path.HG00111.vcf /private/tmp/claude-501/-Users-bhuvant-Projects-Pharmacogenomic-Risk-Prediction-System/81785e80-8131-4f0a-b5c7-a489131ec3b6/scratchpad/rebind-copy/test-data/benchmark/external/genomic/locked_cohort.vcf.gz; Date=Thu Nov 12 21:37:39 2026"
+      ]
+    }
+  ],
+  "representative_projection_record_count": 172,
+  "representative_biological_records_equal": true,
+  "interpretation": "Phase 10 \u00a75 replaced the four hand-built sample files the web client offered with real public genomes from the showcase cohort, and named the fifth accepted CYP2D6 caller in codeine's capability limitation. Three scientific-core files changed: the capability registry, its generated client constants, and the bundled-sample list. Every scored metric, exclusion and discrepancy classification is unchanged. The declared differences are the limitation string reaching 208 CYP2D6 eligibility reasons and 117 CYP2D6 discrepancy details, plus the per-row temporary VCF hash explained by the path-bearing bcftools header. No genotype, phenotype, label or abstention changed, and no new concordance or clinical claim follows."
+}

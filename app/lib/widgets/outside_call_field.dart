@@ -16,6 +16,7 @@ const List<String> kCyp2d6Callers = <String>[
   'BCyrius',
   'Aldy',
   'StellarPGx',
+  'DRAGEN',
 ];
 
 const int kCyp2d6MaxLength = 80;
@@ -83,9 +84,10 @@ class OutsideCallField extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               'PharmaGuard does not call CYP2D6 from a VCF. If Cyrius, '
-              'BCyrius, Aldy or StellarPGx called it from this person’s '
-              'BAM/CRAM, enter its diplotype here. It is used as given and '
-              'every result from it is labelled as supplied, not called.',
+              'BCyrius, Aldy, StellarPGx or DRAGEN called it from this '
+              'person’s BAM/CRAM, enter its diplotype here. It is used as '
+              'given and every result from it is labelled as supplied, '
+              'not called.',
               style: note,
             ),
             const SizedBox(height: 10),

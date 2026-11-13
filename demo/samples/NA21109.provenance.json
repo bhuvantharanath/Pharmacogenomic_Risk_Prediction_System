@@ -1,0 +1,308 @@
+{
+ "sample_id": "NA21109",
+ "source": {
+  "bucket": "s3://1000genomes-dragen-v4-4-7",
+  "object": "data/individuals/hg38-alt_masked.cnv.graph.hla.methyl_cg.rna-11-r5.0-2/NA21109/NA21109.hard-filtered.gvcf.gz",
+  "url": "https://1000genomes-dragen-v4-4-7.s3.amazonaws.com/data/individuals/hg38-alt_masked.cnv.graph.hla.methyl_cg.rna-11-r5.0-2/NA21109/NA21109.hard-filtered.gvcf.gz",
+  "caller": "DRAGEN v4.4.7",
+  "reference_build": "GRCh38",
+  "registry": "https://registry.opendata.aws/ilmn-dragen-1kgp",
+  "retrieved": "2026-11-12"
+ },
+ "transcription": {
+  "tool": "scripts/build_showcase_inputs.py",
+  "rule": "reference blocks expanded to one row per required position; genotypes and FILTER carried from the source; alleles matched base-for-base against PharmCAT's own positions file; phase dropped; no position inferred as reference",
+  "pharmcat_positions": "pharmcat_positions_3.4.0.vcf.bgz"
+ },
+ "output": {
+  "sha256": "d73e3f9c99b2a0f9d0b588aca889a4a2268be95f27ad5e63654741b5cbf6ef75",
+  "bytes": 28769,
+  "rows": 480
+ },
+ "evidence": {
+  "CYP2C19": {
+   "required": 35,
+   "from_reference_block": 32,
+   "from_variant_record": 3,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 23,
+   "min_genotype_quality": 53
+  },
+  "CYP2C9": {
+   "required": 88,
+   "from_reference_block": 88,
+   "from_variant_record": 0,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 24,
+   "min_genotype_quality": 59
+  },
+  "CYP2D6": {
+   "required": 157,
+   "from_reference_block": 55,
+   "from_variant_record": 98,
+   "uncovered": 0,
+   "refused": 4,
+   "non_pass": 145,
+   "min_depth": 25,
+   "min_genotype_quality": 5
+  },
+  "CYP4F2": {
+   "required": 20,
+   "from_reference_block": 20,
+   "from_variant_record": 0,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 16,
+   "min_genotype_quality": 40
+  },
+  "DPYD": {
+   "required": 83,
+   "from_reference_block": 82,
+   "from_variant_record": 1,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 21,
+   "min_genotype_quality": 29
+  },
+  "NUDT15": {
+   "required": 20,
+   "from_reference_block": 20,
+   "from_variant_record": 0,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 25,
+   "min_genotype_quality": 64
+  },
+  "SLCO1B1": {
+   "required": 35,
+   "from_reference_block": 34,
+   "from_variant_record": 1,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 21,
+   "min_genotype_quality": 50
+  },
+  "TPMT": {
+   "required": 45,
+   "from_reference_block": 44,
+   "from_variant_record": 1,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 28,
+   "min_genotype_quality": 51
+  },
+  "VKORC1": {
+   "required": 1,
+   "from_reference_block": 1,
+   "from_variant_record": 0,
+   "uncovered": 0,
+   "refused": 0,
+   "non_pass": 0,
+   "min_depth": 32,
+   "min_genotype_quality": 65
+  }
+ },
+ "coverage_as_the_application_sees_it": {
+  "CYP2C19": {
+   "positions_present": 35,
+   "positions_required": 35,
+   "percent": 100.0,
+   "minimum_percent": 100,
+   "sufficient": true,
+   "decision_critical_present": 31,
+   "decision_critical_required": 31,
+   "decision_critical_enforced": false,
+   "evidence_counts": {
+    "valid_observed_genotype": 35,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  },
+  "CYP2C9": {
+   "positions_present": 88,
+   "positions_required": 88,
+   "percent": 100.0,
+   "minimum_percent": 100,
+   "sufficient": true,
+   "decision_critical_present": 69,
+   "decision_critical_required": 69,
+   "decision_critical_enforced": false,
+   "evidence_counts": {
+    "valid_observed_genotype": 88,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  },
+  "CYP2D6": {
+   "positions_present": 8,
+   "positions_required": 157,
+   "percent": 5.1,
+   "minimum_percent": 100,
+   "sufficient": false,
+   "decision_critical_present": 7,
+   "decision_critical_required": 140,
+   "decision_critical_enforced": false,
+   "evidence_counts": {
+    "valid_observed_genotype": 8,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 145,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 4
+   }
+  },
+  "CYP4F2": {
+   "positions_present": 20,
+   "positions_required": 20,
+   "percent": 100.0,
+   "minimum_percent": 100,
+   "sufficient": true,
+   "decision_critical_present": 1,
+   "decision_critical_required": 1,
+   "decision_critical_enforced": false,
+   "evidence_counts": {
+    "valid_observed_genotype": 20,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  },
+  "DPYD": {
+   "positions_present": 83,
+   "positions_required": 83,
+   "percent": 100.0,
+   "minimum_percent": 20,
+   "sufficient": true,
+   "decision_critical_present": 28,
+   "decision_critical_required": 28,
+   "decision_critical_enforced": true,
+   "evidence_counts": {
+    "valid_observed_genotype": 83,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  },
+  "NUDT15": {
+   "positions_present": 20,
+   "positions_required": 20,
+   "percent": 100.0,
+   "minimum_percent": 80,
+   "sufficient": true,
+   "decision_critical_present": 20,
+   "decision_critical_required": 20,
+   "decision_critical_enforced": true,
+   "evidence_counts": {
+    "valid_observed_genotype": 20,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  },
+  "SLCO1B1": {
+   "positions_present": 35,
+   "positions_required": 35,
+   "percent": 100.0,
+   "minimum_percent": 100,
+   "sufficient": true,
+   "decision_critical_present": 26,
+   "decision_critical_required": 26,
+   "decision_critical_enforced": false,
+   "evidence_counts": {
+    "valid_observed_genotype": 35,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  },
+  "TPMT": {
+   "positions_present": 45,
+   "positions_required": 45,
+   "percent": 100.0,
+   "minimum_percent": 80,
+   "sufficient": true,
+   "decision_critical_present": 45,
+   "decision_critical_required": 45,
+   "decision_critical_enforced": true,
+   "evidence_counts": {
+    "valid_observed_genotype": 45,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  },
+  "VKORC1": {
+   "positions_present": 1,
+   "positions_required": 1,
+   "percent": 100.0,
+   "minimum_percent": 100,
+   "sufficient": true,
+   "decision_critical_present": 1,
+   "decision_critical_required": 1,
+   "decision_critical_enforced": false,
+   "evidence_counts": {
+    "valid_observed_genotype": 1,
+    "partial_genotype": 0,
+    "no_call": 0,
+    "gt_not_provided": 0,
+    "filter_failed": 0,
+    "quality_not_established": 0,
+    "malformed_genotype": 0,
+    "absent_position": 0
+   }
+  }
+ },
+ "cyp2d6_outside_call": {
+  "gene": "CYP2D6",
+  "diplotype": "*2/*2",
+  "caller": "DRAGEN",
+  "caller_version": "dragen v13.021.779.4.4.7",
+  "genotype_quality": 150,
+  "total_copy_number": 4,
+  "filter": "PASS",
+  "source_object": "data/individuals/hg38-alt_masked.cnv.graph.hla.methyl_cg.rna-11-r5.0-2/NA21109/NA21109.targeted.json",
+  "source_url": "https://1000genomes-dragen-v4-4-7.s3.amazonaws.com/data/individuals/hg38-alt_masked.cnv.graph.hla.methyl_cg.rna-11-r5.0-2/NA21109/NA21109.targeted.json",
+  "not_called_by_pharmaguard": "This diplotype was produced by DRAGEN's targeted CYP2D6 caller from the sequencing reads. PharmaGuard did not call it, does not call CYP2D6 from a VCF, and labels every result that rests on it as supplied."
+ }
+}
